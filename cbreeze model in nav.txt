@@ -1,0 +1,50 @@
+Application Design
+- Code
+- Description
+- Object Date/Time
+- Object Version List
+
+Application Design Object ID Range
+- Application Design Code
+- Object Type (All,Table,Page,Report,Codeunit, etc.)
+- Object ID Range (text, maar alleen numeriek + '.' + '|')
+
+Entity Type
+- Application Design Code
+- Code
+- Name
+- Plural Name
+- Abbreviated Name
+- Variable Name
+- Meta Type (Master etc.)
+
+Entity Type Action
+- Application Design Code
+- Entity Type Code
+- Caption
+- Image
+
+Master Entity Type
+- Application Design Code
+- Code
+- Description Style
+- Description Length
+- Search Description
+
+Journal Entity Type
+- Application Design Code
+- Code
+- Base Name
+- Template Table Name
+
+Subsidiary Entity Type
+- Application Design Code
+- Code
+- Differentiator Type
+
+Subsidiary-to Entity Type
+- Application Design Code
+- Subsidiary Entity Type Code
+- Sequence
+- Subsidiary-to Entity Meta Type
+- Subsidiary-to Entity Type Code

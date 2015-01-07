@@ -1,0 +1,941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="UncommonSense.CBreeze.Meta">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1.0.0.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:UncommonSense.CBreeze.Meta">
+      <topicdata group="api" />
+      <apidata name="UncommonSense.CBreeze.Meta" group="namespace" />
+      <elements>
+        <element api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" />
+        <element api="T:UncommonSense.CBreeze.Meta.LastDateModified" />
+        <element api="T:UncommonSense.CBreeze.Meta.NoSeries" />
+        <element api="T:UncommonSense.CBreeze.Meta.SearchDescription" />
+        <element api="T:UncommonSense.CBreeze.Meta.StringExtensionMethods" />
+      </elements>
+    </api>
+    <api id="T:UncommonSense.CBreeze.Meta.LastDateModified">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:UncommonSense.CBreeze.Meta.LastDateModified" />
+      <apidata name="LastDateModified" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="AllMembers.T:UncommonSense.CBreeze.Meta.LastDateModified">
+      <topicdata name="LastDateModified" group="list" subgroup="members" typeTopicId="T:UncommonSense.CBreeze.Meta.LastDateModified" />
+      <apidata name="LastDateModified" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.LastDateModified.AddLastDateModified(UncommonSense.CBreeze.Core.Table,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="Methods.T:UncommonSense.CBreeze.Meta.LastDateModified">
+      <topicdata name="LastDateModified" group="list" subgroup="Methods" typeTopicId="T:UncommonSense.CBreeze.Meta.LastDateModified" />
+      <apidata name="LastDateModified" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.LastDateModified.AddLastDateModified(UncommonSense.CBreeze.Core.Table,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.LastDateModified.AddLastDateModified(UncommonSense.CBreeze.Core.Table,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="AddLastDateModified" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="table">
+          <type api="T:UncommonSense.CBreeze.Core.Table" ref="true" />
+        </parameter>
+        <parameter name="fieldNo">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.DateTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.LastDateModified" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="T:UncommonSense.CBreeze.Meta.NoSeries">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:UncommonSense.CBreeze.Meta.NoSeries" />
+      <apidata name="NoSeries" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="AllMembers.T:UncommonSense.CBreeze.Meta.NoSeries">
+      <topicdata name="NoSeries" group="list" subgroup="members" typeTopicId="T:UncommonSense.CBreeze.Meta.NoSeries" />
+      <apidata name="NoSeries" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.NoSeries.AddNoSeries(UncommonSense.CBreeze.Core.Table,System.Int32,System.Int32,UncommonSense.CBreeze.Core.Table@,UncommonSense.CBreeze.Core.CodeTableField@,UncommonSense.CBreeze.Core.CodeTableField@)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="Methods.T:UncommonSense.CBreeze.Meta.NoSeries">
+      <topicdata name="NoSeries" group="list" subgroup="Methods" typeTopicId="T:UncommonSense.CBreeze.Meta.NoSeries" />
+      <apidata name="NoSeries" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.NoSeries.AddNoSeries(UncommonSense.CBreeze.Core.Table,System.Int32,System.Int32,UncommonSense.CBreeze.Core.Table@,UncommonSense.CBreeze.Core.CodeTableField@,UncommonSense.CBreeze.Core.CodeTableField@)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.NoSeries.AddNoSeries(UncommonSense.CBreeze.Core.Table,System.Int32,System.Int32,UncommonSense.CBreeze.Core.Table@,UncommonSense.CBreeze.Core.CodeTableField@,UncommonSense.CBreeze.Core.CodeTableField@)">
+      <topicdata group="api" />
+      <apidata name="AddNoSeries" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="table">
+          <type api="T:UncommonSense.CBreeze.Core.Table" ref="true" />
+        </parameter>
+        <parameter name="noFieldNo">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="noSeriesFieldNo">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="setupTable">
+          <referenceTo>
+            <type api="T:UncommonSense.CBreeze.Core.Table" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="noField" out="true">
+          <referenceTo>
+            <type api="T:UncommonSense.CBreeze.Core.CodeTableField" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="noSeriesField" out="true">
+          <referenceTo>
+            <type api="T:UncommonSense.CBreeze.Core.CodeTableField" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.NoSeries" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="T:UncommonSense.CBreeze.Meta.SearchDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:UncommonSense.CBreeze.Meta.SearchDescription" />
+      <apidata name="SearchDescription" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="AllMembers.T:UncommonSense.CBreeze.Meta.SearchDescription">
+      <topicdata name="SearchDescription" group="list" subgroup="members" typeTopicId="T:UncommonSense.CBreeze.Meta.SearchDescription" />
+      <apidata name="SearchDescription" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.SearchDescription.AddSearchDescription(UncommonSense.CBreeze.Core.Table,System.Int32,UncommonSense.CBreeze.Core.CodeTableField,UncommonSense.CBreeze.Core.TextTableField)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="Methods.T:UncommonSense.CBreeze.Meta.SearchDescription">
+      <topicdata name="SearchDescription" group="list" subgroup="Methods" typeTopicId="T:UncommonSense.CBreeze.Meta.SearchDescription" />
+      <apidata name="SearchDescription" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.SearchDescription.AddSearchDescription(UncommonSense.CBreeze.Core.Table,System.Int32,UncommonSense.CBreeze.Core.CodeTableField,UncommonSense.CBreeze.Core.TextTableField)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.SearchDescription.AddSearchDescription(UncommonSense.CBreeze.Core.Table,System.Int32,UncommonSense.CBreeze.Core.CodeTableField,UncommonSense.CBreeze.Core.TextTableField)">
+      <topicdata group="api" />
+      <apidata name="AddSearchDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="table">
+          <type api="T:UncommonSense.CBreeze.Core.Table" ref="true" />
+        </parameter>
+        <parameter name="fieldNo">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="noField">
+          <type api="T:UncommonSense.CBreeze.Core.CodeTableField" ref="true" />
+        </parameter>
+        <parameter name="descriptionField">
+          <type api="T:UncommonSense.CBreeze.Core.TextTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.CodeTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.SearchDescription" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="T:UncommonSense.CBreeze.Meta.StringExtensionMethods">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:UncommonSense.CBreeze.Meta.StringExtensionMethods" />
+      <apidata name="StringExtensionMethods" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="AllMembers.T:UncommonSense.CBreeze.Meta.StringExtensionMethods">
+      <topicdata name="StringExtensionMethods" group="list" subgroup="members" typeTopicId="T:UncommonSense.CBreeze.Meta.StringExtensionMethods" />
+      <apidata name="StringExtensionMethods" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.StringExtensionMethods.Quoted(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="Methods.T:UncommonSense.CBreeze.Meta.StringExtensionMethods">
+      <topicdata name="StringExtensionMethods" group="list" subgroup="Methods" typeTopicId="T:UncommonSense.CBreeze.Meta.StringExtensionMethods" />
+      <apidata name="StringExtensionMethods" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.StringExtensionMethods.Quoted(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.StringExtensionMethods.Quoted(System.String)">
+      <topicdata group="api" />
+      <apidata name="Quoted" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.StringExtensionMethods" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" />
+      <apidata name="TableFieldsAutoCaption" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="AllMembers.T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption">
+      <topicdata name="TableFieldsAutoCaption" group="list" subgroup="members" typeTopicId="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" />
+      <apidata name="TableFieldsAutoCaption" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption">
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BigIntegerTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BinaryTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BlobTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BooleanTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.CodeTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateFormulaTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTimeTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DecimalTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DurationTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.GuidTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.IntegerTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.OptionTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.RecordIDTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TableFilterTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TextTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TimeTableField)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="Methods.T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption">
+      <topicdata name="TableFieldsAutoCaption" group="list" subgroup="Methods" typeTopicId="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" />
+      <apidata name="TableFieldsAutoCaption" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption">
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BigIntegerTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BinaryTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BlobTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BooleanTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.CodeTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateFormulaTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTimeTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DecimalTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DurationTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.GuidTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.IntegerTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.OptionTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.RecordIDTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TableFilterTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TextTableField)" />
+          <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TimeTableField)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+      </containers>
+    </api>
+    <api id="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption">
+      <topicdata name="AutoCaption" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <elements>
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BigIntegerTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BinaryTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BlobTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BooleanTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.CodeTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateFormulaTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTimeTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DecimalTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DurationTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.GuidTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.IntegerTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.OptionTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.RecordIDTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TableFilterTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TextTableField)" />
+        <element api="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TimeTableField)" />
+      </elements>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BigIntegerTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="bigIntegerTableField">
+          <type api="T:UncommonSense.CBreeze.Core.BigIntegerTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.BigIntegerTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BinaryTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="binaryTableField">
+          <type api="T:UncommonSense.CBreeze.Core.BinaryTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.BinaryTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BlobTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="blobTableField">
+          <type api="T:UncommonSense.CBreeze.Core.BlobTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.BlobTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BooleanTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="booleanTableField">
+          <type api="T:UncommonSense.CBreeze.Core.BooleanTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.BooleanTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.CodeTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codeTableField">
+          <type api="T:UncommonSense.CBreeze.Core.CodeTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.CodeTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateFormulaTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dateFormulaTableField">
+          <type api="T:UncommonSense.CBreeze.Core.DateFormulaTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.DateFormulaTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dateTableField">
+          <type api="T:UncommonSense.CBreeze.Core.DateTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.DateTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTimeTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dateTimeTableField">
+          <type api="T:UncommonSense.CBreeze.Core.DateTimeTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.DateTimeTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DecimalTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="decimalTableField">
+          <type api="T:UncommonSense.CBreeze.Core.DecimalTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.DecimalTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DurationTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="durationTableField">
+          <type api="T:UncommonSense.CBreeze.Core.DurationTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.DurationTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.GuidTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="guidTableField">
+          <type api="T:UncommonSense.CBreeze.Core.GuidTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.GuidTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.IntegerTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="integerTableField">
+          <type api="T:UncommonSense.CBreeze.Core.IntegerTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.IntegerTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.OptionTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="optionTableField">
+          <type api="T:UncommonSense.CBreeze.Core.OptionTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.OptionTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.RecordIDTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="recordIDTableField">
+          <type api="T:UncommonSense.CBreeze.Core.RecordIDTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.RecordIDTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TableFilterTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tableFilterTableField">
+          <type api="T:UncommonSense.CBreeze.Core.TableFilterTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.TableFilterTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TextTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="textTableField">
+          <type api="T:UncommonSense.CBreeze.Core.TextTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.TextTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+    <api id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TimeTableField)">
+      <topicdata group="api" />
+      <apidata name="AutoCaption" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timeTableField">
+          <type api="T:UncommonSense.CBreeze.Core.TimeTableField" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:UncommonSense.CBreeze.Core.TimeTableField" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="UncommonSense.CBreeze.Meta" module="UncommonSense.CBreeze.Meta" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:UncommonSense.CBreeze.Meta" />
+        <type api="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </api>
+  </apis>
+</reflection>

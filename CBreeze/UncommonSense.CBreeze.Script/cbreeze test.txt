@@ -1,0 +1,48 @@
+OBJECT Codeunit 50000 C/Breeze Test
+{
+  OBJECT-PROPERTIES
+  {
+    Date=24-10-13;
+    Time=20:04:46;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    OnRun=VAR
+            Application@1000 : DotNet "'UncommonSense.CBreeze.Core, Version=0.1.10776.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Core.Application";
+            Tables@1001 : DotNet "'UncommonSense.CBreeze.Core, Version=0.1.10776.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Core.Tables";
+            Table@1002 : DotNet "'UncommonSense.CBreeze.Core, Version=0.1.10776.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Core.Table";
+            TableFields@1006 : DotNet "'UncommonSense.CBreeze.Core, Version=0.1.10776.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Core.TableFields";
+            CodeTableField@1007 : DotNet "'UncommonSense.CBreeze.Core, Version=0.1.10776.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Core.CodeTableField";
+            IntegerTableField@1000000001 : DotNet "'UncommonSense.CBreeze.Core, Version=0.1.10776.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Core.IntegerTableField";
+            Nullable@1000000000 : DotNet "'mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'.System.Nullable`1";
+            StreamWriter@1005 : DotNet "'mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'.System.IO.StreamWriter";
+            CSideWriter@1003 : DotNet "'UncommonSense.CBreeze.Emit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Emit.CSideWriter";
+            ApplicationWriter@1004 : DotNet "'UncommonSense.CBreeze.Emit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.UncommonSense.CBreeze.Emit.ApplicationWriter";
+          BEGIN
+            Application := Application.Application();
+            Tables := Application.Tables;
+
+            Table := Tables.Add(50000, 'My Demo Table');
+            TableFields := Table.Fields;
+            IntegerTableField := TableFields.AddIntegerTableField(1, 'Entry No.');
+            // CodeTableField := TableFields.AddCodeTableField(1, 'Code', Nullable);
+
+            StreamWriter := StreamWriter.StreamWriter('c:\users\jhoek\desktop\test.txt');
+            CSideWriter := CSideWriter.CSideWriter(StreamWriter);
+
+            ApplicationWriter.Write(Application, CSideWriter);
+          END;
+
+  }
+  CODE
+  {
+
+    BEGIN
+    {
+    }
+    END.
+  }
+}
+

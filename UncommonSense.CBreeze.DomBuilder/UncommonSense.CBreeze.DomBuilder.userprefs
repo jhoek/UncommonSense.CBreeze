@@ -1,0 +1,35 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="UncommonSense.CBreeze.DomBuilder/CodeGenerationExtensionMethods.cs">
+    <Files>
+      <File FileName="UncommonSense.CBreeze.DomBuilder.Test/Program.cs" Line="1" Column="1" />
+      <File FileName="UncommonSense.CBreeze.DomBuilder/Item.cs" Line="36" Column="36" />
+      <File FileName="UncommonSense.CBreeze.DomBuilder/Dom.cs" Line="4" Column="4" />
+      <File FileName="UncommonSense.CBreeze.DomBuilder/Enum.cs" Line="33" Column="33" />
+      <File FileName="UncommonSense.CBreeze.DomBuilder/CodeGenerationExtensionMethods.cs" Line="42" Column="42" />
+      <File FileName="UncommonSense.CBreeze.DomBuilder/FluentExtensionMethods.cs" Line="9" Column="9" />
+      <File FileName="UncommonSense.CBreeze.DomBuilder/Node.cs" Line="1" Column="1" />
+      <File FileName="UncommonSense.CBreeze.DomBuilder/Nodes.cs" Line="15" Column="15" />
+    </Files>
+    <Pads>
+      <Pad Id="ClassPad">
+        <State expanded="True">
+          <Node name="UncommonSense.CBreeze.DomBuilder" expanded="True">
+            <Node name="UncommonSense" expanded="True">
+              <Node name="CBreeze" expanded="True">
+                <Node name="DomBuilder" expanded="True">
+                  <Node name="UncommonSense.CBreeze.DomBuilder.Item" expanded="True" selected="True" />
+                  <Node name="UncommonSense.CBreeze.DomBuilder.Node" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

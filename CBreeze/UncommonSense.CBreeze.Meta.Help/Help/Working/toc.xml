@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topics>
+  <topic id="cea6e04e-d4b8-4902-8a09-4a7c86d2b92a" file="cea6e04e-d4b8-4902-8a09-4a7c86d2b92a" sortOrder="0" />
+  <topic id="560242b0-378b-471c-a61f-d88097de1451" file="560242b0-378b-471c-a61f-d88097de1451">
+    <topic id="e428f324-d2e7-4763-8a26-673acccc8745" file="e428f324-d2e7-4763-8a26-673acccc8745" />
+  </topic>
+  <topic id="N:UncommonSense.CBreeze.Meta" project="_Namespaces" file="b8f8586f-7828-c4af-36f0-1140da1ab20f" sortOrder="2">
+    <topic id="T:UncommonSense.CBreeze.Meta.LastDateModified" project="UncommonSense.CBreeze.Meta" file="31a3faae-a370-4c6f-fa50-8f87c42e572d">
+      <topic id="AllMembers.T:UncommonSense.CBreeze.Meta.LastDateModified" project="UncommonSense.CBreeze.Meta" file="07809636-0e6e-d454-0cbd-505f6ce828a8" />
+      <topic id="Methods.T:UncommonSense.CBreeze.Meta.LastDateModified" project="UncommonSense.CBreeze.Meta" file="6e1fb458-a335-dd8c-d9cb-c90fabee2636">
+        <topic id="M:UncommonSense.CBreeze.Meta.LastDateModified.AddLastDateModified(UncommonSense.CBreeze.Core.Table,System.Int32)" project="UncommonSense.CBreeze.Meta" file="2782210b-c111-eebc-1c8a-feb415fa50e7" />
+      </topic>
+    </topic>
+    <topic id="T:UncommonSense.CBreeze.Meta.NoSeries" project="UncommonSense.CBreeze.Meta" file="aedb6004-8037-87ab-ba4d-6b26386f8e10">
+      <topic id="AllMembers.T:UncommonSense.CBreeze.Meta.NoSeries" project="UncommonSense.CBreeze.Meta" file="fa32adfa-34d1-a68f-d7b9-2f6148833fa4" />
+      <topic id="Methods.T:UncommonSense.CBreeze.Meta.NoSeries" project="UncommonSense.CBreeze.Meta" file="64c3efd2-2e33-c6c5-4beb-59345df92b5f">
+        <topic id="M:UncommonSense.CBreeze.Meta.NoSeries.AddNoSeries(UncommonSense.CBreeze.Core.Table,System.Int32,System.Int32,UncommonSense.CBreeze.Core.Table@,UncommonSense.CBreeze.Core.CodeTableField@,UncommonSense.CBreeze.Core.CodeTableField@)" project="UncommonSense.CBreeze.Meta" file="f7aaaef3-ff49-9e86-0a77-1f649be2facb" />
+      </topic>
+    </topic>
+    <topic id="T:UncommonSense.CBreeze.Meta.SearchDescription" project="UncommonSense.CBreeze.Meta" file="e9504052-7c9d-059c-643a-6a4912c39278">
+      <topic id="AllMembers.T:UncommonSense.CBreeze.Meta.SearchDescription" project="UncommonSense.CBreeze.Meta" file="b00fbd84-3105-a8dd-e6a1-e69cd1627812" />
+      <topic id="Methods.T:UncommonSense.CBreeze.Meta.SearchDescription" project="UncommonSense.CBreeze.Meta" file="fa66d867-407b-ed1c-aa7f-31f3a7415264">
+        <topic id="M:UncommonSense.CBreeze.Meta.SearchDescription.AddSearchDescription(UncommonSense.CBreeze.Core.Table,System.Int32,UncommonSense.CBreeze.Core.CodeTableField,UncommonSense.CBreeze.Core.TextTableField)" project="UncommonSense.CBreeze.Meta" file="ee8fac7f-65fa-c6d7-a400-bd6fce0a8583" />
+      </topic>
+    </topic>
+    <topic id="T:UncommonSense.CBreeze.Meta.StringExtensionMethods" project="UncommonSense.CBreeze.Meta" file="cb686729-cf2f-1b65-2f00-6d3f83f9e6d9">
+      <topic id="AllMembers.T:UncommonSense.CBreeze.Meta.StringExtensionMethods" project="UncommonSense.CBreeze.Meta" file="7d4c7000-645b-6deb-14b1-6d40d08330df" />
+      <topic id="Methods.T:UncommonSense.CBreeze.Meta.StringExtensionMethods" project="UncommonSense.CBreeze.Meta" file="602e844a-390d-2986-d313-94f57edce5d4">
+        <topic id="M:UncommonSense.CBreeze.Meta.StringExtensionMethods.Quoted(System.String)" project="UncommonSense.CBreeze.Meta" file="97bc00ba-3077-c8d0-4bd7-dc498c4dd572" />
+      </topic>
+    </topic>
+    <topic id="T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" project="UncommonSense.CBreeze.Meta" file="c3236eb0-9e68-8c42-0343-03793cbdb75f">
+      <topic id="AllMembers.T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" project="UncommonSense.CBreeze.Meta" file="86089156-22d7-8819-44f5-145ae8c410d6" />
+      <topic id="Methods.T:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption" project="UncommonSense.CBreeze.Meta" file="6338bfc3-5d07-bb47-acb7-3953a4a3f07d">
+        <topic id="Overload:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption" project="UncommonSense.CBreeze.Meta" file="c0c3357d-9aea-86ea-a475-3eb038b1028f">
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BigIntegerTableField)" project="UncommonSense.CBreeze.Meta" file="aeffae23-2609-7b9f-60fb-11b008ce2f13" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BinaryTableField)" project="UncommonSense.CBreeze.Meta" file="b2516e3d-991c-f09f-37d0-18e0132f303d" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BlobTableField)" project="UncommonSense.CBreeze.Meta" file="0927d788-d3f8-f382-5540-caf582cc0c43" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.BooleanTableField)" project="UncommonSense.CBreeze.Meta" file="bb9e9863-feb2-bf74-7251-cf8648ead32d" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.CodeTableField)" project="UncommonSense.CBreeze.Meta" file="6bf7bb17-488d-1722-3b09-1e4a4b125a64" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateFormulaTableField)" project="UncommonSense.CBreeze.Meta" file="a78438c7-b3d5-d0c2-8c47-bd1ee1e7ff47" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTableField)" project="UncommonSense.CBreeze.Meta" file="871aa827-4b58-c305-82b8-f72470e25072" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DateTimeTableField)" project="UncommonSense.CBreeze.Meta" file="f7e2f208-2bd7-6f17-eb97-564547819da0" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DecimalTableField)" project="UncommonSense.CBreeze.Meta" file="42331c36-6f6a-08a9-ab09-c6b3c70ace35" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.DurationTableField)" project="UncommonSense.CBreeze.Meta" file="7c387b7f-c6f1-f82b-5dbb-8ba009831808" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.GuidTableField)" project="UncommonSense.CBreeze.Meta" file="a6015215-dd76-54b0-427a-803c1928cf87" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.IntegerTableField)" project="UncommonSense.CBreeze.Meta" file="763421e2-ddfb-c234-1e3f-3af1cef50dc1" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.OptionTableField)" project="UncommonSense.CBreeze.Meta" file="82e9e364-a038-8700-4abc-12de0d3398e4" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.RecordIDTableField)" project="UncommonSense.CBreeze.Meta" file="7e669d52-733b-21e3-1e29-4497d2b2828e" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TableFilterTableField)" project="UncommonSense.CBreeze.Meta" file="fa7b05ed-135d-0dbf-1134-9277eea0bf1a" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TextTableField)" project="UncommonSense.CBreeze.Meta" file="d54316e3-4648-e652-7f03-fec59b0c8243" />
+          <topic id="M:UncommonSense.CBreeze.Meta.TableFieldsAutoCaption.AutoCaption(UncommonSense.CBreeze.Core.TimeTableField)" project="UncommonSense.CBreeze.Meta" file="47c3a107-29a2-7e0d-9838-8768a7ddd59d" />
+        </topic>
+      </topic>
+    </topic>
+  </topic>
+</topics>

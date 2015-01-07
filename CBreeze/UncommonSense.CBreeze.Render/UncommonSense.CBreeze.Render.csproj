@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C897CEE2-F672-43DB-B75D-17DFB7EEAB07}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UncommonSense.CBreeze.Render</RootNamespace>
+    <AssemblyName>UncommonSense.CBreeze.Render</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UncommonSense.CBreeze.Core">
+      <HintPath>..\..\UncommonSense.CBreeze.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationDesignRenderer.cs" />
+    <Compile Include="Manifests\DocumentEntityTypeManifest.cs" />
+    <Compile Include="Manifests\DocumentHistoryEntityTypeManifest.cs" />
+    <Compile Include="Manifests\JournalEntityTypeManifest.cs" />
+    <Compile Include="Manifests\LedgerEntityTypeManifest.cs" />
+    <Compile Include="Manifests\MasterEntityTypeManifest.cs" />
+    <Compile Include="Manifests\RenderingManifest.cs" />
+    <Compile Include="Manifests\SetupEntityTypeManifest.cs" />
+    <Compile Include="Manifests\SupplementalEntityTypeManifest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\DocumentEntityTypeRenderer.cs" />
+    <Compile Include="Renderers\DocumentHistoryEntityTypeRenderer.cs" />
+    <Compile Include="Renderers\JournalEntityTypeRenderer.cs" />
+    <Compile Include="Renderers\LedgerEntityTypeRenderer.cs" />
+    <Compile Include="Renderers\MasterEntityTypeRenderer.cs" />
+    <Compile Include="Renderers\SetupEntityTypeRenderer.cs" />
+    <Compile Include="Renderers\SupplementalEntityTypeRenderer.cs" />
+    <Compile Include="RenderingContext.cs" />
+    <Compile Include="Renderers\SubsidiaryEntityTypeRenderer.cs" />
+    <Compile Include="Renderers\RegisterEntityTypeRenderer.cs" />
+    <Compile Include="Manifests\RegisterEntityTypeManifest.cs" />
+    <Compile Include="Manifests\SubsidiaryEntityTypeManifest.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="TypeSwitch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Meta\UncommonSense.CBreeze.Meta.csproj">
+      <Project>{36b1a217-be1b-4adb-93b3-68c9b21ca972}</Project>
+      <Name>UncommonSense.CBreeze.Meta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Model\UncommonSense.CBreeze.Model.csproj">
+      <Project>{8f8349dc-f535-4a3b-9875-5d610b729d0c}</Project>
+      <Name>UncommonSense.CBreeze.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

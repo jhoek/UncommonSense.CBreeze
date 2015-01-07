@@ -1,0 +1,136 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Default Window=MsdnHelp
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Binary TOC=Yes
+Title=A Sandcastle Documented Class Library
+Default topic=html\cea6e04e-d4b8-4902-8a09-4a7c86d2b92a.htm
+Contents file=UncommonSense.CBreeze.Meta.Documentation.hhc
+Compiled file=UncommonSense.CBreeze.Meta.Documentation.chm
+Error log file=UncommonSense.CBreeze.Meta.Documentation.log
+Index file=UncommonSense.CBreeze.Meta.Documentation.hhk
+Auto Index=Yes
+
+[WINDOWS]
+MsdnHelp="A Sandcastle Documented Class Library","UncommonSense.CBreeze.Meta.Documentation.hhc","UncommonSense.CBreeze.Meta.Documentation.hhk","html\cea6e04e-d4b8-4902-8a09-4a7c86d2b92a.htm","html\cea6e04e-d4b8-4902-8a09-4a7c86d2b92a.htm",,,,,0x62520,220,0x387e,[86,51,886,651],,,,,,,0
+
+[FILES]
+html\07809636-0e6e-d454-0cbd-505f6ce828a8.htm
+html\0927d788-d3f8-f382-5540-caf582cc0c43.htm
+html\2782210b-c111-eebc-1c8a-feb415fa50e7.htm
+html\31a3faae-a370-4c6f-fa50-8f87c42e572d.htm
+html\42331c36-6f6a-08a9-ab09-c6b3c70ace35.htm
+html\47c3a107-29a2-7e0d-9838-8768a7ddd59d.htm
+html\560242b0-378b-471c-a61f-d88097de1451.htm
+html\602e844a-390d-2986-d313-94f57edce5d4.htm
+html\6338bfc3-5d07-bb47-acb7-3953a4a3f07d.htm
+html\64c3efd2-2e33-c6c5-4beb-59345df92b5f.htm
+html\6bf7bb17-488d-1722-3b09-1e4a4b125a64.htm
+html\6e1fb458-a335-dd8c-d9cb-c90fabee2636.htm
+html\763421e2-ddfb-c234-1e3f-3af1cef50dc1.htm
+html\7c387b7f-c6f1-f82b-5dbb-8ba009831808.htm
+html\7d4c7000-645b-6deb-14b1-6d40d08330df.htm
+html\7e669d52-733b-21e3-1e29-4497d2b2828e.htm
+html\82e9e364-a038-8700-4abc-12de0d3398e4.htm
+html\86089156-22d7-8819-44f5-145ae8c410d6.htm
+html\871aa827-4b58-c305-82b8-f72470e25072.htm
+html\97bc00ba-3077-c8d0-4bd7-dc498c4dd572.htm
+html\a6015215-dd76-54b0-427a-803c1928cf87.htm
+html\a78438c7-b3d5-d0c2-8c47-bd1ee1e7ff47.htm
+html\aedb6004-8037-87ab-ba4d-6b26386f8e10.htm
+html\aeffae23-2609-7b9f-60fb-11b008ce2f13.htm
+html\b00fbd84-3105-a8dd-e6a1-e69cd1627812.htm
+html\b2516e3d-991c-f09f-37d0-18e0132f303d.htm
+html\b8f8586f-7828-c4af-36f0-1140da1ab20f.htm
+html\bb9e9863-feb2-bf74-7251-cf8648ead32d.htm
+html\c0c3357d-9aea-86ea-a475-3eb038b1028f.htm
+html\c3236eb0-9e68-8c42-0343-03793cbdb75f.htm
+html\cb686729-cf2f-1b65-2f00-6d3f83f9e6d9.htm
+html\cea6e04e-d4b8-4902-8a09-4a7c86d2b92a.htm
+html\d54316e3-4648-e652-7f03-fec59b0c8243.htm
+html\e428f324-d2e7-4763-8a26-673acccc8745.htm
+html\e9504052-7c9d-059c-643a-6a4912c39278.htm
+html\ee8fac7f-65fa-c6d7-a400-bd6fce0a8583.htm
+html\f7aaaef3-ff49-9e86-0a77-1f649be2facb.htm
+html\f7e2f208-2bd7-6f17-eb97-564547819da0.htm
+html\fa32adfa-34d1-a68f-d7b9-2f6148833fa4.htm
+html\fa66d867-407b-ed1c-aa7f-31f3a7415264.htm
+html\fa7b05ed-135d-0dbf-1134-9277eea0bf1a.htm
+icons\1_404_bullet.gif
+icons\2_404_bullet.gif
+icons\alert_caution.gif
+icons\alert_note.gif
+icons\alert_security.gif
+icons\CFW.gif
+icons\close.gif
+icons\favicon.ico
+icons\footer_slice.gif
+icons\Help.png
+icons\info_icon.gif
+icons\note.gif
+icons\online_icon.gif
+icons\open.gif
+icons\pencil.GIF
+icons\privclass.gif
+icons\privdelegate.gif
+icons\privenumeration.gif
+icons\privevent.gif
+icons\privextension.gif
+icons\privfield.gif
+icons\privinterface.gif
+icons\privmethod.gif
+icons\privproperty.gif
+icons\privstructure.gif
+icons\protclass.gif
+icons\protdelegate.gif
+icons\protenumeration.gif
+icons\protevent.gif
+icons\protextension.gif
+icons\protfield.gif
+icons\protinterface.gif
+icons\protmethod.gif
+icons\protoperator.gif
+icons\protproperty.gif
+icons\protstructure.gif
+icons\pubclass.gif
+icons\pubdelegate.gif
+icons\pubenumeration.gif
+icons\pubevent.gif
+icons\pubextension.gif
+icons\pubfield.gif
+icons\pubinterface.gif
+icons\pubmethod.gif
+icons\puboperator.gif
+icons\pubproperty.gif
+icons\pubstructure.gif
+icons\search.gif
+icons\search_bk.gif
+icons\security.gif
+icons\slMobile.gif
+icons\static.gif
+icons\tabLeftBG.gif
+icons\tabRightBG.gif
+icons\ui_om_collapse.gif
+icons\ui_om_expand.gif
+icons\xna.gif
+scripts\branding.js
+styles\branding-cs-CZ.css
+styles\branding-de-DE.css
+styles\branding-en-US.css
+styles\branding-es-ES.css
+styles\branding-fr-FR.css
+styles\branding-it-IT.css
+styles\branding-ja-JP.css
+styles\branding-ko-KR.css
+styles\branding-pl-PL.css
+styles\branding-pt-BR.css
+styles\branding-ru-RU.css
+styles\branding-tr-TR.css
+styles\branding-zh-CN.css
+styles\branding-zh-TW.css
+styles\branding.css
+
+
+[INFOTYPES]

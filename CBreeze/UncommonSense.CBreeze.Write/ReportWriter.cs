@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UncommonSense.CBreeze.Core;
+
+namespace UncommonSense.CBreeze.Write
+{
+    public static class ReportWriter
+    {
+        public static void Write(this Report report, CSideWriter writer)
+        {
+            writer.BeginSection(report.GetObjectSignature());
+			report.ObjectProperties.Write(writer);
+			report.Properties.Write(writer);
+			report.Elements.Write(writer);
+			report.RequestPage.Write(writer);
+			report.Labels.Write(writer);
+			report.Code.Write(writer);
+            report.RdlData.Write(writer);
+            writer.EndSection();
+			writer.InnerWriter.WriteLine();
+        }
+    }
+}

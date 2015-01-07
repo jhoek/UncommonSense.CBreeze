@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UncommonSense.CBreeze.Core;
+
+namespace UncommonSense.CBreeze.Write
+{
+    public static class DocumentationWriter
+    {
+        public static void Write(this Documentation documentation, CSideWriter writer)
+        {
+            writer.InnerWriter.WriteLine();
+            writer.WriteLine("BEGIN");
+
+            if (documentation.Lines.Any())
+            {
+                writer.WriteLine("{");
+                writer.Indent();
+                documentation.Lines.Write(writer);
+                writer.Unindent();
+                writer.WriteLine("}");
+            }
+
+            writer.WriteLine("END.");
+        }
+    }
+}
