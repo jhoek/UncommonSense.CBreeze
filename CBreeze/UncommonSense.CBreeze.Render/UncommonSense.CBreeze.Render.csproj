@@ -76,10 +76,6 @@
     <Compile Include="TypeSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UncommonSense.CBreeze.Meta\UncommonSense.CBreeze.Meta.csproj">
-      <Project>{36b1a217-be1b-4adb-93b3-68c9b21ca972}</Project>
-      <Name>UncommonSense.CBreeze.Meta</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Model\UncommonSense.CBreeze.Model.csproj">
       <Project>{8f8349dc-f535-4a3b-9875-5d610b729d0c}</Project>
       <Name>UncommonSense.CBreeze.Model</Name>
