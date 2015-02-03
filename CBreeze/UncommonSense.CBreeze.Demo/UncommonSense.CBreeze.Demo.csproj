@@ -39,9 +39,6 @@
     <Reference Include="UncommonSense.CBreeze.Core">
       <HintPath>..\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll</HintPath>
     </Reference>
-    <Reference Include="UncommonSense.Nav.Parser">
-      <HintPath>..\..\..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser\bin\Debug\UncommonSense.Nav.Parser.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -60,6 +57,10 @@
     <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
       <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
       <Name>UncommonSense.CBreeze.Write</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser.csproj">
+      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
+      <Name>UncommonSense.Nav.Parser</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

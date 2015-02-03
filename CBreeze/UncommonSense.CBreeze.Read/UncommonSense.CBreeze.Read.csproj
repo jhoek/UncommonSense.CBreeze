@@ -42,13 +42,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.CBreeze.Core">
-      <HintPath>..\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="UncommonSense.Nav.Parser, Version=1.0.5318.24777, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser\bin\Debug\UncommonSense.Nav.Parser.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationBuilder.cs" />
@@ -59,6 +52,16 @@
     <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="TableRelationFilterLine.cs" />
     <Compile Include="TypeSwitch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
+      <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
+      <Name>UncommonSense.CBreeze.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser.csproj">
+      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
+      <Name>UncommonSense.Nav.Parser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
