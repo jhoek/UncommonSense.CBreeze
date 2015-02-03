@@ -18,6 +18,60 @@ namespace UncommonSense.CBreeze.Render
                                select c).ToArray());
         }
 
+        internal static Table AutoCaption(this Table table)
+        {
+            table.Properties.CaptionML.Add("ENU", table.Name);
+            return table;
+        }
+
+        internal static Page AutoCaption(this Page page)
+        {
+            page.Properties.CaptionML.Add("ENU", page.Name);
+            return page;
+        }
+
+        internal static IntegerTableField AutoCaption(this IntegerTableField field)
+        {
+            field.Properties.CaptionML.Add("ENU", field.Name);
+            return field;
+        }
+
+        internal static TextTableField AutoCaption(this TextTableField field)
+        {
+            field.Properties.CaptionML.Add("ENU", field.Name);
+            return field;
+        }
+
+        internal static CodeTableField AutoCaption(this CodeTableField field)
+        {
+            field.Properties.CaptionML.Add("ENU", field.Name);
+            return field;
+        }
+
+        internal static OptionTableField AutoCaption(this OptionTableField field)
+        {
+            field.Properties.CaptionML.Add("ENU", field.Name);
+            return field;
+        }
+
+        internal static BooleanTableField AutoCaption(this BooleanTableField field)
+        {
+            field.Properties.CaptionML.Add("ENU", field.Name);
+            return field;
+        }
+
+        internal static DateTableField AutoCaption(this DateTableField field)
+        {
+            field.Properties.CaptionML.Add("ENU", field.Name);
+            return field;
+        }
+
+        internal static OptionTableField AutoOptionCaption(this OptionTableField field)
+        {
+            field.Properties.OptionCaptionML.Add("ENU", field.Properties.OptionString);
+            return field;
+        }
+
 		internal static Table AutoObjectProperties(this Table table, RenderingContext renderingContext)
 		{
 			table.ObjectProperties.DateTime = renderingContext.DateTime;

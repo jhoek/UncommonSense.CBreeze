@@ -44,7 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UncommonSense.Nav.Parser">
-      <HintPath>..\..\..\Visual Studio Projects\Code Snippets and Proof of Concepts\UncommonSense.Nav.Parser\bin\Debug\UncommonSense.Nav.Parser.dll</HintPath>
+      <HintPath>..\..\..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser\bin\Debug\UncommonSense.Nav.Parser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
