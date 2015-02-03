@@ -46,7 +46,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UncommonSense.CBreeze.Core">
-      <HintPath>..\..\UncommonSense.CBreeze.Core.dll</HintPath>
+      <HintPath>..\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
