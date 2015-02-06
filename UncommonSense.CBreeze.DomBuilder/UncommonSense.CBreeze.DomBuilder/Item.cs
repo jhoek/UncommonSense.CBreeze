@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.DomBuilder
 		private List<string> uniqueAttributeNames = new List<string>();
 		private List<Property> properties = new List<Property>();
 
-		public Item(string name, )
+		public Item(string name)
 		{
 			this.name = name;
 		}
