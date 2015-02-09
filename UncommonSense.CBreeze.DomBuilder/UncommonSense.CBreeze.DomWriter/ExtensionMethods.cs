@@ -9,7 +9,6 @@ namespace UncommonSense.CBreeze.DomWriter
 {
     public static class ExtensionMethods
     {
-        // TODO: Convenience methods for every member of type List in Project
         public static Class AddClass(this Project project, string name)
         {
             var @class = new Class(name);
@@ -17,7 +16,20 @@ namespace UncommonSense.CBreeze.DomWriter
             return @class;
         }
 
-        // TODO: Convenience methods for every member of type list in Class
+        public static Interface AddInterface(this Project project, string name)
+        {
+            var @interface = new Interface(name);
+            project.Interfaces.Add(@interface);
+            return @interface;
+        }
+
+        public static Enumeration AddEnumeration(this Project project, string name)
+        {
+            var enumeration = new Enumeration(name);
+            project.Enumerations.Add(enumeration);
+            return enumeration;
+        }
+
         public static Field AddField(this Class @class, string name, string typeName)
         {
             var field = new Field(name, typeName);
@@ -39,14 +51,13 @@ namespace UncommonSense.CBreeze.DomWriter
             return method;
         }
 
-        public static Property AddProperty(this Class @class, string name, string typeName)
+        public static ClassProperty AddProperty(this Class @class, string name, string typeName)
         {
             var property = new ClassProperty(name, typeName);
             @class.Properties.Add(property);
             return property;
         }
 
-        // TODO: Convenience methods for every member of type List in Method (and its derived classes)
         public static MethodParameter AddParameter(this Method method, string name, string typeName)
         {
             var methodParameter = new MethodParameter(name, typeName);
