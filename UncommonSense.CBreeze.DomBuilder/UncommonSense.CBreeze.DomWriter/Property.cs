@@ -67,7 +67,7 @@ namespace UncommonSense.CBreeze.DomWriter
             }
             set
             {
-                this.hasSetter = true;
+                this.hasSetter = value;
             }
         }
     }
