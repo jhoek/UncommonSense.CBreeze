@@ -137,6 +137,9 @@ namespace UncommonSense.CBreeze.DomWriter
             if (@class.Abstract)
                 writer.Write("abstract ");
 
+            if (@class.Sealed)
+                writer.Write("sealed ");
+
             writer.Write("class {0}", @class.Name);
 
             if (@class.BaseTypesNames.Any())

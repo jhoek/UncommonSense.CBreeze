@@ -9,6 +9,7 @@ namespace UncommonSense.CBreeze.DomWriter
     {
         private string name;
         private bool @abstract = false;
+        private bool @sealed = false;
         private Visibility visibility = Visibility.Public;
         private readonly List<string> baseTypeNames = new List<string>();
         private readonly Dictionary<string, string> constraints = new Dictionary<string, string>();
@@ -39,6 +40,18 @@ namespace UncommonSense.CBreeze.DomWriter
             set
             {
                 this.@abstract = value;
+            }
+        }
+
+        public bool Sealed
+        {
+            get
+            {
+                return this.@sealed;
+            }
+            set
+            {
+                this.@sealed = value;
             }
         }
 
