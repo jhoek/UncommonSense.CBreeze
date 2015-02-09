@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.DomWriter
 
         public static Constructor AddConstructor(this Class @class)
         {
-            var constructor = new Constructor();
+            var constructor = new Constructor(@class);
             @class.Constructors.Add(constructor);
             return constructor;
         }
@@ -56,6 +56,13 @@ namespace UncommonSense.CBreeze.DomWriter
             var property = new ClassProperty(name, typeName);
             @class.Properties.Add(property);
             return property;
+        }
+
+        public static MethodParameter AddParameter(this Constructor constructor, string name, string typeName)
+        {
+            var methodParameter = new MethodParameter(name, typeName);
+            constructor.Parameters.Add(methodParameter);
+            return methodParameter;
         }
 
         public static MethodParameter AddParameter(this Method method, string name, string typeName)
@@ -250,6 +257,12 @@ namespace UncommonSense.CBreeze.DomWriter
 
         private static void WriteTo(this Constructor constructor, IndentedTextWriter writer)
         {
+            constructor.Visibility.WriteTo(writer);
+
+            writer.WriteLine("{0}({1})", constructor.Class.Name, string.Join(",", constructor.Parameters.Select(p => p.ToString())));
+            writer.BeginBlock();
+            // FIXME
+            writer.EndBlock();
         }
 
         private static void WriteTo(this ClassMethod classMethod, IndentedTextWriter writer)

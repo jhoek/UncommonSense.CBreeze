@@ -7,8 +7,22 @@ namespace UncommonSense.CBreeze.DomWriter
 {
     public class Constructor
     {
+        private Class @class;
         private Visibility visibility = Visibility.Public;
         private List<MethodParameter> parameters = new List<MethodParameter>();
+
+        public Constructor(Class @class)
+        {
+            this.@class = @class;
+        }
+
+        public Class Class
+        {
+            get
+            {
+                return this.@class;
+            }
+        }
 
         public Visibility Visibility
         {

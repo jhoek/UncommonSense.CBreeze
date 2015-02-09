@@ -17,6 +17,10 @@ namespace UncommonSense.CBreeze.DomWriter.Demo
             @class.Visibility = Visibility.Private;
             @class.Abstract = true;
 
+            var constructor = @class.AddConstructor();
+            constructor.Visibility = Visibility.Public;
+            var parameter = constructor.AddParameter("ConstructorParam", "int");
+
             var classMethod = @class.AddMethod("ClassMethod", "int");
             classMethod.Abstract = true;
             classMethod.Lines.Add("// Foo;");
