@@ -13,6 +13,15 @@ namespace UncommonSense.CBreeze.DomWriter.Demo
         {
             var project = new Project("NamespaceName");
 
+            var @interface = project.AddInterface("IFoo");
+
+            var interfaceMethod = @interface.AddMethod("Oink", "Boink");
+            interfaceMethod.AddParameter("Parameter", "Here");
+
+            var interfaceProperty = @interface.AddProperty("Foo", "Baz");
+            interfaceProperty.HasGetter = true;
+            interfaceProperty.HasSetter = false;
+
             var @class = project.AddClass("ClassName");
             @class.Visibility = Visibility.Private;
             @class.Abstract = true;
