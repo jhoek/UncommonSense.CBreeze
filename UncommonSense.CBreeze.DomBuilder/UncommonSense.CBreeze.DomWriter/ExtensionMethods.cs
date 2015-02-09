@@ -9,6 +9,51 @@ namespace UncommonSense.CBreeze.DomWriter
 {
     public static class ExtensionMethods
     {
+        // TODO: Convenience methods for every member of type List in Project
+        public static Class AddClass(this Project project, string name)
+        {
+            var @class = new Class(name);
+            project.Classes.Add(@class);
+            return @class;
+        }
+
+        // TODO: Convenience methods for every member of type list in Class
+        public static Field AddField(this Class @class, string name, string typeName)
+        {
+            var field = new Field(name, typeName);
+            @class.Fields.Add(field);
+            return field;
+        }
+
+        public static Constructor AddConstructor(this Class @class)
+        {
+            var constructor = new Constructor();
+            @class.Constructors.Add(constructor);
+            return constructor;
+        }
+
+        public static ClassMethod AddMethod(this Class @class, string name, string returnTypeName)
+        {
+            var method = new ClassMethod(name, returnTypeName);
+            @class.Methods.Add(method);
+            return method;
+        }
+
+        public static Property AddProperty(this Class @class, string name, string typeName)
+        {
+            var property = new ClassProperty(name, typeName);
+            @class.Properties.Add(property);
+            return property;
+        }
+
+        // TODO: Convenience methods for every member of type List in Method (and its derived classes)
+        public static MethodParameter AddParameter(this Method method, string name, string typeName)
+        {
+            var methodParameter = new MethodParameter(name, typeName);
+            method.Parameters.Add(methodParameter);
+            return methodParameter;
+        }
+
         public static void WriteTo(this Project project, string fileName)
         {
             using (var streamWriter = new StreamWriter(fileName, false))
@@ -206,7 +251,7 @@ namespace UncommonSense.CBreeze.DomWriter
             if (classMethod.Override)
                 writer.Write("override ");
 
-            writer.WriteLine("{0} {1}({2})", classMethod.ReturnTypeName, classMethod.Name, string.Join(",", classMethod.Parameters.Select(p=> p.ToString())));
+            writer.WriteLine("{0} {1}({2})", classMethod.ReturnTypeName, classMethod.Name, string.Join(",", classMethod.Parameters.Select(p => p.ToString())));
             writer.BeginBlock();
 
             foreach (var line in classMethod.Lines)
