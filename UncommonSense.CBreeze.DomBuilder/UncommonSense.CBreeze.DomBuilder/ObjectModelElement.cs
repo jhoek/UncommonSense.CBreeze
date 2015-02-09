@@ -8,5 +8,19 @@ namespace UncommonSense.CBreeze.DomBuilder
 {
     public abstract class ObjectModelElement : ObjectModelNode
     {
+        private string name;
+
+        public ObjectModelElement(string name)
+        {
+            this.name = name;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+        }
     }
 }

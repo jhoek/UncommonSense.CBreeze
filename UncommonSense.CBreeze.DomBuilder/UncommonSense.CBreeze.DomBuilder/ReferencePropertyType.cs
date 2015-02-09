@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.DomBuilder
 {
-    public class Item : ObjectModelElement
+    public class ReferencePropertyType : PropertyType
     {
-        public Item(string name)
+        public ReferencePropertyType(string name)
             : base(name)
         {
         }

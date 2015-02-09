@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.DomBuilder
 {
-    public class Container : Node
+    public class Container : ObjectModelElement
     {
-        private string name;
         private string itemTypeName;
 
-        public Container(string itemTypeName, string name = null)
+        public Container(string name, string itemTypeName)
+            : base(name)
         {
             this.itemTypeName = itemTypeName;
-            this.name = name;
-        }
-
-        public override string Name
-        {
-            get
-            {
-                return this.name ?? ItemTypeName + "s";
-            }
         }
 
         public string ItemTypeName

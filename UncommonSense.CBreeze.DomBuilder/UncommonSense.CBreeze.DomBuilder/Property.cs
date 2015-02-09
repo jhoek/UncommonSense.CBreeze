@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.DomBuilder
 {
-    public class Item : ObjectModelElement
+    public class Property
     {
-        public Item(string name)
-            : base(name)
-        {
-        }
     }
 }
