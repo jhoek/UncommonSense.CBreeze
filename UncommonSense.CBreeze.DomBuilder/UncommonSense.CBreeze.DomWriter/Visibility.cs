@@ -7,8 +7,9 @@ namespace UncommonSense.CBreeze.DomWriter
 {
     public enum Visibility
     {
-        None,
+        Unspecified,
         Public,
+        Protected,
         Internal,
         Private
     }
