@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8182D9BE-3707-4695-95B6-6C13F7046DD9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{BE07E99F-74F8-4B11-9C21-2359D3D0BCB2}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UncommonSense.CBreeze.DomWriter.Demo</RootNamespace>
-    <AssemblyName>UncommonSense.CBreeze.DomWriter.Demo</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>UncommonSense.CBreeze.DomBuilder</RootNamespace>
+    <AssemblyName>UncommonSense.CBreeze.DomBuilder</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,15 +39,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CompilationExtensionMethods.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="Dom.cs" />
+    <Compile Include="FluentExtensionMethods.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Attribute.cs" />
+    <Compile Include="CodeGenerationExtensionMethods.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="Property.cs" />
+    <Compile Include="PropertyCollection.cs" />
+    <Compile Include="PropertyType.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="Nodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.DomWriter\UncommonSense.CBreeze.DomWriter.csproj">
-      <Project>{40a0af8e-fff6-4f62-a5ca-963404fefb21}</Project>
+      <Project>{40A0AF8E-FFF6-4F62-A5CA-963404FEFB21}</Project>
       <Name>UncommonSense.CBreeze.DomWriter</Name>
     </ProjectReference>
   </ItemGroup>

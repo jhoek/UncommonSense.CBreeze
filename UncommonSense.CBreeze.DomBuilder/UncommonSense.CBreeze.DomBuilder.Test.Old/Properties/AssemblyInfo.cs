@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UncommonSense.CBreeze.DomWriter.Demo")]
+[assembly: AssemblyTitle("UncommonSense.CBreeze.DomBuilder.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UncommonSense.CBreeze.DomWriter.Demo")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("UncommonSense.CBreeze.DomBuilder.Test")]
+[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c52cd54d-885d-40e8-af30-4dc78d0817d3")]
+[assembly: Guid("31ada25c-220d-44eb-add7-bdc0e9e14859")]
 
 // Version information for an assembly consists of the following four values:
 //

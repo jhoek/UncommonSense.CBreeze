@@ -44,12 +44,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UncommonSense.CBreeze.DomBuilder2\UncommonSense.CBreeze.DomBuilder2.csproj">
-      <Project>{a6c0a589-4221-453c-b482-26123e15fdf0}</Project>
-      <Name>UncommonSense.CBreeze.DomBuilder2</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
