@@ -7,15 +7,20 @@ using UncommonSense.CBreeze.DomWriter;
 
 namespace UncommonSense.CBreeze.DomBuilder
 {
-    public static class ToProjectExtensionMethods
+    public static class AsProjectExtensionMethods
     {
-        public static Project ToProject(this ObjectModel objectModel)
+        public static Project AsProject(this ObjectModel objectModel)
         {
             var project = new Project(objectModel.Namespace);
 
             foreach (var item in objectModel.Elements.OfType<Item>())
             {
                 item.AddToProject(project);
+            }
+
+            foreach (var container in objectModel.Elements.OfType<Container>())
+            {
+                // FIXME: container.AddToProject(project);
             }
 
             foreach (var enumeration in objectModel.Elements.OfType<Enumeration>())
@@ -26,11 +31,17 @@ namespace UncommonSense.CBreeze.DomBuilder
             return project;
         }
 
-        public static Project ToProject(this Item item)
+        public static Project AsProject(this Item item)
         {
-            var objectModel = (item.ParentNode as ObjectModel);
-            var project = new Project(objectModel.Namespace);
+            var project = new Project((item.ParentNode as ObjectModel).Namespace);
             item.AddToProject(project);
+            return project;
+        }
+
+        public static Project AsProject(this Container container)
+        {
+            var project = new Project((container.ParentNode as ObjectModel).Namespace);
+            // FIXME: container.AddToProject(project);
             return project;
         }
     }

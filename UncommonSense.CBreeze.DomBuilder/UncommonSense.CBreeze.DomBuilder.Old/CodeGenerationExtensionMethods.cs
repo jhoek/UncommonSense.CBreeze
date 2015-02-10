@@ -10,52 +10,12 @@ namespace UncommonSense.CBreeze.DomBuilder
 	{
 		public static Project AsProject(this Dom dom)
 		{
-			var project = new Project(dom.Namespace);
-
-			foreach (var item in dom.Nodes.OfType<Item>())
-			{
-				item.AddToProject(project);
-			}
-
-			foreach (var container in dom.Nodes.OfType<Container>())
-			{
-				container.AddToProject(project);
-			}
-
-
-
-			//foreach (var propertyCollection in dom.PropertyCollections)
-			//{
-			//    propertyCollection.AddToProject(project);
-			//}
-
 			AddINodeToProject(project);
 			AddIKeyedValueToProject(project);
 			AddContainerBaseClassToProject(project);
 
 			return project;
 		}
-
-		public static Project AsProject(this Item item)
-		{
-			var project = new Project(item.Dom.Namespace);
-			item.AddToProject(project);
-			return project;
-		}
-
-		public static Project AsProject(this Container container)
-		{
-			var project = new Project(container.Dom.Namespace);
-			container.AddToProject(project);
-			return project;
-		}
-
-		//public static Project AsProject(this PropertyCollection propertyCollection)
-		//{
-		//    var project = new Project(propertyCollection.Dom.Namespace);
-		//    propertyCollection.AddToProject(project);
-		//    return project;
-		//}
 
 		public static void AddINodeToProject(Project project)
 		{

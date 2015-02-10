@@ -43,6 +43,7 @@
     <Compile Include="ClassConvenienceMethods.cs" />
     <Compile Include="ClassMethod.cs" />
     <Compile Include="ClassProperty.cs" />
+    <Compile Include="CompilationExtensionMethods.cs" />
     <Compile Include="Constructor.cs" />
     <Compile Include="ConstructorConvenienceMethods.cs" />
     <Compile Include="Enumeration.cs" />

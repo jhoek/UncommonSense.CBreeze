@@ -52,7 +52,7 @@
     <Compile Include="Property.cs" />
     <Compile Include="PropertyType.cs" />
     <Compile Include="ReferencePropertyType.cs" />
-    <Compile Include="ToProjectExtensionMethods.cs" />
+    <Compile Include="AsProjectExtensionMethods.cs" />
     <Compile Include="ValuePropertyType.cs" />
   </ItemGroup>
   <ItemGroup>

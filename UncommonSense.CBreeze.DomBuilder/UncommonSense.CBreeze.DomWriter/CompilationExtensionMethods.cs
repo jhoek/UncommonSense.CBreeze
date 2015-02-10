@@ -1,18 +1,16 @@
-﻿using System;
-using System.CodeDom;
+﻿using Microsoft.CSharp;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Microsoft.CSharp;
-using UncommonSense.CBreeze.DomWriter;
 
-namespace UncommonSense.CBreeze.DomBuilder
+namespace UncommonSense.CBreeze.DomWriter
 {
     public static class CompilationExtensionMethods
     {
-        public static void Compile(this Project project, string outputAssembly)
+        public static void CompileTo(this Project project, string outputAssembly)
         {
             var csharpCodeProvider = new CSharpCodeProvider();
             var compilerParameters = new CompilerParameters();

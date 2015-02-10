@@ -26,9 +26,7 @@ namespace UncommonSense.CBreeze.DomBuilder.Demo
                 new ReferencePropertyType("MultiLanguage")
                 );
 
-            var project = objectModel.ToProject();
-
-            project.WriteTo(Console.Out);
+            objectModel.AsProject().CompileTo(@".\output.dll");
         }
     }
 }
