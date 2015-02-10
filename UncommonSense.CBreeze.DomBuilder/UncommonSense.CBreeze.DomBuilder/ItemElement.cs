@@ -9,6 +9,7 @@ namespace UncommonSense.CBreeze.DomBuilder
     public abstract class ItemElement
     {
         private string name;
+        private string fieldName;
         private Item item;
 
         public ItemElement(string name)
@@ -16,11 +17,32 @@ namespace UncommonSense.CBreeze.DomBuilder
             this.name = name;
         }
 
+        public static string GetFieldName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+
+            return name.Substring(0, 1).ToLowerInvariant() + name.Substring(1);
+        }
+
         public string Name
         {
             get
             {
                 return this.name;
+            }
+        }
+
+
+        public string FieldName
+        {
+            get
+            {
+                return this.fieldName ?? GetFieldName(Name);
+            }
+            set
+            {
+                this.fieldName = value;
             }
         }
 
