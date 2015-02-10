@@ -8,9 +8,27 @@ namespace UncommonSense.CBreeze.DomBuilder
 {
     public class Item : ObjectModelElement
     {
-        public Item(string name)
+        private List<ItemElement> elements = new List<ItemElement>();
+
+        public Item(string name, params ItemElement[] elements)
             : base(name)
         {
+            foreach (var element in elements)
+            {
+                element.Item = this;
+                this.elements.Add(element);
+            }
+        }
+
+        public IEnumerable<ItemElement> Elements
+        {
+            get
+            {
+                foreach (var element in elements)
+                {
+                    yield return element;
+                }
+            }
         }
     }
 }

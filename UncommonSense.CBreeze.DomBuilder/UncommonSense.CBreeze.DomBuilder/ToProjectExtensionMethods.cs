@@ -25,5 +25,13 @@ namespace UncommonSense.CBreeze.DomBuilder
 
             return project;
         }
+
+        public static Project ToProject(this Item item)
+        {
+            var objectModel = (item.ParentNode as ObjectModel);
+            var project = new Project(objectModel.Namespace);
+            item.AddToProject(project);
+            return project;
+        }
     }
 }
