@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.DomBuilder
     {
         private string itemTypeName;
 
-        public Container(string name, string itemTypeName)
+        public Container(string name, Item item)
             : base(name)
         {
             this.itemTypeName = itemTypeName;

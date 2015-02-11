@@ -46,6 +46,8 @@ namespace CBreeze.NextGen
         private static void AddPage(Application application)
         {
             var page = application.Pages.Add(new Page(50000, "Customer Groups"));
+
+            
         }
 
         private static void PrintNode(INode node, int indentation)

@@ -7,78 +7,11 @@ namespace UncommonSense.CBreeze.DomBuilder
 {
 	public class Item : Node
 	{
-		private string name;
-		private string baseItemName;
-		private bool @abstract;
 		private string keyAttributeName;
 		private bool autoCreateContainer;
 		private List<Attribute> attributes = new List<Attribute>();
-		private List<Attribute> childNodes = new List<Attribute>();
 		private List<string> uniqueAttributeNames = new List<string>();
 		private List<Property> properties = new List<Property>();
-
-		public Item(string name)
-		{
-			this.name = name;
-		}
-
-		public Attribute AddAttribute(Attribute attribute)
-		{
-			attribute.Item = this;
-			this.attributes.Add(attribute);
-			return attribute;
-		}
-
-		public Attribute AddChildNode(Attribute attribute)
-		{
-			attribute.Item = this;
-			this.childNodes.Add(attribute);
-			return attribute;
-		}
-
-		public void AddUniqueAttributeName(string uniqueAttributeName)
-		{
-			uniqueAttributeNames.Add(uniqueAttributeName);
-		}
-
-		public Property AddProperty(Property property)
-		{
-			property.Item = this;
-			this.properties.Add(property);
-			return property;
-		}
-
-		public override string Name
-		{
-			get
-			{
-				return this.name;
-			}
-		}
-
-		public string BaseItemName
-		{
-			get
-			{
-				return this.baseItemName;
-			}
-			set
-			{
-				this.baseItemName = value;
-			}
-		}
-
-		public bool Abstract
-		{
-			get
-			{
-				return this.@abstract;
-			}
-			set
-			{
-				this.@abstract = value;
-			}
-		}
 
 		public bool AutoCreateContainer
 		{
@@ -163,20 +96,6 @@ namespace UncommonSense.CBreeze.DomBuilder
 			}
 		}
 
-		public IEnumerable<string> UniqueAttributeNames
-		{
-			get
-			{
-				return this.uniqueAttributeNames;
-			}
-		}
 
-		public IEnumerable<Property> Properties
-		{
-			get
-			{
-				return this.properties;
-			}
-		}
 	}
 }

@@ -5,8 +5,8 @@ namespace CBreeze.NextGen
 {
     public class Table : Object, IEquatable<Table>, IHasProperties
     {
-        private TableProperties properties ;
-        private TableFields fields ;
+        private TableProperties properties;
+        private TableFields fields;
         private Code code = new Code();
 
         public Table(int id, string name) :
