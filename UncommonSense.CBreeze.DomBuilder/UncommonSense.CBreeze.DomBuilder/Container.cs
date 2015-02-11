@@ -8,19 +8,19 @@ namespace UncommonSense.CBreeze.DomBuilder
 {
     public class Container : ObjectModelElement
     {
-        private string itemTypeName;
+        private Item itemType;
 
-        public Container(string name, Item item)
+        public Container(string name, Item itemType)
             : base(name)
         {
-            this.itemTypeName = itemTypeName;
+            this.itemType = itemType;
         }
 
-        public string ItemTypeName
+        public Item ItemType
         {
             get
             {
-                return this.itemTypeName;
+                return this.itemType;
             }
         }
     }
