@@ -14,13 +14,13 @@ namespace UncommonSense.CBreeze.DomBuilder.Demo
         {
             var objectModel = new ObjectModel(
                 "UncommonSense.CBreeze.Core",
-                new Item("Application",
+                new Item("Application", null, 
                     new Attribute("Tables")),
-                new Item("Object",
+                new Item("Object", null,
                     new Property("DateTime", "DateTime"),
                     new Property("Modified", "Boolean"),
                     new Property("VersionList", "String")),
-                new Item("Table", 
+                new Item("Table", "Object",
                     new Property("CaptionML", "MultiLanguage")),
                 new Enumeration("BorderStyle", "Foo", "Baz", "Bar"),
                 new ReferencePropertyType("MultiLanguage")
