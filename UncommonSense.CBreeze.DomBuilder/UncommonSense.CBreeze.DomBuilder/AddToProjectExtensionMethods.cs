@@ -20,20 +20,24 @@ namespace UncommonSense.CBreeze.DomBuilder
 
             foreach (var attribute in item.Attributes)
             {
-                @class.AddField(attribute.FieldName, attribute.TypeName);
+                var field = @class.AddField(attribute.FieldName, attribute.TypeName);
+                field.Initialization = string.Format("new {0}()", attribute.TypeName);
 
-                var property=  @class.AddProperty(attribute.Name, attribute.TypeName);
+                var property = @class.AddProperty(attribute.Name, attribute.TypeName);
+
+                if (property.Type is ReferencePropertyType)
             }
         }
 
         public static void AddToProject(this Container container, Project project)
         {
-            var @class = project.AddClass(container.Name);
+            var @class = new Class(container.Name);
+            project.Classes.Add(@class);
         }
 
         public static void AddToProject(this Enumeration enumeration, Project project)
         {
-            var @enum = project.AddEnumeration(enumeration.Name);
+            var @enum = new Enum(project.AddEnumeration(enumeration.Name);
         }
     }
 }

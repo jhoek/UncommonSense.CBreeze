@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.DomWriter
         private List<string> imports = new List<string>();
         private List<Class> classes = new List<Class>();
         private List<Interface> interfaces = new List<Interface>();
-        private List<Enumeration> enumerations = new List<Enumeration>();
+        private List<Enum> enumerations = new List<Enum>();
         
         public Project(string @namespace)
         {
@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.DomWriter
             }
         }
 
-        public List<Enumeration> Enumerations
+        public List<Enum> Enumerations
         {
             get
             {

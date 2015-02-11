@@ -12,11 +12,28 @@ namespace UncommonSense.CBreeze.DomBuilder.Demo
     {
         static void Main(string[] args)
         {
-            var objectModel = new ObjectModel(
-                "UncommonSense.CBreeze.Core",
-                new Item("Application", new Attribute("Tables"), new Attribute("Pages")),
-                new Item("Object", new Attribute("Properties", "ObjectProperties")),
-                new Item("Table", "Object", new Attribute("TableProperties", "TableProperties")),
+            // Principles:
+            // Simplicity over efficiency
+            // References are strings; are not resolved until the object model is complete
+
+            var objectModel = new ObjectModel("UncommonSense.CBreeze.Core");
+
+            var @object = new Item("Object");
+            
+
+
+
+            var table = new Item("Table", @object);
+            var tables = new Container("Tables", table);
+
+            var application = new Item("Application", 
+                    
+            
+
+
+                new Item("Application", new ReferenceAttribute("Tables"), new ReferenceAttribute("Pages")),
+                new Item("Object", new ReferenceAttribute("Properties", "ObjectProperties")),
+                new Item("Table", "Object", new ReferenceAttribute("TableProperties", "TableProperties")),
                 new Container("Tables", "Table"),
                 new ReferencePropertyType("MultiLanguageProperty")
                 );

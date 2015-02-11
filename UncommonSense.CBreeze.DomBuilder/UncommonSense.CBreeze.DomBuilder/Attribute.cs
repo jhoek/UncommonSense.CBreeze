@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.DomBuilder
 {
-    public class Attribute
+    public abstract class Attribute
     {
         private string name;
         private string typeName;

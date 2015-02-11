@@ -65,7 +65,7 @@ namespace UncommonSense.CBreeze.DomWriter
             writer.EndBlock();
         }
 
-        private static void WriteTo(this Enumeration enumeration, IndentedTextWriter writer)
+        private static void WriteTo(this Enum enumeration, IndentedTextWriter writer)
         {
             enumeration.Visibility.WriteTo(writer);
             writer.WriteLine("enum {0}", enumeration.Name);

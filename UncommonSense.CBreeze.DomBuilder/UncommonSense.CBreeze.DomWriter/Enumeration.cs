@@ -5,13 +5,13 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.DomWriter
 {
-    public class Enumeration
+    public class Enum
     {
         private string name;
         private Visibility visibility = Visibility.Public;
         private Dictionary<string, int> values = new Dictionary<string, int>();
 
-        public Enumeration(string name)
+        public Enum(string name)
         {
             this.name = name;
         }
