@@ -6,14 +6,23 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.DomBuilder
 {
-    public class Property : ItemElement
+    public class Property
     {
+        private string name;
         private string typeName;
 
         public Property(string name, string typeName)
-            : base(name)
         {
+            this.name = name;
             this.typeName = typeName;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
         }
 
         public string TypeName

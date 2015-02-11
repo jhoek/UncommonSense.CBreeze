@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.DomBuilder
 
             foreach (var container in objectModel.Elements.OfType<Container>())
             {
-                // FIXME: container.AddToProject(project);
+                container.AddToProject(project);
             }
 
             foreach (var enumeration in objectModel.Elements.OfType<Enumeration>())

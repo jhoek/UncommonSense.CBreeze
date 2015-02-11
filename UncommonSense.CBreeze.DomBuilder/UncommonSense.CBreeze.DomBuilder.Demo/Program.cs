@@ -14,19 +14,15 @@ namespace UncommonSense.CBreeze.DomBuilder.Demo
         {
             var objectModel = new ObjectModel(
                 "UncommonSense.CBreeze.Core",
-                new Item("Application", null, 
-                    new Attribute("Tables")),
-                new Item("Object", null,
-                    new Property("DateTime", "DateTime"),
-                    new Property("Modified", "Boolean"),
-                    new Property("VersionList", "String")),
-                new Item("Table", "Object",
-                    new Property("CaptionML", "MultiLanguage")),
-                new Enumeration("BorderStyle", "Foo", "Baz", "Bar"),
-                new ReferencePropertyType("MultiLanguage")
+                new Item("Application", new Attribute("Tables"), new Attribute("Pages")),
+                new Item("Object", new Attribute("Properties", "ObjectProperties")),
+                new Item("Table", "Object", new Attribute("TableProperties", "TableProperties")),
+                new Container("Tables", "Table"),
+                new ReferencePropertyType("MultiLanguageProperty")
                 );
 
-            objectModel.AsProject().CompileTo(@".\output.dll");
+            objectModel.AsProject().WriteTo(Console.Out);
+            // objectModel.AsProject().CompileTo(@".\output.dll");
         }
     }
 }

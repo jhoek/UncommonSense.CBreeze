@@ -15,6 +15,14 @@ namespace UncommonSense.CBreeze.DomBuilder
             this.name = name;
         }
 
+        public ObjectModel ObjectModel
+        {
+            get
+            {
+                return (ParentNode as ObjectModel);
+            }
+        }
+
         public string Name
         {
             get

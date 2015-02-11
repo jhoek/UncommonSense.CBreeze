@@ -8,19 +8,27 @@ namespace UncommonSense.CBreeze.DomBuilder
 {
     public class Container : ObjectModelElement
     {
-        private Item itemType;
+        private string itemTypeName;
 
-        public Container(string name, Item itemType)
+        public Container(string name, string itemTypeName)
             : base(name)
         {
-            this.itemType = itemType;
+            this.itemTypeName = itemTypeName;
+        }
+
+        public string ItemTypeName
+        {
+            get
+            {
+                return this.itemTypeName;
+            }
         }
 
         public Item ItemType
         {
             get
             {
-                return this.itemType;
+                return ObjectModel.Elements.OfType<Item>().FirstOrDefault(i => i.Name == ItemTypeName);
             }
         }
     }

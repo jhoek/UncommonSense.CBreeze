@@ -10,17 +10,22 @@ namespace UncommonSense.CBreeze.DomBuilder
     {
         private bool isAbstract;
         private string baseItemName;
-        private List<ItemElement> elements = new List<ItemElement>();
+        private List<Attribute> attributes = new List<Attribute>();
 
-        public Item(string name, string baseItemName, params ItemElement[] elements)
+        public Item(string name, params Attribute[] attributes)
+            : this(name, null, attributes)
+        {
+        }
+
+        public Item(string name, string baseItemName, params Attribute[] attributes)
             : base(name)
         {
             this.baseItemName = baseItemName;
 
-            foreach (var element in elements)
+            foreach (var attribute in attributes)
             {
-                element.Item = this;
-                this.elements.Add(element);
+                attribute.Item = this;
+                this.attributes.Add(attribute);
             }
         }
 
@@ -44,13 +49,13 @@ namespace UncommonSense.CBreeze.DomBuilder
             }
         }
 
-        public IEnumerable<ItemElement> Elements
+        public IEnumerable<Attribute> Attributes
         {
             get
             {
-                foreach (var element in elements)
+                foreach (var attribute in attributes)
                 {
-                    yield return element;
+                    yield return attribute;
                 }
             }
         }
