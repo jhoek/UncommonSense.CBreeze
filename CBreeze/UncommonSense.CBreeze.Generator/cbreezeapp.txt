@@ -408,7 +408,7 @@ OBJECT Table 50007 Collection
   OBJECT-PROPERTIES
   {
     Date=17-01-14;
-    Time=09:25:09;
+    Time=[ 9:25:09];
     Modified=Yes;
     Version List=;
   }
@@ -938,7 +938,7 @@ OBJECT Form 50002 Enumerations
   OBJECT-PROPERTIES
   {
     Date=09-04-13;
-    Time=09:32:32;
+    Time=[ 9:32:32];
     Modified=Yes;
     Version List=;
   }
@@ -1559,7 +1559,7 @@ OBJECT Form 50015 Property Collections
   OBJECT-PROPERTIES
   {
     Date=03-06-13;
-    Time=08:46:44;
+    Time=[ 8:46:44];
     Modified=Yes;
     Version List=;
   }
@@ -3422,8 +3422,8 @@ OBJECT Codeunit 50005 Export Generator Objects
 {
   OBJECT-PROPERTIES
   {
-    Date=28-01-14;
-    Time=19:44:00;
+    Date=13-02-15;
+    Time=[ 7:56:23];
     Modified=Yes;
     Version List=;
   }
@@ -3444,7 +3444,7 @@ OBJECT Codeunit 50005 Export Generator Objects
 
     LOCAL PROCEDURE FileName@1100476000() : Text[250];
     BEGIN
-      EXIT('C:\Users\jhoek\Dropbox\Work in Progress\UncommonSense.CBreeze\UncommonSense.CBreeze.Generator\cbreezeapp.txt');
+      EXIT('C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Generator\cbreezeapp.txt');
     END;
 
     BEGIN
