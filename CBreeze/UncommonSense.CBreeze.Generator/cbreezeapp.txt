@@ -752,6 +752,72 @@ OBJECT Table 50016 Property Collection Member
   }
 }
 
+OBJECT Table 60009 Namespace
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-02-15;
+    Time=[ 8:11:15];
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;Code                ;Code20        ;NotBlank=Yes }
+    { 10  ;   ;Name                ;Text80         }
+  }
+  KEYS
+  {
+    {    ;Code                                    ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 60010 Class
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-02-15;
+    Time=[ 8:33:59];
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;Code                ;Code20        ;NotBlank=Yes }
+    { 10  ;   ;Name                ;Text80         }
+    { 20  ;   ;Namespace Code      ;Code20        ;TableRelation=Namespace }
+    { 30  ;   ;Visibility          ;Option        ;OptionString=Internal,,,Private,,,Protected,,,Public }
+  }
+  KEYS
+  {
+    {    ;Code                                    ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
 OBJECT Form 50000 Object Models
 {
   OBJECT-PROPERTIES
@@ -3423,7 +3489,7 @@ OBJECT Codeunit 50005 Export Generator Objects
   OBJECT-PROPERTIES
   {
     Date=13-02-15;
-    Time=[ 7:56:23];
+    Time=[ 8:35:13];
     Modified=Yes;
     Version List=;
   }
@@ -3433,7 +3499,7 @@ OBJECT Codeunit 50005 Export Generator Objects
             Object@1100476000 : Record 2000000001;
           BEGIN
             Object.SETFILTER(Type, '>%1', Object.Type::TableData);
-            Object.SETFILTER(ID, '..%1', 50099);
+            Object.SETFILTER(ID, '..%1', 60099);
 
             EXPORTOBJECTS(FileName, Object, 0);
           END;
