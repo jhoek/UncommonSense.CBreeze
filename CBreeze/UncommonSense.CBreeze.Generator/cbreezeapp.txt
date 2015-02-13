@@ -756,8 +756,8 @@ OBJECT Form 50000 Object Models
 {
   OBJECT-PROPERTIES
   {
-    Date=10-05-13;
-    Time=20:59:02;
+    Date=13-02-15;
+    Time=[ 8:05:18];
     Modified=Yes;
     Version List=;
   }
@@ -850,9 +850,9 @@ OBJECT Form 50000 Object Models
                                                  {
                                                    { ID=1000000019;
                                                      ShortCutKey=Shift+Ctrl+B;
-                                                     CaptionML=ENU=Generate;
+                                                     CaptionML=ENU=&Build;
                                                      OnPush=BEGIN
-                                                              CODEUNIT.RUN(CODEUNIT::"Generate Object Model");
+                                                              CODEUNIT.RUN(CODEUNIT::"Build Object Model");
                                                               //CODEUNIT.RUN(CODEUNIT::"Generate Writer Object Model");
                                                             END;
                                                              }
@@ -1809,7 +1809,7 @@ OBJECT Codeunit 1 ApplicationManagement
   }
 }
 
-OBJECT Codeunit 50000 Generate Object Model
+OBJECT Codeunit 50000 Build Object Model
 {
   OBJECT-PROPERTIES
   {
