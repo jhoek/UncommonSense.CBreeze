@@ -183,3 +183,9 @@ UpgradeLog*.htm
 FakesAssemblies/
 CBreeze/UncommonSense.CBreeze.Demo/navw12015.txt
 CBreeze/UncommonSense.CBreeze.Demo/navnl2013.txt
+
+*.userprefs
+
+CBreeze.NextGen/CBreeze.NextGen.userprefs
+
+UncommonSense.CBreeze.DomBuilder/UncommonSense.CBreeze.DomBuilder.userprefs
