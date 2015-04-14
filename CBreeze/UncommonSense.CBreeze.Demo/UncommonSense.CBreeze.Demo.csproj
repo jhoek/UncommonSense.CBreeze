@@ -58,10 +58,6 @@
       <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
       <Name>UncommonSense.CBreeze.Write</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser.csproj">
-      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
-      <Name>UncommonSense.Nav.Parser</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="connectit.txt">

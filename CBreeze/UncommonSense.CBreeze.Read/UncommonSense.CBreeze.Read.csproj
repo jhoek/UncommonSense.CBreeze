@@ -58,10 +58,6 @@
       <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser.csproj">
-      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
-      <Name>UncommonSense.Nav.Parser</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
