@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-    public class TableProperties : Properties
-    {
-        private ReferenceProperty<MultiLanguageValue> captionML = new ReferenceProperty<MultiLanguageValue>("CaptionML");
-        //        private ReferenceProperty<FieldList> dataCaptionFields = new ReferenceProperty<FieldList>("DataCaptionFields");
-        private ValueProperty<int?> lookupPageID = new ValueProperty<int?>("LookupPageID");
+	public class TableProperties : Properties
+	{
+		private ReferenceProperty<MultiLanguageValue> captionML = new ReferenceProperty<MultiLanguageValue>("CaptionML");
+		//        private ReferenceProperty<FieldList> dataCaptionFields = new ReferenceProperty<FieldList>("DataCaptionFields");
+		private ValueProperty<int?> lookupPageID = new ValueProperty<int?>("LookupPageID");
 
 
-        /*
+		/*
 CORE	TableProperties	DataPerCompany	NullableBooleanProperty	dataPerCompany	10
 CORE	TableProperties	Description	StringProperty	description	90
 CORE	TableProperties	DrillDownPageID	PageReferenceProperty	drillDownPageID	120
@@ -26,44 +26,45 @@ CORE	TableProperties	PasteIsValid	NullableBooleanProperty	pasteIsValid	100
 CORE	TableProperties	Permissions	PermissionsProperty	permissions	20
          */
 
-        internal TableProperties(Node parentNode)
-            : base(parentNode)
-        {
-        }
+		internal TableProperties(Node parentNode)
+			: base(parentNode)
+		{
+        	
+		}
 
-        public override string ToString()
-        {
-            return "TableProperties";
-        }
+		public override string ToString()
+		{
+			return "TableProperties";
+		}
 
-        public MultiLanguageValue CaptionML
-        {
-            get
-            {
-                return this.captionML.Value;
-            }
-        }
+		public MultiLanguageValue CaptionML
+		{
+			get
+			{
+				return this.captionML.Value;
+			}
+		}
 
-        public int? LookupPageID
-        {
-            get
-            {
-                return this.lookupPageID.Value;
-            }
-            set
-            {
-                this.lookupPageID.Value = value;
-            }
-        }
+		public int? LookupPageID
+		{
+			get
+			{
+				return this.lookupPageID.Value;
+			}
+			set
+			{
+				this.lookupPageID.Value = value;
+			}
+		}
 
-        public override IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield return captionML;
-                yield return lookupPageID;
-            }
-        }
-    }
+		public override IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				yield return captionML;
+				yield return lookupPageID;
+			}
+		}
+	}
 }
 

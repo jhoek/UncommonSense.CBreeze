@@ -6,7 +6,8 @@ namespace CBreeze.NextGen
 	{
 		Table,
 		Page,
-		Report
+		Report,
+		Codeunit
 	}
 }
 

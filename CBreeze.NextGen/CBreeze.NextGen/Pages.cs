@@ -2,17 +2,17 @@
 
 namespace CBreeze.NextGen
 {
-    public class Pages : Container<int, Page>
-    {
-        internal Pages(Node parentNode)
-            : base(parentNode)
-        {
-        }
+	public class Pages : Container<int, Page>
+	{
+		internal Pages(Node parentNode, params Page[] pages)
+			: base(parentNode, pages)
+		{
+		}
 
-        public override string ToString()
-        {
-            return "Pages";
-        }
-    }
+		public override string ToString()
+		{
+			return "Pages";
+		}
+	}
 }
 

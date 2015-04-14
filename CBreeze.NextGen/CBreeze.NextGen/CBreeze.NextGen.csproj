@@ -33,7 +33,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IHasProperties.cs" />
     <Compile Include="MultiLanguageValue.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
@@ -70,6 +69,9 @@
     <Compile Include="Tables.cs" />
     <Compile Include="Pages.cs" />
     <Compile Include="Reports.cs" />
+    <Compile Include="Codeunit.cs" />
+    <Compile Include="Codeunits.cs" />
+    <Compile Include="CodeunitProperties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

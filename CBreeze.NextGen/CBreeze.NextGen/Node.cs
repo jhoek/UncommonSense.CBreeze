@@ -6,25 +6,17 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public abstract class Node : INode
-    {
-        private Node parentNode;
+	public abstract class Node : INode
+	{
+		public Node ParentNode
+		{
+			get;
+			internal set;
+		}
 
-        public Node ParentNode
-        {
-            get
-            {
-                return this.parentNode;
-            }
-            internal set
-            {
-                this.parentNode = value;
-            }
-        }
-
-        public abstract IEnumerable<INode> ChildNodes
-        {
-            get;
-        }
-    }
+		public abstract IEnumerable<INode> ChildNodes
+		{
+			get;
+		}
+	}
 }

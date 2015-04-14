@@ -5,29 +5,22 @@ namespace CBreeze.NextGen
 {
 	public abstract class Variable : Node, IKeyedValue<string>, IEquatable<Variable>
 	{
-		private int uid;
-		private string name;
-
 		public Variable(int uid, string name)
 		{
-			this.uid = uid;
-			this.name = name;
+			UID = uid;
+			Name = name;
 		}
 
 		public int UID
 		{
-			get
-			{
-				return this.uid;
-			}
+			get;
+			internal set;
 		}
 
 		public string Name
 		{
-			get
-			{
-				return this.name;
-			}
+			get;
+			internal set;
 		}
 
 		public override IEnumerable<INode> ChildNodes
@@ -45,14 +38,11 @@ namespace CBreeze.NextGen
 
 		public bool Equals(Variable other)
 		{
-			if (other == null)
-				return false;
+			if (other == null) return false;
 
-			if (other.UID == UID)
-				return true;
+			if (other.UID == UID) return true;
 
-			if (other.Name == Name)
-				return true;
+			if (other.Name == Name) return true;
 
 			return false;
 		}

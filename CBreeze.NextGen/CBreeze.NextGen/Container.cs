@@ -3,88 +3,92 @@ using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-    public abstract class Container<TKey, TValue> : INode, IEnumerable<TValue> where TValue : Node, IKeyedValue<TKey>, IEquatable<TValue>
-    {
-        private Node parentNode;
-        private Dictionary<TKey, TValue> innerDictionary = new Dictionary<TKey, TValue>();
+	public abstract class Container<TKey, TValue> : INode, IEnumerable<TValue> where TValue : Node, IKeyedValue<TKey>, IEquatable<TValue>
+	{
+		private Node parentNode;
+		private Dictionary<TKey, TValue> innerDictionary = new Dictionary<TKey, TValue>();
 
-        internal Container(Node parentNode)
-        {
-            this.parentNode = parentNode;
-        }
+		internal Container(Node parentNode, params TValue[] items)
+		{
+			this.parentNode = parentNode;
 
-        public override string ToString()
-        {
-            return "Container";
-        }
+			foreach (var item in items)
+			{
+				Add(item);
+			}
+		}
 
-        public TValue Add(TValue item)
-        {
-            if (innerDictionary.ContainsValue(item))
-                throw new ArgumentException("Item already exists.");
+		public override string ToString()
+		{
+			return "Container";
+		}
 
-            item.ParentNode = ParentNode;
-            innerDictionary.Add(item.GetKey(), item);
+		public TValue Add(TValue item)
+		{
+			if (innerDictionary.ContainsValue(item)) throw new ArgumentException("Item already exists.");
 
-            return item;
-        }
+			item.ParentNode = ParentNode;
+			innerDictionary.Add(item.GetKey(), item);
 
-        public bool Remove(TKey key)
-        {
-            return innerDictionary.Remove(key);
-        }
+			return item;
+		}
 
-        public void Clear()
-        {
-            innerDictionary.Clear();
-        }
+		public bool Remove(TKey key)
+		{
+			return innerDictionary.Remove(key);
+		}
 
-        public bool ContainsKey(TKey key)
-        {
-            return innerDictionary.ContainsKey(key);
-        }
+		public void Clear()
+		{
+			innerDictionary.Clear();
+		}
 
-        public bool ContainsValue(TValue value)
-        {
-            return innerDictionary.ContainsValue(value);
-        }
+		public bool ContainsKey(TKey key)
+		{
+			return innerDictionary.ContainsKey(key);
+		}
 
-        public TValue this[TKey key]
-        {
-            get
-            {
-                return innerDictionary[key];
-            }
-        }
+		public bool ContainsValue(TValue value)
+		{
+			return innerDictionary.ContainsValue(value);
+		}
 
-        public Node ParentNode
-        {
-            get
-            {
-                return this.parentNode;
-            }
-        }
+		public TValue this[TKey key]
+		{
+			get
+			{
+				return innerDictionary[key];
+			}
+		}
 
-        public IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                foreach (var keyValuePair in innerDictionary)
-                {
-                    yield return keyValuePair.Value;
-                }
-            }
-        }
+		public Node ParentNode
+		{
+			get
+			{
+				return this.parentNode;
+			}
+		}
 
-        public IEnumerator<TValue> GetEnumerator()
-        {
-            return innerDictionary.Values.GetEnumerator();
-        }
+		public IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				foreach (var keyValuePair in innerDictionary)
+				{
+					yield return keyValuePair.Value;
+				}
+			}
+		}
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerDictionary.Values.GetEnumerator();
-        }
-    }
+		public IEnumerator<TValue> GetEnumerator()
+		{
+			return innerDictionary.Values.GetEnumerator();
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return innerDictionary.Values.GetEnumerator();
+		}
+	}
 }
 

@@ -8,8 +8,7 @@ namespace CBreeze.NextGen
 		private T value;
 
 		internal ValueProperty(string name)
-			:
-			base(name)
+			: base(name)
 		{
 		}
 
