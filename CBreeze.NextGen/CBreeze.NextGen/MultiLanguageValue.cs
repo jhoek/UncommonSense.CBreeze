@@ -12,10 +12,5 @@ namespace CBreeze.NextGen
 		{
 			return string.Join(";", this.Select(p => string.Format("{0}={1}", p.Key, p.Value)));
 		}
-
-		public void AddEnu(string value)
-		{
-			this.Add("ENU", value);
-		}
 	}
 }

@@ -4,9 +4,25 @@ namespace CBreeze.NextGen
 {
 	public class CodeTableField : TableField
 	{
-		public CodeTableField(int no, string name) : base(no, name)
+		public CodeTableField(int no, string name, int length)
+			: base(no, name)
 		{
+			Length = length;
 			Properties = new CodeTableFieldProperties(this);
+		}
+
+		public override TableFieldType Type
+		{
+			get
+			{
+				return TableFieldType.Code;
+			}
+		}
+
+		public int Length
+		{
+			get;
+			internal set;
 		}
 
 		public CodeTableFieldProperties Properties
@@ -27,7 +43,7 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				return "Code";
+				return string.Format("{0}[{1}]", Type, Length);
 			}
 		}
 	}

@@ -9,6 +9,7 @@ namespace CBreeze.NextGen
 		private ReferenceProperty<MultiLanguageValue> captionML = new ReferenceProperty<MultiLanguageValue>("CaptionML");
 		//        private ReferenceProperty<FieldList> dataCaptionFields = new ReferenceProperty<FieldList>("DataCaptionFields");
 		private ValueProperty<int?> lookupPageID = new ValueProperty<int?>("LookupPageID");
+		private ValueProperty<bool?> dataPerCompany = new ValueProperty<bool?>("DataPerCompany");
 
 
 		/*
@@ -34,7 +35,7 @@ CORE	TableProperties	Permissions	PermissionsProperty	permissions	20
 
 		public override string ToString()
 		{
-			return "TableProperties";
+			return "Properties";
 		}
 
 		public MultiLanguageValue CaptionML
@@ -42,6 +43,18 @@ CORE	TableProperties	Permissions	PermissionsProperty	permissions	20
 			get
 			{
 				return this.captionML.Value;
+			}
+		}
+
+		public bool? DataPerCompany
+		{
+			get
+			{
+				return this.dataPerCompany.Value;
+			}
+			set
+			{
+				this.dataPerCompany.Value = value;
 			}
 		}
 
@@ -62,6 +75,7 @@ CORE	TableProperties	Permissions	PermissionsProperty	permissions	20
 			get
 			{
 				yield return captionML;
+				yield return dataPerCompany;
 				yield return lookupPageID;
 			}
 		}

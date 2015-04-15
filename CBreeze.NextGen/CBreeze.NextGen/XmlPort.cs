@@ -4,8 +4,8 @@ namespace CBreeze.NextGen
 {
 	public class XmlPort : Object, IEquatable<XmlPort>
 	{
-		public XmlPort(int id, string name) :
-			base(id, name)
+		public XmlPort(int id, string name)
+			: base(id, name)
 		{
 		}
 
@@ -21,7 +21,7 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				yield break; // FIXME
+				yield return ObjectProperties;
 			}
 		}
 

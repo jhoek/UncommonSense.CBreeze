@@ -9,12 +9,13 @@ namespace CBreeze.NextGen
 		{
 			UID = uid;
 			Name = name;
+			Parameters = new Parameters(this);
 			Variables = new Variables(this);
 		}
 
 		public override string ToString()
 		{
-			return string.Format("{0}@{1}", Name, UID);
+			return string.Format("{2}{0}@{1}", Name, UID, Local ? "LOCAL " : "");
 		}
 
 		public int UID
@@ -24,6 +25,18 @@ namespace CBreeze.NextGen
 		}
 
 		public string Name
+		{
+			get;
+			internal set;
+		}
+
+		public bool Local
+		{
+			get;
+			set;
+		}
+
+		public Parameters Parameters
 		{
 			get;
 			internal set;
@@ -39,6 +52,7 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
+				yield return Parameters;
 				yield return Variables;
 			}
 		}

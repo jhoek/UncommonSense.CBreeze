@@ -22,6 +22,14 @@ namespace CBreeze.NextGen
 			return ChildNodes.Cast<Property>().GetEnumerator();
 		}
 
+		public Property this[string name]
+		{
+			get
+			{
+				return ChildNodes.Cast<Property>().FirstOrDefault(p => p.Name == name);
+			}
+		}
+
 		public Node ParentNode
 		{
 			get;

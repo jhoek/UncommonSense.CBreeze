@@ -4,9 +4,18 @@ namespace CBreeze.NextGen
 {
 	public class IntegerTableField : TableField
 	{
-		public IntegerTableField(int id, string name) : base(id, name)
+		public IntegerTableField(int id, string name)
+			: base(id, name)
 		{
 			Properties = new IntegerTableFieldProperties(this);
+		}
+
+		public override TableFieldType Type
+		{
+			get
+			{
+				return TableFieldType.Integer;
+			}
 		}
 
 		public IntegerTableFieldProperties Properties

@@ -15,18 +15,35 @@ namespace CBreeze.NextGen
 			return string.Format("Field {0} {1} : {2}", No, Name, TypeName);
 		}
 
+		public abstract TableFieldType Type
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Gets or sets the no.
+		/// </summary>
+		/// <value>The no.</value>
 		public int No
 		{
 			get;
 			internal set;
 		}
 
+		/// <summary>
+		/// Gets or sets the name.
+		/// </summary>
+		/// <value>The name.</value>
 		public string Name
 		{
 			get;
 			internal set;
 		}
 
+		/// <summary>
+		/// Gets the name of the type. Where relevant, includes length.
+		/// </summary>
+		/// <value>The name of the type.</value>
 		public abstract string TypeName
 		{
 			get;

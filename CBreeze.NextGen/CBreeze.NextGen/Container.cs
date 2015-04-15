@@ -17,10 +17,9 @@ namespace CBreeze.NextGen
 			return "Container";
 		}
 
-		public TValue Add(TValue item)
+		public TDerivedValue Add<TDerivedValue>(TDerivedValue item) where TDerivedValue : TValue
 		{
-			if (innerDictionary.ContainsValue(item))
-				throw new ArgumentException("Item already exists.");
+			if (innerDictionary.ContainsValue(item)) throw new ArgumentException("Item already exists.");
 
 			item.ParentNode = ParentNode;
 			innerDictionary.Add(item.GetKey(), item);
@@ -48,11 +47,11 @@ namespace CBreeze.NextGen
 			return innerDictionary.ContainsValue(value);
 		}
 
-		public TValue this [TKey key]
+		public TValue this[TKey key]
 		{
 			get
 			{
-				return innerDictionary [key];
+				return innerDictionary[key];
 			}
 		}
 
