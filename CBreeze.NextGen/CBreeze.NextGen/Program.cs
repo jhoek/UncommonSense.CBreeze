@@ -9,6 +9,10 @@ namespace CBreeze.NextGen
 		{
 			var application = new Application();
 			var table = application.Tables.Add(new Table(50000, "Customer Group"));
+			table.ObjectProperties.DateTime = DateTime.Now;
+			table.ObjectProperties.Modified = true;
+			table.ObjectProperties.VersionList = "NAVJH1.00";
+
 			table.Properties.CaptionML.Add("ENU", table.Name);
 			table.Properties.DataPerCompany = false;
 
@@ -46,7 +50,14 @@ namespace CBreeze.NextGen
 		private static void PrintNode(INode node, int indentation)
 		{
 			Console.Write(new String(' ', indentation * 2));
-			Console.WriteLine(node);
+			Console.Write(node);
+
+			if (node is Property)
+			{
+				Console.Write(" [{0}]", (node as Property).HasValue);
+			}
+
+			Console.WriteLine();
 
 			foreach (var childNode in node.ChildNodes)
 			{

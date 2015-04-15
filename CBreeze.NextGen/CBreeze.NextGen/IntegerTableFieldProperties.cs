@@ -6,7 +6,7 @@ namespace CBreeze.NextGen
 {
 	public class IntegerTableFieldProperties : Properties
 	{
-		private ValueProperty<string> altSearchField = new ValueProperty<string>("AltSearchField");
+		private StringProperty altSearchField = new StringProperty("AltSearchField");
 
 		internal IntegerTableFieldProperties(Node parentNode)
 			: base(parentNode)

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-	public class ValueProperty<T> : Property
+	public abstract class ValueProperty<T> : Property
 	{
-		internal ValueProperty(string name) : base(name)
+		internal ValueProperty(string name)
+			: base(name)
 		{
 		}
 

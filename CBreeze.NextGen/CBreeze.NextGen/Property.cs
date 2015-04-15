@@ -16,6 +16,11 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
+		public abstract bool HasValue
+		{
+			get;
+		}
+
 		public abstract IEnumerable<INode> ChildNodes
 		{
 			get;

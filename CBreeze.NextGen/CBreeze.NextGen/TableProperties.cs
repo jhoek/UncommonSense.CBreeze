@@ -6,10 +6,10 @@ namespace CBreeze.NextGen
 {
 	public class TableProperties : Properties
 	{
-		private ReferenceProperty<MultiLanguageValue> captionML = new ReferenceProperty<MultiLanguageValue>("CaptionML");
+		private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 		//        private ReferenceProperty<FieldList> dataCaptionFields = new ReferenceProperty<FieldList>("DataCaptionFields");
-		private ValueProperty<int?> lookupPageID = new ValueProperty<int?>("LookupPageID");
-		private ValueProperty<bool?> dataPerCompany = new ValueProperty<bool?>("DataPerCompany");
+		private NullableIntProperty lookupPageID = new NullableIntProperty("LookupPageID");
+		private NullableBoolProperty dataPerCompany = new NullableBoolProperty("DataPerCompany");
 
 
 		/*

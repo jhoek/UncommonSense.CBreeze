@@ -77,6 +77,11 @@
     <Compile Include="TableFieldType.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Parameters.cs" />
+    <Compile Include="MultiLanguageProperty.cs" />
+    <Compile Include="NullableIntProperty.cs" />
+    <Compile Include="NullableBoolProperty.cs" />
+    <Compile Include="NullableDateTimeProperty.cs" />
+    <Compile Include="StringProperty.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@ namespace CBreeze.NextGen
 {
 	public class CodeunitProperties : Properties
 	{
-		private ValueProperty<int?> tableNo = new ValueProperty<int?>("TableNo");
+		private NullableIntProperty tableNo = new NullableIntProperty("TableNo");
 
 		internal CodeunitProperties(Node parentNode)
 			: base(parentNode)

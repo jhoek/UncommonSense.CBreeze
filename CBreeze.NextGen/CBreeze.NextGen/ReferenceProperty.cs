@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-	public class ReferenceProperty<T> : Property where T : new()
+	public abstract class ReferenceProperty<T> : Property where T : new()
 	{
-		internal ReferenceProperty(string name) : base(name)
+		internal ReferenceProperty(string name)
+			: base(name)
 		{
 			Value = new T();
 		}
