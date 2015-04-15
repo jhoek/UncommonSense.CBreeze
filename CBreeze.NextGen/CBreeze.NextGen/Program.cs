@@ -15,14 +15,17 @@ namespace CBreeze.NextGen
 
 			table.Properties.CaptionML.Add("ENU", table.Name);
 			table.Properties.DataPerCompany = false;
+			table.Properties.LookupPageID = 50001;
 
 			var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
 			codeField.Properties.CaptionML.Add("ENU", codeField.Name);
 			codeField.Properties.CaptionML.Add("NLD", "Klantgroep");
 			codeField.Properties.NotBlank = true;
+			table.Properties.DataCaptionFields.Add(codeField.No);
 
 			var integerField = table.Fields.Add(new IntegerTableField(10, "No. of Customers"));
 			integerField.Properties.AltSearchField = "Field20";
+			table.Properties.DataCaptionFields.Add(integerField.No);
 
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;
@@ -44,7 +47,7 @@ namespace CBreeze.NextGen
 
 			PrintNode(application, 0);
 
-			Console.WriteLine(application.Tables[50000].Properties["CaptionML"]);
+			Console.WriteLine(application.Tables [50000].Properties ["CaptionML"]);
 		}
 
 		private static void PrintNode(INode node, int indentation)

@@ -5,11 +5,12 @@ namespace CBreeze.NextGen
 {
 	public class Table : Object, IEquatable<Table>
 	{
-		public Table(int id, string name)
-			: base(id, name)
+		public Table(int id, string name) : base(id, name)
 		{
 			Properties = new TableProperties(this);
 			Fields = new TableFields(this);
+			// Keys = new TableKeys(this);
+			// FieldGroups = new TableFieldGroups(this);
 			Code = new Code(this);
 		}
 
@@ -46,17 +47,22 @@ namespace CBreeze.NextGen
 				yield return ObjectProperties;
 				yield return Properties;
 				yield return Fields;
+				//yield return Keys;
+				//yield return FieldGroups;
 				yield return Code;
 			}
 		}
 
 		public bool Equals(Table other)
 		{
-			if (other == null) return false;
+			if (other == null)
+				return false;
 
-			if (other.ID == ID) return true;
+			if (other.ID == ID)
+				return true;
 
-			if (other.Name == Name) return true;
+			if (other.Name == Name)
+				return true;
 
 			return false;
 		}

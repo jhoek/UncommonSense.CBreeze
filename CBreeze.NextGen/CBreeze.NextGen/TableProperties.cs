@@ -7,28 +7,24 @@ namespace CBreeze.NextGen
 	public class TableProperties : Properties
 	{
 		private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
-		//        private ReferenceProperty<FieldList> dataCaptionFields = new ReferenceProperty<FieldList>("DataCaptionFields");
+		private FieldListProperty dataCaptionFields = new FieldListProperty("DataCaptionFields");
 		private NullableIntProperty lookupPageID = new NullableIntProperty("LookupPageID");
+		private NullableIntProperty drillDownPageID = new NullableIntProperty("DrillDownPageID");
 		private NullableBoolProperty dataPerCompany = new NullableBoolProperty("DataPerCompany");
-
+		private StringProperty description = new StringProperty("Description");
+		private NullableBoolProperty linkedInTransaction = new NullableBoolProperty("LinkedInTransaction");
+		private NullableBoolProperty linkedObject = new NullableBoolProperty("LinkedObject");
+		private TriggerProperty onInsert = new TriggerProperty("OnInsert");
+		private TriggerProperty onModify = new TriggerProperty("OnModify");
+		private TriggerProperty onDelete = new TriggerProperty("OnDelete");
+		private TriggerProperty onRename = new TriggerProperty("OnRename");
 
 		/*
-CORE	TableProperties	DataPerCompany	NullableBooleanProperty	dataPerCompany	10
-CORE	TableProperties	Description	StringProperty	description	90
-CORE	TableProperties	DrillDownPageID	PageReferenceProperty	drillDownPageID	120
-CORE	TableProperties	LinkedInTransaction	NullableBooleanProperty	linkedInTransaction	130
-CORE	TableProperties	LinkedObject	NullableBooleanProperty	linkedObject	140
-CORE	TableProperties	LookupPageID	PageReferenceProperty	lookupPageID	110
-CORE	TableProperties	OnDelete	TriggerProperty	onDelete	60
-CORE	TableProperties	OnInsert	TriggerProperty	onInsert	40
-CORE	TableProperties	OnModify	TriggerProperty	onModify	50
-CORE	TableProperties	OnRename	TriggerProperty	onRename	70
-CORE	TableProperties	PasteIsValid	NullableBooleanProperty	pasteIsValid	100
-CORE	TableProperties	Permissions	PermissionsProperty	permissions	20
+			<member name="PasteIsValid" propertyType="NullableBooleanProperty" fieldName="pasteIsValid" sortOrder="100"/>
+			<member name="Permissions" propertyType="PermissionsProperty" fieldName="permissions" sortOrder="20"/>
          */
 
-		internal TableProperties(Node parentNode)
-			: base(parentNode)
+		internal TableProperties(Node parentNode) : base(parentNode)
 		{
         	
 		}
@@ -43,6 +39,14 @@ CORE	TableProperties	Permissions	PermissionsProperty	permissions	20
 			get
 			{
 				return this.captionML.Value;
+			}
+		}
+
+		public FieldList DataCaptionFields
+		{
+			get
+			{
+				return this.dataCaptionFields.Value;
 			}
 		}
 
@@ -76,6 +80,7 @@ CORE	TableProperties	Permissions	PermissionsProperty	permissions	20
 			{
 				yield return captionML;
 				yield return dataPerCompany;
+				yield return dataCaptionFields;
 				yield return lookupPageID;
 			}
 		}
