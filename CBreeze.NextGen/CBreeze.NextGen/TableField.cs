@@ -4,13 +4,10 @@ namespace CBreeze.NextGen
 {
 	public abstract class TableField : Node, IKeyedValue<int>, IEquatable<TableField>
 	{
-		private int no;
-		private string name;
-
 		public TableField(int no, string name)
 		{
-			this.no = no;
-			this.name = name;
+			No = no;
+			Name = name;
 		}
 
 		public override string ToString()
@@ -20,18 +17,14 @@ namespace CBreeze.NextGen
 
 		public int No
 		{
-			get
-			{
-				return this.no;
-			}
+			get;
+			internal set;
 		}
 
 		public string Name
 		{
-			get
-			{
-				return this.name;
-			}
+			get;
+			internal set;
 		}
 
 		public abstract string TypeName
@@ -46,11 +39,14 @@ namespace CBreeze.NextGen
 
 		public bool Equals(TableField other)
 		{
-			if (other == null) return false;
+			if (other == null)
+				return false;
 
-			if (other.No == No) return true;
+			if (other.No == No)
+				return true;
 
-			if (other.Name == Name) return true;
+			if (other.Name == Name)
+				return true;
 
 			return false;
 		}

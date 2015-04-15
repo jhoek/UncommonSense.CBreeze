@@ -3,36 +3,31 @@ using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-    public class ReferenceProperty<T> : Property where T : new()
-    {
-        private T value = new T();
+	public class ReferenceProperty<T> : Property where T : new()
+	{
+		internal ReferenceProperty(string name) : base(name)
+		{
+			Value = new T();
+		}
 
-        internal ReferenceProperty(string name)
-            :
-            base(name)
-        {
-        }
+		public override string ToString()
+		{
+			return string.Format("{0}={1}", Name, Value);
+		}
 
-        public override string ToString()
-        {
-            return string.Format("{0}={1}", Name, Value);
-        }
+		public T Value
+		{
+			get;
+			internal set;
+		}
 
-        public T Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
-
-        public override IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield break;
-            }
-        }
-    }
+		public override IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				yield break;
+			}
+		}
+	}
 }
 

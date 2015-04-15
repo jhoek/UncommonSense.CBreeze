@@ -5,19 +5,15 @@ namespace CBreeze.NextGen
 {
 	public abstract class Property : INode
 	{
-		private string name;
-
 		internal Property(string name)
 		{
-			this.name = name;
+			Name = name;
 		}
 
 		public string Name
 		{
-			get
-			{
-				return this.name;
-			}
+			get;
+			internal set;
 		}
 
 		public abstract IEnumerable<INode> ChildNodes

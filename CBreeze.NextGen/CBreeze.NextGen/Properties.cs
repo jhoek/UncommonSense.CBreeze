@@ -5,37 +5,33 @@ using System.Linq;
 
 namespace CBreeze.NextGen
 {
-    public abstract class Properties : IProperties, INode
-    {
-        private Node parentNode;
+	public abstract class Properties : IProperties, INode
+	{
+		internal Properties(Node parentNode)
+		{
+			ParentNode = parentNode;
+		}
 
-        internal Properties(Node parentNode)
-        {
-            this.parentNode = parentNode;
-        }
+		public IEnumerator<Property> GetEnumerator()
+		{
+			return ChildNodes.Cast<Property>().GetEnumerator();
+		}
 
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return ChildNodes.Cast<Property>().GetEnumerator();
-        }
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return ChildNodes.Cast<Property>().GetEnumerator();
+		}
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ChildNodes.Cast<Property>().GetEnumerator();
-        }
+		public Node ParentNode
+		{
+			get;
+			internal set;
+		}
 
-        public Node ParentNode
-        {
-            get
-            {
-                return this.parentNode;
-            }
-        }
-
-        public abstract IEnumerable<INode> ChildNodes
-        {
-            get;
-        }
-    }
+		public abstract IEnumerable<INode> ChildNodes
+		{
+			get;
+		}
+	}
 }
 

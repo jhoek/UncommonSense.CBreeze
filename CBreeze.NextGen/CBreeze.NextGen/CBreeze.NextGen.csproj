@@ -72,6 +72,8 @@
     <Compile Include="Codeunit.cs" />
     <Compile Include="Codeunits.cs" />
     <Compile Include="CodeunitProperties.cs" />
+    <Compile Include="XmlPort.cs" />
+    <Compile Include="XmlPorts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

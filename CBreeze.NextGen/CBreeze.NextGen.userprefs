@@ -1,18 +1,6 @@
 ﻿<Properties StartupItem="CBreeze.NextGen/CBreeze.NextGen.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CBreeze.NextGen/Table.cs">
-    <Files>
-      <File FileName="CBreeze.NextGen/BaseAppTableID.cs" Line="5" Column="22" />
-      <File FileName="CBreeze.NextGen/Code.cs" Line="43" Column="1" />
-      <File FileName="CBreeze.NextGen/TableField.cs" Line="6" Column="2" />
-      <File FileName="CBreeze.NextGen/IProperties.cs" Line="1" Column="1" />
-      <File FileName="CBreeze.NextGen/Variable.cs" Line="42" Column="1" />
-      <File FileName="CBreeze.NextGen/ReferenceProperty.cs" Line="1" Column="1" />
-      <File FileName="CBreeze.NextGen/ValueProperty.cs" Line="6" Column="42" />
-      <File FileName="CBreeze.NextGen/Program.cs" Line="14" Column="20" />
-      <File FileName="CBreeze.NextGen/Table.cs" Line="18" Column="5" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

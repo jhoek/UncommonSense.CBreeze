@@ -5,10 +5,7 @@ namespace CBreeze.NextGen
 {
 	public class ValueProperty<T> : Property
 	{
-		private T value;
-
-		internal ValueProperty(string name)
-			: base(name)
+		internal ValueProperty(string name) : base(name)
 		{
 		}
 
@@ -19,14 +16,8 @@ namespace CBreeze.NextGen
 
 		public T Value
 		{
-			get
-			{
-				return this.value;
-			}
-			set
-			{
-				this.value = value;
-			}
+			get;
+			set;
 		}
 
 		public override IEnumerable<INode> ChildNodes

@@ -5,12 +5,15 @@ namespace CBreeze.NextGen
 {
 	public class Application : Node
 	{
-		public Application(params Object[] objects)
+		public Application()
 		{
-			Tables = new Tables(this, objects.OfType<Table>().ToArray());
-			Pages = new Pages(this, objects.OfType<Page>().ToArray());
-			Reports = new Reports(this, objects.OfType<Report>().ToArray());
-			Codeunits = new Codeunits(this, objects.OfType<Codeunit>().ToArray());
+			Tables = new Tables(this);
+			Pages = new Pages(this);
+			Reports = new Reports(this);
+			Codeunits = new Codeunits(this);
+			// FIXME: Queries = new Queries(this);
+			XmlPorts = new XmlPorts(this);
+			// FIXME: MenuSuites = new MenuSuites(this);
 		}
 
 		public override string ToString()
@@ -26,6 +29,7 @@ namespace CBreeze.NextGen
 				yield return Pages;
 				yield return Reports;
 				yield return Codeunits;
+				yield return XmlPorts;
 			}
 		}
 
@@ -48,6 +52,12 @@ namespace CBreeze.NextGen
 		}
 
 		public Codeunits Codeunits
+		{
+			get;
+			internal set;
+		}
+
+		public XmlPorts XmlPorts
 		{
 			get;
 			internal set;

@@ -7,13 +7,11 @@ namespace CBreeze.NextGen
 	{
 		public static void Main(string[] args)
 		{
-			var application = 
-				new Application(
-					new Table(50000, "Customer Group"),
-					new Page(50000, "Customer Group Card"),
-					new Page(50001, "Customer Group List")	
-				);
-
+			var application = new Application();
+			var table = application.Tables.Add(new Table(50000, "Customer Group"));
+			var cardPage = application.Pages.Add(new Page(50000, "Customer Group Card"));
+			var listPage = application.Pages.Add(new Page(50001, "Customer Group List"));
+			var export = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
 
 			PrintNode(application, 0);
 		}

@@ -5,17 +5,11 @@ namespace CBreeze.NextGen
 {
 	public abstract class Container<TKey, TValue> : INode, IEnumerable<TValue> where TValue : Node, IKeyedValue<TKey>, IEquatable<TValue>
 	{
-		private Node parentNode;
 		private Dictionary<TKey, TValue> innerDictionary = new Dictionary<TKey, TValue>();
 
-		internal Container(Node parentNode, params TValue[] items)
+		internal Container(Node parentNode)
 		{
-			this.parentNode = parentNode;
-
-			foreach (var item in items)
-			{
-				Add(item);
-			}
+			ParentNode = parentNode;
 		}
 
 		public override string ToString()
@@ -25,7 +19,8 @@ namespace CBreeze.NextGen
 
 		public TValue Add(TValue item)
 		{
-			if (innerDictionary.ContainsValue(item)) throw new ArgumentException("Item already exists.");
+			if (innerDictionary.ContainsValue(item))
+				throw new ArgumentException("Item already exists.");
 
 			item.ParentNode = ParentNode;
 			innerDictionary.Add(item.GetKey(), item);
@@ -53,20 +48,18 @@ namespace CBreeze.NextGen
 			return innerDictionary.ContainsValue(value);
 		}
 
-		public TValue this[TKey key]
+		public TValue this [TKey key]
 		{
 			get
 			{
-				return innerDictionary[key];
+				return innerDictionary [key];
 			}
 		}
 
 		public Node ParentNode
 		{
-			get
-			{
-				return this.parentNode;
-			}
+			get;
+			internal set;
 		}
 
 		public IEnumerable<INode> ChildNodes

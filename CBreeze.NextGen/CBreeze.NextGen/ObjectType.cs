@@ -7,7 +7,10 @@ namespace CBreeze.NextGen
 		Table,
 		Page,
 		Report,
-		Codeunit
+		Codeunit,
+		Query,
+		XmlPort,
+		MenuSuite
 	}
 }
 

@@ -4,8 +4,7 @@ namespace CBreeze.NextGen
 {
 	public class Reports : Container<int, Report>
 	{
-		internal Reports(Node parentNode, params Report[] reports)
-			: base(parentNode, reports)
+		internal Reports(Node parentNode) : base(parentNode)
 		{
 		}
 

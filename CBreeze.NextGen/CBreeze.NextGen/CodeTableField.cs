@@ -4,20 +4,15 @@ namespace CBreeze.NextGen
 {
 	public class CodeTableField : TableField
 	{
-		private  CodeTableFieldProperties properties;
-
-		public CodeTableField(int no, string name)
-			: base(no, name)
+		public CodeTableField(int no, string name) : base(no, name)
 		{
-			this.properties = new CodeTableFieldProperties(this);
+			Properties = new CodeTableFieldProperties(this);
 		}
 
 		public CodeTableFieldProperties Properties
 		{
-			get
-			{
-				return this.properties;
-			}
+			get;
+			internal set;
 		}
 
 		public override System.Collections.Generic.IEnumerable<INode> ChildNodes

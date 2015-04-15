@@ -4,20 +4,15 @@ namespace CBreeze.NextGen
 {
 	public class IntegerTableField : TableField
 	{
-		private IntegerTableFieldProperties properties;
-
-		public IntegerTableField(int id, string name)
-			: base(id, name)
+		public IntegerTableField(int id, string name) : base(id, name)
 		{
-			this.properties = new IntegerTableFieldProperties(this);
+			Properties = new IntegerTableFieldProperties(this);
 		}
 
 		public IntegerTableFieldProperties Properties
 		{
-			get
-			{
-				return properties;
-			}
+			get;
+			internal set;
 		}
 
 		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
