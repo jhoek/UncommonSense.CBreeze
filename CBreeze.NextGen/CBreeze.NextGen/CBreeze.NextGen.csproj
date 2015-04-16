@@ -86,6 +86,11 @@
     <Compile Include="FieldListProperty.cs" />
     <Compile Include="Trigger.cs" />
     <Compile Include="TriggerProperty.cs" />
+    <Compile Include="PageControl.cs" />
+    <Compile Include="PageControlType.cs" />
+    <Compile Include="ContainerPageControl.cs" />
+    <Compile Include="PageControls.cs" />
+    <Compile Include="ContainerPageControlProperties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

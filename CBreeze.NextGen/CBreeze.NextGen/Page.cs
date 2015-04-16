@@ -5,9 +5,10 @@ namespace CBreeze.NextGen
 {
 	public class Page : Object, IEquatable<Page>
 	{
-		public Page(int id, string name) :
-			base(id, name)
+		public Page(int id, string name)
+			: base(id, name)
 		{
+			Controls = new PageControls(this);
 		}
 
 		public override ObjectType Type
@@ -18,11 +19,18 @@ namespace CBreeze.NextGen
 			}
 		}
 
+		public PageControls Controls
+		{
+			get;
+			internal set;
+		}
+
 		public override IEnumerable<INode> ChildNodes
 		{
 			get
 			{
 				yield return ObjectProperties;
+				yield return Controls;
 			}
 		}
 
