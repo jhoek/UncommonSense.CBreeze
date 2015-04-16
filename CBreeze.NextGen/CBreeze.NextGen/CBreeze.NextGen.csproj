@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IHas.cs" />
     <Compile Include="MultiLanguageValue.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
