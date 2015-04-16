@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-	public class Table : Object, IEquatable<Table>, IHas<Properties>
+	public class Table : Object, IEquatable<Table>
 	{
-		public Table(int id, string name) : base(id, name)
+		public Table(int id, string name)
+			: base(id, name)
 		{
 			Properties = new TableProperties(this);
 			Fields = new TableFields(this);
@@ -13,11 +14,6 @@ namespace CBreeze.NextGen
 			// FieldGroups = new TableFieldGroups(this);
 			Code = new Code(this);
 		}
-
-        public Properties Get()
-        {
-            return Properties;
-        }
 
 		public override ObjectType Type
 		{

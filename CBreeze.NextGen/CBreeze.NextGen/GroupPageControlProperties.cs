@@ -3,26 +3,26 @@ using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-	public class ContainerPageControlProperties : Properties
+	public class GroupPageControlProperties : Properties
 	{
 		private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 
-		internal ContainerPageControlProperties(Node parentNode)
+		internal GroupPageControlProperties(Node parentNode)
 			: base(parentNode)
 		{
+		}
+
+		public override string ToString()
+		{
+			return "Properties";
 		}
 
 		public MultiLanguageValue CaptionML
 		{
 			get
 			{
-				return captionML.Value;
+				return this.captionML.Value;
 			}
-		}
-
-		public override string ToString()
-		{
-			return "Properties";
 		}
 
 		public override IEnumerable<INode> ChildNodes

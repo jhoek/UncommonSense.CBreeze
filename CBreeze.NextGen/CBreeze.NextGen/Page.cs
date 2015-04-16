@@ -8,6 +8,7 @@ namespace CBreeze.NextGen
 		public Page(int id, string name)
 			: base(id, name)
 		{
+			Properties = new PageProperties(this);
 			Controls = new PageControls(this);
 		}
 
@@ -17,6 +18,12 @@ namespace CBreeze.NextGen
 			{
 				return ObjectType.Page;
 			}
+		}
+
+		public PageProperties Properties
+		{
+			get;
+			internal set;
 		}
 
 		public PageControls Controls

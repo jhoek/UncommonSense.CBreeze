@@ -2,26 +2,26 @@
 
 namespace CBreeze.NextGen
 {
-	public class ContainerPageControl : PageControl
+	public class GroupPageControl : PageControl
 	{
-		public ContainerPageControl(int id)
+		public GroupPageControl(int id)
 			: base(id)
 		{
-			Properties = new ContainerPageControlProperties(this);
+			Properties = new GroupPageControlProperties(this);
+		}
+
+		public GroupPageControlProperties Properties
+		{
+			get;
+			internal set;
 		}
 
 		public override PageControlType Type
 		{
 			get
 			{
-				return PageControlType.Container;
+				return PageControlType.Group;
 			}
-		}
-
-		public ContainerPageControlProperties Properties
-		{
-			get;
-			internal set;
 		}
 
 		public override System.Collections.Generic.IEnumerable<INode> ChildNodes

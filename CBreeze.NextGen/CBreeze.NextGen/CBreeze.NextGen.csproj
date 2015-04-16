@@ -33,7 +33,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IHas.cs" />
     <Compile Include="MultiLanguageValue.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
@@ -92,6 +91,9 @@
     <Compile Include="ContainerPageControl.cs" />
     <Compile Include="PageControls.cs" />
     <Compile Include="ContainerPageControlProperties.cs" />
+    <Compile Include="PageProperties.cs" />
+    <Compile Include="GroupPageControl.cs" />
+    <Compile Include="GroupPageControlProperties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

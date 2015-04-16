@@ -12,19 +12,20 @@ namespace CBreeze.NextGen
 		private NullableIntProperty drillDownPageID = new NullableIntProperty("DrillDownPageID");
 		private NullableBoolProperty dataPerCompany = new NullableBoolProperty("DataPerCompany");
 		private StringProperty description = new StringProperty("Description");
-		private NullableBoolProperty linkedInTransaction = new NullableBoolProperty("LinkedInTransaction");
-		private NullableBoolProperty linkedObject = new NullableBoolProperty("LinkedObject");
-		private TriggerProperty onInsert = new TriggerProperty("OnInsert");
-		private TriggerProperty onModify = new TriggerProperty("OnModify");
-		private TriggerProperty onDelete = new TriggerProperty("OnDelete");
-		private TriggerProperty onRename = new TriggerProperty("OnRename");
+		//		private NullableBoolProperty linkedInTransaction = new NullableBoolProperty("LinkedInTransaction");
+		//		private NullableBoolProperty linkedObject = new NullableBoolProperty("LinkedObject");
+		//		private TriggerProperty onInsert = new TriggerProperty("OnInsert");
+		//		private TriggerProperty onModify = new TriggerProperty("OnModify");
+		//		private TriggerProperty onDelete = new TriggerProperty("OnDelete");
+		//		private TriggerProperty onRename = new TriggerProperty("OnRename");
 
 		/*
 			<member name="PasteIsValid" propertyType="NullableBooleanProperty" fieldName="pasteIsValid" sortOrder="100"/>
 			<member name="Permissions" propertyType="PermissionsProperty" fieldName="permissions" sortOrder="20"/>
          */
 
-		internal TableProperties(Node parentNode) : base(parentNode)
+		internal TableProperties(Node parentNode)
+			: base(parentNode)
 		{
         	
 		}
@@ -50,6 +51,30 @@ namespace CBreeze.NextGen
 			}
 		}
 
+		public int? LookupPageID
+		{
+			get
+			{
+				return this.lookupPageID.Value;
+			}
+			set
+			{
+				this.lookupPageID.Value = value;
+			}
+		}
+
+		public int? DrillDownPageID
+		{
+			get
+			{
+				return this.drillDownPageID.Value;
+			}
+			set
+			{
+				this.drillDownPageID.Value = value;
+			}
+		}
+
 		public bool? DataPerCompany
 		{
 			get
@@ -62,15 +87,15 @@ namespace CBreeze.NextGen
 			}
 		}
 
-		public int? LookupPageID
+		public string Description
 		{
 			get
 			{
-				return this.lookupPageID.Value;
+				return this.description.Value;
 			}
 			set
 			{
-				this.lookupPageID.Value = value;
+				this.description.Value = value;
 			}
 		}
 

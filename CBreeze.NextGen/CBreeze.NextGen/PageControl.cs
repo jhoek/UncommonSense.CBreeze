@@ -21,14 +21,6 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-		public override IEnumerable<INode> ChildNodes
-		{
-			get
-			{
-				yield break;
-			}
-		}
-
 		public override string ToString()
 		{
 			return string.Format("Control {0} of type {1}", ID, Type);
