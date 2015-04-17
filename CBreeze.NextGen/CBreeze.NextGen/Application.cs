@@ -62,6 +62,24 @@ namespace CBreeze.NextGen
 			get;
 			internal set;
 		}
+
+		public IEnumerable<Object> Objects
+		{
+			get
+			{
+				foreach (var table in Tables)
+				{
+					yield return table;
+				}
+
+				foreach (var page in Pages)
+				{
+					yield return page;
+				}
+
+				//FIXME
+			}
+		}
 	}
 }
 

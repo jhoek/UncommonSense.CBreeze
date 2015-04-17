@@ -36,13 +36,11 @@ namespace CBreeze.NextGen
 
 			var cardPage = application.Pages.Add(new Page(50000, "Customer Group Card"));
 			cardPage.ObjectProperties.Modified = true;
+			cardPage.Properties.CaptionML.Add("ENU", cardPage.Name);
 			var containerControl = cardPage.Controls.Add(new ContainerPageControl(1));
 			containerControl.Properties.CaptionML.Add("ENU", "Foo");
 			var groupControl = cardPage.Controls.Add(new GroupPageControl(2));
 			groupControl.Properties.CaptionML.Add("ENU", "Baz");
-
-			var listPage = application.Pages.Add(new Page(50001, "Customer Group List"));
-			listPage.ObjectProperties.Modified = true;
 
 			var codeunit = application.Codeunits.Add(new Codeunit(50000, "Customer Group Mgt."));
 			codeunit.Properties.TableNo = 50000;
@@ -51,6 +49,27 @@ namespace CBreeze.NextGen
 			export.ObjectProperties.DateTime = DateTime.Now;
 
 			PrintNode(application, 0);
+
+			foreach (var table2 in application.Tables)
+			{
+				var fields = table2.ChildNodes.OfType<TableFields>().First();
+				Console.WriteLine(fields.Count());
+			}
+
+			foreach (var @object in application.Objects)
+			{
+				var properties = @object.ChildNodes.OfType<Properties>().FirstOrDefault();
+
+				if (properties != null)
+				{
+					var captionML = properties["CaptionML"];
+
+					if (captionML != null)
+					{
+						Console.WriteLine(captionML);
+					}
+				}
+			}
 		}
 
 		private static void PrintNode(INode node, int indentation)
