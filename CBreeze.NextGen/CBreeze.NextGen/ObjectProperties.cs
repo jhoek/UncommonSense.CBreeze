@@ -1,22 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CBreeze.NextGen
 {
-	public class ObjectProperties : Properties
+	public class ObjectProperties : IProperties, INode
 	{
 		private NullableDateTimeProperty dateTime = new NullableDateTimeProperty("DateTime");
 		private NullableBoolProperty modified = new NullableBoolProperty("Modified");
 		private StringProperty versionList = new StringProperty("VersionList");
 
 		internal ObjectProperties(Node parentNode)
-			: base(parentNode)
 		{
+			ParentNode = parentNode;
 		}
 
 		public override string ToString()
 		{
 			return "ObjectProperties";
+		}
+
+		public Node ParentNode
+		{
+			get;
+			internal set;
+		}
+
+		public IEnumerator<Property> GetEnumerator()
+		{
+			return ChildNodes.Cast<Property>().GetEnumerator();
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return ChildNodes.Cast<Property>().GetEnumerator();
 		}
 
 		public DateTime? DateTime
@@ -55,7 +72,7 @@ namespace CBreeze.NextGen
 			}
 		}
 
-		public override IEnumerable<INode> ChildNodes
+		public IEnumerable<INode> ChildNodes
 		{
 			get
 			{
