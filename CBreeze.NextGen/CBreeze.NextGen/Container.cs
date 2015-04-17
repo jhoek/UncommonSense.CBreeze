@@ -17,9 +17,10 @@ namespace CBreeze.NextGen
 			return "Container";
 		}
 
-		public TDerivedValue Add<TDerivedValue>(TDerivedValue item) where TDerivedValue : TValue
+		public TItem Add<TItem>(TItem item) where TItem : TValue
 		{
-			if (innerDictionary.ContainsValue(item)) throw new ArgumentException("Item already exists.");
+			if (innerDictionary.ContainsValue(item))
+				throw new ArgumentException("Item already exists.");
 
 			item.ParentNode = ParentNode;
 			innerDictionary.Add(item.GetKey(), item);
