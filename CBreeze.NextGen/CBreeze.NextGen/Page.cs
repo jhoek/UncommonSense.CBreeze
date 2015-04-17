@@ -37,6 +37,7 @@ namespace CBreeze.NextGen
 			get
 			{
 				yield return ObjectProperties;
+				yield return Properties;
 				yield return Controls;
 			}
 		}
