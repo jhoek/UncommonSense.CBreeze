@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.DomBuilder\UncommonSense.CBreeze.DomBuilder.csproj">
-      <Project>{b3b4c832-763e-40dc-ad4c-d05607ac254d}</Project>
+      <Project>{B3B4C832-763E-40DC-AD4C-D05607AC254D}</Project>
       <Name>UncommonSense.CBreeze.DomBuilder</Name>
     </ProjectReference>
   </ItemGroup>

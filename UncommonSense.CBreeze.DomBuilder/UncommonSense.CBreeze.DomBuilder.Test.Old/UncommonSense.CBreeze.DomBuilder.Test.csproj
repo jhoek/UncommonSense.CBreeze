@@ -46,12 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.DomBuilder2.Old\UncommonSense.CBreeze.DomBuilder2.csproj">
-      <Project>{a6c0a589-4221-453c-b482-26123e15fdf0}</Project>
+      <Project>{A6C0A589-4221-453C-B482-26123E15FDF0}</Project>
       <Name>UncommonSense.CBreeze.DomBuilder2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UncommonSense.CBreeze.DomWriter\UncommonSense.CBreeze.DomWriter.csproj">
-      <Project>{40a0af8e-fff6-4f62-a5ca-963404fefb21}</Project>
-      <Name>UncommonSense.CBreeze.DomWriter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
