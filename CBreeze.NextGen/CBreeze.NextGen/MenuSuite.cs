@@ -21,5 +21,27 @@ namespace CBreeze.NextGen
                 return ObjectType.MenuSuite;
             }
         }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield break;
+            }
+        }
+
+        public bool Equals(MenuSuite other)
+        {
+            if (other == null)
+                return false;
+
+            if (other.ID == ID)
+                return true;
+
+            if (other.Name == Name)
+                return true;
+
+            return false;
+        }
     }
 }
