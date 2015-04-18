@@ -52,10 +52,6 @@
       <Project>{b3b4c832-763e-40dc-ad4c-d05607ac254d}</Project>
       <Name>UncommonSense.CBreeze.DomBuilder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UncommonSense.CBreeze.DomWriter\UncommonSense.CBreeze.DomWriter.csproj">
-      <Project>{40a0af8e-fff6-4f62-a5ca-963404fefb21}</Project>
-      <Name>UncommonSense.CBreeze.DomWriter</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
