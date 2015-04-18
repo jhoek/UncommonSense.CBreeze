@@ -11,7 +11,7 @@ namespace CBreeze.NextGen
 			Pages = new Pages(this);
 			Reports = new Reports(this);
 			Codeunits = new Codeunits(this);
-			// FIXME: Queries = new Queries(this);
+			Queries = new Queries(this);
 			XmlPorts = new XmlPorts(this);
 			// FIXME: MenuSuites = new MenuSuites(this);
 		}
@@ -29,6 +29,7 @@ namespace CBreeze.NextGen
 				yield return Pages;
 				yield return Reports;
 				yield return Codeunits;
+                yield return Queries;
 				yield return XmlPorts;
 			}
 		}
@@ -57,28 +58,16 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
+        public Queries Queries
+        {
+            get;
+            internal set;
+        }
+
 		public XmlPorts XmlPorts
 		{
 			get;
 			internal set;
-		}
-
-		public IEnumerable<Object> Objects
-		{
-			get
-			{
-				foreach (var table in Tables)
-				{
-					yield return table;
-				}
-
-				foreach (var page in Pages)
-				{
-					yield return page;
-				}
-
-				//FIXME
-			}
 		}
 	}
 }

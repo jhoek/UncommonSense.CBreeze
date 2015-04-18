@@ -27,7 +27,6 @@ namespace CBreeze.NextGen
 		internal TableProperties(Node parentNode)
 			: base(parentNode)
 		{
-        	
 		}
 
 		public override string ToString()

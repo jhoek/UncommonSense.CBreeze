@@ -45,31 +45,13 @@ namespace CBreeze.NextGen
 			var codeunit = application.Codeunits.Add(new Codeunit(50000, "Customer Group Mgt."));
 			codeunit.Properties.TableNo = 50000;
 
+            var query = application.Queries.Add(new Query(50000, "Customer Groups"));
+            query.ObjectProperties.DateTime = DateTime.Now;
+
 			var export = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
 			export.ObjectProperties.DateTime = DateTime.Now;
 
 			PrintNode(application, 0);
-
-			foreach (var table2 in application.Tables)
-			{
-				var fields = table2.ChildNodes.OfType<TableFields>().First();
-				Console.WriteLine(fields.Count());
-			}
-
-			foreach (var @object in application.Objects)
-			{
-				var properties = @object.ChildNodes.OfType<Properties>().FirstOrDefault();
-
-				if (properties != null)
-				{
-					var captionML = properties["CaptionML"];
-
-					if (captionML != null)
-					{
-						Console.WriteLine(captionML);
-					}
-				}
-			}
 		}
 
 		private static void PrintNode(INode node, int indentation)
