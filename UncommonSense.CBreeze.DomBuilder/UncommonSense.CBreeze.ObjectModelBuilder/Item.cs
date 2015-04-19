@@ -11,13 +11,19 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
         public Item(string name)
             : base(name)
         {
-            Attributes = new List<Attribute>();
+            Attributes = new Attributes();
         }
 
-        public List<Attribute> Attributes
+        public Attributes Attributes
         {
             get;
             internal set;
+        }
+
+        public string BaseTypeName
+        {
+            get;
+            set;
         }
     }
 }

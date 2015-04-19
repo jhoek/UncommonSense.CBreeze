@@ -13,6 +13,11 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
             Name = name;
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public string Name
         {
             get;
@@ -23,7 +28,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
         {
             get
             {
-                return (ParentNode as ObjectModel);
+                return (ParentNode.ParentNode as ObjectModel);
             }
         }
     }

@@ -40,10 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attribute.cs" />
+    <Compile Include="Attributes.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ObjectModel.cs" />
     <Compile Include="ObjectModelElement.cs" />
+    <Compile Include="ObjectModelElements.cs" />
     <Compile Include="ObjectModelNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

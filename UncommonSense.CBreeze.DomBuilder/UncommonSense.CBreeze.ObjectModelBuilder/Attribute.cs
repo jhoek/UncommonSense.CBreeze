@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class Attribute
+    public class Attribute : ObjectModelNode
     {
-        public Attribute(ObjectModelElement type, string name)
+        public Attribute(string typeName, string name)
         {
-            Type = type;
+            TypeName = typeName;
             Name = name;
         }
 
-        public ObjectModelElement Type
+        public string Name
         {
             get;
             internal set;
         }
 
-        public string Name
+        public string TypeName
         {
             get;
             internal set;
