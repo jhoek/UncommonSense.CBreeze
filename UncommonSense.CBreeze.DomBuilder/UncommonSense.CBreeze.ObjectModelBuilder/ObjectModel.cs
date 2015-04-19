@@ -11,9 +11,16 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
         public ObjectModel(string @namespace)
         {
             Namespace = @namespace;
+            Elements = new List<ObjectModelElement>();
         }
 
         public string Namespace
+        {
+            get;
+            internal set;
+        }
+
+        public List<ObjectModelElement> Elements
         {
             get;
             internal set;

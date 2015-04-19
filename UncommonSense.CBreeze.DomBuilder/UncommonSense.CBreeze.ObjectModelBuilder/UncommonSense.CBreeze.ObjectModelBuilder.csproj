@@ -39,10 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attribute.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="ObjectModel.cs" />
     <Compile Include="ObjectModelElement.cs" />
     <Compile Include="ObjectModelNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Demo.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
