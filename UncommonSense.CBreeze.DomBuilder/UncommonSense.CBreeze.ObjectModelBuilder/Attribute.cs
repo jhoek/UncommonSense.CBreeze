@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class Attribute 
+    public abstract class Attribute 
     {
         public Attribute(string typeName, string name)
         {

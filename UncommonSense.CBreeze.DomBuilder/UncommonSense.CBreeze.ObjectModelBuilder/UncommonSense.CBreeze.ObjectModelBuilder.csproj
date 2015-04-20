@@ -50,6 +50,8 @@
     <Compile Include="ObjectModelElements.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferenceAttribute.cs" />
+    <Compile Include="ValueAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Demo.ps1" />
