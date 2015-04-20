@@ -48,6 +48,7 @@
     <Compile Include="ObjectModel.cs" />
     <Compile Include="ObjectModelElement.cs" />
     <Compile Include="ObjectModelElements.cs" />
+    <Compile Include="Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

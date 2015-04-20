@@ -1,4 +1,4 @@
-﻿function New-Item
+﻿function Add-Item
 {
     param
     (
@@ -10,16 +10,25 @@
 
         [string]$BaseTypeName,
 
-        [bool]$Abstract
+        [bool]$Abstract,
+
+        [Switch]$CreateContainer
     )
 
     $Item = New-Object UncommonSense.CBreeze.ObjectModelBuilder.Item -ArgumentList $Name
     $Item.BaseTypeName = $BaseTypeName
     $Item.Abstract = $Abstract 
-    $ObjectModel.Elements.Add($Item)
+    $ObjectModel.Elements.Add($Item) | Out-Null
+
+    if ($CreateContainer)
+    {
+        $ObjectModel | Add-Container -ItemTypeName $Item.Name | Out-Null
+    }
+
+    $Item
 }
 
-function New-Container
+function Add-Container
 {
     param
     (
@@ -41,7 +50,7 @@ function New-Container
     $ObjectModel.Elements.Add($Container)
 }
 
-function New-Attribute
+function Add-Attribute
 {
     param
     (
@@ -68,12 +77,25 @@ $LibraryPath = Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CBreeze.ObjectMod
 Add-Type -Path $LibraryPath
 
 $ErrorActionPreference = 'Stop'
-$Namespace = "UncommonSense.CBreeze.ObjectModelBuilder.Demo"
 
+$Namespace = "UncommonSense.CBreeze.ObjectModelBuilder.Demo"
 $ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList $Namespace
-$ObjectModel | New-Item -Name Object -Abstract $true | New-Attribute -Name ID -TypeName int | New-Attribute -Name Name -TypeName string 
-$ObjectModel | New-Item -Name Table -BaseTypeName Object 
-$ObjectModel | New-Item -Name Page -BaseTypeName Object 
-$ObjectModel | New-Container -ItemTypeName Table 
-$ObjectModel | New-Container -ItemTypeName Page 
-$ObjectModel | New-Item -Name Application | New-Attribute -TypeName Tables | New-Attribute -TypeName Pages 
+
+$ObjectModel | Add-Properties -Name TableProperties | Add-Property 
+
+$ObjectModel | `
+    Add-Item `
+        -Name Object 
+        -Abstract $true | `
+            Add-Attribute `
+                -Name ID 
+                -TypeName int | 
+            Add-Attribute `
+                -Name Name 
+                -TypeName string 
+
+$ObjectModel | Add-Item -Name Table -BaseTypeName Object -CreateContainer 
+$ObjectModel | Add-Item -Name Page -BaseTypeName Object -CreateContainer
+$ObjectModel | Add-Item -Name Report -BaseTypeName Object -CreateContainer
+
+$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports
