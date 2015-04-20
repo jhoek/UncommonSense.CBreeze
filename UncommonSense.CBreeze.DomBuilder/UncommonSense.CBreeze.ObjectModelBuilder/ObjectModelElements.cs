@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class ObjectModelElements :  IEnumerable<ObjectModelElement>
+    public class ObjectModelElements : IEnumerable<ObjectModelElement>
     {
         private List<ObjectModelElement> innerList = new List<ObjectModelElement>();
 
@@ -20,6 +20,14 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
             item.ObjectModel = ObjectModel;
             innerList.Add(item);
             return item;
+        }
+
+        public void AddRange<T>(params T[] items) where T : ObjectModelElement
+        {
+            foreach (var item in items)
+            {
+                Add(item);
+            }
         }
 
         public ObjectModel ObjectModel
