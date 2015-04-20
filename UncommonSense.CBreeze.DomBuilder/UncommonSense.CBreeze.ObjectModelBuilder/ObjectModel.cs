@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class ObjectModel : ObjectModelNode
+    public class ObjectModel 
     {
         public ObjectModel(string @namespace)
         {

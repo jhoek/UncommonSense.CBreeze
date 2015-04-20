@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public abstract class ObjectModelNode
+    public class Enumeration : ObjectModelElement
     {
-        public ObjectModelNode ParentNode
+        public Enumeration(string name)
+            : base(name)
         {
-            get;
-            internal set;
         }
     }
 }

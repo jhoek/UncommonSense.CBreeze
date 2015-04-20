@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class Attribute : ObjectModelNode
+    public class Attribute 
     {
         public Attribute(string typeName, string name)
         {
@@ -21,6 +21,20 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
         }
 
         public string TypeName
+        {
+            get;
+            internal set;
+        }
+
+        public ObjectModelElement Type
+        {
+            get
+            {
+                return Item.ObjectModel.Elements.FirstOrDefault(e => e.Name == TypeName);
+            }
+        }
+
+        public Item Item
         {
             get;
             internal set;

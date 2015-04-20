@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class ObjectModelElements : ObjectModelNode, IEnumerable<ObjectModelElement>
+    public class ObjectModelElements :  IEnumerable<ObjectModelElement>
     {
         private List<ObjectModelElement> innerList = new List<ObjectModelElement>();
 
         internal ObjectModelElements(ObjectModel objectModel)
         {
-            ParentNode = objectModel;
+            ObjectModel = objectModel;
         }
 
-        public ObjectModelElement Add(ObjectModelElement item)
+        public T Add<T>(T item) where T : ObjectModelElement
         {
-            item.ParentNode = this;
+            item.ObjectModel = ObjectModel;
             innerList.Add(item);
             return item;
+        }
+
+        public ObjectModel ObjectModel
+        {
+            get;
+            internal set;
         }
 
         public IEnumerator<ObjectModelElement> GetEnumerator()

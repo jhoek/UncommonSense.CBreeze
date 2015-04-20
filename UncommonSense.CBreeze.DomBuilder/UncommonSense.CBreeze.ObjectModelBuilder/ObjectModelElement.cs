@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public abstract class ObjectModelElement : ObjectModelNode
+    public abstract class ObjectModelElement 
     {
         public ObjectModelElement(string name)
         {
@@ -26,10 +26,8 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 
         public ObjectModel ObjectModel
         {
-            get
-            {
-                return (ParentNode.ParentNode as ObjectModel);
-            }
+            get;
+            internal set;
         }
     }
 }
