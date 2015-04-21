@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="UncommonSense.CBreeze.DomBuilder/UncommonSense.CBreeze.DomBuilder.csproj">
+﻿<Properties StartupItem="UncommonSense.CBreeze.DomBuilder2.Old/UncommonSense.CBreeze.DomBuilder2.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="UncommonSense.CBreeze.DomBuilder/Item.cs">
     <Files>
