@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddToProjectExtensionMethods.cs" />
     <Compile Include="Attribute.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Enumeration.cs" />
@@ -49,12 +48,8 @@
     <Compile Include="ObjectModelNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property.cs" />
-    <Compile Include="PropertyType.cs" />
     <Compile Include="ReferenceAttribute.cs" />
-    <Compile Include="ReferencePropertyType.cs" />
-    <Compile Include="AsProjectExtensionMethods.cs" />
     <Compile Include="ValueAttribute.cs" />
-    <Compile Include="ValuePropertyType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
