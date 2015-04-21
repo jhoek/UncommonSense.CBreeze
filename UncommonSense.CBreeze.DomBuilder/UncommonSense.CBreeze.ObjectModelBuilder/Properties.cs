@@ -5,11 +5,17 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class Properties : ObjectModelElement
-    {
-        public Properties(string name)
-            : base(name)
-        {
-        }
-    }
+	public class Properties : IEnumerable<Property>
+	{
+		internal Properties(Item item)
+		{
+			Item = item;
+		}
+
+		public Item Item
+		{
+			get;
+			internal set;
+		}
+	}
 }

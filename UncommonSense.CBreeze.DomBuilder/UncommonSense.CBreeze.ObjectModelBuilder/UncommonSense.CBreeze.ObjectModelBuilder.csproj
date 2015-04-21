@@ -58,6 +58,7 @@
     <Compile Include="PropertyType.cs" />
     <Compile Include="ValuePropertyType.cs" />
     <Compile Include="ReferencePropertyType.cs" />
+    <Compile Include="Property.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Demo.ps1" />
