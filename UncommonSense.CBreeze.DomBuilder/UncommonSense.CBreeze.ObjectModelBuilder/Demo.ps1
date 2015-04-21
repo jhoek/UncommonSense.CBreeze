@@ -73,8 +73,8 @@ function Add-Attribute
     $Item
 }
 
-$LibraryPath = Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll
-Add-Type -Path $LibraryPath
+Add-Type -Path (Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
+Add-Type -Path (Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CSharp.dll)
 
 $ErrorActionPreference = 'Stop'
 
@@ -83,19 +83,11 @@ $ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -
 
 $ObjectModel | Add-Properties -Name TableProperties | Add-Property 
 
-$ObjectModel | `
-    Add-Item `
-        -Name Object 
-        -Abstract $true | `
-            Add-Attribute `
-                -Name ID 
-                -TypeName int | 
-            Add-Attribute `
-                -Name Name 
-                -TypeName string 
+$ObjectModel | Add-Item -Name Object -Abstract $true | Add-Attribute -Name ID -TypeName int | Add-Attribute -Name Name -TypeName string 
 
 $ObjectModel | Add-Item -Name Table -BaseTypeName Object -CreateContainer 
 $ObjectModel | Add-Item -Name Page -BaseTypeName Object -CreateContainer
 $ObjectModel | Add-Item -Name Report -BaseTypeName Object -CreateContainer
+$ObjectModel | Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
 
-$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports
+$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits

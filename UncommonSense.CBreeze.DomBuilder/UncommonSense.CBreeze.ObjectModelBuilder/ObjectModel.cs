@@ -8,10 +8,12 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
     public class ObjectModel 
     {
-        public ObjectModel(string @namespace)
+        public ObjectModel(string @namespace, params ObjectModelElement[] elements)
         {
             Namespace = @namespace;
+
             Elements = new ObjectModelElements(this);
+            Elements.AddRange(elements);
         }
 
         public override string ToString()

@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E09C65B4-E6ED-4504-8728-4D32FC187BA5}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{3CA8A568-BF41-44C1-87B8-D7B54088E1BC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UncommonSense.CBreeze.ObjectModelBuilder</RootNamespace>
-    <AssemblyName>UncommonSense.CBreeze.ObjectModelBuilder</AssemblyName>
+    <RootNamespace>UncommonSense.CBreeze.ObjectModelBuilder.Demo</RootNamespace>
+    <AssemblyName>UncommonSense.CBreeze.ObjectModelBuilder.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,26 +39,16 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.CSharp">
-      <HintPath>..\..\..\UncommonSense.CSharp\UncommonSense.CSharp\bin\Debug\UncommonSense.CSharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attribute.cs" />
-    <Compile Include="Attributes.cs" />
-    <Compile Include="Container.cs" />
-    <Compile Include="Enumeration.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="ObjectModel.cs" />
-    <Compile Include="ObjectModelElement.cs" />
-    <Compile Include="ObjectModelElements.cs" />
-    <Compile Include="Properties.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReferenceAttribute.cs" />
-    <Compile Include="ValueAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Demo.ps1" />
+    <ProjectReference Include="..\UncommonSense.CBreeze.ObjectModelBuilder\UncommonSense.CBreeze.ObjectModelBuilder.csproj">
+      <Project>{e09c65b4-e6ed-4504-8728-4d32fc187ba5}</Project>
+      <Name>UncommonSense.CBreeze.ObjectModelBuilder</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

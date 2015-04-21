@@ -39,10 +39,6 @@ namespace UncommonSense.CBreeze.DomBuilder.Test
                         new Attribute("Value", "string"))
                 );
 
-            var project = dom.AsProject();
-
-            UncommonSense.CBreeze.DomWriter.ExtensionMethods.WriteTo(project, Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop), "project.cs"));
-            //project.Compile(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop), "project.dll"));
         }
     }
 }
