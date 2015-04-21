@@ -98,6 +98,9 @@
     <Compile Include="PageProperties.cs" />
     <Compile Include="GroupPageControl.cs" />
     <Compile Include="GroupPageControlProperties.cs" />
+    <Compile Include="PermissionsProperty.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Permission.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

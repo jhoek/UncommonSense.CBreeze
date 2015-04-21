@@ -17,6 +17,7 @@ namespace CBreeze.NextGen
 			table.Properties.CaptionML.Add("ENU", table.Name);
 			table.Properties.DataPerCompany = false;
 			table.Properties.LookupPageID = 50001;
+			table.Properties.Permissions.Add(50001, new Permission());
 
 			var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
 			codeField.Properties.CaptionML.Add("ENU", codeField.Name);
@@ -45,8 +46,8 @@ namespace CBreeze.NextGen
 			var codeunit = application.Codeunits.Add(new Codeunit(50000, "Customer Group Mgt."));
 			codeunit.Properties.TableNo = 50000;
 
-            var query = application.Queries.Add(new Query(50000, "Customer Groups"));
-            query.ObjectProperties.DateTime = DateTime.Now;
+			var query = application.Queries.Add(new Query(50000, "Customer Groups"));
+			query.ObjectProperties.DateTime = DateTime.Now;
 
 			var export = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
 			export.ObjectProperties.DateTime = DateTime.Now;
