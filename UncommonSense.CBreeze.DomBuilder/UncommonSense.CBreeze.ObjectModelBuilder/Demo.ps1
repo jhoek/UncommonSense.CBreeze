@@ -2,9 +2,6 @@
 {
     param
     (
-        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
-        [UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel]$ObjectModel,
-
         [Parameter(Mandatory=$true)]
         [string]$Name,
 
@@ -32,9 +29,6 @@ function Add-Container
 {
     param
     (
-        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
-        [UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel]$ObjectModel,
-
         [Parameter(Mandatory=$true)]
         [string]$ItemTypeName,
 
@@ -74,20 +68,15 @@ function Add-Attribute
 }
 
 Add-Type -Path (Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
-Add-Type -Path (Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CSharp.dll)
 
 $ErrorActionPreference = 'Stop'
-
 $Namespace = "UncommonSense.CBreeze.ObjectModelBuilder.Demo"
 $ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList $Namespace
 
-$ObjectModel | Add-Properties -Name TableProperties | Add-Property 
+Add-Item -Name Object -Abstract $true | Add-Attribute -Name ID -TypeName int | Add-Attribute -Name Name -TypeName string 
+Add-Item -Name Table -BaseTypeName Object -CreateContainer 
+Add-Item -Name Page -BaseTypeName Object -CreateContainer
+Add-Item -Name Report -BaseTypeName Object -CreateContainer
+Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
 
-$ObjectModel | Add-Item -Name Object -Abstract $true | Add-Attribute -Name ID -TypeName int | Add-Attribute -Name Name -TypeName string 
-
-$ObjectModel | Add-Item -Name Table -BaseTypeName Object -CreateContainer 
-$ObjectModel | Add-Item -Name Page -BaseTypeName Object -CreateContainer
-$ObjectModel | Add-Item -Name Report -BaseTypeName Object -CreateContainer
-$ObjectModel | Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
-
-$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits
+Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits
