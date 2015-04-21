@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 		{
 			get
 			{
-				return ObjectModel.Elements.OfType<Item>().Where(i => i.Name == BaseTypeName);
+				return ObjectModel.Elements.OfType<Item>().FirstOrDefault(i => i.Name == BaseTypeName);
 			}
 		}
 

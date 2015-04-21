@@ -7,6 +7,8 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
 	public class Properties : IEnumerable<Property>
 	{
+		private List<Property> innerList = new List<Property>();
+
 		internal Properties(Item item)
 		{
 			Item = item;
@@ -16,6 +18,16 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 		{
 			get;
 			internal set;
+		}
+
+		public IEnumerator<Property> GetEnumerator()
+		{
+			return innerList.GetEnumerator();
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return innerList.GetEnumerator();
 		}
 	}
 }

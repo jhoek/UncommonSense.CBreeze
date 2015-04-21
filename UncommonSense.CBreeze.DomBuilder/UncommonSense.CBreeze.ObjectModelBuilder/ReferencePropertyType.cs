@@ -4,7 +4,8 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
 	public class ReferencePropertyType : PropertyType
 	{
-		public ReferencePropertyType()
+		public ReferencePropertyType(string name)
+			: base(name)
 		{
 		}
 	}

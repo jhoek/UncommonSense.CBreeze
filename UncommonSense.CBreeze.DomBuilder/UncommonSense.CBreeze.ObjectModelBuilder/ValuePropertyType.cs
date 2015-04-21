@@ -4,7 +4,8 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
 	public class ValuePropertyType : PropertyType
 	{
-		public ValuePropertyType()
+		public ValuePropertyType(string name)
+			: base(name)
 		{
 		}
 	}
