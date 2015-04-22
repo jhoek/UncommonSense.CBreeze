@@ -25,6 +25,14 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder.Demo
 						"Object",
 						new ValueAttribute("int", "ID"),
 						new ValueAttribute("string", "Name")
+					).MakeAbstract(),
+					new Item(
+						"Table",
+						"Object"
+					),
+					new Item(
+						"Page",
+						"Object"
 					),
 					new Container(
 						"Table",
