@@ -18,16 +18,49 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 				compilationUnits.Add(item.ToCompilationUnit());	
 			}
 
+			foreach (var container in objectModel.Elements.OfType<Container>())
+			{
+				compilationUnits.Add(container.ToCompilationUnit());
+			}
+
 			return compilationUnits.ToArray();
 		}
 
 		public static CompilationUnit ToCompilationUnit(this Item item)
 		{
 			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName);
-			var @namespace = new Namespace(item.ObjectModel.Namespace, @class);
-			var compilationUnit = new CompilationUnit(@namespace);
 
-			return compilationUnit;
+			var constructor = new Constructor(Visibility.Public, @class.Name, null, new CodeBlock());
+			@class.Constructors.Add(constructor);
+
+			foreach (var attribute in item.Attributes.OfType<ReferenceAttribute>())
+			{
+				@class.Properties.Add(
+					new UncommonSense.CSharp.Property(
+						Visibility.Public,
+						attribute.Name,
+						attribute.TypeName,
+						new PropertyAccessor(
+							AccessorVisibility.Unspecified,
+							null
+						),
+						new PropertyAccessor(
+							AccessorVisibility.Internal,
+							null)
+					)
+				);
+
+				constructor.CodeBlock.Statements.AddFormat("{0} = new {1}(this);", attribute.Name, attribute.TypeName);
+			}
+
+			return new CompilationUnit(new Namespace(item.ObjectModel.Namespace, @class));
+		}
+
+		public static CompilationUnit ToCompilationUnit(this Container container)
+		{
+			var @class = new Class(Visibility.Public, container.Name, null);
+
+			return new CompilationUnit(new Namespace(container.ObjectModel.Namespace, @class));
 		}
 	}
 }
