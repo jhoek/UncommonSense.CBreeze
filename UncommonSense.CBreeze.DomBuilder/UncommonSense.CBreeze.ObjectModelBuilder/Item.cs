@@ -8,11 +8,14 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
 	public class Item : ObjectModelElement
 	{
-		public Item(string name, params Attribute[] attributes)
-			: base(name)
+		public Item(string name, params Attribute[] attributes) : this(name, null, attributes)
 		{
-			Attributes = new Attributes(this);
+		}
 
+		public Item(string name, string baseTypeName, params Attribute[] attributes) : base(name)
+		{
+			BaseTypeName = baseTypeName;
+			Attributes = new Attributes(this);
 			Attributes.AddRange(attributes);
 		}
 
