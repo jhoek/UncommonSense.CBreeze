@@ -8,10 +8,12 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
 	public class Item : ObjectModelElement
 	{
-		public Item(string name)
+		public Item(string name, params Attribute[] attributes)
 			: base(name)
 		{
-			Attributes = new Dictionary<string, string>(); // name, type
+			Attributes = new Attributes(this);
+
+			Attributes.AddRange(attributes);
 		}
 
 		public bool Abstract
@@ -20,7 +22,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 			set;
 		}
 
-		public Dictionary<string, string> Attributes
+		public Attributes Attributes
 		{
 			get;
 			internal set;
