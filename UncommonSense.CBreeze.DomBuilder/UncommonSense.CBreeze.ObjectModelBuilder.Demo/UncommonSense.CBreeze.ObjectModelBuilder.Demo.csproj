@@ -39,6 +39,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UncommonSense.CSharp">
+      <HintPath>..\..\..\UncommonSense.CSharp\UncommonSense.CSharp\bin\Debug\UncommonSense.CSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -46,8 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.ObjectModelBuilder\UncommonSense.CBreeze.ObjectModelBuilder.csproj">
-      <Project>{e09c65b4-e6ed-4504-8728-4d32fc187ba5}</Project>
+      <Project>{E09C65B4-E6ED-4504-8728-4D32FC187BA5}</Project>
       <Name>UncommonSense.CBreeze.ObjectModelBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.ObjectModelWriter\UncommonSense.CBreeze.ObjectModelWriter.csproj">
+      <Project>{8AA68A6D-3ADD-4573-AA57-0826C11B8E9B}</Project>
+      <Name>UncommonSense.CBreeze.ObjectModelWriter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

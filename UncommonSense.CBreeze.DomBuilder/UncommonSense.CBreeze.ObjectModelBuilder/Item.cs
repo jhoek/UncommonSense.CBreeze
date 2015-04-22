@@ -11,8 +11,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 		public Item(string name)
 			: base(name)
 		{
-			Attributes = new Attributes(this);
-			Properties = new Properties(this);
+			Attributes = new Dictionary<string, string>(); // name, type
 		}
 
 		public bool Abstract
@@ -21,13 +20,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 			set;
 		}
 
-		public Attributes Attributes
-		{
-			get;
-			internal set;
-		}
-
-		public Properties Properties
+		public Dictionary<string, string> Attributes
 		{
 			get;
 			internal set;

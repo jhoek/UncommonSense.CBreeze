@@ -6,31 +6,29 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class ObjectModel 
-    {
-        public ObjectModel(string @namespace, params ObjectModelElement[] elements)
-        {
-            Namespace = @namespace;
+	public class ObjectModel
+	{
+		public ObjectModel(string @namespace)
+		{
+			Namespace = @namespace;
+			Elements = new ObjectModelElements(this);
+		}
 
-            Elements = new ObjectModelElements(this);
-            Elements.AddRange(elements);
-        }
+		public override string ToString()
+		{
+			return Namespace;
+		}
 
-        public override string ToString()
-        {
-            return Namespace;
-        }        
+		public string Namespace
+		{
+			get;
+			internal set;
+		}
 
-        public string Namespace
-        {
-            get;
-            internal set;
-        }
-
-        public ObjectModelElements Elements
-        {
-            get;
-            internal set;
-        }
-    }
+		public ObjectModelElements Elements
+		{
+			get;
+			internal set;
+		}
+	}
 }
