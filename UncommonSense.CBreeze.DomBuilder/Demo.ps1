@@ -19,7 +19,7 @@
 
     if ($CreateContainer)
     {
-        $ObjectModel | Add-Container -ItemTypeName $Item.Name | Out-Null
+        Add-Container -ItemTypeName $Item.Name | Out-Null
     }
 
     $Item
@@ -51,6 +51,8 @@ function Add-Attribute
         [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
         [UncommonSense.CBreeze.ObjectModelBuilder.Item]$Item,
 
+        [Switch]$ValueAttribute,
+
         [Parameter(Mandatory=$true)]
         [string]$TypeName,
 
@@ -62,13 +64,18 @@ function Add-Attribute
         $Name= $TypeName
     }
 
-    $Attribute = New-Object UncommonSense.CBreeze.ObjectModelBuilder.Attribute -ArgumentList $TypeName, $Name
+    switch($ValueAttribute)
+    {
+        ($true) { $Attribute = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ValueAttribute -ArgumentList $TypeName, $Name } 
+        ($false) { $Attribute = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ReferenceAttribute -ArgumentList $TypeName, $Name }
+    }
+ 
     $Item.Attributes.Add($Attribute) | Out-Null
     $Item
 }
 
-Add-Type -Path (Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
-Add-Type -Path (Join-Path $PSScriptRoot 
+Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelBuilder/Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
+Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelWriter/Bin/Debug/UncommonSense.CBreeze.ObjectModelWriter.dll)
 
 $ErrorActionPreference = 'Stop'
 $Namespace = "UncommonSense.CBreeze.ObjectModelBuilder.Demo"
@@ -81,3 +88,7 @@ Add-Item -Name Report -BaseTypeName Object -CreateContainer
 Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
 
 Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits
+
+$CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
+
+$CompilationUnits | ForEach-Object { $_.WriteTo([System.Console]::Out) } 
