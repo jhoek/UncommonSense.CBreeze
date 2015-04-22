@@ -68,6 +68,7 @@ function Add-Attribute
 }
 
 Add-Type -Path (Join-Path $PSScriptRoot Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
+Add-Type -Path (Join-Path $PSScriptRoot 
 
 $ErrorActionPreference = 'Stop'
 $Namespace = "UncommonSense.CBreeze.ObjectModelBuilder.Demo"
