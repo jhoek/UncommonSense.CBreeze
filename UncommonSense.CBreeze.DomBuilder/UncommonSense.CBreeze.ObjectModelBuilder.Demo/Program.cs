@@ -11,22 +11,27 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder.Demo
 	{
 		static void Main(string[] args)
 		{
-			var objectModel = new ObjectModel("Demo");
+			var objectModel = 
+				new ObjectModel(
+					"Demo",
+					new Item(
+						"Application",
+						new ReferenceAttribute("Tables", "Tables"),
+						new ReferenceAttribute("Pages", "Pages"),
+						new ReferenceAttribute("Reports", "Reports"),
+						new ReferenceAttribute("Codeunits", "Codeunits")
+					),
+					new Container(
+						"Table",
+						"Tables"
 
-			AddItem(objectModel, "Application");
+					)
+				);
 
-			var compilationUnits = objectModel.ToCompilationUnits();
-
-			foreach (var compilationUnit in compilationUnits)
+			foreach (var compilationUnit in objectModel.ToCompilationUnits())
 			{
 				compilationUnit.WriteTo(Console.Out);
 			}
-		}
-
-		static void AddItem(ObjectModel objectModel, string name)
-		{
-			var item = new Item(name);
-			objectModel.Elements.Add(item);
 		}
 	}
 }
