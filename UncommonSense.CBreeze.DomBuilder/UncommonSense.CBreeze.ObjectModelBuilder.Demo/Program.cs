@@ -21,10 +21,18 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder.Demo
 						new ReferenceAttribute("Reports", "Reports"),
 						new ReferenceAttribute("Codeunits", "Codeunits")
 					),
+					new Item(
+						"Object",
+						new ValueAttribute("int", "ID"),
+						new ValueAttribute("string", "Name")
+					),
 					new Container(
 						"Table",
 						"Tables"
-
+					),
+					new Container(
+						"Page",
+						"Pages"
 					)
 				);
 
