@@ -89,6 +89,6 @@ Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
 
 Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits
 
-$CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
+$CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
 
 $CompilationUnits | ForEach-Object { $_.WriteTo([System.Console]::Out) } 
