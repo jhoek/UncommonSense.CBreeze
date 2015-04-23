@@ -58,9 +58,30 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 
 		public static CompilationUnit ToCompilationUnit(this Container container)
 		{
-			var @class = new Class(Visibility.Public, container.Name, null);
+			var @class = new Class(Visibility.Public, container.Name, string.Format("Container<int,{0}>", container.ItemTypeName));
 
-			return new CompilationUnit(new Namespace(container.ObjectModel.Namespace, @class));
+            var constructor = new Constructor(
+                Visibility.Public, 
+                container.Name,
+                null,
+                null);
+
+
+            /*
+	{
+		internal Tables(Node parentNode) : base(parentNode)
+		{
+		}
+
+		public override string ToString()
+		{
+			return "Tables";
+		}
+	}
+
+             */
+
+            return new CompilationUnit(new Namespace(container.ObjectModel.Namespace, @class));
 		}
 	}
 }
