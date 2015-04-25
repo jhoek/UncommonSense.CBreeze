@@ -61,21 +61,22 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			var @class = new Class(Visibility.Public, container.Name, string.Format("Container<int,{0}>", container.ItemTypeName));
 
             var constructor = new Constructor(
-                Visibility.Public, 
+                Visibility.Public,
                 container.Name,
                 null,
-                null);
+                new CodeBlock());
+            @class.Constructors.Add(constructor);
 
-
+            var toStringMethod = new Method(
+                Visibility.Public,
+                "ToString",
+                "string",
+                new CodeBlock(string.Format("return \"{0}\";", container.Name)));
+            @class.Methods.Add(toStringMethod);
             /*
 	{
 		internal Tables(Node parentNode) : base(parentNode)
 		{
-		}
-
-		public override string ToString()
-		{
-			return "Tables";
 		}
 	}
 
