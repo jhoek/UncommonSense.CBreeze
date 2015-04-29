@@ -14,6 +14,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder.Demo
 			var objectModel = 
 				new ObjectModel(
 					"Demo",
+                    new Enumeration("BlankNumbers"),
 					new Item(
 						"Application",
 						new ReferenceAttribute("Tables", "Tables"),
