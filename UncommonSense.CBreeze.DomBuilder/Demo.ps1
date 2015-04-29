@@ -2,6 +2,9 @@
 {
     param
     (
+        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel]$ObjectModel,
+
         [Parameter(Mandatory=$true)]
         [string]$Name,
 
@@ -9,17 +12,34 @@
 
         [bool]$Abstract,
 
-        [Switch]$CreateContainer
+        [Switch]$CreateContainer,
+
+        [string]$ContainerName
     )
 
     $Item = New-Object UncommonSense.CBreeze.ObjectModelBuilder.Item -ArgumentList $Name
     $Item.BaseTypeName = $BaseTypeName
-    $Item.Abstract = $Abstract 
+    $Item.Abstract = $Abstract
     $ObjectModel.Elements.Add($Item) | Out-Null
+
+    if ($Abstract)
+    {
+        $ObjectModel | Add-Enum -Name "$($Name)Type" | Out-Null
+    }
+
+    if ($BaseTypeName)
+    {
+        $Enum = $ObjectModel.Elements["$($BaseTypeName)Type"]
+        $Enum.Values.Add($Name)
+    }
 
     if ($CreateContainer)
     {
-        Add-Container -ItemTypeName $Item.Name | Out-Null
+        switch ($ContainerName)
+        {
+            false { $ObjectModel | Add-Container -ItemTypeName $Item.Name | Out-Null } 
+            true { $ObjectModel | Add-Container -ItemTypeName $Item.Name -Name $ContainerName | Out-Null }
+        }
     }
 
     $Item
@@ -29,6 +49,9 @@ function Add-Container
 {
     param
     (
+        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel]$ObjectModel,
+
         [Parameter(Mandatory=$true)]
         [string]$ItemTypeName,
 
@@ -74,20 +97,45 @@ function Add-Attribute
     $Item
 }
 
+function Add-Enum
+{
+    param
+    (
+        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel]$ObjectModel,
+
+        [Parameter(Mandatory=$true)]
+        [string]$Name,
+
+        [string[]]$Values
+    )
+
+    $Enum = New-Object UncommonSense.CBreeze.ObjectModelBuilder.Enumeration -ArgumentList $Name
+
+    if ($Values)
+    {
+        $Enum.Values.AddRange($Values)
+    }
+
+    $ObjectModel.Elements.Add($Enum)
+}
+
+Clear-Host
 Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelBuilder/Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
 Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelWriter/Bin/Debug/UncommonSense.CBreeze.ObjectModelWriter.dll)
 
 $ErrorActionPreference = 'Stop'
-$Namespace = "UncommonSense.CBreeze.ObjectModelBuilder.Demo"
-$ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList $Namespace
 
-Add-Item -Name Object -Abstract $true | Add-Attribute -Name ID -TypeName int | Add-Attribute -Name Name -TypeName string 
-Add-Item -Name Table -BaseTypeName Object -CreateContainer 
-Add-Item -Name Page -BaseTypeName Object -CreateContainer
-Add-Item -Name Report -BaseTypeName Object -CreateContainer
-Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
-
-Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits
+$ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
+$ObjectModel | Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount
+$ObjectModel | Add-Item -Name Object -Abstract $true | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute
+$ObjectModel | Add-Item -Name Table -BaseTypeName Object -CreateContainer 
+$ObjectModel | Add-Item -Name Page -BaseTypeName Object -CreateContainer
+$ObjectModel | Add-Item -Name Report -BaseTypeName Object -CreateContainer
+$ObjectModel | Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
+$ObjectModel | Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer
+$ObjectModel | Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries
+$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName Queries
 
 $CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
 
