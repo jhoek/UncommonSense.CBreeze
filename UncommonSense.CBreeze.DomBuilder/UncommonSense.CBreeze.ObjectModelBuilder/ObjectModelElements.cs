@@ -30,6 +30,14 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
             }
         }
 
+        public ObjectModelElement this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(e => e.Name == name);
+            }
+        }
+
         public ObjectModel ObjectModel
         {
             get;
