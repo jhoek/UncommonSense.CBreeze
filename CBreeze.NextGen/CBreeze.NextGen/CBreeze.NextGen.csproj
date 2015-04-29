@@ -47,6 +47,11 @@
     <Compile Include="ObjectType.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Page.cs" />
+    <Compile Include="TableFieldGroup.cs" />
+    <Compile Include="TableFieldGroupProperties.cs" />
+    <Compile Include="TableFieldGroups.cs" />
+    <Compile Include="TableKey.cs" />
+    <Compile Include="TableKeys.cs" />
     <Compile Include="ValueProperty.cs" />
     <Compile Include="ReferenceProperty.cs" />
     <Compile Include="Property.cs" />

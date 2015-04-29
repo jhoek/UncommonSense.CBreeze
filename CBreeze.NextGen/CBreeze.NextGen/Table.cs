@@ -10,8 +10,8 @@ namespace CBreeze.NextGen
 		{
 			Properties = new TableProperties(this);
 			Fields = new TableFields(this);
-			// Keys = new TableKeys(this);
-			// FieldGroups = new TableFieldGroups(this);
+			Keys = new TableKeys(this);
+			FieldGroups = new TableFieldGroups(this);
 			Code = new Code(this);
 		}
 
@@ -34,6 +34,18 @@ namespace CBreeze.NextGen
 			get;
 			internal set;
 		}
+
+        public TableKeys Keys
+        {
+            get;
+            internal set;
+        }
+
+        public TableFieldGroups FieldGroups
+        {
+            get;
+            internal set;
+        }
 
 		public Code Code
 		{
