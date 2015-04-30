@@ -20,7 +20,7 @@ function Convert-ItemToCompilationUnit
 
     Process
     {
-        $Class = New-Object -TypeName UncommonSense.CSharp.Class -ArgumentList [UncommonSense.CSharp.Visibility]::Public, $Item.Name, $Item.BaseTypeName
+        $Class = New-Object -TypeName UncommonSense.CSharp.Class -ArgumentList [UncommonSense.CSharp.Visibility]::Public, $Item.Name, $Item.BaseTypeName, @()
         $Namespace = New-Object -TypeName UncommonSense.CSharp.Namespace -ArgumentList $Item.ObjectModel.Namespace, $Class
         $CompilationUnit = New-Object UncommonSense.CSharp.CompilationUnit -ArgumentList $Namespace
 
