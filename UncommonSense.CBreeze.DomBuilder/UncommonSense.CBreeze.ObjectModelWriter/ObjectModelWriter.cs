@@ -33,6 +33,25 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			var constructor = new Constructor(Visibility.Public, @class.Name, null, new CodeBlock());
 			@class.Constructors.Add(constructor);
 
+            foreach (var attribute in item.Attributes.OfType<ValueAttribute>())
+            {
+                @class.Properties.Add(
+                    new UncommonSense.CSharp.Property(
+                        Visibility.Public,
+                        attribute.Name,
+                        attribute.TypeName,
+                        new PropertyAccessor(
+                            AccessorVisibility.Unspecified,
+                            null
+                        ),
+                        new PropertyAccessor(
+                            AccessorVisibility.Unspecified,
+                            null
+                        )
+                    )
+                );
+            }
+
 			foreach (var attribute in item.Attributes.OfType<ReferenceAttribute>())
 			{
 				@class.Properties.Add(
@@ -46,7 +65,8 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 						),
 						new PropertyAccessor(
 							AccessorVisibility.Internal,
-							null)
+							null
+                        )
 					)
 				);
 
