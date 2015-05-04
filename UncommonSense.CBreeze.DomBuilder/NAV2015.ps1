@@ -10,7 +10,7 @@
 
         [string]$BaseTypeName,
 
-        [bool]$Abstract,
+        [Switch]$Abstract,
 
         [Switch]$CreateContainer,
 
@@ -128,14 +128,18 @@ $ErrorActionPreference = 'Stop'
 
 $ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
 $ObjectModel | Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount
-$ObjectModel | Add-Item -Name Object -Abstract $true | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute
-$ObjectModel | Add-Item -Name Table -BaseTypeName Object -CreateContainer 
+
+$ObjectModel | Add-Item -Name TableField -Abstract | Add-Attribute -Name No -TypeName int -ValueAttribute| Add-Attribute -Name Name -TypeName string -ValueAttribute | Add-Attribute -Name Enabled -TypeName bool? -ValueAttribute
+
+$ObjectModel | Add-Item -Name Object -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute
+$ObjectModel | Add-Item -Name Table -BaseTypeName Object -CreateContainer | Add-Attribute -Name Fields -TypeName TableFields
 $ObjectModel | Add-Item -Name Page -BaseTypeName Object -CreateContainer
 $ObjectModel | Add-Item -Name Report -BaseTypeName Object -CreateContainer
 $ObjectModel | Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
 $ObjectModel | Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer
 $ObjectModel | Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries
-$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName Queries
+$ObjectModel | Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer 
+$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites
 
 $CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
 
