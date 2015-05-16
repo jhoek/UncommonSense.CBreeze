@@ -13,7 +13,7 @@ namespace CBreeze.NextGen
 			Codeunits = new Codeunits(this);
 			Queries = new Queries(this);
 			XmlPorts = new XmlPorts(this);
-			// FIXME: MenuSuites = new MenuSuites(this);
+			MenuSuites = new MenuSuites(this);
 		}
 
 		public override string ToString()
@@ -31,6 +31,7 @@ namespace CBreeze.NextGen
 				yield return Codeunits;
                 yield return Queries;
 				yield return XmlPorts;
+                yield return MenuSuites;
 			}
 		}
 
@@ -69,6 +70,12 @@ namespace CBreeze.NextGen
 			get;
 			internal set;
 		}
+
+        public MenuSuites MenuSuites
+        {
+            get;
+            internal set;
+        }
 	}
 }
 
