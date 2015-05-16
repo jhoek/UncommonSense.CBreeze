@@ -60,8 +60,8 @@ namespace CBreeze.NextGen
 				yield return ObjectProperties;
 				yield return Properties;
 				yield return Fields;
-				//yield return Keys;
-				//yield return FieldGroups;
+				yield return Keys;
+				yield return FieldGroups;
 				yield return Code;
 			}
 		}
