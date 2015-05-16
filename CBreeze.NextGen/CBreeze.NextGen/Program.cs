@@ -29,6 +29,11 @@ namespace CBreeze.NextGen
 			integerField.Properties.AltSearchField = "Field20";
 			table.Properties.DataCaptionFields.Add(integerField.No);
 
+            table.Keys.Add(new TableKey(codeField.No));
+            table.Keys.Add(new TableKey(integerField.No));
+
+            table.FieldGroups.Add(new TableFieldGroup(1, "DropDown", codeField.No, integerField.No));
+
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;
 
@@ -38,8 +43,10 @@ namespace CBreeze.NextGen
 			var cardPage = application.Pages.Add(new Page(50000, "Customer Group Card"));
 			cardPage.ObjectProperties.Modified = true;
 			cardPage.Properties.CaptionML.Add("ENU", cardPage.Name);
+
 			var containerControl = cardPage.Controls.Add(new ContainerPageControl(1));
 			containerControl.Properties.CaptionML.Add("ENU", "Foo");
+
 			var groupControl = cardPage.Controls.Add(new GroupPageControl(2));
 			groupControl.Properties.CaptionML.Add("ENU", "Baz");
 
@@ -51,6 +58,12 @@ namespace CBreeze.NextGen
 
 			var export = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
 			export.ObjectProperties.DateTime = DateTime.Now;
+            export.ObjectProperties.VersionList = "NAVJH1.00";
+
+            var rootNode = export.Nodes.Add(new XmlPortTableElementNode(1, "Foo", 0));
+            rootNode.Properties.AutoReplace = true;
+
+            var xmlPortFunction = export.Code.Functions.Add(new Function(1000, "MyFunction"));
 
 			PrintNode(application, 0);
 		}
