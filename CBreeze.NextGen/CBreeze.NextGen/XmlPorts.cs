@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-	public class XmlPorts : Container<int, XmlPort>
+	public class XmlPorts : KeyedContainer<int, XmlPort>
 	{
 		internal XmlPorts(Node parentNode) : base(parentNode)
 		{

@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-    public class Functions : Container<string, Function>
+    public class Functions : KeyedContainer<string, Function>
     {
         internal Functions(Node parentNode)
             : base(parentNode)

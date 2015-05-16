@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class TableFieldGroups : Container<int, TableFieldGroup>
+    public class TableFieldGroups : KeyedContainer<int, TableFieldGroup>
     {
         internal TableFieldGroups(Node parentNode)
             : base(parentNode)

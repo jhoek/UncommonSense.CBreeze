@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class Queries : Container<int, Query>
+    public class Queries : KeyedContainer<int, Query>
     {
         internal Queries(Node parentNode)
             : base(parentNode)

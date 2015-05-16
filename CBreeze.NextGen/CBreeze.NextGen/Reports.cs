@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-	public class Reports : Container<int, Report>
+	public class Reports : KeyedContainer<int, Report>
 	{
 		internal Reports(Node parentNode) : base(parentNode)
 		{

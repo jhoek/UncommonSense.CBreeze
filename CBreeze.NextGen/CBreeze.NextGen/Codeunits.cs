@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-	public class Codeunits : Container<int, Codeunit>
+	public class Codeunits : KeyedContainer<int, Codeunit>
 	{
 		internal Codeunits(Node parentNode) : base(parentNode)
 		{

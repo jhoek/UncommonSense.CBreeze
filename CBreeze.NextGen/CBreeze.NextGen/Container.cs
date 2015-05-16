@@ -1,87 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-	public abstract class Container<TKey, TValue> : INode, IEnumerable<TValue> where TValue : Node, IKeyedValue<TKey>, IEquatable<TValue>
-	{
-		private Dictionary<TKey, TValue> innerDictionary = new Dictionary<TKey, TValue>();
+    public abstract class Container<T> : Node, IEnumerable<T> where T : Node
+    {
+        private List<T> innerList = new List<T>();
 
-		internal Container(Node parentNode)
-		{
-			ParentNode = parentNode;
-		}
+        internal Container(Node parentNode)
+        {
+            ParentNode = parentNode;
+        }
 
-		public override string ToString()
-		{
-			return "Container";
-		}
+        public override string ToString()
+        {
+            return "Container";
+        }
 
-		public TItem Add<TItem>(TItem item) where TItem : TValue
-		{
-			if (innerDictionary.ContainsValue(item))
-				throw new ArgumentException("Item already exists.");
+        public TItem Add<TItem>(TItem item) where TItem : T
+        {
+            item.ParentNode = ParentNode;
+            innerList.Add(item);
+            return item;
+        }
 
-			item.ParentNode = ParentNode;
-			innerDictionary.Add(item.GetKey(), item);
+        public bool Remove(T item)
+        {
+            return innerList.Remove(item);
+        }
 
-			return item;
-		}
+        public void RemoveAt(int index)
+        {
+            innerList.RemoveAt(index);
+        }
 
-		public bool Remove(TKey key)
-		{
-			return innerDictionary.Remove(key);
-		}
+        public void Clear()
+        {
+            innerList.Clear();
+        }
 
-		public void Clear()
-		{
-			innerDictionary.Clear();
-		}
+        public T this[int index]
+        {
+            get
+            {
+                return innerList[index];
+            }
+        }
 
-		public bool ContainsKey(TKey key)
-		{
-			return innerDictionary.ContainsKey(key);
-		}
+        public IEnumerator<T> GetEnumerator()
+        {
+            return innerList.GetEnumerator();
+        }
 
-		public bool ContainsValue(TValue value)
-		{
-			return innerDictionary.ContainsValue(value);
-		}
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return innerList.GetEnumerator();
+        }
 
-		public TValue this[TKey key]
-		{
-			get
-			{
-				return innerDictionary[key];
-			}
-		}
-
-		public Node ParentNode
-		{
-			get;
-			internal set;
-		}
-
-		public IEnumerable<INode> ChildNodes
-		{
-			get
-			{
-				foreach (var keyValuePair in innerDictionary)
-				{
-					yield return keyValuePair.Value;
-				}
-			}
-		}
-
-		public IEnumerator<TValue> GetEnumerator()
-		{
-			return innerDictionary.Values.GetEnumerator();
-		}
-
-		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-		{
-			return innerDictionary.Values.GetEnumerator();
-		}
-	}
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                foreach (var item in innerList)
+                {
+                    yield return item;
+                }   
+            }
+        }
+    }
 }
-

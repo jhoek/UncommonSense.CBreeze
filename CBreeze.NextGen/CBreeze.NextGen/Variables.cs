@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-    public class Variables : Container<string, Variable>
+    public class Variables : KeyedContainer<string, Variable>
     {
         internal Variables(Node parentNode)
             : base(parentNode)

@@ -33,7 +33,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Container.cs" />
     <Compile Include="MenuSuite.cs" />
+    <Compile Include="MenuSuites.cs" />
     <Compile Include="MultiLanguageValue.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
@@ -45,7 +47,7 @@
     <Compile Include="QueryProperties.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="ObjectType.cs" />
-    <Compile Include="Container.cs" />
+    <Compile Include="KeyedContainer.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="TableFieldGroup.cs" />
     <Compile Include="TableFieldGroupProperties.cs" />
@@ -82,6 +84,10 @@
     <Compile Include="Codeunits.cs" />
     <Compile Include="CodeunitProperties.cs" />
     <Compile Include="XmlPort.cs" />
+    <Compile Include="XmlPortNode.cs" />
+    <Compile Include="XmlPortNodes.cs" />
+    <Compile Include="XmlPortNodeType.cs" />
+    <Compile Include="XmlPortProperties.cs" />
     <Compile Include="XmlPorts.cs" />
     <Compile Include="TableFieldType.cs" />
     <Compile Include="Parameter.cs" />
@@ -106,6 +112,8 @@
     <Compile Include="PermissionsProperty.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Permission.cs" />
+    <Compile Include="XmlPortTableElementNode.cs" />
+    <Compile Include="XmlPortTableElementNodeProperties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

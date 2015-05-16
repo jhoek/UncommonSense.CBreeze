@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-	public class Tables : Container<int, Table>
+	public class Tables : KeyedContainer<int, Table>
 	{
 		internal Tables(Node parentNode) : base(parentNode)
 		{

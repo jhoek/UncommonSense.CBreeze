@@ -6,24 +6,16 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class TableKeys : INode
+    public class TableKeys : Container<TableKey>
     {
-        private List<TableKey> innerList = new List<TableKey>();
-
         internal TableKeys(Node parentNode)
             : base(parentNode)
         {
         }
 
-        public IEnumerable<INode> ChildNodes
+        public override string ToString()
         {
-            get
-            {
-                foreach (var item in innerList)
-                {
-                    yield return item;
-                }
-            }
+            return "Keys";
         }
     }
 }
