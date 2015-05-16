@@ -8,14 +8,15 @@ namespace CBreeze.NextGen
 {
     public class TableKey : Node, IEquatable<TableKey>
     {
-        public TableKey()
+        public TableKey(params int[] fieldNos)
         {
-            Fields = new FieldList();
+            Fields = new FieldList(fieldNos);
         }
 
         public FieldList Fields
         {
-            get;internal set;
+            get;
+            internal set;
         }
 
         public override IEnumerable<INode> ChildNodes

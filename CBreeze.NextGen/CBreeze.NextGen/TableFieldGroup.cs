@@ -8,11 +8,11 @@ namespace CBreeze.NextGen
 {
     public class TableFieldGroup : Node, IKeyedValue<int>, IEquatable<TableFieldGroup>
     {
-        public TableFieldGroup(int id, string name)
+        public TableFieldGroup(int id, string name, params int[] fieldNos)
         {
             ID = id;
             Name = name;
-            Fields = new FieldList();
+            Fields = new FieldList(fieldNos);
             Properties = new TableFieldGroupProperties(this);
         }
 
