@@ -2,42 +2,66 @@
 
 namespace CBreeze.NextGen
 {
-	public class XmlPort : Object, IEquatable<XmlPort>
-	{
-		public XmlPort(int id, string name)
-			: base(id, name)
-		{
-		}
+    public class XmlPort : Object, IEquatable<XmlPort>
+    {
+        public XmlPort(int id, string name)
+            : base(id, name)
+        {
+            Properties = new XmlPortProperties(this);
+            Nodes = new XmlPortNodes(this);
+            Code = new Code(this);
+        }
 
-		public override ObjectType Type
-		{
-			get
-			{
-				return ObjectType.XmlPort;
-			}
-		}
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.XmlPort;
+            }
+        }
 
-		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
-		{
-			get
-			{
-				yield return ObjectProperties;
-			}
-		}
+        public XmlPortProperties Properties
+        {
+            get;
+            internal set;
+        }
 
-		public bool Equals(XmlPort other)
-		{
-			if (other == null)
-				return false;
+        public XmlPortNodes Nodes
+        {
+            get;
+            internal set;
+        }
 
-			if (other.ID == ID)
-				return true;
+        public Code Code
+        {
+            get;
+            internal set;
+        }
 
-			if (other.Name == Name)
-				return true;
+        public override System.Collections.Generic.IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return ObjectProperties;
+                yield return Properties;
+                yield return Nodes;
+                yield return Code;
+            }
+        }
 
-			return false;
-		}
-	}
+        public bool Equals(XmlPort other)
+        {
+            if (other == null)
+                return false;
+
+            if (other.ID == ID)
+                return true;
+
+            if (other.Name == Name)
+                return true;
+
+            return false;
+        }
+    }
 }
 
