@@ -11,9 +11,21 @@ namespace CBreeze.NextGen
         public TableKey(params int[] fieldNos)
         {
             Fields = new FieldList(fieldNos);
+            Properties = new TableKeyProperties(this);
+        }
+
+        public override string ToString()
+        {
+            return string.Join(",", Fields.Select(f => f.ToString()));
         }
 
         public FieldList Fields
+        {
+            get;
+            internal set;
+        }
+
+        public TableKeyProperties Properties
         {
             get;
             internal set;
@@ -23,7 +35,7 @@ namespace CBreeze.NextGen
         {
             get
             {
-                yield break;
+                yield return Properties;
             }
         }
 
