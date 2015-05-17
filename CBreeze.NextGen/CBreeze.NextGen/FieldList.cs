@@ -17,7 +17,7 @@ namespace CBreeze.NextGen
 
 		public override string ToString()
 		{
-			return string.Join(",", this.Select(f => f.ToString()));
+			return string.Join(",", this.Select(f => string.Format("Field{0}", f)));
 		}
 	}
 }
