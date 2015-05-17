@@ -18,8 +18,10 @@ namespace CBreeze.NextGen
 			table.Properties.CaptionML.Add("ENU", table.Name);
 			table.Properties.DataPerCompany = false;
 			table.Properties.LookupPageID = 50001;
+            table.Properties.DrillDownPageID = 50001;
             table.Properties.Description = "Oink";
 			table.Properties.Permissions.Add(50001, new Permission());
+            table.Properties.PasteIsValid = true;
 
             var recordVariable = table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
             var integerVariable = table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz"));
@@ -34,13 +36,18 @@ namespace CBreeze.NextGen
 			integerField.Properties.AltSearchField = "Field20";
 			table.Properties.DataCaptionFields.Add(integerField.No);
 
-            table.Keys.Add(new TableKey(codeField.No));
+            var primaryKey = table.Keys.Add(new TableKey(codeField.No));
+            primaryKey.Properties.Clustered = true;
+
             table.Keys.Add(new TableKey(integerField.No));
 
             table.FieldGroups.Add(new TableFieldGroup(1, "DropDown", codeField.No, integerField.No));
 
+            var globalVariable = table.Code.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Vendor));
+
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;
+            function.Parameters.Add(new IntegerParameter(1000, "MyParameter")); 
 
 			var variable = function.Variables.Add(new RecordVariable(1000, "MyVariable", 14));
 			variable.Temporary = true;
