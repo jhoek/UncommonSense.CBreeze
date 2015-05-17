@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container.cs" />
+    <Compile Include="IntegerParameter.cs" />
     <Compile Include="IntegerVariable.cs" />
     <Compile Include="MenuSuite.cs" />
     <Compile Include="MenuSuites.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="TableFieldGroupProperties.cs" />
     <Compile Include="TableFieldGroups.cs" />
     <Compile Include="TableKey.cs" />
+    <Compile Include="TableKeyProperties.cs" />
     <Compile Include="TableKeys.cs" />
     <Compile Include="ValueProperty.cs" />
     <Compile Include="ReferenceProperty.cs" />
