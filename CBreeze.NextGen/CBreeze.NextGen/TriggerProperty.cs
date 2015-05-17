@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace CBreeze.NextGen
 {
@@ -12,9 +13,17 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				return false; // FIXME
+                return (Value.Variables.Any()); // FIXME
 			}
 		}
+
+        public override System.Collections.Generic.IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Value.Variables;
+            }
+        }
 	}
 }
 

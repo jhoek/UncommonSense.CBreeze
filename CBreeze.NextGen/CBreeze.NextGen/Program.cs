@@ -9,6 +9,7 @@ namespace CBreeze.NextGen
 		public static void Main(string[] args)
 		{
 			var application = new Application();
+
 			var table = application.Tables.Add(new Table(50000, "Customer Group"));
 			table.ObjectProperties.DateTime = DateTime.Now;
 			table.ObjectProperties.Modified = true;
@@ -17,7 +18,11 @@ namespace CBreeze.NextGen
 			table.Properties.CaptionML.Add("ENU", table.Name);
 			table.Properties.DataPerCompany = false;
 			table.Properties.LookupPageID = 50001;
+            table.Properties.Description = "Oink";
 			table.Properties.Permissions.Add(50001, new Permission());
+
+            var recordVariable = table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
+            var integerVariable = table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz"));
 
 			var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
 			codeField.Properties.CaptionML.Add("ENU", codeField.Name);
