@@ -180,7 +180,6 @@ namespace CBreeze.NextGen
 				yield return description;
 				yield return linkedInTransaction;
 				yield return linkedObject;
-				yield return description;
 				yield return onInsert;
 				yield return onModify;
 				yield return onDelete;
