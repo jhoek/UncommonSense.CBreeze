@@ -39,11 +39,14 @@ namespace CBreeze.NextGen
             var primaryKey = table.Keys.Add(new TableKey(codeField.No));
             primaryKey.Properties.Clustered = true;
 
-            table.Keys.Add(new TableKey(integerField.No));
+            var secundaryKey = table.Keys.Add(new TableKey(integerField.No));
 
             table.FieldGroups.Add(new TableFieldGroup(1, "DropDown", codeField.No, integerField.No));
 
             var globalVariable = table.Code.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Vendor));
+            globalVariable.Temporary = true;
+            globalVariable.Dimensions = "1,2";
+            globalVariable.SecurityFiltering = SecurityFiltering.Validated;
 
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;

@@ -26,6 +26,12 @@ namespace CBreeze.NextGen
 			get;
 			internal set;
 		}
+
+        public SecurityFiltering SecurityFiltering
+        {
+            get;
+            set;
+        }
 	}
 }
 

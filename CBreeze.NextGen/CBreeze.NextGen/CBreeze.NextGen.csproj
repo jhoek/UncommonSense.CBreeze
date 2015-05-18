@@ -47,6 +47,7 @@
     <Compile Include="Queries.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="QueryProperties.cs" />
+    <Compile Include="SecurityFiltering.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="ObjectType.cs" />
     <Compile Include="KeyedContainer.cs" />
