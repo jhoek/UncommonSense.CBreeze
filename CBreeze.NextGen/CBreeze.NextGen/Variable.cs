@@ -23,6 +23,12 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
+        public string Dimensions
+        {
+            get;
+            set;
+        }
+
 		public override IEnumerable<INode> ChildNodes
 		{
 			get
