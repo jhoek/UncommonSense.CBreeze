@@ -12,7 +12,7 @@ namespace CBreeze.NextGen
 
 		public override string ToString()
 		{
-			return string.Format("{3}{0}@{1} : Record {2}", Name, UID, SubType, Temporary ? "TEMPORARY " : "");
+			return string.Format("{3}{0}@{1} : Record {2}", Name, UID, SubType, Temporary.GetValueOrDefault(false) ? "TEMPORARY " : "");
 		}
 
 		public int SubType
@@ -21,10 +21,10 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-		public bool Temporary
+		public bool? Temporary
 		{
 			get;
-			internal set;
+			set;
 		}
 
         public SecurityFiltering SecurityFiltering
