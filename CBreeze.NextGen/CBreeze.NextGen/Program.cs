@@ -70,6 +70,10 @@ namespace CBreeze.NextGen
 
 			var query = application.Queries.Add(new Query(50000, "Customer Groups"));
 			query.ObjectProperties.DateTime = DateTime.Now;
+            query.ObjectProperties.VersionList = "NAVJH1.00";
+
+            var root = query.Elements.Add(new QueryColumnElement(1, "Root", 0));
+            root.Properties.CaptionML.Add("ENU", "Foo");
 
 			var export = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
 			export.ObjectProperties.DateTime = DateTime.Now;
