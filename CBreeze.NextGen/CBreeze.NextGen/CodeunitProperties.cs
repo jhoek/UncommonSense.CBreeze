@@ -12,11 +12,6 @@ namespace CBreeze.NextGen
 		{
 		}
 
-		public override string ToString()
-		{
-			return "Properties";
-		}
-
 		public int? TableNo
 		{
 			get

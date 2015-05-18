@@ -12,6 +12,11 @@ namespace CBreeze.NextGen
 			ParentNode = parentNode;
 		}
 
+        public override string ToString()
+        {
+            return "Properties";
+        }
+
 		public IEnumerator<Property> GetEnumerator()
 		{
 			return ChildNodes.Cast<Property>().GetEnumerator();

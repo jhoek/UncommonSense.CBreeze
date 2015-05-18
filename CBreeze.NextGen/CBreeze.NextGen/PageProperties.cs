@@ -11,11 +11,6 @@ namespace CBreeze.NextGen
 		{
 		}
 
-		public override string ToString()
-		{
-			return "Properties";
-		}
-
 		public MultiLanguageValue CaptionML
 		{
 			get

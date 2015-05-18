@@ -13,11 +13,6 @@ namespace CBreeze.NextGen
         {
         }
 
-        public override string ToString()
-        {
-            return "Properties";
-        }
-
         public override IEnumerable<INode> ChildNodes
         {
             get
