@@ -12,6 +12,8 @@ namespace CBreeze.NextGen
             : base(id, name)
         {
             Properties = new QueryProperties(this);
+            Elements = new QueryElements(this);
+            Code = new Code(this);
         }
 
         public override ObjectType Type
@@ -28,12 +30,26 @@ namespace CBreeze.NextGen
             internal set;
         }
 
+        public QueryElements Elements
+        {
+            get;
+            internal set;
+        }
+
+        public Code Code
+        {
+            get;
+            internal set;
+        }
+
         public override IEnumerable<INode> ChildNodes
         {
             get
             {
                 yield return ObjectProperties;
                 yield return Properties;
+                yield return Elements;
+                yield return Code;
             }
         }
 
