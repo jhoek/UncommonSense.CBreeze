@@ -33,6 +33,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BooleanVariable.cs" />
+    <Compile Include="ByteVariable.cs" />
+    <Compile Include="QueryColumnElement.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="IntegerParameter.cs" />
     <Compile Include="IntegerVariable.cs" />
@@ -46,6 +49,10 @@
     <Compile Include="Object.cs" />
     <Compile Include="Queries.cs" />
     <Compile Include="Query.cs" />
+    <Compile Include="QueryColumnElementProperties.cs" />
+    <Compile Include="QueryElement.cs" />
+    <Compile Include="QueryElements.cs" />
+    <Compile Include="QueryElementType.cs" />
     <Compile Include="QueryProperties.cs" />
     <Compile Include="SecurityFiltering.cs" />
     <Compile Include="Table.cs" />
