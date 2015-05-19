@@ -8,6 +8,7 @@ namespace CBreeze.NextGen
 {
     public enum XmlPortNodeType
     {
-        TableElement
+        TableElement,
+        TextElement
     }
 }

@@ -127,6 +127,8 @@
     <Compile Include="Permission.cs" />
     <Compile Include="XmlPortTableElementNode.cs" />
     <Compile Include="XmlPortTableElementNodeProperties.cs" />
+    <Compile Include="XmlPortTextElementNode.cs" />
+    <Compile Include="XmlPortTextElementNodeProperties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
