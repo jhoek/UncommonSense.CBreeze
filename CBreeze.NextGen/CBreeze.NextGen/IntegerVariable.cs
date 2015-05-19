@@ -15,7 +15,7 @@ namespace CBreeze.NextGen
 
         public override string ToString()
         {
-            return string.Format("{0}@{1} : Integer", Name, UID);
+            return string.Format("{0}{2}@{1} : Integer", Name, UID, Dimensions == null ? "" : string.Format("[{0}]", Dimensions));
         }
     }
 }
