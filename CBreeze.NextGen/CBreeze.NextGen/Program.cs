@@ -25,6 +25,7 @@ namespace CBreeze.NextGen
 
             var recordVariable = table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
             var integerVariable = table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz"));
+            integerVariable.Dimensions = "1,2";
 
 			var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
 			codeField.Properties.CaptionML.Add("ENU", codeField.Name);
@@ -82,6 +83,9 @@ namespace CBreeze.NextGen
 
             var xmlPortRootNode = xmlPort.Nodes.Add(new XmlPortTableElementNode(1, "Foo", 0));
             xmlPortRootNode.Properties.AutoReplace = true;
+
+            var xmlPortTextElementNode = xmlPort.Nodes.Add(new XmlPortTextElementNode(2, "Baz", 1));
+            xmlPortTextElementNode.Properties.MaxOccurs = MaxOccurs.Unbounded;
 
             var xmlPortFunction = xmlPort.Code.Functions.Add(new Function(1000, "MyFunction"));
 
