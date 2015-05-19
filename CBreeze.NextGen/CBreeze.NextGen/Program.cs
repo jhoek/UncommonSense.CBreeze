@@ -50,7 +50,8 @@ namespace CBreeze.NextGen
 
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;
-            function.Parameters.Add(new IntegerParameter(1000, "MyParameter")); 
+            var integerParameter = function.Parameters.Add(new IntegerParameter(1000, "MyParameter"));
+            var dateTimeParameter = function.Parameters.Add(new DateTimeParameter(1001, "MyDateTimeParameter"));
 
 			var variable = function.Variables.Add(new RecordVariable(1000, "MyVariable", 14));
 			variable.Temporary = true;
