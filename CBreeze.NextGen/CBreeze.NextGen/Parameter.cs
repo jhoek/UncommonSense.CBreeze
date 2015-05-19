@@ -49,6 +49,12 @@ namespace CBreeze.NextGen
 			get;
 			internal set;
 		}
+
+        public string Dimensions
+        {
+            get;
+            set;
+        }
 	}
 }
 
