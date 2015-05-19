@@ -35,8 +35,11 @@
   <ItemGroup>
     <Compile Include="BooleanVariable.cs" />
     <Compile Include="ByteVariable.cs" />
+    <Compile Include="DateFormulaParameter.cs" />
     <Compile Include="DateParameter.cs" />
     <Compile Include="DateTimeParameter.cs" />
+    <Compile Include="MaxOccurs.cs" />
+    <Compile Include="MaxOccursProperty.cs" />
     <Compile Include="QueryColumnElement.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="IntegerParameter.cs" />
