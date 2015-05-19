@@ -76,14 +76,14 @@ namespace CBreeze.NextGen
             var root = query.Elements.Add(new QueryColumnElement(1, "Root", 0));
             root.Properties.CaptionML.Add("ENU", "Foo");
 
-			var export = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
-			export.ObjectProperties.DateTime = DateTime.Now;
-            export.ObjectProperties.VersionList = "NAVJH1.00";
+			var xmlPort = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
+			xmlPort.ObjectProperties.DateTime = DateTime.Now;
+            xmlPort.ObjectProperties.VersionList = "NAVJH1.00";
 
-            var rootNode = export.Nodes.Add(new XmlPortTableElementNode(1, "Foo", 0));
-            rootNode.Properties.AutoReplace = true;
+            var xmlPortRootNode = xmlPort.Nodes.Add(new XmlPortTableElementNode(1, "Foo", 0));
+            xmlPortRootNode.Properties.AutoReplace = true;
 
-            var xmlPortFunction = export.Code.Functions.Add(new Function(1000, "MyFunction"));
+            var xmlPortFunction = xmlPort.Code.Functions.Add(new Function(1000, "MyFunction"));
 
 			PrintNode(application, 0);
 		}
