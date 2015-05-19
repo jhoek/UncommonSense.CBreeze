@@ -24,7 +24,7 @@
 
     if ($Abstract)
     {
-        $ObjectModel | Add-Enum -Name "$($Name)Type" | Out-Null
+        Add-Enum -Name "$($Name)Type" | Out-Null
     }
 
     if ($BaseTypeName)
@@ -37,8 +37,8 @@
     {
         switch ($ContainerName)
         {
-            false { $ObjectModel | Add-Container -ItemTypeName $Item.Name | Out-Null } 
-            true { $ObjectModel | Add-Container -ItemTypeName $Item.Name -Name $ContainerName | Out-Null }
+            {$false} { Add-Container -ItemTypeName $Item.Name | Out-Null } 
+            {$true} { Add-Container -ItemTypeName $Item.Name -Name $ContainerName | Out-Null }
         }
     }
 
@@ -64,7 +64,7 @@ function Add-Container
     }
 
     $Container = New-Object UncommonSense.CBreeze.ObjectModelBuilder.Container -ArgumentList $ItemTypeName, $Name
-    $ObjectModel.Elements.Add($Container)
+    $ObjectModel.Elements.Add($Container) 
 }
 
 function Add-Attribute
@@ -125,22 +125,27 @@ Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelBuilder
 Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelWriter/Bin/Debug/UncommonSense.CBreeze.ObjectModelWriter.dll)
 
 $ErrorActionPreference = 'Stop'
-
 $ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
-$ObjectModel | Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount
+$PSDefaultParameterValues["Add-*:ObjectModel"] = $ObjectModel
 
-$ObjectModel | Add-Item -Name TableField -Abstract | Add-Attribute -Name No -TypeName int -ValueAttribute| Add-Attribute -Name Name -TypeName string -ValueAttribute | Add-Attribute -Name Enabled -TypeName bool? -ValueAttribute
+Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount | Out-Null
 
-$ObjectModel | Add-Item -Name Object -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute
-$ObjectModel | Add-Item -Name Table -BaseTypeName Object -CreateContainer | Add-Attribute -Name Fields -TypeName TableFields
-$ObjectModel | Add-Item -Name Page -BaseTypeName Object -CreateContainer
-$ObjectModel | Add-Item -Name Report -BaseTypeName Object -CreateContainer
-$ObjectModel | Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer
-$ObjectModel | Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer
-$ObjectModel | Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries
-$ObjectModel | Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer 
-$ObjectModel | Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites
+Add-Item -Name TableField -Abstract | Add-Attribute -Name No -TypeName int -ValueAttribute| Add-Attribute -Name Name -TypeName string -ValueAttribute | Add-Attribute -Name Enabled -TypeName bool? -ValueAttribute | Out-Null
+Add-Item -Name IntegerTableField -BaseTypeName TableField | out-null
 
-$CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
+Add-Item -Name Object -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute | out-null
+Add-Item -Name Table -BaseTypeName Object -CreateContainer | Add-Attribute -Name Fields -TypeName TableFields | out-null
+Add-Item -Name Page -BaseTypeName Object -CreateContainer | out-null
+Add-Item -Name Report -BaseTypeName Object -CreateContainer| out-null
+Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer| out-null
+Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer| out-null
+Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries| out-null
+Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer | out-null
+Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites| out-null
 
-$CompilationUnits | ForEach-Object { $_.WriteTo([System.Console]::Out) } 
+#$CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
+#$CompilationUnits | ForEach-Object { $_.WriteTo([System.Console]::Out) } 
+
+$ObjectModel.Elements 
+
+
