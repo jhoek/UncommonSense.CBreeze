@@ -29,7 +29,8 @@
 
     if ($BaseTypeName)
     {
-        $Enum = $ObjectModel.Elements["$($BaseTypeName)Type"]
+        $EnumName = "$($BaseTypeName)Type"
+        $Enum = $ObjectModel.Elements | Where-Object -Property Name -Eq -Value $EnumName | Select-Object -First 1
         $Enum.Values.Add($Name)
     }
 
@@ -143,9 +144,10 @@ Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Querie
 Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer | out-null
 Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites| out-null
 
+($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
+
 #$CompilationUnits = [UncommonSense.CBreeze.ObjectModelWriter.ObjectModelWriter]::ToCompilationUnits($ObjectModel)
 #$CompilationUnits | ForEach-Object { $_.WriteTo([System.Console]::Out) } 
-
-$ObjectModel.Elements 
+#$ObjectModel.Elements 
 
 
