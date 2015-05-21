@@ -20,8 +20,28 @@ function Convert-ItemToCompilationUnit
 
     Process
     {
-        $Class = New-Object -TypeName UncommonSense.CSharp.Class -ArgumentList [UncommonSense.CSharp.Visibility]::Public, $Item.Name, $Item.BaseTypeName, @()
+        $Public = [UncommonSense.CSharp.Visibility]::Public
+        $Class = New-Object -TypeName UncommonSense.CSharp.Class -ArgumentList $Public , $Item.Name, $Item.BaseTypeName, @()
         $Namespace = New-Object -TypeName UncommonSense.CSharp.Namespace -ArgumentList $Item.ObjectModel.Namespace, $Class
+        $CompilationUnit = New-Object UncommonSense.CSharp.CompilationUnit -ArgumentList $Namespace
+
+        $CompilationUnit
+    }
+}
+
+function Convert-ContainerToCompilationUnit
+{
+    param
+    (
+        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [UncommonSense.CBreeze.ObjectModelBuilder.Container[]]$Container
+    )
+
+    Process
+    {
+        $Public = [UncommonSense.CSharp.Visibility]::Public
+        $Class = New-Object -TypeName UncommonSense.CSharp.Class -ArgumentList $Public, $Container.Name, $null, @()
+        $Namespace = New-Object -TypeName UncommonSense.CSharp.Namespace -ArgumentList $Container.ObjectModel.Namespace, $Class
         $CompilationUnit = New-Object UncommonSense.CSharp.CompilationUnit -ArgumentList $Namespace
 
         $CompilationUnit
@@ -35,6 +55,6 @@ Add-Type -Path C:\Users\jhoek\GitHub\UncommonSense.CBreeze\UncommonSense.CBreeze
 $ErrorActionPreference = 'Stop'
 $ObjectModel = New-Object -TypeName UncommonSense.CBreeze.ObjectmodelBuilder.ObjectModel -ArgumentList MyNamespace
 $Item = New-Object -TypeName UncommonSense.CBreeze.ObjectModelBuilder.Item -ArgumentList "MyItem"
-$ObjectModel.Elements.Add($Item)
+$ObjectModel.Elements.Add($Item) | Out-Null
 
-$ObjectModel | ConvertTo-CompilationUnit
+($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
