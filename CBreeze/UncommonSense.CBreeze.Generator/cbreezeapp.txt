@@ -408,7 +408,7 @@ OBJECT Table 50007 Collection
   OBJECT-PROPERTIES
   {
     Date=17-01-14;
-    Time=[ 9:25:09];
+    Time=09:25:09;
     Modified=Yes;
     Version List=;
   }
@@ -752,78 +752,12 @@ OBJECT Table 50016 Property Collection Member
   }
 }
 
-OBJECT Table 60009 Namespace
-{
-  OBJECT-PROPERTIES
-  {
-    Date=13-02-15;
-    Time=[ 8:11:15];
-    Modified=Yes;
-    Version List=;
-  }
-  PROPERTIES
-  {
-  }
-  FIELDS
-  {
-    { 1   ;   ;Code                ;Code20        ;NotBlank=Yes }
-    { 10  ;   ;Name                ;Text80         }
-  }
-  KEYS
-  {
-    {    ;Code                                    ;Clustered=Yes }
-  }
-  FIELDGROUPS
-  {
-  }
-  CODE
-  {
-
-    BEGIN
-    END.
-  }
-}
-
-OBJECT Table 60010 Class
-{
-  OBJECT-PROPERTIES
-  {
-    Date=13-02-15;
-    Time=[ 8:33:59];
-    Modified=Yes;
-    Version List=;
-  }
-  PROPERTIES
-  {
-  }
-  FIELDS
-  {
-    { 1   ;   ;Code                ;Code20        ;NotBlank=Yes }
-    { 10  ;   ;Name                ;Text80         }
-    { 20  ;   ;Namespace Code      ;Code20        ;TableRelation=Namespace }
-    { 30  ;   ;Visibility          ;Option        ;OptionString=Internal,,,Private,,,Protected,,,Public }
-  }
-  KEYS
-  {
-    {    ;Code                                    ;Clustered=Yes }
-  }
-  FIELDGROUPS
-  {
-  }
-  CODE
-  {
-
-    BEGIN
-    END.
-  }
-}
-
 OBJECT Form 50000 Object Models
 {
   OBJECT-PROPERTIES
   {
-    Date=13-02-15;
-    Time=[ 8:05:18];
+    Date=10-05-13;
+    Time=20:59:02;
     Modified=Yes;
     Version List=;
   }
@@ -916,9 +850,9 @@ OBJECT Form 50000 Object Models
                                                  {
                                                    { ID=1000000019;
                                                      ShortCutKey=Shift+Ctrl+B;
-                                                     CaptionML=ENU=&Build;
+                                                     CaptionML=ENU=Generate;
                                                      OnPush=BEGIN
-                                                              CODEUNIT.RUN(CODEUNIT::"Build Object Model");
+                                                              CODEUNIT.RUN(CODEUNIT::"Generate Object Model");
                                                               //CODEUNIT.RUN(CODEUNIT::"Generate Writer Object Model");
                                                             END;
                                                              }
@@ -1004,7 +938,7 @@ OBJECT Form 50002 Enumerations
   OBJECT-PROPERTIES
   {
     Date=09-04-13;
-    Time=[ 9:32:32];
+    Time=09:32:32;
     Modified=Yes;
     Version List=;
   }
@@ -1625,7 +1559,7 @@ OBJECT Form 50015 Property Collections
   OBJECT-PROPERTIES
   {
     Date=03-06-13;
-    Time=[ 8:46:44];
+    Time=08:46:44;
     Modified=Yes;
     Version List=;
   }
@@ -1875,7 +1809,7 @@ OBJECT Codeunit 1 ApplicationManagement
   }
 }
 
-OBJECT Codeunit 50000 Build Object Model
+OBJECT Codeunit 50000 Generate Object Model
 {
   OBJECT-PROPERTIES
   {
@@ -3488,8 +3422,8 @@ OBJECT Codeunit 50005 Export Generator Objects
 {
   OBJECT-PROPERTIES
   {
-    Date=13-02-15;
-    Time=[ 8:35:13];
+    Date=27-05-15;
+    Time=21:14:39;
     Modified=Yes;
     Version List=;
   }
@@ -3499,7 +3433,7 @@ OBJECT Codeunit 50005 Export Generator Objects
             Object@1100476000 : Record 2000000001;
           BEGIN
             Object.SETFILTER(Type, '>%1', Object.Type::TableData);
-            Object.SETFILTER(ID, '..%1', 60099);
+            Object.SETFILTER(ID, '..%1', 50099);
 
             EXPORTOBJECTS(FileName, Object, 0);
           END;
