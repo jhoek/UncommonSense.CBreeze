@@ -6,14 +6,15 @@ namespace CBreeze.NextGen
 {
 	public class FieldList : List<int>
 	{
-        public FieldList()
-        {
-        }
+		// Public parameterless ctor required for FieldListProperty
+		public FieldList()
+		{
+		}
 
-        public FieldList(params int[] fieldNos)
-        {
-            this.AddRange(fieldNos);
-        }
+		internal FieldList(params int[] fieldNos)
+		{
+			this.AddRange(fieldNos);
+		}
 
 		public override string ToString()
 		{
