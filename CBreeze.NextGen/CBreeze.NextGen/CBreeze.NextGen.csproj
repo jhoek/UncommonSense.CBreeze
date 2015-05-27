@@ -132,6 +132,10 @@
     <Compile Include="XmlPortTableElementNodeProperties.cs" />
     <Compile Include="XmlPortTextElementNode.cs" />
     <Compile Include="XmlPortTextElementNodeProperties.cs" />
+    <Compile Include="MinOccurs.cs" />
+    <Compile Include="MinOccursProperty.cs" />
+    <Compile Include="CalcFormula.cs" />
+    <Compile Include="CalcFormulaMethod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
