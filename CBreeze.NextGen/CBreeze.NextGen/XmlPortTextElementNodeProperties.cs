@@ -6,33 +6,47 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class XmlPortTextElementNodeProperties : Properties
-    {
-        private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
+	public class XmlPortTextElementNodeProperties : Properties
+	{
+		private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
+		private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
 
-        internal XmlPortTextElementNodeProperties(Node parentNode)
-            : base(parentNode)
-        {
-        }
 
-        public MaxOccurs? MaxOccurs
-        {
-            get
-            {
-                return this.maxOccurs.Value;
-            }
-            set
-            {
-                this.maxOccurs.Value = value;
-            }
-        }
+		internal XmlPortTextElementNodeProperties(Node parentNode)
+			: base(parentNode)
+		{
+		}
 
-        public override IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield return maxOccurs;
-            }
-        }
-    }
+		public MaxOccurs? MaxOccurs
+		{
+			get
+			{
+				return this.maxOccurs.Value;
+			}
+			set
+			{
+				this.maxOccurs.Value = value;
+			}
+		}
+
+		public MinOccurs? MinOccurs
+		{
+			get
+			{
+				return this.minOccurs.Value;
+			}
+			set
+			{
+				this.minOccurs.Value = value;
+			}
+		}
+
+		public override IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				yield return maxOccurs;
+			}
+		}
+	}
 }
