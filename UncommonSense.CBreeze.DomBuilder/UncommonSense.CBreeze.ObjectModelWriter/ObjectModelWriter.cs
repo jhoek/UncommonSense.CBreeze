@@ -23,6 +23,11 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 				compilationUnits.Add(container.ToCompilationUnit());
 			}
 
+            foreach (var enumeration in objectModel.Elements.OfType<Enumeration>())
+            {
+                compilationUnits.Add(enumeration.ToCompilationUnit());
+            }
+
 			return compilationUnits.ToArray();
 		}
 
@@ -81,10 +86,11 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			var @class = new Class(Visibility.Public, container.Name, string.Format("Container<int,{0}>", container.ItemTypeName));
 
             var constructor = new Constructor(
-                Visibility.Public,
+                Visibility.Internal,
                 container.Name,
-                null,
-                new CodeBlock());
+                new ConstructorBaseInitializer(new ExpressionArgument("parentNode")),
+                new CodeBlock(),
+                new FixedParameter("parentNode", "Node"));
             @class.Constructors.Add(constructor);
 
             var toStringMethod = new Method(
@@ -93,17 +99,21 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
                 "string",
                 new CodeBlock(string.Format("return \"{0}\";", container.Name)));
             @class.Methods.Add(toStringMethod);
-            /*
-	{
-		internal Tables(Node parentNode) : base(parentNode)
-		{
-		}
-	}
-
-             */
 
             return new CompilationUnit(new Namespace(container.ObjectModel.Namespace, @class));
 		}
+
+        public static CompilationUnit ToCompilationUnit(this Enumeration enumeration)
+        {
+            var @enum = 
+                new UncommonSense.CSharp.Enum(
+                    Visibility.Public, 
+                    enumeration.Name, 
+                    IntegralType.None, 
+                    enumeration.Values.Select(v=>new EnumValue(v)).ToArray()
+                );
+            return new CompilationUnit(new Namespace(enumeration.ObjectModel.Namespace, @enum));
+        }
 	}
 }
 
