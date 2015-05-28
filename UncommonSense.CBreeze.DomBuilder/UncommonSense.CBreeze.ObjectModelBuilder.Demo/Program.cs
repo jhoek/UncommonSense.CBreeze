@@ -14,7 +14,14 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder.Demo
 			var objectModel = 
 				new ObjectModel(
 					"Demo",
-                    new Enumeration("BlankNumbers"),
+                    new Enumeration(
+                        "BlankNumbers", 
+                        "DontBlank", 
+                        "BlankNeg", 
+                        "BlankNegAndZero", 
+                        "BlankZero", 
+                        "BlankZeroAndPos", 
+                        "BlankPos"),
 					new Item(
 						"Application",
 						new ReferenceAttribute("Tables", "Tables"),
