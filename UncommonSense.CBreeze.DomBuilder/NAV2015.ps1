@@ -108,7 +108,9 @@ function Add-Enum
         [Parameter(Mandatory=$true)]
         [string]$Name,
 
-        [string[]]$Values
+        [string[]]$Values,
+
+        [Switch]$PassThru = $false
     )
 
     $Enum = New-Object UncommonSense.CBreeze.ObjectModelBuilder.Enumeration -ArgumentList $Name
@@ -118,7 +120,12 @@ function Add-Enum
         $Enum.Values.AddRange($Values)
     }
 
-    $ObjectModel.Elements.Add($Enum)
+    $ObjectModel.Elements.Add($Enum) | Out-Null
+
+    if ($PassThru)
+    {
+        $Enum
+    }
 }
 
 Clear-Host
@@ -129,11 +136,17 @@ $ErrorActionPreference = 'Stop'
 $ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
 $PSDefaultParameterValues["Add-*:ObjectModel"] = $ObjectModel
 
-Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount | Out-Null
+Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount 
+Add-Enum -Name BlankNumbers -Values DontBlank,BlankNeg,BlankNegAndZero,BlankZero,BlankZeroAndPos,BlankPos 
+Add-Enum -Name BlobSubType -Values UserDefined,Bitmap,Memo 
+Add-Enum -Name MinOccurs -Values Once,Zero 
+Add-Enum -Name MaxOccurs -Values Unbounded,Once 
 
 Add-Item -Name TableField -Abstract | Add-Attribute -Name No -TypeName int -ValueAttribute| Add-Attribute -Name Name -TypeName string -ValueAttribute | Add-Attribute -Name Enabled -TypeName bool? -ValueAttribute | Out-Null
-Add-Item -Name IntegerTableField -BaseTypeName TableField | out-null
+Add-Item -Name IntegerTableField -BaseTypeName TableField | Out-null
+Add-Item -Name DecimalTableField -BaseTypeName TableField | Out-Null
 
+Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites| out-null
 Add-Item -Name Object -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute | out-null
 Add-Item -Name Table -BaseTypeName Object -CreateContainer | Add-Attribute -Name Fields -TypeName TableFields | out-null
 Add-Item -Name Page -BaseTypeName Object -CreateContainer | out-null
@@ -142,7 +155,9 @@ Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer| out-null
 Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer| out-null
 Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries| out-null
 Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer | out-null
-Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites| out-null
+
+Add-Item -Name Parameter -Abstract | Add-Attribute -TypeName string -Name Dimensions | out-null
+Add-Item -Name ActionParameter -BaseTypeName Parameter | OUt-Null
 
 ($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
 
