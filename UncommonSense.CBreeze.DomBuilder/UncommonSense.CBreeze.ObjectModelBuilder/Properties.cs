@@ -5,29 +5,23 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-	public class Properties : IEnumerable<Property>
-	{
-		private List<Property> innerList = new List<Property>();
+    public class Properties : ObjectModelElement, IEnumerable<Property>
+    {
+        private List<Property> innerList = new List<Property>();
 
-		internal Properties(Item item)
-		{
-			Item = item;
-		}
+        public Properties(string name)
+            : base(name)
+        {
+        }
 
-		public Item Item
-		{
-			get;
-			internal set;
-		}
+        public IEnumerator<Property> GetEnumerator()
+        {
+            return innerList.GetEnumerator();
+        }
 
-		public IEnumerator<Property> GetEnumerator()
-		{
-			return innerList.GetEnumerator();
-		}
-
-		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-		{
-			return innerList.GetEnumerator();
-		}
-	}
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return innerList.GetEnumerator();
+        }
+    }
 }
