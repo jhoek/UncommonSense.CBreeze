@@ -7,6 +7,7 @@
     )
 
     $ObjectModel.Elements | Where-Object { $_ -is [UncommonSense.CBreeze.ObjectModelBuilder.Item] } | Convert-ItemToCompilationUnit
+    $ObjectModel.Elements | Where-Object { $_ -is [UncommonSense.CBreeze.ObjectModelBuilder.Properties] } | Convert-PropertiesToCompilationUnit
     $ObjectModel.Elements | Where-Object { $_ -is [UncommonSense.CBreeze.ObjectModelBuilder.Container] } | Convert-ContainerToCompilationUnit
     $ObjectModel.Elements | Where-Object { $_ -is [UncommonSense.CBreeze.ObjectModelBuilder.Enumeration] } | Convert-EnumerationToCompilationUnit
 }
@@ -28,6 +29,26 @@ function Convert-ItemToCompilationUnit
         $CompilationUnit = New-Object UncommonSense.CSharp.CompilationUnit -ArgumentList $Namespace
 
         $CompilationUnit
+    }
+}
+
+function Convert-PropertiesToCompilationUnit
+{
+    param
+    (
+        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [UncommonSense.CBreeze.ObjectModelBuilder.Properties[]]$Properties
+    )
+
+    Process
+    {
+        $Public = [UncommonSense.CSharp.Visibility]::Public
+        $Class = New-Object -TypeName UncommonSense.CSharp.Class -ArgumentList $Public, $Properties.Name, "Properties", @()
+    
+        $Namespace = New-Object -TypeName UncommonSense.CSharp.Namespace -ArgumentList $Properties.ObjectModel.Namespace, $Class
+        $CompilationUnit = New-Object UncommonSense.CSharp.CompilationUnit -ArgumentList $Namespace
+        
+        $CompilationUnit    
     }
 }
 
