@@ -18,6 +18,11 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 				compilationUnits.Add(item.ToCompilationUnit());	
 			}
 
+            foreach (var properties in objectModel.Elements.OfType<Properties>())
+            {
+                compilationUnits.Add(properties.ToCompilationUnit());
+            }
+
 			foreach (var container in objectModel.Elements.OfType<Container>())
 			{
 				compilationUnits.Add(container.ToCompilationUnit());
@@ -80,6 +85,13 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 
 			return new CompilationUnit(new Namespace(item.ObjectModel.Namespace, @class));
 		}
+
+        public static CompilationUnit ToCompilationUnit(this Properties properties)
+        {
+            var @class = new Class(Visibility.Public, properties.Name, "Properties");
+
+            return new CompilationUnit(new Namespace(properties.ObjectModel.Namespace, @class));
+        }
 
 		public static CompilationUnit ToCompilationUnit(this Container container)
 		{
