@@ -46,6 +46,28 @@
     $Item
 }
 
+function Add-Properties
+{
+    param
+    (
+        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel]$ObjectModel,
+
+        [Parameter(Mandatory=$true)]
+        [string]$Name,
+
+        [Switch]$PassThru
+    )
+
+    $Properties = New-Object UncommonSense.CBreeze.ObjectModelBuilder.Properties -ArgumentList $Name
+    $ObjectModel.Elements.Add($Properties) | Out-Null
+
+    if ($PassThru)
+    {
+        $Properties
+    }
+}
+
 function Add-Container
 {
     param
@@ -155,6 +177,8 @@ Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer| out-null
 Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer| out-null
 Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries| out-null
 Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer | out-null
+
+Add-Properties -Name TableProperties 
 
 Add-Item -Name Parameter -Abstract | Add-Attribute -TypeName string -Name Dimensions | out-null
 Add-Item -Name ActionParameter -BaseTypeName Parameter | OUt-Null
