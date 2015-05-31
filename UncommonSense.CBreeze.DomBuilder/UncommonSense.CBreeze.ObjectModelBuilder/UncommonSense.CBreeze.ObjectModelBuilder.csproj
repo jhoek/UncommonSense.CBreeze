@@ -47,6 +47,7 @@
     <Compile Include="Attributes.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Enumeration.cs" />
+    <Compile Include="IdentifierAttribute.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ObjectModel.cs" />
     <Compile Include="ObjectModelElement.cs" />
