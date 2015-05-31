@@ -20,6 +20,17 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 			internal set;
 		}
 
+        public string ParameterName
+        {
+            get
+            {
+                if (Name == "ID")
+                    return "id";
+
+                return Name.Substring(0, 1).ToLowerInvariant() + Name.Substring(1);
+            }        
+        }
+
 		public string TypeName
 		{
 			get;
