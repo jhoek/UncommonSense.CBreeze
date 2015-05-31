@@ -41,7 +41,12 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName);
 
 			var constructor = new Constructor(Visibility.Public, @class.Name, null, new CodeBlock());
-			@class.Constructors.Add(constructor);
+            foreach (var attribute in item.Attributes.OfType<IdentifierAttribute>())
+            {
+                constructor.Parameters.Add(new FixedParameter(attribute.ParameterName, attribute.TypeName));
+                constructor.CodeBlock.Statements.AddFormat("{0} = {1};", attribute.Name, attribute.ParameterName);
+            }
+            @class.Constructors.Add(constructor);
 
             foreach (var attribute in item.Attributes.OfType<ValueAttribute>())
             {
@@ -55,7 +60,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
                             null
                         ),
                         new PropertyAccessor(
-                            AccessorVisibility.Unspecified,
+                            (attribute is IdentifierAttribute) ? AccessorVisibility.Internal : AccessorVisibility.Unspecified,
                             null
                         )
                     )
