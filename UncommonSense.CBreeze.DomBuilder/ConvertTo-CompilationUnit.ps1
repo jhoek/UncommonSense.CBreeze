@@ -25,9 +25,15 @@ function Convert-ItemToCompilationUnit
         $Public = [UncommonSense.CSharp.Visibility]::Public
         $Class = New-Object -TypeName UncommonSense.CSharp.Class -ArgumentList $Public , $Item.Name, $Item.BaseTypeName, @()
         $Class.Abstract = $Item.Abstract
+
+        foreach($Attribute in $Item.Attributes)
+        {
+            $Property = New-Object -Typename UncommonSense.CSharp.Property -ArgumentList $Public, $Attribute.Name, $Attribute.
+            $Class.Properties.Add(
+        }
+
         $Namespace = New-Object -TypeName UncommonSense.CSharp.Namespace -ArgumentList $Item.ObjectModel.Namespace, $Class
         $CompilationUnit = New-Object UncommonSense.CSharp.CompilationUnit -ArgumentList $Namespace
-
         $CompilationUnit
     }
 }
@@ -91,15 +97,3 @@ function Convert-EnumerationToCompilationUnit
         $CompilationUnit
     }
 }
-
-Clear-Host
-Add-Type -Path C:\Users\jhoek\GitHub\UncommonSense.CSharp\UncommonSense.CSharp\bin\Debug\UncommonSense.CSharp.dll
-Add-Type -Path C:\Users\jhoek\GitHub\UncommonSense.CBreeze\UncommonSense.CBreeze.DomBuilder\UncommonSense.CBreeze.ObjectModelBuilder\bin\Debug\UncommonSense.CBreeze.ObjectModelBuilder.dll
-
-$ErrorActionPreference = 'Stop'
-$ObjectModel = New-Object -TypeName UncommonSense.CBreeze.ObjectmodelBuilder.ObjectModel -ArgumentList MyNamespace
-$Item = New-Object -TypeName UncommonSense.CBreeze.ObjectModelBuilder.Item -ArgumentList "MyItem" 
-$Item.Abstract = $true
-$ObjectModel.Elements.Add($Item) | Out-Null
-
-($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
