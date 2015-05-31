@@ -150,6 +150,8 @@ function Add-Enum
     }
 }
 
+. (Join-Path $PSScriptRoot ConvertTo-CompilationUnit.ps1)
+
 Clear-Host
 Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelBuilder/Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
 Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelWriter/Bin/Debug/UncommonSense.CBreeze.ObjectModelWriter.dll)
@@ -173,12 +175,13 @@ Add-Item -Name Object -Abstract | Add-Attribute -Name ID -TypeName int -ValueAtt
 Add-Item -Name Table -BaseTypeName Object -CreateContainer | Add-Attribute -Name Fields -TypeName TableFields | out-null
 Add-Item -Name Page -BaseTypeName Object -CreateContainer | out-null
 Add-Item -Name Report -BaseTypeName Object -CreateContainer| out-null
-Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer| out-null
+Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer| Add-Attribute -Name Properties -TypeName CodeunitProperties | out-null
 Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer| out-null
 Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries| out-null
 Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer | out-null
 
 Add-Properties -Name TableProperties 
+Add-Properties -Name CodeunitProperties
 
 Add-Item -Name Parameter -Abstract | Add-Attribute -TypeName string -Name Dimensions | out-null
 Add-Item -Name ActionParameter -BaseTypeName Parameter | OUt-Null
