@@ -29,7 +29,7 @@ function Convert-ItemToCompilationUnit
         foreach($Attribute in $Item.Attributes)
         {
             $Property = New-Object -Typename UncommonSense.CSharp.Property -ArgumentList $Public, $Attribute.Name, $Attribute.
-            $Class.Properties.Add(
+            $Class.Properties.Add($Property)
         }
 
         $Namespace = New-Object -TypeName UncommonSense.CSharp.Namespace -ArgumentList $Item.ObjectModel.Namespace, $Class
