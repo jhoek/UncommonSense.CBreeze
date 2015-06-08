@@ -40,12 +40,24 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 		{
 			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName);
 
+            // FIXME: Make ctor initializer
+
 			var constructor = new Constructor(Visibility.Public, @class.Name, null, new CodeBlock());
-            foreach (var attribute in item.Attributes.OfType<IdentifierAttribute>())
+            foreach (var attribute in item.AllAttributes.OfType<IdentifierAttribute>())
             {
                 constructor.Parameters.Add(new FixedParameter(attribute.ParameterName, attribute.TypeName));
+            }
+
+            foreach (var attribute in item.InheritedAttributes.OfType<IdentifierAttribute>())
+            {
+                // FIXME: constructor.Initializer.Arguments.Add(new 
+            }
+
+            foreach (var attribute in item.Attributes.OfType<IdentifierAttribute>())
+            {
                 constructor.CodeBlock.Statements.AddFormat("{0} = {1};", attribute.Name, attribute.ParameterName);
             }
+
             @class.Constructors.Add(constructor);
 
             foreach (var attribute in item.Attributes.OfType<ValueAttribute>())

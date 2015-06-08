@@ -31,6 +31,36 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 			internal set;
 		}
 
+        public IEnumerable<Attribute> InheritedAttributes
+        {
+            get
+            {
+                if (BaseType != null)
+                {
+                    foreach (var attribute in BaseType.AllAttributes)
+                    {
+                        yield return attribute;
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<Attribute> AllAttributes
+        {
+            get
+            {
+                foreach (var attribute in InheritedAttributes)
+                {
+                    yield return attribute;
+                }
+
+                foreach (var attribute in Attributes)
+                {
+                    yield return attribute;
+                }
+            }
+        }
+
 		public Item BaseType
 		{
 			get
