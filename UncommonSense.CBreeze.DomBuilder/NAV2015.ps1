@@ -1,16 +1,5 @@
-﻿Clear-Host
+﻿$ErrorActionPreference = 'Stop'
 
-Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelBuilder/Bin/Debug/UncommonSense.CBreeze.ObjectModelBuilder.dll)
-Add-Type -Path (Join-Path $PSScriptRoot UncommonSense.CBreeze.ObjectModelWriter/Bin/Debug/UncommonSense.CBreeze.ObjectModelWriter.dll)
-
-. (Join-Path $PSScriptRoot Add-Item.ps1)
-. (Join-Path $PSScriptRoot Add-Properties.ps1)
-. (Join-Path $PSScriptRoot Add-Container.ps1)
-. (Join-Path $PSScriptRoot Add-Attribute.ps1)
-. (Join-Path $PSScriptRoot Add-Enum.ps1)
-. (Join-Path $PSScriptRoot ConvertTo-CompilationUnit.ps1)
-
-$ErrorActionPreference = 'Stop'
 $ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
 $PSDefaultParameterValues["Add-*:ObjectModel"] = $ObjectModel
 
