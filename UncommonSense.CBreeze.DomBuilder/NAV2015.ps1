@@ -1,7 +1,8 @@
-﻿$ErrorActionPreference = 'Stop'
+﻿Clear-Host
 
-$ObjectModel = New-Object UncommonSense.CBreeze.ObjectModelBuilder.ObjectModel -ArgumentList 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
-$PSDefaultParameterValues["Add-*:ObjectModel"] = $ObjectModel
+$ErrorActionPreference = 'Stop'
+$ObjectModel = New-ObjectModel -Namespace 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
+$PSDefaultParameterValues['Add-*:ObjectModel'] = $ObjectModel
 
 Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount 
 Add-Enum -Name BlankNumbers -Values DontBlank,BlankNeg,BlankNegAndZero,BlankZero,BlankZeroAndPos,BlankPos 
@@ -12,7 +13,7 @@ Add-Enum -Name MaxOccurs -Values Unbounded,Once
 
 Add-Item -Name TableField -Abstract | Add-Attribute -Name No -TypeName int -ValueAttribute| Add-Attribute -Name Name -TypeName string -ValueAttribute | Add-Attribute -Name Enabled -TypeName bool? -ValueAttribute | Out-Null
 Add-Item -Name IntegerTableField -BaseTypeName TableField | Add-Attribute -Name Properties -TypeName IntegerTableFieldProperties | Out-null
-Add-Item -Name DecimalTableField -BaseTypeName TableField | Out-Null
+Add-Item -Name DecimalTableField -BaseTypeName TableField | Add-Attribute -Name Properties -Typename DecimalTableFieldProperties | Out-Null
 
 Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites| out-null
 Add-Item -Name Object -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute | out-null
