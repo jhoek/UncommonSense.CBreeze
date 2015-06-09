@@ -13,32 +13,50 @@ Add-Enum -Name MinOccurs -Values Once,Zero
 Add-Enum -Name MaxOccurs -Values Unbounded,Once
 
 Add-Item -Name Application | `
-    Add-Attribute -TypeName Tables -AttributeType Reference | `
-    Add-Attribute -TypeName Pages -AttributeType Reference | `
-    Add-Attribute -TypeName Reports -AttributeType Reference | `
-    Add-Attribute -TypeName Codeunits -AttributeType Reference | `
-    Add-Attribute -TypeName XmlPorts -AttributeType Reference | `
-    Add-Attribute -TypeName Queries -AttributeType Reference | `
-    Add-Attribute -TypeName MenuSuite -AttributeType Reference | `
+    Add-ChildNode -TypeName Tables | `
+    Add-ChildNode -TypeName Pages | `
+    Add-ChildNode -TypeName Reports | `
+    Add-ChildNode -TypeName Codeunits | `
+    Add-ChildNode -TypeName XmlPorts | `
+    Add-ChildNode -TypeName Queries | `
+    Add-ChildNode -TypeName MenuSuite | `
     Out-Null
 
 Add-Item -Name Object -Abstract | `
-    Add-Attribute -Name ID -TypeName int -AttributeType Value | `
-    Add-Attribute -Name Name -TypeName string -AttributeType Value | `
+    Add-Identifier -Name ID -TypeName int | `
+    Add-Identifier -Name Name -TypeName string | `
     Out-Null
 
 Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
-    Add-Attribute -Name Fields -TypeName TableFields -AttributeType Reference | `
+    Add-ChildNode -Name Fields -TypeName TableFields | `
     Out-Null
 
-Add-Item -Name Page -BaseTypeName Object -CreateContainer | out-null
-Add-Item -Name Report -BaseTypeName Object -CreateContainer| out-null
-Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer| Add-Attribute -Name Properties -TypeName CodeunitProperties | out-null
-Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer| out-null
-Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries| out-null
-Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer | out-null
+Add-Item -Name Page -BaseTypeName Object -CreateContainer | `
+    Out-Null
 
-Add-Item -Name TableField -Abstract | Add-Attribute -Name No -TypeName int -ValueAttribute| Add-Attribute -Name Name -TypeName string -ValueAttribute | Add-Attribute -Name Enabled -TypeName bool? -ValueAttribute | Out-Null
+Add-Item -Name Report -BaseTypeName Object -CreateContainer | `
+    Out-Null
+
+Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer | `
+    Add-ChildNode -Name Properties -TypeName CodeunitProperties | `
+    Add-ChildNode -TypeName Code | ` 
+    Out-Null
+
+Add-Item -Name XmlPort -BaseTypeName Object -CreateContainer | `
+    Out-Null
+
+Add-Item -Name Query -BaseTypeName Object -CreateContainer -ContainerName Queries | `
+    Out-Null
+
+Add-Item -Name MenuSuite -BaseTypeName Object -CreateContainer | `
+    Out-Null
+
+Add-Item -Name TableField -Abstract -CreateContainer | `
+    Add-Identifier -Name No -TypeName int | `
+    Add-Identifier -Name Name -TypeName string | `
+    Add-Attribute -Name Enabled -TypeName bool? | `
+    Out-Null
+
 Add-Item -Name BigIntegerTableField -BaseTypeName TableField -PassThru:$false
 Add-Item -Name BinaryTableField -BaseTypeName TableField -PassThru:$false
 Add-Item -Name BlobTableField -BaseTypeName TableField -PassThru:$false
@@ -47,9 +65,6 @@ Add-Item -Name DecimalTableField -BaseTypeName TableField | Add-Attribute -Name 
 
 Add-Item -Name Variable -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute | Out-Null
 Add-Item -Name ActionVariable -BaseTypeName Variable | Add-Attribute -Name Dimensions -TypeName string -ValueAttribute | Out-Null
-
-Add-Properties -Name TableProperties 
-Add-Properties -Name CodeunitProperties
 
 Add-Item -Name Parameter -Abstract | Add-Attribute -TypeName string -Name Dimensions | out-null
 Add-Item -Name ActionParameter -BaseTypeName Parameter | OUt-Null
