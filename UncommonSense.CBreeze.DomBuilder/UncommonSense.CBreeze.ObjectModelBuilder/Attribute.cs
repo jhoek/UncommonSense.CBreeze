@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 			internal set;
 		}
 
-        public string ParameterName
+        public string InternalName
         {
             get
             {
@@ -35,12 +35,6 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 		{
 			get;
 			internal set;
-		}
-
-		public bool IsChildNode
-		{
-			get;
-			set;
 		}
 
 		public ObjectModelElement Type
