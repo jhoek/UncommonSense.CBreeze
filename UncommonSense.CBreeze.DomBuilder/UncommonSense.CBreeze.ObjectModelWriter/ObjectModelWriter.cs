@@ -127,6 +127,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
                 "ToString",
                 "string",
                 new CodeBlock(string.Format("return \"{0}\";", container.Name)));
+            toStringMethod.Overriding = Overriding.Override;
             @class.Methods.Add(toStringMethod);
 
             return new CompilationUnit(new Namespace(container.ObjectModel.Namespace, @class));
