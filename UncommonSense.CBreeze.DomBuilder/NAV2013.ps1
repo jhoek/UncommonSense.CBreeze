@@ -12,6 +12,12 @@ Add-Enum -Name FieldClass -Values Normal,FlowField,FlowFilter
 Add-Enum -Name MinOccurs -Values Once,Zero 
 Add-Enum -Name MaxOccurs -Values Unbounded,Once
 
+Add-PropertyCollection -Name TableProperties | `
+    Out-Null
+
+Add-PropertyCollection -Name CodeunitProperties | `
+    Out-Null
+
 Add-Item -Name Application | `
     Add-ChildNode -TypeName Tables | `
     Add-ChildNode -TypeName Pages | `

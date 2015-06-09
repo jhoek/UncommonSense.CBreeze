@@ -54,6 +54,7 @@
     <Compile Include="ObjectModelElement.cs" />
     <Compile Include="ObjectModelElements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyCollection.cs" />
     <Compile Include="ReferenceAttribute.cs" />
     <Compile Include="ValueAttribute.cs" />
     <Compile Include="Property.cs" />
