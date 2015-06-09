@@ -1,4 +1,5 @@
-﻿Clear-Host
+﻿Import-Module UncommonSense.ObjectModelBuilder -Force
+Clear-Host
 
 $ErrorActionPreference = 'Stop'
 $ObjectModel = New-ObjectModel -Namespace 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
@@ -11,9 +12,25 @@ Add-Enum -Name FieldClass -Values Normal,FlowField,FlowFilter
 Add-Enum -Name MinOccurs -Values Once,Zero 
 Add-Enum -Name MaxOccurs -Values Unbounded,Once
 
-Add-Item -Name Application | Add-Attribute -TypeName Tables | Add-Attribute -TypeName Pages |Add-Attribute -TypeName Reports | Add-Attribute -TypeName Codeunits | Add-Attribute -TypeName XmlPorts | Add-Attribute -TypeName Queries | Add-Attribute -TypeName MenuSuites| out-null
-Add-Item -Name Object -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute | out-null
-Add-Item -Name Table -BaseTypeName Object -CreateContainer | Add-Attribute -Name Fields -TypeName TableFields | out-null
+Add-Item -Name Application | `
+    Add-Attribute -TypeName Tables -AttributeType Reference | `
+    Add-Attribute -TypeName Pages -AttributeType Reference | `
+    Add-Attribute -TypeName Reports -AttributeType Reference | `
+    Add-Attribute -TypeName Codeunits -AttributeType Reference | `
+    Add-Attribute -TypeName XmlPorts -AttributeType Reference | `
+    Add-Attribute -TypeName Queries -AttributeType Reference | `
+    Add-Attribute -TypeName MenuSuite -AttributeType Reference | `
+    Out-Null
+
+Add-Item -Name Object -Abstract | `
+    Add-Attribute -Name ID -TypeName int -AttributeType Value | `
+    Add-Attribute -Name Name -TypeName string -AttributeType Value | `
+    Out-Null
+
+Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
+    Add-Attribute -Name Fields -TypeName TableFields -AttributeType Reference | `
+    Out-Null
+
 Add-Item -Name Page -BaseTypeName Object -CreateContainer | out-null
 Add-Item -Name Report -BaseTypeName Object -CreateContainer| out-null
 Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer| Add-Attribute -Name Properties -TypeName CodeunitProperties | out-null
