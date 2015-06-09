@@ -5,9 +5,9 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class IdentifierAttribute : ValueAttribute
+    public class Identifier : Attribute
     {
-        public IdentifierAttribute(string typeName, string name)
+        public Identifier(string typeName, string name)
             : base(typeName, name)
         {
         }
