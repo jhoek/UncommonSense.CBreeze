@@ -97,4 +97,5 @@ Add-Item -Name Parameter -Abstract | `
 Add-Item -Name ActionParameter -BaseTypeName Parameter | `
     Out-Null
 
-($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
+$ObjectModel | ConvertTo-CompilationUnit 
+#($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
