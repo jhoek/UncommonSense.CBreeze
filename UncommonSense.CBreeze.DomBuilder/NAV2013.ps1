@@ -63,16 +63,38 @@ Add-Item -Name TableField -Abstract -CreateContainer | `
     Add-Attribute -Name Enabled -TypeName bool? | `
     Out-Null
 
-Add-Item -Name BigIntegerTableField -BaseTypeName TableField -PassThru:$false
-Add-Item -Name BinaryTableField -BaseTypeName TableField -PassThru:$false
-Add-Item -Name BlobTableField -BaseTypeName TableField -PassThru:$false
-Add-Item -Name IntegerTableField -BaseTypeName TableField | Add-Attribute -Name Properties -TypeName IntegerTableFieldProperties | Out-null
-Add-Item -Name DecimalTableField -BaseTypeName TableField | Add-Attribute -Name Properties -Typename DecimalTableFieldProperties | Out-Null
+Add-Item -Name BigIntegerTableField -BaseTypeName TableField | `
+    Out-Null
 
-Add-Item -Name Variable -Abstract | Add-Attribute -Name ID -TypeName int -ValueAttribute | Add-Attribute -Name Name -TypeName string -ValueAttribute | Out-Null
-Add-Item -Name ActionVariable -BaseTypeName Variable | Add-Attribute -Name Dimensions -TypeName string -ValueAttribute | Out-Null
+Add-Item -Name BinaryTableField -BaseTypeName TableField | `
+    Out-Null
 
-Add-Item -Name Parameter -Abstract | Add-Attribute -TypeName string -Name Dimensions | out-null
-Add-Item -Name ActionParameter -BaseTypeName Parameter | OUt-Null
+Add-Item -Name BlobTableField -BaseTypeName TableField | `
+    Out-Null
+
+Add-Item -Name IntegerTableField -BaseTypeName TableField | `
+    Add-ChildNode -Name Properties -TypeName IntegerTableFieldProperties | `
+    Out-null
+
+Add-Item -Name DecimalTableField -BaseTypeName TableField | `
+    Add-ChildNode -Name Properties -Typename DecimalTableFieldProperties | `
+    Out-Null
+
+Add-Item -Name Variable -Abstract | `
+    Add-Identifier -Name ID -TypeName int | `
+    Add-Identifier -Name Name -TypeName string | `
+    Out-Null
+
+Add-Item -Name ActionVariable -BaseTypeName Variable | 
+    Add-Attribute -Name Dimensions -TypeName string | `
+    Out-Null
+
+Add-Item -Name Parameter -Abstract | `
+    Add-Identifier -Name ID -TypeName int | `
+    Add-Attribute -TypeName string -Name Dimensions | `
+    Out-Null
+
+Add-Item -Name ActionParameter -BaseTypeName Parameter | `
+    Out-Null
 
 ($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
