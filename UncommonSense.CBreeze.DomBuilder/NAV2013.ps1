@@ -5,12 +5,12 @@ $ErrorActionPreference = 'Stop'
 $ObjectModel = New-ObjectModel -Namespace 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
 $PSDefaultParameterValues['Add-*:ObjectModel'] = $ObjectModel
 
-Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount 
-Add-Enum -Name BlankNumbers -Values DontBlank,BlankNeg,BlankNegAndZero,BlankZero,BlankZeroAndPos,BlankPos 
-Add-Enum -Name BlobSubType -Values UserDefined,Bitmap,Memo 
-Add-Enum -Name FieldClass -Values Normal,FlowField,FlowFilter
-Add-Enum -Name MinOccurs -Values Once,Zero 
-Add-Enum -Name MaxOccurs -Values Unbounded,Once
+Add-Enum -Name AutoFormatType -Values Other,Amount,UnitAmount | Out-Null
+Add-Enum -Name BlankNumbers -Values DontBlank,BlankNeg,BlankNegAndZero,BlankZero,BlankZeroAndPos,BlankPos | Out-Null
+Add-Enum -Name BlobSubType -Values UserDefined,Bitmap,Memo | Out-Null
+Add-Enum -Name FieldClass -Values Normal,FlowField,FlowFilter | Out-Null
+Add-Enum -Name MinOccurs -Values Once,Zero | Out-Null
+Add-Enum -Name MaxOccurs -Values Unbounded,Once | Out-Null
 
 Add-PropertyCollection -Name TableProperties | `
     Out-Null
@@ -97,5 +97,6 @@ Add-Item -Name Parameter -Abstract | `
 Add-Item -Name ActionParameter -BaseTypeName Parameter | `
     Out-Null
 
-$ObjectModel | ConvertTo-CompilationUnit 
-#($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
+#$ObjectModel | ConvertTo-CompilationUnit 
+
+($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
