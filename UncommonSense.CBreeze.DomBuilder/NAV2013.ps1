@@ -12,6 +12,13 @@ Add-Enum -Name FieldClass -Values Normal,FlowField,FlowFilter | Out-Null
 Add-Enum -Name MinOccurs -Values Once,Zero | Out-Null
 Add-Enum -Name MaxOccurs -Values Unbounded,Once | Out-Null
 
+Add-PropertyType -Name NullableBooleanProperty -InnerValue bool? -HasValueExpr Value.HasValue
+Add-PropertyType -Name NullableDateTimeProperty -InnerValue DateTime? -HasValueExpr Value.HasValue 
+
+Add-PropertyCollection -Name ObjectProperties | `
+    Add-Property -Name DateTime -TypeName NullableDateTimeProperty | `
+    Out-Null
+
 Add-PropertyCollection -Name TableProperties | `
     Out-Null
 
@@ -34,6 +41,7 @@ Add-Item -Name Object -Abstract | `
     Out-Null
 
 Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
+    Add-ChildNode -Name Properties -TypeName TableProperties | `
     Add-ChildNode -Name Fields -TypeName TableFields | `
     Out-Null
 
@@ -97,5 +105,5 @@ Add-Item -Name Parameter -Abstract | `
 Add-Item -Name ActionParameter -BaseTypeName Parameter | `
     Out-Null
 
-$ObjectModel | ConvertTo-CompilationUnit -Path 'c:\users\jhoek\desktop\foo\baz'
+$ObjectModel | ConvertTo-CompilationUnit -Path 'c:\users\jhoek\desktop\test'
 #($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
