@@ -5,9 +5,15 @@ $ErrorActionPreference = 'Stop'
 $ObjectModel = New-ObjectModel -Namespace 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
 $PSDefaultParameterValues['Add-*:ObjectModel'] = $ObjectModel
 
-Add-Item -Name Table | `
-    Add-Property -TypeName MultiLanguageProperty -Name CaptionML -Verbose | `
-    Add-Property -TypeName FieldListProperty -Name DataCaptionFields -Verbose | `
+Add-Item -Name Object -Abstract | `
+    Add-Identifier -Name ID -TypeName int | `
+    Add-Identifier -Name Name -TypeName string | `
+    Out-Null
+
+Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
+    Add-Property -TypeName MultiLanguageProperty -Name CaptionML | `
+    Add-Property -TypeName FieldListProperty -Name DataCaptionFields | `
+    Add-ChildNode -TypeName TableFields -Name Fields | `
     Out-Null
 
 <#
@@ -34,10 +40,6 @@ Add-Item -Name Application | `
     Add-ChildNode -TypeName MenuSuite | `
     Out-Null
 
-Add-Item -Name Object -Abstract | `
-    Add-Identifier -Name ID -TypeName int | `
-    Add-Identifier -Name Name -TypeName string | `
-    Out-Null
 
 Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
     Add-ChildNode -Name Properties -TypeName TableProperties | `
@@ -112,5 +114,5 @@ Add-Enum -Name MinOccurs -Values Once,Zero | Out-Null
 Add-Enum -Name MaxOccurs -Values Unbounded,Once | Out-Null
 #>
 
-#$ObjectModel | ConvertTo-CompilationUnit -Path 'c:\users\jhoek\desktop\test'
-($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
+$ObjectModel | ConvertTo-CompilationUnit -Path 'c:\users\jhoek\desktop\test'
+#($ObjectModel | ConvertTo-CompilationUnit).WriteTo([System.Console]::Out)
