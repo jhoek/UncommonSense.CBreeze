@@ -19,6 +19,7 @@ Add-Item -Name Application | `
 Add-Item -Name Object -Abstract | `
     Add-Identifier -Name ID -TypeName int | `
     Add-Identifier -Name Name -TypeName string | `
+    Add-ChildNode -TypeName ObjectProperties | `
     Out-Null
 
 Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
@@ -35,11 +36,13 @@ Add-PropertyType -Name NullableBooleanProperty -innerTypeName bool? -HasValueExp
 Add-PropertyType -Name NullableDateTimeProperty -InnerTypeName DateTime? -HasValueExpr 'Value.HasValue'
 Add-PropertyType -Name MultiLanguageProperty -InnerTypeName MultiLanguageValue -HasValueExpr 'Value.Any()'
 
-Add-PropertyCollection -Name ObjectProperties -Verbose| `
+Add-PropertyCollection -Name ObjectProperties -Verbose | `
     Add-Property -Name DateTime -TypeName NullableDateTimeProperty | `
     Add-Property -Name Modified -TypeName BooleanProperty | `
-    Add-Property -Name VersionList -TypeName VersionListProperty
+    Add-Property -Name VersionList -TypeName VersionListProperty | `
+    Out-Null
 
+<#
 Add-PropertyCollection -Name TableProperties | `
     Add-Property -TypeName MultiLanguageProperty -Name CaptionML | `
     Add-Property -TypeName FieldListProperty -Name DataCaptionFields | `
@@ -48,7 +51,7 @@ Add-PropertyCollection -Name TableProperties | `
 Add-PropertyCollection -Name CodeunitProperties | `
     Add-Property -TypeName NullableBooleanProperty -Name CFRONTMayUsePermissions | `
     Out-Null
-
+#>
 <#
 Add-PropertyCollection -Name ObjectProperties | `
     Add-Property -Name DateTime -TypeName NullableDateTimeProperty | `
