@@ -5,31 +5,7 @@ $ErrorActionPreference = 'Stop'
 $ObjectModel = New-ObjectModel -Namespace 'UncommonSense.CBreeze.ObjectModelBuilder.Demo'
 $PSDefaultParameterValues['Add-*:ObjectModel'] = $ObjectModel
 
-Add-Item -Name Object -Abstract | `
-    Add-Identifier -Name ID -TypeName int | `
-    Add-Identifier -Name Name -TypeName string | `
-    Out-Null
-
-Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
-    Add-Property -TypeName MultiLanguageProperty -Name CaptionML | `
-    Add-Property -TypeName FieldListProperty -Name DataCaptionFields | `
-    Add-ChildNode -TypeName TableFields -Name Fields | `
-    Out-Null
-
-<#
-Add-PropertyType -Name NullableBooleanProperty -InnerValue bool? -HasValueExpr Value.HasValue
-Add-PropertyType -Name NullableDateTimeProperty -InnerValue DateTime? -HasValueExpr Value.HasValue 
-
-Add-PropertyCollection -Name ObjectProperties | `
-    Add-Property -Name DateTime -TypeName NullableDateTimeProperty | `
-    Out-Null
-
-Add-PropertyCollection -Name TableProperties | `
-    Out-Null
-
-Add-PropertyCollection -Name CodeunitProperties | `
-    Out-Null
-
+# Items
 Add-Item -Name Application | `
     Add-ChildNode -TypeName Tables | `
     Add-ChildNode -TypeName Pages | `
@@ -39,6 +15,46 @@ Add-Item -Name Application | `
     Add-ChildNode -TypeName Queries | `
     Add-ChildNode -TypeName MenuSuite | `
     Out-Null
+
+Add-Item -Name Object -Abstract | `
+    Add-Identifier -Name ID -TypeName int | `
+    Add-Identifier -Name Name -TypeName string | `
+    Out-Null
+
+Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
+    Add-ChildNode -TypeName TableFields -Name Fields | `
+    Add-ChildNode -TypeName TableProperties -Name Properties | `
+    Out-Null
+
+Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer | `
+    Add-ChildNode -TypeName CodeunitProperties -Name Properties | `    
+    Out-Null
+
+Add-PropertyType -Name BooleanProperty -InnerTypeName bool -HasValueExpr 'Value';
+Add-PropertyType -Name NullableBooleanProperty -innerTypeName bool? -HasValueExpr 'Value.HasValue'
+Add-PropertyType -Name NullableDateTimeProperty -InnerTypeName DateTime? -HasValueExpr 'Value.HasValue'
+Add-PropertyType -Name MultiLanguageProperty -InnerTypeName MultiLanguageValue -HasValueExpr 'Value.Any()'
+
+Add-PropertyCollection -Name ObjectProperties -Verbose| `
+    Add-Property -Name DateTime -TypeName NullableDateTimeProperty | `
+    Add-Property -Name Modified -TypeName BooleanProperty | `
+    Add-Property -Name VersionList -TypeName VersionListProperty
+
+Add-PropertyCollection -Name TableProperties | `
+    Add-Property -TypeName MultiLanguageProperty -Name CaptionML | `
+    Add-Property -TypeName FieldListProperty -Name DataCaptionFields | `
+    Out-Null
+    
+Add-PropertyCollection -Name CodeunitProperties | `
+    Add-Property -TypeName NullableBooleanProperty -Name CFRONTMayUsePermissions | `
+    Out-Null
+
+<#
+Add-PropertyCollection -Name ObjectProperties | `
+    Add-Property -Name DateTime -TypeName NullableDateTimeProperty | `
+    Out-Null
+
+
 
 
 Add-Item -Name Table -BaseTypeName Object -CreateContainer | `

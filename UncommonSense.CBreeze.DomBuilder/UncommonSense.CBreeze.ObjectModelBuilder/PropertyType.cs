@@ -7,16 +7,22 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
     public class PropertyType : ObjectModelElement
     {
-        public PropertyType(string name, string innerValue)
+        public PropertyType(string name, string innerTypeName)
             : base(name)
         {
-            InnerValue = innerValue;
+            InnerTypeName = innerTypeName;
         }
 
-        public string InnerValue
+        public string InnerTypeName
         {
             get;
             internal set;
+        }
+
+        public string HasValueExpr
+        {
+            get;
+            set;
         }
     }
 }
