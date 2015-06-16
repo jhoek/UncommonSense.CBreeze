@@ -8,7 +8,8 @@ namespace CBreeze.NextGen
 {
     public class DateTimeParameter : Parameter
     {
-        public DateTimeParameter(int uid, string name) : base(uid, name)
+        public DateTimeParameter(int uid, string name)
+            : base(uid, name)
         {
         }
     }
