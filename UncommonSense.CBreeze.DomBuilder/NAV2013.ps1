@@ -29,6 +29,14 @@ Add-Item -Name Table -BaseTypeName Object -CreateContainer | `
 
 Add-Item -Name Codeunit -BaseTypeName Object -CreateContainer | `
     Add-ChildNode -TypeName CodeunitProperties -Name Properties | `    
+    Add-ChildNode -TypeName Code | `
+    Out-Null
+
+Add-Item -Name Code | `
+    Add-ChildNode -TypeName Documentation | `
+    Add-ChildNode -Typename Events | `
+    Add-ChildNode -TypeName Functions | `
+    Add-ChildNode -TypeName Variables | `
     Out-Null
 
 Add-PropertyType -Name BooleanProperty -InnerTypeName bool -HasValueExpr 'Value';
