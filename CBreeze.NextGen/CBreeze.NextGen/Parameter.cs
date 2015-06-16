@@ -55,6 +55,11 @@ namespace CBreeze.NextGen
             get;
             set;
         }
+
+        public abstract ParameterType Type
+        {
+            get;
+        }
 	}
 }
 
