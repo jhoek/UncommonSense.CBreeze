@@ -14,9 +14,12 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-		public abstract IEnumerable<INode> ChildNodes
+		public virtual IEnumerable<INode> ChildNodes
 		{
-			get;
+			get
+			{
+				yield break;
+			}
 		}
 	}
 }

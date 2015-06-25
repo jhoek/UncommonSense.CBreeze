@@ -11,14 +11,6 @@ namespace CBreeze.NextGen
 			Name = name;
 		}
 
-		public override IEnumerable<INode> ChildNodes
-		{
-			get
-			{
-				yield break;
-			}
-		}
-
 		public string GetKey()
 		{
 			return Name;
@@ -50,16 +42,16 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-        public string Dimensions
-        {
-            get;
-            set;
-        }
+		public string Dimensions
+		{
+			get;
+			set;
+		}
 
-        public abstract ParameterType Type
-        {
-            get;
-        }
+		public abstract ParameterType Type
+		{
+			get;
+		}
 	}
 }
 
