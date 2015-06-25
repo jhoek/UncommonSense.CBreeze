@@ -10,6 +10,18 @@ namespace CBreeze.NextGen
 		{
 		}
 
+		public Node ParentNode
+		{
+			get
+			{
+				return Value.ParentNode;
+			}
+			set
+			{
+				Value.ParentNode = value;
+			}
+		}
+
 		public override bool HasValue
 		{
 			get

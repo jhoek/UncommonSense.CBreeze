@@ -4,12 +4,13 @@ namespace CBreeze.NextGen
 {
 	public class PageProperties : Properties
 	{
-		private ActionListProperty actionList = new ActionListProperty("ActionList");
 		private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
+		private ActionListProperty actionList = new ActionListProperty("ActionList");
 
 		internal PageProperties(Node parentNode)
 			: base(parentNode)
 		{
+			actionList.ParentNode = ParentNode;
 		}
 
 		public MultiLanguageValue CaptionML

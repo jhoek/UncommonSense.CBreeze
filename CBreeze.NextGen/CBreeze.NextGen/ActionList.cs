@@ -4,8 +4,8 @@ namespace CBreeze.NextGen
 {
 	public class ActionList : KeyedContainer<int, PageActionBase>
 	{
-		public ActionList(Node parentNode)
-			: base(parentNode)
+		public ActionList()
+			: base(null)
 		{
 		}
 	}

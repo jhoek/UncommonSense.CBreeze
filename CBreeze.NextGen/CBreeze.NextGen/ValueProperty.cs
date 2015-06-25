@@ -20,14 +20,6 @@ namespace CBreeze.NextGen
 			get;
 			set;
 		}
-
-		public override IEnumerable<INode> ChildNodes
-		{
-			get
-			{
-				yield break;
-			}
-		}
 	}
 }
 

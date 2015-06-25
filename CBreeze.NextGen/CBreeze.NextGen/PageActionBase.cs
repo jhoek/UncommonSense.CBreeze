@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-	public abstract class PageActionBase : Node, IKeyedValue<int>, IEquatable<QueryElement>
+	public abstract class PageActionBase : Node, IKeyedValue<int>, IEquatable<PageActionBase>
 	{
 		public PageActionBase(int id, string name, int? indentationLevel)
 		{
@@ -27,7 +27,7 @@ namespace CBreeze.NextGen
 			return ID;
 		}
 
-		public bool Equals(QueryElement other)
+		public bool Equals(PageActionBase other)
 		{
 			if (other == null)
 				return false;
