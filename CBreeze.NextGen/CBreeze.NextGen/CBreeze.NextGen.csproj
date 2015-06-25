@@ -139,9 +139,6 @@
     <Compile Include="MinOccursProperty.cs" />
     <Compile Include="CalcFormula.cs" />
     <Compile Include="CalcFormulaMethod.cs" />
-    <Compile Include="ActionListProperty.cs" />
-    <Compile Include="ActionList.cs" />
-    <Compile Include="PageActionBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
