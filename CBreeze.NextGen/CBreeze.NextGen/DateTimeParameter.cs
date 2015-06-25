@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class DateTimeParameter : Parameter
-    {
-        public DateTimeParameter(int uid, string name)
-            : base(uid, name)
-        {
-        }
-    }
+	public class DateTimeParameter : Parameter
+	{
+		public DateTimeParameter(int uid, string name)
+			: base(uid, name)
+		{
+		}
+
+		public override ParameterType Type
+		{
+			get
+			{
+				return ParameterType.DateTime;
+			}
+		}
+	}
 }

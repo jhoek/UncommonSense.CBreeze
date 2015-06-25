@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public enum ParameterType
-    {
-        Automation
-
-    }
+	public enum ParameterType
+	{
+		Automation,
+		BigInteger,
+		Date,
+		DateFormula,
+		DateTime,
+		Integer,
+	}
 }

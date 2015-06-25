@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class DateFormulaParameter : Parameter
-    {
-        public DateFormulaParameter(int uid, string name)
-            : base(uid, name)
-        {
-        }
-    }
+	public class DateFormulaParameter : Parameter
+	{
+		public DateFormulaParameter(int uid, string name)
+			: base(uid, name)
+		{
+		}
+
+		public override ParameterType Type
+		{
+			get
+			{
+				return ParameterType.DateFormula;
+			}
+		}
+	}
 }
