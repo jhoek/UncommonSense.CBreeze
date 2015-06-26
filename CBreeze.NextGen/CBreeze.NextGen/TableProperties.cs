@@ -8,17 +8,17 @@ namespace CBreeze.NextGen
 	{
 		private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 		private FieldListProperty dataCaptionFields = new FieldListProperty("DataCaptionFields");
-		private NullableIntProperty lookupPageID = new NullableIntProperty("LookupPageID");
-		private NullableIntProperty drillDownPageID = new NullableIntProperty("DrillDownPageID");
-		private NullableBoolProperty dataPerCompany = new NullableBoolProperty("DataPerCompany");
+		private NullableValueProperty<int> lookupPageID = new NullableValueProperty<int>("LookupPageID");
+		private NullableValueProperty<int> drillDownPageID = new NullableValueProperty<int>("DrillDownPageID");
+		private NullableValueProperty<bool> dataPerCompany = new NullableValueProperty<bool>("DataPerCompany");
 		private StringProperty description = new StringProperty("Description");
-		private NullableBoolProperty linkedInTransaction = new NullableBoolProperty("LinkedInTransaction");
-		private NullableBoolProperty linkedObject = new NullableBoolProperty("LinkedObject");
+		private NullableValueProperty<bool> linkedInTransaction = new NullableValueProperty<bool>("LinkedInTransaction");
+		private NullableValueProperty<bool> linkedObject = new NullableValueProperty<bool>("LinkedObject");
 		private TriggerProperty onInsert = new TriggerProperty("OnInsert");
 		private TriggerProperty onModify = new TriggerProperty("OnModify");
 		private TriggerProperty onDelete = new TriggerProperty("OnDelete");
 		private TriggerProperty onRename = new TriggerProperty("OnRename");
-		private NullableBoolProperty pasteIsValid = new NullableBoolProperty("PasteIsValid");
+		private NullableValueProperty<bool> pasteIsValid = new NullableValueProperty<bool>("PasteIsValid");
 		private PermissionsProperty permissions = new PermissionsProperty("Permissions");
 
 		internal TableProperties(Node parentNode)

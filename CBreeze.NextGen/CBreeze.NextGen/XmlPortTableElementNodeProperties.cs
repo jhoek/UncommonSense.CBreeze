@@ -8,9 +8,9 @@ namespace CBreeze.NextGen
 {
 	public class XmlPortTableElementNodeProperties : Properties
 	{
-		private NullableBoolProperty autoReplace = new NullableBoolProperty("AutoReplace");
-		private NullableBoolProperty autoSave = new NullableBoolProperty("AutoSave");
-		private NullableBoolProperty autoUpdate = new NullableBoolProperty("AutoUpdate");
+		private NullableValueProperty<bool> autoReplace = new NullableValueProperty<bool>("AutoReplace");
+		private NullableValueProperty<bool> autoSave = new NullableValueProperty<bool>("AutoSave");
+		private NullableValueProperty<bool> autoUpdate = new NullableValueProperty<bool>("AutoUpdate");
 
 		internal XmlPortTableElementNodeProperties(Node parentNode)
 			: base(parentNode)

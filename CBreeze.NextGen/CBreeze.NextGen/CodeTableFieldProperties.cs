@@ -7,7 +7,7 @@ namespace CBreeze.NextGen
 	public class CodeTableFieldProperties : Properties
 	{
 		private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
-		private NullableBoolProperty notBlank = new NullableBoolProperty("NotBlank");
+		private NullableValueProperty<bool> notBlank = new NullableValueProperty<bool>("NotBlank");
 
 		internal CodeTableFieldProperties(Node parentNode)
 			: base(parentNode)

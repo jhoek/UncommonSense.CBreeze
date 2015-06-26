@@ -6,8 +6,8 @@ namespace CBreeze.NextGen
 {
 	public class ObjectProperties : IProperties, INode
 	{
-		private NullableDateTimeProperty dateTime = new NullableDateTimeProperty("DateTime");
-		private NullableBoolProperty modified = new NullableBoolProperty("Modified");
+		private NullableValueProperty<DateTime> dateTime = new NullableValueProperty<DateTime>("DateTime");
+		private NullableValueProperty<bool> modified = new NullableValueProperty<bool>("Modified");
 		private StringProperty versionList = new StringProperty("VersionList");
 
 		internal ObjectProperties(Node parentNode)

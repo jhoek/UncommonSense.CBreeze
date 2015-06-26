@@ -112,9 +112,6 @@
     <Compile Include="Parameter.cs" />
     <Compile Include="Parameters.cs" />
     <Compile Include="MultiLanguageProperty.cs" />
-    <Compile Include="NullableIntProperty.cs" />
-    <Compile Include="NullableBoolProperty.cs" />
-    <Compile Include="NullableDateTimeProperty.cs" />
     <Compile Include="StringProperty.cs" />
     <Compile Include="FieldList.cs" />
     <Compile Include="FieldListProperty.cs" />
@@ -136,13 +133,16 @@
     <Compile Include="XmlPortTextElementNode.cs" />
     <Compile Include="XmlPortTextElementNodeProperties.cs" />
     <Compile Include="MinOccurs.cs" />
-    <Compile Include="MinOccursProperty.cs" />
     <Compile Include="CalcFormula.cs" />
     <Compile Include="CalcFormulaMethod.cs" />
     <Compile Include="PageActionBase.cs" />
     <Compile Include="ActionList.cs" />
     <Compile Include="ActionListProperty.cs" />
     <Compile Include="PageActionContainer.cs" />
+    <Compile Include="PageActionType.cs" />
+    <Compile Include="PageActionContainerProperties.cs" />
+    <Compile Include="NullableValueProperty.cs" />
+    <Compile Include="ActionContainerType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
