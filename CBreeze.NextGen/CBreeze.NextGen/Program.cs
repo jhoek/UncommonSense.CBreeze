@@ -18,14 +18,14 @@ namespace CBreeze.NextGen
 			table.Properties.CaptionML.Add("ENU", table.Name);
 			table.Properties.DataPerCompany = false;
 			table.Properties.LookupPageID = 50001;
-            table.Properties.DrillDownPageID = 50001;
-            table.Properties.Description = "Oink";
+			table.Properties.DrillDownPageID = 50001;
+			table.Properties.Description = "Oink";
 			table.Properties.Permissions.Add(50001, new Permission());
-            table.Properties.PasteIsValid = true;
+			table.Properties.PasteIsValid = true;
 
-            var recordVariable = table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
-            var integerVariable = table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz"));
-            integerVariable.Dimensions = "1,2";
+			var recordVariable = table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
+			var integerVariable = table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz"));
+			integerVariable.Dimensions = "1,2";
 
 			var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
 			codeField.Properties.CaptionML.Add("ENU", codeField.Name);
@@ -37,22 +37,22 @@ namespace CBreeze.NextGen
 			integerField.Properties.AltSearchField = "Field20";
 			table.Properties.DataCaptionFields.Add(integerField.No);
 
-            var primaryKey = table.Keys.Add(new TableKey(codeField.No));
-            primaryKey.Properties.Clustered = true;
+			var primaryKey = table.Keys.Add(new TableKey(codeField.No));
+			primaryKey.Properties.Clustered = true;
 
-            var secundaryKey = table.Keys.Add(new TableKey(integerField.No));
+			var secundaryKey = table.Keys.Add(new TableKey(integerField.No));
 
-            table.FieldGroups.Add(new TableFieldGroup(1, "DropDown", codeField.No, integerField.No));
+			table.FieldGroups.Add(new TableFieldGroup(1, "DropDown", codeField.No, integerField.No));
 
-            var globalVariable = table.Code.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Vendor));
-            globalVariable.Temporary = true;
-            globalVariable.Dimensions = "1,2";
-            globalVariable.SecurityFiltering = SecurityFiltering.Validated;
+			var globalVariable = table.Code.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Vendor));
+			globalVariable.Temporary = true;
+			globalVariable.Dimensions = "1,2";
+			globalVariable.SecurityFiltering = SecurityFiltering.Validated;
 
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;
-            var integerParameter = function.Parameters.Add(new IntegerParameter(1000, "MyParameter"));
-            var dateTimeParameter = function.Parameters.Add(new DateTimeParameter(1001, "MyDateTimeParameter"));
+			var integerParameter = function.Parameters.Add(new IntegerParameter(1000, "MyParameter"));
+			var dateTimeParameter = function.Parameters.Add(new DateTimeParameter(1001, "MyDateTimeParameter"));
 
 			var variable = function.Variables.Add(new RecordVariable(1000, "MyVariable", 14));
 			variable.Temporary = true;
@@ -60,6 +60,9 @@ namespace CBreeze.NextGen
 			var cardPage = application.Pages.Add(new Page(50000, "Customer Group Card"));
 			cardPage.ObjectProperties.Modified = true;
 			cardPage.Properties.CaptionML.Add("ENU", cardPage.Name);
+
+			var pageActionContainer = cardPage.Properties.ActionList.Add(new PageActionContainer(1000, "Foo", 0));
+			var 
 
 			var containerControl = cardPage.Controls.Add(new ContainerPageControl(1));
 			containerControl.Properties.CaptionML.Add("ENU", "Foo");
@@ -72,22 +75,22 @@ namespace CBreeze.NextGen
 
 			var query = application.Queries.Add(new Query(50000, "Customer Groups"));
 			query.ObjectProperties.DateTime = DateTime.Now;
-            query.ObjectProperties.VersionList = "NAVJH1.00";
+			query.ObjectProperties.VersionList = "NAVJH1.00";
 
-            var root = query.Elements.Add(new QueryColumnElement(1, "Root", 0));
-            root.Properties.CaptionML.Add("ENU", "Foo");
+			var root = query.Elements.Add(new QueryColumnElement(1, "Root", 0));
+			root.Properties.CaptionML.Add("ENU", "Foo");
 
 			var xmlPort = application.XmlPorts.Add(new XmlPort(50000, "Export Customer Groups"));
 			xmlPort.ObjectProperties.DateTime = DateTime.Now;
-            xmlPort.ObjectProperties.VersionList = "NAVJH1.00";
+			xmlPort.ObjectProperties.VersionList = "NAVJH1.00";
 
-            var xmlPortRootNode = xmlPort.Nodes.Add(new XmlPortTableElementNode(1, "Foo", 0));
-            xmlPortRootNode.Properties.AutoReplace = true;
+			var xmlPortRootNode = xmlPort.Nodes.Add(new XmlPortTableElementNode(1, "Foo", 0));
+			xmlPortRootNode.Properties.AutoReplace = true;
 
-            var xmlPortTextElementNode = xmlPort.Nodes.Add(new XmlPortTextElementNode(2, "Baz", 1));
-            xmlPortTextElementNode.Properties.MaxOccurs = MaxOccurs.Unbounded;
+			var xmlPortTextElementNode = xmlPort.Nodes.Add(new XmlPortTextElementNode(2, "Baz", 1));
+			xmlPortTextElementNode.Properties.MaxOccurs = MaxOccurs.Unbounded;
 
-            var xmlPortFunction = xmlPort.Code.Functions.Add(new Function(1000, "MyFunction"));
+			var xmlPortFunction = xmlPort.Code.Functions.Add(new Function(1000, "MyFunction"));
 
 			PrintNode(application, 0);
 		}
