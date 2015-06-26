@@ -63,7 +63,7 @@ namespace CBreeze.NextGen
 			var pageActionContainer = cardPage.Properties.ActionList.Add(new PageActionContainer(1000, "Foo", 0));
 			pageActionContainer.Properties.ActionContainerType = ActionContainerType.RelatedInformation;
 
-			var pageActionGroup = cardPage.Properties.ActionList.Add(new PageActionGroup(1000, "Invalid ID", 1)); 
+			// FIXME: var pageActionGroup = cardPage.Properties.ActionList.Add(new PageActionGroup(1000, "Invalid ID", 1)); 
 
 			var containerControl = cardPage.Controls.Add(new ContainerPageControl(1));
 			containerControl.Properties.CaptionML.Add("ENU", "Foo");
@@ -73,6 +73,13 @@ namespace CBreeze.NextGen
 
 			var codeunit = application.Codeunits.Add(new Codeunit(50000, "Customer Group Mgt."));
 			codeunit.Properties.TableNo = 50000;
+			codeunit.Properties.CFrontMayUsePermissions = true;
+			codeunit.Properties.OnRun.Variables.Add(new IntegerVariable(1000, "Foo"));
+			codeunit.Properties.TestIsolation = TestIsolation.Codeunit;
+			codeunit.Properties.SubType = CodeunitSubType.TestRunner;
+			codeunit.Properties.SingleInstance = false;
+			codeunit.Properties.Permissions.Add(50000, new Permission() { Read = true, Delete = true });
+			codeunit.Properties.Permissions.Add(50001, new Permission() { Read = true, Insert = true });
 
 			var query = application.Queries.Add(new Query(50000, "Customer Groups"));
 			query.ObjectProperties.DateTime = DateTime.Now;

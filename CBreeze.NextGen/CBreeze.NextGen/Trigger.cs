@@ -6,22 +6,27 @@ namespace CBreeze.NextGen
 	{
 		public Trigger()
 		{
-            Variables = new Variables(this);
+			Variables = new Variables(this);
 		}
 
-        public Variables Variables
-        {
-            get;
-            internal set;
-        }
+		public Variables Variables
+		{
+			get;
+			internal set;
+		}
 
-        public override System.Collections.Generic.IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield return Variables;
-            }
-        }
-    }
+		public override string ToString()
+		{
+			return "Trigger";
+		}
+
+		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				yield return Variables;
+			}
+		}
+	}
 }
 

@@ -144,6 +144,8 @@
     <Compile Include="NullableValueProperty.cs" />
     <Compile Include="ActionContainerType.cs" />
     <Compile Include="AutoFormatType.cs" />
+    <Compile Include="CodeunitSubType.cs" />
+    <Compile Include="TestIsolation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

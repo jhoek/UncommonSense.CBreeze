@@ -19,7 +19,7 @@ namespace CBreeze.NextGen
 		private TriggerProperty onDelete = new TriggerProperty("OnDelete");
 		private TriggerProperty onRename = new TriggerProperty("OnRename");
 		private NullableValueProperty<bool> pasteIsValid = new NullableValueProperty<bool>("PasteIsValid");
-		private PermissionsProperty permissions = new PermissionsProperty("Permissions");
+		private PermissionsProperty permissions = new PermissionsProperty();
 
 		internal TableProperties(Node parentNode)
 			: base(parentNode)
