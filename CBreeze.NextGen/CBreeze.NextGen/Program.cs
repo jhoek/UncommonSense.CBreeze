@@ -23,9 +23,8 @@ namespace CBreeze.NextGen
 			table.Properties.Permissions.Add(50001, new Permission());
 			table.Properties.PasteIsValid = true;
 
-			var recordVariable = table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
-			var integerVariable = table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz"));
-			integerVariable.Dimensions = "1,2";
+			table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
+			table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz")).Dimensions = "1,2";
 
 			var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
 			codeField.Properties.CaptionML.Add("ENU", codeField.Name);
@@ -40,7 +39,7 @@ namespace CBreeze.NextGen
 			var primaryKey = table.Keys.Add(new TableKey(codeField.No));
 			primaryKey.Properties.Clustered = true;
 
-			var secundaryKey = table.Keys.Add(new TableKey(integerField.No));
+			table.Keys.Add(new TableKey(integerField.No));
 
 			table.FieldGroups.Add(new TableFieldGroup(1, "DropDown", codeField.No, integerField.No));
 
@@ -51,8 +50,8 @@ namespace CBreeze.NextGen
 
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;
-			var integerParameter = function.Parameters.Add(new IntegerParameter(1000, "MyParameter"));
-			var dateTimeParameter = function.Parameters.Add(new DateTimeParameter(1001, "MyDateTimeParameter"));
+			function.Parameters.Add(new IntegerParameter(1000, "MyParameter"));
+			function.Parameters.Add(new DateTimeParameter(1001, "MyDateTimeParameter"));
 
 			var variable = function.Variables.Add(new RecordVariable(1000, "MyVariable", 14));
 			variable.Temporary = true;
@@ -62,7 +61,9 @@ namespace CBreeze.NextGen
 			cardPage.Properties.CaptionML.Add("ENU", cardPage.Name);
 
 			var pageActionContainer = cardPage.Properties.ActionList.Add(new PageActionContainer(1000, "Foo", 0));
-			var 
+			pageActionContainer.Properties.ActionContainerType = ActionContainerType.RelatedInformation;
+
+			var pageActionGroup = cardPage.Properties.ActionList.Add(new PageActionGroup(1000, "Invalid ID", 1)); 
 
 			var containerControl = cardPage.Controls.Add(new ContainerPageControl(1));
 			containerControl.Properties.CaptionML.Add("ENU", "Foo");
@@ -91,6 +92,7 @@ namespace CBreeze.NextGen
 			xmlPortTextElementNode.Properties.MaxOccurs = MaxOccurs.Unbounded;
 
 			var xmlPortFunction = xmlPort.Code.Functions.Add(new Function(1000, "MyFunction"));
+			xmlPortFunction.Local = true;
 
 			PrintNode(application, 0);
 		}
