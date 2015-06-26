@@ -30,6 +30,16 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
+		public abstract PageActionType Type
+		{
+			get;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("Action {0} of type {1}", ID, Type);
+		}
+
 		public int GetKey()
 		{
 			return ID;

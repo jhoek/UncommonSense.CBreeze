@@ -10,7 +10,7 @@ namespace CBreeze.NextGen
 		{
 		}
 
-		public Node ParentNode
+		public new Node ParentNode
 		{
 			get
 			{
