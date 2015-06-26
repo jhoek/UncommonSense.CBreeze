@@ -29,6 +29,14 @@ namespace CBreeze.NextGen
 				return Value.Any();
 			}
 		}
+
+		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				return Value.ChildNodes;
+			}
+		}
 	}
 }
 
