@@ -48,6 +48,8 @@ namespace CBreeze.NextGen
 			globalVariable.Dimensions = "1,2";
 			globalVariable.SecurityFiltering = SecurityFiltering.Validated;
 
+			table.Code.Variables.Add(new BigIntegerVariable(1001, "Baz")).Dimensions = "1,2";
+
 			var function = table.Code.Functions.Add(new Function(1000, "MyFunction"));
 			function.Local = true;
 			function.Parameters.Add(new IntegerParameter(1000, "MyParameter"));

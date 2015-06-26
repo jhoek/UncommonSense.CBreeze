@@ -11,6 +11,7 @@ namespace CBreeze.NextGen
 		Action,
 		Automation,
 		BigInteger,
+		BigText,
 		Date,
 		DateFormula,
 		DateTime,

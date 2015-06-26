@@ -151,6 +151,12 @@
     <Compile Include="BlobTableFieldProperties.cs" />
     <Compile Include="ActionParameter.cs" />
     <Compile Include="ActionVariable.cs" />
+    <Compile Include="AutomationVariable.cs" />
+    <Compile Include="BigIntegerTableField.cs" />
+    <Compile Include="BigIntegerTableFieldProperties.cs" />
+    <Compile Include="BigIntegerVariable.cs" />
+    <Compile Include="BigTextParameter.cs" />
+    <Compile Include="BigTextVariable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
