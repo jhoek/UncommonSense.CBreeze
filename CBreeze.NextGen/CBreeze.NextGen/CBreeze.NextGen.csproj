@@ -143,6 +143,7 @@
     <Compile Include="PageActionContainerProperties.cs" />
     <Compile Include="NullableValueProperty.cs" />
     <Compile Include="ActionContainerType.cs" />
+    <Compile Include="AutoFormatType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
