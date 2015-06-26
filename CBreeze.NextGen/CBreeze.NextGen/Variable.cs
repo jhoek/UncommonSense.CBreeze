@@ -23,11 +23,16 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-        public string Dimensions
-        {
-            get;
-            set;
-        }
+		public abstract VariableType Type
+		{
+			get;
+		}
+
+		public string Dimensions
+		{
+			get;
+			set;
+		}
 
 		public override IEnumerable<INode> ChildNodes
 		{
@@ -44,11 +49,14 @@ namespace CBreeze.NextGen
 
 		public bool Equals(Variable other)
 		{
-			if (other == null) return false;
+			if (other == null)
+				return false;
 
-			if (other.UID == UID) return true;
+			if (other.UID == UID)
+				return true;
 
-			if (other.Name == Name) return true;
+			if (other.Name == Name)
+				return true;
 
 			return false;
 		}

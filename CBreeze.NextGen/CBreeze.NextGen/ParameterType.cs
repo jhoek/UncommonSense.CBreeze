@@ -8,6 +8,7 @@ namespace CBreeze.NextGen
 {
 	public enum ParameterType
 	{
+		Action,
 		Automation,
 		BigInteger,
 		Date,

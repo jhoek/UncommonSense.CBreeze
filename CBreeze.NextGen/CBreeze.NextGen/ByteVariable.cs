@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class ByteVariable : Variable
-    {
-        public ByteVariable(int uid, string name)
-            : base(uid, name)
-        {
-        }
-    }
+	public class ByteVariable : Variable
+	{
+		public ByteVariable(int uid, string name)
+			: base(uid, name)
+		{
+		}
+
+		public override VariableType Type
+		{
+			get
+			{
+				return VariableType.Byte;
+			}
+		}
+	}
 }

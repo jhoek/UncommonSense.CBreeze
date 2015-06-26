@@ -146,6 +146,11 @@
     <Compile Include="AutoFormatType.cs" />
     <Compile Include="CodeunitSubType.cs" />
     <Compile Include="TestIsolation.cs" />
+    <Compile Include="VariableType.cs" />
+    <Compile Include="BlobTableField.cs" />
+    <Compile Include="BlobTableFieldProperties.cs" />
+    <Compile Include="ActionParameter.cs" />
+    <Compile Include="ActionVariable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

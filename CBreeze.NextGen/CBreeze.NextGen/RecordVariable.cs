@@ -15,6 +15,14 @@ namespace CBreeze.NextGen
 			return string.Format("{3}{0}@{1} : Record {2}", Name, UID, SubType, Temporary.GetValueOrDefault(false) ? "TEMPORARY " : "");
 		}
 
+		public override VariableType Type
+		{
+			get
+			{
+				return VariableType.Record;
+			}
+		}
+
 		public int SubType
 		{
 			get;
@@ -27,11 +35,11 @@ namespace CBreeze.NextGen
 			set;
 		}
 
-        public SecurityFiltering SecurityFiltering
-        {
-            get;
-            set;
-        }
+		public SecurityFiltering SecurityFiltering
+		{
+			get;
+			set;
+		}
 	}
 }
 
