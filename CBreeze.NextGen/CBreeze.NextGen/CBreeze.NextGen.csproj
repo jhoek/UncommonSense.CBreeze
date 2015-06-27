@@ -157,6 +157,10 @@
     <Compile Include="BigIntegerVariable.cs" />
     <Compile Include="BigTextParameter.cs" />
     <Compile Include="BigTextVariable.cs" />
+    <Compile Include="BinaryParameter.cs" />
+    <Compile Include="BinaryTableField.cs" />
+    <Compile Include="BinaryTableFieldProperties.cs" />
+    <Compile Include="BinaryVariable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

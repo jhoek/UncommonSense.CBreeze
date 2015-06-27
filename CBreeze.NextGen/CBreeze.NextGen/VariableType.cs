@@ -8,6 +8,7 @@ namespace CBreeze.NextGen
 		Automation,
 		BigInteger,
 		BigText,
+		Binary,
 		Boolean,
 		Byte,
 		Integer,

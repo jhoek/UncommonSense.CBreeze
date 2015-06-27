@@ -12,6 +12,7 @@ namespace CBreeze.NextGen
 		Automation,
 		BigInteger,
 		BigText,
+		Binary,
 		Date,
 		DateFormula,
 		DateTime,
