@@ -15,6 +15,7 @@ namespace CBreeze.NextGen
 		Binary,
 		Boolean,
 		Byte,
+		Char,
 		Date,
 		DateFormula,
 		DateTime,

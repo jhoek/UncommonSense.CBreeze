@@ -165,6 +165,7 @@
     <Compile Include="BooleanTableField.cs" />
     <Compile Include="BooleanTableFieldProperties.cs" />
     <Compile Include="ByteParameter.cs" />
+    <Compile Include="CharParameter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
