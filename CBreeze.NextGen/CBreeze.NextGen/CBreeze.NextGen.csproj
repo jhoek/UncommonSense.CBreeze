@@ -161,6 +161,10 @@
     <Compile Include="BinaryTableField.cs" />
     <Compile Include="BinaryTableFieldProperties.cs" />
     <Compile Include="BinaryVariable.cs" />
+    <Compile Include="BooleanParameter.cs" />
+    <Compile Include="BooleanTableField.cs" />
+    <Compile Include="BooleanTableFieldProperties.cs" />
+    <Compile Include="ByteParameter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

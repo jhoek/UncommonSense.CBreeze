@@ -7,6 +7,7 @@ namespace CBreeze.NextGen
 		BigInteger,
 		Binary,
 		Blob,
+		Boolean,
 		Code,
 		Integer
 	}

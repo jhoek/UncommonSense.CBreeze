@@ -13,6 +13,8 @@ namespace CBreeze.NextGen
 		BigInteger,
 		BigText,
 		Binary,
+		Boolean,
+		Byte,
 		Date,
 		DateFormula,
 		DateTime,
