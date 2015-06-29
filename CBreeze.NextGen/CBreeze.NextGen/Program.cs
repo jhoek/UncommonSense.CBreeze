@@ -103,6 +103,8 @@ namespace CBreeze.NextGen
 			var xmlPortFunction = xmlPort.Code.Functions.Add(new Function(1000, "MyFunction"));
 			xmlPortFunction.Local = true;
 
+            var menuSuite = application.MenuSuites.Add(new MenuSuite(51, "My Add-On MenuSuite"));
+
 			PrintNode(application, 0);
 		}
 
