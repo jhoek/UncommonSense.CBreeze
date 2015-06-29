@@ -21,5 +21,6 @@ namespace CBreeze.NextGen
 		DateFormula,
 		DateTime,
 		Integer,
+        Query,
 	}
 }

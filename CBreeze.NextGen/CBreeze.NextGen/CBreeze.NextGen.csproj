@@ -61,6 +61,7 @@
     <Compile Include="QueryElement.cs" />
     <Compile Include="QueryElements.cs" />
     <Compile Include="QueryElementType.cs" />
+    <Compile Include="QueryParameter.cs" />
     <Compile Include="QueryProperties.cs" />
     <Compile Include="SecurityFiltering.cs" />
     <Compile Include="Table.cs" />
