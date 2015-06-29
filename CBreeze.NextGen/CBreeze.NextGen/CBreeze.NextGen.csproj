@@ -38,6 +38,7 @@
     <Compile Include="BlobSubType.cs" />
     <Compile Include="BooleanVariable.cs" />
     <Compile Include="ByteVariable.cs" />
+    <Compile Include="CodeunitVariable.cs" />
     <Compile Include="DateFormulaParameter.cs" />
     <Compile Include="DateParameter.cs" />
     <Compile Include="DateTimeParameter.cs" />
