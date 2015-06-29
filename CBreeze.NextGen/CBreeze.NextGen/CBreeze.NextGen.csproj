@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="AutomationParameter.cs" />
     <Compile Include="BigIntegerParameter.cs" />
+    <Compile Include="BlobSubType.cs" />
     <Compile Include="BooleanVariable.cs" />
     <Compile Include="ByteVariable.cs" />
     <Compile Include="DateFormulaParameter.cs" />
