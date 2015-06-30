@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4C4A951E-80F3-4C56-959C-845B2D3BA88F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>UncommonSense.CBreeze</RootNamespace>
+    <AssemblyName>UncommonSense.CBreeze.2013</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.ObjectModelBuilder\UncommonSense.CBreeze.ObjectModelBuilder.csproj">
+      <Project>{E09C65B4-E6ED-4504-8728-4D32FC187BA5}</Project>
+      <Name>UncommonSense.CBreeze.ObjectModelBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.ObjectModelWriter\UncommonSense.CBreeze.ObjectModelWriter.csproj">
+      <Project>{C45754F4-877D-4F23-BD09-08504822C4AB}</Project>
+      <Name>UncommonSense.CBreeze.ObjectModelWriter</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
