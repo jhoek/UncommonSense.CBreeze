@@ -15,7 +15,7 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
             Item = item;
         }
 
-        public Attribute Add(Attribute attribute)
+        public T Add<T>(T attribute) where T: Attribute
         {
             attribute.Item = Item;
             innerList.Add(attribute);
