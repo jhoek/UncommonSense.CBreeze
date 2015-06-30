@@ -5,11 +5,16 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
-    public class ChildNode : Attribute
-    {
-        public ChildNode(string typeName, string name)
-            : base(typeName, name)
-        {
-        }
-    }
+	public class ChildNode : Attribute
+	{
+		public ChildNode(string typeName)
+			: this(typeName, typeName)
+		{
+		}
+
+		public ChildNode(string typeName, string name)
+			: base(typeName, name)
+		{
+		}
+	}
 }
