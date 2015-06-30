@@ -42,10 +42,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerWriter.cs" />
     <Compile Include="EnumerationWriter.cs" />
     <Compile Include="ItemWriter.cs" />
     <Compile Include="ObjectModelWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyCollectionWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.ObjectModelBuilder\UncommonSense.CBreeze.ObjectModelBuilder.csproj">

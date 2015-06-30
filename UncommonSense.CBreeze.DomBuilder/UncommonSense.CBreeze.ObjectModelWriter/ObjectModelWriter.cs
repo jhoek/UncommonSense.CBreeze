@@ -15,6 +15,16 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
                 item.WriteToFolder(folderName);
             }
 
+            foreach (var container in objectModel.Elements.OfType<Container>())
+            {
+                container.WriteToFolder(folderName);
+            }
+
+            foreach (var propertyCollection in objectModel.Elements.OfType<PropertyCollection>())
+            {
+                propertyCollection.WriteToFolder(folderName);
+            }
+
             foreach (var enumeration in objectModel.Elements.OfType<Enumeration>())
             {
                 enumeration.WriteToFolder(folderName);
