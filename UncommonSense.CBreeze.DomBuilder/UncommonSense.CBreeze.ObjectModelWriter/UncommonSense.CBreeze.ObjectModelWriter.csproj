@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.ObjectModelBuilder\UncommonSense.CBreeze.ObjectModelBuilder.csproj">
-      <Project>{e09c65b4-e6ed-4504-8728-4d32fc187ba5}</Project>
+      <Project>{E09C65B4-E6ED-4504-8728-4D32FC187BA5}</Project>
       <Name>UncommonSense.CBreeze.ObjectModelBuilder</Name>
     </ProjectReference>
   </ItemGroup>
