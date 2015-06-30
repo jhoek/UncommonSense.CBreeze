@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,6 +31,16 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAttribute.cs" />
+    <Compile Include="AddChildNode.cs" />
+    <Compile Include="AddContainer.cs" />
+    <Compile Include="AddEnum.cs" />
+    <Compile Include="AddIdentifier.cs" />
+    <Compile Include="AddItem.cs" />
+    <Compile Include="AddProperty.cs" />
+    <Compile Include="AddPropertyCollection.cs" />
+    <Compile Include="AddPropertyType.cs" />
+    <Compile Include="DeriveItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
