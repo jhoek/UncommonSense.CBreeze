@@ -16,6 +16,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			@class.Abstract = item.Abstract;
 			@class.AddConstructor(item);
 			@class.OverrideToString(item);
+			@class.AddIdentifierProperties(item);
 			@class.AddChildNodeProperties(item);
 
 			new CompilationUnit(new Namespace(item.ObjectModel.Namespace, @class)).WriteTo(Path.Combine(folderName, @class.FileName));
@@ -23,12 +24,33 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 
 		public static void AddConstructor(this Class @class, Item item)
 		{
-			var ctor = new Constructor(Visibility.Public, item.Name, null, null);
+			ConstructorInitializer initializer = null;
+			var inheritedIdentifiers = item.InheritedAttributes.OfType<Identifier>();
 
+			if (inheritedIdentifiers.Any())
+			{
+				initializer = new ConstructorBaseInitializer();
+
+				foreach (var identifier in inheritedIdentifiers)
+				{
+					var argument = new ExpressionArgument(identifier.InternalName);
+					initializer.Arguments.Add(argument);
+				}
+			}
+
+			var ctor = new Constructor(Visibility.Public, item.Name, initializer, null);
+
+			// Parameters
 			foreach (var identifier in item.AllAttributes.OfType<Identifier>())
 			{
 				var parameter = new FixedParameter(identifier.InternalName, identifier.TypeName);
 				ctor.Parameters.Add(parameter);
+			}
+
+			// Statements
+			foreach (var identifier in item.Attributes.OfType<Identifier>())
+			{
+				ctor.CodeBlock.Statements.AddFormat("{0} = {1};", identifier.Name, identifier.InternalName);
 			}
 
 			foreach (var childNode in item.Attributes.OfType<ChildNode>())
@@ -45,6 +67,18 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			method.Overriding = Overriding.Override;
 			method.CodeBlock.Statements.AddFormat("return \"{0}\";", item.Name);
 			@class.Methods.Add(method);
+		}
+
+		public static void AddIdentifierProperties(this Class @class, Item item)
+		{
+			foreach (var identifier in item.Attributes.OfType<Identifier>())
+			{
+				var getter = new PropertyAccessor(AccessorVisibility.Unspecified, null);
+				var setter = new PropertyAccessor(AccessorVisibility.Internal, null);
+				var property = new UncommonSense.CSharp.Property(Visibility.Public, identifier.Name, identifier.TypeName, getter, setter);
+
+				@class.Properties.Add(property);
+			}
 		}
 
 		public static void AddChildNodeProperties(this Class @class, Item item)
