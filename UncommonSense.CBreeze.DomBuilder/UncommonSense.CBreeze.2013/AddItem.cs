@@ -8,32 +8,31 @@ using UncommonSense.CBreeze.ObjectModelBuilder;
 
 namespace UncommonSense.CBreeze
 {
-    public static partial class ExtensionMethods
-    {
-        public static Item AddItem(this ObjectModel objectModel, string name, string baseTypeName = null, bool @abstract = false, bool createContainer = false, string containerName = null)
-        {
-            var item = new Item(name);
-            item.BaseTypeName = baseTypeName;
-            item.Abstract = @abstract;
+	public static partial class ExtensionMethods
+	{
+		public static Item AddItem(this ObjectModel objectModel, string name, string baseTypeName = null, bool @abstract = false, bool createContainer = false, string containerName = null)
+		{
+			var item = new Item(name);
+			item.BaseTypeName = baseTypeName;
+			item.Abstract = @abstract;
 
-            if (createContainer)
-            {
-                var container = objectModel.AddContainer(name, containerName);
-                objectModel.Elements.Add(container);
-            }
+			if (createContainer)
+			{
+				objectModel.AddContainer(name, containerName);
+			}
 
-            if (@abstract)
-            {
-                objectModel.AddEnum(string.Format("{0}Type", name));
-            }
+			if (@abstract)
+			{
+				objectModel.AddEnum(string.Format("{0}Type", name));
+			}
 
-            if (!string.IsNullOrEmpty(baseTypeName))
-            {
-                var enumeration = objectModel.Elements.OfType<Enumeration>().First(e => e.Name == string.Format("{0}Type", baseTypeName));
-                enumeration.Values.Add(Regex.Replace(name, baseTypeName + "$", ""));
-            }
+			if (!string.IsNullOrEmpty(baseTypeName))
+			{
+				var enumeration = objectModel.Elements.OfType<Enumeration>().First(e => e.Name == string.Format("{0}Type", baseTypeName));
+				enumeration.Values.Add(Regex.Replace(name, baseTypeName + "$", ""));
+			}
 
-            return objectModel.Elements.Add(item);
-        }
-    }
+			return objectModel.Elements.Add(item);
+		}
+	}
 }
