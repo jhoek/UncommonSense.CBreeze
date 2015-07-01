@@ -27,8 +27,8 @@ namespace UncommonSense.CBreeze
             	.AddChildNode("Variables");
 
 			om.AddItem("Object", @abstract: true)
-                .AddIdentifier("int", "id")
-                .AddIdentifier("string", "name")
+                .AddIdentifier("int", "ID")
+                .AddIdentifier("string", "Name")
                 .AddChildNode("ObjectProperties");
 
 			om.AddItem("Table", "Object", createContainer: true)
@@ -80,6 +80,12 @@ namespace UncommonSense.CBreeze
 			om.AddItem("ActionParameter", "Parameter");
 			om.AddItem("AutomationParameter", "Parameter")
 				.AddIdentifier("string", "SubType");
+			om.AddItem("BigIntegerParameter", "Parameter");
+			om.AddItem("BigTextParameter", "Parameter");
+			om.AddItem("BinaryParameter", "Parameter")
+				.AddIdentifier("int", "DataLength");
+			om.AddItem("BooleanParameter", "Parameter");
+			om.AddItem("ByteParameter", "Parameter");
 			om.AddItem("IntegerParameter", "Parameter");
 
 			om.AddItem("Variable", @abstract: true)
@@ -88,6 +94,16 @@ namespace UncommonSense.CBreeze
             	.AddAttribute("string", "Dimensions");
 
 			om.AddItem("ActionVariable", "Variable");
+			om.AddItem("AutomationVariable", "Variable")
+				.AddIdentifier("string", "SubType")
+				.AddAttribute("bool?", "WithEvents");
+			om.AddItem("BigIntegerVariable", "Variable");
+			om.AddItem("BigTextVariable", "Variable");
+			om.AddItem("BinaryVariable", "Variable")
+				.AddIdentifier("int", "DataLength");
+			om.AddItem("BooleanVariable", "Variable")
+				.AddAttribute("bool?", "IncludeInDataset");
+			om.AddItem("ByteVariable", "Variable");
 			om.AddItem("CharVariable", "Variable");
 
 			om.AddItem("TableField", @abstract: true, createContainer: true)
@@ -95,11 +111,24 @@ namespace UncommonSense.CBreeze
 				.AddIdentifier("string", "Name")
 				.AddAttribute("bool?", "Enabled");
 
-			om.AddItem("BigIntegerTableField", "TableField");
-			om.AddItem("BinaryTableField", "TableField");
-			om.AddItem("BlobTableField", "TableField");
+			om.AddItem("BigIntegerTableField", "TableField")
+				.AddChildNode("BigIntegerTableFieldProperties", "Properties");
+			om.AddItem("BinaryTableField", "TableField")
+				.AddIdentifier("int", "DataLength")
+				.AddChildNode("BinaryTableFieldProperties", "Properties");
+			om.AddItem("BlobTableField", "TableField")
+				.AddChildNode("BlobTableFieldProperties", "Properties");
+			om.AddItem("BooleanTableField", "TableField")
+				.AddChildNode("BooleanTableFieldProperties", "Properties");
 			om.AddItem("DecimalTableField", "TableField");
 			om.AddItem("IntegerTableField", "TableField");
+
+			om.AddItem("CalcFormula")
+				.AddAttribute("string", "FieldName")
+				.AddAttribute("CalcFormulaMethod", "Method")
+				.AddAttribute("bool", "ReverseSign")
+				.AddAttribute("CalcFormulaTableFilter", "TableFilter")
+				.AddAttribute("string", "TableName");
 
 			om.AddEnum("BlobSubType", "UserDefined", "Bitmap", "Memo");
 
