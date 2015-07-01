@@ -20,12 +20,6 @@ namespace UncommonSense.CBreeze
                 .AddChildNode("Queries")
                 .AddChildNode("MenuSuites");
 
-			om.AddItem("Code")
-            	.AddChildNode("Documentation")
-            	.AddChildNode("Events")
-            	.AddChildNode("Functions")
-            	.AddChildNode("Variables");
-
 			om.AddItem("Object", @abstract: true)
                 .AddIdentifier("int", "ID")
                 .AddIdentifier("string", "Name")
@@ -34,22 +28,42 @@ namespace UncommonSense.CBreeze
 			om.AddItem("Table", "Object", createContainer: true)
 				.AddChildNode("TableProperties", "Properties")
                 .AddChildNode("TableFields", "Fields")
+                .AddChildNode("TableKeys", "Keys")
+                .AddChildNode("TableFieldGroups", "FieldGroups")
                 .AddChildNode("Code");
 
-			om.AddItem("Page", "Object", createContainer: true)
-            	.AddChildNode("PageProperties", "Properties");
+			om.AddItem("Page", "Object", createContainer: true)				
+            	.AddChildNode("PageProperties", "Properties")
+            	.AddChildNode("PageControls", "Controls")
+            	.AddChildNode("Code");
 
-			om.AddItem("Report", "Object", createContainer: true);
+			om.AddItem("Report", "Object", createContainer: true)
+				.AddChildNode("ReportProperties", "Properties")
+				.AddChildNode("ReportElements", "Elements")
+				.AddChildNode("ReportLabels", "Labels")
+				.AddChildNode("ReportRequestPage", "RequestPage")
+				.AddChildNode("Code")
+				.AddChildNode("RdlData");
 
 			om.AddItem("Codeunit", "Object", createContainer: true)
             	.AddChildNode("CodeunitProperties", "Properties")
             	.AddChildNode("Code");
 
-			om.AddItem("XmlPort", "Object", createContainer: true);
+			om.AddItem("XmlPort", "Object", createContainer: true)
+				.AddChildNode("XmlPortProperties", "Properties")
+				.AddChildNode("XmlPortNodes", "Nodes")
+				.AddChildNode("XmlPortRequestPage", "RequestPage")
+				.AddChildNode("Code");
 
 			om.AddItem("Query", "Object", createContainer: true, containerName: "Queries");
 
 			om.AddItem("MenuSuite", "Object", createContainer: true);
+
+			om.AddItem("Code")
+            	.AddChildNode("Documentation")
+            	.AddChildNode("Events")
+            	.AddChildNode("Functions")
+            	.AddChildNode("Variables");
 
 			om.AddPropertyType("BooleanProperty", "bool");
 			om.AddPropertyType("NullableBooleanProperty", "bool?");
