@@ -17,6 +17,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			@class.Abstract = item.Abstract;
 			@class.AddConstructor(item);
 			@class.OverrideToString(item);
+			@class.AddTypeProperty(item);
 			@class.AddAttributeProperties(item);
 
 			new CompilationUnit(new Namespace(item.ObjectModel.Namespace, @class)).WriteTo(Path.Combine(folderName, @class.FileName));
