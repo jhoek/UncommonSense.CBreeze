@@ -78,6 +78,8 @@ namespace UncommonSense.CBreeze
 				.AddAttribute("string", "Dimensions");
 
 			om.AddItem("ActionParameter", "Parameter");
+			om.AddItem("AutomationParameter", "Parameter")
+				.AddIdentifier("string", "SubType");
 			om.AddItem("IntegerParameter", "Parameter");
 
 			om.AddItem("Variable", @abstract: true)
@@ -86,6 +88,7 @@ namespace UncommonSense.CBreeze
             	.AddAttribute("string", "Dimensions");
 
 			om.AddItem("ActionVariable", "Variable");
+			om.AddItem("CharVariable", "Variable");
 
 			om.AddItem("TableField", @abstract: true, createContainer: true)
 				.AddIdentifier("int", "No")
