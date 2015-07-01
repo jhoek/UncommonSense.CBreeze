@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 				@enum.Values.Add(new EnumValue(value));
 			}
 
-			@enum.WriteTo(Path.Combine(folderName, @enum.FileName));
+			new CompilationUnit(new Namespace(enumeration.ObjectModel.Namespace, @enum)).WriteTo(Path.Combine(folderName, @enum.FileName));
 		}
 	}
 }
