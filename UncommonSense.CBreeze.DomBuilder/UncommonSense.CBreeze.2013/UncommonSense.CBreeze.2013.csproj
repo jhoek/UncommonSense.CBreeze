@@ -40,7 +40,6 @@
     <Compile Include="AddProperty.cs" />
     <Compile Include="AddPropertyCollection.cs" />
     <Compile Include="AddPropertyType.cs" />
-    <Compile Include="DeriveItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

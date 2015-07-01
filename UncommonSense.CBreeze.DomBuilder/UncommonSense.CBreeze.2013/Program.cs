@@ -1,6 +1,7 @@
 ﻿using System;
 using UncommonSense.CBreeze.ObjectModelBuilder;
 using UncommonSense.CBreeze.ObjectModelWriter;
+using System.IO;
 
 namespace UncommonSense.CBreeze
 {
@@ -8,7 +9,7 @@ namespace UncommonSense.CBreeze
 	{
 		public static void Main(string[] args)
 		{
-			var om = new ObjectModel("UncommonSense.CBreeze.70.Core");
+			var om = new ObjectModel("UncommonSense.CBreeze70.Core");
 
 			om.AddItem("Application")
                 .AddChildNode("Tables")
@@ -28,20 +29,27 @@ namespace UncommonSense.CBreeze
 			om.AddItem("Object", @abstract: true)
                 .AddIdentifier("int", "id")
                 .AddIdentifier("string", "name")
-                .AddChildNode("ObjectProperties")
-                .DeriveItem("Table", createContainer: true)
-                    .AddChildNode("TableProperties", "Properties")
-                    .AddChildNode("TableFields", "Fields")
-                    .AddChildNode("Code")
-                .AndDeriveItem("Page", createContainer: true)
-                	.AddChildNode("PageProperties", "Properties")
-                .AndDeriveItem("Report", createContainer: true)
-                .AndDeriveItem("Codeunit", createContainer: true)
-                	.AddChildNode("CodeunitProperties", "Properties")
-                	.AddChildNode("Code")
-                .AndDeriveItem("XmlPort", createContainer: true)
-                .AndDeriveItem("Query", createContainer: true, containerName: "Queries")
-                .AndDeriveItem("MenuSuite", createContainer: true);
+                .AddChildNode("ObjectProperties");
+
+			om.AddItem("Table", "Object", createContainer: true)
+				.AddChildNode("TableProperties", "Properties")
+                .AddChildNode("TableFields", "Fields")
+                .AddChildNode("Code");
+
+			om.AddItem("Page", "Object", createContainer: true)
+            	.AddChildNode("PageProperties", "Properties");
+
+			om.AddItem("Report", "Object", createContainer: true);
+
+			om.AddItem("Codeunit", "Object", createContainer: true)
+            	.AddChildNode("CodeunitProperties", "Properties")
+            	.AddChildNode("Code");
+
+			om.AddItem("XmlPort", "Object", createContainer: true);
+
+			om.AddItem("Query", "Object", createContainer: true, containerName: "Queries");
+
+			om.AddItem("MenuSuite", "Object", createContainer: true);
 
 			om.AddPropertyType("BooleanProperty", "bool");
 			om.AddPropertyType("NullableBooleanProperty", "bool?");
@@ -59,27 +67,43 @@ namespace UncommonSense.CBreeze
                 .AddProperty("MultiLanguageProperty", "CaptionML")
                 .AddProperty("FieldListProperty", "DataCaptionFields");
 
+			om.AddPropertyCollection("IntegerTableFieldProperties");
+
 			om.AddPropertyCollection("CodeunitProperties")
 				.AddProperty("NullableBooleanProperty", "CFRONTMayUsePermissions");
 
 			om.AddItem("Parameter", @abstract: true)
 				.AddIdentifier("int", "UID")
 				.AddIdentifier("string", "Name")
-				.AddAttribute("string", "Dimensions")
-                .DeriveItem("ActionParameter")
-                .AndDeriveItem("IntegerParameter");
+				.AddAttribute("string", "Dimensions");
+
+			om.AddItem("ActionParameter", "Parameter");
+			om.AddItem("IntegerParameter", "Parameter");
+
+			om.AddItem("Variable", @abstract: true)
+            	.AddIdentifier("int", "UID")
+            	.AddIdentifier("string", "Name")
+            	.AddAttribute("string", "Dimensions");
+
+			om.AddItem("ActionVariable", "Variable");
 
 			om.AddItem("TableField", @abstract: true, createContainer: true)
 				.AddIdentifier("int", "No")
 				.AddIdentifier("string", "Name")
-				.AddIdentifier("bool?", "Enabled")
-				.DeriveItem("BigIntegerTableField")
-				.AndDeriveItem("BinaryTableField")
-				.AndDeriveItem("BlobTableField");        
+				.AddAttribute("bool?", "Enabled");
+
+			om.AddItem("BigIntegerTableField", "TableField");
+			om.AddItem("BinaryTableField", "TableField");
+			om.AddItem("BlobTableField", "TableField");
+			om.AddItem("DecimalTableField", "TableField");
+			om.AddItem("IntegerTableField", "TableField");
 
 			om.AddEnum("BlobSubType", "UserDefined", "Bitmap", "Memo");
 
-			om.WriteToFolder(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+			var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+			var outputFolderName = Path.Combine(desktopFolderName, "cbreeze");
+			Directory.CreateDirectory(outputFolderName);
+			om.WriteToFolder(outputFolderName);
 		}
 	}
 }
