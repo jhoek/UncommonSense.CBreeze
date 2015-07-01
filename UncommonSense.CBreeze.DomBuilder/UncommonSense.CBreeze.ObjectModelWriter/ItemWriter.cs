@@ -16,8 +16,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			@class.Abstract = item.Abstract;
 			@class.AddConstructor(item);
 			@class.OverrideToString(item);
-			@class.AddIdentifierProperties(item);
-			@class.AddChildNodeProperties(item);
+			@class.AddAttributeProperties(item);
 
 			new CompilationUnit(new Namespace(item.ObjectModel.Namespace, @class)).WriteTo(Path.Combine(folderName, @class.FileName));
 		}
@@ -69,25 +68,15 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			@class.Methods.Add(method);
 		}
 
-		public static void AddIdentifierProperties(this Class @class, Item item)
+		public static void AddAttributeProperties(this Class @class, Item item)
 		{
-			foreach (var identifier in item.Attributes.OfType<Identifier>())
+			foreach (var attribute in item.Attributes)
 			{
-				var getter = new PropertyAccessor(AccessorVisibility.Unspecified, null);
-				var setter = new PropertyAccessor(AccessorVisibility.Internal, null);
-				var property = new UncommonSense.CSharp.Property(Visibility.Public, identifier.Name, identifier.TypeName, getter, setter);
+				var setterVisibility = (attribute is ChildNode || attribute is Identifier) ? AccessorVisibility.Internal : AccessorVisibility.Unspecified;
 
-				@class.Properties.Add(property);
-			}
-		}
-
-		public static void AddChildNodeProperties(this Class @class, Item item)
-		{
-			foreach (var childNode in item.Attributes.OfType<ChildNode>())
-			{
 				var getter = new PropertyAccessor(AccessorVisibility.Unspecified, null);
-				var setter = new PropertyAccessor(AccessorVisibility.Internal, null);
-				var property = new UncommonSense.CSharp.Property(Visibility.Public, childNode.Name, childNode.TypeName, getter, setter);
+				var setter = new PropertyAccessor(setterVisibility, null);
+				var property = new UncommonSense.CSharp.Property(Visibility.Public, attribute.Name, attribute.TypeName, getter, setter);
 
 				@class.Properties.Add(property);
 			}
