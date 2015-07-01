@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.ObjectModelBuilder;
 using UncommonSense.CSharp;
+using System.Text.RegularExpressions;
 
 namespace UncommonSense.CBreeze.ObjectModelWriter
 {
@@ -66,6 +67,20 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			method.Overriding = Overriding.Override;
 			method.CodeBlock.Statements.AddFormat("return \"{0}\";", item.Name);
 			@class.Methods.Add(method);
+		}
+
+		public static void AddTypeProperty(this Class @class, Item item)
+		{
+			if (!string.IsNullOrEmpty(item.BaseTypeName))
+			{
+				var codeBlock = new CodeBlock();
+				codeBlock.Statements.AddFormat("return {0}Type.{1};", item.BaseTypeName, Regex.Replace(item.Name, string.Format("{0}$", item.BaseTypeName), ""));
+				var getter = new PropertyAccessor(AccessorVisibility.Unspecified, codeBlock);
+
+				var property = new UncommonSense.CSharp.Property(Visibility.Public, "Type", string.Format("{0}Type", item.BaseTypeName), getter, null);
+				property.Overriding = Overriding.Override;
+				@class.Properties.Add(property);
+			}
 		}
 
 		public static void AddAttributeProperties(this Class @class, Item item)
