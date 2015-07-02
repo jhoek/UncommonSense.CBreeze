@@ -87,64 +87,47 @@ namespace UncommonSense.CBreeze
 			om.AddPropertyCollection("CodeunitProperties")
 				.AddProperty("NullableBooleanProperty", "CFRONTMayUsePermissions");
 
-			om.AddItem("Parameter", @abstract: true)
-				.AddIdentifier("int", "UID")
-				.AddIdentifier("string", "Name")
-				.AddAttribute("string", "Dimensions");
-
+			om.AddItem("Parameter", @abstract: true).AddIdentifier("int", "UID").AddIdentifier("string", "Name").AddAttribute("string", "Dimensions");
 			om.AddItem("ActionParameter", "Parameter");
-			om.AddItem("AutomationParameter", "Parameter")
-				.AddIdentifier("string", "SubType");
+			om.AddItem("AutomationParameter", "Parameter").AddIdentifier("string", "SubType");
 			om.AddItem("BigIntegerParameter", "Parameter");
 			om.AddItem("BigTextParameter", "Parameter");
-			om.AddItem("BinaryParameter", "Parameter")
-				.AddIdentifier("int", "DataLength");
+			om.AddItem("BinaryParameter", "Parameter").AddIdentifier("int", "DataLength");
 			om.AddItem("BooleanParameter", "Parameter");
 			om.AddItem("ByteParameter", "Parameter");
 			om.AddItem("IntegerParameter", "Parameter");
+			om.AddItem("TimeParameter", "Parameter");
+			om.AddItem("TransactionTypeParameter", "Parameter");
+			om.AddItem("VariantParameter", "Parameter");
+			om.AddItem("XmlPortParameter", "Parameter").AddIdentifier("int", "SubType");
 
-			om.AddItem("Variable", @abstract: true)
-            	.AddIdentifier("int", "UID")
-            	.AddIdentifier("string", "Name")
-            	.AddAttribute("string", "Dimensions");
-
+			om.AddItem("Variable", @abstract: true).AddIdentifier("int", "UID").AddIdentifier("string", "Name").AddAttribute("string", "Dimensions");
 			om.AddItem("ActionVariable", "Variable");
-			om.AddItem("AutomationVariable", "Variable")
-				.AddIdentifier("string", "SubType")
-				.AddAttribute("bool?", "WithEvents");
+			om.AddItem("AutomationVariable", "Variable").AddIdentifier("string", "SubType").AddAttribute("bool?", "WithEvents");
 			om.AddItem("BigIntegerVariable", "Variable");
 			om.AddItem("BigTextVariable", "Variable");
-			om.AddItem("BinaryVariable", "Variable")
-				.AddIdentifier("int", "DataLength");
-			om.AddItem("BooleanVariable", "Variable")
-				.AddAttribute("bool?", "IncludeInDataset");
+			om.AddItem("BinaryVariable", "Variable").AddIdentifier("int", "DataLength");
+			om.AddItem("BooleanVariable", "Variable").AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("ByteVariable", "Variable");
 			om.AddItem("CharVariable", "Variable");
-			om.AddItem("CodeunitVariable", "Variable")
-				.AddAttribute("int", "SubType");
-			om.AddItem("IntegerVariable", "Variable")
-				.AddAttribute("bool?", "IncludeInDataset");
-			om.AddItem("RecordVariable", "Variable")
-				.AddAttribute("int", "SubType")
-				.AddAttribute("bool?", "Temporary")
-				.AddAttribute("RecordSecurityFiltering", "SecurityFiltering"); // FIXME: Should be nullable?
+			om.AddItem("CodeunitVariable", "Variable").AddIdentifier("int", "SubType");
+			om.AddItem("IntegerVariable", "Variable").AddAttribute("bool?", "IncludeInDataset");
+			om.AddItem("RecordVariable", "Variable").AddIdentifier("int", "SubType").AddAttribute("bool?", "Temporary").AddAttribute("RecordSecurityFiltering", "SecurityFiltering"); // FIXME: Should be nullable?
+			om.AddItem("TextVariable", "Variable").AddIdentifier("int", "DataLength").AddAttribute("bool?", "IncludeInDataset");
+			om.AddItem("TimeVariable", "Variable");
+			om.AddItem("TransactionTypeVariable", "Variable");
+			om.AddItem("VariantVariable", "Variable");
+			om.AddItem("XmlPortVariable", "Variable").AddIdentifier("int", "SubType");
 
-			om.AddItem("TableField", @abstract: true, createContainer: true)
-				.AddIdentifier("int", "No")
-				.AddIdentifier("string", "Name")
-				.AddAttribute("bool?", "Enabled");
+			om.AddItem("TableField", @abstract: true, createContainer: true).AddIdentifier("int", "No").AddIdentifier("string", "Name").AddAttribute("bool?", "Enabled");
 
-			om.AddItem("BigIntegerTableField", "TableField")
-				.AddChildNode("BigIntegerTableFieldProperties", "Properties");
-			om.AddItem("BinaryTableField", "TableField")
-				.AddIdentifier("int", "DataLength")
-				.AddChildNode("BinaryTableFieldProperties", "Properties");
-			om.AddItem("BlobTableField", "TableField")
-				.AddChildNode("BlobTableFieldProperties", "Properties");
-			om.AddItem("BooleanTableField", "TableField")
-				.AddChildNode("BooleanTableFieldProperties", "Properties");
+			om.AddItem("BigIntegerTableField", "TableField").AddChildNode("BigIntegerTableFieldProperties", "Properties");
+			om.AddItem("BinaryTableField", "TableField").AddIdentifier("int", "DataLength").AddChildNode("BinaryTableFieldProperties", "Properties");
+			om.AddItem("BlobTableField", "TableField").AddChildNode("BlobTableFieldProperties", "Properties");
+			om.AddItem("BooleanTableField", "TableField").AddChildNode("BooleanTableFieldProperties", "Properties");
 			om.AddItem("DecimalTableField", "TableField");
 			om.AddItem("IntegerTableField", "TableField");
+			om.AddItem("TimeTableField", "TableField").AddChildNode("TimeTableFieldProperties", "Properties");
 
 			om.AddItem("CalcFormula")
 				.AddAttribute("string", "FieldName")
