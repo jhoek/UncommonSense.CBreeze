@@ -16,8 +16,8 @@ namespace UncommonSense.CBreeze
                 .AddChildNode("Pages")
                 .AddChildNode("Reports")
                 .AddChildNode("Codeunits")
+				.AddChildNode("Queries")
                 .AddChildNode("XmlPorts")
-                .AddChildNode("Queries")
                 .AddChildNode("MenuSuites");
 
 			om.AddItem("Object", @abstract: true)
@@ -119,6 +119,14 @@ namespace UncommonSense.CBreeze
 				.AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("ByteVariable", "Variable");
 			om.AddItem("CharVariable", "Variable");
+			om.AddItem("CodeunitVariable", "Variable")
+				.AddAttribute("int", "SubType");
+			om.AddItem("IntegerVariable", "Variable")
+				.AddAttribute("bool?", "IncludeInDataset");
+			om.AddItem("RecordVariable", "Variable")
+				.AddAttribute("int", "SubType")
+				.AddAttribute("bool?", "Temporary")
+				.AddAttribute("RecordSecurityFiltering", "SecurityFiltering"); // FIXME: Should be nullable?
 
 			om.AddItem("TableField", @abstract: true, createContainer: true)
 				.AddIdentifier("int", "No")

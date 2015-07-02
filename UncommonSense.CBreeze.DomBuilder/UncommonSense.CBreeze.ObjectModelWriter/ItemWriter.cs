@@ -13,14 +13,24 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 	{
 		public static void WriteToFolder(this Item item, string folderName)
 		{
-			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName);
+			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName ?? "Node");
 			@class.Abstract = item.Abstract;
 			@class.AddConstructor(item);
 			@class.OverrideToString(item);
 			@class.AddTypeProperty(item);
 			@class.AddAttributeProperties(item);
+			@class.OverrideChildNodes(item);
 
-			new CompilationUnit(new Namespace(item.ObjectModel.Namespace, @class)).WriteTo(Path.Combine(folderName, @class.FileName));
+			var @namespace = new Namespace(item.ObjectModel.Namespace, @class);
+			var compilationUnit = new CompilationUnit(@namespace);
+
+			if (item.Attributes.OfType<ChildNode>().Any())
+			{
+				var @using = new UsingNamespaceDirective("System.Collections.Generic");
+				compilationUnit.UsingDirectives.Add(@using);
+			}
+
+			compilationUnit.WriteTo(Path.Combine(folderName, @class.FileName));
 		}
 
 		public static void AddConstructor(this Class @class, Item item)
@@ -94,6 +104,26 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 				var setter = new PropertyAccessor(setterVisibility, null);
 				var property = new UncommonSense.CSharp.Property(Visibility.Public, attribute.Name, attribute.TypeName, getter, setter);
 
+				@class.Properties.Add(property);
+			}
+		}
+
+		public static void OverrideChildNodes(this Class @class, Item item)
+		{
+			var childNodes = item.Attributes.OfType<ChildNode>();
+
+			if (childNodes.Any())
+			{
+				var codeBlock = new CodeBlock();
+
+				foreach (var childNode in childNodes)
+				{
+					codeBlock.Statements.AddFormat("yield return {0};", childNode.Name);		
+				}
+
+				var getter = new PropertyAccessor(AccessorVisibility.Unspecified, codeBlock);
+				var property = new UncommonSense.CSharp.Property(Visibility.Public, "ChildNodes", "IEnumerable<INode>", getter, null);
+				property.Overriding = Overriding.Override;
 				@class.Properties.Add(property);
 			}
 		}

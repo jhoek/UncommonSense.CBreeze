@@ -12,8 +12,9 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 	{
 		public static void WriteToFolder(this Container container, string folderName)
 		{
-			var @class = new Class(Visibility.Public, container.Name, string.Format("Container<int,{0}>", container.ItemTypeName));
+			var @class = new Class(Visibility.Public, container.Name, string.Format("KeyedContainer<int,{0}>", container.ItemTypeName));
 			@class.AddConstructor(container);
+			@class.OverrideToString(container);
 
 			new CompilationUnit(new Namespace(container.ObjectModel.Namespace, @class)).WriteTo(Path.Combine(folderName, @class.FileName));
 		}
