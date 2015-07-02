@@ -1,12 +1,24 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public class AutomationVariable : Variable
 	{
-		public AutomationVariable(int uid, string name, string subType) : base(uid, name)
+		public AutomationVariable(int uid, string name, string subType)
+			: base(uid, name)
 		{
 			SubType = subType;
+		}
+
+        public override string ToString()
+        {
+            return "AutomationVariable";
+        }
+        
+		public override VariableType Type
+		{
+			get
+			{
+				return VariableType.Automation;
+			}
 		}
 
 		public string SubType
@@ -20,14 +32,5 @@ namespace CBreeze.NextGen
 			get;
 			set;
 		}
-
-		public override VariableType Type
-		{
-			get
-			{
-				return VariableType.Automation;
-			}
-		}
 	}
 }
-

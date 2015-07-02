@@ -23,7 +23,7 @@ namespace CBreeze.NextGen
 			table.Properties.Permissions.Add(50001, new Permission());
 			table.Properties.PasteIsValid = true;
 
-			table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Customer));
+			table.Properties.OnInsert.Variables.Add(new RecordVariable(1000, "Foo", 27));
 			table.Properties.OnInsert.Variables.Add(new IntegerVariable(1001, "Baz")).Dimensions = "1,2";
 
 			var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
@@ -43,7 +43,7 @@ namespace CBreeze.NextGen
 
 			table.FieldGroups.Add(new TableFieldGroup(1, "DropDown", codeField.No, integerField.No));
 
-			var globalVariable = table.Code.Variables.Add(new RecordVariable(1000, "Foo", BaseAppTableID.Vendor));
+			var globalVariable = table.Code.Variables.Add(new RecordVariable(1000, "Foo", 21));
 			globalVariable.Temporary = true;
 			globalVariable.Dimensions = "1,2";
 			globalVariable.SecurityFiltering = SecurityFiltering.Validated;
@@ -103,7 +103,7 @@ namespace CBreeze.NextGen
 			var xmlPortFunction = xmlPort.Code.Functions.Add(new Function(1000, "MyFunction"));
 			xmlPortFunction.Local = true;
 
-            var menuSuite = application.MenuSuites.Add(new MenuSuite(51, "My Add-On MenuSuite"));
+			var menuSuite = application.MenuSuites.Add(new MenuSuite(51, "My Add-On MenuSuite"));
 
 			PrintNode(application, 0);
 		}

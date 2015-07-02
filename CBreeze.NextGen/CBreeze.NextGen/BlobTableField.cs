@@ -24,14 +24,6 @@ namespace CBreeze.NextGen
 			}
 		}
 
-		public override string TypeName
-		{
-			get
-			{
-				return "BLOB";
-			}
-		}
-
 		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
 		{
 			get

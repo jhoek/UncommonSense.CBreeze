@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace CBreeze.NextGen
 {
@@ -19,20 +18,6 @@ namespace CBreeze.NextGen
 		public override string ToString()
 		{
 			return "Application";
-		}
-
-		public override IEnumerable<INode> ChildNodes
-		{
-			get
-			{
-				yield return Tables;
-				yield return Pages;
-				yield return Reports;
-				yield return Codeunits;
-                yield return Queries;
-				yield return XmlPorts;
-                yield return MenuSuites;
-			}
 		}
 
 		public Tables Tables
@@ -59,11 +44,11 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-        public Queries Queries
-        {
-            get;
-            internal set;
-        }
+		public Queries Queries
+		{
+			get;
+			internal set;
+		}
 
 		public XmlPorts XmlPorts
 		{
@@ -71,11 +56,24 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-        public MenuSuites MenuSuites
-        {
-            get;
-            internal set;
-        }
+		public MenuSuites MenuSuites
+		{
+			get;
+			internal set;
+		}
+
+		public override IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				yield return Tables;
+				yield return Pages;
+				yield return Reports;
+				yield return Codeunits;
+				yield return Queries;
+				yield return XmlPorts;
+				yield return MenuSuites;
+			}
+		}
 	}
 }
-

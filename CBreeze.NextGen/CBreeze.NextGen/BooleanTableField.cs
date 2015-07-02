@@ -23,14 +23,6 @@ namespace CBreeze.NextGen
 			get;
 			internal set;
 		}
-
-		public override string TypeName
-		{
-			get
-			{
-				return "Boolean";
-			}
-		}
 	}
 }
 

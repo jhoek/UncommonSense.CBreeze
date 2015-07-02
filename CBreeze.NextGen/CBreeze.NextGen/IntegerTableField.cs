@@ -31,14 +31,6 @@ namespace CBreeze.NextGen
 				yield return Properties;
 			}
 		}
-
-		public override string TypeName
-		{
-			get
-			{
-				return "Integer";
-			}
-		}
 	}
 }
 

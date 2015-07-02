@@ -12,7 +12,7 @@ namespace CBreeze.NextGen
 
 		public override string ToString()
 		{
-			return string.Format("Field {0} {1} : {2}", No, Name, TypeName);
+			return string.Format("Field {0} {1} : {2}", No, Name, Type);
 		}
 
 		public abstract TableFieldType Type
@@ -38,15 +38,6 @@ namespace CBreeze.NextGen
 		{
 			get;
 			internal set;
-		}
-
-		/// <summary>
-		/// Gets the name of the type. Where relevant, includes length.
-		/// </summary>
-		/// <value>The name of the type.</value>
-		public abstract string TypeName
-		{
-			get;
 		}
 
 		public int GetKey()

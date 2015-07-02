@@ -98,7 +98,6 @@
     <Compile Include="RecordVariable.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="Function.cs" />
-    <Compile Include="BaseAppTableID.cs" />
     <Compile Include="Tables.cs" />
     <Compile Include="Pages.cs" />
     <Compile Include="Reports.cs" />
@@ -170,6 +169,7 @@
     <Compile Include="ByteParameter.cs" />
     <Compile Include="CharParameter.cs" />
     <Compile Include="CodeunitParameter.cs" />
+    <Compile Include="CharVariable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public class XmlPorts : KeyedContainer<int, XmlPort>
 	{
-		internal XmlPorts(Node parentNode) : base(parentNode)
+		internal XmlPorts(Node parentNode)
+			: base(parentNode)
 		{
 		}
 
@@ -14,4 +13,3 @@ namespace CBreeze.NextGen
 		}
 	}
 }
-

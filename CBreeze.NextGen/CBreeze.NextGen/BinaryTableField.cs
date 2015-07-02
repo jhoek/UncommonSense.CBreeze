@@ -31,14 +31,6 @@ namespace CBreeze.NextGen
 			}
 		}
 
-		public override string TypeName
-		{
-			get
-			{
-				return string.Format("Binary[{0}]", DataLength);
-			}
-		}
-
 		public override IEnumerable<INode> ChildNodes
 		{
 			get

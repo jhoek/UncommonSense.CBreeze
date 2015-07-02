@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
     public enum VariableType
     {
@@ -11,9 +9,9 @@ namespace CBreeze.NextGen
         Binary,
         Boolean,
         Byte,
+        Char,
         Codeunit,
         Integer,
         Record,
     }
 }
-

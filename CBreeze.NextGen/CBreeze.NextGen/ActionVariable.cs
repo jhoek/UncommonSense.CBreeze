@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public class ActionVariable : Variable
 	{
@@ -9,6 +7,11 @@ namespace CBreeze.NextGen
 		{
 		}
 
+        public override string ToString()
+        {
+            return "ActionVariable";
+        }
+        
 		public override VariableType Type
 		{
 			get

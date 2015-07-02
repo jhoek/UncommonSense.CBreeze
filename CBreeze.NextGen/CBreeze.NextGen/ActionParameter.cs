@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public class ActionParameter : Parameter
 	{
@@ -9,6 +7,11 @@ namespace CBreeze.NextGen
 		{
 		}
 
+        public override string ToString()
+        {
+            return "ActionParameter";
+        }
+        
 		public override ParameterType Type
 		{
 			get
@@ -18,4 +21,3 @@ namespace CBreeze.NextGen
 		}
 	}
 }
-

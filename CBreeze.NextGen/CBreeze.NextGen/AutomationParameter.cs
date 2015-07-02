@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
     public class AutomationParameter : Parameter
     {
@@ -14,18 +8,23 @@ namespace CBreeze.NextGen
             SubType = subType;
         }
 
-        public string SubType
+        public override string ToString()
         {
-            get;
-            internal set;
+            return "AutomationParameter";
         }
-
+        
         public override ParameterType Type
         {
             get
             {
                 return ParameterType.Automation;
             }
+        }
+        
+        public string SubType
+        {
+            get;
+            internal set;
         }
     }
 }

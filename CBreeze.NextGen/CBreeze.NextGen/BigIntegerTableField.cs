@@ -1,12 +1,18 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
 	public class BigIntegerTableField : TableField
 	{
-		public BigIntegerTableField(int id, string name) : base(id, name)
-		{
+		public BigIntegerTableField(int no, string name)
+			: base(no, name)
+		{ 
 			Properties = new BigIntegerTableFieldProperties(this);
+		}
+
+		public override string ToString()
+		{
+			return "BigIntegerTableField";
 		}
 
 		public override TableFieldType Type
@@ -23,13 +29,12 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-		public override string TypeName
+		public override IEnumerable<INode> ChildNodes
 		{
 			get
 			{
-				return "BigInteger";
+				yield return Properties;
 			}
 		}
 	}
 }
-

@@ -38,14 +38,6 @@ namespace CBreeze.NextGen
 				yield return Properties;
 			}
 		}
-
-		public override string TypeName
-		{
-			get
-			{
-				return string.Format("{0}[{1}]", Type, Length);
-			}
-		}
 	}
 }
 
