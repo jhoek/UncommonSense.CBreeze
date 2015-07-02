@@ -125,6 +125,9 @@ namespace UncommonSense.CBreeze
 			om.AddItem("InstreamVariable", "Variable");
 			om.AddItem("IntegerVariable", "Variable").AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("KeyRefVariable", "Variable");
+			om.AddItem("OcxVariable", "Variable").AddIdentifier("string", "SubType");
+			om.AddItem("OptionVariable", "Variable").AddAttribute("string", "OptionString");
+			om.AddItem("OutstreamVariable", "Variable");
 			om.AddItem("RecordVariable", "Variable").AddIdentifier("int", "SubType").AddAttribute("bool?", "Temporary").AddAttribute("RecordSecurityFiltering", "SecurityFiltering"); // FIXME: Should be nullable?
 			om.AddItem("TextVariable", "Variable").AddIdentifier("int", "DataLength").AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("TimeVariable", "Variable");
