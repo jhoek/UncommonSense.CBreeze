@@ -110,8 +110,21 @@ namespace UncommonSense.CBreeze
 			om.AddItem("BooleanVariable", "Variable").AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("ByteVariable", "Variable");
 			om.AddItem("CharVariable", "Variable");
+			om.AddItem("CodeVariable", "Variable").AddIdentifier("int?", "DataLength").AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("CodeunitVariable", "Variable").AddIdentifier("int", "SubType");
+			om.AddItem("DateVariable", "Variable");
+			om.AddItem("DateFormulaVariable", "Variable");
+			om.AddItem("DateTimeVariable", "Variable");
+			om.AddItem("DecimalVariable", "Variable");
+			om.AddItem("DialogVariable", "Variable");
+			om.AddItem("DotNetVariable", "Variable").AddIdentifier("string", "SubType").AddAttribute("bool?", "RunOnClient").AddAttribute("bool?", "WithEvents"); 
+			om.AddItem("DurationVariable", "Variable");
+			om.AddItem("FieldRefVariable", "Variable");
+			om.AddItem("FileVariable", "Variable");
+			om.AddItem("GuidVariable", "Variable");
+			om.AddItem("InstreamVariable", "Variable");
 			om.AddItem("IntegerVariable", "Variable").AddAttribute("bool?", "IncludeInDataset");
+			om.AddItem("KeyRefVariable", "Variable");
 			om.AddItem("RecordVariable", "Variable").AddIdentifier("int", "SubType").AddAttribute("bool?", "Temporary").AddAttribute("RecordSecurityFiltering", "SecurityFiltering"); // FIXME: Should be nullable?
 			om.AddItem("TextVariable", "Variable").AddIdentifier("int", "DataLength").AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("TimeVariable", "Variable");
