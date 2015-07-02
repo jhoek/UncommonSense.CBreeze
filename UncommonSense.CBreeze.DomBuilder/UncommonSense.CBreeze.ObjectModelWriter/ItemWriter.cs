@@ -14,6 +14,12 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 		public static void WriteToFolder(this Item item, string folderName)
 		{
 			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName ?? "Node");
+
+			foreach (var interfaceName in item.ImplementedInterfaces)
+			{
+				@class.ImplementedInterfaces.Add(new ImplementedInterface(interfaceName));
+			}
+
 			@class.Abstract = item.Abstract;
 			@class.AddConstructor(item);
 			@class.OverrideToString(item);
@@ -115,6 +121,12 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			if (childNodes.Any())
 			{
 				var codeBlock = new CodeBlock();
+
+				codeBlock.Statements.Add("foreach(var childNode in base.ChildNodes)");
+				codeBlock.Statements.Add("{");
+				codeBlock.Statements.Add("    yield return childNode;");
+				codeBlock.Statements.Add("}");
+				codeBlock.Statements.Add("");
 
 				foreach (var childNode in childNodes)
 				{

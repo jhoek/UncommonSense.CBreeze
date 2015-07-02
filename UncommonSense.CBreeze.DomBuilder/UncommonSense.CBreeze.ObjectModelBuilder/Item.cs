@@ -8,15 +8,20 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 {
 	public class Item : ObjectModelElement
 	{
-		public Item(string name, params Attribute[] attributes) : this(name, null, attributes)
+		public Item(string name, params Attribute[] attributes)
+			: this(name, null, attributes)
 		{
 		}
 
-		public Item(string name, string baseTypeName, params Attribute[] attributes) : base(name)
+		public Item(string name, string baseTypeName, params Attribute[] attributes)
+			: base(name)
 		{
 			BaseTypeName = baseTypeName;
+
 			Attributes = new Attributes(this);
 			Attributes.AddRange(attributes);
+
+			ImplementedInterfaces = new List<string>();
 		}
 
 		public bool Abstract
@@ -31,35 +36,35 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 			internal set;
 		}
 
-        public IEnumerable<Attribute> InheritedAttributes
-        {
-            get
-            {
-                if (BaseType != null)
-                {
-                    foreach (var attribute in BaseType.AllAttributes)
-                    {
-                        yield return attribute;
-                    }
-                }
-            }
-        }
+		public IEnumerable<Attribute> InheritedAttributes
+		{
+			get
+			{
+				if (BaseType != null)
+				{
+					foreach (var attribute in BaseType.AllAttributes)
+					{
+						yield return attribute;
+					}
+				}
+			}
+		}
 
-        public IEnumerable<Attribute> AllAttributes
-        {
-            get
-            {
-                foreach (var attribute in InheritedAttributes)
-                {
-                    yield return attribute;
-                }
+		public IEnumerable<Attribute> AllAttributes
+		{
+			get
+			{
+				foreach (var attribute in InheritedAttributes)
+				{
+					yield return attribute;
+				}
 
-                foreach (var attribute in Attributes)
-                {
-                    yield return attribute;
-                }
-            }
-        }
+				foreach (var attribute in Attributes)
+				{
+					yield return attribute;
+				}
+			}
+		}
 
 		public Item BaseType
 		{
@@ -73,6 +78,12 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 		{
 			get;
 			set;
+		}
+
+		public List<string> ImplementedInterfaces
+		{
+			get;
+			internal set;
 		}
 	}
 }

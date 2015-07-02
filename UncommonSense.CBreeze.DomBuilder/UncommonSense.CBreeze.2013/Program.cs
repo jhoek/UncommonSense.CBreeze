@@ -26,6 +26,7 @@ namespace UncommonSense.CBreeze
                 .AddChildNode("ObjectProperties");
 
 			om.AddItem("Table", "Object", createContainer: true)
+				.Implements("IEquatable<Table>")
 				.AddChildNode("TableProperties", "Properties")
                 .AddChildNode("TableFields", "Fields")
                 .AddChildNode("TableKeys", "Keys")
