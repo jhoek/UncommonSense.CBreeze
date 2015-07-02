@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
@@ -57,7 +56,11 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				yield return ObjectProperties;
+                foreach(var childNode in base.ChildNodes)
+                {
+                    yield return childNode;
+                }
+                
 				yield return Properties;
 				yield return Fields;
 				yield return Keys;
@@ -81,4 +84,3 @@ namespace CBreeze.NextGen
 		}
 	}
 }
-
