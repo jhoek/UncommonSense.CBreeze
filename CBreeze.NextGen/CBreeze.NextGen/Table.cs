@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace CBreeze.NextGen
 {
@@ -34,17 +35,17 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-        public TableKeys Keys
-        {
-            get;
-            internal set;
-        }
+		public TableKeys Keys
+		{
+			get;
+			internal set;
+		}
 
-        public TableFieldGroups FieldGroups
-        {
-            get;
-            internal set;
-        }
+		public TableFieldGroups FieldGroups
+		{
+			get;
+			internal set;
+		}
 
 		public Code Code
 		{
@@ -56,10 +57,10 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-                foreach(var childNode in base.ChildNodes)
-                {
-                    yield return childNode;
-                }
+				foreach (var childNode in base.ChildNodes)
+				{
+					yield return childNode;
+				}
                 
 				yield return Properties;
 				yield return Fields;

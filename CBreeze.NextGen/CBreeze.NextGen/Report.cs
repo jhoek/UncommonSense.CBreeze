@@ -5,8 +5,8 @@ namespace CBreeze.NextGen
 {
 	public class Report: Object, IEquatable<Report>
 	{
-		public Report(int id, string name) :
-			base(id, name)
+		public Report(int id, string name)
+			: base(id, name)
 		{
 		}
 
@@ -22,7 +22,10 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				yield break;
+				foreach (var childNode in ChildNodes)
+				{
+					yield return childNode;
+				}
 			}
 		}
 

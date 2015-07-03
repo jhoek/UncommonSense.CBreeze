@@ -6,65 +6,69 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class Query : Object, IEquatable<Query>
-    {
-        public Query(int id, string name)
-            : base(id, name)
-        {
-            Properties = new QueryProperties(this);
-            Elements = new QueryElements(this);
-            Code = new Code(this);
-        }
+	public class Query : Object, IEquatable<Query>
+	{
+		public Query(int id, string name)
+			: base(id, name)
+		{
+			Properties = new QueryProperties(this);
+			Elements = new QueryElements(this);
+			Code = new Code(this);
+		}
 
-        public override ObjectType Type
-        {
-            get
-            {
-                return ObjectType.Query;
-            }
-        }
+		public override ObjectType Type
+		{
+			get
+			{
+				return ObjectType.Query;
+			}
+		}
 
-        public QueryProperties Properties
-        {
-            get;
-            internal set;
-        }
+		public QueryProperties Properties
+		{
+			get;
+			internal set;
+		}
 
-        public QueryElements Elements
-        {
-            get;
-            internal set;
-        }
+		public QueryElements Elements
+		{
+			get;
+			internal set;
+		}
 
-        public Code Code
-        {
-            get;
-            internal set;
-        }
+		public Code Code
+		{
+			get;
+			internal set;
+		}
 
-        public override IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield return ObjectProperties;
-                yield return Properties;
-                yield return Elements;
-                yield return Code;
-            }
-        }
+		public override IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				foreach (var childNode in base.ChildNodes)
+				{
+					yield return childNode;
+				}
 
-        public bool Equals(Query other)
-        {
-            if (other == null)
-                return false;
+				yield return Properties;
+				yield return Elements;
+				yield return Code;
+			}
+		}
 
-            if (other.ID == ID)
-                return true;
+		public bool Equals(Query other)
+		{
+			if (other == null)
+				return false;
 
-            if (other.Name == Name)
-                return true;
+			if (other.ID == ID)
+				return true;
 
-            return false;
-        }
-    }
+			if (other.Name == Name)
+				return true;
+
+			return false;
+		}
+	}
 }

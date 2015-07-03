@@ -36,7 +36,11 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				yield return ObjectProperties;
+				foreach (var childNode in base.ChildNodes)
+				{
+					yield return childNode;
+				}
+
 				yield return Properties;
 				yield return Code;
 			}
@@ -44,11 +48,14 @@ namespace CBreeze.NextGen
 
 		public bool Equals(Codeunit other)
 		{
-			if (other == null) return false;
+			if (other == null)
+				return false;
 
-			if (other.ID == ID) return true;
+			if (other.ID == ID)
+				return true;
 
-			if (other.Name == Name) return true;
+			if (other.Name == Name)
+				return true;
 
 			return false;
 		}

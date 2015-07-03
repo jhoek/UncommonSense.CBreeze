@@ -2,66 +2,70 @@
 
 namespace CBreeze.NextGen
 {
-    public class XmlPort : Object, IEquatable<XmlPort>
-    {
-        public XmlPort(int id, string name)
-            : base(id, name)
-        {
-            Properties = new XmlPortProperties(this);
-            Nodes = new XmlPortNodes(this);
-            Code = new Code(this);
-        }
+	public class XmlPort : Object, IEquatable<XmlPort>
+	{
+		public XmlPort(int id, string name)
+			: base(id, name)
+		{
+			Properties = new XmlPortProperties(this);
+			Nodes = new XmlPortNodes(this);
+			Code = new Code(this);
+		}
 
-        public override ObjectType Type
-        {
-            get
-            {
-                return ObjectType.XmlPort;
-            }
-        }
+		public override ObjectType Type
+		{
+			get
+			{
+				return ObjectType.XmlPort;
+			}
+		}
 
-        public XmlPortProperties Properties
-        {
-            get;
-            internal set;
-        }
+		public XmlPortProperties Properties
+		{
+			get;
+			internal set;
+		}
 
-        public XmlPortNodes Nodes
-        {
-            get;
-            internal set;
-        }
+		public XmlPortNodes Nodes
+		{
+			get;
+			internal set;
+		}
 
-        public Code Code
-        {
-            get;
-            internal set;
-        }
+		public Code Code
+		{
+			get;
+			internal set;
+		}
 
-        public override System.Collections.Generic.IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield return ObjectProperties;
-                yield return Properties;
-                yield return Nodes;
-                yield return Code;
-            }
-        }
+		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				foreach (var childNode in base.ChildNodes)
+				{
+					yield return childNode;
+				}
 
-        public bool Equals(XmlPort other)
-        {
-            if (other == null)
-                return false;
+				yield return Properties;
+				yield return Nodes;
+				yield return Code;
+			}
+		}
 
-            if (other.ID == ID)
-                return true;
+		public bool Equals(XmlPort other)
+		{
+			if (other == null)
+				return false;
 
-            if (other.Name == Name)
-                return true;
+			if (other.ID == ID)
+				return true;
 
-            return false;
-        }
-    }
+			if (other.Name == Name)
+				return true;
+
+			return false;
+		}
+	}
 }
 

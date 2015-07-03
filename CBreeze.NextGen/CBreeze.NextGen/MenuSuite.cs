@@ -6,42 +6,45 @@ using System.Threading.Tasks;
 
 namespace CBreeze.NextGen
 {
-    public class MenuSuite : Object, IEquatable<MenuSuite>
-    {
-        public MenuSuite(int id, string name)
-            : base(id, name)
-        {
+	public class MenuSuite : Object, IEquatable<MenuSuite>
+	{
+		public MenuSuite(int id, string name)
+			: base(id, name)
+		{
 
-        }
+		}
 
-        public override ObjectType Type
-        {
-            get
-            {
-                return ObjectType.MenuSuite;
-            }
-        }
+		public override ObjectType Type
+		{
+			get
+			{
+				return ObjectType.MenuSuite;
+			}
+		}
 
-        public override IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield break;
-            }
-        }
+		public override IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				foreach (var childNode in base.ChildNodes)
+				{
+					yield return childNode;
+				}
+			}
+		}
 
-        public bool Equals(MenuSuite other)
-        {
-            if (other == null)
-                return false;
+		public bool Equals(MenuSuite other)
+		{
+			if (other == null)
+				return false;
 
-            if (other.ID == ID)
-                return true;
+			if (other.ID == ID)
+				return true;
 
-            if (other.Name == Name)
-                return true;
+			if (other.Name == Name)
+				return true;
 
-            return false;
-        }
-    }
+			return false;
+		}
+	}
 }

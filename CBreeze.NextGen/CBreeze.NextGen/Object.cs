@@ -44,6 +44,14 @@ namespace CBreeze.NextGen
 		{
 			return ID;
 		}
+
+		public override IEnumerable<INode> ChildNodes
+		{
+			get
+			{
+				yield return ObjectProperties;
+			}
+		}
 	}
 }
 
