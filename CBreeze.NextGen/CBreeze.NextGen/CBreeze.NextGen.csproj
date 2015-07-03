@@ -170,6 +170,7 @@
     <Compile Include="CharParameter.cs" />
     <Compile Include="CodeunitParameter.cs" />
     <Compile Include="CharVariable.cs" />
+    <Compile Include="TextConstant.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
