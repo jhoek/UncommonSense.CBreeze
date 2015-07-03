@@ -82,6 +82,7 @@ namespace CBreeze.NextGen
 			codeunit.Properties.SingleInstance = false;
 			codeunit.Properties.Permissions.Add(50000, new Permission() { Read = true, Delete = true });
 			codeunit.Properties.Permissions.Add(50001, new Permission() { Read = true, Insert = true });
+			codeunit.Code.Variables.Add(new TextConstant(1000, "Text000")).Values.Add("ENU", "Foo");
 
 			var query = application.Queries.Add(new Query(50000, "Customer Groups"));
 			query.ObjectProperties.DateTime = DateTime.Now;
@@ -104,6 +105,7 @@ namespace CBreeze.NextGen
 			xmlPortFunction.Local = true;
 
 			var menuSuite = application.MenuSuites.Add(new MenuSuite(51, "My Add-On MenuSuite"));
+			menuSuite.ObjectProperties.DateTime = DateTime.Now;
 
 			PrintNode(application, 0);
 		}
