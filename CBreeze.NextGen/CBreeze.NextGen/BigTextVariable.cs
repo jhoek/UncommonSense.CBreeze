@@ -1,13 +1,17 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public class BigTextVariable : Variable
 	{
-		public BigTextVariable(int uid, string name) : base(uid, name)
+		public BigTextVariable(int uid, string name) 
+		     : base(uid, name)
 		{
 		}
 
+        public override string ToString()
+        {
+            return "BigTextVariable";
+        }
+        
 		public override VariableType Type
 		{
 			get
@@ -17,4 +21,3 @@ namespace CBreeze.NextGen
 		}
 	}
 }
-
