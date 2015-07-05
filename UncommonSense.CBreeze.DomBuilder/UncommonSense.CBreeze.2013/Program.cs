@@ -11,6 +11,9 @@ namespace UncommonSense.CBreeze
 		{
 			var om = new ObjectModel("UncommonSense.CBreeze70.Core");
 
+			om.AddItem("Node", @abstract: true)
+				.AddIdentifier("Node", "ParentNode");
+
 			om.AddItem("Application")
                 .AddChildNode("Tables")
                 .AddChildNode("Pages")
@@ -60,11 +63,11 @@ namespace UncommonSense.CBreeze
 
 			om.AddItem("MenuSuite", "Object", createContainer: true);
 
-			om.AddItem("Code")
+			om.AddItem("Code", "Node", createable: false)
             	.AddChildNode("Documentation")
             	.AddChildNode("Events")
-            	.AddChildNode("Functions")
-            	.AddChildNode("Variables");
+				.AddChildNode("Variables")
+            	.AddChildNode("Functions");
 
 			om.AddPropertyType("BooleanProperty", "bool");
 			om.AddPropertyType("NullableBooleanProperty", "bool?");
@@ -72,6 +75,8 @@ namespace UncommonSense.CBreeze
 			om.AddPropertyType("NullableIntegerProperty", "int?");
 			om.AddPropertyType("MultiLanguageProperty", "MultiLanguageValue");
 			om.AddPropertyType("StringProperty", "string");
+			om.AddPropertyType("FieldListProperty", "FieldList");
+			om.AddPropertyType("ActionListProperty", "ActionList");
 
 			om.AddPropertyCollection("ObjectProperties")
 				.AddProperty("NullableDateTimeProperty", "DateTime")
