@@ -66,6 +66,11 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
+				foreach (var childNode in base.ChildNodes)
+				{
+					yield return childNode;
+				}
+
 				yield return Tables;
 				yield return Pages;
 				yield return Reports;
