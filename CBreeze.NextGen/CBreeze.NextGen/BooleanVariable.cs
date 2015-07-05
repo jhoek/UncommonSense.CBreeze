@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public class BooleanVariable : Variable
 	{
@@ -13,6 +7,11 @@ namespace CBreeze.NextGen
 		{
 		}
 
+        public override string ToString()
+        {
+            return "BooleanVariable";
+        }
+        
 		public override VariableType Type
 		{
 			get
