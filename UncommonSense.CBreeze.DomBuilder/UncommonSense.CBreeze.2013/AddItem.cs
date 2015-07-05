@@ -10,11 +10,12 @@ namespace UncommonSense.CBreeze
 {
 	public static partial class ExtensionMethods
 	{
-		public static Item AddItem(this ObjectModel objectModel, string name, string baseTypeName = null, bool @abstract = false, bool createContainer = false, string containerName = null)
+		public static Item AddItem(this ObjectModel objectModel, string name, string baseTypeName = null, bool @abstract = false, bool createContainer = false, string containerName = null, bool createable = true)
 		{
 			var item = new Item(name);
 			item.BaseTypeName = baseTypeName;
 			item.Abstract = @abstract;
+			item.Createable = createable;
 
 			if (createContainer)
 			{

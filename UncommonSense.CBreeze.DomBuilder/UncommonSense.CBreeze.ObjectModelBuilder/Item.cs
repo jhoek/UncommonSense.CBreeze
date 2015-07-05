@@ -36,6 +36,12 @@ namespace UncommonSense.CBreeze.ObjectModelBuilder
 			internal set;
 		}
 
+		public bool Createable
+		{
+			get;
+			set;
+		}
+
 		public IEnumerable<Attribute> InheritedAttributes
 		{
 			get

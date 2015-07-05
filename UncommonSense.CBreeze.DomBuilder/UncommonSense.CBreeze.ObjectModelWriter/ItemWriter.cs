@@ -55,7 +55,8 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 				}
 			}
 
-			var ctor = new Constructor(Visibility.Public, item.Name, initializer, null);
+			var ctorVisibility = item.Createable ? Visibility.Public : Visibility.Internal;	
+			var ctor = new Constructor(ctorVisibility, item.Name, initializer, null);
 
 			// Parameters
 			foreach (var identifier in item.AllAttributes.OfType<Identifier>())
