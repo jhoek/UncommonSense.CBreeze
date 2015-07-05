@@ -1,19 +1,17 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public class BinaryParameter : Parameter
 	{
 		public BinaryParameter(int uid, string name, int dataLength)
 			: base(uid, name)
 		{
+            DataLength = dataLength;
 		}
 
-		public int DataLength
-		{
-			get;
-			internal set;
-		}
+                public override string ToString()
+                {
+                  return "BinaryParameter";
+                  }
 
 		public override ParameterType Type
 		{
@@ -22,6 +20,11 @@ namespace CBreeze.NextGen
 				return ParameterType.Binary;
 			}
 		}
+		
+		public int DataLength
+		{
+			get;
+			internal set;
+		}
 	}
 }
-

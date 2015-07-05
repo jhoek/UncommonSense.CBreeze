@@ -1,20 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
 	public class BinaryTableField : TableField
 	{
-		public BinaryTableField(int no, string name)
+        public BinaryTableField(int no, string name, int dataLength)
 			: base(no, name)
 		{
+            DataLength = dataLength;
 			Properties = new BinaryTableFieldProperties(this);
 		}
 
-		public BinaryTableFieldProperties Properties
+        public override string ToString()
 		{
-			get;
-			internal set;
+            return "BinaryTableField";
+        }
+        
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Binary;
+            }
 		}
 
 		public int DataLength
@@ -23,21 +30,23 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-		public override TableFieldType Type
-		{
-			get
+        public BinaryTableFieldProperties Properties
 			{
-				return TableFieldType.Binary;
-			}
+            get;
+            internal set;
 		}
 
 		public override IEnumerable<INode> ChildNodes
 		{
 			get
 			{
+                foreach(var childNode in base.ChildNodes)
+                {
+                    yield return childNode;
+                }
+                
 				yield return Properties;
 			}
 		}
 	}
 }
-
