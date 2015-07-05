@@ -82,6 +82,15 @@ namespace UncommonSense.CBreeze
                 .AddProperty("MultiLanguageProperty", "CaptionML")
                 .AddProperty("FieldListProperty", "DataCaptionFields");
 
+			om.AddPropertyCollection("PageProperties")
+            	.AddProperty("ActionListProperty", "ActionList")
+            	.AddProperty("NullableBooleanProperty", "AutoSplitKey")
+            	.AddProperty("MultiLanguageProperty", "CaptionML")
+            	.AddProperty("StringProperty", "CardPageID")
+            	.AddProperty("StringProperty", "DataCaptionExpr")
+            	.AddProperty("FieldListProperty", "DataCaptionFields")
+            	.AddProperty("NullableBooleanProperty", "DelayedInsert");
+
 			om.AddPropertyCollection("IntegerTableFieldProperties");
 
 			om.AddPropertyCollection("CodeunitProperties")
@@ -128,7 +137,13 @@ namespace UncommonSense.CBreeze
 			om.AddItem("OcxVariable", "Variable").AddIdentifier("string", "SubType");
 			om.AddItem("OptionVariable", "Variable").AddAttribute("string", "OptionString");
 			om.AddItem("OutstreamVariable", "Variable");
+			om.AddItem("PageVariable", "Variable").AddIdentifier("int", "SubType");
+			om.AddItem("QueryVariable", "Variable").AddIdentifier("int", "SubType").AddAttribute("QuerySecurityFiltering", "SecurityFiltering"); 
 			om.AddItem("RecordVariable", "Variable").AddIdentifier("int", "SubType").AddAttribute("bool?", "Temporary").AddAttribute("RecordSecurityFiltering", "SecurityFiltering"); // FIXME: Should be nullable?
+			om.AddItem("RecordIDVariable", "Variable");
+			om.AddItem("RecordRefVariable", "Variable").AddAttribute("RecordSecurityFiltering", "SecurityFiltering");
+			om.AddItem("ReportVariable", "Variable").AddIdentifier("int", "SubType");
+			om.AddItem("TextConstant", "Variable").AddAttribute("MultiLanguageValue", "Values");
 			om.AddItem("TextVariable", "Variable").AddIdentifier("int", "DataLength").AddAttribute("bool?", "IncludeInDataset");
 			om.AddItem("TimeVariable", "Variable");
 			om.AddItem("TransactionTypeVariable", "Variable");
@@ -141,8 +156,8 @@ namespace UncommonSense.CBreeze
 			om.AddItem("BinaryTableField", "TableField").AddIdentifier("int", "DataLength").AddChildNode("BinaryTableFieldProperties", "Properties");
 			om.AddItem("BlobTableField", "TableField").AddChildNode("BlobTableFieldProperties", "Properties");
 			om.AddItem("BooleanTableField", "TableField").AddChildNode("BooleanTableFieldProperties", "Properties");
-			om.AddItem("DecimalTableField", "TableField");
-			om.AddItem("IntegerTableField", "TableField");
+			om.AddItem("DecimalTableField", "TableField").AddChildNode("DecimalTableFieldProperties", "Properties");
+			om.AddItem("IntegerTableField", "TableField").AddChildNode("IntegerTableFieldProperties", "Properties");
 			om.AddItem("TimeTableField", "TableField").AddChildNode("TimeTableFieldProperties", "Properties");
 
 			om.AddItem("CalcFormula")
