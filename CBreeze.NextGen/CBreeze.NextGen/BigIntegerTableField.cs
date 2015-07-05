@@ -33,6 +33,11 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
+                foreach(var childNode in base.ChildNodes)
+                {
+                    yield return childNode;
+                }
+                
 				yield return Properties;
 			}
 		}
