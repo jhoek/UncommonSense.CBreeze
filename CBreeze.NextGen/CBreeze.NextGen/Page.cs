@@ -10,6 +10,7 @@ namespace CBreeze.NextGen
 		{
 			Properties = new PageProperties(this);
 			Controls = new PageControls(this);
+			Code = new Code(this);
 		}
 
 		public override ObjectType Type
@@ -32,6 +33,12 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
+		public Code Code
+		{
+			get;
+			internal set;
+		}
+
 		public override IEnumerable<INode> ChildNodes
 		{
 			get
@@ -43,6 +50,7 @@ namespace CBreeze.NextGen
 
 				yield return Properties;
 				yield return Controls;
+				yield return Code;
 			}
 		}
 
