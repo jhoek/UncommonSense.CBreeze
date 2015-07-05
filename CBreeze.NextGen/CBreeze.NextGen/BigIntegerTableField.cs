@@ -6,7 +6,7 @@ namespace CBreeze.NextGen
 	{
 		public BigIntegerTableField(int no, string name)
 			: base(no, name)
-		{ 
+		{
 			Properties = new BigIntegerTableFieldProperties(this);
 		}
 

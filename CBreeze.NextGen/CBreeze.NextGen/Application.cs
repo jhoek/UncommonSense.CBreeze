@@ -66,7 +66,7 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				foreach (var childNode in base.ChildNodes)
+				foreach(var childNode in base.ChildNodes)
 				{
 					yield return childNode;
 				}

@@ -2,7 +2,7 @@
 {
 	public class BigTextVariable : Variable
 	{
-		public BigTextVariable(int uid, string name) 
+		public BigTextVariable(int uid, string name)
 		     : base(uid, name)
 		{
 		}
