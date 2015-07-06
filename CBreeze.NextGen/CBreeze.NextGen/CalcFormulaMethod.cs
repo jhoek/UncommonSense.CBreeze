@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CBreeze.NextGen
+﻿namespace CBreeze.NextGen
 {
 	public enum CalcFormulaMethod
 	{
@@ -13,4 +11,3 @@ namespace CBreeze.NextGen
 		Lookup
 	}
 }
-
