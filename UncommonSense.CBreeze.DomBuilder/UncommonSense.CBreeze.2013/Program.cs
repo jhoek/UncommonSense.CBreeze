@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze
 			om.AddItem("Node", @abstract: true)
 				.AddIdentifier("Node", "ParentNode");
 
-			om.AddItem("Application")
+			om.AddItem("Application", "Node")
                 .AddChildNode("Tables")
                 .AddChildNode("Pages")
                 .AddChildNode("Reports")
@@ -173,6 +173,7 @@ namespace UncommonSense.CBreeze
 				.AddAttribute("string", "TableName");
 
 			om.AddEnum("BlobSubType", "UserDefined", "Bitmap", "Memo");
+			om.AddEnum("CalcFormulaMethod", "Sum", "Average", "Exist", "Count", "Min", "Max", "Lookup");
 
 			var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 			var outputFolderName = Path.Combine(desktopFolderName, "cbreeze");
