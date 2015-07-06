@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 	{
 		public static void WriteToFolder(this Item item, string folderName)
 		{
-			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName); // ?? "Node");
+			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName ?? "Node");
 
 			foreach (var interfaceName in item.ImplementedInterfaces)
 			{
@@ -84,7 +84,28 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 		{
 			var method = new Method(Visibility.Public, "ToString", "string", null);
 			method.Overriding = Overriding.Override;
-			method.CodeBlock.Statements.AddFormat("return \"{0}\";", item.Name);
+
+			var identifiers = item.AllAttributes.OfType<Identifier>();
+
+			if (identifiers.Any())
+			{
+				var arguments = new List<string>();
+				arguments.Add(string.Format("\"{0}\"", item.Name));
+				arguments.AddRange(identifiers.Select(a => a.Name));
+
+				var nextPlaceHolderNo = 0;
+				var placeholders = arguments.Select(a => string.Format("{{{0}}}", nextPlaceHolderNo++));
+
+				method.CodeBlock.Statements.AddFormat(
+					"return string.Format(\"{0}\", {1});", 
+					string.Join(" ", placeholders), 
+					string.Join(", ", arguments));
+			}
+			else
+			{
+				method.CodeBlock.Statements.AddFormat("return \"{0}\";", item.Name);
+			}
+
 			@class.Methods.Add(method);
 		}
 
