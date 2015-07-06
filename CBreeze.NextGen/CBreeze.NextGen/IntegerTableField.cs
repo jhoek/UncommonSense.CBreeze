@@ -4,8 +4,8 @@ namespace CBreeze.NextGen
 {
 	public class IntegerTableField : TableField
 	{
-		public IntegerTableField(int id, string name)
-			: base(id, name)
+		public IntegerTableField(int no, string name)
+			: base(no, name)
 		{
 			Properties = new IntegerTableFieldProperties(this);
 		}

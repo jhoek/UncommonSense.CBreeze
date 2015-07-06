@@ -1,15 +1,20 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-	public class BooleanTableField : TableField
+    public partial class BooleanTableField : TableField
 	{
-		public BooleanTableField(int id, string name)
-			: base(id, name)
+        public BooleanTableField(int no, string name)
+             : base(no, name)
 		{
 			Properties = new BooleanTableFieldProperties(this);
 		}
 
+        public override string ToString()
+        {
+            return "BooleanTableField";
+        }
+        
 		public override TableFieldType Type
 		{
 			get
@@ -23,6 +28,18 @@ namespace CBreeze.NextGen
 			get;
 			internal set;
 		}
-	}
+        
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                foreach(var childNode in base.ChildNodes)
+                {
+                    yield return childNode;
 }
 
+                yield return Properties;
+            }
+        }
+    }
+}
