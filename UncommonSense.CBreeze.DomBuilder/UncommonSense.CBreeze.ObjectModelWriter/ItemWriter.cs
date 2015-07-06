@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 	{
 		public static void WriteToFolder(this Item item, string folderName)
 		{
-			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName ?? "Node");
+			var @class = new Class(Visibility.Public, item.Name, item.BaseTypeName); // ?? "Node");
 
 			foreach (var interfaceName in item.ImplementedInterfaces)
 			{
@@ -21,6 +21,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 			}
 
 			@class.Abstract = item.Abstract;
+			@class.Partial = true;
 			@class.AddConstructor(item);
 			@class.OverrideToString(item);
 			@class.AddTypeProperty(item);

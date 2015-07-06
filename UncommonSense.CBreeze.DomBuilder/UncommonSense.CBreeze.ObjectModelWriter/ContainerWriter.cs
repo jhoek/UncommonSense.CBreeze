@@ -13,6 +13,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 		public static void WriteToFolder(this Container container, string folderName)
 		{
 			var @class = new Class(Visibility.Public, container.Name, string.Format("KeyedContainer<int,{0}>", container.ItemTypeName));
+			@class.Partial = true;
 			@class.AddConstructor(container);
 			@class.OverrideToString(container);
 

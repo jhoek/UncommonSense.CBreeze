@@ -13,6 +13,7 @@ namespace UncommonSense.CBreeze.ObjectModelWriter
 		public static void WriteToFolder(this PropertyCollection propertyCollection, string folderName)
 		{
 			var @class = new Class(Visibility.Public, propertyCollection.Name, "Properties");
+			@class.Partial = true;
 
 			foreach (var property in propertyCollection)
 			{
