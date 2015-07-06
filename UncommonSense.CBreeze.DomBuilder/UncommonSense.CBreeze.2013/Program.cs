@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze
 			om.AddItem("Node", @abstract: true)
 				.AddIdentifier("Node", "ParentNode");
 
-			om.AddItem("Application", "Node")
+			om.AddItem("Application")
                 .AddChildNode("Tables")
                 .AddChildNode("Pages")
                 .AddChildNode("Reports")
@@ -63,7 +63,7 @@ namespace UncommonSense.CBreeze
 
 			om.AddItem("MenuSuite", "Object", createContainer: true);
 
-			om.AddItem("Code", "Node", createable: false)
+			om.AddItem("Code", createable: false)
             	.AddChildNode("Documentation")
             	.AddChildNode("Events")
 				.AddChildNode("Variables")
