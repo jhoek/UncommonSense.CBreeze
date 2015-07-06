@@ -1,19 +1,18 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace CBreeze.NextGen
 {
-	public class BlobTableField : TableField
+    public partial class BlobTableField : TableField
 	{
-		public BlobTableField(int id, string name)
-			: base(id, name)
+        public BlobTableField(int no, string name)
+             : base(no, name)
 		{
 			Properties = new BlobTableFieldProperties(this);
 		}
 
-		public BlobTableFieldProperties Properties
+        public override string ToString()
 		{
-			get;
-			internal set;
+            return "BlobTableField";
 		}
 
 		public override TableFieldType Type
@@ -24,13 +23,23 @@ namespace CBreeze.NextGen
 			}
 		}
 
-		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
+        public BlobTableFieldProperties Properties
+        {
+            get;
+            internal set;
+        }
+        
+		public override IEnumerable<INode> ChildNodes
 		{
 			get
 			{
-				return Properties;
+                foreach(var childNode in base.ChildNodes)
+                {
+                    yield return childNode;
+                }
+                
+                yield return Properties;
 			}
 		}
 	}
 }
-
