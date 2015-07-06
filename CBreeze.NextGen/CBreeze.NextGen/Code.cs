@@ -18,14 +18,6 @@ namespace CBreeze.NextGen
 			return "Code";
 		}
 
-		public override NodeType Type
-		{
-			get
-			{
-				return NodeType.Code;
-			}
-		}
-
 		public Documentation Documentation
 		{
 			get;
@@ -54,7 +46,7 @@ namespace CBreeze.NextGen
 		{
 			get
 			{
-				foreach(var childNode in base.ChildNodes)
+				foreach (var childNode in base.ChildNodes)
 				{
 					yield return childNode;
 				}
