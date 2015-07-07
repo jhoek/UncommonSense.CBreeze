@@ -756,8 +756,8 @@ OBJECT Form 50000 Object Models
 {
   OBJECT-PROPERTIES
   {
-    Date=10-05-13;
-    Time=20:59:02;
+    Date=07-07-15;
+    Time=13:57:27;
     Modified=Yes;
     Version List=;
   }
@@ -853,7 +853,6 @@ OBJECT Form 50000 Object Models
                                                      CaptionML=ENU=Generate;
                                                      OnPush=BEGIN
                                                               CODEUNIT.RUN(CODEUNIT::"Generate Object Model");
-                                                              //CODEUNIT.RUN(CODEUNIT::"Generate Writer Object Model");
                                                             END;
                                                              }
                                                    { ID=1000000022;
