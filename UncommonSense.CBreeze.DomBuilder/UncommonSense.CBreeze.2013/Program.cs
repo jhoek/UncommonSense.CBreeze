@@ -109,6 +109,7 @@ namespace UncommonSense.CBreeze
 			om.AddItem("BinaryParameter", "Parameter").AddIdentifier("int", "DataLength");
 			om.AddItem("BooleanParameter", "Parameter");
 			om.AddItem("ByteParameter", "Parameter");
+			om.AddItem("CodeParameter", "Parameter").AddIdentifier("int", "DataLength");
 			om.AddItem("IntegerParameter", "Parameter");
 			om.AddItem("TimeParameter", "Parameter");
 			om.AddItem("TransactionTypeParameter", "Parameter");
@@ -161,6 +162,7 @@ namespace UncommonSense.CBreeze
 			om.AddItem("BinaryTableField", "TableField").AddIdentifier("int", "DataLength").AddChildNode("BinaryTableFieldProperties", "Properties");
 			om.AddItem("BlobTableField", "TableField").AddChildNode("BlobTableFieldProperties", "Properties");
 			om.AddItem("BooleanTableField", "TableField").AddChildNode("BooleanTableFieldProperties", "Properties");
+			om.AddItem("CodeTableField", "TableField").AddIdentifier("int", "DataLength").AddChildNode("CodeTableFieldProperties", "Properties");
 			om.AddItem("DecimalTableField", "TableField").AddChildNode("DecimalTableFieldProperties", "Properties");
 			om.AddItem("IntegerTableField", "TableField").AddChildNode("IntegerTableFieldProperties", "Properties");
 			om.AddItem("TimeTableField", "TableField").AddChildNode("TimeTableFieldProperties", "Properties");
@@ -172,8 +174,15 @@ namespace UncommonSense.CBreeze
 				.AddAttribute("CalcFormulaTableFilter", "TableFilter")
 				.AddAttribute("string", "TableName");
 
+			om.AddEnum("ActionContainerType", "NewDocumentItems", "ActionItems", "RelatedInformation", "Reports", "HomeItems", "ActivityButtons");
+			om.AddEnum("AutoFormatType", "Other", "Amount", "UnitAmount");
+			om.AddEnum("BlankNumbers", "DontBlank", "BlankNeg", "BlankNegAndZero", "BlankZero", "BlankZeroAndPos", "BlankPos");
 			om.AddEnum("BlobSubType", "UserDefined", "Bitmap", "Memo");
 			om.AddEnum("CalcFormulaMethod", "Sum", "Average", "Exist", "Count", "Min", "Max", "Lookup");
+			om.AddEnum("CalcFormulaTableFilterType", "Const", "Filter", "Field");
+			om.AddEnum("CodeunitSubType", "Normal", "Test", "TestRunner");
+			om.AddEnum("ColumnFilterLineType", "Const", "Filter");
+			om.AddEnum("ContainerType", "ContentArea", "FactBoxArea", "RoleCenterArea");
 
 			var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 			var outputFolderName = Path.Combine(desktopFolderName, "cbreeze");
