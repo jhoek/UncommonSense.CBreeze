@@ -2,7 +2,7 @@
 
 namespace CBreeze.NextGen
 {
-	public class Application : Node
+    public partial class Application : Node
 	{
 		public Application()
 		{
@@ -17,7 +17,7 @@ namespace CBreeze.NextGen
 
 		public override string ToString()
 		{
-			return "Application";
+            return "Application";
 		}
 
 		public Tables Tables

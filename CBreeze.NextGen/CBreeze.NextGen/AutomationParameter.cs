@@ -1,6 +1,6 @@
 ﻿namespace CBreeze.NextGen
 {
-    public class AutomationParameter : Parameter
+    public partial class AutomationParameter : Parameter
     {
         public AutomationParameter(int uid, string name, string subType)
             : base(uid, name)
@@ -10,7 +10,7 @@
 
         public override string ToString()
         {
-            return "AutomationParameter";
+            return string.Format("{0} {1} {2} {3}", "AutomationParameter", UID, Name, SubType);
         }
         
         public override ParameterType Type

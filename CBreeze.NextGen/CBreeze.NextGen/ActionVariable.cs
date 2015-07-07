@@ -1,6 +1,6 @@
 ﻿namespace CBreeze.NextGen
 {
-	public class ActionVariable : Variable
+    public partial class ActionVariable : Variable
 	{
 		public ActionVariable(int uid, string name)
 			: base(uid, name)
@@ -9,7 +9,7 @@
 
         public override string ToString()
         {
-            return "ActionVariable";
+            return string.Format("{0} {1} {2}", "ActionVariable", UID, Name);
         }
         
 		public override VariableType Type
