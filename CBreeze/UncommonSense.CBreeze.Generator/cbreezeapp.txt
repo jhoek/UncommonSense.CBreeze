@@ -1814,8 +1814,8 @@ OBJECT Codeunit 50000 Generate Object Model
 {
   OBJECT-PROPERTIES
   {
-    Date=07-12-13;
-    Time=13:26:20;
+    Date=07-07-15;
+    Time=16:38:59;
     Modified=Yes;
     Version List=;
   }
@@ -1832,6 +1832,7 @@ OBJECT Codeunit 50000 Generate Object Model
     PROCEDURE GenerateObjectModel@1000000000(ObjectModelCode@1000000000 : Code[10]);
     VAR
       ObjectModel@1000000001 : Record 50000;
+      UpdateDifferentiatorEnums@1000000007 : Codeunit 50007;
       ExportObjectModelDescriptn@1000000005 : Codeunit 50004;
       ExportObjectModel@1000000002 : Codeunit 50001;
       ExportPartials@1000000006 : Codeunit 50006;
@@ -1845,6 +1846,7 @@ OBJECT Codeunit 50000 Generate Object Model
       ObjectModel.VALIDATE("Build No.", ObjectModel."Build No." + 1);
       ObjectModel.MODIFY(TRUE);
 
+      UpdateDifferentiatorEnums.UpdateDifferentiatorEnums(ObjectModelCode);
       ExportObjectModelDescriptn.ExportObjectModelDescription(ObjectModelCode);
       ExportObjectModel.ExportObjectModel(ObjectModelCode);
       ExportPartials.ExportPartials(ObjectModelCode);
@@ -3549,7 +3551,7 @@ OBJECT Codeunit 50007 Update Differentiator Enums
   OBJECT-PROPERTIES
   {
     Date=07-07-15;
-    Time=16:36:15;
+    Time=16:40:17;
     Modified=Yes;
     Version List=;
   }
@@ -3569,6 +3571,8 @@ OBJECT Codeunit 50007 Update Differentiator Enums
       Item2@1000000002 : Record 50005;
     BEGIN
       DeleteOldGeneratedEnums(ObjectModelCode);
+
+      Item.SETCURRENTKEY("Object Model Code","Name Path");
 
       IF Item.FINDSET THEN
         REPEAT
@@ -3599,7 +3603,7 @@ OBJECT Codeunit 50007 Update Differentiator Enums
       Enumeration.DELETEALL(TRUE);
     END;
 
-    PROCEDURE InsertGeneratedEnum@1000000002(ObjectModelCode@1000000000 : Code[10];Name@1000000001 : Text[50]) : Text[50];
+    LOCAL PROCEDURE InsertGeneratedEnum@1000000002(ObjectModelCode@1000000000 : Code[10];Name@1000000001 : Text[50]) : Text[50];
     VAR
       Enumeration@1000000002 : Record 50002;
     BEGIN
@@ -3611,7 +3615,7 @@ OBJECT Codeunit 50007 Update Differentiator Enums
       EXIT(Name);
     END;
 
-    PROCEDURE InsertGeneratedEnumValue@1000000003(ObjectModelCode@1000000001 : Code[10];EnumerationName@1000000002 : Text[50];Value@1000000003 : Text[50]) : Text[50];
+    LOCAL PROCEDURE InsertGeneratedEnumValue@1000000003(ObjectModelCode@1000000001 : Code[10];EnumerationName@1000000002 : Text[50];Value@1000000003 : Text[50]) : Text[50];
     VAR
       EnumerationValue@1000000000 : Record 50003;
     BEGIN

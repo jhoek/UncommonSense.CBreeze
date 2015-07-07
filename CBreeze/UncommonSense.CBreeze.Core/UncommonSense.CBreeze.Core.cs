@@ -21780,6 +21780,15 @@ namespace UncommonSense.CBreeze.Core
         Query,
     }
 
+    public enum MenuSuiteNodeType
+    {
+        DeltaNode,
+        GroupNode,
+        ItemNode,
+        MenuNode,
+        RootNode,
+    }
+
     public enum MethodType
     {
         None,
@@ -21795,13 +21804,13 @@ namespace UncommonSense.CBreeze.Core
 
     public enum ObjectType
     {
-        Table,
-        Page,
-        Report,
         Codeunit,
-        Query,
-        XmlPort,
         MenuSuite,
+        Page,
+        Query,
+        Report,
+        Table,
+        XmlPort,
     }
 
     public enum Occurrence
@@ -21816,12 +21825,20 @@ namespace UncommonSense.CBreeze.Core
         Descending,
     }
 
+    public enum PageActionBaseType
+    {
+        PageAction,
+        PageActionContainer,
+        PageActionGroup,
+        PageActionSeparator,
+    }
+
     public enum PageControlType
     {
-        Container,
-        Group,
-        Field,
-        Part,
+        ContainerPageControl,
+        FieldPageControl,
+        GroupPageControl,
+        PartPageControl,
     }
 
     public enum PageType
@@ -21874,46 +21891,46 @@ namespace UncommonSense.CBreeze.Core
 
     public enum ParameterType
     {
-        Action,
-        Automation,
-        BigInteger,
-        BigText,
-        Binary,
-        Boolean,
-        Byte,
-        Char,
-        Code,
-        Codeunit,
-        DateFormula,
-        Date,
-        DateTime,
-        Decimal,
-        Dialog,
-        DotNet,
-        Duration,
-        ExecutionMode,
-        FieldRef,
-        File,
-        Guid,
-        InStream,
-        Integer,
-        KeyRef,
-        Ocx,
-        Option,
-        OutStream,
-        Page,
-        Query,
-        RecordID,
-        Record,
-        RecordRef,
-        Report,
-        TestPage,
-        TestRequestPage,
-        Text,
-        Time,
-        TransactionType,
-        Variant,
-        XmlPort,
+        ActionParameter,
+        AutomationParameter,
+        BigIntegerParameter,
+        BigTextParameter,
+        BinaryParameter,
+        BooleanParameter,
+        ByteParameter,
+        CharParameter,
+        CodeParameter,
+        CodeunitParameter,
+        DateFormulaParameter,
+        DateParameter,
+        DateTimeParameter,
+        DecimalParameter,
+        DialogParameter,
+        DotNetParameter,
+        DurationParameter,
+        ExecutionModeParameter,
+        FieldRefParameter,
+        FileParameter,
+        GuidParameter,
+        InStreamParameter,
+        IntegerParameter,
+        KeyRefParameter,
+        OcxParameter,
+        OptionParameter,
+        OutStreamParameter,
+        PageParameter,
+        QueryParameter,
+        RecordIDParameter,
+        RecordParameter,
+        RecordRefParameter,
+        ReportParameter,
+        TestPageParameter,
+        TestRequestPageParameter,
+        TextParameter,
+        TimeParameter,
+        TransactionTypeParameter,
+        VariantParameter,
+        XmlPortParameter,
     }
 
     public enum PartType
@@ -21935,6 +21952,13 @@ namespace UncommonSense.CBreeze.Core
         Category8,
         Category9,
         Category10,
+    }
+
+    public enum QueryElementType
+    {
+        ColumnQueryElement,
+        DataItemQueryElement,
+        FilterQueryElement,
     }
 
     public enum QueryOrderByDirection
@@ -21963,6 +21987,12 @@ namespace UncommonSense.CBreeze.Core
         Filtered,
         Ignored,
         Disallowed,
+    }
+
+    public enum ReportElementType
+    {
+        ColumnReportElement,
+        DataItemReportElement,
     }
 
     public enum RunObjectLinkLineType
@@ -22039,23 +22069,23 @@ namespace UncommonSense.CBreeze.Core
 
     public enum TableFieldType
     {
-        BigInteger,
-        Binary,
-        Blob,
-        Boolean,
-        Code,
-        DateFormula,
-        Date,
-        DateTime,
-        Decimal,
-        Duration,
-        Guid,
-        Integer,
-        Option,
-        RecordID,
-        TableFilter,
-        Text,
-        Time,
+        BigIntegerTableField,
+        BinaryTableField,
+        BlobTableField,
+        BooleanTableField,
+        CodeTableField,
+        DateFormulaTableField,
+        DateTableField,
+        DateTimeTableField,
+        DecimalTableField,
+        DurationTableField,
+        GuidTableField,
+        IntegerTableField,
+        OptionTableField,
+        RecordIDTableField,
+        TableFilterTableField,
+        TextTableField,
+        TimeTableField,
     }
 
     public enum TableFilterType
@@ -22124,43 +22154,46 @@ namespace UncommonSense.CBreeze.Core
 
     public enum VariableType
     {
-        Action,
-        Automation,
-        BigInteger,
-        BigText,
-        Binary,
-        Boolean,
-        Char,
-        Codeunit,
-        Code,
-        DateFormula,
-        DateTime,
-        Date,
-        Decimal,
-        Dialog,
-        DotNet,
-        Duration,
-        FieldRef,
-        File,
-        Guid,
-        InStream,
-        Integer,
-        KeyRef,
-        Ocx,
-        Option,
-        OutStream,
-        Page,
-        Query,
-        RecordID,
-        RecordRef,
-        Record,
-        Report,
+        ActionVariable,
+        AutomationVariable,
+        BigIntegerVariable,
+        BigTextVariable,
+        BinaryVariable,
+        BooleanVariable,
+        ByteVariable,
+        CharVariable,
+        CodeunitVariable,
+        CodeVariable,
+        DateFormulaVariable,
+        DateTimeVariable,
+        DateVariable,
+        DecimalVariable,
+        DialogVariable,
+        DotNetVariable,
+        DurationVariable,
+        ExecutionModeVariable,
+        FieldRefVariable,
+        FileVariable,
+        GuidVariable,
+        InStreamVariable,
+        IntegerVariable,
+        KeyRefVariable,
+        OcxVariable,
+        OptionVariable,
+        OutStreamVariable,
+        PageVariable,
+        QueryVariable,
+        RecordIDVariable,
+        RecordRefVariable,
+        RecordVariable,
+        ReportVariable,
+        TestPageVariable,
         TextConstant,
-        Text,
-        Time,
-        TransactionType,
-        Variant,
-        XmlPort,
+        TextVariable,
+        TimeVariable,
+        TransactionTypeVariable,
+        VariantVariable,
+        XmlPortVariable,
     }
 
     public enum XmlPortEncoding
@@ -22175,6 +22208,16 @@ namespace UncommonSense.CBreeze.Core
         Xml,
         VariableText,
         FixedText,
+    }
+
+    public enum XmlPortNodeType
+    {
+        XmlPortFieldAttribute,
+        XmlPortFieldElement,
+        XmlPortTableAttribute,
+        XmlPortTableElement,
+        XmlPortTextAttribute,
+        XmlPortTextElement,
     }
 
     public enum XmlVersionNo
