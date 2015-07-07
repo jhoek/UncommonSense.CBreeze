@@ -124,6 +124,12 @@
     <Compile Include="MenuSuiteNodesWriter.cs" />
     <Compile Include="MenuSuiteNodeWriter.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
+      <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
+      <Name>UncommonSense.CBreeze.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
