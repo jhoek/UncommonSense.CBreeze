@@ -164,8 +164,8 @@ OBJECT Table 50002 Enumeration
 {
   OBJECT-PROPERTIES
   {
-    Date=18-06-13;
-    Time=13:19:52;
+    Date=07-07-15;
+    Time=16:16:00;
     Modified=Yes;
     Version List=;
   }
@@ -185,6 +185,7 @@ OBJECT Table 50002 Enumeration
                                                    NotBlank=Yes }
     { 2   ;   ;Name                ;Text80        ;NotBlank=Yes }
     { 10  ;   ;URL                 ;Text80         }
+    { 90  ;   ;Generated           ;Boolean       ;Editable=No }
     { 100 ;   ;No. of Times Used   ;Integer       ;FieldClass=FlowField;
                                                    CalcFormula=Count(Attribute WHERE (Object Model Code=FIELD(Object Model Code),
                                                                                       Type=CONST(Enumeration),
@@ -313,8 +314,8 @@ OBJECT Table 50005 Item
 {
   OBJECT-PROPERTIES
   {
-    Date=05-02-14;
-    Time=19:04:37;
+    Date=07-07-15;
+    Time=16:36:04;
     Modified=Yes;
     Version List=;
   }
@@ -342,6 +343,7 @@ OBJECT Table 50005 Item
                                                                 UpdateNamePath;
                                                               END;
                                                                }
+    { 90  ;   ;Differentiator Enum Name;Text50    ;Editable=No }
     { 100 ;   ;Creatable           ;Boolean        }
     { 110 ;   ;Abstract            ;Boolean        }
     { 200 ;   ;No. of Attributes   ;Integer       ;FieldClass=FlowField;
@@ -3535,6 +3537,95 @@ OBJECT Codeunit 50006 Export Partials
     PROCEDURE WriteEndNamespace@1000000006(ObjectModel@1000000000 : Record 50000;VAR OutputFile@1000000001 : File);
     BEGIN
       OutputFile.WRITE('}');
+    END;
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Codeunit 50007 Update Differentiator Enums
+{
+  OBJECT-PROPERTIES
+  {
+    Date=07-07-15;
+    Time=16:36:15;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    OnRun=BEGIN
+            UpdateDifferentiatorEnums('CORE');
+          END;
+
+  }
+  CODE
+  {
+
+    PROCEDURE UpdateDifferentiatorEnums@1000000000(ObjectModelCode@1000000000 : Code[10]);
+    VAR
+      Item@1000000001 : Record 50005;
+      Item2@1000000002 : Record 50005;
+    BEGIN
+      DeleteOldGeneratedEnums(ObjectModelCode);
+
+      IF Item.FINDSET THEN
+        REPEAT
+          Item.CALCFIELDS("No. of Derived Types");
+
+          CASE TRUE OF
+            Item."No. of Derived Types" > 0:
+              Item."Differentiator Enum Name" :=
+                InsertGeneratedEnum(ObjectModelCode, STRSUBSTNO('%1Type', Item.Name));
+            Item."Base Type" <> '':
+              Item."Differentiator Enum Name" :=
+                InsertGeneratedEnumValue(ObjectModelCode, STRSUBSTNO('%1Type', Item."Base Type"), Item.Name);
+          ELSE
+            Item."Differentiator Enum Name" := '';
+          END;
+
+          Item2 := Item;
+          Item2.MODIFY;
+        UNTIL Item.NEXT = 0;
+    END;
+
+    LOCAL PROCEDURE DeleteOldGeneratedEnums@1000000001(ObjectModelCode@1000000000 : Code[10]);
+    VAR
+      Enumeration@1000000001 : Record 50002;
+    BEGIN
+      Enumeration.SETRANGE("Object Model Code", ObjectModelCode);
+      Enumeration.SETRANGE(Generated, TRUE);
+      Enumeration.DELETEALL(TRUE);
+    END;
+
+    PROCEDURE InsertGeneratedEnum@1000000002(ObjectModelCode@1000000000 : Code[10];Name@1000000001 : Text[50]) : Text[50];
+    VAR
+      Enumeration@1000000002 : Record 50002;
+    BEGIN
+      Enumeration.VALIDATE("Object Model Code", ObjectModelCode);
+      Enumeration.VALIDATE(Name, Name);
+      Enumeration.VALIDATE(Generated, TRUE);
+      Enumeration.INSERT(TRUE);
+
+      EXIT(Name);
+    END;
+
+    PROCEDURE InsertGeneratedEnumValue@1000000003(ObjectModelCode@1000000001 : Code[10];EnumerationName@1000000002 : Text[50];Value@1000000003 : Text[50]) : Text[50];
+    VAR
+      EnumerationValue@1000000000 : Record 50003;
+    BEGIN
+      EnumerationValue.SETRANGE("Object Model Code", ObjectModelCode);
+      EnumerationValue.SETRANGE("Enumeration Name", EnumerationName);
+      IF NOT EnumerationValue.FINDLAST THEN;
+
+      EnumerationValue.VALIDATE("Object Model Code", ObjectModelCode);
+      EnumerationValue.VALIDATE("Enumeration Name", EnumerationName);
+      EnumerationValue.VALIDATE("No.", EnumerationValue."No." + 1);
+      EnumerationValue.VALIDATE(Value, Value);
+      EnumerationValue.INSERT(TRUE);
+
+      EXIT(EnumerationName);
     END;
 
     BEGIN
