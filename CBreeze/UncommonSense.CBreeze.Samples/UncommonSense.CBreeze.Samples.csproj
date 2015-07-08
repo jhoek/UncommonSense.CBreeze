@@ -43,6 +43,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UncommonSense.Nav.Parser">
+      <HintPath>..\..\..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser\bin\Debug\UncommonSense.Nav.Parser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
