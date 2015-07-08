@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Demo
 		{
             var parserStopwatch = new Stopwatch();
             parserStopwatch.Start();
-            var application = ApplicationBuilder.FromFile(@".\navw12015.txt");
+            var application = ApplicationBuilder.FromFile(@".\soll.txt");
             parserStopwatch.Stop();
             Console.WriteLine(parserStopwatch.Elapsed);
 
