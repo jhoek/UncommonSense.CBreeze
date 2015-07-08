@@ -314,8 +314,8 @@ OBJECT Table 50005 Item
 {
   OBJECT-PROPERTIES
   {
-    Date=07-07-15;
-    Time=16:36:04;
+    Date=08-07-15;
+    Time=12:03:42;
     Modified=Yes;
     Version List=;
   }
@@ -344,6 +344,7 @@ OBJECT Table 50005 Item
                                                               END;
                                                                }
     { 90  ;   ;Differentiator Enum Name;Text50    ;Editable=No }
+    { 91  ;   ;Differentiator Enum Value;Text50    }
     { 100 ;   ;Creatable           ;Boolean        }
     { 110 ;   ;Abstract            ;Boolean        }
     { 200 ;   ;No. of Attributes   ;Integer       ;FieldClass=FlowField;
@@ -456,8 +457,8 @@ OBJECT Table 50009 Attribute
 {
   OBJECT-PROPERTIES
   {
-    Date=07-07-15;
-    Time=17:04:00;
+    Date=08-07-15;
+    Time=10:57:42;
     Modified=Yes;
     Version List=;
   }
@@ -516,7 +517,6 @@ OBJECT Table 50009 Attribute
     { 140 ;   ;Abstract            ;Boolean        }
     { 150 ;   ;Override            ;Boolean        }
     { 160 ;   ;Nullable            ;Boolean        }
-    { 170 ;   ;Generated           ;Boolean       ;Editable=No }
     { 200 ;   ;URL                 ;Text250        }
     { 210 ;   ;Format/Args Ctor Params;Boolean     }
     { 220 ;   ;Dictionary Key      ;Boolean        }
@@ -1091,8 +1091,8 @@ OBJECT Form 50004 Items
 {
   OBJECT-PROPERTIES
   {
-    Date=07-07-15;
-    Time=16:45:18;
+    Date=08-07-15;
+    Time=12:26:38;
     Modified=Yes;
     Version List=;
   }
@@ -1133,6 +1133,11 @@ OBJECT Form 50004 Items
                                                  InColumn=Yes;
                                                  SourceExpr="Differentiator Enum Name" }
     { 1000000010;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000009;
+                                                 InColumnHeading=Yes }
+    { 1000000025;TextBox;12700;440  ;4400 ;440  ;ParentControl=1000000000;
+                                                 InColumn=Yes;
+                                                 SourceExpr="Differentiator Enum Value" }
+    { 1000000026;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000025;
                                                  InColumnHeading=Yes }
     { 1000000005;CheckBox;0   ;0    ;1700 ;0    ;ParentControl=1000000000;
                                                  InColumn=Yes;
@@ -1875,8 +1880,8 @@ OBJECT Codeunit 50001 Export Object Model
 {
   OBJECT-PROPERTIES
   {
-    Date=28-06-14;
-    Time=10:30:23;
+    Date=08-07-15;
+    Time=12:28:59;
     Modified=Yes;
     Version List=;
   }
@@ -2282,6 +2287,7 @@ OBJECT Codeunit 50001 Export Object Model
 
       WriteItemFieldDeclarations(Item, OutputFile);
       WriteItemConstructor(Item, OutputFile);
+      WriteDifferentiatorProperty(Item, OutputFile);
       WriteItemProperties(Item, OutputFile);
 
       OutputFile.WRITE('    }');
@@ -2497,6 +2503,35 @@ OBJECT Codeunit 50001 Export Object Model
 
           Separator := ', ';
         UNTIL Attribute.NEXT = 0;
+    END;
+
+    LOCAL PROCEDURE WriteDifferentiatorProperty@1000000041(Item@1000000000 : Record 50005;VAR OutputFile@1000000001 : File);
+    BEGIN
+      IF Item."Differentiator Enum Name" <> '' THEN BEGIN
+        CASE Item."Base Type" = '' OF
+          TRUE: // This is the base class, create abstract Type property
+            BEGIN
+              OutputFile.WRITE(STRSUBSTNO('        public abstract %1 Type', Item."Differentiator Enum Name"));
+              OutputFile.WRITE('        {');
+              OutputFile.WRITE('            get;');
+              OutputFile.WRITE('        }');
+              OutputFile.WRITE('');
+            END;
+
+          FALSE: // This is a derived class, override Type property
+            BEGIN
+              OutputFile.WRITE(STRSUBSTNO('        public override %1 Type', Item."Differentiator Enum Name"));
+              OutputFile.WRITE('        {');
+              OutputFile.WRITE('            get');
+              OutputFile.WRITE('            {');
+              OutputFile.WRITE(
+                STRSUBSTNO('                return %1.%2;', Item."Differentiator Enum Name", Item."Differentiator Enum Value"));
+              OutputFile.WRITE('            }');
+              OutputFile.WRITE('        }');
+              OutputFile.WRITE('');
+            END;
+        END;
+      END;
     END;
 
     PROCEDURE WriteItemProperties@1000000024(Item@1000000000 : Record 50005;VAR OutputFile@1000000001 : File);
@@ -3562,8 +3597,8 @@ OBJECT Codeunit 50007 Update Differentiator Enums
 {
   OBJECT-PROPERTIES
   {
-    Date=07-07-15;
-    Time=17:08:30;
+    Date=08-07-15;
+    Time=12:26:03;
     Modified=Yes;
     Version List=;
   }
@@ -3580,7 +3615,6 @@ OBJECT Codeunit 50007 Update Differentiator Enums
     PROCEDURE UpdateDifferentiatorEnums@1000000000(ObjectModelCode@1000000000 : Code[10]);
     BEGIN
       DeleteOldGeneratedEnums(ObjectModelCode);
-      DeleteOldGeneratedAttributes(ObjectModelCode);
       UpdateItems(ObjectModelCode);
     END;
 
@@ -3591,15 +3625,6 @@ OBJECT Codeunit 50007 Update Differentiator Enums
       Enumeration.SETRANGE("Object Model Code", ObjectModelCode);
       Enumeration.SETRANGE(Generated, TRUE);
       Enumeration.DELETEALL(TRUE);
-    END;
-
-    LOCAL PROCEDURE DeleteOldGeneratedAttributes@1000000006(ObjectModelCode@1000000000 : Code[10]);
-    VAR
-      Attribute@1000000001 : Record 50009;
-    BEGIN
-      Attribute.SETRANGE("Object Model Code", ObjectModelCode);
-      Attribute.SETRANGE(Generated, TRUE);
-      Attribute.DELETEALL(TRUE);
     END;
 
     LOCAL PROCEDURE UpdateItems@1000000004(ObjectModelCode@1000000002 : Code[10]);
@@ -3613,16 +3638,12 @@ OBJECT Codeunit 50007 Update Differentiator Enums
       IF Item.FINDSET THEN
         REPEAT
           Item.CALCFIELDS("No. of Derived Types");
+          Item."Differentiator Enum Name" := '';
+          Item."Differentiator Enum Value" := '';
 
           CASE TRUE OF
-            Item."No. of Derived Types" > 0:
-              Item."Differentiator Enum Name" :=
-                InsertGeneratedEnum(ObjectModelCode, STRSUBSTNO('%1Type', Item.Name));
-            Item."Base Type" <> '':
-              Item."Differentiator Enum Name" :=
-                InsertGeneratedEnumValue(ObjectModelCode, STRSUBSTNO('%1Type', Item."Base Type"), Item.Name);
-          ELSE
-            Item."Differentiator Enum Name" := '';
+            Item."No. of Derived Types" > 0: InsertGeneratedEnum(Item);
+            Item."Base Type" <> '': InsertGeneratedEnumValue(Item);
           END;
 
           Item2 := Item;
@@ -3630,33 +3651,51 @@ OBJECT Codeunit 50007 Update Differentiator Enums
         UNTIL Item.NEXT = 0;
     END;
 
-    LOCAL PROCEDURE InsertGeneratedEnum@1000000002(ObjectModelCode@1000000000 : Code[10];Name@1000000001 : Text[50]) : Text[50];
+    LOCAL PROCEDURE InsertGeneratedEnum@1000000002(VAR Item@1000000000 : Record 50005);
     VAR
       Enumeration@1000000002 : Record 50002;
     BEGIN
-      Enumeration.VALIDATE("Object Model Code", ObjectModelCode);
-      Enumeration.VALIDATE(Name, Name);
+      Enumeration.VALIDATE("Object Model Code", Item."Object Model Code");
+      Enumeration.VALIDATE(Name, STRSUBSTNO('%1Type', Item.Name));
       Enumeration.VALIDATE(Generated, TRUE);
       Enumeration.INSERT(TRUE);
 
-      EXIT(Name);
+      Item."Differentiator Enum Name" := Enumeration.Name;
     END;
 
-    LOCAL PROCEDURE InsertGeneratedEnumValue@1000000003(ObjectModelCode@1000000001 : Code[10];EnumerationName@1000000002 : Text[50];Value@1000000003 : Text[50]) : Text[50];
+    LOCAL PROCEDURE InsertGeneratedEnumValue@1000000003(VAR Item@1000000001 : Record 50005);
     VAR
       EnumerationValue@1000000000 : Record 50003;
+      EnumerationName@1000000004 : Text[50];
+      Value@1000000005 : Text[50];
     BEGIN
-      EnumerationValue.SETRANGE("Object Model Code", ObjectModelCode);
+      EnumerationName := STRSUBSTNO('%1Type', Item."Base Type");
+
+      CASE EndsWith(Item.Name, Item."Base Type") OF
+        TRUE: Value := COPYSTR(Item.Name, 1, STRLEN(Item.Name) - STRLEN(Item."Base Type"));
+        FALSE: Value := Item.Name;
+      END;
+
+      EnumerationValue.SETRANGE("Object Model Code", Item."Object Model Code");
       EnumerationValue.SETRANGE("Enumeration Name", EnumerationName);
       IF NOT EnumerationValue.FINDLAST THEN;
 
-      EnumerationValue.VALIDATE("Object Model Code", ObjectModelCode);
+      EnumerationValue.VALIDATE("Object Model Code", Item."Object Model Code");
       EnumerationValue.VALIDATE("Enumeration Name", EnumerationName);
       EnumerationValue.VALIDATE("No.", EnumerationValue."No." + 1);
       EnumerationValue.VALIDATE(Value, Value);
       EnumerationValue.INSERT(TRUE);
 
-      EXIT(EnumerationName);
+      Item."Differentiator Enum Name" := EnumerationName;
+      Item."Differentiator Enum Value" := Value;
+    END;
+
+    LOCAL PROCEDURE EndsWith@1000000007(Text@1000000000 : Text[250];EndsWith@1000000001 : Text[250]) : Boolean;
+    BEGIN
+      IF (STRLEN(Text) <= STRLEN(EndsWith)) THEN
+        EXIT(FALSE);
+
+      EXIT(COPYSTR(Text, STRLEN(Text) - STRLEN(EndsWith) + 1) = EndsWith);
     END;
 
     BEGIN

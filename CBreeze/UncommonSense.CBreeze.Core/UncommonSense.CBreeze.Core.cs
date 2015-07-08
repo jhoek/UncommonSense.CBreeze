@@ -14195,6 +14195,11 @@ namespace UncommonSense.CBreeze.Core
             this.id = id;
         }
 
+        public abstract MenuSuiteNodeType Type
+        {
+            get;
+        }
+
         public Guid ID
         {
             get
@@ -14246,6 +14251,11 @@ namespace UncommonSense.CBreeze.Core
         {
             this.id = id;
             this.name = name;
+        }
+
+        public abstract ObjectType Type
+        {
+            get;
         }
 
         public Int32 ID
@@ -14330,6 +14340,11 @@ namespace UncommonSense.CBreeze.Core
             this.indentationLevel = indentationLevel;
         }
 
+        public abstract PageActionBaseType Type
+        {
+            get;
+        }
+
         public Int32 ID
         {
             get
@@ -14358,6 +14373,11 @@ namespace UncommonSense.CBreeze.Core
         {
             this.id = id;
             this.indentationLevel = indentationLevel;
+        }
+
+        public abstract PageControlType Type
+        {
+            get;
         }
 
         public Int32 ID
@@ -14390,6 +14410,11 @@ namespace UncommonSense.CBreeze.Core
             this.id = id;
             this.name = name;
             this.var = var;
+        }
+
+        public abstract ParameterType Type
+        {
+            get;
         }
 
         public Boolean Var
@@ -14532,6 +14557,11 @@ namespace UncommonSense.CBreeze.Core
             this.name = name;
         }
 
+        public abstract QueryElementType Type
+        {
+            get;
+        }
+
         public Int32 ID
         {
             get
@@ -14648,6 +14678,11 @@ namespace UncommonSense.CBreeze.Core
         {
             this.id = id;
             this.indentationLevel = indentationLevel;
+        }
+
+        public abstract ReportElementType Type
+        {
+            get;
         }
 
         public Int32 ID
@@ -14909,6 +14944,11 @@ namespace UncommonSense.CBreeze.Core
         {
             this.name = name;
             this.no = no;
+        }
+
+        public abstract TableFieldType Type
+        {
+            get;
         }
 
         public Int32 No
@@ -15286,6 +15326,11 @@ namespace UncommonSense.CBreeze.Core
             this.name = name;
         }
 
+        public abstract VariableType Type
+        {
+            get;
+        }
+
         public Int32 ID
         {
             get
@@ -15316,6 +15361,11 @@ namespace UncommonSense.CBreeze.Core
             this.id = id;
             this.indentationLevel = indentationLevel;
             this.nodeName = nodeName;
+        }
+
+        public abstract XmlPortNodeType Type
+        {
+            get;
         }
 
         public Guid ID
@@ -15381,6 +15431,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override MenuSuiteNodeType Type
+        {
+            get
+            {
+                return MenuSuiteNodeType.DeltaNode;
+            }
+        }
+
         public MenuSuiteDeltaNodeProperties Properties
         {
             get
@@ -15398,6 +15456,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal GroupNode(Guid id) : base(id)
         {
+        }
+
+        public override MenuSuiteNodeType Type
+        {
+            get
+            {
+                return MenuSuiteNodeType.GroupNode;
+            }
         }
 
         public MenuSuiteGroupNodeProperties Properties
@@ -15419,6 +15485,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override MenuSuiteNodeType Type
+        {
+            get
+            {
+                return MenuSuiteNodeType.ItemNode;
+            }
+        }
+
         public MenuSuiteItemNodeProperties Properties
         {
             get
@@ -15436,6 +15510,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal MenuNode(Guid id) : base(id)
         {
+        }
+
+        public override MenuSuiteNodeType Type
+        {
+            get
+            {
+                return MenuSuiteNodeType.MenuNode;
+            }
         }
 
         public MenuSuiteMenuNodeProperties Properties
@@ -15457,6 +15539,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override MenuSuiteNodeType Type
+        {
+            get
+            {
+                return MenuSuiteNodeType.RootNode;
+            }
+        }
+
         public MenuSuiteRootNodeProperties Properties
         {
             get
@@ -15475,6 +15565,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal Codeunit(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Codeunit;
+            }
         }
 
         public CodeunitProperties Properties
@@ -15505,6 +15603,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.MenuSuite;
+            }
+        }
+
         public MenuSuiteProperties Properties
         {
             get
@@ -15532,6 +15638,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal Page(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Page;
+            }
         }
 
         public Code Code
@@ -15569,6 +15683,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal Query(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Query;
+            }
         }
 
         public Code Code
@@ -15609,6 +15731,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal Report(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Report;
+            }
         }
 
         public Code Code
@@ -15674,6 +15804,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Table;
+            }
+        }
+
         public TableFields Fields
         {
             get
@@ -15728,6 +15866,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.XmlPort;
+            }
+        }
+
         public Code Code
         {
             get
@@ -15771,6 +15917,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override PageActionBaseType Type
+        {
+            get
+            {
+                return PageActionBaseType.PageAction;
+            }
+        }
+
         public PageActionProperties Properties
         {
             get
@@ -15788,6 +15942,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal PageActionContainer(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
         {
+        }
+
+        public override PageActionBaseType Type
+        {
+            get
+            {
+                return PageActionBaseType.PageActionContainer;
+            }
         }
 
         public PageActionContainerProperties Properties
@@ -15809,6 +15971,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override PageActionBaseType Type
+        {
+            get
+            {
+                return PageActionBaseType.PageActionGroup;
+            }
+        }
+
         public PageActionGroupProperties Properties
         {
             get
@@ -15826,6 +15996,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal PageActionSeparator(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
         {
+        }
+
+        public override PageActionBaseType Type
+        {
+            get
+            {
+                return PageActionBaseType.PageActionSeparator;
+            }
         }
 
         public PageActionSeparatorProperties Properties
@@ -15847,6 +16025,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Container;
+            }
+        }
+
         public ContainerPageControlProperties Properties
         {
             get
@@ -15864,6 +16050,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal FieldPageControl(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
         {
+        }
+
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Field;
+            }
         }
 
         public FieldPageControlProperties Properties
@@ -15885,6 +16079,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Group;
+            }
+        }
+
         public GroupPageControlProperties Properties
         {
             get
@@ -15904,6 +16106,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Part;
+            }
+        }
+
         public PartPageControlProperties Properties
         {
             get
@@ -15921,6 +16131,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal ActionParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Action;
+            }
         }
 
         public String Dimensions
@@ -15946,6 +16164,14 @@ namespace UncommonSense.CBreeze.Core
         internal AutomationParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Automation;
+            }
         }
 
         public String Dimensions
@@ -15979,6 +16205,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.BigInteger;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16000,6 +16234,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal BigTextParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.BigText;
+            }
         }
 
         public String Dimensions
@@ -16025,6 +16267,14 @@ namespace UncommonSense.CBreeze.Core
         internal BinaryParameter(Boolean var, Int32 id, String name, Int32 dataLength = 100) : base(var, id, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Binary;
+            }
         }
 
         public Int32 DataLength
@@ -16058,6 +16308,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Boolean;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16079,6 +16337,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal ByteParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Byte;
+            }
         }
 
         public String Dimensions
@@ -16104,6 +16370,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Char;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16127,6 +16401,14 @@ namespace UncommonSense.CBreeze.Core
         internal CodeParameter(Boolean var, Int32 id, String name, Int32? dataLength = null) : base(var, id, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Code;
+            }
         }
 
         public Int32? DataLength
@@ -16162,6 +16444,14 @@ namespace UncommonSense.CBreeze.Core
             this.subType = subType;
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Codeunit;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16193,6 +16483,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.DateFormula;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16214,6 +16512,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal DateParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Date;
+            }
         }
 
         public String Dimensions
@@ -16239,6 +16545,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.DateTime;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16262,6 +16576,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Decimal;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16283,6 +16605,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal DialogParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Dialog;
+            }
         }
 
         public String Dimensions
@@ -16310,6 +16640,14 @@ namespace UncommonSense.CBreeze.Core
         internal DotNetParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.DotNet;
+            }
         }
 
         public String Dimensions
@@ -16367,6 +16705,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Duration;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16388,6 +16734,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal ExecutionModeParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.ExecutionMode;
+            }
         }
 
         public String Dimensions
@@ -16413,6 +16767,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.FieldRef;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16434,6 +16796,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal FileParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.File;
+            }
         }
 
         public String Dimensions
@@ -16459,6 +16829,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Guid;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16480,6 +16858,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal InStreamParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.InStream;
+            }
         }
 
         public String Dimensions
@@ -16505,6 +16891,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Integer;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16526,6 +16920,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal KeyRefParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.KeyRef;
+            }
         }
 
         public String Dimensions
@@ -16551,6 +16953,14 @@ namespace UncommonSense.CBreeze.Core
         internal OcxParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Ocx;
+            }
         }
 
         public String Dimensions
@@ -16583,6 +16993,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal OptionParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Option;
+            }
         }
 
         public String Dimensions
@@ -16620,6 +17038,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.OutStream;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16643,6 +17069,14 @@ namespace UncommonSense.CBreeze.Core
         internal PageParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Page;
+            }
         }
 
         public String Dimensions
@@ -16677,6 +17111,14 @@ namespace UncommonSense.CBreeze.Core
         internal QueryParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Query;
+            }
         }
 
         public String Dimensions
@@ -16722,6 +17164,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.RecordID;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16747,6 +17197,14 @@ namespace UncommonSense.CBreeze.Core
         internal RecordParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Record;
+            }
         }
 
         public String Dimensions
@@ -16805,6 +17263,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.RecordRef;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16842,6 +17308,14 @@ namespace UncommonSense.CBreeze.Core
             this.subType = subType;
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Report;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16873,6 +17347,14 @@ namespace UncommonSense.CBreeze.Core
         internal TestPageParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.TestPage;
+            }
         }
 
         public String Dimensions
@@ -16908,6 +17390,14 @@ namespace UncommonSense.CBreeze.Core
             this.subType = subType;
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.TestRequestPage;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16941,6 +17431,14 @@ namespace UncommonSense.CBreeze.Core
             this.dataLength = dataLength;
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Text;
+            }
+        }
+
         public Int32? DataLength
         {
             get
@@ -16972,6 +17470,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Time;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -16993,6 +17499,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal TransactionTypeParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.TransactionType;
+            }
         }
 
         public String Dimensions
@@ -17018,6 +17532,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.Variant;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -17041,6 +17563,14 @@ namespace UncommonSense.CBreeze.Core
         internal XmlPortParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
+        }
+
+        public override ParameterType Type
+        {
+            get
+            {
+                return ParameterType.XmlPort;
+            }
         }
 
         public String Dimensions
@@ -17074,6 +17604,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override QueryElementType Type
+        {
+            get
+            {
+                return QueryElementType.Column;
+            }
+        }
+
         public ColumnQueryElementProperties Properties
         {
             get
@@ -17091,6 +17629,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal DataItemQueryElement(Int32 id, String name, Int32? indentationLevel) : base(id, name, indentationLevel)
         {
+        }
+
+        public override QueryElementType Type
+        {
+            get
+            {
+                return QueryElementType.DataItem;
+            }
         }
 
         public DataItemQueryElementProperties Properties
@@ -17112,6 +17658,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override QueryElementType Type
+        {
+            get
+            {
+                return QueryElementType.Filter;
+            }
+        }
+
         public FilterQueryElementProperties Properties
         {
             get
@@ -17129,6 +17683,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal ColumnReportElement(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
         {
+        }
+
+        public override ReportElementType Type
+        {
+            get
+            {
+                return ReportElementType.Column;
+            }
         }
 
         public ColumnReportElementProperties Properties
@@ -17150,6 +17712,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override ReportElementType Type
+        {
+            get
+            {
+                return ReportElementType.DataItem;
+            }
+        }
+
         public DataItemReportElementProperties Properties
         {
             get
@@ -17167,6 +17737,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal BigIntegerTableField(Int32 no, String name) : base(no, name)
         {
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.BigInteger;
+            }
         }
 
         public BigIntegerTableFieldProperties Properties
@@ -17188,6 +17766,14 @@ namespace UncommonSense.CBreeze.Core
         internal BinaryTableField(Int32 no, String name, Int32 dataLength = 4) : base(no, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Binary;
+            }
         }
 
         public Int32 DataLength
@@ -17217,6 +17803,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Blob;
+            }
+        }
+
         public BlobTableFieldProperties Properties
         {
             get
@@ -17234,6 +17828,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal BooleanTableField(Int32 no, String name) : base(no, name)
         {
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Boolean;
+            }
         }
 
         public BooleanTableFieldProperties Properties
@@ -17255,6 +17857,14 @@ namespace UncommonSense.CBreeze.Core
         internal CodeTableField(Int32 no, String name, Int32 dataLength = 10) : base(no, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Code;
+            }
         }
 
         public CodeTableFieldProperties Properties
@@ -17284,6 +17894,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.DateFormula;
+            }
+        }
+
         public DateFormulaTableFieldProperties Properties
         {
             get
@@ -17301,6 +17919,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal DateTableField(Int32 no, String name) : base(no, name)
         {
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Date;
+            }
         }
 
         public DateTableFieldProperties Properties
@@ -17322,6 +17948,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.DateTime;
+            }
+        }
+
         public DateTimeTableFieldProperties Properties
         {
             get
@@ -17339,6 +17973,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal DecimalTableField(Int32 no, String name) : base(no, name)
         {
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Decimal;
+            }
         }
 
         public DecimalTableFieldProperties Properties
@@ -17360,6 +18002,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Duration;
+            }
+        }
+
         public DurationTableFieldProperties Properties
         {
             get
@@ -17377,6 +18027,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal GuidTableField(Int32 no, String name) : base(no, name)
         {
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Guid;
+            }
         }
 
         public GuidTableFieldProperties Properties
@@ -17398,6 +18056,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Integer;
+            }
+        }
+
         public IntegerTableFieldProperties Properties
         {
             get
@@ -17415,6 +18081,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal OptionTableField(Int32 no, String name) : base(no, name)
         {
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Option;
+            }
         }
 
         public OptionTableFieldProperties Properties
@@ -17436,6 +18110,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.RecordID;
+            }
+        }
+
         public RecordIDTableFieldProperties Properties
         {
             get
@@ -17453,6 +18135,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal TableFilterTableField(Int32 no, String name) : base(no, name)
         {
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.TableFilter;
+            }
         }
 
         public TableFilterTableFieldProperties Properties
@@ -17474,6 +18164,14 @@ namespace UncommonSense.CBreeze.Core
         internal TextTableField(Int32 no, String name, Int32 dataLength = 30) : base(no, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Text;
+            }
         }
 
         public Int32 DataLength
@@ -17503,6 +18201,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.Time;
+            }
+        }
+
         public TimeTableFieldProperties Properties
         {
             get
@@ -17520,6 +18226,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal ActionVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Action;
+            }
         }
 
         public String Dimensions
@@ -17546,6 +18260,14 @@ namespace UncommonSense.CBreeze.Core
         internal AutomationVariable(Int32 id, String name, String subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Automation;
+            }
         }
 
         public String Dimensions
@@ -17591,6 +18313,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.BigInteger;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -17612,6 +18342,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal BigTextVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.BigText;
+            }
         }
 
         public String Dimensions
@@ -17637,6 +18375,14 @@ namespace UncommonSense.CBreeze.Core
         internal BinaryVariable(Int32 id, String name, Int32 dataLength = 100) : base(id, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Binary;
+            }
         }
 
         public Int32 DataLength
@@ -17669,6 +18415,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal BooleanVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Boolean;
+            }
         }
 
         public String Dimensions
@@ -17706,6 +18460,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Byte;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -17727,6 +18489,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal CharVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Char;
+            }
         }
 
         public String Dimensions
@@ -17752,6 +18522,14 @@ namespace UncommonSense.CBreeze.Core
         internal CodeunitVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Codeunit;
+            }
         }
 
         public String Dimensions
@@ -17786,6 +18564,14 @@ namespace UncommonSense.CBreeze.Core
         internal CodeVariable(Int32 id, String name, Int32? dataLength = null) : base(id, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Code;
+            }
         }
 
         public Int32? DataLength
@@ -17831,6 +18617,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.DateFormula;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -17852,6 +18646,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal DateTimeVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.DateTime;
+            }
         }
 
         public String Dimensions
@@ -17877,6 +18679,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Date;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -17900,6 +18710,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Decimal;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -17921,6 +18739,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal DialogVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Dialog;
+            }
         }
 
         public String Dimensions
@@ -17948,6 +18774,14 @@ namespace UncommonSense.CBreeze.Core
         internal DotNetVariable(Int32 id, String name, String subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.DotNet;
+            }
         }
 
         public String Dimensions
@@ -18005,6 +18839,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Duration;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18026,6 +18868,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal ExecutionModeVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.ExecutionMode;
+            }
         }
 
         public String Dimensions
@@ -18051,6 +18901,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.FieldRef;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18072,6 +18930,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal FileVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.File;
+            }
         }
 
         public String Dimensions
@@ -18097,6 +18963,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Guid;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18118,6 +18992,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal InStreamVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.InStream;
+            }
         }
 
         public String Dimensions
@@ -18142,6 +19024,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal IntegerVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Integer;
+            }
         }
 
         public String Dimensions
@@ -18179,6 +19069,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.KeyRef;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18202,6 +19100,14 @@ namespace UncommonSense.CBreeze.Core
         internal OcxVariable(Int32 id, String name, String subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Ocx;
+            }
         }
 
         public String Dimensions
@@ -18234,6 +19140,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal OptionVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Option;
+            }
         }
 
         public String Dimensions
@@ -18271,6 +19185,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.OutStream;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18294,6 +19216,14 @@ namespace UncommonSense.CBreeze.Core
         internal PageVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Page;
+            }
         }
 
         public String Dimensions
@@ -18328,6 +19258,14 @@ namespace UncommonSense.CBreeze.Core
         internal QueryVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Query;
+            }
         }
 
         public String Dimensions
@@ -18373,6 +19311,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.RecordID;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18395,6 +19341,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal RecordRefVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.RecordRef;
+            }
         }
 
         public String Dimensions
@@ -18434,6 +19388,14 @@ namespace UncommonSense.CBreeze.Core
         internal RecordVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Record;
+            }
         }
 
         public String Dimensions
@@ -18493,6 +19455,14 @@ namespace UncommonSense.CBreeze.Core
             this.subType = subType;
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Report;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18526,6 +19496,14 @@ namespace UncommonSense.CBreeze.Core
             this.subType = subType;
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.TestPage;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18557,6 +19535,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.TextConstant;
+            }
+        }
+
         public MultiLanguageValue Values
         {
             get
@@ -18577,6 +19563,14 @@ namespace UncommonSense.CBreeze.Core
         internal TextVariable(Int32 id, String name, Int32? dataLength = null) : base(id, name)
         {
             this.dataLength = dataLength;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Text;
+            }
         }
 
         public Int32? DataLength
@@ -18622,6 +19616,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Time;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18643,6 +19645,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal TransactionTypeVariable(Int32 id, String name) : base(id, name)
         {
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.TransactionType;
+            }
         }
 
         public String Dimensions
@@ -18668,6 +19678,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Variant;
+            }
+        }
+
         public String Dimensions
         {
             get
@@ -18691,6 +19709,14 @@ namespace UncommonSense.CBreeze.Core
         internal XmlPortVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.XmlPort;
+            }
         }
 
         public String Dimensions
@@ -18724,6 +19750,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override XmlPortNodeType Type
+        {
+            get
+            {
+                return XmlPortNodeType.XmlPortFieldAttribute;
+            }
+        }
+
         public XmlPortFieldAttributeProperties Properties
         {
             get
@@ -18741,6 +19775,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal XmlPortFieldElement(Guid id, String nodeName, Int32? indentationLevel) : base(id, nodeName, indentationLevel)
         {
+        }
+
+        public override XmlPortNodeType Type
+        {
+            get
+            {
+                return XmlPortNodeType.XmlPortFieldElement;
+            }
         }
 
         public XmlPortFieldElementProperties Properties
@@ -18762,6 +19804,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override XmlPortNodeType Type
+        {
+            get
+            {
+                return XmlPortNodeType.XmlPortTableAttribute;
+            }
+        }
+
         public XmlPortTableAttributeProperties Properties
         {
             get
@@ -18779,6 +19829,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal XmlPortTableElement(Guid id, String nodeName, Int32? indentationLevel) : base(id, nodeName, indentationLevel)
         {
+        }
+
+        public override XmlPortNodeType Type
+        {
+            get
+            {
+                return XmlPortNodeType.XmlPortTableElement;
+            }
         }
 
         public XmlPortTableElementProperties Properties
@@ -18800,6 +19858,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override XmlPortNodeType Type
+        {
+            get
+            {
+                return XmlPortNodeType.XmlPortTextAttribute;
+            }
+        }
+
         public XmlPortTextAttributeProperties Properties
         {
             get
@@ -18817,6 +19883,14 @@ namespace UncommonSense.CBreeze.Core
 
         internal XmlPortTextElement(Guid id, String nodeName, Int32? indentationLevel) : base(id, nodeName, indentationLevel)
         {
+        }
+
+        public override XmlPortNodeType Type
+        {
+            get
+            {
+                return XmlPortNodeType.XmlPortTextElement;
+            }
         }
 
         public XmlPortTextElementProperties Properties
@@ -21835,10 +22909,10 @@ namespace UncommonSense.CBreeze.Core
 
     public enum PageControlType
     {
-        ContainerPageControl,
-        FieldPageControl,
-        GroupPageControl,
-        PartPageControl,
+        Container,
+        Field,
+        Group,
+        Part,
     }
 
     public enum PageType
@@ -21891,46 +22965,46 @@ namespace UncommonSense.CBreeze.Core
 
     public enum ParameterType
     {
-        ActionParameter,
-        AutomationParameter,
-        BigIntegerParameter,
-        BigTextParameter,
-        BinaryParameter,
-        BooleanParameter,
-        ByteParameter,
-        CharParameter,
-        CodeParameter,
-        CodeunitParameter,
-        DateFormulaParameter,
-        DateParameter,
-        DateTimeParameter,
-        DecimalParameter,
-        DialogParameter,
-        DotNetParameter,
-        DurationParameter,
-        ExecutionModeParameter,
-        FieldRefParameter,
-        FileParameter,
-        GuidParameter,
-        InStreamParameter,
-        IntegerParameter,
-        KeyRefParameter,
-        OcxParameter,
-        OptionParameter,
-        OutStreamParameter,
-        PageParameter,
-        QueryParameter,
-        RecordIDParameter,
-        RecordParameter,
-        RecordRefParameter,
-        ReportParameter,
-        TestPageParameter,
-        TestRequestPageParameter,
-        TextParameter,
-        TimeParameter,
-        TransactionTypeParameter,
-        VariantParameter,
-        XmlPortParameter,
+        Action,
+        Automation,
+        BigInteger,
+        BigText,
+        Binary,
+        Boolean,
+        Byte,
+        Char,
+        Code,
+        Codeunit,
+        DateFormula,
+        Date,
+        DateTime,
+        Decimal,
+        Dialog,
+        DotNet,
+        Duration,
+        ExecutionMode,
+        FieldRef,
+        File,
+        Guid,
+        InStream,
+        Integer,
+        KeyRef,
+        Ocx,
+        Option,
+        OutStream,
+        Page,
+        Query,
+        RecordID,
+        Record,
+        RecordRef,
+        Report,
+        TestPage,
+        TestRequestPage,
+        Text,
+        Time,
+        TransactionType,
+        Variant,
+        XmlPort,
     }
 
     public enum PartType
@@ -21956,9 +23030,9 @@ namespace UncommonSense.CBreeze.Core
 
     public enum QueryElementType
     {
-        ColumnQueryElement,
-        DataItemQueryElement,
-        FilterQueryElement,
+        Column,
+        DataItem,
+        Filter,
     }
 
     public enum QueryOrderByDirection
@@ -21991,8 +23065,8 @@ namespace UncommonSense.CBreeze.Core
 
     public enum ReportElementType
     {
-        ColumnReportElement,
-        DataItemReportElement,
+        Column,
+        DataItem,
     }
 
     public enum RunObjectLinkLineType
@@ -22069,23 +23143,23 @@ namespace UncommonSense.CBreeze.Core
 
     public enum TableFieldType
     {
-        BigIntegerTableField,
-        BinaryTableField,
-        BlobTableField,
-        BooleanTableField,
-        CodeTableField,
-        DateFormulaTableField,
-        DateTableField,
-        DateTimeTableField,
-        DecimalTableField,
-        DurationTableField,
-        GuidTableField,
-        IntegerTableField,
-        OptionTableField,
-        RecordIDTableField,
-        TableFilterTableField,
-        TextTableField,
-        TimeTableField,
+        BigInteger,
+        Binary,
+        Blob,
+        Boolean,
+        Code,
+        DateFormula,
+        Date,
+        DateTime,
+        Decimal,
+        Duration,
+        Guid,
+        Integer,
+        Option,
+        RecordID,
+        TableFilter,
+        Text,
+        Time,
     }
 
     public enum TableFilterType
@@ -22154,46 +23228,46 @@ namespace UncommonSense.CBreeze.Core
 
     public enum VariableType
     {
-        ActionVariable,
-        AutomationVariable,
-        BigIntegerVariable,
-        BigTextVariable,
-        BinaryVariable,
-        BooleanVariable,
-        ByteVariable,
-        CharVariable,
-        CodeunitVariable,
-        CodeVariable,
-        DateFormulaVariable,
-        DateTimeVariable,
-        DateVariable,
-        DecimalVariable,
-        DialogVariable,
-        DotNetVariable,
-        DurationVariable,
-        ExecutionModeVariable,
-        FieldRefVariable,
-        FileVariable,
-        GuidVariable,
-        InStreamVariable,
-        IntegerVariable,
-        KeyRefVariable,
-        OcxVariable,
-        OptionVariable,
-        OutStreamVariable,
-        PageVariable,
-        QueryVariable,
-        RecordIDVariable,
-        RecordRefVariable,
-        RecordVariable,
-        ReportVariable,
-        TestPageVariable,
+        Action,
+        Automation,
+        BigInteger,
+        BigText,
+        Binary,
+        Boolean,
+        Byte,
+        Char,
+        Codeunit,
+        Code,
+        DateFormula,
+        DateTime,
+        Date,
+        Decimal,
+        Dialog,
+        DotNet,
+        Duration,
+        ExecutionMode,
+        FieldRef,
+        File,
+        Guid,
+        InStream,
+        Integer,
+        KeyRef,
+        Ocx,
+        Option,
+        OutStream,
+        Page,
+        Query,
+        RecordID,
+        RecordRef,
+        Record,
+        Report,
+        TestPage,
         TextConstant,
-        TextVariable,
-        TimeVariable,
-        TransactionTypeVariable,
-        VariantVariable,
-        XmlPortVariable,
+        Text,
+        Time,
+        TransactionType,
+        Variant,
+        XmlPort,
     }
 
     public enum XmlPortEncoding
