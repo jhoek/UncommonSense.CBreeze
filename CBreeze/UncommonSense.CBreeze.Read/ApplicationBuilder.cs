@@ -943,19 +943,19 @@ namespace UncommonSense.CBreeze.Read
         }
 
 
-        public void OnBeginQueryElement(int elementID, int? elementIndentation, string elementName, QueryElementType elementType)
+        public void OnBeginQueryElement(int elementID, int? elementIndentation, string elementName, UncommonSense.Nav.Parser.QueryElementType elementType)
         {
             switch (elementType)
             {
-                case QueryElementType.DataItem:
+                case UncommonSense.Nav.Parser.QueryElementType.DataItem:
                     var newDataItemQueryElement = currentQueryElements.AddDataItemQueryElement(elementID, elementName, elementIndentation);
                     currentProperties.Push(newDataItemQueryElement.Properties);
                     break;
-                case QueryElementType.Filter:
+                case UncommonSense.Nav.Parser.QueryElementType.Filter:
                     var newFilterQueryElement = currentQueryElements.AddFilterQueryElement(elementID, elementName, elementIndentation);
                     currentProperties.Push(newFilterQueryElement.Properties);
                     break;
-                case QueryElementType.Column:
+                case UncommonSense.Nav.Parser.QueryElementType.Column:
                     var newColumnQueryElement = currentQueryElements.AddColumnQueryElement(elementID, elementName, elementIndentation);
                     currentProperties.Push(newColumnQueryElement.Properties);
                     break;
@@ -1030,18 +1030,18 @@ namespace UncommonSense.CBreeze.Read
         }
 
 
-        public void OnBeginXmlPortElement(Guid elementID, int? elementIndentation, string elementName, XmlPortNodeType elementNodeType, XmlPortSourceType elementSourceType)
+        public void OnBeginXmlPortElement(Guid elementID, int? elementIndentation, string elementName, UncommonSense.Nav.Parser.XmlPortNodeType elementNodeType, XmlPortSourceType elementSourceType)
         {
             switch (elementSourceType)
             {
                 case XmlPortSourceType.Text:
                     switch (elementNodeType)
                     {
-                        case XmlPortNodeType.Element:
+                        case UncommonSense.Nav.Parser.XmlPortNodeType.Element:
                             var newTextElementNode = currentXmlPortNodes.AddXmlPortTextElement(elementID, elementName, elementIndentation);
                             currentProperties.Push(newTextElementNode.Properties);
                             break;
-                        case XmlPortNodeType.Attribute:
+                        case UncommonSense.Nav.Parser.XmlPortNodeType.Attribute:
                             var newTextAttributeNode = currentXmlPortNodes.AddXmlPortTextAttribute(elementID, elementName, elementIndentation);
                             currentProperties.Push(newTextAttributeNode.Properties);
                             break;
@@ -1050,11 +1050,11 @@ namespace UncommonSense.CBreeze.Read
                 case XmlPortSourceType.Table:
                     switch (elementNodeType)
                     {
-                        case XmlPortNodeType.Element:
+                        case UncommonSense.Nav.Parser.XmlPortNodeType.Element:
                             var newTableElementNode = currentXmlPortNodes.AddXmlPortTableElement(elementID, elementName, elementIndentation);
                             currentProperties.Push(newTableElementNode.Properties);
                             break;
-                        case XmlPortNodeType.Attribute:
+                        case UncommonSense.Nav.Parser.XmlPortNodeType.Attribute:
                             var newTableAttributeNode = currentXmlPortNodes.AddXmlPortTableAttribute(elementID, elementName, elementIndentation);
                             currentProperties.Push(newTableAttributeNode.Properties);
                             break;
@@ -1063,11 +1063,11 @@ namespace UncommonSense.CBreeze.Read
                 case XmlPortSourceType.Field:
                     switch (elementNodeType)
                     {
-                        case XmlPortNodeType.Element:
+                        case UncommonSense.Nav.Parser.XmlPortNodeType.Element:
                             var newFieldElementNode = currentXmlPortNodes.AddXmlPortFieldElement(elementID, elementName, elementIndentation);
                             currentProperties.Push(newFieldElementNode.Properties);
                             break;
-                        case XmlPortNodeType.Attribute:
+                        case UncommonSense.Nav.Parser.XmlPortNodeType.Attribute:
                             var newFieldAttributeNode = currentXmlPortNodes.AddXmlPortFieldAttribute(elementID, elementName, elementIndentation);
                             currentProperties.Push(newFieldAttributeNode.Properties);
                             break;
@@ -1082,16 +1082,16 @@ namespace UncommonSense.CBreeze.Read
         }
 
 
-        public void OnBeginReportElement(int elementID, int? elementIndentation, string elementName, ReportElementType elementType)
+        public void OnBeginReportElement(int elementID, int? elementIndentation, string elementName, UncommonSense.Nav.Parser.ReportElementType elementType)
         {
             switch (elementType)
             {
-                case ReportElementType.DataItem:
+                case UncommonSense.Nav.Parser.ReportElementType.DataItem:
                     var newDataItemElement = currentReportElements.AddDataItemReportElement(elementID, elementIndentation);
                     newDataItemElement.Name = elementName;
                     currentProperties.Push(newDataItemElement.Properties);
                     break;
-                case ReportElementType.Column:
+                case UncommonSense.Nav.Parser.ReportElementType.Column:
                     var newColumnElement = currentReportElements.AddColumnReportElement(elementID, elementIndentation);
                     newColumnElement.Name = elementName;
                     currentProperties.Push(newColumnElement.Properties);
@@ -1139,27 +1139,27 @@ namespace UncommonSense.CBreeze.Read
         }
 
 
-        public void OnBeginMenuSuiteNode(MenuSuiteNodeType nodeType, Guid nodeID)
+        public void OnBeginMenuSuiteNode(UncommonSense.Nav.Parser.MenuSuiteNodeType nodeType, Guid nodeID)
         {
             switch (nodeType)
             {
-                case MenuSuiteNodeType.Root:
+                case UncommonSense.Nav.Parser.MenuSuiteNodeType.Root:
                     var newRootNode = currentMenuSuiteNodes.AddRootNode(nodeID);
                     currentProperties.Push(newRootNode.Properties);
                     break;
-                case MenuSuiteNodeType.Menu:
+                case UncommonSense.Nav.Parser.MenuSuiteNodeType.Menu:
                     var newMenuNode = currentMenuSuiteNodes.AddMenuNode(nodeID);
                     currentProperties.Push(newMenuNode.Properties);
                     break;
-                case MenuSuiteNodeType.MenuGroup:
+                case UncommonSense.Nav.Parser.MenuSuiteNodeType.MenuGroup:
                     var newGroupNode = currentMenuSuiteNodes.AddGroupNode(nodeID);
                     currentProperties.Push(newGroupNode.Properties);
                     break;
-                case MenuSuiteNodeType.MenuItem:
+                case UncommonSense.Nav.Parser.MenuSuiteNodeType.MenuItem:
                     var newItemNode = currentMenuSuiteNodes.AddItemNode(nodeID);
                     currentProperties.Push(newItemNode.Properties);
                     break;
-                case MenuSuiteNodeType.Delta:
+                case UncommonSense.Nav.Parser.MenuSuiteNodeType.Delta:
                     var newDeltaNode = currentMenuSuiteNodes.AddDeltaNode(nodeID);
                     currentProperties.Push(newDeltaNode.Properties);
                     break;
