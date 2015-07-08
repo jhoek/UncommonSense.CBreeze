@@ -456,8 +456,8 @@ OBJECT Table 50009 Attribute
 {
   OBJECT-PROPERTIES
   {
-    Date=28-06-14;
-    Time=10:28:07;
+    Date=07-07-15;
+    Time=17:04:00;
     Modified=Yes;
     Version List=;
   }
@@ -516,6 +516,7 @@ OBJECT Table 50009 Attribute
     { 140 ;   ;Abstract            ;Boolean        }
     { 150 ;   ;Override            ;Boolean        }
     { 160 ;   ;Nullable            ;Boolean        }
+    { 170 ;   ;Generated           ;Boolean       ;Editable=No }
     { 200 ;   ;URL                 ;Text250        }
     { 210 ;   ;Format/Args Ctor Params;Boolean     }
     { 220 ;   ;Dictionary Key      ;Boolean        }
@@ -938,8 +939,8 @@ OBJECT Form 50002 Enumerations
 {
   OBJECT-PROPERTIES
   {
-    Date=09-04-13;
-    Time=09:32:32;
+    Date=07-07-15;
+    Time=16:44:01;
     Modified=Yes;
     Version List=;
   }
@@ -970,6 +971,12 @@ OBJECT Form 50002 Enumerations
                                                               END;
                                                                }
     { 1000000007;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000006;
+                                                 InColumnHeading=Yes }
+    { 1000000014;CheckBox;9334;550  ;1700 ;440  ;ParentControl=1000000000;
+                                                 InColumn=Yes;
+                                                 ShowCaption=No;
+                                                 SourceExpr=Generated }
+    { 1000000015;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000014;
                                                  InColumnHeading=Yes }
     { 1000000010;TextBox;8213 ;770  ;1700 ;440  ;ParentControl=1000000000;
                                                  InColumn=Yes;
@@ -1084,8 +1091,8 @@ OBJECT Form 50004 Items
 {
   OBJECT-PROPERTIES
   {
-    Date=11-05-13;
-    Time=18:08:34;
+    Date=07-07-15;
+    Time=16:45:18;
     Modified=Yes;
     Version List=;
   }
@@ -1121,6 +1128,11 @@ OBJECT Form 50004 Items
                                                                  END;
                                                                   }
     { 1000000004;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000003;
+                                                 InColumnHeading=Yes }
+    { 1000000009;TextBox;8340 ;330  ;4400 ;440  ;ParentControl=1000000000;
+                                                 InColumn=Yes;
+                                                 SourceExpr="Differentiator Enum Name" }
+    { 1000000010;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000009;
                                                  InColumnHeading=Yes }
     { 1000000005;CheckBox;0   ;0    ;1700 ;0    ;ParentControl=1000000000;
                                                  InColumn=Yes;
@@ -3551,7 +3563,7 @@ OBJECT Codeunit 50007 Update Differentiator Enums
   OBJECT-PROPERTIES
   {
     Date=07-07-15;
-    Time=16:40:17;
+    Time=17:08:30;
     Modified=Yes;
     Version List=;
   }
@@ -3566,13 +3578,37 @@ OBJECT Codeunit 50007 Update Differentiator Enums
   {
 
     PROCEDURE UpdateDifferentiatorEnums@1000000000(ObjectModelCode@1000000000 : Code[10]);
-    VAR
-      Item@1000000001 : Record 50005;
-      Item2@1000000002 : Record 50005;
     BEGIN
       DeleteOldGeneratedEnums(ObjectModelCode);
+      DeleteOldGeneratedAttributes(ObjectModelCode);
+      UpdateItems(ObjectModelCode);
+    END;
 
+    LOCAL PROCEDURE DeleteOldGeneratedEnums@1000000001(ObjectModelCode@1000000000 : Code[10]);
+    VAR
+      Enumeration@1000000001 : Record 50002;
+    BEGIN
+      Enumeration.SETRANGE("Object Model Code", ObjectModelCode);
+      Enumeration.SETRANGE(Generated, TRUE);
+      Enumeration.DELETEALL(TRUE);
+    END;
+
+    LOCAL PROCEDURE DeleteOldGeneratedAttributes@1000000006(ObjectModelCode@1000000000 : Code[10]);
+    VAR
+      Attribute@1000000001 : Record 50009;
+    BEGIN
+      Attribute.SETRANGE("Object Model Code", ObjectModelCode);
+      Attribute.SETRANGE(Generated, TRUE);
+      Attribute.DELETEALL(TRUE);
+    END;
+
+    LOCAL PROCEDURE UpdateItems@1000000004(ObjectModelCode@1000000002 : Code[10]);
+    VAR
+      Item@1000000001 : Record 50005;
+      Item2@1000000000 : Record 50005;
+    BEGIN
       Item.SETCURRENTKEY("Object Model Code","Name Path");
+      Item.SETRANGE("Object Model Code", ObjectModelCode);
 
       IF Item.FINDSET THEN
         REPEAT
@@ -3592,15 +3628,6 @@ OBJECT Codeunit 50007 Update Differentiator Enums
           Item2 := Item;
           Item2.MODIFY;
         UNTIL Item.NEXT = 0;
-    END;
-
-    LOCAL PROCEDURE DeleteOldGeneratedEnums@1000000001(ObjectModelCode@1000000000 : Code[10]);
-    VAR
-      Enumeration@1000000001 : Record 50002;
-    BEGIN
-      Enumeration.SETRANGE("Object Model Code", ObjectModelCode);
-      Enumeration.SETRANGE(Generated, TRUE);
-      Enumeration.DELETEALL(TRUE);
     END;
 
     LOCAL PROCEDURE InsertGeneratedEnum@1000000002(ObjectModelCode@1000000000 : Code[10];Name@1000000001 : Text[50]) : Text[50];

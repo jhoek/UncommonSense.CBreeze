@@ -6,5 +6,5 @@ using System.Reflection;
 [assembly: AssemblyCompany("Jan Hoek")]
 [assembly: AssemblyProduct("C/Breeze")]
 [assembly: AssemblyCopyright("Copyright \u00a9 2013 Jan Hoek")]
-[assembly: AssemblyVersion("0.1.10884.0")]
-[assembly: AssemblyFileVersion("0.1.10884.0")]
+[assembly: AssemblyVersion("0.1.10885.0")]
+[assembly: AssemblyFileVersion("0.1.10885.0")]
