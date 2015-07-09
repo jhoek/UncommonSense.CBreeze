@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Model;
 
 namespace UncommonSense.CBreeze.Render
 {
@@ -7,6 +9,7 @@ namespace UncommonSense.CBreeze.Render
 	{
 		internal SubsidiaryEntityTypeManifest()
 		{
+            ReferenceFields = new Dictionary<ISubsidiaryTo, CodeTableField>();
 		}
 
 		public Table Table
@@ -14,6 +17,18 @@ namespace UncommonSense.CBreeze.Render
 			get;
 			internal set;
 		}
+
+        public CodeTableField AddReferenceField(CodeTableField referenceField, ISubsidiaryTo subsidiaryTo) 
+        {
+            ReferenceFields.Add(subsidiaryTo, referenceField);
+            return referenceField;
+        }
+
+        public Dictionary<ISubsidiaryTo, CodeTableField> ReferenceFields
+        {
+            get;
+            internal set;
+        }
 
         public IntegerTableField LineNoField
         {
