@@ -5,10 +5,10 @@ namespace CBreeze.NextGen
 	public class Code : Node
 	{
 		internal Code(Node parentNode)
-			: base(parentNode)
 		{
+			ParentNode = parentNode;
 			Documentation = new Documentation(this);
-			Events = new Events(this);
+//			Events = new Events(this);
 			Variables = new Variables(this);
 			Functions = new Functions(this);
 		}
@@ -24,11 +24,11 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
-		public Events Events
-		{
-			get;
-			internal set;
-		}
+		//		public Events Events
+		//		{
+		//			get;
+		//			internal set;
+		//		}
 
 		public Variables Variables
 		{
@@ -52,7 +52,7 @@ namespace CBreeze.NextGen
 				}
                 
 				yield return Documentation;
-				yield return Events;
+				//yield return Events;
 				yield return Variables;
 				yield return Functions;
 			}
