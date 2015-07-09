@@ -7,55 +7,36 @@ namespace UncommonSense.CBreeze.Model
 {
 	public class SupplementalEntityType : EntityType, ISubsidiaryTo
 	{
-		private string name;
-		private string pluralName;
-		private DescriptionStyle descriptionStyle = DescriptionStyle.Description;
-		private DescriptionLength descriptionLength = DescriptionLength.Normal;
-
-		internal SupplementalEntityType(ApplicationDesign applicationDesign, string name, string pluralName) : base(applicationDesign)
+		public SupplementalEntityType(string name, string pluralName) 
 		{
-			this.name = name;
-			this.pluralName = pluralName;
+			Name = name;
+			PluralName = pluralName;
+            DescriptionStyle = DescriptionStyle.Description;
+            DescriptionLength = DescriptionLength.Normal;
 		}
 
 		public string Name
 		{
-			get
-			{
-				return this.name;
-			}
+			get;
+            internal set;
 		}
 
 		public string PluralName
 		{
-			get
-			{
-				return this.pluralName;
-			}
+			get;
+            internal set;
 		}
 
 		public DescriptionStyle DescriptionStyle
 		{
-			get
-			{
-				return this.descriptionStyle;
-			}
-			set
-			{
-				this.descriptionStyle = value;
-			}
+			get;
+             set;
 		}
 
-		public DescriptionLength DescriptionLength
-		{
-			get
-			{
-				return descriptionLength;
-			}
-			set
-			{
-				descriptionLength = value;
-			}
-		}
+        public DescriptionLength DescriptionLength
+        {
+            get;
+            set;
+        }
 	}
 }

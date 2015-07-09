@@ -5,57 +5,35 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Model
 {
-	public class LedgerEntityType : EntityType
-	{
-		private string name;
-		private string pluralName;
-		private bool hasPostingDateField = true;
-		private MasterEntityType masterEntityType;
-		// FIXME: Amount fields on ledger entries should appears as FlowFields in the master entity type.
-		internal LedgerEntityType(ApplicationDesign applicationDesign, string name, string pluralName) : base(applicationDesign)
-		{
-			this.name = name;
-			this.pluralName = pluralName;
-		}
+    public class LedgerEntityType : EntityType
+    {
+        internal LedgerEntityType(string name, string pluralName)
+        {
+            Name = name;
+            PluralName = pluralName;
+            HasPostingDateField = true;
+        }
 
-		public string Name
-		{
-			get
-			{
-				return this.name;
-			}
-		}
+        public string Name
+        {
+            get;
+            internal set;
+        }
 
-		public string PluralName
-		{
-			get
-			{
-				return pluralName;
-			}
-		}
+        public string PluralName
+        {
+            get;
+            internal set;
+        }
 
-		public bool HasPostingDateField
-		{
-			get
-			{
-				return hasPostingDateField;
-			}
-			set
-			{
-				hasPostingDateField = value;
-			}
-		}
+        public bool HasPostingDateField
+        {
+            get;set;
+        }
 
-		public MasterEntityType MasterEntityType
-		{
-			get
-			{
-				return this.masterEntityType;
-			}
-			set
-			{
-				this.masterEntityType = value;
-			}
-		}
-	}
+        public MasterEntityType MasterEntityType
+        {
+            get;set;
+        }
+    }
 }

@@ -7,36 +7,29 @@ namespace UncommonSense.CBreeze.Model
 {
     public class SubsidiaryEntityType : EntityType
     {
-        private string name;
-        private string pluralName;
         private List<ISubsidiaryTo> subsidiaryTo = new List<ISubsidiaryTo>();
         private DifferentiatorType differentiatorType = DifferentiatorType.LineNo;
 
-        internal SubsidiaryEntityType(ApplicationDesign applicationDesign, string name, string pluralName, params ISubsidiaryTo[] subsidiaryTo)
-            : base(applicationDesign)
+        public SubsidiaryEntityType(string name, string pluralName, params ISubsidiaryTo[] subsidiaryTo)
         {
             if (!subsidiaryTo.Any())
                 throw new ApplicationException(ExceptionMessages.MustBeSubsidiaryTo);
 
-            this.name = name;
-            this.pluralName = pluralName;
+            Name = name;
+            PluralName = pluralName;
             this.subsidiaryTo.AddRange(subsidiaryTo);
         }
 
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
+            get;
+            internal set;
         }
 
         public string PluralName
         {
-            get
-            {
-                return pluralName;
-            }
+            get;
+            internal set;
         }
 
         public IEnumerable<ISubsidiaryTo> SubsidiaryTo

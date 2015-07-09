@@ -7,29 +7,21 @@ namespace UncommonSense.CBreeze.Model
 {
 	public class DocumentHistoryEntityType : EntityType
 	{
-		private string headerName;
-		private string lineName;
-
-		internal DocumentHistoryEntityType(ApplicationDesign applicationDesign, string headerName, string lineName) : base(applicationDesign)
+		public DocumentHistoryEntityType(string headerName, string lineName) 
 		{
-			this.headerName = headerName;
-			this.lineName = lineName;
+			HeaderName = headerName;
+			LineName = lineName;
 		}
 
 		public string HeaderName
 		{
-			get
-			{
-				return this.headerName;
-			}
+			get;
+            internal set;
 		}
 
 		public string LineName
 		{
-			get
-			{
-				return this.lineName;
-			}
+			get;internal set;
 		}
 	}
 }

@@ -16,8 +16,7 @@ namespace UncommonSense.CBreeze.Model
         private bool hasPostingDateField = true;
         private MasterEntityType masterEntityType;
 
-        internal JournalEntityType(ApplicationDesign applicationDesign, string baseName)
-            : base(applicationDesign)
+        public JournalEntityType(string baseName)
         {
             this.baseName = baseName;
         }

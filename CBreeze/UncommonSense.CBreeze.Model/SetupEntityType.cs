@@ -7,19 +7,15 @@ namespace UncommonSense.CBreeze.Model
 {
 	public class SetupEntityType : EntityType
 	{
-		private string name;
-
-		public SetupEntityType(ApplicationDesign applicationDesign, string name) : base(applicationDesign)
+		public SetupEntityType(string name)
 		{
-			this.name = name;
+			Name = name;
 		}
 
 		public string Name
 		{
-			get
-			{
-				return this.name;
-			}
+			get;
+            internal set;
 		}
 	}
 }

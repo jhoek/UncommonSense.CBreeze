@@ -7,19 +7,10 @@ namespace UncommonSense.CBreeze.Model
 {
 	public abstract class EntityType
 	{
-		private ApplicationDesign applicationDesign;
-
-		internal EntityType(ApplicationDesign applicationDesign)
-		{
-			this.applicationDesign = applicationDesign;
-		}
-
 		public ApplicationDesign ApplicationDesign
 		{
-			get
-			{
-				return applicationDesign;
-			}
+			get;
+            internal set;
 		}
 	}
 }

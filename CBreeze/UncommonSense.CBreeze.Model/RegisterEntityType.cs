@@ -5,47 +5,59 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Model
 {
-	public class RegisterEntityType : EntityType
-	{
-		private string name;
-		private bool hasSourceCodeField = true;
-		private List<LedgerEntityType> ledgerEntityTypes = new List<LedgerEntityType>();
+    public class RegisterEntityType : EntityType
+    {
+        private List<LedgerEntityType> ledgerEntityTypes = new List<LedgerEntityType>();
 
-		internal RegisterEntityType(ApplicationDesign applicationDesign, string name, params LedgerEntityType[] ledgerEntityTypes) : base(applicationDesign)
-		{
-			this.name = name;
-			this.ledgerEntityTypes.AddRange(ledgerEntityTypes);
-		}
+        public RegisterEntityType(string name, params LedgerEntityType[] ledgerEntityTypes)
+        {
+            Name = name;
+            HasCreationDateField = true;
+            HasSourceCodeField = true;
+            HasUserIDField = true;
+            HasJournalBatchNameField = true;
+            this.ledgerEntityTypes.AddRange(ledgerEntityTypes);
+        }
 
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-		}
+        public string Name
+        {
+            get;
+            internal set;
+        }
 
-		public bool HasSourceCodeField
-		{
-			get
-			{
-				return hasSourceCodeField;
-			}
-			set
-			{
-				hasSourceCodeField = value;
-			}
-		}
+        public bool HasCreationDateField
+        {
+            get;
+            set;
+        }
 
-		public IEnumerable<LedgerEntityType> LedgerEntityTypes
-		{
-			get
-			{
-				foreach (var ledgerEntityType in ledgerEntityTypes)
-				{
-					yield return ledgerEntityType;
-				}
-			}
-		}
-	}
+        public bool HasSourceCodeField
+        {
+            get;
+            set;
+        }
+
+        public bool HasUserIDField
+        {
+            get;
+            set;
+        }
+
+        public bool HasJournalBatchNameField
+        {
+            get;
+            set;
+        }
+
+        public IEnumerable<LedgerEntityType> LedgerEntityTypes
+        {
+            get
+            {
+                foreach (var ledgerEntityType in ledgerEntityTypes)
+                {
+                    yield return ledgerEntityType;
+                }
+            }
+        }
+    }
 }

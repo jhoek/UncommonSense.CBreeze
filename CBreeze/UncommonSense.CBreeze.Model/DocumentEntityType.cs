@@ -5,60 +5,44 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Model
 {
-	public class DocumentEntityType : EntityType
-	{
-        private string baseName;
-        private SetupEntityType setupEntityType;
-		private string documentTypeOptions = null;
-
-		internal DocumentEntityType(ApplicationDesign applicationDesign, string baseName, SetupEntityType setupEntityType) : base(applicationDesign)
-		{
-			this.baseName = baseName;
-            this.setupEntityType = setupEntityType;
-		}
+    public class DocumentEntityType : EntityType
+    {
+        public DocumentEntityType(string baseName, SetupEntityType setupEntityType)
+        {
+            BaseName = baseName;
+            HeaderName = string.Format("{0} Header", BaseName);
+            LineName = string.Format("{0} Line", BaseName);
+            SetupEntityType = setupEntityType;
+        }
 
         public string BaseName
         {
-            get
-            {
-                return this.baseName;
-            }
+            get;
+            internal set;
         }
 
-		public string HeaderName
-		{
-			get
-			{
-				return string.Format("{0} Header", BaseName);
-			}
-		}
+        public string HeaderName
+        {
+            get;
+            set;
+        }
 
-		public string LineName
-		{
-			get
-			{
-				return string.Format("{0} Line", BaseName);
-			}
-		}
+        public string LineName
+        {
+            get;
+            set;
+        }
 
         public SetupEntityType SetupEntityType
         {
-            get
-            {
-                return this.setupEntityType;
-            }
+            get;
+            internal set;
         }
 
-		public string DocumentTypeOptions
-		{
-			get
-			{
-				return this.documentTypeOptions ?? string.Empty;
-			}
-			set
-			{
-				this.documentTypeOptions = value;
-			}
-		}
-	}
+        public string DocumentTypeOptions
+        {
+            get;
+            set;
+        }
+    }
 }
