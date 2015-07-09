@@ -10,15 +10,17 @@ namespace UncommonSense.CBreeze.Demo
 	{
 		public static void Main(string[] args)
 		{
+            var commandLine = new CommandLine(args);
+
             var parserStopwatch = new Stopwatch();
             parserStopwatch.Start();
-            var application = ApplicationBuilder.FromFile(@".\soll.txt");
+            var application = ApplicationBuilder.FromFile(commandLine.InputFileName);
             parserStopwatch.Stop();
             Console.WriteLine(parserStopwatch.Elapsed);
 
             var writerStopwatch = new Stopwatch();
             writerStopwatch.Start();
-			application.Write(@"./ist.txt");
+			application.Write(commandLine.OutputFileName);
             writerStopwatch.Stop();
             Console.WriteLine(writerStopwatch.Elapsed);
 		}
