@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Render
             manifest.DescriptionField = manifest.Table.Fields.AddTextTableField(nextFieldNo++, entityType.DescriptionFieldName(), 50).AutoCaption();
             manifest.Description2Field = entityType.HasDescription2Field ? manifest.Table.Fields.AddTextTableField(nextFieldNo++, entityType.Description2FieldName(), 50).AutoCaption() : null;
             manifest.SearchDescriptionField = entityType.HasSearchDescriptionField ? manifest.Table.AddSearchDescription(nextFieldNo++, manifest.NoField, manifest.DescriptionField) : null;
-            manifest.LastDateModifiedField = entityType.HasDateLastModifiedField ? manifest.Table.AddLastDateModified(nextFieldNo++) : null;
+            manifest.LastDateModifiedField = entityType.HasLastDateModifiedField ? manifest.Table.AddLastDateModified(nextFieldNo++) : null;
             manifest.DateFilterField = entityType.NeedsDateFilterField() ? manifest.Table.Fields.AddDateTableField(nextFieldNo++, "Date Filter").AutoCaption() : null;
             manifest.NoSeriesField = manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "No. Series", 10).AutoCaption();
 
