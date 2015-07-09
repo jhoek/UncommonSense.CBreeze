@@ -7,150 +7,95 @@ namespace UncommonSense.CBreeze.Model
 {
     public class JournalEntityType : EntityType
     {
-        private string baseName;
-        private string basePluralName;
-        private bool hasTestReportIDField = true;
-        private bool hasPostingReportIDField = true;
-        private bool hasSourceCodeField = true;
-        private bool hasReasonCodeField = true;
-        private bool hasPostingDateField = true;
-        private MasterEntityType masterEntityType;
-
         public JournalEntityType(string baseName)
         {
-            this.baseName = baseName;
+            BaseName = baseName;
+            BasePluralName = string.Format("{0}s", BaseName);
+            TemplateName = string.Format("{0} Template", BaseName);
+            TemplatePluralName = string.Format("{0} Templates", BaseName);
+            BatchName = string.Format("{0} Batch", BaseName);
+            BatchPluralName = string.Format("{0} Batches", BaseName);
+            LineName = string.Format("{0} Line", BaseName);
+            HasTestReportIDField = true;
+            HasPostingReportIDField = true;
+            HasSourceCodeField = true;
+            HasReasonCodeField = true;
+            HasPostingDateField = true;
         }
 
         public string BaseName
         {
-            get
-            {
-                return this.baseName;
-            }
+            get;
+            internal set;
         }
 
         public string BasePluralName
         {
-            get
-            {
-                return this.basePluralName ?? string.Format("{0}s", BaseName);
-            }
-            set
-            {
-                this.basePluralName = value;
-            }
+            get;
+            set;
         }
 
         public string TemplateName
         {
-            get
-            {
-                return string.Format("{0} Template", BaseName);
-            }
+            get;
+            set;
         }
 
         public string TemplatePluralName
         {
-            get
-            {
-                return string.Format("{0} Templates", BaseName);
-            }
+            get;
+            set;
         }
 
         public string BatchName
         {
-            get
-            {
-                return string.Format("{0} Batch", BaseName);
-            }
+            get;
+            set;
         }
 
         public string BatchPluralName
         {
-            get
-            {
-                return string.Format("{0} Batches", BaseName);
-            }
+            get;
+            set;
         }
 
         public string LineName
         {
-            get
-            {
-                return string.Format("{0} Line", BaseName);
-            }
+            get;
+            set;
         }
 
         public bool HasTestReportIDField
         {
-            get
-            {
-                return hasTestReportIDField;
-            }
-            set
-            {
-                hasTestReportIDField = value;
-            }
+            get;
+            set;
         }
 
         public bool HasPostingReportIDField
         {
-            get
-            {
-                return hasPostingReportIDField;
-            }
-            set
-            {
-                hasPostingReportIDField = value;
-            }
+            get;set;
         }
 
         public bool HasSourceCodeField
         {
-            get
-            {
-                return hasSourceCodeField;
-            }
-            set
-            {
-                hasSourceCodeField = value;
-            }
+            get;
+            set;
         }
 
         public bool HasReasonCodeField
         {
-            get
-            {
-                return hasReasonCodeField;
-            }
-            set
-            {
-                hasReasonCodeField = value;
-            }
+            get;set;
         }
 
         public bool HasPostingDateField
         {
-            get
-            {
-                return this.hasPostingDateField;
-            }
-            set
-            {
-                this.hasPostingDateField = value;
-            }
+            get;set;
         }
 
         public MasterEntityType MasterEntityType
         {
-            get
-            {
-                return this.masterEntityType;
-            }
-            set
-            {
-                this.masterEntityType = value;
-            }
+            get;
+            set;
         }
     }
 }
