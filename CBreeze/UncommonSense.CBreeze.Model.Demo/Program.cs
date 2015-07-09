@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Render;
+using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Model.Demo
 {
@@ -12,16 +13,16 @@ namespace UncommonSense.CBreeze.Model.Demo
         static void Main(string[] args)
         {
             var applicationDesign = new ApplicationDesign();
-            var setup = applicationDesign.AddSetupEntityType("Demo Setup");
-            var supplemental = applicationDesign.AddSupplementalEntityType("My Language", "My Languages");
-            var master = applicationDesign.AddMasterEntityType("My Customer", setup);
-            var subsidary = applicationDesign.AddSubsidiaryEntityType("My Customer Address", "My Customer Addresses", master);
-            var journal = applicationDesign.AddJournalEntityType("Demo");
+            var setup = applicationDesign.Add(new SetupEntityType("Demo Setup"));
+            var item = applicationDesign.Add(new MasterEntityType("Item", setup));
+            var vendor = applicationDesign.Add(new MasterEntityType("Vendor", setup));
 
-            var application = new Application();
-            var renderingContext = new RenderingContext();
+            var subsidiaryEntityType = applicationDesign.Add(new SubsidiaryEntityType("Item Vendor", "Item Vendors", item, vendor));
+            subsidiaryEntityType.DifferentiatorType = DifferentiatorType.None;
 
-            applicationDesign.RenderTo(application, renderingContext);
+
+            var application = applicationDesign.RenderTo(new Application(), new RenderingContext());
+            application.Write(Console.Out);
         }
     }
 }
