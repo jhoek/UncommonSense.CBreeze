@@ -7,7 +7,7 @@ namespace UncommonSense.CBreeze.Model
 {
     public class LedgerEntityType : EntityType
     {
-        internal LedgerEntityType(string name, string pluralName)
+        public LedgerEntityType(string name, string pluralName)
         {
             Name = name;
             PluralName = pluralName;
