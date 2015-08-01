@@ -1880,8 +1880,8 @@ OBJECT Codeunit 50001 Export Object Model
 {
   OBJECT-PROPERTIES
   {
-    Date=08-07-15;
-    Time=12:28:59;
+    Date=01-08-15;
+    Time=19:36:06;
     Modified=Yes;
     Version List=;
   }
@@ -2129,6 +2129,7 @@ OBJECT Codeunit 50001 Export Object Model
 
       WritePropertyCollectionFields(PropertyCollection, OutputFile);
       WritePropertyCollectionCtor(PropertyCollection, OutputFile);
+      WritePropertyCollectionIdxr(PropertyCollection, OutputFile);
       WritePropertyCollectionProps(PropertyCollection, OutputFile);
       WritePropertyCollectionIEnum(PropertyCollection, OutputFile);
 
@@ -2182,6 +2183,18 @@ OBJECT Codeunit 50001 Export Object Model
           OutputFile.WRITE(STRSUBSTNO('            innerList.Add(%1);', PropertyCollectionMember."Field Name"));
         UNTIL PropertyCollectionMember.NEXT = 0;
 
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    LOCAL PROCEDURE WritePropertyCollectionIdxr@1000000045(PropertyCollection@1000000000 : Record 50015;VAR OutputFile@1000000001 : File);
+    BEGIN
+      OutputFile.WRITE('        public Property this[string name]');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            get');
+      OutputFile.WRITE('            {');
+      OutputFile.WRITE('                return innerList.FirstOrDefault(p => p.Name == name);');
+      OutputFile.WRITE('            }');
       OutputFile.WRITE('        }');
       OutputFile.WRITE('');
     END;

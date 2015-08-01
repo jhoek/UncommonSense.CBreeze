@@ -1,4 +1,6 @@
 using System;
+using System.Xml;
+using System.Text;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -2407,6 +2409,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionClass);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.String AltSearchField
         {
             get
@@ -2729,6 +2739,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(description);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -2801,6 +2819,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(description);
             innerList.Add(owner);
             innerList.Add(subType);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -2953,6 +2979,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -3279,6 +3313,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionClass);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.String AltSearchField
         {
             get
@@ -3571,6 +3613,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onRun);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.Boolean? CFRONTMayUsePermissions
         {
             get
@@ -3679,6 +3729,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(methodType);
             innerList.Add(dateMethod);
             innerList.Add(totalsMethod);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -3807,6 +3865,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoCalcField);
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.Boolean? AutoCalcField
@@ -3939,6 +4005,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(containerType);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -4015,6 +4089,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataItemLink);
             innerList.Add(dataItemLinkType);
             innerList.Add(sQLJoinType);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public QueryDataItemLink DataItemLink
@@ -4125,6 +4207,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(calcFields);
             innerList.Add(dataItemLinkReference);
             innerList.Add(dataItemLink);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public FieldList CalcFields
@@ -4295,6 +4385,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -4559,6 +4657,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -4883,6 +4989,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -5211,6 +5325,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -5557,6 +5679,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -5941,6 +6071,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onControlAddIn);
             innerList.Add(showCaption);
             innerList.Add(quickEntry);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.Boolean? AssistEdit
@@ -6497,6 +6635,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataSource);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -6565,6 +6711,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(handlerFunctions);
             innerList.Add(local);
             innerList.Add(transactionModel);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public FunctionType? FunctionType
@@ -6663,6 +6817,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(freezeColumnID);
             innerList.Add(layout);
             innerList.Add(actionList);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public ActionList ActionList
@@ -6873,6 +7035,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -7143,6 +7313,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -7463,6 +7641,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(nextNodeID);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.Boolean? Deleted
         {
             get
@@ -7523,6 +7709,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(nextNodeID);
             innerList.Add(firstChild);
             innerList.Add(isDepartmentPage);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -7657,6 +7851,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(nextNodeID);
             innerList.Add(deleted);
             innerList.Add(departmentCategory);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -7817,6 +8019,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(firstChild);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -7954,6 +8164,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public IEnumerator<Property> GetEnumerator()
         {
             return innerList.GetEnumerator();
@@ -7976,6 +8194,14 @@ namespace UncommonSense.CBreeze.Core
         internal MenuSuiteRootNodeProperties()
         {
             innerList.Add(firstChild);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.Guid? FirstChild
@@ -8016,6 +8242,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dateTime);
             innerList.Add(modified);
             innerList.Add(versionList);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.DateTime? DateTime
@@ -8124,6 +8358,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -8432,6 +8674,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(actionContainerType);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public ActionContainerType? ActionContainerType
         {
             get
@@ -8510,6 +8760,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(enabled);
             innerList.Add(actionContainerType);
             innerList.Add(image);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public ActionContainerType? ActionContainerType
@@ -8650,6 +8908,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(promotedCategory);
             innerList.Add(runPageMode);
             innerList.Add(onAction);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -8882,6 +9148,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(isHeader);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -8996,6 +9270,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onQueryClosePage);
             innerList.Add(onAfterGetCurrRecord);
             innerList.Add(actionList);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public ActionList ActionList
@@ -9418,6 +9700,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(showFilter);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -9618,6 +9908,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onBeforeOpen);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -9742,6 +10040,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -9966,6 +10272,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(description);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -10040,6 +10354,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(paperSourceFirstPage);
             innerList.Add(paperSourceLastPage);
             innerList.Add(useRequestPage);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -10312,6 +10634,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onQueryClosePage);
             innerList.Add(onAfterGetCurrRecord);
             innerList.Add(actionList);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public ActionList ActionList
@@ -10662,6 +10992,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionML);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -10700,6 +11038,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(tableIDExpr);
             innerList.Add(captionML);
             innerList.Add(description);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -10784,6 +11130,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(sqlIndex);
             innerList.Add(siftLevelsToMaintain);
             innerList.Add(clustered);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.Boolean? Clustered
@@ -10906,6 +11260,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(drillDownPageID);
             innerList.Add(linkedInTransaction);
             innerList.Add(linkedObject);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -11114,6 +11476,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.String AltSearchField
@@ -11438,6 +11808,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionClass);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.String AltSearchField
         {
             get
@@ -11720,6 +12098,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.Boolean? AutoCalcField
         {
             get
@@ -11842,6 +12228,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAfterAssignField);
             innerList.Add(onBeforePassField);
             innerList.Add(width);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
       public System.Boolean? AutoCalcField
@@ -12008,6 +12402,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(useRequestPage);
             innerList.Add(useLax);
             innerList.Add(fileName);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MultiLanguageValue CaptionML
@@ -12364,6 +12766,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onQueryClosePage);
             innerList.Add(onAfterGetCurrRecord);
             innerList.Add(actionList);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public ActionList ActionList
@@ -12756,6 +13166,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.Boolean? AutoReplace
         {
             get
@@ -13040,6 +13458,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
       public System.Boolean? AutoReplace
         {
             get
@@ -13302,6 +13728,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
+        }
+
         public Occurrence? Occurrence
         {
             get
@@ -13400,6 +13834,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAfterAssignVariable);
             innerList.Add(onBeforePassVariable);
             innerList.Add(width);
+        }
+
+        public Property this[string name]
+        {
+            get
+            {
+                return innerList.FirstOrDefault(p => p.Name == name);
+            }
         }
 
         public MaxOccurs? MaxOccurs
