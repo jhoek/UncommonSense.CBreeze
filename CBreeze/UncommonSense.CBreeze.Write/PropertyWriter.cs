@@ -92,7 +92,8 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<ObjectReferenceProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<QueryOrderByLinesProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<DataItemQueryElementTableFilterProperty>(p => p.Write(isLastProperty, style, writer)),
-                TypeSwitch.Case<SIFTLevelsProperty>(p => p.Write(isLastProperty, style, writer))
+                TypeSwitch.Case<SIFTLevelsProperty>(p => p.Write(isLastProperty, style, writer)),
+                TypeSwitch.Case<TestIsolationProperty>(p=> WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer))
             );
         }
 
