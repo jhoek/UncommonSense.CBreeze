@@ -431,10 +431,11 @@ namespace UncommonSense.CBreeze.Read
             currentTableFieldGroup = null;
         }
 
-        public void OnBeginFunction(int functionID, string functionName, bool functionLocal)
+        public void OnBeginFunction(int functionID, string functionName, bool functionLocal, string functionAttributes)
         {
             currentFunction = currentCode.Functions.Add(functionID, functionName);
             currentFunction.Properties.Local = functionLocal;
+            // FIXME: Process functionAttributes
         }
 
         public void OnEndFunction()
