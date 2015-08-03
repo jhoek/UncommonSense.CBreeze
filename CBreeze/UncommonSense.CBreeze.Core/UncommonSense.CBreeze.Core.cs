@@ -2076,6 +2076,10 @@ namespace UncommonSense.CBreeze.Core
             {
                 return this.value;
             }
+            set
+            {
+                this.value = value;
+            }
         }
     }
 
@@ -3690,6 +3694,10 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return this.testIsolation.Value;
+            }
+            set
+            {
+                this.testIsolation.Value = value;
             }
         }
 
