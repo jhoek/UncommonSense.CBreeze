@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsData.Export, "CBreezeApplication")]
     public class ExportCBreezeApplication : PSCmdlet
     {
-        [Parameter(Mandatory=true)]
+        [Parameter(Mandatory=true,ValueFromPipeline=true)]
         public Application Application
         {
             get;

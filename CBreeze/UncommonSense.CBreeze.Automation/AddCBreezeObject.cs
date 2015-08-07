@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeObject")]
     public class AddCBreezeObject : Cmdlet
     {
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Application Application
         {
             get;
@@ -31,14 +31,49 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position=1)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Report")]
+        public SwitchParameter Report
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Codeunit")]
+        public SwitchParameter Codeunit
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Query")]
+        public SwitchParameter Query
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "XmlPort")]
+        public SwitchParameter XmlPort
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "MenuSuite")]
+        public SwitchParameter MenuSuite
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1)]
         public int ID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position=2)]
+        [Parameter(Mandatory = true, Position = 2)]
         [ValidateLength(1, 30)]
         public string Name
         {
@@ -67,14 +102,33 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName="Table")]
+        [Parameter(ParameterSetName = "Table")]
+        [Parameter(ParameterSetName = "Page")]
+        [Parameter(ParameterSetName = "Report")]
+        [Parameter(ParameterSetName = "Query")]
+        [Parameter(ParameterSetName = "XmlPort")]
+        public SwitchParameter AutoCaption
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "Table")]
+        [Parameter(ParameterSetName = "Page")]
+        public string[] DataCaptionFields
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "Table")]
         public bool? DataPerCompany
         {
             get;
             set;
         }
 
-        [Parameter(ParameterSetName="Table")]
+        [Parameter(ParameterSetName = "Table")]
         public int? DrillDownPageID
         {
             get;
@@ -83,17 +137,20 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            
-
-
             var table = Application.Tables.Add(ID, Name);
 
             table.ObjectProperties.DateTime = DateTime;
             table.ObjectProperties.Modified = Modified;
             table.ObjectProperties.VersionList = VersionList;
 
+            table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
             table.Properties.DataPerCompany = DataPerCompany;
             table.Properties.DrillDownPageID = DrillDownPageID;
+
+            if (AutoCaption)
+            {
+                table.AutoCaption();
+            }
 
             // ...
 
