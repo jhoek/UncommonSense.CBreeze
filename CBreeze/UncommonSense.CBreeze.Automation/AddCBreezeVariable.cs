@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
@@ -23,95 +24,67 @@ namespace UncommonSense.CBreeze.Automation
     // Sadly, however, PowerShell is unable to handle this many unique parameter sets. :(
 
     [Cmdlet(VerbsCommon.Add, "CBreezeVariable")]
-    public class AddCBreezeVariable : PSCmdlet
+    public class AddCBreezeVariable : Cmdlet, IDynamicParameters
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalAction")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalAutomation")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalBigInteger")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalBigText")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalBinary")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalBoolean")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalByte")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalChar")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalCodeunit")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalCode")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalDateFormula")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalDateTime")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalDate")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalDecimal")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalDialog")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalDotNet")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalDuration")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalExecutionMode")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalFieldRef")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalFile")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalGuid")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalInStream")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalInteger")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalKeyRef")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalOcx")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalOption")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalOutStream")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalPage")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalQuery")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalRecordID")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalRecordRef")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalRecord")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalReport")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalTestPage")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalTextConstant")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalText")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalTime")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalTransactionType")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalVariant")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "GlobalXmlPort")]
-        public Code Code
+        private RuntimeDefinedParameter code = CreateScopeRuntimeDefinedParameter("Code", typeof(Code));
+        private RuntimeDefinedParameter function = CreateScopeRuntimeDefinedParameter("Function", typeof(Function));
+        private RuntimeDefinedParameter trigger = CreateScopeRuntimeDefinedParameter("Trigger", typeof(Trigger));
+        private RuntimeDefinedParameter @event = CreateScopeRuntimeDefinedParameter("Event", typeof(Event));
+
+        private static RuntimeDefinedParameter CreateScopeRuntimeDefinedParameter(string name, Type type)
         {
-            get;
-            set;
+            var parameterAttribute = new ParameterAttribute();
+            //parameterAttribute.Mandatory = true;
+            parameterAttribute.ValueFromPipeline = true;
+
+            var attributes = new Collection<Attribute> { parameterAttribute };
+
+            return new RuntimeDefinedParameter(name, type, attributes);
         }
 
-        // FIXME: Function scope, all variable types
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "FunctionOption")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "FunctionRecord")]
-        public Function Function
+        private Scope GetScope()
         {
-            get;
-            set;
+            if (code.IsSet)
+                return Scope.Global;
+            if (function.IsSet)
+                return Scope.Function;
+            if (trigger.IsSet)
+                return Scope.Trigger;
+            if (@event.IsSet)
+                return Scope.Event;
+
+            return Scope.Undefined;
         }
 
-        // FIXME: Trigger scope, all variable types
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "TriggerOption")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "TriggerRecord")]
-        public Trigger Trigger
+        private enum Scope
         {
-            get;
-            set;
+            Undefined,
+            Global,
+            Function,
+            Trigger,
+            Event
         }
 
-        // FIXME: Event scope, all variable types
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "EventOption")]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = "EventRecord")]
-        public Event Event
+        private VariableType GetVariableType()
         {
-            get;
-            set;
+            if (Record.IsPresent)
+                return VariableType.Record;
+            if (Option.IsPresent)
+                return VariableType.Option;
+
+            // FIXME
+
+            throw new ArgumentOutOfRangeException();
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "GlobalOption", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "FunctionOption", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "TriggerOption", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "EventOption", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "Option", Position = 0)]
         public SwitchParameter Option
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "GlobalRecord", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "FunctionRecord", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "TriggerRecord", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "EventRecord", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "Record", Position = 0)]
         public SwitchParameter Record
         {
             get;
@@ -139,20 +112,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "GlobalOption", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "FunctionOption", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "TriggerOption", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "EventOption", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "Option")]
         public string OptionString
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "GlobalRecord", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "FunctionRecord", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "TriggerRecord", Position = 0)]
-        [Parameter(Mandatory = true, ParameterSetName = "EventRecord", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "Record")]
         public int SubType
         {
             get;
@@ -167,11 +134,9 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            WriteVerbose(ParameterSetName);
-
             ID = AutoAssignID(ID);
 
-            switch (Type)
+            switch (GetVariableType())
             {
                 case VariableType.Option:
                     var optionVariable = Variables.AddOptionVariable(ID, Name);
@@ -199,29 +164,52 @@ namespace UncommonSense.CBreeze.Automation
             return Variables.Last().ID + 1;
         }
 
-        protected Variables Variables
+        private Variables Variables
         {
             get
             {
-                if (ParameterSetName.StartsWith("Global"))
-                    return Code.Variables;
-                if (ParameterSetName.StartsWith("Function"))
-                    return Function.Variables;
-                return null;
+                switch (GetScope())
+                {
+                    case Scope.Global:
+                        return (code.Value as Code).Variables;
+                    case Scope.Function:
+                        return (function.Value as Function).Variables;
+                    case Scope.Trigger:
+                        return (trigger.Value as Trigger).Variables;
+                    case Scope.Event:
+                        return (@event.Value as Event).Variables;
+                    default:
+                        return null;
+                }
             }
         }
 
-        protected VariableType Type
+        public object GetDynamicParameters()
         {
-            get
-            {
-                if (ParameterSetName.EndsWith("Option"))
-                    return VariableType.Option;
-                if (ParameterSetName.EndsWith("Record"))
-                    return VariableType.Record;
+            var parameters = new RuntimeDefinedParameterDictionary();
+            var scope = GetScope();
 
-                throw new ArgumentOutOfRangeException();
+            if (scope == Scope.Global || scope == Scope.Undefined)
+            {
+                parameters.Add(code.Name, code);
             }
+
+            if (scope == Scope.Function || scope == Scope.Undefined)
+            {
+                parameters.Add(function.Name, function);
+            }
+
+            if (scope == Scope.Trigger || scope == Scope.Undefined)
+            {
+                parameters.Add(trigger.Name, trigger);
+            }
+
+            if (scope == Scope.Event || scope == Scope.Undefined)
+            {
+                parameters.Add(@event.Name, @event);
+            }
+
+            return parameters;
         }
     }
 }
