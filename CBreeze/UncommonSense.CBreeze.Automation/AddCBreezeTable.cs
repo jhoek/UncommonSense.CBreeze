@@ -17,14 +17,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position=0)]
         public int ID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position=1)]
         [ValidateLength(1, 30)]
         public string Name
         {
