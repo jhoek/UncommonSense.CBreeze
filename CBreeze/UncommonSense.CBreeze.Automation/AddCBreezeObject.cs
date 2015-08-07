@@ -7,8 +7,8 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTable")]
-    public class AddCBreezeTable : Cmdlet
+    [Cmdlet(VerbsCommon.Add, "CBreezeObject")]
+    public class AddCBreezeObject : Cmdlet
     {
         [Parameter(Mandatory = true)]
         public Application Application
@@ -17,14 +17,28 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position=0)]
-        public int ID
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Table")]
+        public SwitchParameter Table
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Page")]
+        public SwitchParameter Page
         {
             get;
             set;
         }
 
         [Parameter(Mandatory = true, Position=1)]
+        public int ID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position=2)]
         [ValidateLength(1, 30)]
         public string Name
         {
@@ -53,14 +67,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(ParameterSetName="Table")]
         public bool? DataPerCompany
         {
             get;
             set;
         }
 
-        [Parameter()]
+        [Parameter(ParameterSetName="Table")]
         public int? DrillDownPageID
         {
             get;
@@ -69,6 +83,9 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
+            
+
+
             var table = Application.Tables.Add(ID, Name);
 
             table.ObjectProperties.DateTime = DateTime;
