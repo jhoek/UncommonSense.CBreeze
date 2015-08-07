@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Read", "UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj", "{11BF778B-6524-4845-895D-CCDF90329FB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Fluent", "UncommonSense.CBreeze.Fluent\UncommonSense.CBreeze.Fluent.csproj", "{A4C45A08-38D7-4A93-930B-8D5BC30E2961}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Model.Demo", "UncommonSense.CBreeze.Model.Demo\UncommonSense.CBreeze.Model.Demo.csproj", "{F5FCEB69-F875-4699-951B-EDE849FF94E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Automation", "UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.csproj", "{AD418664-85BF-445B-8792-6CD3CFD4AD33}"
@@ -101,18 +99,6 @@ Global
 		{11BF778B-6524-4845-895D-CCDF90329FB2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{11BF778B-6524-4845-895D-CCDF90329FB2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{11BF778B-6524-4845-895D-CCDF90329FB2}.Release|x86.ActiveCfg = Release|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Debug|x86.Build.0 = Debug|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Release|x86.ActiveCfg = Release|Any CPU
-		{A4C45A08-38D7-4A93-930B-8D5BC30E2961}.Release|x86.Build.0 = Release|Any CPU
 		{F5FCEB69-F875-4699-951B-EDE849FF94E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5FCEB69-F875-4699-951B-EDE849FF94E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5FCEB69-F875-4699-951B-EDE849FF94E1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
