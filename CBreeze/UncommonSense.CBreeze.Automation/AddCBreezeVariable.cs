@@ -24,68 +24,16 @@ namespace UncommonSense.CBreeze.Automation
     // Sadly, however, PowerShell is unable to handle this many unique parameter sets. :(
 
     [Cmdlet(VerbsCommon.Add, "CBreezeVariable")]
-    public class AddCBreezeVariable : Cmdlet, IDynamicParameters
+    public class AddCBreezeVariable : Cmdlet
     {
-        private RuntimeDefinedParameter code = CreateScopeRuntimeDefinedParameter("Code", typeof(Code));
-        private RuntimeDefinedParameter function = CreateScopeRuntimeDefinedParameter("Function", typeof(Function));
-        private RuntimeDefinedParameter trigger = CreateScopeRuntimeDefinedParameter("Trigger", typeof(Trigger));
-        private RuntimeDefinedParameter @event = CreateScopeRuntimeDefinedParameter("Event", typeof(Event));
-
-        private static RuntimeDefinedParameter CreateScopeRuntimeDefinedParameter(string name, Type type)
-        {
-            var parameterAttribute = new ParameterAttribute();
-            //parameterAttribute.Mandatory = true;
-            parameterAttribute.ValueFromPipeline = true;
-
-            var attributes = new Collection<Attribute> { parameterAttribute };
-
-            return new RuntimeDefinedParameter(name, type, attributes);
-        }
-
-        private Scope GetScope()
-        {
-            if (code.IsSet)
-                return Scope.Global;
-            if (function.IsSet)
-                return Scope.Function;
-            if (trigger.IsSet)
-                return Scope.Trigger;
-            if (@event.IsSet)
-                return Scope.Event;
-
-            return Scope.Undefined;
-        }
-
-        private enum Scope
-        {
-            Undefined,
-            Global,
-            Function,
-            Trigger,
-            Event
-        }
-
-        private VariableType GetVariableType()
-        {
-            if (Record.IsPresent)
-                return VariableType.Record;
-            if (Option.IsPresent)
-                return VariableType.Option;
-
-            // FIXME
-
-            throw new ArgumentOutOfRangeException();
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "Option", Position = 0)]
-        public SwitchParameter Option
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public PSObject InputObject
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "Record", Position = 0)]
-        public SwitchParameter Record
+        public SwitchParameter PassThru
         {
             get;
             set;
@@ -112,6 +60,20 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(Mandatory = true, ParameterSetName = "Option", Position = 0)]
+        public SwitchParameter Option
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "Record", Position = 0)]
+        public SwitchParameter Record
+        {
+            get;
+            set;
+        }
+
         [Parameter(Mandatory = true, ParameterSetName = "Option")]
         public string OptionString
         {
@@ -126,10 +88,16 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        public SwitchParameter PassThru
+        private VariableType GetVariableType()
         {
-            get;
-            set;
+            if (Record.IsPresent)
+                return VariableType.Record;
+            if (Option.IsPresent)
+                return VariableType.Option;
+
+            // FIXME
+
+            throw new ArgumentOutOfRangeException();
         }
 
         protected override void ProcessRecord()
@@ -150,6 +118,8 @@ namespace UncommonSense.CBreeze.Automation
                     recordVariable.Dimensions = Dimensions;
                     this.WriteObjectIf(PassThru, recordVariable);
                     break;
+
+                // FIXME
             }
         }
 
@@ -168,48 +138,31 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                switch (GetScope())
-                {
-                    case Scope.Global:
-                        return (code.Value as Code).Variables;
-                    case Scope.Function:
-                        return (function.Value as Function).Variables;
-                    case Scope.Trigger:
-                        return (trigger.Value as Trigger).Variables;
-                    case Scope.Event:
-                        return (@event.Value as Event).Variables;
-                    default:
-                        return null;
-                }
+                if (InputObject.BaseObject is Table)
+                    return (InputObject.BaseObject as Table).Code.Variables;
+                if (InputObject.BaseObject is Page)
+                    return (InputObject.BaseObject as Page).Code.Variables;
+                if (InputObject.BaseObject is Report)
+                    return (InputObject.BaseObject as Report).Code.Variables;
+                if (InputObject.BaseObject is Codeunit)
+                    return (InputObject.BaseObject as Codeunit).Code.Variables;
+                if (InputObject.BaseObject is Query)
+                    return (InputObject.BaseObject as Query).Code.Variables;
+                if (InputObject.BaseObject is XmlPort)
+                    return (InputObject.BaseObject as XmlPort).Code.Variables;
+
+                if (InputObject.BaseObject is Code)
+                    return (InputObject.BaseObject as Code).Variables;
+
+                if (InputObject.BaseObject is Function)
+                    return (InputObject.BaseObject as Function).Variables;
+                if (InputObject.BaseObject is Trigger)
+                    return (InputObject.BaseObject as Trigger).Variables;
+                if (InputObject.BaseObject is Event)
+                    return (InputObject.BaseObject as Event).Variables;
+
+                throw new ApplicationException("Cannot add variables to this object.");
             }
-        }
-
-        public object GetDynamicParameters()
-        {
-            var parameters = new RuntimeDefinedParameterDictionary();
-            var scope = GetScope();
-
-            if (scope == Scope.Global || scope == Scope.Undefined)
-            {
-                parameters.Add(code.Name, code);
-            }
-
-            if (scope == Scope.Function || scope == Scope.Undefined)
-            {
-                parameters.Add(function.Name, function);
-            }
-
-            if (scope == Scope.Trigger || scope == Scope.Undefined)
-            {
-                parameters.Add(trigger.Name, trigger);
-            }
-
-            if (scope == Scope.Event || scope == Scope.Undefined)
-            {
-                parameters.Add(@event.Name, @event);
-            }
-
-            return parameters;
         }
     }
 }
