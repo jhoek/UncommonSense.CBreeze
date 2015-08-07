@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeTable.cs" />
+    <Compile Include="AddCBreezeVariable.cs" />
+    <Compile Include="CmdletExtensionMethods.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
     <Compile Include="NewCBreezeApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
