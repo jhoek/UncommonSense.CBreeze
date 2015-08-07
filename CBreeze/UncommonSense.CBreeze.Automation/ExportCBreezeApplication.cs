@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
@@ -25,12 +26,32 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(Mandatory = true, ParameterSetName = "ToTextWriter")]
+        public TextWriter TextWriter
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "ToStream")]
+        public Stream Stream
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             switch (ParameterSetName)
             {
                 case "ToPath":
                     Application.Write(Path);
+                    break;
+                case "ToTextWriter":
+                    Application.Write(TextWriter);
+                    break;
+                case "ToStream":
+                    Application.Write(Stream);
                     break;
             }
         }
