@@ -48,5 +48,21 @@ namespace UncommonSense.CBreeze.Automation
                 query.Properties.CaptionML.Add("ENU", query.Name);
             }
         }
+
+        public static void AutoCaptionIf(this CodeTableField field, bool condition)
+        {
+            if (condition)
+            {
+                field.Properties.CaptionML.Add("ENU", field.Name);
+            }
+        }
+
+        public static void AutoCaptionIf(this TextTableField field, bool condition)
+        {
+            if (condition)
+            {
+                field.Properties.CaptionML.Add("ENU", field.Name);
+            }
+        }
     }
 }
