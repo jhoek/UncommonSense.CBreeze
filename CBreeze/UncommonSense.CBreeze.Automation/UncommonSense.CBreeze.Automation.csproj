@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezeMLValue.cs" />
     <Compile Include="AddCBreezeObject.cs" />
     <Compile Include="AddCBreezePage.cs" />
     <Compile Include="AddCBreezeTable.cs" />
