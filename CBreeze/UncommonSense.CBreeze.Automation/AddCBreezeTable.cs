@@ -10,41 +10,53 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeTable")]
     public class AddCBreezeTable : AddCBreezeObject
     {
+        [Parameter()]
         public string[] DataCaptionFields
         {
             get;
             set;
         }
 
+        [Parameter()]
         public bool? DataPerCompany
         {
             get;
             set;
         }
 
+        [Parameter()]
         public int? DrillDownPageID
         {
             get;
             set;
         }
 
-        protected override void ProcessRecord()
+        [Parameter()]
+        public int? LookupPageID
         {
-            var table = Application.Tables.Add(ID, Name);
+            get;
+            set;
+        }
 
-            table.ObjectProperties.DateTime = DateTime;
-            table.ObjectProperties.Modified = Modified;
-            table.ObjectProperties.VersionList = VersionList;
+        protected override System.Collections.IEnumerable AddedObjects
+        {
+            get
+            {
+                var table = Application.Tables.Add(ID, Name);
 
-            table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
-            table.Properties.DataPerCompany = DataPerCompany;
-            table.Properties.DrillDownPageID = DrillDownPageID;
+                table.ObjectProperties.DateTime = DateTime;
+                table.ObjectProperties.Modified = Modified;
+                table.ObjectProperties.VersionList = VersionList;
 
-            table.AutoCaptionIf(AutoCaption);
+                table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
+                table.Properties.DataPerCompany = DataPerCompany;
+                table.Properties.DrillDownPageID = DrillDownPageID;
+                table.Properties.LookupPageID = LookupPageID;
 
-            // ...
+                table.AutoCaptionIf(AutoCaption);
 
-            this.WriteObjectIf(PassThru, table);
+                yield return table;
+            }
         }
     }
 }
