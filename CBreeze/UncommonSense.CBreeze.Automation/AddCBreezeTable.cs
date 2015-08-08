@@ -25,6 +25,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public string Description
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
         public int? DrillDownPageID
         {
             get;
@@ -32,7 +39,28 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public bool? LinkedInTransaction
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? LinkedObject
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
         public int? LookupPageID
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? PasteIsValid
         {
             get;
             set;
@@ -50,8 +78,12 @@ namespace UncommonSense.CBreeze.Automation
 
                 table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
                 table.Properties.DataPerCompany = DataPerCompany;
+                table.Properties.Description = Description;
                 table.Properties.DrillDownPageID = DrillDownPageID;
+                table.Properties.LinkedInTransaction = LinkedInTransaction;
                 table.Properties.LookupPageID = LookupPageID;
+                table.Properties.LinkedObject = LinkedObject;
+                table.Properties.PasteIsValid = PasteIsValid;
 
                 table.AutoCaptionIf(AutoCaption);
 

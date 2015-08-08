@@ -25,11 +25,27 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
+        public static void AutoCaptionIf(this Report report, bool condition)
+        {
+            if (condition)
+            {
+                report.Properties.CaptionML.Add("ENU", report.Name);
+            }
+        }
+
         public static void AutoCaptionIf(this XmlPort xmlPort, bool condition)
         {
             if (condition)
             {
                 xmlPort.Properties.CaptionML.Add("ENU", xmlPort.Name);
+            }
+        }
+
+        public static void AutoCaptionIf(this Query query, bool condition)
+        {
+            if (condition)
+            {
+                query.Properties.CaptionML.Add("ENU", query.Name);
             }
         }
     }
