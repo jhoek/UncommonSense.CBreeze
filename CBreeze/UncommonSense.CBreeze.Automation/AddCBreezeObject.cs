@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class AddCBreezeObject : Cmdlet
+    public abstract class AddCBreezeObject : AddCmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Application Application
@@ -47,13 +47,6 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public string VersionList
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter PassThru
         {
             get;
             set;
