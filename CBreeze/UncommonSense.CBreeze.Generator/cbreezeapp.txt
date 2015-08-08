@@ -1801,8 +1801,8 @@ OBJECT Codeunit 1 ApplicationManagement
 {
   OBJECT-PROPERTIES
   {
-    Date=08-04-13;
-    Time=15:52:17;
+    Date=08-08-15;
+    Time=15:25:26;
     Modified=Yes;
     Version List=NAVW16.00.10;
   }
@@ -1820,6 +1820,11 @@ OBJECT Codeunit 1 ApplicationManagement
     PROCEDURE CompanyOpen@1() : Integer;
     BEGIN
       EXIT(FORM::"Object Models");
+    END;
+
+    PROCEDURE CompanyClose@31();
+    BEGIN
+      CODEUNIT.RUN(CODEUNIT::"Export Generator Objects");
     END;
 
     BEGIN
