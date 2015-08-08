@@ -8,17 +8,10 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeCodeLine")]
-    public class AddCBreezeCodeLine : PSCmdlet
+    public class AddCBreezeCodeLine : Cmdlet
     {
-        [Parameter(Mandatory=true,ParameterSetName="Trigger",ValueFromPipeline=true)]
-        public Trigger Trigger
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "Function", ValueFromPipeline = true)]
-        public Function Function
+        [Parameter(Mandatory=true,ValueFromPipeline=true)]
+        public dynamic InputObject
         {
             get;
             set;
@@ -33,15 +26,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            switch (ParameterSetName)
-            {
-                case "Trigger":
-                    Trigger.CodeLines.Add(Line);
-                    break;
-                case "Function":
-                    Function.CodeLines.Add(Line);
-                    break;
-            }
+            InputObject.CodeLines.Add(Line);
         }
     }
 }
