@@ -17,9 +17,12 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        public static void AutoCaption(this Table table)
+        public static void AutoCaptionIf(this Table table, bool condition)
         {
-            table.Properties.CaptionML.Add("ENU", table.Name);
+            if (condition)
+            {
+                table.Properties.CaptionML.Add("ENU", table.Name);
+            }
         }
     }
 }
