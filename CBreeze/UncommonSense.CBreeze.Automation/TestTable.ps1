@@ -1,6 +1,7 @@
 ﻿$Application = New-CBreezeApplication
 
-$Table = $Application | Add-CBreezeObject -Table 7 'Standard Text' -DateTime (Get-Date -Year 2012 -Month 9 -Day 7 -Hour 12 -Minute 0 -Second 0) -VersionList NAVW17.00
+$Table = $Application | Add-CBreezeTable 7 'Standard Text' -DateTime (Get-Date -Year 2012 -Month 9 -Day 7 -Hour 12 -Minute 0 -Second 0) -VersionList NAVW17.00 -LookupPageID 8 -AutoCaption -PassThru 
+$Table | Add-CBreezeMLValue CaptionML NLD Standaardtekst
 $Table | Add-CBreezeVariable -ID 1000 -Record ExtTextHeader -SubType 279 -Verbose
 $Table.Properties.OnDelete | Add-CBreezeCodeLine 'ExtTextHeader.SETRANGE("Table Name",ExtTextHeader."Table Name"::"Standard Text");'
 $Table.Properties.OnDelete | Add-CBreezeCodeLine 'ExtTextHeader.SETRANGE("No.",Code);'
