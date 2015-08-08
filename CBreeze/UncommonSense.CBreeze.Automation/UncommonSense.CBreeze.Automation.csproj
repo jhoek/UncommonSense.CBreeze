@@ -52,6 +52,7 @@
     <Compile Include="AddCBreezeQuery.cs" />
     <Compile Include="AddCBreezeReport.cs" />
     <Compile Include="AddCBreezeTable.cs" />
+    <Compile Include="AddCBreezeTableField.cs" />
     <Compile Include="AddCBreezeVariable.cs" />
     <Compile Include="AddCBreezeXmlPort.cs" />
     <Compile Include="AddCmdlet.cs" />
