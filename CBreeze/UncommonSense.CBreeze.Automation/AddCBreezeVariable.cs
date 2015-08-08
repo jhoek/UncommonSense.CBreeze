@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Automation
     // Sadly, however, PowerShell is unable to handle this many unique parameter sets. :(
 
     [Cmdlet(VerbsCommon.Add, "CBreezeVariable")]
-    public class AddCBreezeVariable : Cmdlet
+    public class AddCBreezeVariable : AddCmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
@@ -100,26 +100,27 @@ namespace UncommonSense.CBreeze.Automation
             throw new ArgumentOutOfRangeException();
         }
 
-        protected override void ProcessRecord()
+        protected override System.Collections.IEnumerable AddedObjects
         {
-            ID = AutoAssignID(ID);
-
-            switch (GetVariableType())
+            get
             {
-                case VariableType.Option:
-                    var optionVariable = Variables.AddOptionVariable(ID, Name);
-                    optionVariable.OptionString = OptionString;
-                    optionVariable.Dimensions = Dimensions;
-                    this.WriteObjectIf(PassThru, optionVariable);
-                    break;
+                ID = AutoAssignID(ID);
 
-                case VariableType.Record:
-                    var recordVariable = Variables.AddRecordVariable(ID, Name, SubType);
-                    recordVariable.Dimensions = Dimensions;
-                    this.WriteObjectIf(PassThru, recordVariable);
-                    break;
+                switch (GetVariableType())
+                {
+                    case VariableType.Option:
+                        var optionVariable = Variables.AddOptionVariable(ID, Name);
+                        optionVariable.OptionString = OptionString;
+                        optionVariable.Dimensions = Dimensions;
+                        yield return optionVariable;
+                        break;
 
-                // FIXME
+                    case VariableType.Record:
+                        var recordVariable = Variables.AddRecordVariable(ID, Name, SubType);
+                        recordVariable.Dimensions = Dimensions;
+                        yield return recordVariable;
+                        break;
+                }
             }
         }
 
