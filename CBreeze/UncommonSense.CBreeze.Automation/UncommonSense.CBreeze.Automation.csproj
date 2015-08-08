@@ -47,6 +47,7 @@
     <Compile Include="AddCBreezeObject.cs" />
     <Compile Include="AddCBreezeTable.cs" />
     <Compile Include="AddCBreezeVariable.cs" />
+    <Compile Include="AddCmdlet.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
     <Compile Include="NewCBreezeApplication.cs" />
