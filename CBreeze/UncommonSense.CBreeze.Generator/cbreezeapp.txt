@@ -3463,8 +3463,8 @@ OBJECT Codeunit 50005 Export Generator Objects
 {
   OBJECT-PROPERTIES
   {
-    Date=27-05-15;
-    Time=21:14:39;
+    Date=09-08-15;
+    Time=14:22:35;
     Modified=Yes;
     Version List=;
   }
@@ -3474,7 +3474,7 @@ OBJECT Codeunit 50005 Export Generator Objects
             Object@1100476000 : Record 2000000001;
           BEGIN
             Object.SETFILTER(Type, '>%1', Object.Type::TableData);
-            Object.SETFILTER(ID, '..%1', 50099);
+            Object.SETFILTER(ID, '..%1', 60099);
 
             EXPORTOBJECTS(FileName, Object, 0);
           END;
@@ -4103,6 +4103,1213 @@ OBJECT Codeunit 50099 Migrate Triggers
     END;
 
     BEGIN
+    END.
+  }
+}
+
+OBJECT Codeunit 60001 Export Object Model as Files
+{
+  OBJECT-PROPERTIES
+  {
+    Date=09-08-15;
+    Time=14:11:01;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    OnRun=BEGIN
+            ExportObjectModel('CORE');
+          END;
+
+  }
+  CODE
+  {
+    VAR
+      Text000@1100476000 : TextConst 'ENU=Too many ctor params.';
+
+    PROCEDURE ExportObjectModel@1000000051(ObjectModelCode@1000000000 : Code[10]);
+    VAR
+      ObjectModel@1000000002 : Record 50000;
+    BEGIN
+      ObjectModel.GET(ObjectModelCode);
+      ObjectModel.TESTFIELD("Object Model Src. Folder Name");
+
+      WritePropertyBaseClass(ObjectModel);
+      WritePropertyTypes(ObjectModel);
+      WritePropertyCollections(ObjectModel);
+      WriteItems(ObjectModel);
+      WriteCollections(ObjectModel);
+      WriteEnumerations(ObjectModel);
+    END;
+
+    PROCEDURE WriteEnumerations@1000000000(ObjectModel@1000000001 : Record 50000);
+    VAR
+      Enumeration@1000000002 : Record 50002;
+    BEGIN
+      Enumeration.SETRANGE("Object Model Code", ObjectModel.Code);
+
+      IF Enumeration.FINDSET THEN BEGIN
+        REPEAT
+          WriteEnumeration(ObjectModel, Enumeration);
+        UNTIL Enumeration.NEXT = 0;
+      END;
+    END;
+
+    PROCEDURE WriteEnumeration@1000000043(ObjectModel@1000000002 : Record 50000;Enumeration@1000000000 : Record 50002);
+    VAR
+      OutputFile@1000000001 : File;
+    BEGIN
+      OutputFile.TEXTMODE := TRUE;
+      OutputFile.WRITEMODE := TRUE;
+      OutputFile.QUERYREPLACE := FALSE;
+      OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", Enumeration.Name));
+
+      WriteStartNamespace(ObjectModel, OutputFile);
+
+      OutputFile.WRITE(STRSUBSTNO('    public enum %1', Enumeration.Name));
+      OutputFile.WRITE('    {');
+
+      WriteEnumerationValues(Enumeration, OutputFile);
+
+      OutputFile.WRITE('    }');
+      OutputFile.WRITE('');
+
+      WriteEndNamespace(OutputFile);
+
+      OutputFile.CLOSE;
+    END;
+
+    PROCEDURE WriteEnumerationValues@1000000005(Enumeration@1000000000 : Record 50002;VAR OutputFile@1000000001 : File);
+    VAR
+      EnumerationValue@1000000002 : Record 50003;
+    BEGIN
+      EnumerationValue.SETRANGE("Object Model Code", Enumeration."Object Model Code");
+      EnumerationValue.SETRANGE("Enumeration Name", Enumeration.Name);
+
+      IF EnumerationValue.FINDSET THEN
+        REPEAT
+          WriteEnumerationValue(EnumerationValue, OutputFile);
+        UNTIL EnumerationValue.NEXT = 0;
+    END;
+
+    PROCEDURE WriteEnumerationValue@1000000049(EnumerationValue@1000000000 : Record 50003;VAR OutputFile@1000000001 : File);
+    BEGIN
+      OutputFile.WRITE(STRSUBSTNO('        %1,', EnumerationValue.Value));
+    END;
+
+    PROCEDURE WritePropertyBaseClass@1000000050(ObjectModel@1000000000 : Record 50000);
+    VAR
+      OutputFile@1000000001 : File;
+    BEGIN
+      OutputFile.TEXTMODE := TRUE;
+      OutputFile.WRITEMODE := TRUE;
+      OutputFile.QUERYREPLACE := FALSE;
+      OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", 'Property'));
+
+      WriteStartNamespace(ObjectModel, OutputFile);
+
+      OutputFile.WRITE('    [Serializable]');
+      OutputFile.WRITE('    public abstract class Property');
+      OutputFile.WRITE('    {');
+      OutputFile.WRITE('        private string name;');
+      OutputFile.WRITE('');
+      OutputFile.WRITE('        internal Property(string name)');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            this.name = name;');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+      OutputFile.WRITE('        public abstract bool HasValue');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            get;');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+      OutputFile.WRITE('        public string Name');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            get');
+      OutputFile.WRITE('            {');
+      OutputFile.WRITE('                return this.name;');
+      OutputFile.WRITE('            }');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('    }');
+
+      WriteEndNamespace(OutputFile);
+
+      OutputFile.CLOSE;
+    END;
+
+    PROCEDURE WritePropertyTypes@1000000001(ObjectModel@1000000000 : Record 50000);
+    VAR
+      PropertyType@1000000002 : Record 50014;
+    BEGIN
+      PropertyType.SETRANGE("Object Model Code", ObjectModel.Code);
+
+      IF PropertyType.FINDSET THEN BEGIN
+        REPEAT
+          WritePropertyType(ObjectModel, PropertyType);
+        UNTIL PropertyType.NEXT = 0;
+      END;
+    END;
+
+    PROCEDURE WritePropertyType@1000000017(ObjectModel@1000000002 : Record 50000;PropertyType@1000000000 : Record 50014);
+    VAR
+      ImportedType@1100476000 : Record 50001;
+      OutputFile@1000000001 : File;
+    BEGIN
+      PropertyType.TESTFIELD("HasValue Expression");
+      PropertyType.TESTFIELD("Initial Value Expression");
+
+      OutputFile.TEXTMODE := TRUE;
+      OutputFile.WRITEMODE := TRUE;
+      OutputFile.QUERYREPLACE := FALSE;
+      OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", PropertyType.Name));
+
+      WriteStartNamespace(ObjectModel, OutputFile);
+
+      OutputFile.WRITE('    [Serializable]');
+      OutputFile.WRITE(STRSUBSTNO('    public class %1 : Property', PropertyType.Name));
+      OutputFile.WRITE('    {');
+      OutputFile.WRITE(PropertyTypeValueFieldDecl(PropertyType));
+      OutputFile.WRITE('');
+      OutputFile.WRITE(STRSUBSTNO('        internal %1(string name) : base(name)', PropertyType.Name));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+      OutputFile.WRITE('        public override bool HasValue');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            get');
+      OutputFile.WRITE('            {');
+      OutputFile.WRITE(STRSUBSTNO('                return %1;', PropertyType."HasValue Expression"));
+      OutputFile.WRITE('            }');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+
+      CASE PropertyType."Encapsulated Type" OF
+        PropertyType."Encapsulated Type"::Enumeration:
+          OutputFile.WRITE(STRSUBSTNO('        public %1? Value', PropertyType."Encapsulated Name"));
+        PropertyType."Encapsulated Type"::"Imported Type":
+          BEGIN
+            ImportedType.GET(PropertyType."Object Model Code", PropertyType."Encapsulated Name");
+            OutputFile.WRITE(STRSUBSTNO('        public %1.%2 Value', ImportedType.Namespace, PropertyType."Encapsulated Name"));
+          END;
+      ELSE
+        OutputFile.WRITE(STRSUBSTNO('        public %1 Value', PropertyType."Encapsulated Name"));
+      END;
+
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            get');
+      OutputFile.WRITE('            {');
+      OutputFile.WRITE('                return this.value;');
+      OutputFile.WRITE('            }');
+
+      IF PropertyType."Has Setter" = PropertyType."Has Setter"::Yes THEN BEGIN
+        OutputFile.WRITE('            set');
+        OutputFile.WRITE('            {');
+        OutputFile.WRITE('                this.value = value;');
+        OutputFile.WRITE('            }');
+      END;
+
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('    }');
+      OutputFile.WRITE('');
+
+      WriteEndNamespace(OutputFile);
+
+      OutputFile.CLOSE;
+    END;
+
+    PROCEDURE PropertyTypeValueFieldDecl@1000000002(PropertyType@1000000000 : Record 50014) Result : Text[1024];
+    VAR
+      ImportedType@1100476000 : Record 50001;
+    BEGIN
+      CASE TRUE OF
+        PropertyType."Encapsulated Type" = PropertyType."Encapsulated Type"::Enumeration:
+          Result :=
+            STRSUBSTNO(
+              '        private %1? value = %2;',
+              PropertyType."Encapsulated Name",
+              PropertyType."Initial Value Expression");
+        PropertyType."Encapsulated Type" = PropertyType."Encapsulated Type"::"Imported Type":
+          BEGIN
+          ImportedType.GET(PropertyType."Object Model Code", PropertyType."Encapsulated Name");
+          Result :=
+            STRSUBSTNO(
+              '        private %1.%2 value = %3;',
+              ImportedType.Namespace,
+              PropertyType."Encapsulated Name",
+              PropertyType."Initial Value Expression");
+          END;
+      ELSE
+        Result :=
+          STRSUBSTNO(
+            '        private %1 value = %2;',
+            PropertyType."Encapsulated Name",
+            PropertyType."Initial Value Expression");
+      END;
+    END;
+
+    PROCEDURE WritePropertyCollections@1000000019(ObjectModel@1000000000 : Record 50000);
+    VAR
+      PropertyCollection@1000000002 : Record 50015;
+    BEGIN
+      PropertyCollection.SETCURRENTKEY(Export);
+      PropertyCollection.SETRANGE("Object Model Code", ObjectModel.Code);
+      PropertyCollection.SETRANGE(Export, TRUE);
+
+      IF PropertyCollection.FINDSET THEN BEGIN
+        REPEAT
+          WritePropertyCollection(ObjectModel, PropertyCollection);
+        UNTIL PropertyCollection.NEXT = 0;
+      END;
+    END;
+
+    PROCEDURE WritePropertyCollection@1000000023(ObjectModel@1000000001 : Record 50000;PropertyCollection@1000000000 : Record 50015);
+    VAR
+      OutputFile@1000000002 : File;
+    BEGIN
+      OutputFile.TEXTMODE := TRUE;
+      OutputFile.WRITEMODE := TRUE;
+      OutputFile.QUERYREPLACE := FALSE;
+      OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", PropertyCollection.Name));
+
+      WriteStartNamespace(ObjectModel, OutputFile);
+
+      OutputFile.WRITE('    [Serializable]');
+      OutputFile.WRITE(GetPropertyCollectionDeclaratn(PropertyCollection));
+      OutputFile.WRITE('    {');
+
+      WritePropertyCollectionFields(PropertyCollection, OutputFile);
+      WritePropertyCollectionCtor(PropertyCollection, OutputFile);
+      WritePropertyCollectionIdxr(PropertyCollection, OutputFile);
+      WritePropertyCollectionProps(PropertyCollection, OutputFile);
+      WritePropertyCollectionIEnum(PropertyCollection, OutputFile);
+
+      OutputFile.WRITE('    }');
+
+      WriteEndNamespace(OutputFile);
+
+      OutputFile.CLOSE;
+    END;
+
+    LOCAL PROCEDURE GetPropertyCollectionDeclaratn@1000000033(PropertyCollection@1000000000 : Record 50015) Result : Text[1024];
+    BEGIN
+      Result := STRSUBSTNO('    public class %1 : IEnumerable<Property>', PropertyCollection.Name);
+    END;
+
+    PROCEDURE WritePropertyCollectionFields@1000000029(PropertyCollection@1000000000 : Record 50015;VAR OutputFile@1000000001 : File);
+    VAR
+      PropertyCollectionMember@1000000002 : Record 50016;
+    BEGIN
+      OutputFile.WRITE('        private List<Property> innerList = new List<Property>();');
+
+      PropertyCollectionMember.SETRANGE("Object Model Code", PropertyCollection."Object Model Code");
+      PropertyCollectionMember.SETRANGE("Property Collection Name", PropertyCollection.Name);
+
+      IF PropertyCollectionMember.FINDSET THEN BEGIN
+        OutputFile.WRITE('');
+
+        REPEAT
+          OutputFile.WRITE(
+            STRSUBSTNO(
+              '        private %1 %2 = new %1("%3");',
+              PropertyCollectionMember."Property Type",
+              PropertyCollectionMember."Field Name",
+              PropertyCollectionMember.Name));
+        UNTIL PropertyCollectionMember.NEXT = 0;
+      END;
+
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WritePropertyCollectionCtor@1000000028(PropertyCollection@1000000000 : Record 50015;VAR OutputFile@1000000001 : File);
+    VAR
+      PropertyCollectionMember@1000000002 : Record 50016;
+    BEGIN
+      OutputFile.WRITE(STRSUBSTNO('        internal %1()', PropertyCollection.Name));
+      OutputFile.WRITE('        {');
+
+      PropertyCollectionMember.SETCURRENTKEY("Object Model Code", "Property Collection Name", "Sort Order");
+      PropertyCollectionMember.SETRANGE("Object Model Code", PropertyCollection."Object Model Code");
+      PropertyCollectionMember.SETRANGE("Property Collection Name", PropertyCollection.Name);
+
+      IF PropertyCollectionMember.FINDSET THEN
+        REPEAT
+          OutputFile.WRITE(STRSUBSTNO('            innerList.Add(%1);', PropertyCollectionMember."Field Name"));
+        UNTIL PropertyCollectionMember.NEXT = 0;
+
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    LOCAL PROCEDURE WritePropertyCollectionIdxr@1000000045(PropertyCollection@1000000000 : Record 50015;VAR OutputFile@1000000001 : File);
+    BEGIN
+      OutputFile.WRITE('        public Property this[string name]');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            get');
+      OutputFile.WRITE('            {');
+      OutputFile.WRITE('                return innerList.FirstOrDefault(p => p.Name == name);');
+      OutputFile.WRITE('            }');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WritePropertyCollectionProps@1000000027(PropertyCollection@1000000001 : Record 50015;VAR OutputFile@1000000000 : File);
+    VAR
+      PropertyCollectionMember@1000000002 : Record 50016;
+    BEGIN
+      PropertyCollectionMember.SETRANGE("Object Model Code", PropertyCollection."Object Model Code");
+      PropertyCollectionMember.SETRANGE("Property Collection Name", PropertyCollection.Name);
+
+      IF PropertyCollectionMember.FINDSET THEN
+        REPEAT
+          WritePropertyCollectionProp(PropertyCollectionMember, OutputFile);
+        UNTIL PropertyCollectionMember.NEXT = 0;
+    END;
+
+    PROCEDURE WritePropertyCollectionProp@1000000030(PropertyCollectionMember@1000000000 : Record 50016;VAR OutputFile@1000000001 : File);
+    VAR
+      ImportedType@1000000002 : Record 50001;
+    BEGIN
+      PropertyCollectionMember.CALCFIELDS("Encapsulated Type", "Encapsulated Name", "Has Setter");
+
+      CASE PropertyCollectionMember."Encapsulated Type" OF
+        PropertyCollectionMember."Encapsulated Type"::Enumeration:
+          OutputFile.WRITE(
+            STRSUBSTNO(
+              '        public %1? %2',
+              PropertyCollectionMember."Encapsulated Name",
+              PropertyCollectionMember.Name));
+        PropertyCollectionMember."Encapsulated Type"::"Imported Type":
+          BEGIN
+            ImportedType.GET(PropertyCollectionMember."Object Model Code", PropertyCollectionMember."Encapsulated Name");
+            OutputFile.WRITE(
+              STRSUBSTNO(
+                '      public %1.%2 %3',
+                ImportedType.Namespace,
+                PropertyCollectionMember."Encapsulated Name",
+                PropertyCollectionMember.Name));
+          END;
+      ELSE
+        OutputFile.WRITE(
+          STRSUBSTNO(
+            '        public %1 %2',
+            PropertyCollectionMember."Encapsulated Name",
+            PropertyCollectionMember.Name));
+      END;
+
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            get');
+      OutputFile.WRITE('            {');
+      OutputFile.WRITE(STRSUBSTNO('                return this.%1.Value;', PropertyCollectionMember."Field Name"));
+      OutputFile.WRITE('            }');
+
+      IF PropertyCollectionMember."Has Setter" = PropertyCollectionMember."Has Setter"::Yes THEN BEGIN
+        OutputFile.WRITE('            set');
+        OutputFile.WRITE('            {');
+        OutputFile.WRITE(STRSUBSTNO('                this.%1.Value = value;', PropertyCollectionMember."Field Name"));
+        OutputFile.WRITE('            }');
+      END;
+
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WritePropertyCollectionIEnum@1000000032(PropertyCollection@1000000001 : Record 50015;VAR OutputFile@1000000000 : File);
+    BEGIN
+      OutputFile.WRITE('        public IEnumerator<Property> GetEnumerator()');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.GetEnumerator();');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+      OutputFile.WRITE('        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()');
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.GetEnumerator();');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WriteItems@1000000009(ObjectModel@1000000001 : Record 50000);
+    VAR
+      Item@1000000002 : Record 50005;
+    BEGIN
+      Item.SETCURRENTKEY("Object Model Code", "Base Type");
+      Item.SETRANGE("Object Model Code", ObjectModel.Code);
+
+      IF Item.FINDSET THEN BEGIN
+        REPEAT
+          WriteItem(ObjectModel, Item);
+        UNTIL Item.NEXT = 0;
+      END;
+    END;
+
+    PROCEDURE WriteItem@1000000010(ObjectModel@1000000000 : Record 50000;Item@1000000001 : Record 50005);
+    VAR
+      OutputFile@1000000002 : File;
+    BEGIN
+      OutputFile.TEXTMODE := TRUE;
+      OutputFile.WRITEMODE := TRUE;
+      OutputFile.QUERYREPLACE := FALSE;
+      OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", Item.Name));
+
+      WriteStartNamespace(ObjectModel, OutputFile);
+
+      OutputFile.WRITE('    [Serializable]');
+      OutputFile.WRITE(STRSUBSTNO('    %1', GetItemDeclaration(Item)));
+      OutputFile.WRITE('    {');
+
+      WriteItemFieldDeclarations(Item, OutputFile);
+      WriteItemConstructor(Item, OutputFile);
+      WriteDifferentiatorProperty(Item, OutputFile);
+      WriteItemProperties(Item, OutputFile);
+
+      OutputFile.WRITE('    }');
+
+      WriteEndNamespace(OutputFile);
+
+      OutputFile.CLOSE;
+    END;
+
+    PROCEDURE GetItemDeclaration@1000000006(Item@1000000000 : Record 50005) Result : Text[250];
+    BEGIN
+      Result := 'public ';
+
+      IF Item.Abstract THEN
+        Result += 'abstract ';
+
+      Result += 'partial class ';
+      Result += Item.Name;
+
+      IF Item."Base Type" <> '' THEN BEGIN
+        Result += ' : ';
+        Result += Item."Base Type";
+      END;
+    END;
+
+    PROCEDURE WriteItemFieldDeclarations@1000000011(Item@1000000000 : Record 50005;VAR OutputFile@1000000001 : File);
+    VAR
+      Attribute@1000000002 : Record 50009;
+      AnyFieldDeclarations@1000000003 : Boolean;
+    BEGIN
+      Attribute.SETCURRENTKEY("Object Model Code", "Container Type", "Container Name", "Sort Order");
+      Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
+      Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+      Attribute.SETRANGE("Container Name", Item.Name);
+      Attribute.SETRANGE(Abstract, FALSE);
+      Attribute.SETRANGE(Override, FALSE);
+
+      IF Attribute.FINDSET THEN BEGIN
+        AnyFieldDeclarations := TRUE;
+
+        REPEAT
+          WriteItemFieldDeclaration(Attribute, OutputFile);
+        UNTIL Attribute.NEXT = 0;
+      END;
+
+      IF AnyFieldDeclarations THEN
+        OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WriteItemFieldDeclaration@1000000015(Attribute@1000000000 : Record 50009;VAR OutputFile@1000000001 : File);
+    BEGIN
+      OutputFile.WRITE(STRSUBSTNO('        %1;', GetItemFieldDeclaration(Attribute)));
+    END;
+
+    PROCEDURE GetItemFieldDeclaration@1000000018(Attribute@1000000000 : Record 50009) Result : Text[250];
+    BEGIN
+      Result := 'private ';
+      Result += IIF(Attribute.Nullable, STRSUBSTNO('%1?', Attribute."Type Name"), Attribute."Type Name");
+      Result += ' ';
+      Result += Attribute."Field Name";
+
+      CASE Attribute.Initialization OF
+        Attribute.Initialization::Instantiate:
+          BEGIN
+            Result += ' = new ';
+            Result += Attribute."Type Name";
+            Result += '(';
+            Result += ')';
+          END;
+        Attribute.Initialization::"Field Declaration":
+          BEGIN
+            Result += ' = ';
+            Result += Attribute."Field Declaration Init Value";
+          END;
+      END;
+    END;
+
+    PROCEDURE ItemNeedsConstructor@1000000026(Item@1000000000 : Record 50005) : Boolean;
+    BEGIN
+      IF ItemOrBaseTypeHasCtorParams(Item) THEN
+        EXIT(TRUE);
+
+      IF NOT Item.Creatable THEN
+        EXIT(TRUE);
+    END;
+
+    PROCEDURE ItemOrBaseTypeHasCtorParams@1000000034(Item@1000000000 : Record 50005) Result : Boolean;
+    VAR
+      BaseType@1000000001 : Record 50005;
+      Attribute@1000000002 : Record 50009;
+    BEGIN
+      IF Item."Base Type" <> '' THEN BEGIN
+        BaseType.GET(Item."Object Model Code", Item."Base Type");
+        IF ItemOrBaseTypeHasCtorParams(BaseType) THEN
+          EXIT(TRUE);
+      END;
+
+      Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
+      Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+      Attribute.SETRANGE("Container Name", Item.Name);
+      Attribute.SETRANGE(Initialization, Attribute.Initialization::"Constructor Parameter");
+
+      IF NOT Attribute.ISEMPTY THEN
+        EXIT(TRUE);
+    END;
+
+    PROCEDURE WriteItemConstructor@1000000014(Item@1000000001 : Record 50005;VAR OutputFile@1000000000 : File);
+    VAR
+      Attribute@1000000002 : Record 50009;
+      Attribute2@1000000003 : Record 50009;
+    BEGIN
+      IF ItemNeedsConstructor(Item) THEN BEGIN
+        OutputFile.WRITE(STRSUBSTNO('        %1', GetItemConstructorDeclaration(Item)));
+        OutputFile.WRITE('        {');
+
+        Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
+        Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+        Attribute.SETRANGE("Container Name", Item.Name);
+        Attribute.SETRANGE(Initialization, Attribute.Initialization::"Constructor Parameter");
+
+        IF Attribute.FINDSET THEN
+          REPEAT
+            OutputFile.WRITE(STRSUBSTNO('            this.%1 = %1;', Attribute."Field Name"));
+          UNTIL Attribute.NEXT = 0;
+
+        OutputFile.WRITE('        }');
+        OutputFile.WRITE('');
+      END;
+    END;
+
+    PROCEDURE GetItemConstructorDeclaration@1000000022(Item@1000000000 : Record 50005) Result : Text[250];
+    VAR
+      BaseType@1000000004 : Record 50005;
+      Attribute@1000000001 : Record 50009;
+      Separator@1000000002 : Text[2];
+      CallToBaseConstructor@1000000003 : Text[250];
+    BEGIN
+      CASE Item.Creatable OF
+        FALSE: Result := 'internal ';
+        TRUE: Result := 'public ';
+      END;
+
+      Result += Item.Name;
+      Result += '(';
+
+      Separator := '';
+      Result += GetItemConstructorParameters(Item, TRUE, FALSE, Separator);
+
+      Result += ')';
+
+      IF Item."Base Type" <> '' THEN BEGIN
+        BaseType.GET(Item."Object Model Code", Item."Base Type");
+
+        Separator := '';
+        CallToBaseConstructor := GetItemConstructorParameters(BaseType, FALSE, FALSE, Separator);
+
+        IF CallToBaseConstructor <> '' THEN BEGIN
+          Result += ' : base(';
+          Result += CallToBaseConstructor;
+          Result += ')'
+        END;
+      END;
+    END;
+
+    PROCEDURE GetItemConstructorParameters@1000000039(Item@1000000000 : Record 50005;IncludeTypeNames@1000000004 : Boolean;FormatAndArgs@1100476000 : Boolean;VAR Separator@1000000002 : Text[2]) Result : Text[250];
+    VAR
+      BaseType@1000000001 : Record 50005;
+      Attribute@1000000003 : Record 50009;
+      AttributeHasFormatAndArgs@1100476001 : Boolean;
+    BEGIN
+      IF Item."Base Type" <> '' THEN BEGIN
+        BaseType.GET(Item."Object Model Code", Item."Base Type");
+        Result += GetItemConstructorParameters(BaseType, IncludeTypeNames, FormatAndArgs, Separator);
+      END;
+
+      Attribute.SETCURRENTKEY("Object Model Code", "Container Type", "Container Name", "Sort Order");
+      Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
+      Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+      Attribute.SETRANGE("Container Name", Item.Name);
+      Attribute.SETRANGE(Initialization, Attribute.Initialization::"Constructor Parameter");
+
+      IF Attribute.FINDSET THEN
+        REPEAT
+          Result += Separator;
+
+          AttributeHasFormatAndArgs :=
+            (FormatAndArgs) AND
+            (Attribute."Format/Args Ctor Params") AND
+            (Attribute.Type = Attribute.Type::"Imported Type") AND
+            (LOWERCASE(Attribute."Type Name") = 'string');
+
+          CASE AttributeHasFormatAndArgs OF
+            TRUE:
+              BEGIN
+                CASE IncludeTypeNames OF
+                  TRUE: Result += 'string format, params object[] args';
+                  FALSE: Result := 'string.Format(format, args)'
+                END;
+              END;
+            FALSE:
+              BEGIN
+                IF IncludeTypeNames THEN BEGIN
+                  Result += Attribute."Type Name";
+                  Result += ' ';
+                END;
+
+                Result += Attribute."Field Name";
+
+                // jhoek.280614.begin
+                IF IncludeTypeNames THEN
+                  IF Attribute."Ctor Parameter Default Value" <> '' THEN
+                    Result += STRSUBSTNO(' = %1', Attribute."Ctor Parameter Default Value");
+                // jhoek.280614.end
+              END;
+          END;
+
+          Separator := ', ';
+        UNTIL Attribute.NEXT = 0;
+    END;
+
+    LOCAL PROCEDURE WriteDifferentiatorProperty@1000000041(Item@1000000000 : Record 50005;VAR OutputFile@1000000001 : File);
+    BEGIN
+      IF Item."Differentiator Enum Name" <> '' THEN BEGIN
+        CASE Item."Base Type" = '' OF
+          TRUE: // This is the base class, create abstract Type property
+            BEGIN
+              OutputFile.WRITE(STRSUBSTNO('        public abstract %1 Type', Item."Differentiator Enum Name"));
+              OutputFile.WRITE('        {');
+              OutputFile.WRITE('            get;');
+              OutputFile.WRITE('        }');
+              OutputFile.WRITE('');
+            END;
+
+          FALSE: // This is a derived class, override Type property
+            BEGIN
+              OutputFile.WRITE(STRSUBSTNO('        public override %1 Type', Item."Differentiator Enum Name"));
+              OutputFile.WRITE('        {');
+              OutputFile.WRITE('            get');
+              OutputFile.WRITE('            {');
+              OutputFile.WRITE(
+                STRSUBSTNO('                return %1.%2;', Item."Differentiator Enum Name", Item."Differentiator Enum Value"));
+              OutputFile.WRITE('            }');
+              OutputFile.WRITE('        }');
+              OutputFile.WRITE('');
+            END;
+        END;
+      END;
+    END;
+
+    PROCEDURE WriteItemProperties@1000000024(Item@1000000000 : Record 50005;VAR OutputFile@1000000001 : File);
+    VAR
+      Attribute@1000000002 : Record 50009;
+    BEGIN
+      Attribute.SETCURRENTKEY("Object Model Code", "Container Type", "Container Name", "Sort Order");
+      Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
+      Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+      Attribute.SETRANGE("Container Name", Item.Name);
+
+      IF Attribute.FINDSET THEN
+        REPEAT
+          WriteItemProperty(Attribute, OutputFile);
+        UNTIL Attribute.NEXT = 0;
+    END;
+
+    PROCEDURE WriteItemProperty@1000000025(Attribute@1000000000 : Record 50009;VAR OutputFile@1000000001 : File);
+    BEGIN
+      OutputFile.WRITE(STRSUBSTNO('        %1', GetItemPropertyDeclaration(Attribute)));
+
+      OutputFile.WRITE('        {');
+
+      CASE TRUE OF
+        Attribute.Abstract:
+          BEGIN
+            OutputFile.WRITE('            get;');
+          END;
+        Attribute.Override:
+          BEGIN
+            OutputFile.WRITE('            get');
+            OutputFile.WRITE('            {');
+            OutputFile.WRITE(STRSUBSTNO('              return %1;', Attribute."Field Declaration Init Value"));
+            OutputFile.WRITE('            }');
+          END;
+      ELSE
+          BEGIN
+            OutputFile.WRITE('            get');
+            OutputFile.WRITE('            {');
+            OutputFile.WRITE(STRSUBSTNO('                return this.%1;', Attribute."Field Name"));
+            OutputFile.WRITE('            }');
+          END;
+      END;
+
+      IF Attribute."Has Setter" THEN BEGIN
+        OutputFile.WRITE('            set');
+        OutputFile.WRITE('            {');
+        OutputFile.WRITE(STRSUBSTNO('                this.%1 = value;', Attribute."Field Name"));
+        OutputFile.WRITE('            }');
+      END;
+
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE GetItemPropertyDeclaration@1000000031(Attribute@1000000000 : Record 50009) Result : Text[250];
+    BEGIN
+      Result := 'public ';
+      Result += IIF(Attribute.Abstract, 'abstract ', '');
+      Result += IIF(Attribute.Override, 'override ', '');
+      Result += IIF(Attribute.Nullable, STRSUBSTNO('%1?', Attribute."Type Name"), Attribute."Type Name");
+      Result += ' ';
+      Result += Attribute.Name;
+    END;
+
+    PROCEDURE GetPropertyFieldDeclaration@1000000038(Attribute@1000000000 : Record 50009) Result : Text[250];
+    BEGIN
+      Result := 'private ';
+      Result += Attribute."Type Name";
+      Result += ' ';
+      Result += Attribute."Field Name";
+
+      CASE Attribute.Initialization OF
+        Attribute.Initialization::Instantiate:
+          BEGIN
+            Result += ' = new ';
+            Result += Attribute."Type Name";
+            Result += '()';
+          END;
+        Attribute.Initialization::"Field Declaration":
+          BEGIN
+            Result += ' = ';
+            Result += Attribute."Field Declaration Init Value";
+          END;
+      END;
+    END;
+
+    PROCEDURE GetPropertyPropertyDeclaration@1000000042(Attribute@1000000000 : Record 50009) Result : Text[250];
+    BEGIN
+      Result := 'public ';
+      Result += Attribute."Type Name";
+      Result += ' ';
+      Result += Attribute.Name;
+    END;
+
+    PROCEDURE WriteCollections@1000000013(ObjectModel@1000000000 : Record 50000);
+    VAR
+      Collection@1000000002 : Record 50007;
+    BEGIN
+      Collection.SETRANGE("Object Model Code", ObjectModel.Code);
+
+      IF Collection.FINDSET THEN BEGIN
+        REPEAT
+          WriteCollection(ObjectModel, Collection);
+        UNTIL Collection.NEXT = 0;
+      END;
+    END;
+
+    PROCEDURE WriteCollection@1000000016(ObjectModel@1000000001 : Record 50000;Collection@1000000000 : Record 50007);
+    VAR
+      Item@1000000002 : Record 50005;
+      Attribute@1000000003 : Record 50009;
+      OutputFile@1000000004 : File;
+    BEGIN
+      OutputFile.TEXTMODE := TRUE;
+      OutputFile.WRITEMODE := TRUE;
+      OutputFile.QUERYREPLACE := FALSE;
+      OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", Collection.Name));
+
+      WriteStartNamespace(ObjectModel, OutputFile);
+
+      OutputFile.WRITE('    [Serializable]');
+      OutputFile.WRITE(STRSUBSTNO('    %1', GetCollectionDeclaration(Collection)));
+      OutputFile.WRITE('    {');
+
+      Collection.TESTFIELD("Item Type");
+
+      CASE Collection."Collection Style" OF
+        Collection."Collection Style"::List:
+          OutputFile.WRITE(STRSUBSTNO('        private List<%1> innerList = new List<%1>();', Collection."Item Type"));
+        Collection."Collection Style"::Dictionary:
+          BEGIN
+            Item.GET(Collection."Object Model Code", Collection."Item Type");
+            IF Item."Base Type" <> '' THEN
+              Item.GET(Collection."Object Model Code", Item."Base Type");
+
+            Attribute.SETCURRENTKEY("Object Model Code", "Container Type", "Container Name", "Sort Order");
+            Attribute.SETRANGE("Object Model Code", Collection."Object Model Code");
+            Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+            Attribute.SETRANGE("Container Name", Item.Name);
+            Attribute.SETRANGE(Initialization, Attribute.Initialization::"Constructor Parameter");
+            Attribute.SETRANGE("Dictionary Key", TRUE);
+            Attribute.FINDFIRST();
+
+            OutputFile.WRITE(
+              STRSUBSTNO(
+                '        private Dictionary<%1,%2> innerList = new Dictionary<%1,%2>();',
+                Attribute."Type Name",
+                Collection."Item Type"));
+          END;
+      END;
+
+      OutputFile.WRITE('');
+
+      WriteCollectionConstructor(Collection, OutputFile);
+
+      CASE Collection."Collection Style" OF
+        Collection."Collection Style"::List:
+          BEGIN
+            WriteCollectionFindIndexMethds(Collection, OutputFile);
+            WriteCollectionAddMethods(Collection, '', OutputFile);
+            WriteCollectionAddRangeMethod(Collection, OutputFile);
+            WriteCollectionInsertMethod(Collection, OutputFile);
+            WriteCollectionRemoveMethod(Collection, '', '', OutputFile);
+          END;
+        Collection."Collection Style"::Dictionary:
+          BEGIN
+            WriteCollectionAddMethods(Collection, Attribute."Field Name", OutputFile);
+            WriteCollectionInsertMethod(Collection, OutputFile);
+            WriteCollectionRemoveMethod(Collection, Attribute."Type Name", Attribute."Field Name", OutputFile);
+          END;
+      END;
+
+      OutputFile.WRITE('');
+      OutputFile.WRITE(STRSUBSTNO('        public IEnumerator<%1> GetEnumerator()', Collection."Item Type"));
+      OutputFile.WRITE('        {');
+
+      CASE Collection."Collection Style" OF
+        Collection."Collection Style"::List: OutputFile.WRITE('            return innerList.GetEnumerator();');
+        Collection."Collection Style"::Dictionary: OutputFile.WRITE('            return innerList.Values.GetEnumerator();');
+      END;
+
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+      OutputFile.WRITE('        IEnumerator IEnumerable.GetEnumerator()');
+      OutputFile.WRITE('        {');
+
+      CASE Collection."Collection Style" OF
+        Collection."Collection Style"::List: OutputFile.WRITE('            return innerList.GetEnumerator();');
+        Collection."Collection Style"::Dictionary: OutputFile.WRITE('            return innerList.Values.GetEnumerator();');
+      END;
+
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('    }');
+
+      WriteEndNamespace(OutputFile);
+
+      OutputFile.CLOSE;
+    END;
+
+    PROCEDURE GetCollectionDeclaration@1000000020(Collection@1000000000 : Record 50007) Result : Text[250];
+    BEGIN
+      Result := 'public class ';
+      Result += Collection.Name;
+      Result += ' : IEnumerable<';
+      Result += Collection."Item Type";
+      Result += '>';
+    END;
+
+    PROCEDURE WriteCollectionConstructor@1000000037(Collection@1000000000 : Record 50007;VAR OutputFile@1000000001 : File);
+    BEGIN
+      OutputFile.WRITE(STRSUBSTNO('        %1', GetCollectionConstructorDecl(Collection)));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE GetCollectionConstructorDecl@1000000044(Collection@1000000000 : Record 50007) Result : Text[250];
+    BEGIN
+      Result := 'internal ';
+      Result += Collection.Name;
+      Result += '()';
+    END;
+
+    PROCEDURE WriteCollectionFindIndexMethds@1100476001(Collection@1100476000 : Record 50007;VAR OutputFile@1100476001 : File);
+    BEGIN
+      IF NOT Collection."Gen. FindIndex/FindLastIndex" THEN
+        EXIT;
+
+      OutputFile.WRITE(STRSUBSTNO('        public int FindIndex(Predicate<%1> match)', Collection."Item Type"));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.FindIndex(match);');
+      OutputFile.WRITE('        }');
+
+      OutputFile.WRITE('');
+      OutputFile.WRITE(STRSUBSTNO('        public int FindIndex(int startIndex, Predicate<%1> match)', Collection."Item Type"));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.FindIndex(startIndex, match);');
+      OutputFile.WRITE('        }');
+
+      OutputFile.WRITE('');
+      OutputFile.WRITE(STRSUBSTNO('        public int FindIndex(int startIndex, int count,Predicate<%1> match)', Collection."Item Type"));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.FindIndex(startIndex, count, match);');
+      OutputFile.WRITE('        }');
+
+      OutputFile.WRITE('');
+      OutputFile.WRITE(STRSUBSTNO('        public int FindLastIndex(Predicate<%1> match)', Collection."Item Type"));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.FindLastIndex(match);');
+      OutputFile.WRITE('        }');
+
+      OutputFile.WRITE('');
+      OutputFile.WRITE(STRSUBSTNO('        public int FindLastIndex(int startIndex, Predicate<%1> match)', Collection."Item Type"));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.FindLastIndex(startIndex, match);');
+      OutputFile.WRITE('        }');
+
+      OutputFile.WRITE('');
+      OutputFile.WRITE(
+        STRSUBSTNO('        public int FindLastIndex(int startIndex, int count, Predicate<%1> match)', Collection."Item Type"));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE('            return innerList.FindLastIndex(startIndex, count, match);');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WriteCollectionAddMethods@1000000012(Collection@1000000000 : Record 50007;IndexingAttribute@1000000004 : Text[80];VAR OutputFile@1000000001 : File);
+    VAR
+      Item@1000000002 : Record 50005;
+      DerivedItem@1000000003 : Record 50005;
+    BEGIN
+      Collection.TESTFIELD("Item Type");
+      Item.GET(Collection."Object Model Code", Collection."Item Type");
+
+      CASE Item.Abstract OF
+        FALSE:
+          BEGIN
+            WriteCollectionAddMethod(Item, FALSE, IndexingAttribute, FALSE, OutputFile);
+            WriteCollectionAddMethod(Item, FALSE, IndexingAttribute, TRUE, OutputFile);
+          END;
+        TRUE:
+          BEGIN
+            DerivedItem.SETCURRENTKEY("Object Model Code", "Base Type");
+            DerivedItem.SETRANGE("Object Model Code", Item."Object Model Code");
+            DerivedItem.SETRANGE("Base Type", Item.Name);
+
+            DerivedItem.FINDSET;
+            REPEAT
+              WriteCollectionAddMethod(DerivedItem, TRUE, IndexingAttribute, FALSE, OutputFile);
+              WriteCollectionAddMethod(DerivedItem, TRUE, IndexingAttribute, TRUE, OutputFile);
+            UNTIL DerivedItem.NEXT = 0;
+          END;
+      END;
+    END;
+
+    PROCEDURE WriteCollectionAddMethod@1000000021(Item@1000000000 : Record 50005;MethodNameIncludesItemType@1000000002 : Boolean;IndexingAttribute@1000000004 : Text[80];FormatAndArgs@1100476000 : Boolean;VAR OutputFile@1000000001 : File);
+    VAR
+      Attribute@1100476001 : Record 50009;
+      Separator@1000000003 : Text[2];
+    BEGIN
+      IF FormatAndArgs THEN BEGIN
+        Attribute.SETCURRENTKEY("Object Model Code", "Container Type", "Container Name", "Sort Order");
+        Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
+        Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+        Attribute.SETRANGE("Container Name", Item.Name);
+        Attribute.SETRANGE(Initialization, Attribute.Initialization::"Constructor Parameter");
+        Attribute.SETRANGE(Type, Attribute.Type::"Imported Type");
+        Attribute.SETFILTER("Type Name", '@string');
+        Attribute.SETRANGE("Format/Args Ctor Params", TRUE);
+
+        IF Attribute.ISEMPTY THEN
+          EXIT;
+      END;
+
+      OutputFile.WRITE(STRSUBSTNO('        %1', GetAddMethodDeclaration(Item, MethodNameIncludesItemType, FormatAndArgs)));
+      OutputFile.WRITE('        {');
+
+      OutputFile.WRITE(
+        STRSUBSTNO(
+          '            %1 item = new %1(%2);',
+          Item.Name,
+          GetItemConstructorParameters(Item, FALSE, FormatAndArgs, Separator)));
+
+      CASE IndexingAttribute = '' OF
+        TRUE: OutputFile.WRITE('            innerList.Add(item);');
+        FALSE: OutputFile.WRITE(STRSUBSTNO('            innerList.Add(%1, item);', IndexingAttribute));
+      END;
+
+      OutputFile.WRITE('            return item;');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WriteCollectionAddRangeMethod@1100476002(Collection@1100476000 : Record 50007;VAR OutputFile@1100476001 : File);
+    VAR
+      Item@1100476002 : Record 50005;
+      Attribute@1100476003 : Record 50009;
+    BEGIN
+      IF Collection."Generate AddRange Method" THEN BEGIN
+        Item.GET(Collection."Object Model Code", Collection."Item Type");
+        Item.TESTFIELD(Abstract, FALSE);
+
+        // must have exactly one ctor parameter
+        Attribute.SETCURRENTKEY("Object Model Code", "Container Type", "Container Name", "Sort Order");
+        Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
+        Attribute.SETRANGE("Container Type", Attribute."Container Type"::Item);
+        Attribute.SETRANGE("Container Name", Item.Name);
+        Attribute.SETRANGE(Initialization, Attribute.Initialization::"Constructor Parameter");
+        Attribute.FINDFIRST; // not found? crash & burn
+        IF Attribute.NEXT <> 0 THEN
+          ERROR(Text000);
+
+        OutputFile.WRITE(STRSUBSTNO('        public void AddRange(params %1[] %2s)', Attribute."Type Name", Attribute."Field Name"));
+        OutputFile.WRITE('        {');
+        OutputFile.WRITE(STRSUBSTNO('            foreach(var item in %1s)', Attribute."Field Name"));
+        OutputFile.WRITE('            {');
+        OutputFile.WRITE(STRSUBSTNO('               innerList.Add(new %1(item));', Item.Name));
+        OutputFile.WRITE('             }');
+        OutputFile.WRITE('        }');
+        OutputFile.WRITE('');
+      END;
+    END;
+
+    PROCEDURE GetAddMethodDeclaration@1000000040(Item@1000000001 : Record 50005;MethodNameIncludesItemType@1000000000 : Boolean;FormatAndArgs@1100476000 : Boolean) Result : Text[250];
+    BEGIN
+      Result := 'public ';
+      Result += Item.Name;
+      Result += ' Add';
+
+      IF MethodNameIncludesItemType THEN
+        Result += Item.Name;
+
+      Result += '(';
+      Result += GetAddMethodParameters(Item, FormatAndArgs);
+      Result += ')';
+    END;
+
+    PROCEDURE GetAltAddMethodDeclaration@1100476006(Item@1100476001 : Record 50005;MethodNameIncludesItemType@1100476000 : Boolean) : Text[250];
+    BEGIN
+    END;
+
+    PROCEDURE GetAddMethodParameters@1000000036(Item@1000000000 : Record 50005;FormatAndArgs@1100476000 : Boolean) Result : Text[250];
+    VAR
+      Separator@1000000001 : Text[2];
+    BEGIN
+      EXIT(GetItemConstructorParameters(Item, TRUE, FormatAndArgs, Separator));
+    END;
+
+    LOCAL PROCEDURE WriteCollectionInsertMethod@1000000035(Collection@1000000001 : Record 50007;VAR OutputFile@1000000000 : File);
+    VAR
+      Item@1000000002 : Record 50005;
+      Separator@1000000003 : Text[2];
+    BEGIN
+      IF NOT Collection."Generate Insert Method" THEN
+        EXIT;
+
+      Collection.TESTFIELD("Collection Style", Collection."Collection Style"::List);
+      Collection.TESTFIELD("Item Type");
+
+      Item.GET(Collection."Object Model Code", Collection."Item Type");
+      Item.TESTFIELD(Abstract, FALSE);
+
+      OutputFile.WRITE(STRSUBSTNO('        %1', GetInsertMethodDeclaration(Item)));
+      OutputFile.WRITE('        {');
+      OutputFile.WRITE(
+        STRSUBSTNO('            %1 item = new %1(%2);', Item.Name, GetItemConstructorParameters(Item, FALSE, FALSE, Separator)));
+      OutputFile.WRITE('            innerList.Insert(index, item);');
+      OutputFile.WRITE('            return item;');
+      OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE GetInsertMethodDeclaration@1000000046(Item@1000000000 : Record 50005) Result : Text[250];
+    VAR
+      Parameters@1100476000 : Text[250];
+    BEGIN
+      Result := 'public ';
+      Result += Item.Name;
+      Result += ' Insert';
+      Result += '(int index';
+
+      // TableKeys collection has no Add method parameters,
+      // but you still need to be able to insert a key,
+      // e.g. to be able to insert a new primary key.
+      // (The Add method would only append new keys)
+
+      Parameters := GetAddMethodParameters(Item, FALSE);
+      IF Parameters <> '' THEN BEGIN
+        Result += ', ';
+        Result += Parameters;
+      END;
+
+      Result += ')';
+    END;
+
+    PROCEDURE WriteCollectionRemoveMethod@1100476000(Collection@1100476003 : Record 50007;IndexingAttributeTypeName@1100476001 : Text[80];IndexingAttributeName@1100476002 : Text[80];VAR OutputFile@1100476000 : File);
+    BEGIN
+      IF NOT Collection."Generate Remove Method" THEN
+        EXIT;
+
+      OutputFile.WRITE(STRSUBSTNO('        %1', GetRemoveMethodDeclaration(Collection,IndexingAttributeTypeName, IndexingAttributeName)));
+      OutputFile.WRITE('        {');
+
+      CASE Collection."Collection Style" OF
+        Collection."Collection Style"::List:
+          OutputFile.WRITE('            innerList.RemoveAt(index);');
+        Collection."Collection Style"::Dictionary:
+          OutputFile.WRITE(STRSUBSTNO('            return innerList.Remove(%1);', IndexingAttributeName));
+      END;
+
+      OutputFile.WRITE('        }');
+    END;
+
+    PROCEDURE GetRemoveMethodDeclaration@1100476004(Collection@1100476002 : Record 50007;IndexingAttributeTypeName@1100476000 : Text[80];IndexingAttributeName@1100476001 : Text[80]) Result : Text[250];
+    BEGIN
+      CASE Collection."Collection Style" OF
+        Collection."Collection Style"::List:
+          Result += 'public void RemoveAt(int index)';
+        Collection."Collection Style"::Dictionary:
+          Result += STRSUBSTNO('public bool Remove(%1 %2)', IndexingAttributeTypeName, IndexingAttributeName);
+      END;
+    END;
+
+    PROCEDURE IIF@1000000004(Condition@1000000000 : Boolean;ValueIfTrue@1000000001 : Text[1024];ValueIfFalse@1000000002 : Text[1024]) : Text[1024];
+    BEGIN
+      IF Condition THEN
+        EXIT(ValueIfTrue);
+      EXIT(ValueIfFalse);
+    END;
+
+    PROCEDURE ENDSWITH@1000000003(Text@1000000000 : Text[1024];EndsWith@1000000001 : Text[1024]) : Boolean;
+    VAR
+      Actual@1000000002 : Text[1024];
+    BEGIN
+      IF STRLEN(EndsWith) > STRLEN(Text) THEN
+        EXIT(FALSE);
+
+      Actual := COPYSTR(Text, STRLEN(Text) - STRLEN(EndsWith) + 1);
+
+      EXIT(Actual = EndsWith);
+    END;
+
+    PROCEDURE WriteStartNamespace@1000000007(ObjectModel@1000000001 : Record 50000;VAR OutputFile@1000000000 : File);
+    BEGIN
+      OutputFile.WRITE(STRSUBSTNO('namespace %1', ObjectModel."Object Model Namespace"));
+      OutputFile.WRITE('{');
+    END;
+
+    PROCEDURE WriteEndNamespace@1000000008(VAR OutputFile@1000000000 : File);
+    BEGIN
+      OutputFile.WRITE('}');
+    END;
+
+    PROCEDURE GetFileName@1000000047(FolderName@1000000000 : Text[250];TypeName@1000000001 : Text[80]) : Text[250];
+    BEGIN
+      EXIT(STRSUBSTNO('%1\%2.cs', DELCHR(FolderName, '>', '\'), TypeName));
+    END;
+
+    BEGIN
+    {
+      // An attempt to restructure codeunit 50001 so that it writes each type to its own file.
+    }
     END.
   }
 }
