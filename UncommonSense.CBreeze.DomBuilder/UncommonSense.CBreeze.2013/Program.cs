@@ -185,7 +185,7 @@ namespace UncommonSense.CBreeze
 			om.AddEnum("ContainerType", "ContentArea", "FactBoxArea", "RoleCenterArea");
 
 			var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-			var outputFolderName = Path.Combine(desktopFolderName, "cbreeze");
+			var outputFolderName = Path.Combine(desktopFolderName, "cbreezedom");
 			Directory.CreateDirectory(outputFolderName);
 			om.WriteToFolder(outputFolderName);
 		}
