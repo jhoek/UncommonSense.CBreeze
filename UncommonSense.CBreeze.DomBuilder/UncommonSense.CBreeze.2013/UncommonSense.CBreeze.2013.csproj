@@ -31,18 +31,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAttribute.cs" />
-    <Compile Include="AddChildNode.cs" />
-    <Compile Include="AddContainer.cs" />
-    <Compile Include="AddEnum.cs" />
-    <Compile Include="AddIdentifier.cs" />
-    <Compile Include="AddItem.cs" />
-    <Compile Include="AddProperty.cs" />
-    <Compile Include="AddPropertyCollection.cs" />
-    <Compile Include="AddPropertyType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Implements.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

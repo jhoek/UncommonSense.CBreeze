@@ -48,6 +48,7 @@
     <Compile Include="ChildNode.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Enumeration.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ObjectModel.cs" />
