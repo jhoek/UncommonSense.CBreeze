@@ -11,6 +11,7 @@ Any cleverness like auto-captioning, auto-objectproperties or even auto-assignin
 (U)IDs are mandatory for items, and should be tested when adding an item to a collection. Auto-assigning (U)IDs complexifies the container code too much. We could aways introduce a (set of) extension method(s) later that will add container items with auto-assigned (U)IDs.
 
 ## Next
+- Replace fdb with c# builder code
 - PowerShell functions for Core
 - PowerShell functions for Meta
 
