@@ -69,6 +69,9 @@ namespace UncommonSense.CBreeze
 				.AddChildNode("Variables")
             	.AddChildNode("Functions");
 
+            om.AddItem("Documentation")
+                .AddChildNode("CodeLines");
+
 			om.AddPropertyType("BooleanProperty", "bool");
 			om.AddPropertyType("NullableBooleanProperty", "bool?");
 			om.AddPropertyType("NullableDateTimeProperty", "DateTime?");
