@@ -10,7 +10,7 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsData.Export, "CBreezeApplication")]
+    [Cmdlet(VerbsData.Export, "CBreezeApplication", DefaultParameterSetName="ToPath")]
     public class ExportCBreezeApplication : PSCmdlet
     {
         public ExportCBreezeApplication()
@@ -27,7 +27,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ToPath")]
+        [Parameter(Mandatory = true, ParameterSetName = "ToPath", Position=0)]
         public string Path
         {
             get;
@@ -95,8 +95,6 @@ namespace UncommonSense.CBreeze.Automation
                     var logFileName = System.IO.Path.GetTempFileName();
                     var resultFileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "navcommandresult.txt");
 
-                    Application.Write(tempFileName);
-
                     var arguments = new Dictionary<string, string>();
                     arguments.Add("command", "importobjects");
                     arguments.Add("file", tempFileName);
@@ -113,12 +111,13 @@ namespace UncommonSense.CBreeze.Automation
 
                     try
                     {
+                        Application.Write(tempFileName);
+
                         Process.Start(processStartInfo).WaitForExit();
 
                         if (File.Exists(logFileName))
                         {
-                            var errorText = File.ReadAllText(logFileName);
-                            throw new ApplicationException(errorText);
+                            throw new ApplicationException(File.ReadAllText(logFileName));
                         }
                     }
                     finally
@@ -126,6 +125,11 @@ namespace UncommonSense.CBreeze.Automation
                         if (File.Exists(tempFileName))
                         {
                             File.Delete(tempFileName);
+                        }
+
+                        if (File.Exists(logFileName))
+                        {
+                            File.Delete(logFileName);
                         }
 
                         if (File.Exists(resultFileName))
