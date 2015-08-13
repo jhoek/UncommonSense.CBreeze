@@ -12,6 +12,7 @@ $Table | Add-CBreezeVariable -ID 1000 -Record ExtTextHeader -SubType 279 -Verbos
 $Table | Add-CBreezeCodeTableField -Name Code -DataLength 20 -NotBlank $true -AutoCaption -PassThru | Add-CBreezeMLValue CaptionML NLD Code
 $Table | Add-CBreezeTextTableField -Name Description -DataLength 50 -AutoCaption -PassThru | Add-CBreezeMLValue CaptionML NLD Omschrijving
 
+$Table | Add-CBreezeTableKey -Fields Code -Clustered $true
 $Table.Properties.OnDelete | Add-CBreezeCodeLine 'ExtTextHeader.SETRANGE("Table Name",ExtTextHeader."Table Name"::"Standard Text");'
 $Table.Properties.OnDelete | Add-CBreezeCodeLine 'ExtTextHeader.SETRANGE("No.",Code);'
 $Table.Properties.OnDelete | Add-CBreezeCodeLine 'ExtTextHeader.DELETEALL(TRUE);'
