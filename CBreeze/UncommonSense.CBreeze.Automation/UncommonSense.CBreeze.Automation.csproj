@@ -41,6 +41,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UncommonSense.Nav.Parser">
+      <HintPath>..\..\..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser\bin\Debug\UncommonSense.Nav.Parser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCBreezeCodeLine.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="AddCmdlet.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
+    <Compile Include="ImportCBreezeApplication.cs" />
     <Compile Include="NewCBreezeApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +78,10 @@
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
       <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
+      <Project>{11bf778b-6524-4845-895d-ccdf90329fb2}</Project>
+      <Name>UncommonSense.CBreeze.Read</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
       <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
