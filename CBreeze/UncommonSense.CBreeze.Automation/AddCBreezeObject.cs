@@ -9,6 +9,11 @@ namespace UncommonSense.CBreeze.Automation
 {
     public abstract class AddCBreezeObject : AddCmdlet
     {
+        public AddCBreezeObject()
+        {
+            PassThru = true;
+        }
+
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Application Application
         {
