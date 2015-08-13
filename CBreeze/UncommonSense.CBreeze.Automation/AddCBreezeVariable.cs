@@ -33,12 +33,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        public SwitchParameter PassThru
-        {
-            get;
-            set;
-        }
-
         [Parameter()]
         public int ID
         {
