@@ -1809,8 +1809,8 @@ OBJECT Codeunit 50000 Generate Object Model
 {
   OBJECT-PROPERTIES
   {
-    Date=08-08-15;
-    Time=15:28:31;
+    Date=14-08-15;
+    Time=19:40:18;
     Modified=Yes;
     Version List=;
   }
@@ -1829,7 +1829,7 @@ OBJECT Codeunit 50000 Generate Object Model
       ObjectModel@1000000001 : Record 50000;
       UpdateDifferentiatorEnums@1000000007 : Codeunit 50007;
       ExportObjectModelDescriptn@1000000005 : Codeunit 50004;
-      ExportObjectModel@1000000002 : Codeunit 50001;
+      ExportObjectModel@1000000002 : Codeunit 60001;
       ExportPartials@1000000006 : Codeunit 50006;
       ExportAssemblyInfo@1000000003 : Codeunit 50002;
       CompileObjectModel@1000000004 : Codeunit 50003;
@@ -4111,8 +4111,8 @@ OBJECT Codeunit 60001 Export Object Model as Files
 {
   OBJECT-PROPERTIES
   {
-    Date=09-08-15;
-    Time=14:11:01;
+    Date=14-08-15;
+    Time=19:51:00;
     Modified=Yes;
     Version List=;
   }
@@ -4165,6 +4165,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
       OutputFile.QUERYREPLACE := FALSE;
       OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", Enumeration.Name));
 
+      WriteUsings(OutputFile);
       WriteStartNamespace(ObjectModel, OutputFile);
 
       OutputFile.WRITE(STRSUBSTNO('    public enum %1', Enumeration.Name));
@@ -4207,6 +4208,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
       OutputFile.QUERYREPLACE := FALSE;
       OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", 'Property'));
 
+      WriteUsings(OutputFile);
       WriteStartNamespace(ObjectModel, OutputFile);
 
       OutputFile.WRITE('    [Serializable]');
@@ -4264,6 +4266,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
       OutputFile.QUERYREPLACE := FALSE;
       OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", PropertyType.Name));
 
+      WriteUsings(OutputFile);
       WriteStartNamespace(ObjectModel, OutputFile);
 
       OutputFile.WRITE('    [Serializable]');
@@ -4372,6 +4375,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
       OutputFile.QUERYREPLACE := FALSE;
       OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", PropertyCollection.Name));
 
+      WriteUsings(OutputFile);
       WriteStartNamespace(ObjectModel, OutputFile);
 
       OutputFile.WRITE('    [Serializable]');
@@ -4551,6 +4555,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
       OutputFile.QUERYREPLACE := FALSE;
       OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", Item.Name));
 
+      WriteUsings(OutputFile);
       WriteStartNamespace(ObjectModel, OutputFile);
 
       OutputFile.WRITE('    [Serializable]');
@@ -4926,6 +4931,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
       OutputFile.QUERYREPLACE := FALSE;
       OutputFile.CREATE(GetFileName(ObjectModel."Object Model Src. Folder Name", Collection.Name));
 
+      WriteUsings(OutputFile);
       WriteStartNamespace(ObjectModel, OutputFile);
 
       OutputFile.WRITE('    [Serializable]');
@@ -5288,6 +5294,15 @@ OBJECT Codeunit 60001 Export Object Model as Files
       Actual := COPYSTR(Text, STRLEN(Text) - STRLEN(EndsWith) + 1);
 
       EXIT(Actual = EndsWith);
+    END;
+
+    PROCEDURE WriteUsings@1000000048(VAR OutputFile@1000000000 : File);
+    BEGIN
+      OutputFile.WRITE('using System;');
+      OutputFile.WRITE('using System.Linq;');
+      OutputFile.WRITE('using System.Collections;');
+      OutputFile.WRITE('using System.Collections.Generic;');
+      OutputFile.WRITE('');
     END;
 
     PROCEDURE WriteStartNamespace@1000000007(ObjectModel@1000000001 : Record 50000;VAR OutputFile@1000000000 : File);
