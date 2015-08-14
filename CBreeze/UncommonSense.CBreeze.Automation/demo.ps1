@@ -1,12 +1,13 @@
-﻿$PSDefaultParameterValues['*CBreeze*:AutoCaption'] = $true
+﻿$Activity = 'Preparing C/Breeze Automation Demo'
+$PSDefaultParameterValues['*CBreeze*:AutoCaption'] = $true
 $CompareToolFileName = 'c:\Program Files\Araxis\Araxis Merge\compare.exe'
 $OutputFileName = 'c:\users\jhoek\desktop\tab7.generated.txt'
 $ReferenceFileName = 'c:\users\jhoek\desktop\tab7.txt'
 
-# Create reference file
+Write-Progress -Activity $Activity -CurrentOperation 'Exporting reference file'
 Import-CBreezeApplication -ServerName '.\NAVDEMO' -Database 'Demo Database NAV (7-0)' -Filter 'Type=Table;ID=7|8' | Export-CBreezeApplication -Path $ReferenceFileName
 
-# Create generated file
+Write-Progress -Activity $Activity -CurrentOperation 'Building C/Breeze application'
 $Application = New-CBreezeApplication
 $DateTime = Get-Date -Year 2012 -Month 9 -Day 7 -Hour 12 -Minute 0 -Second 0
 $VersionList = 'NAVW17.00'
@@ -25,8 +26,20 @@ $Table = $Application | Add-CBreezeTable 8 Language -DateTime $DateTime -Version
 $Table | Add-CBreezeMLValue CaptionML NLD Taal
 $Table | Add-CBreezeCodeTableField -Name Code -NotBlank $true -PassThru | Add-CBreezeMLValue CaptionML NLD Code
 $Table | Add-CBreezeTextTableField -Name Name -DataLength 50 -PassThru | Add-CBreezeMLValue CaptionML NLD Naam
+$Function = $Table | Add-CBreezeFunction -Name GetUserLanguage -ReturnValueType Code -PassThru
+$Function | Add-CBreezeCodeLine 'CLEAR(Rec);'
+$Function | Add-CBreezeCodeLine 'SETRANGE("Windows Language ID",GLOBALLANGUAGE);'
+$Function | Add-CBreezeCodeLine 'IF FINDFIRST THEN;'
+$Function | Add-CBreezeCodeLine 'SETRANGE("Windows Language ID");'
+$Function | Add-CBreezeCodeLine 'EXIT(Code);'
 
+
+
+
+$Function = $Table | Add-CBreezeFunction -Name GetLanguageID -ReturnValueType Integer -PassThru
+
+Write-Progress -Activity $Activity -CurrentOperation 'Exporting C/Breeze application'
 $Application | Export-CBreezeApplication -Path $OutputFileName
 
-# Compare reference and generated file
+Write-Progress -Activity $Activity -CurrentOperation 'Starting compare tool'
 & $CompareToolFileName $ReferenceFileName $OutputFileName
