@@ -53,10 +53,15 @@
     <Compile Include="AddCBreezeBinaryParameter.cs" />
     <Compile Include="AddCBreezeBooleanParameter.cs" />
     <Compile Include="AddCBreezeByteParameter.cs" />
+    <Compile Include="AddCBreezeCharParameter.cs" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeCodeParameter.cs" />
     <Compile Include="AddCBreezeCodeTableField.cs" />
     <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezeCodeunitParameter.cs" />
+    <Compile Include="AddCBreezeDateFormulaParameter.cs" />
+    <Compile Include="AddCBreezeDateParameter.cs" />
+    <Compile Include="AddCBreezeDateTimeParameter.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuite.cs" />
     <Compile Include="AddCBreezeMLValue.cs" />
