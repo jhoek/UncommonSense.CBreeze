@@ -26,6 +26,7 @@ $Table = $Application | Add-CBreezeTable 8 Language -DateTime $DateTime -Version
 $Table | Add-CBreezeMLValue CaptionML NLD Taal
 $Table | Add-CBreezeCodeTableField -Name Code -NotBlank $true -PassThru | Add-CBreezeMLValue CaptionML NLD Code
 $Table | Add-CBreezeTextTableField -Name Name -DataLength 50 -PassThru | Add-CBreezeMLValue CaptionML NLD Naam
+
 $Function = $Table | Add-CBreezeFunction -Name GetUserLanguage -ReturnValueType Code -PassThru
 $Function | Add-CBreezeCodeLine 'CLEAR(Rec);'
 $Function | Add-CBreezeCodeLine 'SETRANGE("Windows Language ID",GLOBALLANGUAGE);'
@@ -33,10 +34,14 @@ $Function | Add-CBreezeCodeLine 'IF FINDFIRST THEN;'
 $Function | Add-CBreezeCodeLine 'SETRANGE("Windows Language ID");'
 $Function | Add-CBreezeCodeLine 'EXIT(Code);'
 
-
-
-
 $Function = $Table | Add-CBreezeFunction -Name GetLanguageID -ReturnValueType Integer -PassThru
+$Function | Add-CBreezeCodeParameter -ID 1000 -Name LanguageCode -DataLength 10
+$Function | Add-CBreezeCodeLine 'CLEAR(Rec);'
+$Function | Add-CBreezeCodeLine 'IF LanguageCode <> '''' THEN'
+$Function | Add-CBreezeCodeLine '  IF GET(LanguageCode) THEN'
+$Function | Add-CBreezeCodeLine '    EXIT("Windows Language ID");'
+$Function | Add-CBreezeCodeLine '"Windows Language ID" := GLOBALLANGUAGE;'
+$Function | Add-CBreezeCodeLine 'EXIT("Windows Language ID");'
 
 Write-Progress -Activity $Activity -CurrentOperation 'Exporting C/Breeze application'
 $Application | Export-CBreezeApplication -Path $OutputFileName
