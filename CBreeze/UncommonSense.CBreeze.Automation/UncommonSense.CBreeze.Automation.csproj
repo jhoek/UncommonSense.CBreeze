@@ -50,6 +50,9 @@
     <Compile Include="AddCBreezeAutomationParameter.cs" />
     <Compile Include="AddCBreezeBigIntegerParameter.cs" />
     <Compile Include="AddCBreezeBigTextParameter.cs" />
+    <Compile Include="AddCBreezeBinaryParameter.cs" />
+    <Compile Include="AddCBreezeBooleanParameter.cs" />
+    <Compile Include="AddCBreezeByteParameter.cs" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeCodeParameter.cs" />
     <Compile Include="AddCBreezeCodeTableField.cs" />
