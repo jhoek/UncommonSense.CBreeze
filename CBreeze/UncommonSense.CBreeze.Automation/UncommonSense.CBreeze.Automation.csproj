@@ -46,7 +46,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCBreezeActionParameter.cs" />
+    <Compile Include="AddCBreezeAutomationParameter.cs" />
+    <Compile Include="AddCBreezeBigIntegerParameter.cs" />
+    <Compile Include="AddCBreezeBigTextParameter.cs" />
     <Compile Include="AddCBreezeCodeLine.cs" />
+    <Compile Include="AddCBreezeCodeParameter.cs" />
     <Compile Include="AddCBreezeCodeTableField.cs" />
     <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
@@ -54,6 +59,7 @@
     <Compile Include="AddCBreezeMLValue.cs" />
     <Compile Include="AddCBreezeObject.cs" />
     <Compile Include="AddCBreezePage.cs" />
+    <Compile Include="AddCBreezeParameter.cs" />
     <Compile Include="AddCBreezeQuery.cs" />
     <Compile Include="AddCBreezeReport.cs" />
     <Compile Include="AddCBreezeTable.cs" />
