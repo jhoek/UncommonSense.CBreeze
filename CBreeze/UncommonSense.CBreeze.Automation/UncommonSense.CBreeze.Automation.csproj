@@ -49,6 +49,7 @@
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeCodeTableField.cs" />
     <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuite.cs" />
     <Compile Include="AddCBreezeMLValue.cs" />
     <Compile Include="AddCBreezeObject.cs" />
