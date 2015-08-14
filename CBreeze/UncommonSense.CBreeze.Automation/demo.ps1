@@ -26,6 +26,7 @@ $Table = $Application | Add-CBreezeTable 8 Language -DateTime $DateTime -Version
 $Table | Add-CBreezeMLValue CaptionML NLD Taal
 $Table | Add-CBreezeCodeTableField -Name Code -NotBlank $true -PassThru | Add-CBreezeMLValue CaptionML NLD Code
 $Table | Add-CBreezeTextTableField -Name Name -DataLength 50 -PassThru | Add-CBreezeMLValue CaptionML NLD Naam
+$Table | Add-CBreezeTableKey -Fields Code -Clustered $true
 
 $Function = $Table | Add-CBreezeFunction -Name GetUserLanguage -ReturnValueType Code -PassThru
 $Function | Add-CBreezeCodeLine 'CLEAR(Rec);'
