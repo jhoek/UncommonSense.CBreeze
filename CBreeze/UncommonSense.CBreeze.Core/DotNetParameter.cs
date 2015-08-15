@@ -17,7 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DotNetParameter : Parameter
     {
-        private String dimensions;
         private Boolean? runOnClient;
         private String subType;
         private Boolean? suppressDispose;
@@ -32,18 +31,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ParameterType.DotNet;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

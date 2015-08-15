@@ -17,8 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ByteParameter : Parameter
     {
-        private String dimensions;
-
         internal ByteParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
@@ -28,18 +26,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ParameterType.Byte;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

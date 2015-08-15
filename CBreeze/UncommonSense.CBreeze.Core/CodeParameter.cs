@@ -18,7 +18,6 @@ namespace UncommonSense.CBreeze.Core
     public partial class CodeParameter : Parameter
     {
         private Int32? dataLength;
-        private String dimensions;
 
         internal CodeParameter(Boolean var, Int32 id, String name, Int32? dataLength = null) : base(var, id, name)
         {
@@ -38,18 +37,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return this.dataLength;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

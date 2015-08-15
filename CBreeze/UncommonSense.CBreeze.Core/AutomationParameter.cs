@@ -17,7 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class AutomationParameter : Parameter
     {
-        private String dimensions;
         private String subType;
 
         internal AutomationParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
@@ -30,18 +29,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ParameterType.Automation;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

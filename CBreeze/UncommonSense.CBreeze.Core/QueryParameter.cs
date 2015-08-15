@@ -17,7 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class QueryParameter : Parameter
     {
-        private String dimensions;
         private QuerySecurityFiltering? securityFiltering;
         private Int32 subType;
 
@@ -31,18 +30,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ParameterType.Query;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

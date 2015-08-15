@@ -18,6 +18,7 @@ namespace UncommonSense.CBreeze.Core
     public abstract partial class Parameter
     {
         private Boolean var;
+        private String dimensions;
         private Int32 id;
         private String name;
 
@@ -38,6 +39,18 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return this.var;
+            }
+        }
+
+        public String Dimensions
+        {
+            get
+            {
+                return this.dimensions;
+            }
+            set
+            {
+                this.dimensions = value;
             }
         }
 

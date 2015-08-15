@@ -17,7 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordParameter : Parameter
     {
-        private String dimensions;
         private RecordSecurityFiltering? securityFiltering;
         private Int32 subType;
         private Boolean? temporary;
@@ -32,18 +31,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ParameterType.Record;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

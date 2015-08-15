@@ -17,8 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DateParameter : Parameter
     {
-        private String dimensions;
-
         internal DateParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
@@ -28,18 +26,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ParameterType.Date;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

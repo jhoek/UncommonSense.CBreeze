@@ -17,7 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordRefParameter : Parameter
     {
-        private String dimensions;
         private RecordSecurityFiltering? securityFiltering;
 
         internal RecordRefParameter(Boolean var, Int32 id, String name) : base(var, id, name)
@@ -29,18 +28,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ParameterType.RecordRef;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 

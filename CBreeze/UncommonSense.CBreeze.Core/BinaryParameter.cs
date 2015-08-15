@@ -18,7 +18,6 @@ namespace UncommonSense.CBreeze.Core
     public partial class BinaryParameter : Parameter
     {
         private Int32 dataLength;
-        private String dimensions;
 
         internal BinaryParameter(Boolean var, Int32 id, String name, Int32 dataLength = 100) : base(var, id, name)
         {
@@ -38,18 +37,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return this.dataLength;
-            }
-        }
-
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
             }
         }
 
