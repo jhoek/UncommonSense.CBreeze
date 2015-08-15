@@ -383,8 +383,8 @@ OBJECT Table 50007 Collection
 {
   OBJECT-PROPERTIES
   {
-    Date=17-01-14;
-    Time=09:25:09;
+    Date=15-08-15;
+    Time=14:18:54;
     Modified=Yes;
     Version List=;
   }
@@ -399,6 +399,10 @@ OBJECT Table 50007 Collection
                                                    NotBlank=Yes }
     { 2   ;   ;Name                ;Text80        ;NotBlank=Yes }
     { 10  ;   ;Item Type           ;Text80        ;TableRelation=Item.Name WHERE (Object Model Code=FIELD(Object Model Code)) }
+    { 11  ;   ;Item is Abstract    ;Boolean       ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(Item.Abstract WHERE (Object Model Code=FIELD(Object Model Code),
+                                                                                           Name=FIELD(Item Type)));
+                                                   Editable=No }
     { 20  ;   ;Generate Insert Method;Boolean      }
     { 25  ;   ;Generate Remove Method;Boolean      }
     { 30  ;   ;Collection Style    ;Option        ;OptionString=List,,,,,Dictionary }
@@ -1197,8 +1201,8 @@ OBJECT Form 50005 Collections
 {
   OBJECT-PROPERTIES
   {
-    Date=23-08-13;
-    Time=12:58:52;
+    Date=15-08-15;
+    Time=14:19:09;
     Modified=Yes;
     Version List=;
   }
@@ -1229,6 +1233,12 @@ OBJECT Form 50005 Collections
                                                  InColumn=Yes;
                                                  SourceExpr="Item Type" }
     { 1000000006;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000005;
+                                                 InColumnHeading=Yes }
+    { 1000000016;CheckBox;10223;550 ;1700 ;440  ;ParentControl=1000000000;
+                                                 InColumn=Yes;
+                                                 ShowCaption=No;
+                                                 SourceExpr="Item is Abstract" }
+    { 1000000017;Label  ;0    ;0    ;0    ;0    ;ParentControl=1000000016;
                                                  InColumnHeading=Yes }
     { 1000000014;TextBox;5609 ;440  ;1700 ;440  ;ParentControl=1000000000;
                                                  InColumn=Yes;
@@ -4112,7 +4122,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
   OBJECT-PROPERTIES
   {
     Date=15-08-15;
-    Time=11:44:08;
+    Time=14:09:04;
     Modified=Yes;
     Version List=;
   }
@@ -4948,8 +4958,10 @@ OBJECT Codeunit 60001 Export Object Model as Files
 
       CASE Collection."Collection Style" OF
         Collection."Collection Style"::List:
+          // Simple list of items that don't have an ID
           OutputFile.WRITE(STRSUBSTNO('        private List<%1> innerList = new List<%1>();', Collection."Item Type"));
         Collection."Collection Style"::Dictionary:
+          // Dictionary of things with an ID
           BEGIN
             Item.GET(Collection."Object Model Code", Collection."Item Type");
             IF Item."Base Type" <> '' THEN
