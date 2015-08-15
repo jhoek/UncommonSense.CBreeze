@@ -62,6 +62,8 @@
     <Compile Include="AddCBreezeDateFormulaParameter.cs" />
     <Compile Include="AddCBreezeDateParameter.cs" />
     <Compile Include="AddCBreezeDateTimeParameter.cs" />
+    <Compile Include="AddCBreezeDecimalParameter.cs" />
+    <Compile Include="AddCBreezeDialogParameter.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuite.cs" />
     <Compile Include="AddCBreezeMLValue.cs" />
