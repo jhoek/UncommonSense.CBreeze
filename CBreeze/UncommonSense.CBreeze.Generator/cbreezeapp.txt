@@ -4122,7 +4122,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
   OBJECT-PROPERTIES
   {
     Date=15-08-15;
-    Time=15:04:09;
+    Time=17:40:07;
     Modified=Yes;
     Version List=;
   }
@@ -4615,7 +4615,6 @@ OBJECT Codeunit 60001 Export Object Model as Files
     PROCEDURE WriteItemFieldDeclarations@1000000011(Item@1000000000 : Record 50005;VAR OutputFile@1000000001 : File);
     VAR
       Attribute@1000000002 : Record 50009;
-      AnyFieldDeclarations@1000000003 : Boolean;
     BEGIN
       Attribute.SETCURRENTKEY("Object Model Code", "Container Type", "Container Name", "Sort Order");
       Attribute.SETRANGE("Object Model Code", Item."Object Model Code");
@@ -4625,15 +4624,12 @@ OBJECT Codeunit 60001 Export Object Model as Files
       Attribute.SETRANGE(Override, FALSE);
 
       IF Attribute.FINDSET THEN BEGIN
-        AnyFieldDeclarations := TRUE;
-
         REPEAT
           WriteItemFieldDeclaration(Attribute, OutputFile);
         UNTIL Attribute.NEXT = 0;
-      END;
 
-      IF AnyFieldDeclarations THEN
         OutputFile.WRITE('');
+      END;
     END;
 
     PROCEDURE WriteItemFieldDeclaration@1000000015(Attribute@1000000000 : Record 50009;VAR OutputFile@1000000001 : File);
