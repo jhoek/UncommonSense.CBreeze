@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private FieldPageControlProperties properties = new FieldPageControlProperties();
 
-        internal FieldPageControl(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
+        public FieldPageControl(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
         {
         }
 

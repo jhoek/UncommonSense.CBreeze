@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private TableFilterTableFieldProperties properties = new TableFilterTableFieldProperties();
 
-        internal TableFilterTableField(Int32 no, String name) : base(no, name)
+        public TableFilterTableField(Int32 no, String name) : base(no, name)
         {
         }
 

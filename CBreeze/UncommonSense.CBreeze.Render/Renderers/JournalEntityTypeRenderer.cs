@@ -26,46 +26,46 @@ namespace UncommonSense.CBreeze.Render
 
             var nextFieldNo = 1;
             var nextGlobalUID = 1000;
-            manifest.TemplateTableNameField = manifest.TemplateTable.Fields.AddCodeTableField(nextFieldNo++, "Name", 10).AutoCaption();
-            manifest.TemplateTableDescriptionField = manifest.TemplateTable.Fields.AddTextTableField(nextFieldNo++, "Description", 80).AutoCaption();
-            manifest.TemplateTableTestReportIDField = entityType.HasTestReportIDField ? manifest.TemplateTable.Fields.AddIntegerTableField(nextFieldNo++, "Test Report ID").AutoCaption() : null;
-            manifest.TemplateTableTestReportCaptionField = entityType.HasTestReportIDField ? manifest.TemplateTable.Fields.AddTextTableField(nextFieldNo++, "Test Report Caption", 250).AutoCaption() : null;
-            manifest.TemplateTablePageIDField = manifest.TemplateTable.Fields.AddIntegerTableField(nextFieldNo++, "Page ID").AutoCaption();
-            manifest.TemplateTablePageCaptionField = manifest.TemplateTable.Fields.AddTextTableField(nextFieldNo++, "Page Caption", 250).AutoCaption();
-            manifest.TemplateTablePostingReportIDField = entityType.HasPostingReportIDField ? manifest.TemplateTable.Fields.AddIntegerTableField(nextFieldNo++, "Posting Report ID").AutoCaption() : null;
-            manifest.TemplateTablePostingReportCaptionField = entityType.HasPostingReportIDField ? manifest.TemplateTable.Fields.AddTextTableField(nextFieldNo++, "Posting Report Caption", 250).AutoCaption() : null;
-            manifest.TemplateTableForcePostingReportField = entityType.HasPostingReportIDField ? manifest.TemplateTable.Fields.AddBooleanTableField(nextFieldNo++, "Force Posting Report").AutoCaption() : null;
-            manifest.TemplateTableSourceCodeField = entityType.HasSourceCodeField ? manifest.TemplateTable.Fields.AddCodeTableField(nextFieldNo++, "Source Code", 10).AutoCaption() : null;
-            manifest.TemplateTableReasonCodeField = entityType.HasReasonCodeField ? manifest.TemplateTable.Fields.AddCodeTableField(nextFieldNo++, "Reason Code", 10).AutoCaption() : null;
-            manifest.TemplateTableRecurringField = manifest.TemplateTable.Fields.AddBooleanTableField(nextFieldNo++, "Recurring").AutoCaption();
-            manifest.TemplateTableNoSeriesField = manifest.TemplateTable.Fields.AddCodeTableField(nextFieldNo++, "No. Series", 10).AutoCaption();
-            manifest.TemplateTablePostingNoSeriesField = manifest.TemplateTable.Fields.AddCodeTableField(nextFieldNo++, "Posting No. Series", 10).AutoCaption();
-            manifest.TemplateTableText000 = manifest.TemplateTable.Code.Variables.AddTextConstant(nextGlobalUID++, "Text000");
-            manifest.TemplateTableText001 = manifest.TemplateTable.Code.Variables.AddTextConstant(nextGlobalUID++, "Text001");
+            manifest.TemplateTableNameField = manifest.TemplateTable.Fields.Add(new CodeTableField(nextFieldNo++, "Name", 10)).AutoCaption();
+            manifest.TemplateTableDescriptionField = manifest.TemplateTable.Fields.Add(new TextTableField(nextFieldNo++, "Description", 80)).AutoCaption();
+            manifest.TemplateTableTestReportIDField = entityType.HasTestReportIDField ? manifest.TemplateTable.Fields.Add(new IntegerTableField(nextFieldNo++, "Test Report ID")).AutoCaption() : null;
+            manifest.TemplateTableTestReportCaptionField = entityType.HasTestReportIDField ? manifest.TemplateTable.Fields.Add(new TextTableField(nextFieldNo++, "Test Report Caption", 250)).AutoCaption() : null;
+            manifest.TemplateTablePageIDField = manifest.TemplateTable.Fields.Add(new IntegerTableField(nextFieldNo++, "Page ID")).AutoCaption();
+            manifest.TemplateTablePageCaptionField = manifest.TemplateTable.Fields.Add(new TextTableField(nextFieldNo++, "Page Caption", 250)).AutoCaption();
+            manifest.TemplateTablePostingReportIDField = entityType.HasPostingReportIDField ? manifest.TemplateTable.Fields.Add(new IntegerTableField(nextFieldNo++, "Posting Report ID")).AutoCaption() : null;
+            manifest.TemplateTablePostingReportCaptionField = entityType.HasPostingReportIDField ? manifest.TemplateTable.Fields.Add(new TextTableField(nextFieldNo++, "Posting Report Caption", 250)).AutoCaption() : null;
+            manifest.TemplateTableForcePostingReportField = entityType.HasPostingReportIDField ? manifest.TemplateTable.Fields.Add(new BooleanTableField(nextFieldNo++, "Force Posting Report")).AutoCaption() : null;
+            manifest.TemplateTableSourceCodeField = entityType.HasSourceCodeField ? manifest.TemplateTable.Fields.Add(new CodeTableField(nextFieldNo++, "Source Code", 10)).AutoCaption() : null;
+            manifest.TemplateTableReasonCodeField = entityType.HasReasonCodeField ? manifest.TemplateTable.Fields.Add(new CodeTableField(nextFieldNo++, "Reason Code", 10)).AutoCaption() : null;
+            manifest.TemplateTableRecurringField = manifest.TemplateTable.Fields.Add(new BooleanTableField(nextFieldNo++, "Recurring")).AutoCaption();
+            manifest.TemplateTableNoSeriesField = manifest.TemplateTable.Fields.Add(new CodeTableField(nextFieldNo++, "No. Series", 10)).AutoCaption();
+            manifest.TemplateTablePostingNoSeriesField = manifest.TemplateTable.Fields.Add(new CodeTableField(nextFieldNo++, "Posting No. Series", 10)).AutoCaption();
+            manifest.TemplateTableText000 = manifest.TemplateTable.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text000"));
+            manifest.TemplateTableText001 = manifest.TemplateTable.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text001"));
 
             nextFieldNo = 1;
             nextGlobalUID = 1000;
             var nextFunctionID = 1;
-            manifest.BatchTableJournalTemplateNameField = manifest.BatchTable.Fields.AddCodeTableField(nextFieldNo++, "Journal Template Name", 10).AutoCaption();
-            manifest.BatchTableNameField = manifest.BatchTable.Fields.AddCodeTableField(nextFieldNo++, "Name", 10).AutoCaption();
-            manifest.BatchTableDescriptionField = manifest.BatchTable.Fields.AddTextTableField(nextFieldNo++, "Description", 50).AutoCaption();
-            manifest.BatchTableReasonCodeField = entityType.HasReasonCodeField ? manifest.BatchTable.Fields.AddCodeTableField(nextFieldNo++, "Reason Code", 10).AutoCaption() : null;
-            manifest.BatchTableNoSeriesField = manifest.BatchTable.Fields.AddCodeTableField(nextFieldNo++, "No. Series", 10).AutoCaption();
-            manifest.BatchTablePostingNoSeriesField = manifest.BatchTable.Fields.AddCodeTableField(nextFieldNo++, "Posting No. Series", 10).AutoCaption();
-            manifest.BatchTableRecurringField = manifest.BatchTable.Fields.AddBooleanTableField(nextFieldNo++, "Recurring").AutoCaption();
-            manifest.BatchTableText000 = manifest.BatchTable.Code.Variables.AddTextConstant(nextGlobalUID++, "Text000");
+            manifest.BatchTableJournalTemplateNameField = manifest.BatchTable.Fields.Add(new CodeTableField(nextFieldNo++, "Journal Template Name", 10)).AutoCaption();
+            manifest.BatchTableNameField = manifest.BatchTable.Fields.Add(new CodeTableField(nextFieldNo++, "Name", 10)).AutoCaption();
+            manifest.BatchTableDescriptionField = manifest.BatchTable.Fields.Add(new TextTableField(nextFieldNo++, "Description", 50)).AutoCaption();
+            manifest.BatchTableReasonCodeField = entityType.HasReasonCodeField ? manifest.BatchTable.Fields.Add(new CodeTableField(nextFieldNo++, "Reason Code", 10)).AutoCaption() : null;
+            manifest.BatchTableNoSeriesField = manifest.BatchTable.Fields.Add(new CodeTableField(nextFieldNo++, "No. Series", 10)).AutoCaption();
+            manifest.BatchTablePostingNoSeriesField = manifest.BatchTable.Fields.Add(new CodeTableField(nextFieldNo++, "Posting No. Series", 10)).AutoCaption();
+            manifest.BatchTableRecurringField = manifest.BatchTable.Fields.Add(new BooleanTableField(nextFieldNo++, "Recurring")).AutoCaption();
+            manifest.BatchTableText000 = manifest.BatchTable.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text000"));
             manifest.BatchTableSetupNewBatchFunction = manifest.BatchTable.Code.Functions.Add(nextFunctionID++, "SetupNewBatch");
 
             nextFieldNo = 1;
-            manifest.LineTableJournalTemplateNameField = manifest.LineTable.Fields.AddCodeTableField(nextFieldNo++, "Journal Template Name", 10).AutoCaption();
-            manifest.LineTableJournalBatchNameField = manifest.LineTable.Fields.AddCodeTableField(nextFieldNo++, "Journal Batch Name", 10).AutoCaption();
-            manifest.LineTableLineNoField = manifest.LineTable.Fields.AddIntegerTableField(nextFieldNo++, "Line No.").AutoCaption();
-            manifest.LineTablePostingDateField = manifest.LineTable.Fields.AddDateTableField(nextFieldNo++, "Posting Date").AutoCaption();
-            manifest.LineTableMasterEntityTypeField = entityType.MasterEntityType != null ? manifest.LineTable.Fields.AddCodeTableField(nextFieldNo++, string.Format("{0} No.", entityType.MasterEntityType.Name), 20).AutoCaption() : null;
-            manifest.LineTableDescriptionField = manifest.LineTable.Fields.AddTextTableField(nextFieldNo++, "Description", 50).AutoCaption();
-            manifest.LineTableSourceCodeField = entityType.HasSourceCodeField ? manifest.LineTable.Fields.AddCodeTableField(nextFieldNo++, "Source Code", 10).AutoCaption() : null;
-            manifest.LineTableReasonCodeField = entityType.HasReasonCodeField ? manifest.LineTable.Fields.AddCodeTableField(nextFieldNo++, "Reason Code", 10).AutoCaption() : null;
-            manifest.LineTableDocumentDateField = manifest.LineTable.Fields.AddDateTableField(nextFieldNo++, "Document Date").AutoCaption();
+            manifest.LineTableJournalTemplateNameField = manifest.LineTable.Fields.Add(new CodeTableField(nextFieldNo++, "Journal Template Name", 10)).AutoCaption();
+            manifest.LineTableJournalBatchNameField = manifest.LineTable.Fields.Add(new CodeTableField(nextFieldNo++, "Journal Batch Name", 10)).AutoCaption();
+            manifest.LineTableLineNoField = manifest.LineTable.Fields.Add(new IntegerTableField(nextFieldNo++, "Line No.")).AutoCaption();
+            manifest.LineTablePostingDateField = manifest.LineTable.Fields.Add(new DateTableField(nextFieldNo++, "Posting Date")).AutoCaption();
+            manifest.LineTableMasterEntityTypeField = entityType.MasterEntityType != null ? manifest.LineTable.Fields.Add(new CodeTableField(nextFieldNo++, string.Format("{0} No.", entityType.MasterEntityType.Name), 20)).AutoCaption() : null;
+            manifest.LineTableDescriptionField = manifest.LineTable.Fields.Add(new TextTableField(nextFieldNo++, "Description", 50)).AutoCaption();
+            manifest.LineTableSourceCodeField = entityType.HasSourceCodeField ? manifest.LineTable.Fields.Add(new CodeTableField(nextFieldNo++, "Source Code", 10)).AutoCaption() : null;
+            manifest.LineTableReasonCodeField = entityType.HasReasonCodeField ? manifest.LineTable.Fields.Add(new CodeTableField(nextFieldNo++, "Reason Code", 10)).AutoCaption() : null;
+            manifest.LineTableDocumentDateField = manifest.LineTable.Fields.Add(new DateTableField(nextFieldNo++, "Document Date")).AutoCaption();
 
             nextFunctionID = 1;
             manifest.TemplateSelectionFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "TemplateSelection");
@@ -78,13 +78,13 @@ namespace UncommonSense.CBreeze.Render
             manifest.LookupNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "LookupName");
 
             nextGlobalUID = 1000;
-            manifest.OpenFromBatchVariable = manifest.JournalMgtCodeunit.Code.Variables.AddBooleanVariable(nextGlobalUID++, "OpenFromBatch");
-            manifest.JournalMgtCodeunitText000 = manifest.JournalMgtCodeunit.Code.Variables.AddTextConstant(nextGlobalUID++, "Text000");
-            manifest.JournalMgtCodeunitText001 = manifest.JournalMgtCodeunit.Code.Variables.AddTextConstant(nextGlobalUID++, "Text001");
-            manifest.JournalMgtCodeunitText002 = manifest.JournalMgtCodeunit.Code.Variables.AddTextConstant(nextGlobalUID++, "Text002");
-            manifest.JournalMgtCodeunitText003 = manifest.JournalMgtCodeunit.Code.Variables.AddTextConstant(nextGlobalUID++, "Text003");
-            manifest.JournalMgtCodeunitText004 = manifest.JournalMgtCodeunit.Code.Variables.AddTextConstant(nextGlobalUID++, "Text004");
-            manifest.JournalMgtCodeunitText005 = manifest.JournalMgtCodeunit.Code.Variables.AddTextConstant(nextGlobalUID++, "Text005");
+            manifest.OpenFromBatchVariable = manifest.JournalMgtCodeunit.Code.Variables.Add(new BooleanVariable(nextGlobalUID++, "OpenFromBatch"));
+            manifest.JournalMgtCodeunitText000 = manifest.JournalMgtCodeunit.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text000"));
+            manifest.JournalMgtCodeunitText001 = manifest.JournalMgtCodeunit.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text001"));
+            manifest.JournalMgtCodeunitText002 = manifest.JournalMgtCodeunit.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text002"));
+            manifest.JournalMgtCodeunitText003 = manifest.JournalMgtCodeunit.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text003"));
+            manifest.JournalMgtCodeunitText004 = manifest.JournalMgtCodeunit.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text004"));
+            manifest.JournalMgtCodeunitText005 = manifest.JournalMgtCodeunit.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text005"));
 
             return manifest;
         }
@@ -163,7 +163,7 @@ namespace UncommonSense.CBreeze.Render
             {
                 manifest.TemplateTableSourceCodeField.Properties.TableRelation.Add("Source Code");
                 var onValidate = manifest.TemplateTableSourceCodeField.Properties.OnValidate;
-                onValidate.Variables.AddRecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
+                onValidate.Variables.Add(new RecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
                 onValidate.CodeLines.Add("{0}.SETRANGE(\"Journal Template Name\",{1});", manifest.LineTable.Name.MakeVariableName(), manifest.TemplateTableNameField.Name.Quoted());
                 onValidate.CodeLines.Add("{0}.MODIFYALL({1}, {2});", manifest.LineTable.Name.MakeVariableName(), manifest.LineTableSourceCodeField.Name.Quoted(), manifest.TemplateTableSourceCodeField.Name.Quoted());
                 onValidate.CodeLines.Add("MODIFY;");
@@ -218,8 +218,8 @@ namespace UncommonSense.CBreeze.Render
 
             nextUID = 1000;
             var onDelete = manifest.TemplateTable.Properties.OnDelete;
-            onDelete.Variables.AddRecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
-            onDelete.Variables.AddRecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID);
+            onDelete.Variables.Add(new RecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
+            onDelete.Variables.Add(new RecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID));
             onDelete.CodeLines.Add("{0}.SETRANGE(\"Journal Template Name\", Name);", manifest.LineTable.Name.MakeVariableName());
             onDelete.CodeLines.Add("{0}.DELETEALL(TRUE);", manifest.LineTable.Name.MakeVariableName());
             onDelete.CodeLines.Add("{0}.SETRANGE(\"Journal Template Name\", Name);", manifest.BatchTable.Name.MakeVariableName());
@@ -241,20 +241,20 @@ namespace UncommonSense.CBreeze.Render
 
             var onInsert = manifest.BatchTable.Properties.OnInsert;
             var nextUID = 1000;
-            var recordVariable = onInsert.Variables.AddRecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID);
+            var recordVariable = onInsert.Variables.Add(new RecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID));
             onInsert.CodeLines.Add("LOCKTABLE;");
             onInsert.CodeLines.Add("{0}.GET({1});", recordVariable.Name, manifest.BatchTableJournalTemplateNameField.Name.Quoted());
 
             var onDelete = manifest.BatchTable.Properties.OnDelete;
             nextUID = 1000;
-            recordVariable = onDelete.Variables.AddRecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
+            recordVariable = onDelete.Variables.Add(new RecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
             onDelete.CodeLines.Add("{0}.SETRANGE({1}, {2});", recordVariable.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted(), manifest.BatchTableJournalTemplateNameField.Name.Quoted());
             onDelete.CodeLines.Add("{0}.SETRANGE({1}, {2});", recordVariable.Name, manifest.LineTableJournalBatchNameField.Name.Quoted(), manifest.BatchTableNameField.Name.Quoted());
             onDelete.CodeLines.Add("{0}.DELETEALL(TRUE);", recordVariable.Name);
 
             var onRename = manifest.BatchTable.Properties.OnRename;
             nextUID = 1000;
-            recordVariable = onRename.Variables.AddRecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
+            recordVariable = onRename.Variables.Add(new RecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
             onRename.CodeLines.Add("{0}.SETRANGE({1}, xRec.{2});", recordVariable.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted(), manifest.BatchTableJournalTemplateNameField.Name.Quoted());
             onRename.CodeLines.Add("{0}.SETRANGE({1}, xRec.{2});", recordVariable.Name, manifest.LineTableJournalBatchNameField.Name.Quoted(), manifest.BatchTableNameField.Name.Quoted());
             onRename.CodeLines.Add("WHILE {0}.FINDFIRST DO", recordVariable.Name);
@@ -273,7 +273,7 @@ namespace UncommonSense.CBreeze.Render
 
                 onValidate = manifest.BatchTableReasonCodeField.Properties.OnValidate;
                 nextUID = 1000;
-                recordVariable = onValidate.Variables.AddRecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
+                recordVariable = onValidate.Variables.Add(new RecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
                 onValidate.CodeLines.Add("IF {0} <> xRec.{0} THEN BEGIN", manifest.BatchTableReasonCodeField.Name.Quoted());
                 onValidate.CodeLines.Add("  {0}.SETRANGE({1}, {2});", recordVariable.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted(), manifest.BatchTableJournalTemplateNameField.Name.Quoted());
                 onValidate.CodeLines.Add("  {0}.SETRANGE({1}, {2});", recordVariable.Name, manifest.LineTableJournalBatchNameField.Name.Quoted(), manifest.BatchTableNameField.Name.Quoted());
@@ -285,7 +285,7 @@ namespace UncommonSense.CBreeze.Render
             manifest.BatchTableNoSeriesField.Properties.TableRelation.Add("No. Series");
             onValidate = manifest.BatchTableNoSeriesField.Properties.OnValidate;
             nextUID = 1000;
-            var journalTemplateVariable = onValidate.Variables.AddRecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID);
+            var journalTemplateVariable = onValidate.Variables.Add(new RecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID));
             onValidate.CodeLines.Add("IF {0} <> '' THEN BEGIN", manifest.BatchTableNoSeriesField.Name.Quoted());
             onValidate.CodeLines.Add("  {0}.GET({1});", journalTemplateVariable.Name, manifest.BatchTableJournalTemplateNameField.Name.Quoted());
             onValidate.CodeLines.Add("  IF {0}.{1} THEN", journalTemplateVariable.Name, manifest.TemplateTableRecurringField.Name.Quoted());
@@ -313,7 +313,7 @@ namespace UncommonSense.CBreeze.Render
             manifest.BatchTableRecurringField.Properties.CalcFormula.TableFilter.Add(manifest.TemplateTableNameField.Name, CalcFormulaTableFilterType.Field, manifest.BatchTableJournalTemplateNameField.Name);
 
             nextUID = 1000;
-            var templateTableVariable = manifest.BatchTableSetupNewBatchFunction.Variables.AddRecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID);
+            var templateTableVariable = manifest.BatchTableSetupNewBatchFunction.Variables.Add(new RecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID));
             manifest.BatchTableSetupNewBatchFunction.CodeLines.Add("{0}.GET({1});", templateTableVariable.Name, manifest.BatchTableJournalTemplateNameField.Name.Quoted());
             manifest.BatchTableSetupNewBatchFunction.CodeLines.Add("{0} := {1}.{2};", manifest.BatchTableNoSeriesField.Name.Quoted(), templateTableVariable.Name, manifest.TemplateTableNoSeriesField.Name.Quoted());
             manifest.BatchTableSetupNewBatchFunction.CodeLines.Add("{0} := {1}.{2};", manifest.BatchTablePostingNoSeriesField.Name.Quoted(), templateTableVariable.Name, manifest.TemplateTablePostingNoSeriesField.Name.Quoted());
@@ -324,8 +324,8 @@ namespace UncommonSense.CBreeze.Render
         {
             var nextUID = 1000;
             var onInsert = manifest.LineTable.Properties.OnInsert;
-            var templateVariable = onInsert.Variables.AddRecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID);
-            var batchVariable = onInsert.Variables.AddRecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID);
+            var templateVariable = onInsert.Variables.Add(new RecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID));
+            var batchVariable = onInsert.Variables.Add(new RecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID));
             onInsert.CodeLines.Add("LOCKTABLE;");
             onInsert.CodeLines.Add("{0}.GET({1});", templateVariable.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted());
             onInsert.CodeLines.Add("{0}.GET({1},{2});", batchVariable.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted(), manifest.LineTableJournalBatchNameField.Name.Quoted());
@@ -351,7 +351,7 @@ namespace UncommonSense.CBreeze.Render
                 nextUID = 1000;
                 var onValidate = manifest.LineTableMasterEntityTypeField.Properties.OnValidate;
                 var masterEntityTypeManifest = renderingContext.GetManifest(entityType.MasterEntityType) as MasterEntityTypeManifest;
-                var recordVariable = onValidate.Variables.AddRecordVariable(nextUID++, entityType.MasterEntityType.Name.MakeVariableName(), masterEntityTypeManifest.Table.ID);
+                var recordVariable = onValidate.Variables.Add(new RecordVariable(nextUID++, entityType.MasterEntityType.Name.MakeVariableName(), masterEntityTypeManifest.Table.ID));
                 onValidate.CodeLines.Add("IF NOT {0}.GET({1}) THEN", recordVariable.Name, manifest.LineTableMasterEntityTypeField.Name.Quoted());
                 onValidate.CodeLines.Add("  {0}.INIT;", recordVariable.Name);
                 onValidate.CodeLines.Add("");
@@ -378,52 +378,52 @@ namespace UncommonSense.CBreeze.Render
             var nextControlID = 1;
             var actions = manifest.TemplatesPage.Properties.ActionList;
 
-            var container = actions.AddPageActionContainer(nextControlID++, 0).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
+            var container = actions.Add(new PageActionContainer(nextControlID++, 0)).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
 
-            var group = actions.AddPageActionGroup(nextControlID++, 1);
+            var group = actions.Add(new PageActionGroup(nextControlID++, 1));
             group.Properties.Image = "Template";
             group.Properties.CaptionML.Add("ENU", "Te&mplate");
 
-            var action = actions.AddPageAction(nextControlID++, 2);
+            var action = actions.Add(new PageAction(nextControlID++, 2));
             action.Properties.CaptionML.Add("ENU", "Batches");
             action.Properties.RunObject.Type = RunObjectType.Page;
             action.Properties.RunObject.ID = manifest.BatchesPage.ID;
             action.Properties.RunPageLink.Add(manifest.BatchTableJournalTemplateNameField.Name.Quoted(), RunObjectLinkLineType.Field, manifest.TemplateTableNameField.Name.Quoted());
             action.Properties.Image = "Description";
-
-            manifest.TemplatesPage.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.ContentArea;
-            manifest.TemplatesPage.Controls.AddGroupPageControl(nextControlID++, 1).Properties.GroupType = GroupType.Repeater;
-            manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.TemplateTableNameField.Name.Quoted();
-            manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.TemplateTableDescriptionField.Name.Quoted();
+            
+            manifest.TemplatesPage.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.ContentArea;
+            manifest.TemplatesPage.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.GroupType = GroupType.Repeater;
+            manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.TemplateTableNameField.Name.Quoted();
+            manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.TemplateTableDescriptionField.Name.Quoted();
 
             if (entityType.HasSourceCodeField)
             {
-                manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.TemplateTableSourceCodeField.Name.Quoted();
+                manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.TemplateTableSourceCodeField.Name.Quoted();
             }
 
             if (entityType.HasReasonCodeField)
             {
-                manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.TemplateTableReasonCodeField.Name.Quoted();
+                manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.TemplateTableReasonCodeField.Name.Quoted();
             }
 
-            var fieldPageControl = manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2);
+            var fieldPageControl = manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
             fieldPageControl.Properties.Visible = false.ToString();
             fieldPageControl.Properties.SourceExpr = manifest.TemplateTablePageIDField.Name.Quoted();
             fieldPageControl.Properties.LookupPageID = "Objects";
 
-            fieldPageControl = manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2);
+            fieldPageControl = manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
             fieldPageControl.Properties.DrillDown = false;
             fieldPageControl.Properties.SourceExpr = manifest.TemplateTablePageCaptionField.Name.Quoted();
             fieldPageControl.Properties.Visible = false.ToString();
 
             if (entityType.HasTestReportIDField)
             {
-                fieldPageControl = manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTableTestReportIDField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
                 fieldPageControl.Properties.LookupPageID = "Objects";
 
-                fieldPageControl = manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.DrillDown = false;
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTableTestReportCaptionField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
@@ -431,29 +431,29 @@ namespace UncommonSense.CBreeze.Render
 
             if (entityType.HasPostingReportIDField)
             {
-                fieldPageControl = manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTablePostingReportIDField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
                 fieldPageControl.Properties.LookupPageID = "Objects";
 
-                fieldPageControl = manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.DrillDown = false;
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTablePostingReportCaptionField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
 
-                fieldPageControl = manifest.TemplatesPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplatesPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTableForcePostingReportField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
             }
 
-            manifest.TemplatesPage.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.FactBoxArea;
+            manifest.TemplatesPage.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.FactBoxArea;
 
-            var partPageControl = manifest.TemplatesPage.Controls.AddPartPageControl(nextControlID++, 1);
+            var partPageControl = manifest.TemplatesPage.Controls.Add(new PartPageControl(nextControlID++, 1));
             partPageControl.Properties.Visible = false.ToString();
             partPageControl.Properties.PartType = PartType.System;
             partPageControl.Properties.SystemPartID = SystemPartID.RecordLinks;
 
-            partPageControl = manifest.TemplatesPage.Controls.AddPartPageControl(nextControlID++, 1);
+            partPageControl = manifest.TemplatesPage.Controls.Add(new PartPageControl(nextControlID++, 1));
             partPageControl.Properties.Visible = false.ToString();
             partPageControl.Properties.PartType = PartType.System;
             partPageControl.Properties.SystemPartID = SystemPartID.Notes;
@@ -467,37 +467,37 @@ namespace UncommonSense.CBreeze.Render
             manifest.TemplateListPage.Properties.RefreshOnActivate = true;
 
             var nextControlID = 1;
-            manifest.TemplateListPage.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.ContentArea;
-            manifest.TemplateListPage.Controls.AddGroupPageControl(nextControlID++, 1).Properties.GroupType = GroupType.Repeater;
-            manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.TemplateTableNameField.Name.Quoted();
-            manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.TemplateTableDescriptionField.Name.Quoted();
+            manifest.TemplateListPage.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.ContentArea;
+            manifest.TemplateListPage.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.GroupType = GroupType.Repeater;
+            manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.TemplateTableNameField.Name.Quoted();
+            manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.TemplateTableDescriptionField.Name.Quoted();
 
-            var fieldPageControl = manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2);
+            var fieldPageControl = manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
             fieldPageControl.Properties.SourceExpr = manifest.TemplateTableRecurringField.Name.Quoted();
             fieldPageControl.Properties.Visible = false.ToString();
 
             if (entityType.HasSourceCodeField)
             {
-                fieldPageControl = manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTableSourceCodeField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
             }
 
             if (entityType.HasReasonCodeField)
             {
-                fieldPageControl = manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTableReasonCodeField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
             }
 
-            fieldPageControl = manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2);
+            fieldPageControl = manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
             fieldPageControl.Properties.SourceExpr = manifest.TemplateTablePageIDField.Name.Quoted();
             fieldPageControl.Properties.Visible = false.ToString();
             fieldPageControl.Properties.LookupPageID = "Objects";
 
             if (entityType.HasTestReportIDField)
             {
-                fieldPageControl = manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTableTestReportIDField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
                 fieldPageControl.Properties.LookupPageID = "Objects";
@@ -505,24 +505,24 @@ namespace UncommonSense.CBreeze.Render
 
             if (entityType.HasPostingReportIDField)
             {
-                fieldPageControl = manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTablePostingReportIDField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
                 fieldPageControl.Properties.LookupPageID = "Objects";
 
-                fieldPageControl = manifest.TemplateListPage.Controls.AddFieldPageControl(nextControlID++, 2);
+                fieldPageControl = manifest.TemplateListPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
                 fieldPageControl.Properties.SourceExpr = manifest.TemplateTableForcePostingReportField.Name.Quoted();
                 fieldPageControl.Properties.Visible = false.ToString();
             }
 
-            manifest.TemplateListPage.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.FactBoxArea;
+            manifest.TemplateListPage.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.FactBoxArea;
 
-            var partPageControl = manifest.TemplateListPage.Controls.AddPartPageControl(nextControlID++, 1);
+            var partPageControl = manifest.TemplateListPage.Controls.Add(new PartPageControl(nextControlID++, 1));
             partPageControl.Properties.Visible = false.ToString();
             partPageControl.Properties.PartType = PartType.System;
             partPageControl.Properties.SystemPartID = SystemPartID.RecordLinks;
 
-            partPageControl = manifest.TemplateListPage.Controls.AddPartPageControl(nextControlID++, 1);
+            partPageControl = manifest.TemplateListPage.Controls.Add(new PartPageControl(nextControlID++, 1));
             partPageControl.Properties.Visible = false.ToString();
             partPageControl.Properties.PartType = PartType.System;
             partPageControl.Properties.SystemPartID = SystemPartID.Notes;
@@ -543,13 +543,13 @@ namespace UncommonSense.CBreeze.Render
             manifest.JournalPage.Properties.AutoSplitKey = true;
 
             var nextUID = 1000;
-            var currentJnlBatchName = manifest.JournalPage.Code.Variables.AddCodeVariable(nextUID++, "CurrentJnlBatchName", 10);
+            var currentJnlBatchName = manifest.JournalPage.Code.Variables.Add(new CodeVariable(nextUID++, "CurrentJnlBatchName", 10));
 
             var onOpenPage = manifest.JournalPage.Properties.OnOpenPage;
             nextUID = 1000;
-            var journalMgt = onOpenPage.Variables.AddCodeunitVariable(nextUID++, manifest.JournalMgtCodeunit.Name.MakeVariableName(), manifest.JournalMgtCodeunit.ID);
-            var journalSelected = onOpenPage.Variables.AddBooleanVariable(nextUID++, "JnlSelected");
-            var openedFromBatch = onOpenPage.Variables.AddBooleanVariable(nextUID++, "OpenedFromBatch");
+            var journalMgt = onOpenPage.Variables.Add(new CodeunitVariable(nextUID++, manifest.JournalMgtCodeunit.Name.MakeVariableName(), manifest.JournalMgtCodeunit.ID));
+            var journalSelected = onOpenPage.Variables.Add(new BooleanVariable(nextUID++, "JnlSelected"));
+            var openedFromBatch = onOpenPage.Variables.Add(new BooleanVariable(nextUID++, "OpenedFromBatch"));
             onOpenPage.CodeLines.Add("{0} := ({1} <> '') AND ({2} <> '');", openedFromBatch.Name, manifest.LineTableJournalBatchNameField.Name.Quoted(), manifest.LineTableJournalTemplateNameField.Name.Quoted());
             onOpenPage.CodeLines.Add("IF {0} THEN BEGIN", openedFromBatch.Name);
             onOpenPage.CodeLines.Add("  {0} := {1};", currentJnlBatchName.Name, manifest.LineTableJournalBatchNameField.Name.Quoted());
@@ -572,10 +572,10 @@ namespace UncommonSense.CBreeze.Render
                 var masterEntityTypeManifest = renderingContext.GetManifest(entityType.MasterEntityType) as MasterEntityTypeManifest;
                 var actions = manifest.JournalPage.Properties.ActionList;
 
-                actions.AddPageActionContainer(nextControlID++, 0).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
-                actions.AddPageActionGroup(nextControlID++, 1).Properties.CaptionML.Add("ENU", entityType.MasterEntityType.Name);
+                actions.Add(new PageActionContainer(nextControlID++, 0)).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
+                actions.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Add("ENU", entityType.MasterEntityType.Name);
 
-                var action = actions.AddPageAction(nextControlID++, 2);
+                var action = actions.Add(new PageAction(nextControlID++, 2));
                 action.Properties.ShortCutKey = "Shift+F7";
                 action.Properties.CaptionML.Add("ENU", "Card");
                 action.Properties.RunObject.Type = RunObjectType.Page;
@@ -587,7 +587,7 @@ namespace UncommonSense.CBreeze.Render
                 {
                     var ledgerEntityTypeManifest = renderingContext.GetManifest(ledgerEntityType) as LedgerEntityTypeManifest;
 
-                    action = actions.AddPageAction(nextControlID++, 2);
+                    action = actions.Add(new PageAction(nextControlID++, 2));
                     action.Properties.ShortCutKey = "Ctrl+F7";
                     action.Properties.CaptionML.Add("ENU", ledgerEntityType.PluralName);
                     action.Properties.RunObject.Type = RunObjectType.Page;
@@ -599,19 +599,19 @@ namespace UncommonSense.CBreeze.Render
                 }
             }
 
-            manifest.JournalPage.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.ContentArea;
+            manifest.JournalPage.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.ContentArea;
 
-            var batchNameField = manifest.JournalPage.Controls.AddFieldPageControl(nextControlID++, 1);
+            var batchNameField = manifest.JournalPage.Controls.Add(new FieldPageControl(nextControlID++, 1));
             batchNameField.Properties.Lookup = true;
             batchNameField.Properties.CaptionML.Add("ENU", "Batch Name");
             batchNameField.Properties.SourceExpr = currentJnlBatchName.Name;
             nextUID = 1000;
-            journalMgt = batchNameField.Properties.OnValidate.Variables.AddCodeunitVariable(nextUID++, manifest.JournalMgtCodeunit.Name.MakeVariableName(), manifest.JournalMgtCodeunit.ID);
+            journalMgt = batchNameField.Properties.OnValidate.Variables.Add(new CodeunitVariable(nextUID++, manifest.JournalMgtCodeunit.Name.MakeVariableName(), manifest.JournalMgtCodeunit.ID));
             batchNameField.Properties.OnValidate.CodeLines.Add("{0}.{1}({2}, Rec);", journalMgt.Name, manifest.CheckNameFunction.Name, currentJnlBatchName.Name);
             batchNameField.Properties.OnValidate.CodeLines.Add("// FIXME: CurrentJnlBatchNameOnAfterVali;");
 
             nextUID = 1000;
-            journalMgt = batchNameField.Properties.OnLookup.Variables.AddCodeunitVariable(nextUID++, manifest.JournalMgtCodeunit.Name.MakeVariableName(), manifest.JournalMgtCodeunit.ID);
+            journalMgt = batchNameField.Properties.OnLookup.Variables.Add(new CodeunitVariable(nextUID++, manifest.JournalMgtCodeunit.Name.MakeVariableName(), manifest.JournalMgtCodeunit.ID));
             batchNameField.Properties.OnLookup.CodeLines.Add("CurrPage.SAVERECORD;");
             batchNameField.Properties.OnLookup.CodeLines.Add("{0}.LookupName(CurrentJnlBatchName, Rec);", journalMgt.Name);
             batchNameField.Properties.OnLookup.CodeLines.Add("CurrPage.UPDATE(FALSE)");
@@ -642,11 +642,11 @@ namespace UncommonSense.CBreeze.Render
         private static void FinalizeTemplateSelectionFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var pageIDParameter = manifest.TemplateSelectionFunction.Parameters.AddIntegerParameter(false, nextUID++, "PageID");
-            var recurringJnlParameter = manifest.TemplateSelectionFunction.Parameters.AddBooleanParameter(false, nextUID++, "RecurringJnl");
-            var journalLineParameter = manifest.TemplateSelectionFunction.Parameters.AddRecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
-            var journalSelectedParameter = manifest.TemplateSelectionFunction.Parameters.AddBooleanParameter(true, nextUID++, "JnlSelected");
-            var journalTemplateVariable = manifest.TemplateSelectionFunction.Variables.AddRecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID);
+            var pageIDParameter = manifest.TemplateSelectionFunction.Parameters.Add(new IntegerParameter(false, nextUID++, "PageID"));
+            var recurringJnlParameter = manifest.TemplateSelectionFunction.Parameters.Add(new BooleanParameter(false, nextUID++, "RecurringJnl"));
+            var journalLineParameter = manifest.TemplateSelectionFunction.Parameters.Add(new RecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
+            var journalSelectedParameter = manifest.TemplateSelectionFunction.Parameters.Add(new BooleanParameter(true, nextUID++, "JnlSelected"));
+            var journalTemplateVariable = manifest.TemplateSelectionFunction.Variables.Add(new RecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID));
             manifest.TemplateSelectionFunction.CodeLines.Add("JnlSelected := TRUE;");
             manifest.TemplateSelectionFunction.CodeLines.Add("");
             manifest.TemplateSelectionFunction.CodeLines.Add("{0}.RESET;", journalTemplateVariable.Name);
@@ -688,8 +688,8 @@ namespace UncommonSense.CBreeze.Render
         private static void FinalizeOpenJnlFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var currentJnlBatchName = manifest.OpenJnlFunction.Parameters.AddCodeParameter(true, nextUID++, "CurrentJnlBatchName", 10);
-            var journalLineParameter = manifest.OpenJnlFunction.Parameters.AddRecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
+            var currentJnlBatchName = manifest.OpenJnlFunction.Parameters.Add(new CodeParameter(true, nextUID++, "CurrentJnlBatchName", 10));
+            var journalLineParameter = manifest.OpenJnlFunction.Parameters.Add(new RecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
             manifest.OpenJnlFunction.CodeLines.Add("CheckTemplateName({0}.GETRANGEMAX({1}), {2});", journalLineParameter.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted(), currentJnlBatchName.Name);
             manifest.OpenJnlFunction.CodeLines.Add("{0}.FILTERGROUP := 2;", journalLineParameter.Name);
             manifest.OpenJnlFunction.CodeLines.Add("{0}.SETRANGE({1}, {2});", journalLineParameter.Name, manifest.LineTableJournalBatchNameField.Name.Quoted(), currentJnlBatchName.Name);
@@ -699,9 +699,9 @@ namespace UncommonSense.CBreeze.Render
         private static void FinalizeCheckTemplateNameFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var currentJnlTemplateName = manifest.CheckTemplateNameFunction.Parameters.AddCodeParameter(false, nextUID++, "CurrentJnlTemplateName", 10);
-            var currentJnlBatchName = manifest.CheckTemplateNameFunction.Parameters.AddCodeParameter(true, nextUID++, "CurrentJnlBatchName", 10);
-            var journalBatchVariable = manifest.CheckTemplateNameFunction.Variables.AddRecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID);
+            var currentJnlTemplateName = manifest.CheckTemplateNameFunction.Parameters.Add(new CodeParameter(false, nextUID++, "CurrentJnlTemplateName", 10));
+            var currentJnlBatchName = manifest.CheckTemplateNameFunction.Parameters.Add(new CodeParameter(true, nextUID++, "CurrentJnlBatchName", 10));
+            var journalBatchVariable = manifest.CheckTemplateNameFunction.Variables.Add(new RecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID));
             manifest.CheckTemplateNameFunction.CodeLines.Add("{0}.SETRANGE({1}, {2});", journalBatchVariable.Name, manifest.BatchTableJournalTemplateNameField.Name.Quoted(), currentJnlTemplateName.Name);
             manifest.CheckTemplateNameFunction.CodeLines.Add("IF NOT {0}.GET({1}, {2}) THEN BEGIN", journalBatchVariable.Name, currentJnlTemplateName.Name, currentJnlBatchName.Name);
             manifest.CheckTemplateNameFunction.CodeLines.Add("  IF NOT {0}.FINDFIRST THEN BEGIN", journalBatchVariable.Name);
@@ -720,9 +720,9 @@ namespace UncommonSense.CBreeze.Render
         private static void FinalizeLookupNameFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var currentJnlBatchName = manifest.LookupNameFunction.Parameters.AddCodeParameter(true, nextUID++, "CurrentJnlBatchName", 10);
-            var journalLineParameter = manifest.LookupNameFunction.Parameters.AddRecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
-            var journalBatchVariable = manifest.LookupNameFunction.Variables.AddRecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID);
+            var currentJnlBatchName = manifest.LookupNameFunction.Parameters.Add(new CodeParameter(true, nextUID++, "CurrentJnlBatchName", 10));
+            var journalLineParameter = manifest.LookupNameFunction.Parameters.Add(new RecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
+            var journalBatchVariable = manifest.LookupNameFunction.Variables.Add(new RecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID));
             manifest.LookupNameFunction.ReturnValue.Type = FunctionReturnValueType.Boolean;
             manifest.LookupNameFunction.CodeLines.Add("COMMIT;");
             manifest.LookupNameFunction.CodeLines.Add("{0}.{1} := {2}.GETRANGEMAX({3});", journalBatchVariable.Name, manifest.BatchTableJournalTemplateNameField.Name.Quoted(), journalLineParameter.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted());
@@ -739,8 +739,8 @@ namespace UncommonSense.CBreeze.Render
         private static void FinalizeSetNameFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var currentJnlBatchName = manifest.SetNameFunction.Parameters.AddCodeParameter(false, nextUID++, "CurrentJnlBatchName", 10);
-            var journalLineParameter = manifest.SetNameFunction.Parameters.AddRecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
+            var currentJnlBatchName = manifest.SetNameFunction.Parameters.Add(new CodeParameter(false, nextUID++, "CurrentJnlBatchName", 10));
+            var journalLineParameter = manifest.SetNameFunction.Parameters.Add(new RecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
             manifest.SetNameFunction.CodeLines.Add("{0}.FILTERGROUP := 2;", journalLineParameter.Name);
             manifest.SetNameFunction.CodeLines.Add("{0}.SETRANGE({1}, {2});", journalLineParameter.Name, manifest.LineTableJournalBatchNameField.Name.Quoted(), currentJnlBatchName.Name);
             manifest.SetNameFunction.CodeLines.Add("{0}.FILTERGROUP := 0;", journalLineParameter.Name);
@@ -750,18 +750,18 @@ namespace UncommonSense.CBreeze.Render
         private static void FinalizeCheckNameFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var currentJnlBatchName = manifest.CheckNameFunction.Parameters.AddCodeParameter(false, nextUID++, "CurrentJnlBatchName", 10);
-            var journalLineParameter = manifest.CheckNameFunction.Parameters.AddRecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
-            var journalBatchVariable = manifest.CheckNameFunction.Variables.AddRecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID);
+            var currentJnlBatchName = manifest.CheckNameFunction.Parameters.Add(new CodeParameter(false, nextUID++, "CurrentJnlBatchName", 10));
+            var journalLineParameter = manifest.CheckNameFunction.Parameters.Add(new RecordParameter(true, nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
+            var journalBatchVariable = manifest.CheckNameFunction.Variables.Add(new RecordVariable(nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID));
             manifest.CheckNameFunction.CodeLines.Add("{0}.GET({1}.GETRANGEMAX({2}), {3});", journalBatchVariable.Name, journalLineParameter.Name, manifest.LineTableJournalTemplateNameField.Name.Quoted(), currentJnlBatchName.Name);
         }
 
         private static void FinalizeTemplateSelectionFromBatchFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var journalBatchParameter = manifest.TemplateSelectionFromBatchFunction.Parameters.AddRecordParameter(true, nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID);
-            var journalLineVariable = manifest.TemplateSelectionFromBatchFunction.Variables.AddRecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
-            var journalTemplateVariable = manifest.TemplateSelectionFromBatchFunction.Variables.AddRecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID);
+            var journalBatchParameter = manifest.TemplateSelectionFromBatchFunction.Parameters.Add(new RecordParameter(true, nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID));
+            var journalLineVariable = manifest.TemplateSelectionFromBatchFunction.Variables.Add(new RecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
+            var journalTemplateVariable = manifest.TemplateSelectionFromBatchFunction.Variables.Add(new RecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID));
             manifest.TemplateSelectionFromBatchFunction.CodeLines.Add("{0} := TRUE;", manifest.OpenFromBatchVariable.Name);
             manifest.TemplateSelectionFromBatchFunction.CodeLines.Add("{0}.GET({1}.{2});", journalTemplateVariable.Name, journalBatchParameter.Name, manifest.BatchTableJournalTemplateNameField.Name.Quoted());
             manifest.TemplateSelectionFromBatchFunction.CodeLines.Add("{0}.TESTFIELD({1});", journalTemplateVariable.Name, manifest.TemplateTablePageIDField.Name.Quoted());
@@ -779,10 +779,10 @@ namespace UncommonSense.CBreeze.Render
         private static void FinalizeOpenJnlBatchFunction(JournalEntityType entityType, JournalEntityTypeManifest manifest)
         {
             var nextUID = 1000;
-            var journalBatchParameter = manifest.OpenJnlBatchFunction.Parameters.AddRecordParameter(true, nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID);
-            var journalTemplateVariable = manifest.OpenJnlBatchFunction.Variables.AddRecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID);
-            var journalLineVariable = manifest.OpenJnlBatchFunction.Variables.AddRecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID);
-            var jnlSelectedVariable = manifest.OpenJnlBatchFunction.Variables.AddBooleanVariable(nextUID++, "JnlSelected");
+            var journalBatchParameter = manifest.OpenJnlBatchFunction.Parameters.Add(new RecordParameter(true, nextUID++, manifest.BatchTable.Name.MakeVariableName(), manifest.BatchTable.ID));
+            var journalTemplateVariable = manifest.OpenJnlBatchFunction.Variables.Add(new RecordVariable(nextUID++, manifest.TemplateTable.Name.MakeVariableName(), manifest.TemplateTable.ID));
+            var journalLineVariable = manifest.OpenJnlBatchFunction.Variables.Add(new RecordVariable(nextUID++, manifest.LineTable.Name.MakeVariableName(), manifest.LineTable.ID));
+            var jnlSelectedVariable = manifest.OpenJnlBatchFunction.Variables.Add(new BooleanVariable(nextUID++, "JnlSelected"));
             manifest.OpenJnlBatchFunction.CodeLines.Add("IF {0}.GETFILTER({1}) <> '' THEN", journalBatchParameter.Name, manifest.BatchTableJournalTemplateNameField.Name.Quoted());
             manifest.OpenJnlBatchFunction.CodeLines.Add("  EXIT;");
             manifest.OpenJnlBatchFunction.CodeLines.Add("{0}.FILTERGROUP(2);", journalBatchParameter.Name);

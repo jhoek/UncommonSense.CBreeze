@@ -23,45 +23,9 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public XmlPortFieldAttribute AddXmlPortFieldAttribute(Guid id, String nodeName, Int32? indentationLevel)
+        public T Add<T>(T item) where T: XmlPortNode
         {
-            XmlPortFieldAttribute item = new XmlPortFieldAttribute(id, nodeName, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public XmlPortFieldElement AddXmlPortFieldElement(Guid id, String nodeName, Int32? indentationLevel)
-        {
-            XmlPortFieldElement item = new XmlPortFieldElement(id, nodeName, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public XmlPortTableAttribute AddXmlPortTableAttribute(Guid id, String nodeName, Int32? indentationLevel)
-        {
-            XmlPortTableAttribute item = new XmlPortTableAttribute(id, nodeName, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public XmlPortTableElement AddXmlPortTableElement(Guid id, String nodeName, Int32? indentationLevel)
-        {
-            XmlPortTableElement item = new XmlPortTableElement(id, nodeName, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public XmlPortTextAttribute AddXmlPortTextAttribute(Guid id, String nodeName, Int32? indentationLevel)
-        {
-            XmlPortTextAttribute item = new XmlPortTextAttribute(id, nodeName, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public XmlPortTextElement AddXmlPortTextElement(Guid id, String nodeName, Int32? indentationLevel)
-        {
-            XmlPortTextElement item = new XmlPortTextElement(id, nodeName, indentationLevel);
-            innerList.Add(id, item);
+            innerList.Add(item.ID, item);
             return item;
         }
 

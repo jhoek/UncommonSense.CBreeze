@@ -308,87 +308,87 @@ namespace UncommonSense.CBreeze.Read
             switch (fieldType)
             {
                 case FieldType.BigInteger:
-                    var bigIntegerTableField = fields.AddBigIntegerTableField(fieldNo, fieldName);
+                    var bigIntegerTableField = fields.Add(new BigIntegerTableField(fieldNo, fieldName));
                     currentProperties.Push(bigIntegerTableField.Properties);
                     currentTableField = bigIntegerTableField;
                     break;
                 case FieldType.Binary:
-                    var binaryTableField = fields.AddBinaryTableField(fieldNo, fieldName, fieldLength);
+                    var binaryTableField = fields.Add(new BinaryTableField(fieldNo, fieldName, fieldLength));
                     currentProperties.Push(binaryTableField.Properties);
                     currentTableField = binaryTableField;
                     break;
                 case FieldType.Blob:
-                    var blobTableField = fields.AddBlobTableField(fieldNo, fieldName);
+                    var blobTableField = fields.Add(new BlobTableField(fieldNo, fieldName));
                     currentProperties.Push(blobTableField.Properties);
                     currentTableField = blobTableField;
                     break;
                 case FieldType.Boolean:
-                    var booleanTableField = fields.AddBooleanTableField(fieldNo, fieldName);
+                    var booleanTableField = fields.Add(new BooleanTableField(fieldNo, fieldName));
                     currentProperties.Push(booleanTableField.Properties);
                     currentTableField = booleanTableField;
                     break;
                 case FieldType.Code:
-                    var codeTableField = fields.AddCodeTableField(fieldNo, fieldName, fieldLength);
+                    var codeTableField = fields.Add(new CodeTableField(fieldNo, fieldName, fieldLength));
                     currentProperties.Push(codeTableField.Properties);
                     currentTableField = codeTableField;
                     break;
                 case FieldType.Date:
-                    var dateTableField = fields.AddDateTableField(fieldNo, fieldName);
+                    var dateTableField = fields.Add(new DateTableField(fieldNo, fieldName));
                     currentProperties.Push(dateTableField.Properties);
                     currentTableField = dateTableField;
                     break;
                 case FieldType.DateFormula:
-                    var dateFormulaTableField = fields.AddDateFormulaTableField(fieldNo, fieldName);
+                    var dateFormulaTableField = fields.Add(new DateFormulaTableField(fieldNo, fieldName));
                     currentProperties.Push(dateFormulaTableField.Properties);
                     currentTableField = dateFormulaTableField;
                     break;
                 case FieldType.DateTime:
-                    var dateTimeTableField = fields.AddDateTimeTableField(fieldNo, fieldName);
+                    var dateTimeTableField = fields.Add(new DateTimeTableField(fieldNo, fieldName));
                     currentProperties.Push(dateTimeTableField.Properties);
                     currentTableField = dateTimeTableField;
                     break;
                 case FieldType.Decimal:
-                    var decimalTableField = fields.AddDecimalTableField(fieldNo, fieldName);
+                    var decimalTableField = fields.Add(new DecimalTableField(fieldNo, fieldName));
                     currentProperties.Push(decimalTableField.Properties);
                     currentTableField = decimalTableField;
                     break;
                 case FieldType.Duration:
-                    var durationTableField = fields.AddDurationTableField(fieldNo, fieldName);
+                    var durationTableField = fields.Add(new DurationTableField(fieldNo, fieldName));
                     currentProperties.Push(durationTableField.Properties);
                     currentTableField = durationTableField;
                     break;
                 case FieldType.Guid:
-                    var guidTableField = fields.AddGuidTableField(fieldNo, fieldName);
+                    var guidTableField = fields.Add( new GuidTableField(fieldNo, fieldName));
                     currentProperties.Push(guidTableField.Properties);
                     currentTableField = guidTableField;
                     break;
                 case FieldType.Integer:
-                    var integerTableField = fields.AddIntegerTableField(fieldNo, fieldName);
+                    var integerTableField = fields.Add(new IntegerTableField(fieldNo, fieldName));
                     currentProperties.Push(integerTableField.Properties);
                     currentTableField = integerTableField;
                     break;
                 case FieldType.Option:
-                    var optionTableField = fields.AddOptionTableField(fieldNo, fieldName);
+                    var optionTableField = fields.Add(new OptionTableField(fieldNo, fieldName));
                     currentProperties.Push(optionTableField.Properties);
                     currentTableField = optionTableField;
                     break;
                 case FieldType.RecordID:
-                    var recordIDTableField = fields.AddRecordIDTableField(fieldNo, fieldName);
+                    var recordIDTableField = fields.Add(new RecordIDTableField(fieldNo, fieldName));
                     currentProperties.Push(recordIDTableField.Properties);
                     currentTableField = recordIDTableField;
                     break;
                 case FieldType.TableFilter:
-                    var tableFilterTableField = fields.AddTableFilterTableField(fieldNo, fieldName);
+                    var tableFilterTableField = fields.Add(new TableFilterTableField(fieldNo, fieldName));
                     currentProperties.Push(tableFilterTableField.Properties);
                     currentTableField = tableFilterTableField;
                     break;
                 case FieldType.Text:
-                    var textTableField = fields.AddTextTableField(fieldNo, fieldName, fieldLength);
+                    var textTableField = fields.Add(new TextTableField(fieldNo, fieldName, fieldLength));
                     currentProperties.Push(textTableField.Properties);
                     currentTableField = textTableField;
                     break;
                 case FieldType.Time:
-                    var timeTableField = fields.AddTimeTableField(fieldNo, fieldName);
+                    var timeTableField = fields.Add(new TimeTableField(fieldNo, fieldName));
                     currentProperties.Push(timeTableField.Properties);
                     currentTableField = timeTableField;
                     break;
@@ -471,175 +471,175 @@ namespace UncommonSense.CBreeze.Read
             switch (variableType)
             {
                 case UncommonSense.Nav.Parser.VariableType.Action:
-                    var actionVariable = variables.AddActionVariable(variableID, variableName);
+                    var actionVariable = variables.Add(new ActionVariable(variableID, variableName));
                     actionVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Automation:
-                    var automationVariable = variables.AddAutomationVariable(variableID, variableName, variableSubType);
+                    var automationVariable = variables.Add(new AutomationVariable(variableID, variableName, variableSubType));
                     automationVariable.Dimensions = variableDimensions;
                     automationVariable.WithEvents = variableWithEvents;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.BigInteger:
-                    var bigIntegerVariable = variables.AddBigIntegerVariable(variableID, variableName);
+                    var bigIntegerVariable = variables.Add(new BigIntegerVariable(variableID, variableName));
                     bigIntegerVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.BigText:
-                    var bigTextVariable = variables.AddBigTextVariable(variableID, variableName);
+                    var bigTextVariable = variables.Add(new BigTextVariable(variableID, variableName));
                     bigTextVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Binary:
-                    var binaryVariable = variables.AddBinaryVariable(variableID, variableName, variableLength.Value);
+                    var binaryVariable = variables.Add(new BinaryVariable(variableID, variableName, variableLength.Value));
                     binaryVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Boolean:
-                    var booleanVariable = variables.AddBooleanVariable(variableID, variableName);
+                    var booleanVariable = variables.Add(new BooleanVariable(variableID, variableName));
                     booleanVariable.Dimensions = variableDimensions;
                     booleanVariable.IncludeInDataset = variableInDataSet;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Byte:
-                    var byteVariable = variables.AddByteVariable(variableID, variableName);
+                    var byteVariable = variables.Add(new ByteVariable(variableID, variableName));
                     byteVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Char:
-                    var charVariable = variables.AddCharVariable(variableID, variableName);
+                    var charVariable = variables.Add(new CharVariable(variableID, variableName));
                     charVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Code:
-                    var codeVariable = variables.AddCodeVariable(variableID, variableName, variableLength);
+                    var codeVariable = variables.Add(new CodeVariable(variableID, variableName, variableLength));
                     codeVariable.Dimensions = variableDimensions;
                     codeVariable.IncludeInDataset = variableInDataSet;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Codeunit:
-                    var codeunitVariable = variables.AddCodeunitVariable(variableID, variableName, variableSubType.ToInteger());
+                    var codeunitVariable = variables.Add(new CodeunitVariable(variableID, variableName, variableSubType.ToInteger()));
                     codeunitVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Date:
-                    var dateVariable = variables.AddDateVariable(variableID, variableName);
+                    var dateVariable = variables.Add(new DateVariable(variableID, variableName));
                     dateVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.DateFormula:
-                    var dateFormulaVariable = variables.AddDateFormulaVariable(variableID, variableName);
+                    var dateFormulaVariable = variables.Add(new DateFormulaVariable(variableID, variableName));
                     dateFormulaVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.DateTime:
-                    var dateTimeVariable = variables.AddDateTimeVariable(variableID, variableName);
+                    var dateTimeVariable = variables.Add(new DateTimeVariable(variableID, variableName));
                     dateTimeVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Decimal:
-                    var decimalVariable = variables.AddDecimalVariable(variableID, variableName);
+                    var decimalVariable = variables.Add(new DecimalVariable(variableID, variableName));
                     decimalVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Dialog:
-                    var dialogVariable = variables.AddDialogVariable(variableID, variableName);
+                    var dialogVariable = variables.Add(new DialogVariable(variableID, variableName));
                     dialogVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.DotNet:
-                    var dotnetVariable = variables.AddDotNetVariable(variableID, variableName, variableSubType);
+                    var dotnetVariable = variables.Add(new DotNetVariable(variableID, variableName, variableSubType));
                     dotnetVariable.Dimensions = variableDimensions;
                     dotnetVariable.RunOnClient = variableRunOnClient;
                     dotnetVariable.WithEvents = variableWithEvents;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Duration:
-                    var durationVariable = variables.AddDurationVariable(variableID, variableName);
+                    var durationVariable = variables.Add(new DurationVariable(variableID, variableName));
                     durationVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.ExecutionMode:
-                    var executionModeVariable = variables.AddExecutionModeVariable(variableID, variableName);
+                    var executionModeVariable = variables.Add(new ExecutionModeVariable(variableID, variableName));
                     executionModeVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.FieldRef:
-                    var fieldRefVariable = variables.AddFieldRefVariable(variableID, variableName);
+                    var fieldRefVariable = variables.Add(new FieldRefVariable(variableID, variableName));
                     fieldRefVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.File:
-                    var fileVariable = variables.AddFileVariable(variableID, variableName);
+                    var fileVariable = variables.Add(new FileVariable(variableID, variableName));
                     fileVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Guid:
-                    var guidVariable = variables.AddGuidVariable(variableID, variableName);
+                    var guidVariable = variables.Add(new GuidVariable(variableID, variableName));
                     guidVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.InStream:
-                    var instreamVariable = variables.AddInStreamVariable(variableID, variableName);
+                    var instreamVariable = variables.Add(new InStreamVariable(variableID, variableName));
                     instreamVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Integer:
-                    var integerVariable = variables.AddIntegerVariable(variableID, variableName);
+                    var integerVariable = variables.Add(new IntegerVariable(variableID, variableName));
                     integerVariable.Dimensions = variableDimensions;
                     integerVariable.IncludeInDataset = variableInDataSet;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.KeyRef:
-                    var keyrefVariable = variables.AddKeyRefVariable(variableID, variableName);
+                    var keyrefVariable = variables.Add(new KeyRefVariable(variableID, variableName));
                     keyrefVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Ocx:
-                    var ocxVariable = variables.AddOcxVariable(variableID, variableName, variableSubType);
+                    var ocxVariable = variables.Add(new OcxVariable(variableID, variableName, variableSubType));
                     ocxVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Option:
-                    var optionVariable = variables.AddOptionVariable(variableID, variableName);
+                    var optionVariable = variables.Add(new OptionVariable(variableID, variableName));
                     optionVariable.Dimensions = variableDimensions;
                     optionVariable.OptionString = variableOptionString;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.OutStream:
-                    var outstreamVariable = variables.AddOutStreamVariable(variableID, variableName);
+                    var outstreamVariable = variables.Add(new OutStreamVariable(variableID, variableName));
                     outstreamVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Page:
-                    var pageVariable = variables.AddPageVariable(variableID, variableName, variableSubType.ToInteger());
+                    var pageVariable = variables.Add(new PageVariable(variableID, variableName, variableSubType.ToInteger()));
                     pageVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Query:
-                    var queryVariable = variables.AddQueryVariable(variableID, variableName, variableSubType.ToInteger());
+                    var queryVariable = variables.Add(new QueryVariable(variableID, variableName, variableSubType.ToInteger()));
                     queryVariable.Dimensions = variableDimensions;
                     queryVariable.SecurityFiltering = variableSecurityFiltering.ToNullableEnum<QuerySecurityFiltering>();
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Record:
-                    var recordVariable = variables.AddRecordVariable(variableID, variableName, variableSubType.ToInteger());
+                    var recordVariable = variables.Add(new RecordVariable(variableID, variableName, variableSubType.ToInteger()));
                     recordVariable.Dimensions = variableDimensions;
                     recordVariable.SecurityFiltering = variableSecurityFiltering.ToNullableEnum<RecordSecurityFiltering>();
                     recordVariable.Temporary = variableTemporary;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.RecordID:
-                    var recordIDVariable = variables.AddRecordIDVariable(variableID, variableName);
+                    var recordIDVariable = variables.Add(new RecordIDVariable(variableID, variableName));
                     recordIDVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.RecordRef:
-                    var recordRefVariable = variables.AddRecordRefVariable(variableID, variableName);
+                    var recordRefVariable = variables.Add(new RecordRefVariable(variableID, variableName));
                     recordRefVariable.Dimensions = variableDimensions;
                     recordRefVariable.SecurityFiltering = variableSecurityFiltering.ToNullableEnum<RecordSecurityFiltering>();
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Report:
-                    var reportVariable = variables.AddReportVariable(variableID, variableName, variableSubType.ToInteger());
+                    var reportVariable = variables.Add(new ReportVariable(variableID, variableName, variableSubType.ToInteger()));
                     reportVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.TestPage:
-                    var testPageVariable = variables.AddTestPageVariable(variableID, variableName, variableSubType.ToInteger());
+                    var testPageVariable = variables.Add(new TestPageVariable(variableID, variableName, variableSubType.ToInteger()));
                     testPageVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Text:
-                    var textVariable = variables.AddTextVariable(variableID, variableName, variableLength);
+                    var textVariable = variables.Add(new TextVariable(variableID, variableName, variableLength));
                     textVariable.Dimensions = variableDimensions;
                     textVariable.IncludeInDataset = variableInDataSet;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.TextConst:
-                    var textConstant = variables.AddTextConstant(variableID, variableName);
+                    var textConstant = variables.Add(new TextConstant(variableID, variableName));
                     textConstant.Values.SetMultiLanguageValue(variableConstValue);
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Time:
-                    var timeVariable = variables.AddTimeVariable(variableID, variableName);
+                    var timeVariable = variables.Add(new TimeVariable(variableID, variableName));
                     timeVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.TransactionType:
-                    var transactionTypeVariable = variables.AddTransactionTypeVariable(variableID, variableName);
+                    var transactionTypeVariable = variables.Add(new TransactionTypeVariable(variableID, variableName));
                     transactionTypeVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Variant:
-                    var variantVariable = variables.AddVariantVariable(variableID, variableName);
+                    var variantVariable = variables.Add(new VariantVariable(variableID, variableName));
                     variantVariable.Dimensions = variableDimensions;
                     break;
                 case UncommonSense.Nav.Parser.VariableType.Xmlport:
-                    var xmlportVariable = variables.AddXmlPortVariable(variableID, variableName, variableSubType.ToInteger());
+                    var xmlportVariable = variables.Add(new XmlPortVariable(variableID, variableName, variableSubType.ToInteger()));
                     xmlportVariable.Dimensions = variableDimensions;
                     break;
                 default:
@@ -702,169 +702,169 @@ namespace UncommonSense.CBreeze.Read
             switch (parameterType)
             {
                 case UncommonSense.Nav.Parser.ParameterType.Action:
-                    var actionParameter = parameters.AddActionParameter(parameterVar, parameterID, parameterName);
+                    var actionParameter = parameters.Add(new ActionParameter(parameterVar, parameterID, parameterName));
                     actionParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Automation:
-                    var automationParameter = parameters.AddAutomationParameter(parameterVar, parameterID, parameterName, parameterSubType);
+                    var automationParameter = parameters.Add(new AutomationParameter(parameterVar, parameterID, parameterName, parameterSubType));
                     automationParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.BigInteger:
-                    var bigIntegerParameter = parameters.AddBigIntegerParameter(parameterVar, parameterID, parameterName);
+                    var bigIntegerParameter = parameters.Add(new BigIntegerParameter(parameterVar, parameterID, parameterName));
                     bigIntegerParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.BigText:
-                    var bigTextParameter = parameters.AddBigTextParameter(parameterVar, parameterID, parameterName);
+                    var bigTextParameter = parameters.Add(new BigTextParameter(parameterVar, parameterID, parameterName));
                     bigTextParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Binary:
-                    var binaryParameter = parameters.AddBinaryParameter(parameterVar, parameterID, parameterName, parameterLength.Value);
+                    var binaryParameter = parameters.Add(new BinaryParameter(parameterVar, parameterID, parameterName, parameterLength.Value));
                     binaryParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Boolean:
-                    var booleanParameter = parameters.AddBooleanParameter(parameterVar, parameterID, parameterName);
+                    var booleanParameter = parameters.Add(new BooleanParameter(parameterVar, parameterID, parameterName));
                     booleanParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Byte:
-                    var byteParameter = parameters.AddByteParameter(parameterVar, parameterID, parameterName);
+                    var byteParameter = parameters.Add(new ByteParameter(parameterVar, parameterID, parameterName));
                     byteParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Char:
-                    var charParameter = parameters.AddCharParameter(parameterVar, parameterID, parameterName);
+                    var charParameter = parameters.Add(new CharParameter(parameterVar, parameterID, parameterName));
                     charParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Code:
-                    var codeParameter = parameters.AddCodeParameter(parameterVar, parameterID, parameterName, parameterLength);
+                    var codeParameter = parameters.Add(new CodeParameter(parameterVar, parameterID, parameterName, parameterLength));
                     codeParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Codeunit:
-                    var codeunitParameter = parameters.AddCodeunitParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var codeunitParameter = parameters.Add(new CodeunitParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     codeunitParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Date:
-                    var dateParameter = parameters.AddDateParameter(parameterVar, parameterID, parameterName);
+                    var dateParameter = parameters.Add(new DateParameter(parameterVar, parameterID, parameterName));
                     dateParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.DateFormula:
-                    var dateFormulaParameter = parameters.AddDateFormulaParameter(parameterVar, parameterID, parameterName);
+                    var dateFormulaParameter = parameters.Add(new DateFormulaParameter(parameterVar, parameterID, parameterName));
                     dateFormulaParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.DateTime:
-                    var dateTimeParameter = parameters.AddDateTimeParameter(parameterVar, parameterID, parameterName);
+                    var dateTimeParameter = parameters.Add(new DateTimeParameter(parameterVar, parameterID, parameterName));
                     dateTimeParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Decimal:
-                    var decimalParameter = parameters.AddDecimalParameter(parameterVar, parameterID, parameterName);
+                    var decimalParameter = parameters.Add(new DecimalParameter(parameterVar, parameterID, parameterName));
                     decimalParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Dialog:
-                    var dialogParameter = parameters.AddDialogParameter(parameterVar, parameterID, parameterName);
+                    var dialogParameter = parameters.Add(new DialogParameter(parameterVar, parameterID, parameterName));
                     dialogParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.DotNet:
-                    var dotnetParameter = parameters.AddDotNetParameter(parameterVar, parameterID, parameterName, parameterSubType);
+                    var dotnetParameter = parameters.Add(new DotNetParameter(parameterVar, parameterID, parameterName, parameterSubType));
                     dotnetParameter.Dimensions = parameterDimensions;
                     dotnetParameter.RunOnClient = parameterRunOnClient;
                     dotnetParameter.SuppressDispose = parameterSuppressDispose;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Duration:
-                    var durationParameter = parameters.AddDurationParameter(parameterVar, parameterID, parameterName);
+                    var durationParameter = parameters.Add(new DurationParameter(parameterVar, parameterID, parameterName));
                     durationParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.ExecutionMode:
-                    var executionModeParameter = parameters.AddExecutionModeParameter(parameterVar, parameterID, parameterName);
+                    var executionModeParameter = parameters.Add(new ExecutionModeParameter(parameterVar, parameterID, parameterName));
                     executionModeParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.FieldRef:
-                    var fieldRefParameter = parameters.AddFieldRefParameter(parameterVar, parameterID, parameterName);
+                    var fieldRefParameter = parameters.Add(new FieldRefParameter(parameterVar, parameterID, parameterName));
                     fieldRefParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.File:
-                    var fileParameter = parameters.AddFileParameter(parameterVar, parameterID, parameterName);
+                    var fileParameter = parameters.Add(new FileParameter(parameterVar, parameterID, parameterName));
                     fileParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Guid:
-                    var guidParameter = parameters.AddGuidParameter(parameterVar, parameterID, parameterName);
+                    var guidParameter = parameters.Add(new GuidParameter(parameterVar, parameterID, parameterName));
                     guidParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.InStream:
-                    var instreamParameter = parameters.AddInStreamParameter(parameterVar, parameterID, parameterName);
+                    var instreamParameter = parameters.Add(new InStreamParameter(parameterVar, parameterID, parameterName));
                     instreamParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Integer:
-                    var integerParameter = parameters.AddIntegerParameter(parameterVar, parameterID, parameterName);
+                    var integerParameter = parameters.Add(new IntegerParameter(parameterVar, parameterID, parameterName));
                     integerParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.KeyRef:
-                    var keyRefParameter = parameters.AddKeyRefParameter(parameterVar, parameterID, parameterName);
+                    var keyRefParameter = parameters.Add(new KeyRefParameter(parameterVar, parameterID, parameterName));
                     keyRefParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Ocx:
-                    var ocxParameter = parameters.AddOcxParameter(parameterVar, parameterID, parameterName, parameterSubType);
+                    var ocxParameter = parameters.Add(new OcxParameter(parameterVar, parameterID, parameterName, parameterSubType));
                     ocxParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Option:
-                    var optionParameter = parameters.AddOptionParameter(parameterVar, parameterID, parameterName);
+                    var optionParameter = parameters.Add(new OptionParameter(parameterVar, parameterID, parameterName));
                     optionParameter.Dimensions = parameterDimensions;
                     optionParameter.OptionString = parameterOptionString;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.OutStream:
-                    var outstreamParameter = parameters.AddOutStreamParameter(parameterVar, parameterID, parameterName);
+                    var outstreamParameter = parameters.Add(new OutStreamParameter(parameterVar, parameterID, parameterName));
                     outstreamParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Page:
-                    var pageParameter = parameters.AddPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var pageParameter = parameters.Add(new PageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     pageParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Query:
-                    var queryParameter = parameters.AddQueryParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var queryParameter = parameters.Add(new QueryParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     queryParameter.Dimensions = parameterDimensions;
                     queryParameter.SecurityFiltering = parameterSecurityFiltering.ToNullableEnum<QuerySecurityFiltering>();
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Record:
-                    var recordParameter = parameters.AddRecordParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var recordParameter = parameters.Add(new RecordParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     recordParameter.Dimensions = parameterDimensions;
                     recordParameter.Temporary = parameterTemporary;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.RecordID:
-                    var recordIDParameter = parameters.AddRecordIDParameter(parameterVar, parameterID, parameterName);
+                    var recordIDParameter = parameters.Add(new RecordIDParameter(parameterVar, parameterID, parameterName));
                     recordIDParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.RecordRef:
-                    var recordRefParameter = parameters.AddRecordRefParameter(parameterVar, parameterID, parameterName);
+                    var recordRefParameter = parameters.Add(new RecordRefParameter(parameterVar, parameterID, parameterName));
                     recordRefParameter.Dimensions = parameterDimensions;
                     recordRefParameter.SecurityFiltering = parameterSecurityFiltering.ToNullableEnum<RecordSecurityFiltering>();
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Report:
-                    var reportParameter = parameters.AddReportParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var reportParameter = parameters.Add(new ReportParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     reportParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.TestPage:
-                    var testPageParameter = parameters.AddTestPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var testPageParameter = parameters.Add(new TestPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     testPageParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.TestRequestPage:
-                    var testRequestPageParameter = parameters.AddTestRequestPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var testRequestPageParameter = parameters.Add(new TestRequestPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     testRequestPageParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Text:
-                    var textParameter = parameters.AddTextParameter(parameterVar, parameterID, parameterName, parameterLength);
+                    var textParameter = parameters.Add(new TextParameter(parameterVar, parameterID, parameterName, parameterLength));
                     textParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Time:
-                    var timeParameter = parameters.AddTimeParameter(parameterVar, parameterID, parameterName);
+                    var timeParameter = parameters.Add(new TimeParameter(parameterVar, parameterID, parameterName));
                     timeParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.TransactionType:
-                    var transactionTypeParameter = parameters.AddTransactionTypeParameter(parameterVar, parameterID, parameterName);
+                    var transactionTypeParameter = parameters.Add(new TransactionTypeParameter(parameterVar, parameterID, parameterName));
                     transactionTypeParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.Variant:
-                    var variantParameter = parameters.AddVariantParameter(parameterVar, parameterID, parameterName);
+                    var variantParameter = parameters.Add(new VariantParameter(parameterVar, parameterID, parameterName));
                     variantParameter.Dimensions = parameterDimensions;
                     break;
                 case UncommonSense.Nav.Parser.ParameterType.XmlPort:
-                    var xmlPortParameter = parameters.AddXmlPortParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger());
+                    var xmlPortParameter = parameters.Add(new XmlPortParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     xmlPortParameter.Dimensions = parameterDimensions;
                     break;
                 default:
@@ -949,15 +949,15 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case UncommonSense.Nav.Parser.QueryElementType.DataItem:
-                    var newDataItemQueryElement = currentQueryElements.AddDataItemQueryElement(elementID, elementName, elementIndentation);
+                    var newDataItemQueryElement = currentQueryElements.Add(new DataItemQueryElement(elementID, elementName, elementIndentation));
                     currentProperties.Push(newDataItemQueryElement.Properties);
                     break;
                 case UncommonSense.Nav.Parser.QueryElementType.Filter:
-                    var newFilterQueryElement = currentQueryElements.AddFilterQueryElement(elementID, elementName, elementIndentation);
+                    var newFilterQueryElement = currentQueryElements.Add(new FilterQueryElement(elementID, elementName, elementIndentation));
                     currentProperties.Push(newFilterQueryElement.Properties);
                     break;
                 case UncommonSense.Nav.Parser.QueryElementType.Column:
-                    var newColumnQueryElement = currentQueryElements.AddColumnQueryElement(elementID, elementName, elementIndentation);
+                    var newColumnQueryElement = currentQueryElements.Add(new ColumnQueryElement(elementID, elementName, elementIndentation));
                     currentProperties.Push(newColumnQueryElement.Properties);
                     break;
                 default:
@@ -975,20 +975,20 @@ namespace UncommonSense.CBreeze.Read
             switch (controlType)
             {
                 case UncommonSense.Nav.Parser.PageControlType.Container:
-                    var newContainerPageControl = currentPageControls.AddContainerPageControl(controlID, controlIndentation);
+                    var newContainerPageControl = currentPageControls.Add(new ContainerPageControl(controlID, controlIndentation));
                     currentProperties.Push(newContainerPageControl.Properties);
                     break;
                 case UncommonSense.Nav.Parser.PageControlType.Group:
-                    var newGroupPageControl = currentPageControls.AddGroupPageControl(controlID, controlIndentation);
+                    var newGroupPageControl = currentPageControls.Add(new GroupPageControl(controlID, controlIndentation));
                     currentPageActionList = newGroupPageControl.Properties.ActionList;
                     currentProperties.Push(newGroupPageControl.Properties);
                     break;
                 case UncommonSense.Nav.Parser.PageControlType.Field:
-                    var newFieldPageControl = currentPageControls.AddFieldPageControl(controlID, controlIndentation);
+                    var newFieldPageControl = currentPageControls.Add(new FieldPageControl(controlID, controlIndentation));
                     currentProperties.Push(newFieldPageControl.Properties);
                     break;
                 case UncommonSense.Nav.Parser.PageControlType.Part:
-                    var newPartPageControl = currentPageControls.AddPartPageControl(controlID, controlIndentation);
+                    var newPartPageControl = currentPageControls.Add(new PartPageControl(controlID, controlIndentation));
                     currentProperties.Push(newPartPageControl.Properties);
                     break;
                 default:
@@ -1007,19 +1007,19 @@ namespace UncommonSense.CBreeze.Read
             switch (actionType)
             {
                 case PageActionType.ActionContainer:
-                    var newPageActionContainer = currentPageActionList.AddPageActionContainer(actionID, actionIndentation);
+                    var newPageActionContainer = currentPageActionList.Add(new PageActionContainer(actionID, actionIndentation));
                     currentProperties.Push(newPageActionContainer.Properties);
                     break;
                 case PageActionType.ActionGroup:
-                    var newPageActionGroup = currentPageActionList.AddPageActionGroup(actionID, actionIndentation);
+                    var newPageActionGroup = currentPageActionList.Add(new PageActionGroup(actionID, actionIndentation));
                     currentProperties.Push(newPageActionGroup.Properties);
                     break;
                 case PageActionType.Action:
-                    var newPageAction = currentPageActionList.AddPageAction(actionID, actionIndentation);
+                    var newPageAction = currentPageActionList.Add(new PageAction(actionID, actionIndentation));
                     currentProperties.Push(newPageAction.Properties);
                     break;
                 case PageActionType.Separator:
-                    var newPageActionSeparator = currentPageActionList.AddPageActionSeparator(actionID, actionIndentation);
+                    var newPageActionSeparator = currentPageActionList.Add(new PageActionSeparator(actionID, actionIndentation));
                     currentProperties.Push(newPageActionSeparator.Properties);
                     break;
             }
@@ -1039,11 +1039,11 @@ namespace UncommonSense.CBreeze.Read
                     switch (elementNodeType)
                     {
                         case UncommonSense.Nav.Parser.XmlPortNodeType.Element:
-                            var newTextElementNode = currentXmlPortNodes.AddXmlPortTextElement(elementID, elementName, elementIndentation);
+                            var newTextElementNode = currentXmlPortNodes.Add(new XmlPortTextElement(elementID, elementName, elementIndentation));
                             currentProperties.Push(newTextElementNode.Properties);
                             break;
                         case UncommonSense.Nav.Parser.XmlPortNodeType.Attribute:
-                            var newTextAttributeNode = currentXmlPortNodes.AddXmlPortTextAttribute(elementID, elementName, elementIndentation);
+                            var newTextAttributeNode = currentXmlPortNodes.Add(new XmlPortTextAttribute(elementID, elementName, elementIndentation));
                             currentProperties.Push(newTextAttributeNode.Properties);
                             break;
                     }
@@ -1052,11 +1052,11 @@ namespace UncommonSense.CBreeze.Read
                     switch (elementNodeType)
                     {
                         case UncommonSense.Nav.Parser.XmlPortNodeType.Element:
-                            var newTableElementNode = currentXmlPortNodes.AddXmlPortTableElement(elementID, elementName, elementIndentation);
+                            var newTableElementNode = currentXmlPortNodes.Add(new XmlPortTableElement(elementID, elementName, elementIndentation));
                             currentProperties.Push(newTableElementNode.Properties);
                             break;
                         case UncommonSense.Nav.Parser.XmlPortNodeType.Attribute:
-                            var newTableAttributeNode = currentXmlPortNodes.AddXmlPortTableAttribute(elementID, elementName, elementIndentation);
+                            var newTableAttributeNode = currentXmlPortNodes.Add(new XmlPortTableAttribute(elementID, elementName, elementIndentation));
                             currentProperties.Push(newTableAttributeNode.Properties);
                             break;
                     }
@@ -1065,11 +1065,11 @@ namespace UncommonSense.CBreeze.Read
                     switch (elementNodeType)
                     {
                         case UncommonSense.Nav.Parser.XmlPortNodeType.Element:
-                            var newFieldElementNode = currentXmlPortNodes.AddXmlPortFieldElement(elementID, elementName, elementIndentation);
+                            var newFieldElementNode = currentXmlPortNodes.Add(new XmlPortFieldElement(elementID, elementName, elementIndentation));
                             currentProperties.Push(newFieldElementNode.Properties);
                             break;
                         case UncommonSense.Nav.Parser.XmlPortNodeType.Attribute:
-                            var newFieldAttributeNode = currentXmlPortNodes.AddXmlPortFieldAttribute(elementID, elementName, elementIndentation);
+                            var newFieldAttributeNode = currentXmlPortNodes.Add(new XmlPortFieldAttribute(elementID, elementName, elementIndentation));
                             currentProperties.Push(newFieldAttributeNode.Properties);
                             break;
                     }
@@ -1088,12 +1088,12 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case UncommonSense.Nav.Parser.ReportElementType.DataItem:
-                    var newDataItemElement = currentReportElements.AddDataItemReportElement(elementID, elementIndentation);
+                    var newDataItemElement = currentReportElements.Add(new DataItemReportElement(elementID, elementIndentation));
                     newDataItemElement.Name = elementName;
                     currentProperties.Push(newDataItemElement.Properties);
                     break;
                 case UncommonSense.Nav.Parser.ReportElementType.Column:
-                    var newColumnElement = currentReportElements.AddColumnReportElement(elementID, elementIndentation);
+                    var newColumnElement = currentReportElements.Add(new ColumnReportElement(elementID, elementIndentation));
                     newColumnElement.Name = elementName;
                     currentProperties.Push(newColumnElement.Properties);
                     break;
@@ -1145,23 +1145,23 @@ namespace UncommonSense.CBreeze.Read
             switch (nodeType)
             {
                 case UncommonSense.Nav.Parser.MenuSuiteNodeType.Root:
-                    var newRootNode = currentMenuSuiteNodes.AddRootNode(nodeID);
+                    var newRootNode = currentMenuSuiteNodes.Add(new RootNode(nodeID));
                     currentProperties.Push(newRootNode.Properties);
                     break;
                 case UncommonSense.Nav.Parser.MenuSuiteNodeType.Menu:
-                    var newMenuNode = currentMenuSuiteNodes.AddMenuNode(nodeID);
+                    var newMenuNode = currentMenuSuiteNodes.Add(new MenuNode(nodeID));
                     currentProperties.Push(newMenuNode.Properties);
                     break;
                 case UncommonSense.Nav.Parser.MenuSuiteNodeType.MenuGroup:
-                    var newGroupNode = currentMenuSuiteNodes.AddGroupNode(nodeID);
+                    var newGroupNode = currentMenuSuiteNodes.Add(new GroupNode(nodeID));
                     currentProperties.Push(newGroupNode.Properties);
                     break;
                 case UncommonSense.Nav.Parser.MenuSuiteNodeType.MenuItem:
-                    var newItemNode = currentMenuSuiteNodes.AddItemNode(nodeID);
+                    var newItemNode = currentMenuSuiteNodes.Add(new ItemNode(nodeID));
                     currentProperties.Push(newItemNode.Properties);
                     break;
                 case UncommonSense.Nav.Parser.MenuSuiteNodeType.Delta:
-                    var newDeltaNode = currentMenuSuiteNodes.AddDeltaNode(nodeID);
+                    var newDeltaNode = currentMenuSuiteNodes.Add(new DeltaNode(nodeID));
                     currentProperties.Push(newDeltaNode.Properties);
                     break;
             }

@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private BlobTableFieldProperties properties = new BlobTableFieldProperties();
 
-        internal BlobTableField(Int32 no, String name) : base(no, name)
+        public BlobTableField(Int32 no, String name) : base(no, name)
         {
         }
 

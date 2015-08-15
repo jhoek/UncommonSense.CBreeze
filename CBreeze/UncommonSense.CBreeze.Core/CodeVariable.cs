@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private String dimensions;
         private Boolean? includeInDataset;
 
-        internal CodeVariable(Int32 id, String name, Int32? dataLength = null) : base(id, name)
+        public CodeVariable(Int32 id, String name, Int32? dataLength = null) : base(id, name)
         {
             this.dataLength = dataLength;
         }

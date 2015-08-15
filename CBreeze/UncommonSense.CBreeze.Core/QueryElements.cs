@@ -23,24 +23,9 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public ColumnQueryElement AddColumnQueryElement(Int32 id, String name, Int32? indentationLevel)
+        public T Add<T>(T item) where T: QueryElement
         {
-            ColumnQueryElement item = new ColumnQueryElement(id, name, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public DataItemQueryElement AddDataItemQueryElement(Int32 id, String name, Int32? indentationLevel)
-        {
-            DataItemQueryElement item = new DataItemQueryElement(id, name, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public FilterQueryElement AddFilterQueryElement(Int32 id, String name, Int32? indentationLevel)
-        {
-            FilterQueryElement item = new FilterQueryElement(id, name, indentationLevel);
-            innerList.Add(id, item);
+            innerList.Add(item.ID, item);
             return item;
         }
 

@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private Int32 dataLength;
         private BinaryTableFieldProperties properties = new BinaryTableFieldProperties();
 
-        internal BinaryTableField(Int32 no, String name, Int32 dataLength = 4) : base(no, name)
+        public BinaryTableField(Int32 no, String name, Int32 dataLength = 4) : base(no, name)
         {
             this.dataLength = dataLength;
         }

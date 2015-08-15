@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private String subType;
         private Boolean? withEvents;
 
-        internal AutomationVariable(Int32 id, String name, String subType) : base(id, name)
+        public AutomationVariable(Int32 id, String name, String subType) : base(id, name)
         {
             this.subType = subType;
         }

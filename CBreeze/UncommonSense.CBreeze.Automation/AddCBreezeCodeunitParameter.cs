@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -23,7 +24,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 ID = AutoAssignID(ID);
 
-                var codeunitParameter = Parameters.AddCodeunitParameter(Var, ID, Name, SubType);
+                var codeunitParameter = Parameters.Add(new CodeunitParameter(Var, ID, Name, SubType));
                 codeunitParameter.Dimensions = Dimensions;
                 yield return codeunitParameter;
             }

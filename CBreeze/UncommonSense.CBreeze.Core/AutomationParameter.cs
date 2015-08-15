@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String subType;
 
-        internal AutomationParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
+        public AutomationParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
         {
             this.subType = subType;
         }

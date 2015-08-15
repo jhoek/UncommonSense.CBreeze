@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ActionParameter : Parameter
     {
-        internal ActionParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public ActionParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
 

@@ -18,46 +18,46 @@ namespace UncommonSense.CBreeze.Render
 
 			var nextFieldNo = 1;
 
-			manifest.NoField = manifest.Table.Fields.AddIntegerTableField(nextFieldNo++, "No.").AutoCaption();
-			manifest.CreationDateField = manifest.Table.Fields.AddDateTableField(nextFieldNo++, "Creation Date").AutoCaption();
-			manifest.UserIDField = manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "User ID", 50).AutoCaption();
-			manifest.SourceCodeField = entityType.HasSourceCodeField ? manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "Source Code", 10).AutoCaption() : null;
+			manifest.NoField = manifest.Table.Fields.Add(new IntegerTableField(nextFieldNo++, "No.")).AutoCaption();
+			manifest.CreationDateField = manifest.Table.Fields.Add(new DateTableField(nextFieldNo++, "Creation Date")).AutoCaption();
+			manifest.UserIDField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "User ID", 50)).AutoCaption();
+			manifest.SourceCodeField = entityType.HasSourceCodeField ? manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "Source Code", 10)).AutoCaption() : null;
 
 			var nextControlID = 1;
 
 			var actionList = manifest.Page.Properties.ActionList;
-			actionList.AddPageActionContainer(nextControlID++, 0).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
-			actionList.AddPageActionGroup(nextControlID++, 1).Properties.CaptionML.Add("ENU", "&Register");
+			actionList.Add(new PageActionContainer(nextControlID++, 0)).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
+			actionList.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Add("ENU", "&Register");
 
-			manifest.Page.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.ContentArea;
-			manifest.Page.Controls.AddGroupPageControl(nextControlID++, 1).Properties.GroupType = GroupType.Repeater;
-			manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.NoField.Name.Quoted();
-			manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.CreationDateField.Name.Quoted();
-			manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.UserIDField.Name.Quoted();
+			manifest.Page.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.ContentArea;
+			manifest.Page.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.GroupType = GroupType.Repeater;
+			manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.NoField.Name.Quoted();
+			manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.CreationDateField.Name.Quoted();
+			manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.UserIDField.Name.Quoted();
 
 			if (entityType.HasSourceCodeField)
 			{
-				manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.SourceCodeField.Name.Quoted();
+				manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.SourceCodeField.Name.Quoted();
 			}
 
 			foreach (var ledgerEntityType in entityType.LedgerEntityTypes)
 			{
 				var ledgerEntityTypeManifest = renderingContext.GetManifest(ledgerEntityType) as LedgerEntityTypeManifest;
 
-				var fromEntryNoField = manifest.Table.Fields.AddIntegerTableField(nextFieldNo++, string.Format("From {0} No.", ledgerEntityType.Name));
+				var fromEntryNoField = manifest.Table.Fields.Add(new IntegerTableField(nextFieldNo++, string.Format("From {0} No.", ledgerEntityType.Name)));
 				fromEntryNoField.Properties.CaptionML.Add("ENU", fromEntryNoField.Name);
 				fromEntryNoField.Properties.TableRelation.Add(ledgerEntityTypeManifest.Table.Name);
 				fromEntryNoField.Properties.TestTableRelation = false;
 
-				var toEntryNoField = manifest.Table.Fields.AddIntegerTableField(nextFieldNo++, string.Format("To {0} No.", ledgerEntityType.Name));
+				var toEntryNoField = manifest.Table.Fields.Add(new IntegerTableField(nextFieldNo++, string.Format("To {0} No.", ledgerEntityType.Name)));
 				toEntryNoField.Properties.CaptionML.Add("ENU", toEntryNoField.Name);
 				toEntryNoField.Properties.TableRelation.Add(ledgerEntityTypeManifest.Table.Name);
 				toEntryNoField.Properties.TestTableRelation = false;
 
-				manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = fromEntryNoField.Name.Quoted();
-				manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = toEntryNoField.Name.Quoted();
+				manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = fromEntryNoField.Name.Quoted();
+				manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = toEntryNoField.Name.Quoted();
 
-				var action = actionList.AddPageAction(nextControlID++, 2);
+				var action = actionList.Add(new PageAction(nextControlID++, 2));
 				var caption = ledgerEntityType.Name.EndsWith(" Entry") ? ledgerEntityType.Name.Substring(0, ledgerEntityType.Name.Length - " Entry".Length) : ledgerEntityType.Name;
 
 				action.Properties.CaptionML.Add("ENU", caption);
@@ -68,14 +68,14 @@ namespace UncommonSense.CBreeze.Render
 				action.Properties.OnAction.CodeLines.Add("// Add logic here");
 			}
 
-			manifest.Page.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.FactBoxArea;
+			manifest.Page.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.FactBoxArea;
 
-			var recordLinksPart = manifest.Page.Controls.AddPartPageControl(nextControlID++, 1);
+			var recordLinksPart = manifest.Page.Controls.Add(new PartPageControl(nextControlID++, 1));
 			recordLinksPart.Properties.PartType = PartType.System;
 			recordLinksPart.Properties.SystemPartID = SystemPartID.RecordLinks;
 			recordLinksPart.Properties.Visible = false.ToString();
 
-			var notesPart = manifest.Page.Controls.AddPartPageControl(nextControlID++, 1);
+			var notesPart = manifest.Page.Controls.Add(new PartPageControl(nextControlID++, 1));
 			notesPart.Properties.PartType = PartType.System;
 			notesPart.Properties.SystemPartID = SystemPartID.Notes;
 			notesPart.Properties.Visible = false.ToString();
@@ -94,7 +94,7 @@ namespace UncommonSense.CBreeze.Render
 			}
 
 			var onLookup = manifest.UserIDField.Properties.OnLookup;
-			var userMgt = onLookup.Variables.AddCodeunitVariable(1000, "UserMgt", 418);
+			var userMgt = onLookup.Variables.Add(new CodeunitVariable(1000, "UserMgt", 418));
 			onLookup.CodeLines.Add(string.Format("{0}.LookupUserID({1});", userMgt.Name.Quoted(), manifest.UserIDField.Name.Quoted()));
 
 			manifest.Table.Properties.LookupPageID = manifest.Page.ID;

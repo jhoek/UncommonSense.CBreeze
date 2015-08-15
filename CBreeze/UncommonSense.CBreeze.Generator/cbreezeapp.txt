@@ -4122,14 +4122,21 @@ OBJECT Codeunit 60001 Export Object Model as Files
   OBJECT-PROPERTIES
   {
     Date=15-08-15;
-    Time=14:09:04;
+    Time=15:04:09;
     Modified=Yes;
     Version List=;
   }
   PROPERTIES
   {
-    OnRun=BEGIN
+    OnRun=VAR
+            ObjectModel@1000000000 : Record 50000;
+            Collection@1000000001 : Record 50007;
+          BEGIN
             ExportObjectModel('CORE');
+
+            //ObjectModel.GET('CORE');
+            //Collection.GET('CORE', 'Parameters');
+            //WriteCollection(ObjectModel, Collection);
           END;
 
   }
@@ -4991,14 +4998,14 @@ OBJECT Codeunit 60001 Export Object Model as Files
         Collection."Collection Style"::List:
           BEGIN
             WriteCollectionFindIndexMethds(Collection, OutputFile);
-            WriteCollectionAddMethods(Collection, '', OutputFile);
+            WriteCollectionAddMethods(Collection, Attribute, OutputFile);
             WriteCollectionAddRangeMethod(Collection, OutputFile);
             WriteCollectionInsertMethod(Collection, OutputFile);
             WriteCollectionRemoveMethod(Collection, '', '', OutputFile);
           END;
         Collection."Collection Style"::Dictionary:
           BEGIN
-            WriteCollectionAddMethods(Collection, Attribute."Field Name", OutputFile);
+            WriteCollectionAddMethods(Collection, Attribute, OutputFile);
             WriteCollectionInsertMethod(Collection, OutputFile);
             WriteCollectionRemoveMethod(Collection, Attribute."Type Name", Attribute."Field Name", OutputFile);
           END;
@@ -5098,7 +5105,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
       OutputFile.WRITE('');
     END;
 
-    PROCEDURE WriteCollectionAddMethods@1000000012(Collection@1000000000 : Record 50007;IndexingAttribute@1000000004 : Text[80];VAR OutputFile@1000000001 : File);
+    PROCEDURE WriteCollectionAddMethods@1000000012(Collection@1000000000 : Record 50007;IndexingAttribute@1000000004 : Record 50009;VAR OutputFile@1000000001 : File);
     VAR
       Item@1000000002 : Record 50005;
       DerivedItem@1000000003 : Record 50005;
@@ -5109,25 +5116,17 @@ OBJECT Codeunit 60001 Export Object Model as Files
       CASE Item.Abstract OF
         FALSE:
           BEGIN
-            WriteCollectionAddMethod(Item, FALSE, IndexingAttribute, FALSE, OutputFile);
-            WriteCollectionAddMethod(Item, FALSE, IndexingAttribute, TRUE, OutputFile);
+            WriteCollectionAddMethod(Item, IndexingAttribute."Field Name", FALSE, OutputFile);
+            WriteCollectionAddMethod(Item, IndexingAttribute."Field Name", TRUE, OutputFile);
           END;
         TRUE:
           BEGIN
-            DerivedItem.SETCURRENTKEY("Object Model Code", "Base Type");
-            DerivedItem.SETRANGE("Object Model Code", Item."Object Model Code");
-            DerivedItem.SETRANGE("Base Type", Item.Name);
-
-            DerivedItem.FINDSET;
-            REPEAT
-              WriteCollectionAddMethod(DerivedItem, TRUE, IndexingAttribute, FALSE, OutputFile);
-              WriteCollectionAddMethod(DerivedItem, TRUE, IndexingAttribute, TRUE, OutputFile);
-            UNTIL DerivedItem.NEXT = 0;
+            WriteGenericCollectnAddMethod(Item, IndexingAttribute.Name, OutputFile);
           END;
       END;
     END;
 
-    PROCEDURE WriteCollectionAddMethod@1000000021(Item@1000000000 : Record 50005;MethodNameIncludesItemType@1000000002 : Boolean;IndexingAttribute@1000000004 : Text[80];FormatAndArgs@1100476000 : Boolean;VAR OutputFile@1000000001 : File);
+    PROCEDURE WriteCollectionAddMethod@1000000021(Item@1000000000 : Record 50005;IndexingAttribute@1000000004 : Text[80];FormatAndArgs@1100476000 : Boolean;VAR OutputFile@1000000001 : File);
     VAR
       Attribute@1100476001 : Record 50009;
       Separator@1000000003 : Text[2];
@@ -5146,7 +5145,7 @@ OBJECT Codeunit 60001 Export Object Model as Files
           EXIT;
       END;
 
-      OutputFile.WRITE(STRSUBSTNO('        %1', GetAddMethodDeclaration(Item, MethodNameIncludesItemType, FormatAndArgs)));
+      OutputFile.WRITE(STRSUBSTNO('        public %1 Add(%2)', Item.Name, GetAddMethodParameters(Item, FormatAndArgs)));
       OutputFile.WRITE('        {');
 
       OutputFile.WRITE(
@@ -5162,6 +5161,21 @@ OBJECT Codeunit 60001 Export Object Model as Files
 
       OutputFile.WRITE('            return item;');
       OutputFile.WRITE('        }');
+      OutputFile.WRITE('');
+    END;
+
+    PROCEDURE WriteGenericCollectnAddMethod@1000000054(Item@1000000004 : Record 50005;IndexingAttribute@1000000002 : Text[80];VAR OutputFile@1000000000 : File);
+    BEGIN
+      OutputFile.WRITE(STRSUBSTNO('        public T Add<T>(T item) where T: %1', Item.Name));
+      OutputFile.WRITE           ('        {');
+
+      CASE IndexingAttribute = '' OF
+        TRUE: OutputFile.WRITE('            innerList.Add(item);');
+        FALSE: OutputFile.WRITE(STRSUBSTNO('            innerList.Add(item.%1, item);', IndexingAttribute));
+      END;
+
+      OutputFile.WRITE           ('            return item;');
+      OutputFile.WRITE           ('        }');
       OutputFile.WRITE('');
     END;
 
@@ -5193,24 +5207,6 @@ OBJECT Codeunit 60001 Export Object Model as Files
         OutputFile.WRITE('        }');
         OutputFile.WRITE('');
       END;
-    END;
-
-    PROCEDURE GetAddMethodDeclaration@1000000040(Item@1000000001 : Record 50005;MethodNameIncludesItemType@1000000000 : Boolean;FormatAndArgs@1100476000 : Boolean) Result : Text[250];
-    BEGIN
-      Result := 'public ';
-      Result += Item.Name;
-      Result += ' Add';
-
-      IF MethodNameIncludesItemType THEN
-        Result += Item.Name;
-
-      Result += '(';
-      Result += GetAddMethodParameters(Item, FormatAndArgs);
-      Result += ')';
-    END;
-
-    PROCEDURE GetAltAddMethodDeclaration@1100476006(Item@1100476001 : Record 50005;MethodNameIncludesItemType@1100476000 : Boolean) : Text[250];
-    BEGIN
     END;
 
     PROCEDURE GetAddMethodParameters@1000000036(Item@1000000000 : Record 50005;FormatAndArgs@1100476000 : Boolean) Result : Text[250];

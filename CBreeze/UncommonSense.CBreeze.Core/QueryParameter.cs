@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private QuerySecurityFiltering? securityFiltering;
         private Int32 subType;
 
-        internal QueryParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
+        public QueryParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
         }

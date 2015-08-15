@@ -17,13 +17,13 @@ namespace UncommonSense.CBreeze.Render
 			manifest.LineTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.LineName).AutoObjectProperties(renderingContext).AutoCaption();
 
 			var nextFieldNo = 1;
-			manifest.HeaderTableDocumentTypeField = !string.IsNullOrEmpty(entityType.DocumentTypeOptions) ? manifest.HeaderTable.Fields.AddOptionTableField(nextFieldNo++, "Document Type").AutoCaption() : null;
-			manifest.HeaderTableNoField = manifest.HeaderTable.Fields.AddCodeTableField(nextFieldNo++, "No.", 20).AutoCaption();
+			manifest.HeaderTableDocumentTypeField = !string.IsNullOrEmpty(entityType.DocumentTypeOptions) ? manifest.HeaderTable.Fields.Add(new OptionTableField(nextFieldNo++, "Document Type")).AutoCaption() : null;
+			manifest.HeaderTableNoField = manifest.HeaderTable.Fields.Add(new CodeTableField(nextFieldNo++, "No.", 20)).AutoCaption();
 
 			nextFieldNo = 1;
-			manifest.LineTableDocumentTypeField = !string.IsNullOrEmpty(entityType.DocumentTypeOptions) ? manifest.LineTable.Fields.AddOptionTableField(nextFieldNo++, "Document Type").AutoCaption() : null;
-			manifest.LineTableDocumentNoField = manifest.LineTable.Fields.AddCodeTableField(nextFieldNo++, "Document No.", 20).AutoCaption();
-			manifest.LineTableLineNoField = manifest.LineTable.Fields.AddIntegerTableField(nextFieldNo++, "Line No.").AutoCaption();
+			manifest.LineTableDocumentTypeField = !string.IsNullOrEmpty(entityType.DocumentTypeOptions) ? manifest.LineTable.Fields.Add(new OptionTableField(nextFieldNo++, "Document Type")).AutoCaption() : null;
+			manifest.LineTableDocumentNoField = manifest.LineTable.Fields.Add(new CodeTableField(nextFieldNo++, "Document No.", 20)).AutoCaption();
+			manifest.LineTableLineNoField = manifest.LineTable.Fields.Add(new IntegerTableField(nextFieldNo++, "Line No.")).AutoCaption();
 
             return manifest;
 		}

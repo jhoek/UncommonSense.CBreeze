@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TransactionTypeParameter : Parameter
     {
-        internal TransactionTypeParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public TransactionTypeParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
 

@@ -23,38 +23,9 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public DeltaNode AddDeltaNode(Guid id)
+        public T Add<T>(T item) where T: MenuSuiteNode
         {
-            DeltaNode item = new DeltaNode(id);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public GroupNode AddGroupNode(Guid id)
-        {
-            GroupNode item = new GroupNode(id);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public ItemNode AddItemNode(Guid id)
-        {
-            ItemNode item = new ItemNode(id);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public MenuNode AddMenuNode(Guid id)
-        {
-            MenuNode item = new MenuNode(id);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public RootNode AddRootNode(Guid id)
-        {
-            RootNode item = new RootNode(id);
-            innerList.Add(id, item);
+            innerList.Add(item.ID, item);
             return item;
         }
 

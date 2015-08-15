@@ -85,7 +85,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 No = AutoAssignNo(No);
 
-                var field = Table.Fields.AddCodeTableField(No, Name, DataLength);
+                var field = Table.Fields.Add(new CodeTableField(No, Name, DataLength));
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;
                 field.Properties.AutoFormatType = AutoFormatType;

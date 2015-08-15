@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private XmlPortTableAttributeProperties properties = new XmlPortTableAttributeProperties();
 
-        internal XmlPortTableAttribute(Guid id, String nodeName, Int32? indentationLevel) : base(id, nodeName, indentationLevel)
+        public XmlPortTableAttribute(Guid id, String nodeName, Int32? indentationLevel) : base(id, nodeName, indentationLevel)
         {
         }
 

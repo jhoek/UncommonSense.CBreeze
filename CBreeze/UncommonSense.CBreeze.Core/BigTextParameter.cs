@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BigTextParameter : Parameter
     {
-        internal BigTextParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public BigTextParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
 

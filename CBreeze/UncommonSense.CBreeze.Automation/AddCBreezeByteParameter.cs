@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -15,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 ID = AutoAssignID(ID);
 
-                var byteParameter = Parameters.AddByteParameter(Var, ID, Name);
+                var byteParameter = Parameters.Add(new ByteParameter(Var, ID, Name));
                 byteParameter.Dimensions = Dimensions;
                 yield return byteParameter;
             }

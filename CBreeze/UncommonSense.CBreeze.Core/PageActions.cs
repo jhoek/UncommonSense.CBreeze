@@ -23,31 +23,9 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public PageAction AddPageAction(Int32 id, Int32? indentationLevel)
+        public T Add<T>(T item) where T: PageActionBase
         {
-            PageAction item = new PageAction(id, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public PageActionContainer AddPageActionContainer(Int32 id, Int32? indentationLevel)
-        {
-            PageActionContainer item = new PageActionContainer(id, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public PageActionGroup AddPageActionGroup(Int32 id, Int32? indentationLevel)
-        {
-            PageActionGroup item = new PageActionGroup(id, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public PageActionSeparator AddPageActionSeparator(Int32 id, Int32? indentationLevel)
-        {
-            PageActionSeparator item = new PageActionSeparator(id, indentationLevel);
-            innerList.Add(id, item);
+            innerList.Add(item.ID, item);
             return item;
         }
 

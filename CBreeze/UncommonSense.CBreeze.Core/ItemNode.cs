@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private MenuSuiteItemNodeProperties properties = new MenuSuiteItemNodeProperties();
 
-        internal ItemNode(Guid id) : base(id)
+        public ItemNode(Guid id) : base(id)
         {
         }
 

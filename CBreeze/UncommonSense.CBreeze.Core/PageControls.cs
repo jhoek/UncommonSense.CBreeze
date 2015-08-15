@@ -23,31 +23,9 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public ContainerPageControl AddContainerPageControl(Int32 id, Int32? indentationLevel)
+        public T Add<T>(T item) where T: PageControl
         {
-            ContainerPageControl item = new ContainerPageControl(id, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public FieldPageControl AddFieldPageControl(Int32 id, Int32? indentationLevel)
-        {
-            FieldPageControl item = new FieldPageControl(id, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public GroupPageControl AddGroupPageControl(Int32 id, Int32? indentationLevel)
-        {
-            GroupPageControl item = new GroupPageControl(id, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public PartPageControl AddPartPageControl(Int32 id, Int32? indentationLevel)
-        {
-            PartPageControl item = new PartPageControl(id, indentationLevel);
-            innerList.Add(id, item);
+            innerList.Add(item.ID, item);
             return item;
         }
 

@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class FileParameter : Parameter
     {
-        internal FileParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public FileParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
 

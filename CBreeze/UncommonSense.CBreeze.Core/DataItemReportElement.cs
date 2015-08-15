@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private DataItemReportElementProperties properties = new DataItemReportElementProperties();
 
-        internal DataItemReportElement(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
+        public DataItemReportElement(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
         {
         }
 

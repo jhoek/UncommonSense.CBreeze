@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private Int32 dataLength;
 
-        internal BinaryParameter(Boolean var, Int32 id, String name, Int32 dataLength = 100) : base(var, id, name)
+        public BinaryParameter(Boolean var, Int32 id, String name, Int32 dataLength = 100) : base(var, id, name)
         {
             this.dataLength = dataLength;
         }

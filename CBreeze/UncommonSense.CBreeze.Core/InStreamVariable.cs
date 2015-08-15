@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        internal InStreamVariable(Int32 id, String name) : base(id, name)
+        public InStreamVariable(Int32 id, String name) : base(id, name)
         {
         }
 

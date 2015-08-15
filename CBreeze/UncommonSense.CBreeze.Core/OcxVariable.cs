@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String dimensions;
         private String subType;
 
-        internal OcxVariable(Int32 id, String name, String subType) : base(id, name)
+        public OcxVariable(Int32 id, String name, String subType) : base(id, name)
         {
             this.subType = subType;
         }

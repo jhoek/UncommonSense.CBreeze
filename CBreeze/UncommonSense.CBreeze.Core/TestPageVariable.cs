@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String dimensions;
         private Int32 subType;
 
-        internal TestPageVariable(Int32 id, String name, Int32 subType) : base(id, name)
+        public TestPageVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
         }

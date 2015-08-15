@@ -21,11 +21,11 @@ namespace UncommonSense.CBreeze.Samples
             var application = new Application();
             var table = application.Tables.Add(50000, "My Demo Table");
 
-            var codeField = table.Fields.AddCodeTableField(1, "Code", 10);
+            var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
             codeField.Properties.NotBlank = true;
             codeField.Properties.CaptionML.Add("ENU", codeField.Name);
 
-            var descriptionField = table.Fields.AddTextTableField(10, "Description", 30);
+            var descriptionField = table.Fields.Add(new TextTableField(10, "Description", 30));
             descriptionField.Properties.CaptionML.Add("ENU", descriptionField.Name);
 
             table.Properties.DataCaptionFields.AddRange(codeField.Name, descriptionField.Name);

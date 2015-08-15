@@ -17,17 +17,17 @@ namespace UncommonSense.CBreeze.Render
             manifest.Page = application.Pages.Add(renderingContext.GetNextPageID(), entityType.PluralName).AutoObjectProperties(renderingContext).AutoCaption();
 
             var nextFieldNo = 1;
-            manifest.CodeField = manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "Code", 10).AutoCaption();
-            manifest.DescriptionField = manifest.Table.Fields.AddTextTableField(nextFieldNo++, entityType.DescriptionFieldName(), entityType.DescriptionFieldLength()).AutoCaption();
+            manifest.CodeField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "Code", 10)).AutoCaption();
+            manifest.DescriptionField = manifest.Table.Fields.Add(new TextTableField(nextFieldNo++, entityType.DescriptionFieldName(), entityType.DescriptionFieldLength())).AutoCaption();
 
             var nextControlID = 1000;
-            manifest.ContentAreaControl = manifest.Page.Controls.AddContainerPageControl(nextControlID++, 0);
-            manifest.RepeaterControl = manifest.Page.Controls.AddGroupPageControl(nextControlID++, 1);
-            manifest.CodeControl = manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2);
-            manifest.DescriptionControl = manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2);
-            manifest.FactBoxAreaControl = manifest.Page.Controls.AddContainerPageControl(nextControlID++, 0);
-            manifest.RecordLinksControl = manifest.Page.Controls.AddPartPageControl(nextControlID++, 1);
-            manifest.NotesControl = manifest.Page.Controls.AddPartPageControl(nextControlID++, 1);
+            manifest.ContentAreaControl = manifest.Page.Controls.Add(new ContainerPageControl(nextControlID++, 0));
+            manifest.RepeaterControl = manifest.Page.Controls.Add(new GroupPageControl(nextControlID++, 1));
+            manifest.CodeControl = manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2));
+            manifest.DescriptionControl = manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2));
+            manifest.FactBoxAreaControl = manifest.Page.Controls.Add(new ContainerPageControl(nextControlID++, 0));
+            manifest.RecordLinksControl = manifest.Page.Controls.Add(new PartPageControl(nextControlID++, 1));
+            manifest.NotesControl = manifest.Page.Controls.Add(new PartPageControl(nextControlID++, 1));
 
             return manifest;
         }

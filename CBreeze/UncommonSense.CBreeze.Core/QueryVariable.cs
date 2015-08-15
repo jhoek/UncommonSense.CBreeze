@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private QuerySecurityFiltering? securityFiltering;
         private Int32 subType;
 
-        internal QueryVariable(Int32 id, String name, Int32 subType) : base(id, name)
+        public QueryVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
         }

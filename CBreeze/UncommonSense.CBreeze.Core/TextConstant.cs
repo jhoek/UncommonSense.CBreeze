@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private MultiLanguageValue values = new MultiLanguageValue();
 
-        internal TextConstant(Int32 id, String name) : base(id, name)
+        public TextConstant(Int32 id, String name) : base(id, name)
         {
         }
 

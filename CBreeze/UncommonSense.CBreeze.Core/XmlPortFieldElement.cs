@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private XmlPortFieldElementProperties properties = new XmlPortFieldElementProperties();
 
-        internal XmlPortFieldElement(Guid id, String nodeName, Int32? indentationLevel) : base(id, nodeName, indentationLevel)
+        public XmlPortFieldElement(Guid id, String nodeName, Int32? indentationLevel) : base(id, nodeName, indentationLevel)
         {
         }
 

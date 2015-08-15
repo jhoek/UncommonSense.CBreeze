@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -28,7 +29,7 @@ namespace UncommonSense.CBreeze.Automation
                     DataLength = 100;
                 }
 
-                var binaryParameter = Parameters.AddBinaryParameter(Var, ID, Name, DataLength.Value);
+                var binaryParameter = Parameters.Add(new BinaryParameter(Var, ID, Name, DataLength.Value));
                 binaryParameter.Dimensions = Dimensions;
                 yield return binaryParameter;
             }

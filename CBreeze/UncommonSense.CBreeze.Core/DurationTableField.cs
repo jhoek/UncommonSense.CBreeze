@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private DurationTableFieldProperties properties = new DurationTableFieldProperties();
 
-        internal DurationTableField(Int32 no, String name) : base(no, name)
+        public DurationTableField(Int32 no, String name) : base(no, name)
         {
         }
 

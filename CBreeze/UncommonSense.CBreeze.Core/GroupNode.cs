@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private MenuSuiteGroupNodeProperties properties = new MenuSuiteGroupNodeProperties();
 
-        internal GroupNode(Guid id) : base(id)
+        public GroupNode(Guid id) : base(id)
         {
         }
 

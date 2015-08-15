@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
         private Int32 subType;
         private Boolean? temporary;
 
-        internal RecordVariable(Int32 id, String name, Int32 subType) : base(id, name)
+        public RecordVariable(Int32 id, String name, Int32 subType) : base(id, name)
         {
             this.subType = subType;
         }

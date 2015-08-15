@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -15,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 ID = AutoAssignID(ID);
 
-                var dateTimeParameter = Parameters.AddDateTimeParameter(Var, ID, Name);
+                var dateTimeParameter = Parameters.Add(new DateTimeParameter(Var, ID, Name));
                 dateTimeParameter.Dimensions = Dimensions;
                 yield return dateTimeParameter;
             }

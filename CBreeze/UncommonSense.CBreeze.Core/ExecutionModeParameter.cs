@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ExecutionModeParameter : Parameter
     {
-        internal ExecutionModeParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public ExecutionModeParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
 

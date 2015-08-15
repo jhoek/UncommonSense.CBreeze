@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        internal TransactionTypeVariable(Int32 id, String name) : base(id, name)
+        public TransactionTypeVariable(Int32 id, String name) : base(id, name)
         {
         }
 

@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private Int32 subType;
         private Boolean? temporary;
 
-        internal RecordParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
+        public RecordParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
         }

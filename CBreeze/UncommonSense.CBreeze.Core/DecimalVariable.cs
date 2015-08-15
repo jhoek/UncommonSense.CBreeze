@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        internal DecimalVariable(Int32 id, String name) : base(id, name)
+        public DecimalVariable(Int32 id, String name) : base(id, name)
         {
         }
 

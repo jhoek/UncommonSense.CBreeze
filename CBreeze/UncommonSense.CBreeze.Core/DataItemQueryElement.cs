@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private DataItemQueryElementProperties properties = new DataItemQueryElementProperties();
 
-        internal DataItemQueryElement(Int32 id, String name, Int32? indentationLevel) : base(id, name, indentationLevel)
+        public DataItemQueryElement(Int32 id, String name, Int32? indentationLevel) : base(id, name, indentationLevel)
         {
         }
 

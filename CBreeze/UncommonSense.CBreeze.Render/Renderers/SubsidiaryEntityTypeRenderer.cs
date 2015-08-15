@@ -18,30 +18,30 @@ namespace UncommonSense.CBreeze.Render
             var nextControlID = 1000;
             var nextFieldNo = 1;
 
-            manifest.PageContentAreaControl = manifest.Page.Controls.AddContainerPageControl(nextControlID++, 0);
-            manifest.PageRepeaterControl = manifest.Page.Controls.AddGroupPageControl(nextControlID++, 1);
+            manifest.PageContentAreaControl = manifest.Page.Controls.Add(new ContainerPageControl(nextControlID++, 0));
+            manifest.PageRepeaterControl = manifest.Page.Controls.Add(new GroupPageControl(nextControlID++, 1));
 
             foreach (var subsidiaryToEntityType in entityType.SubsidiaryTo)
             {
                 if (subsidiaryToEntityType is MasterEntityType)
                 {
                     var masterEntityType = (subsidiaryToEntityType as MasterEntityType);
-                    var field = manifest.AddReferenceField(manifest.Table.Fields.AddCodeTableField(nextFieldNo++, string.Format("{0} No.", masterEntityType.Name), 20).AutoCaption(), masterEntityType);
-                    manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = field.Name.Quoted();
+                    var field = manifest.AddReferenceField(manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, string.Format("{0} No.", masterEntityType.Name), 20)).AutoCaption(), masterEntityType);
+                    manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = field.Name.Quoted();
                     manifest.PrimaryKey.Fields.Add(field.Name);
                 }
 
                 if (subsidiaryToEntityType is SupplementalEntityType)
                 {
                     var supplementalEntityType = (subsidiaryToEntityType as SupplementalEntityType);
-                    var field = manifest.AddReferenceField(manifest.Table.Fields.AddCodeTableField(nextFieldNo++, string.Format("{0} Code", supplementalEntityType.Name), 10).AutoCaption(), supplementalEntityType);
-                    manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = field.Name.Quoted();
+                    var field = manifest.AddReferenceField(manifest.Table.Fields.Add (new CodeTableField(nextFieldNo++, string.Format("{0} Code", supplementalEntityType.Name), 10)).AutoCaption(), supplementalEntityType);
+                    manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = field.Name.Quoted();
                     manifest.PrimaryKey.Fields.Add(field.Name);
                 }
             }
 
-            manifest.LineNoField = entityType.DifferentiatorType == DifferentiatorType.LineNo ? manifest.Table.Fields.AddIntegerTableField(nextFieldNo++, "Line No.").AutoCaption() : null;
-            manifest.CodeField = entityType.DifferentiatorType == DifferentiatorType.Code ? manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "Code", 10).AutoCaption() : null;
+            manifest.LineNoField = entityType.DifferentiatorType == DifferentiatorType.LineNo ? manifest.Table.Fields.Add(new IntegerTableField(nextFieldNo++, "Line No.")).AutoCaption() : null;
+            manifest.CodeField = entityType.DifferentiatorType == DifferentiatorType.Code ? manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "Code", 10)).AutoCaption() : null;
 
             return manifest;
         }

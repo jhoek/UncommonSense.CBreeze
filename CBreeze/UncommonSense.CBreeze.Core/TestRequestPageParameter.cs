@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private Int32 subType;
 
-        internal TestRequestPageParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
+        public TestRequestPageParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
         {
             this.subType = subType;
         }

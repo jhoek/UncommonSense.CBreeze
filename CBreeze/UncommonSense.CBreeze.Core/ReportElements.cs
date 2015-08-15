@@ -23,17 +23,9 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public ColumnReportElement AddColumnReportElement(Int32 id, Int32? indentationLevel)
+        public T Add<T>(T item) where T: ReportElement
         {
-            ColumnReportElement item = new ColumnReportElement(id, indentationLevel);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public DataItemReportElement AddDataItemReportElement(Int32 id, Int32? indentationLevel)
-        {
-            DataItemReportElement item = new DataItemReportElement(id, indentationLevel);
-            innerList.Add(id, item);
+            innerList.Add(item.ID, item);
             return item;
         }
 

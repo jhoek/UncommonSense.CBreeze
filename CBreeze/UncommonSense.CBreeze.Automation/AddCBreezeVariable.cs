@@ -104,14 +104,14 @@ namespace UncommonSense.CBreeze.Automation
                 switch (GetVariableType())
                 {
                     case VariableType.Option:
-                        var optionVariable = Variables.AddOptionVariable(ID, Name);
+                        var optionVariable = Variables.Add(new OptionVariable(ID, Name));
                         optionVariable.OptionString = OptionString;
                         optionVariable.Dimensions = Dimensions;
                         yield return optionVariable;
                         break;
 
                     case VariableType.Record:
-                        var recordVariable = Variables.AddRecordVariable(ID, Name, SubType);
+                        var recordVariable = Variables.Add(new RecordVariable(ID, Name, SubType));
                         recordVariable.Dimensions = Dimensions;
                         yield return recordVariable;
                         break;

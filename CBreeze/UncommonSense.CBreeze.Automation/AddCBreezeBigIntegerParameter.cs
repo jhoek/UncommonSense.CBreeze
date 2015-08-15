@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -13,7 +14,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var bigIntegerParameter = Parameters.AddBigIntegerParameter(Var, ID, Name);
+                var bigIntegerParameter = Parameters.Add(new BigIntegerParameter(Var, ID, Name));
                 bigIntegerParameter.Dimensions = Dimensions;
                 yield return bigIntegerParameter;
             }

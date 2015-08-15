@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Render
             manifest.Page = application.Pages.Add(renderingContext.GetNextPageID(), entityType.PluralName).AutoObjectProperties(renderingContext).AutoCaption();
 
             var nextFieldNo = 1;
-            manifest.EntryNoField = manifest.Table.Fields.AddIntegerTableField(nextFieldNo++, "Entry No.").AutoCaption();
-            manifest.MasterEntityTypeField = entityType.MasterEntityType != null ? manifest.Table.Fields.AddCodeTableField(nextFieldNo++, entityType.MasterEntityTypeFieldName(), 20).AutoCaption() : null;
-            manifest.DescriptionField = manifest.Table.Fields.AddTextTableField(nextFieldNo++, "Description", 50).AutoCaption();
-            manifest.PostingDateField = entityType.HasPostingDateField ? manifest.Table.Fields.AddDateTableField(nextFieldNo++, "Posting Date").AutoCaption() : null;
+            manifest.EntryNoField = manifest.Table.Fields.Add(new IntegerTableField(nextFieldNo++, "Entry No.")).AutoCaption();
+            manifest.MasterEntityTypeField = entityType.MasterEntityType != null ? manifest.Table.Fields.Add( new CodeTableField(nextFieldNo++, entityType.MasterEntityTypeFieldName(), 20)).AutoCaption() : null;
+            manifest.DescriptionField = manifest.Table.Fields.Add(new TextTableField(nextFieldNo++, "Description", 50)).AutoCaption();
+            manifest.PostingDateField = entityType.HasPostingDateField ? manifest.Table.Fields.Add(new DateTableField(nextFieldNo++, "Posting Date")).AutoCaption() : null;
 
             return manifest;
         }

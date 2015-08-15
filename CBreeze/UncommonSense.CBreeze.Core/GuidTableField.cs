@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private GuidTableFieldProperties properties = new GuidTableFieldProperties();
 
-        internal GuidTableField(Int32 no, String name) : base(no, name)
+        public GuidTableField(Int32 no, String name) : base(no, name)
         {
         }
 

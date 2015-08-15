@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private MenuSuiteDeltaNodeProperties properties = new MenuSuiteDeltaNodeProperties();
 
-        internal DeltaNode(Guid id) : base(id)
+        public DeltaNode(Guid id) : base(id)
         {
         }
 

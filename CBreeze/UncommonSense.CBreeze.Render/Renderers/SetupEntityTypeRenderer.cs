@@ -17,15 +17,15 @@ namespace UncommonSense.CBreeze.Render
 			manifest.Page = application.Pages.Add(renderingContext.GetNextPageID(), entityType.Name).AutoObjectProperties(renderingContext).AutoCaption();
             
 			var nextFieldNo = 1;
-			manifest.PrimaryKeyField = manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "Primary Key", 10).AutoCaption();
+			manifest.PrimaryKeyField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "Primary Key", 10)).AutoCaption();
 
 			var nextControlID = 1000;
-			manifest.PageContentAreaControl = manifest.Page.Controls.AddContainerPageControl(nextControlID++, 0);
-			manifest.PageGeneralGroupControl = manifest.Page.Controls.AddGroupPageControl(nextControlID++, 1);
+			manifest.PageContentAreaControl = manifest.Page.Controls.Add(new ContainerPageControl(nextControlID++, 0));
+			manifest.PageGeneralGroupControl = manifest.Page.Controls.Add(new GroupPageControl(nextControlID++, 1));
 
 			if (entityType.HasNoSeriesFields())
 			{
-				manifest.PageNumberingGroupControl = manifest.Page.Controls.AddGroupPageControl(nextControlID++, 1);
+				manifest.PageNumberingGroupControl = manifest.Page.Controls.Add(new GroupPageControl(nextControlID++, 1));
 
 				foreach (var masterEntityType in entityType.ApplicationDesign.OfType<MasterEntityType>())
 				{
@@ -83,11 +83,11 @@ namespace UncommonSense.CBreeze.Render
 
 		private static void AddNoSeriesField(string fieldName, ref int nextFieldNo, ref int nextControlID, SetupEntityTypeManifest manifest)
 		{
-			var field = manifest.Table.Fields.AddCodeTableField(nextFieldNo++, fieldName, 10);
+			var field = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, fieldName, 10));
 			field.Properties.CaptionML.Add("ENU", field.Name);
 			field.Properties.TableRelation.Add("No. Series");
 
-			manifest.Page.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = field.Name.Quoted();
+			manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = field.Name.Quoted();
 		}
 	}
 }

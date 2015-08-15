@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String optionString;
 
-        internal OptionParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public OptionParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
 

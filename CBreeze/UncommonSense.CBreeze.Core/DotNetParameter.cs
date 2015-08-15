@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private String subType;
         private Boolean? suppressDispose;
 
-        internal DotNetParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
+        public DotNetParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
         {
             this.subType = subType;
         }

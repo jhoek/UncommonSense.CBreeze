@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -28,7 +29,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 No = AutoAssignNo(No);
 
-                var field = Table.Fields.AddTextTableField(No, Name, DataLength);
+                var field = Table.Fields.Add(new TextTableField(No, Name, DataLength));
 
                 field.AutoCaptionIf(AutoCaption);
 

@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private BigIntegerTableFieldProperties properties = new BigIntegerTableFieldProperties();
 
-        internal BigIntegerTableField(Int32 no, String name) : base(no, name)
+        public BigIntegerTableField(Int32 no, String name) : base(no, name)
         {
         }
 

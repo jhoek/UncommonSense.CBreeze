@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String dimensions;
         private Boolean? includeInDataset;
 
-        internal BooleanVariable(Int32 id, String name) : base(id, name)
+        public BooleanVariable(Int32 id, String name) : base(id, name)
         {
         }
 

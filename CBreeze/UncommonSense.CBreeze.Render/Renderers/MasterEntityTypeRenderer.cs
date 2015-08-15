@@ -21,13 +21,13 @@ namespace UncommonSense.CBreeze.Render
 
             var nextFieldNo = 1;
 
-            manifest.NoField = manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "No.", 20).AutoCaption();
-            manifest.DescriptionField = manifest.Table.Fields.AddTextTableField(nextFieldNo++, entityType.DescriptionFieldName(), 50).AutoCaption();
-            manifest.Description2Field = entityType.HasDescription2Field ? manifest.Table.Fields.AddTextTableField(nextFieldNo++, entityType.Description2FieldName(), 50).AutoCaption() : null;
+            manifest.NoField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "No.", 20)).AutoCaption();
+            manifest.DescriptionField = manifest.Table.Fields.Add(new TextTableField(nextFieldNo++, entityType.DescriptionFieldName(), 50)).AutoCaption();
+            manifest.Description2Field = entityType.HasDescription2Field ? manifest.Table.Fields.Add(new TextTableField(nextFieldNo++, entityType.Description2FieldName(), 50)).AutoCaption() : null;
             manifest.SearchDescriptionField = entityType.HasSearchDescriptionField ? manifest.Table.AddSearchDescription(nextFieldNo++, manifest.NoField, manifest.DescriptionField) : null;
             manifest.LastDateModifiedField = entityType.HasLastDateModifiedField ? manifest.Table.AddLastDateModified(nextFieldNo++) : null;
-            manifest.DateFilterField = entityType.NeedsDateFilterField() ? manifest.Table.Fields.AddDateTableField(nextFieldNo++, "Date Filter").AutoCaption() : null;
-            manifest.NoSeriesField = manifest.Table.Fields.AddCodeTableField(nextFieldNo++, "No. Series", 10).AutoCaption();
+            manifest.DateFilterField = entityType.NeedsDateFilterField() ? manifest.Table.Fields.Add(new DateTableField(nextFieldNo++, "Date Filter")).AutoCaption() : null;
+            manifest.NoSeriesField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "No. Series", 10)).AutoCaption();
 
             return manifest;
         }
@@ -60,8 +60,8 @@ namespace UncommonSense.CBreeze.Render
             manifest.NoSeriesField.Properties.TableRelation.Add("No. Series");
 
             var onValidate = manifest.NoField.Properties.OnValidate;
-            var setupRecordVariable = onValidate.Variables.AddRecordVariable(1000, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID);
-            var noSeriesMgtCodeunitVariable = onValidate.Variables.AddCodeunitVariable(1001, "NoSeriesMgt", 396);
+            var setupRecordVariable = onValidate.Variables.Add(new RecordVariable(1000, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID));
+            var noSeriesMgtCodeunitVariable = onValidate.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
             onValidate.CodeLines.Add(string.Format("IF {0} <> xRec.{0} THEN BEGIN", manifest.NoField.Name.Quoted()));
             onValidate.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
             onValidate.CodeLines.Add(string.Format("  {0}.TestManual({1}.\"{2} Nos.\");", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, entityType.Name));
@@ -82,10 +82,10 @@ namespace UncommonSense.CBreeze.Render
             var assistEdit = manifest.Table.Code.Functions.Add(nextFunctionID++, "AssistEdit");
             var variableName = entityType.Name.MakeVariableName();
             var parameterName = string.Format("Old{0}", variableName);
-            var parameter = assistEdit.Parameters.AddRecordParameter(false, 1000, parameterName, manifest.Table.ID);
-            assistEdit.Variables.AddRecordVariable(1001, variableName, manifest.Table.ID);
-            setupRecordVariable = assistEdit.Variables.AddRecordVariable(1002, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID);
-            noSeriesMgtCodeunitVariable = assistEdit.Variables.AddCodeunitVariable(1003, "NoSeriesMgt", 396);
+            var parameter = assistEdit.Parameters.Add(new RecordParameter(false, 1000, parameterName, manifest.Table.ID));
+            assistEdit.Variables.Add(new RecordVariable(1001, variableName, manifest.Table.ID));
+            setupRecordVariable = assistEdit.Variables.Add(new RecordVariable(1002, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID));
+            noSeriesMgtCodeunitVariable = assistEdit.Variables.Add(new CodeunitVariable(1003, "NoSeriesMgt", 396));
             assistEdit.ReturnValue.Type = FunctionReturnValueType.Boolean;
             assistEdit.CodeLines.Add(string.Format("WITH {0} DO BEGIN", variableName));
             assistEdit.CodeLines.Add(string.Format("  {0} := Rec;", variableName));
@@ -106,8 +106,8 @@ namespace UncommonSense.CBreeze.Render
             manifest.Table.Properties.DrillDownPageID = manifest.ListPage.ID;
 
             var onInsert = manifest.Table.Properties.OnInsert;
-            setupRecordVariable = onInsert.Variables.AddRecordVariable(1000, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID);
-            noSeriesMgtCodeunitVariable = onInsert.Variables.AddCodeunitVariable(1001, "NoSeriesMgt", 396);
+            setupRecordVariable = onInsert.Variables.Add(new RecordVariable(1000, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID));
+            noSeriesMgtCodeunitVariable = onInsert.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
             onInsert.CodeLines.Add(string.Format("IF {0} = '' THEN BEGIN", manifest.NoField.Name.Quoted()));
             onInsert.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
             onInsert.CodeLines.Add(string.Format("  {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, entityType.Name));
@@ -124,37 +124,37 @@ namespace UncommonSense.CBreeze.Render
 
             // FIXME: AddActions(masterEntityType, manifest, renderingContext, ref nextControlID, manifest.CardPage.Properties.ActionList);
 
-            manifest.CardPage.Controls.AddContainerPageControl(nextControlID++, null).Properties.ContainerType = ContainerType.ContentArea;
-            manifest.CardPage.Controls.AddGroupPageControl(nextControlID++, 1).Properties.CaptionML.Add("ENU", "General");
+            manifest.CardPage.Controls.Add(new ContainerPageControl(nextControlID++, null)).Properties.ContainerType = ContainerType.ContentArea;
+            manifest.CardPage.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.CaptionML.Add("ENU", "General");
 
-            var noControl = manifest.CardPage.Controls.AddFieldPageControl(nextControlID++, 2);
+            var noControl = manifest.CardPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
             noControl.Properties.SourceExpr = manifest.NoField.Name.Quoted();
             noControl.Properties.Importance = Importance.Promoted;
             noControl.Properties.OnAssistEdit.CodeLines.Add("IF AssistEdit(xRec) THEN");
             noControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
 
-            manifest.CardPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.DescriptionField.Name.Quoted();
+            manifest.CardPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.DescriptionField.Name.Quoted();
 
             if (entityType.HasDescription2Field)
             {
-                manifest.CardPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.Description2Field.Name.Quoted();
+                manifest.CardPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.Description2Field.Name.Quoted();
             }
 
             if (entityType.HasSearchDescriptionField)
             {
-                manifest.CardPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.SearchDescriptionField.Name.Quoted();
+                manifest.CardPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.SearchDescriptionField.Name.Quoted();
             }
 
-            manifest.CardPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.LastDateModifiedField.Name.Quoted();
+            manifest.CardPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.LastDateModifiedField.Name.Quoted();
 
-            manifest.CardPage.Controls.AddContainerPageControl(nextControlID++, null).Properties.ContainerType = ContainerType.FactBoxArea;
+            manifest.CardPage.Controls.Add(new ContainerPageControl(nextControlID++, null)).Properties.ContainerType = ContainerType.FactBoxArea;
 
-            var recordLinksPart = manifest.CardPage.Controls.AddPartPageControl(nextControlID++, 1);
+            var recordLinksPart = manifest.CardPage.Controls.Add(new PartPageControl(nextControlID++, 1));
             recordLinksPart.Properties.Visible = false.ToString();
             recordLinksPart.Properties.PartType = PartType.System;
             recordLinksPart.Properties.SystemPartID = SystemPartID.RecordLinks;
 
-            var notesPart = manifest.CardPage.Controls.AddPartPageControl(nextControlID++, 1);
+            var notesPart = manifest.CardPage.Controls.Add(new PartPageControl(nextControlID++, 1));
             notesPart.Properties.Visible = false.ToString();
             notesPart.Properties.PartType = PartType.System;
             notesPart.Properties.SystemPartID = SystemPartID.Notes;
@@ -170,10 +170,10 @@ namespace UncommonSense.CBreeze.Render
 
             AddActions(entityType, manifest, renderingContext, ref nextControlID, manifest.ListPage.Properties.ActionList);
 
-            manifest.ListPage.Controls.AddContainerPageControl(nextControlID++, 0).Properties.ContainerType = ContainerType.ContentArea;
-            manifest.ListPage.Controls.AddGroupPageControl(nextControlID++, 1).Properties.GroupType = GroupType.Repeater;
-            manifest.ListPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.NoField.Name.Quoted();
-            manifest.ListPage.Controls.AddFieldPageControl(nextControlID++, 2).Properties.SourceExpr = manifest.DescriptionField.Name.Quoted();
+            manifest.ListPage.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.ContentArea;
+            manifest.ListPage.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.GroupType = GroupType.Repeater;
+            manifest.ListPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.NoField.Name.Quoted();
+            manifest.ListPage.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = manifest.DescriptionField.Name.Quoted();
         }
 
         private static void FinalizeStatisticsPage(MasterEntityType entityType, RenderingContext renderingContext, MasterEntityTypeManifest manifest)
@@ -187,14 +187,14 @@ namespace UncommonSense.CBreeze.Render
             // FIXME: Generate actions for statistics page (if any)
 
 
-            actionList.AddPageActionContainer(nextControlID++, null).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
-            actionList.AddPageActionGroup(nextControlID++, 1).Properties.CaptionML.Add("ENU", masterEntityType.Name);
+            actionList.Add(new PageActionContainer(nextControlID++, null)).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
+            actionList.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Add("ENU", masterEntityType.Name);
 
             foreach (var keyValuePair in renderingContext.Manifests.OfType<KeyValuePair<LedgerEntityType, LedgerEntityTypeManifest>>())
             {
                 if (keyValuePair.Key.MasterEntityType == masterEntityType)
                 {
-                    var action = actionList.AddPageAction(nextControlID++, 2);
+                    var action = actionList.Add(new PageAction(nextControlID++, 2));
                     action.Properties.CaptionML.Add("ENU", keyValuePair.Key.PluralName);
                     action.Properties.ShortCutKey = "Ctrl+F7";
                     action.Properties.RunObject.Type = RunObjectType.Page;
@@ -209,7 +209,7 @@ namespace UncommonSense.CBreeze.Render
 
             if (masterEntityType.HasStatisticsPage)
             {
-                var action = actionList.AddPageAction(nextControlID++, 2);
+                var action = actionList.Add(new PageAction(nextControlID++, 2));
                 action.Properties.CaptionML.Add("ENU", "Statistics");
                 action.Properties.ShortCutKey = "F7";
                 action.Properties.RunObject.Type = RunObjectType.Page;

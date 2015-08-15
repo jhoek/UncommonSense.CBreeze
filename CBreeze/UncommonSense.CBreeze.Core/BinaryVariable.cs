@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private Int32 dataLength;
         private String dimensions;
 
-        internal BinaryVariable(Int32 id, String name, Int32 dataLength = 100) : base(id, name)
+        public BinaryVariable(Int32 id, String name, Int32 dataLength = 100) : base(id, name)
         {
             this.dataLength = dataLength;
         }

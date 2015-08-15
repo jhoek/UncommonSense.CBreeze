@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class KeyRefParameter : Parameter
     {
-        internal KeyRefParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public KeyRefParameter(Boolean var, Int32 id, String name) : base(var, id, name)
         {
         }
 

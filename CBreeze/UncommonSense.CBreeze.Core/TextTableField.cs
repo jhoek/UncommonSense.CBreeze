@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private Int32 dataLength;
         private TextTableFieldProperties properties = new TextTableFieldProperties();
 
-        internal TextTableField(Int32 no, String name, Int32 dataLength = 30) : base(no, name)
+        public TextTableField(Int32 no, String name, Int32 dataLength = 30) : base(no, name)
         {
             this.dataLength = dataLength;
         }

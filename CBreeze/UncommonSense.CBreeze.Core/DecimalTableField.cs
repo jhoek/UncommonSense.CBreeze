@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private DecimalTableFieldProperties properties = new DecimalTableFieldProperties();
 
-        internal DecimalTableField(Int32 no, String name) : base(no, name)
+        public DecimalTableField(Int32 no, String name) : base(no, name)
         {
         }
 

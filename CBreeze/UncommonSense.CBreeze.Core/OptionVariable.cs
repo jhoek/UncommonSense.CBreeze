@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String dimensions;
         private String optionString;
 
-        internal OptionVariable(Int32 id, String name) : base(id, name)
+        public OptionVariable(Int32 id, String name) : base(id, name)
         {
         }
 

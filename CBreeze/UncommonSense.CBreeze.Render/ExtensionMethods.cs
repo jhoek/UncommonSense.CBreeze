@@ -101,7 +101,7 @@ namespace UncommonSense.CBreeze.Render
 
         internal static CodeTableField AddSearchDescription(this Table table, int fieldNo, CodeTableField noField, TextTableField descriptionField)
         {
-            var searchDescriptionField = table.Fields.AddCodeTableField(fieldNo, string.Format("Search {0}", descriptionField.Name), descriptionField.DataLength).AutoCaption();
+            var searchDescriptionField = table.Fields.Add(new CodeTableField(fieldNo, string.Format("Search {0}", descriptionField.Name), descriptionField.DataLength)).AutoCaption();
             
             descriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", searchDescriptionField.Name.Quoted(), descriptionField.Name.Quoted());
             descriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", searchDescriptionField.Name.Quoted(), descriptionField.Name.Quoted());
@@ -111,7 +111,7 @@ namespace UncommonSense.CBreeze.Render
 
         internal static DateTableField AddLastDateModified(this Table table, int fieldNo)
         {
-            var lastDateModifiedField = table.Fields.AddDateTableField(fieldNo, "Last Date Modified").AutoCaption();
+            var lastDateModifiedField = table.Fields.Add(new DateTableField(fieldNo, "Last Date Modified")).AutoCaption();
             lastDateModifiedField.Properties.Editable = false;
 
             table.Properties.OnModify.CodeLines.Add("{0} := TODAY;", lastDateModifiedField.Name.Quoted());

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -15,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 ID = AutoAssignID(ID);
 
-                var decimalParameter = Parameters.AddDecimalParameter(Var, ID, Name);
+                var decimalParameter = Parameters.Add(new DecimalParameter(Var, ID, Name));
                 decimalParameter.Dimensions = Dimensions;
                 yield return decimalParameter;
             }

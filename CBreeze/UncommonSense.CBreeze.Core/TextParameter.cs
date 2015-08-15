@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private Int32? dataLength;
 
-        internal TextParameter(Boolean var, Int32 id, String name, Int32? dataLength = null) : base(var, id, name)
+        public TextParameter(Boolean var, Int32 id, String name, Int32? dataLength = null) : base(var, id, name)
         {
             this.dataLength = dataLength;
         }
