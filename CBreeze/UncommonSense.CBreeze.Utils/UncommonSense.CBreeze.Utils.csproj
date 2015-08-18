@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAddressFieldsExtensionMethods.cs" />
+    <Compile Include="AddAddressFieldsManifest.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
