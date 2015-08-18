@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Model;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Render
 {

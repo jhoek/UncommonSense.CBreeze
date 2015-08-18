@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -173,7 +174,8 @@ namespace UncommonSense.CBreeze.Automation
                 xmlport.Properties.UseRequestPage = UseRequestPage;
                 xmlport.Properties.XmlVersionNo = XmlVersionNo;
 
-                xmlport.AutoCaptionIf(AutoCaption);
+                if (AutoCaption)
+                    xmlport.AutoCaption();
 
                 yield return xmlport;
             }

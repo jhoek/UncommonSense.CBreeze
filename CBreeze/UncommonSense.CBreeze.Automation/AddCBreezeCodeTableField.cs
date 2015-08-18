@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -97,7 +98,8 @@ namespace UncommonSense.CBreeze.Automation
 
                 field.Properties.NotBlank = NotBlank;
 
-                field.AutoCaptionIf(AutoCaption);
+                if (AutoCaption)
+                    field.AutoCaption();
 
                 yield return field;
             }

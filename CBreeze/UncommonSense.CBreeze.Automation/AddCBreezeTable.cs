@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -85,7 +86,8 @@ namespace UncommonSense.CBreeze.Automation
                 table.Properties.LinkedObject = LinkedObject;
                 table.Properties.PasteIsValid = PasteIsValid;
 
-                table.AutoCaptionIf(AutoCaption);
+                if (AutoCaption)
+                    table.AutoCaption();
 
                 yield return table;
             }

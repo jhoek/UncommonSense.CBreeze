@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -45,7 +46,8 @@ namespace UncommonSense.CBreeze.Automation
                 query.Properties.ReadState = ReadState;
                 query.Properties.TopNumberOfRows = TopNumberOfRows;
 
-                query.AutoCaptionIf(AutoCaption);
+                if (AutoCaption)
+                    query.AutoCaption();
 
                 yield return query;
             }

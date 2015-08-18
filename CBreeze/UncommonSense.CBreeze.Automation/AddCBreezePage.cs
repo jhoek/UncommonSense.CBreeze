@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -173,7 +174,8 @@ namespace UncommonSense.CBreeze.Automation
                 page.Properties.SourceTable = SourceTable;
                 page.Properties.SourceTableTemporary = SourceTableTemporary;
 
-                page.AutoCaptionIf(AutoCaption);
+                if (AutoCaption)
+                    page.AutoCaption();
 
                 yield return page;
             }

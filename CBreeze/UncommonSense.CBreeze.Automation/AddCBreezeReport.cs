@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -117,7 +118,8 @@ namespace UncommonSense.CBreeze.Automation
                 report.Properties.UseRequestPage = UseRequestPage;
                 report.Properties.UseSystemPrinter = UseSystemPrinter;
 
-                report.AutoCaptionIf(AutoCaption);
+                if (AutoCaption)
+                    report.AutoCaption();
 
                 yield return report;
             }

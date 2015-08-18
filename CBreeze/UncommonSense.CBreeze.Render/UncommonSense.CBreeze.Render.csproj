@@ -84,6 +84,10 @@
       <Project>{8f8349dc-f535-4a3b-9875-5d610b729d0c}</Project>
       <Name>UncommonSense.CBreeze.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Utils\UncommonSense.CBreeze.Utils.csproj">
+      <Project>{8cdab257-683a-4ad2-a266-3c0ef538628c}</Project>
+      <Name>UncommonSense.CBreeze.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
       <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
       <Name>UncommonSense.CBreeze.Write</Name>
