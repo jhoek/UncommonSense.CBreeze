@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class PageControls : IEnumerable<PageControl>
     {
-        private Dictionary<Int32,PageControl> innerList = new Dictionary<Int32,PageControl>();
+        private List<PageControl> innerList = new List<PageControl>();
 
         internal PageControls()
         {
@@ -25,23 +25,23 @@ namespace UncommonSense.CBreeze.Core
 
         public T Add<T>(T item) where T: PageControl
         {
-            innerList.Add(item.ID, item);
+            innerList.Add(item);
             return item;
         }
 
-        public bool Remove(Int32 id)
+        public void RemoveAt(int index)
         {
-            return innerList.Remove(id);
+            innerList.RemoveAt(index);
         }
 
         public IEnumerator<PageControl> GetEnumerator()
         {
-            return innerList.Values.GetEnumerator();
+            return innerList.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return innerList.Values.GetEnumerator();
+            return innerList.GetEnumerator();
         }
     }
 }
