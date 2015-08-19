@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Utils
 {
     public static class AddAddressFieldsExtensionMethods
     {
-        public static AddAddressFieldsManifest AddAddressFields(Table table, Page page = null, string prefix = null, int fieldNoOffset = 0)
+        public static AddAddressFieldsManifest AddAddressFields(Table table, string prefix = null, int fieldNoOffset = 0)
         {
             var manifest = new AddAddressFieldsManifest();
 
@@ -21,18 +21,35 @@ namespace UncommonSense.CBreeze.Utils
             manifest.CountyField = table.Fields.Add(new TextTableField(fieldNoOffset++, string.Format("{0}County", prefix), 30).AutoCaption());
             manifest.CountryRegionCodeField = table.Fields.Add(new CodeTableField(fieldNoOffset++, string.Format("{0}Country/Region Code", prefix), 10).AutoCaption());
 
+            // TestTableRelation/ValidateTableRelation
             manifest.PostCodeField.Properties.TestTableRelation = false;
             manifest.PostCodeField.Properties.ValidateTableRelation = false;
+            manifest.CityField.Properties.TestTableRelation = false;
+            manifest.CityField.Properties.ValidateTableRelation = false;
 
-            var variable = manifest.PostCodeField.Properties.OnValidate.Variables.Add(new RecordVariable(1000, "PostCode", 225));
+            // Variables in OnValidate
+            const string variableName = "PostCode";
+            manifest.PostCodeField.Properties.OnValidate.Variables.Add(new RecordVariable(1000, variableName, 225));
+            manifest.CityField.Properties.OnValidate.Variables.Add(new RecordVariable(1000, variableName, 225));
+
+            // Codelines in OnValidate
             manifest.PostCodeField.Properties.OnValidate.CodeLines.Add(
                 "{0}.ValidatePostCode({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);", 
-                variable.Name, 
-                manifest.CityField.Name.Quoted(), 
-                manifest.PostCodeField.Name.Quoted(),
-                manifest.CountyField.Name.Quoted(), 
-                manifest.CountryRegionCodeField.Name.Quoted()); 
-            
+                variableName, 
+                manifest.CityField.Name.QuotedVariableName(), 
+                manifest.PostCodeField.Name.QuotedVariableName(),
+                manifest.CountyField.Name.QuotedVariableName(), 
+                manifest.CountryRegionCodeField.Name.QuotedVariableName());
+
+            manifest.CityField.Properties.OnValidate.CodeLines.Add(
+                "{0}.ValidateCity({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);",
+                variableName,
+                manifest.CityField.Name.QuotedVariableName(),
+                manifest.PostCodeField.Name.QuotedVariableName(),
+                manifest.CountyField.Name.QuotedVariableName(),
+                manifest.CountryRegionCodeField.Name.QuotedVariableName());
+
+            // Table relations
             var tableRelation = manifest.PostCodeField.Properties.TableRelation.Add("Post Code");
             tableRelation.FieldName = "Code";
             tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Const, "''");
@@ -42,15 +59,16 @@ namespace UncommonSense.CBreeze.Utils
             tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Filter, "<>''");
             tableRelation.TableFilter.Add("Country/Region Code", TableRelationTableFilterLineType.Field, manifest.CountryRegionCodeField.Name);
 
+            tableRelation = manifest.CityField.Properties.TableRelation.Add("Post Code");
+            tableRelation.FieldName = "City";
+            tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Const, "''");
 
+            tableRelation = manifest.CityField.Properties.TableRelation.Add("Post Code");
+            tableRelation.FieldName = "City";
+            tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Filter, "<>''");
+            tableRelation.TableFilter.Add("Country/Region Code", TableRelationTableFilterLineType.Field, manifest.CountryRegionCodeField.Name);
 
-            manifest.CityField.Properties.TestTableRelation = false;
-            manifest.CityField.Properties.ValidateTableRelation = false;
-
-            if (page != null)
-            {
-
-            }
+            manifest.CountryRegionCodeField.Properties.TableRelation.Add("Country/Region");
 
             return manifest;
         }
