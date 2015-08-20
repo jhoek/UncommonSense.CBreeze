@@ -9,6 +9,8 @@ namespace UncommonSense.CBreeze.Write
 {
     public static class PropertyWriter
     {
+        private static CultureInfo[] cultures;
+
         public static void Write(this Property property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
         {
             if (style == PropertiesStyle.Object)
@@ -350,7 +352,7 @@ namespace UncommonSense.CBreeze.Write
                 writer.Write("[");
             writer.Indent(writer.Column);
 
-            foreach (var multiLanguageEntry in property.Value)
+            foreach (var multiLanguageEntry in property.Value.OrderBy(e=>GetLCIDFromLanguageCode(e.LanguageID)))
             {
                 var requiresQuotes = (
                     multiLanguageEntry.Value != multiLanguageEntry.Value.Trim() || 
@@ -681,6 +683,14 @@ namespace UncommonSense.CBreeze.Write
             }
 
             writer.Unindent();
+        }
+
+        private static int GetLCIDFromLanguageCode(string languageCode)
+        {
+            if (cultures == null) 
+                cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+
+            return cultures.FirstOrDefault(c => c.ThreeLetterWindowsLanguageName == languageCode).LCID;
         }
     }
 }
