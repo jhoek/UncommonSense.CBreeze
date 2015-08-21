@@ -14,8 +14,8 @@ namespace UncommonSense.CBreeze.Render
         {
             var manifest = new DocumentHistoryEntityTypeManifest();
 
-            manifest.HeaderTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.HeaderName).AutoCaption();
-            manifest.LineTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.LineName).AutoCaption();
+            manifest.HeaderTable = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.HeaderName)).AutoCaption();
+            manifest.LineTable = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.LineName)).AutoCaption();
 
             return manifest;
         }

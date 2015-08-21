@@ -15,10 +15,10 @@ namespace UncommonSense.CBreeze.Render
         {
             var manifest = new MasterEntityTypeManifest();
 
-            manifest.Table = application.Tables.Add(renderingContext.GetNextTableID(), entityType.Name).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.CardPage = application.Pages.Add(renderingContext.GetNextPageID(), string.Format("{0} Card", entityType.Name)).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.ListPage = application.Pages.Add(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.Name)).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.StatisticsPage = entityType.HasStatisticsPage ? application.Pages.Add(renderingContext.GetNextPageID(), string.Format("{0} Statistics", entityType.Name)).AutoObjectProperties(renderingContext).AutoCaption() : null;
+            manifest.Table = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.Name)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.CardPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} Card", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.ListPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.StatisticsPage = entityType.HasStatisticsPage ? application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} Statistics", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption() : null;
 
             var nextFieldNo = 1;
 

@@ -15,33 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class XmlPortNodes : IEnumerable<XmlPortNode>
+    public class XmlPortNodes : GuidKeyedContainer<XmlPortNode>
     {
-        private Dictionary<Guid,XmlPortNode> innerList = new Dictionary<Guid,XmlPortNode>();
-
         internal XmlPortNodes()
         {
-        }
-
-        public T Add<T>(T item) where T: XmlPortNode
-        {
-            innerList.Add(item.ID, item);
-            return item;
-        }
-
-        public bool Remove(Guid id)
-        {
-            return innerList.Remove(id);
-        }
-
-        public IEnumerator<XmlPortNode> GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
         }
     }
 }

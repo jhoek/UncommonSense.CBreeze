@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class Parameters : IEnumerable<Parameter>
+    public class Parameters : IntegerKeyedAndNamedContainer<Parameter>
     {
-        private Dictionary<Int32,Parameter> innerList = new Dictionary<Int32,Parameter>();
-
         internal Parameters()
+            : base(Validators.NameRequiredAndUnique)
         {
-        }
-
-        public T Add<T>(T item) where T: Parameter
-        {
-            innerList.Add(item.ID, item);
-            return item;
-        }
-
-        public bool Remove(Int32 id)
-        {
-            return innerList.Remove(id);
-        }
-
-        public IEnumerator<Parameter> GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
         }
     }
 }

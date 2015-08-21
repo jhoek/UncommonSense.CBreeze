@@ -687,6 +687,9 @@ namespace UncommonSense.CBreeze.Write
 
         private static int GetLCIDFromLanguageCode(string languageCode)
         {
+            if (languageCode == "@@@")
+                return 0;
+
             if (cultures == null) 
                 cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
 

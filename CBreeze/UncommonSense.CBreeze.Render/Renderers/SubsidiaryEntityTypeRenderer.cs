@@ -11,8 +11,8 @@ namespace UncommonSense.CBreeze.Render
         internal static SubsidiaryEntityTypeManifest Allocate(this SubsidiaryEntityType entityType, RenderingContext renderingContext, Application application)
         {
             var manifest = new SubsidiaryEntityTypeManifest();
-            manifest.Table = application.Tables.Add(renderingContext.GetNextTableID(), entityType.Name).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.Page = application.Pages.Add(renderingContext.GetNextPageID(), entityType.PluralName).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.Table = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.Name)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.Page = application.Pages.Add(new Page(renderingContext.GetNextPageID(), entityType.PluralName)).AutoObjectProperties(renderingContext).AutoCaption();
 
             manifest.PrimaryKey = manifest.Table.Keys.Add();
 

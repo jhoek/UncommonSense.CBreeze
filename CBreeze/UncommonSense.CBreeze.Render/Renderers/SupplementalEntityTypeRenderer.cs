@@ -14,8 +14,8 @@ namespace UncommonSense.CBreeze.Render
         internal static SupplementalEntityTypeManifest Allocate(this SupplementalEntityType entityType, RenderingContext renderingContext, Application application)
         {
             var manifest = new SupplementalEntityTypeManifest();
-            manifest.Table = application.Tables.Add(renderingContext.GetNextTableID(), entityType.Name).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.Page = application.Pages.Add(renderingContext.GetNextPageID(), entityType.PluralName).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.Table = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.Name)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.Page = application.Pages.Add(new Page(renderingContext.GetNextPageID(), entityType.PluralName)).AutoObjectProperties(renderingContext).AutoCaption();
 
             var nextFieldNo = 1;
             manifest.CodeField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "Code", 10)).AutoCaption();

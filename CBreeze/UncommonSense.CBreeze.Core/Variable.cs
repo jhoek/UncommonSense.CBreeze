@@ -15,15 +15,12 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class Variable
+    public abstract partial class Variable : KeyedAndNamedItem<int>
     {
-        private Int32 id;
-        private String name;
-
         internal Variable(Int32 id, String name)
         {
-            this.id = id;
-            this.name = name;
+            ID = id;
+            Name = name;
         }
 
         public abstract VariableType Type
@@ -31,21 +28,15 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public Int32 ID
-        {
-            get
-            {
-                return this.id;
-            }
-        }
-
         public String Name
         {
-            get
-            {
-                return this.name;
-            }
+            get;
+            protected set;
         }
 
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }

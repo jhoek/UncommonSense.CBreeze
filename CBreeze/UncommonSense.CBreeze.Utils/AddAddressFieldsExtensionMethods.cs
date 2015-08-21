@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Utils
         {
             var manifest = new AddAddressFieldsManifest();
 
-            fieldNoOffset = fieldNoOffset == 0 ? table.Fields.Max(f=>f.No) + 1 : fieldNoOffset;
+            fieldNoOffset = fieldNoOffset == 0 ? table.Fields.Max(f=>f.ID) + 1 : fieldNoOffset;
 
             manifest.AddressField = table.Fields.Add(new TextTableField(fieldNoOffset++, string.Format("{0}Address", prefix), 50).AutoCaption());
             manifest.Address2Field = table.Fields.Add(new TextTableField(fieldNoOffset++, string.Format("{0}Address 2", prefix), 50).AutoCaption());

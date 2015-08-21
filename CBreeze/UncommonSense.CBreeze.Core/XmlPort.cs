@@ -22,7 +22,8 @@ namespace UncommonSense.CBreeze.Core
         private XmlPortProperties properties = new XmlPortProperties();
         private XmlPortRequestPage requestPage = new XmlPortRequestPage();
 
-        internal XmlPort(Int32 id, String name) : base(id, name)
+        public XmlPort(Int32 id, String name)
+            : base(id, name)
         {
         }
 

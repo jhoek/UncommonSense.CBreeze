@@ -20,7 +20,8 @@ namespace UncommonSense.CBreeze.Core
         private CodeunitProperties properties = new CodeunitProperties();
         private Code code = new Code();
 
-        internal Codeunit(Int32 id, String name) : base(id, name)
+        public Codeunit(Int32 id, String name)
+            : base(id, name)
         {
         }
 

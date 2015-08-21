@@ -12,14 +12,20 @@ namespace UncommonSense.CBreeze.Samples
     {
         static void Main(string[] args)
         {
-            // CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
-            CBreezeReaderDemo(@"c:\users\jhoek\desktop\input.txt", @"c:\users\jhoek\desktop\output.txt");
+            // CBreezeCoreDemo();
+            CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
+            CBreezeReaderDemo(@"c:\users\jhoek\desktop\sample.txt", @"c:\users\jhoek\desktop\sample.txt");
         }
 
         static void CBreezeCoreDemo()
         {
             var application = new Application();
-            var table = application.Tables.Add(50000, "My Demo Table");
+            application.Tables.Add(new Table(50000, "My Demo Table"));
+            application.Tables.Add(new Table(0, "Oink"));
+            application.Tables.Add(new Table(0, "Foo"));
+
+
+            var table = application.Tables.FirstOrDefault(t=>t.Name.Contains("Demo"));
 
             var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
             codeField.Properties.NotBlank = true;
@@ -34,8 +40,21 @@ namespace UncommonSense.CBreeze.Samples
         static void CBreezeWriteDemo(string outputFileName)
         {
             var application = new Application();
-            
-            // ... add objects to your application here ...
+            var table = application.Tables.Add(new Table(50000, "Demo"));
+            table.ObjectProperties.DateTime = DateTime.Now;
+            table.ObjectProperties.Modified = true;
+
+            table.Properties.PasteIsValid = true;
+            table.Properties.Permissions.Add(50000, true, false, false, false);
+            table.Properties.OnInsert.Variables.Add(new IntegerVariable(1000, "Foo"));
+            table.Properties.OnInsert.Variables.Add(new RecordVariable(0, "Baz", 18));
+
+            table.Fields.Add(new CodeTableField(1, "Primary Key")).Properties.NotBlank = true;
+            table.Fields.Add(new TextTableField(0, "Description"));
+
+            var xmlport = application.XmlPorts.Add(new XmlPort(50000, "Demo"));
+            xmlport.Nodes.Add(new XmlPortTextElement(Guid.Empty, "Foo", 0));
+            xmlport.Nodes.Add(new XmlPortTextElement(Guid.Empty, "Baz", 1));
 
             application.Write(outputFileName);
         }
@@ -46,9 +65,16 @@ namespace UncommonSense.CBreeze.Samples
 
             foreach (var table in application.Tables)
             {
-                // No ENU caption present? Add it!
                 if (!table.Properties.CaptionML.Any(e => e.LanguageID == "ENU"))
                     table.Properties.CaptionML.Add("ENU", table.Name);
+
+                foreach (var field in table.Fields)
+                {
+                    var captionML = field.GetPropertyByName("CaptionML") as MultiLanguageProperty;
+
+                    if (!captionML.Value.Any(e => e.LanguageID == "ENU"))
+                        captionML.Value.Add("ENU", field.Name);
+                }
             }
 
             application.Write(outputFileName);

@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Automation
             if (!Table.Fields.Any())
                 return 1;
 
-            return Table.Fields.Max(f => f.No) + 1;
+            return Table.Fields.Max(f => f.ID) + 1;
         }
     }
 }

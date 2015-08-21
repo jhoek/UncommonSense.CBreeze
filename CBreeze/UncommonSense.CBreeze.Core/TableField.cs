@@ -15,16 +15,14 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class TableField
+    public abstract partial class TableField : KeyedAndNamedItem<int>
     {
-        private Int32 no;
-        private String name;
         private Boolean? enabled;
 
-        internal TableField(Int32 no, String name)
+        internal TableField(Int32 id, String name)
         {
-            this.name = name;
-            this.no = no;
+            ID = id;
+            Name = name;
         }
 
         public abstract TableFieldType Type
@@ -32,20 +30,10 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public Int32 No
-        {
-            get
-            {
-                return this.no;
-            }
-        }
-
         public String Name
         {
-            get
-            {
-                return this.name;
-            }
+            get;
+            set;
         }
 
         public Boolean? Enabled
@@ -60,5 +48,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }

@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class PageControls : IEnumerable<PageControl>
+    public class PageControls : IntegerKeyedAndNamedContainer<PageControl>
     {
-        private List<PageControl> innerList = new List<PageControl>();
-
         internal PageControls()
+            : base(Validators.NameOptionalAndUnique<int, PageControl>)
         {
-        }
-
-        public T Add<T>(T item) where T: PageControl
-        {
-            innerList.Add(item);
-            return item;
-        }
-
-        public void RemoveAt(int index)
-        {
-            innerList.RemoveAt(index);
-        }
-
-        public IEnumerator<PageControl> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
         }
     }
 }

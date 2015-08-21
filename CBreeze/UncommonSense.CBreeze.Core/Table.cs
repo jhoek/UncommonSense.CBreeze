@@ -23,7 +23,8 @@ namespace UncommonSense.CBreeze.Core
         private TableKeys keys = new TableKeys();
         private Code code = new Code();
 
-        internal Table(Int32 id, String name) : base(id, name)
+        public Table(Int32 id, String name)
+            : base(id, name)
         {
         }
 

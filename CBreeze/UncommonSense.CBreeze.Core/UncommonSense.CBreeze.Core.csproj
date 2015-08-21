@@ -197,6 +197,7 @@
     <Compile Include="GroupPageControlProperties.cs" />
     <Compile Include="GroupType.cs" />
     <Compile Include="GroupTypeProperty.cs" />
+    <Compile Include="GuidKeyedContainer.cs" />
     <Compile Include="GuidParameter.cs" />
     <Compile Include="GuidTableField.cs" />
     <Compile Include="GuidTableFieldProperties.cs" />
@@ -205,11 +206,16 @@
     <Compile Include="ImportanceProperty.cs" />
     <Compile Include="InStreamParameter.cs" />
     <Compile Include="InStreamVariable.cs" />
+    <Compile Include="IntegerKeyedAndNamedContainer.cs" />
     <Compile Include="IntegerParameter.cs" />
     <Compile Include="IntegerTableField.cs" />
     <Compile Include="IntegerTableFieldProperties.cs" />
     <Compile Include="IntegerVariable.cs" />
     <Compile Include="ItemNode.cs" />
+    <Compile Include="KeyedAndNamedContainer.cs" />
+    <Compile Include="KeyedAndNamedItem.cs" />
+    <Compile Include="KeyedContainer.cs" />
+    <Compile Include="KeyedItem.cs" />
     <Compile Include="KeyRefParameter.cs" />
     <Compile Include="KeyRefVariable.cs" />
     <Compile Include="LinkField.cs" />
@@ -434,6 +440,7 @@
     <Compile Include="Trigger.cs" />
     <Compile Include="TriggerProperty.cs" />
     <Compile Include="UncommonSense.CBreeze.Core.Partials.cs" />
+    <Compile Include="Validators.cs" />
     <Compile Include="Variable.cs" />
     <Compile Include="Variables.cs" />
     <Compile Include="VariableType.cs" />

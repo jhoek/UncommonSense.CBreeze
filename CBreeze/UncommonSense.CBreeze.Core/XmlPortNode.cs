@@ -15,15 +15,14 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class XmlPortNode
+    public abstract partial class XmlPortNode : KeyedItem<Guid>
     {
-        private Guid id;
         private String nodeName;
         private Int32? indentationLevel;
 
         internal XmlPortNode(Guid id, String nodeName, Int32? indentationLevel)
         {
-            this.id = id;
+            ID = id;
             this.indentationLevel = indentationLevel;
             this.nodeName = nodeName;
         }
@@ -31,14 +30,6 @@ namespace UncommonSense.CBreeze.Core
         public abstract XmlPortNodeType Type
         {
             get;
-        }
-
-        public Guid ID
-        {
-            get
-            {
-                return this.id;
-            }
         }
 
         public String NodeName
@@ -56,6 +47,5 @@ namespace UncommonSense.CBreeze.Core
                 return this.indentationLevel;
             }
         }
-
     }
 }

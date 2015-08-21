@@ -148,7 +148,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var page = Application.Pages.Add(ID, Name);
+                var page = Application.Pages.Add(new Page(ID, Name));
 
                 page.ObjectProperties.DateTime = DateTime;
                 page.ObjectProperties.Modified = Modified;

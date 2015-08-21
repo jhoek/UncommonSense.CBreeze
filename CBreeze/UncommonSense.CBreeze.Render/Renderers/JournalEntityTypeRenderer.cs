@@ -15,15 +15,15 @@ namespace UncommonSense.CBreeze.Render
         {
             var manifest = new JournalEntityTypeManifest();
 
-            manifest.TemplateTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.TemplateName).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.BatchTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.BatchName).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.LineTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.LineName).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.TemplatesPage = application.Pages.Add(renderingContext.GetNextPageID(), entityType.TemplatePluralName).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.TemplateListPage = application.Pages.Add(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.TemplateName)).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.BatchesPage = application.Pages.Add(renderingContext.GetNextPageID(), entityType.BatchPluralName).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.JournalPage = application.Pages.Add(renderingContext.GetNextPageID(), entityType.BaseName).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.RecurringJournalPage = application.Pages.Add(renderingContext.GetNextPageID(), string.Format("Recurring {0}", entityType.BaseName)).AutoObjectProperties(renderingContext).AutoCaption();
-            manifest.JournalMgtCodeunit = application.Codeunits.Add(renderingContext.GetNextCodeunitID(), string.Format("{0} Mgt", entityType.BaseName)).AutoObjectProperties(renderingContext);
+            manifest.TemplateTable = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.TemplateName)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.BatchTable = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.BatchName)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.LineTable = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.LineName)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.TemplatesPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), entityType.TemplatePluralName)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.TemplateListPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.TemplateName))).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.BatchesPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), entityType.BatchPluralName)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.JournalPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), entityType.BaseName)).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.RecurringJournalPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("Recurring {0}", entityType.BaseName))).AutoObjectProperties(renderingContext).AutoCaption();
+            manifest.JournalMgtCodeunit = application.Codeunits.Add(new Codeunit(renderingContext.GetNextCodeunitID(), string.Format("{0} Mgt", entityType.BaseName))).AutoObjectProperties(renderingContext);
 
             var nextFieldNo = 1;
             var nextGlobalUID = 1000;

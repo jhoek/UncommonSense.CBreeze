@@ -39,5 +39,9 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public override string GetName()
+        {
+            return null;    
+        }
     }
 }

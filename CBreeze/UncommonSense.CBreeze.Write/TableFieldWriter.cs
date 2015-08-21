@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Write
         {
             var debt = 0;
 
-            var fieldNo = BuildFieldPart(field.No.ToString(), 4, ref debt);
+            var fieldNo = BuildFieldPart(field.ID.ToString(), 4, ref debt);
             var fieldEnabled = BuildFieldPart(field.Enabled.AsString(), 3, ref debt);
             var fieldName = BuildFieldPart(field.Name, 20, ref debt);
             var fieldTypeName = BuildFieldPart(field.TypeName(), 14, ref debt);

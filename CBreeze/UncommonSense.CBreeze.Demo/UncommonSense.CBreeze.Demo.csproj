@@ -67,9 +67,4 @@
       <Name>UncommonSense.CBreeze.Write</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="soll.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 </Project>

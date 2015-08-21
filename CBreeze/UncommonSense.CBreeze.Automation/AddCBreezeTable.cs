@@ -71,7 +71,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var table = Application.Tables.Add(ID, Name);
+                var table = Application.Tables.Add(new Table(ID, Name));
 
                 table.ObjectProperties.DateTime = DateTime;
                 table.ObjectProperties.Modified = Modified;

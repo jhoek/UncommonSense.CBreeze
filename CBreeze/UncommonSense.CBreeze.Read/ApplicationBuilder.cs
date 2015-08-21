@@ -68,7 +68,7 @@ namespace UncommonSense.CBreeze.Read
             switch (objectType)
             {
                 case UncommonSense.Nav.Parser.ObjectType.Table:
-                    var newTable = application.Tables.Add(objectID, objectName);
+                    var newTable = application.Tables.Add(new Table(objectID, objectName));
 
                     //currentObjectLevelProperties = newTable.Properties;
                     currentProperties.Push(newTable.Properties);
@@ -80,7 +80,7 @@ namespace UncommonSense.CBreeze.Read
                     currentObject = newTable;
                     break;
                 case UncommonSense.Nav.Parser.ObjectType.Page:
-                    var newPage = application.Pages.Add(objectID, objectName);
+                    var newPage = application.Pages.Add(new Page(objectID, objectName));
                     // currentObjectLevelProperties = newPage.Properties;
                     currentProperties.Push(newPage.Properties);
                     currentPageControls = newPage.Controls;
@@ -99,14 +99,14 @@ namespace UncommonSense.CBreeze.Read
                     currentObject = newReport;
                     break;
                 case UncommonSense.Nav.Parser.ObjectType.Codeunit:
-                    var newCodeunit = application.Codeunits.Add(objectID, objectName);
+                    var newCodeunit = application.Codeunits.Add(new Codeunit(objectID, objectName));
                     currentProperties.Push(newCodeunit.Properties);
                     //currentObjectLevelProperties = newCodeunit.Properties;
                     currentCode = newCodeunit.Code;
                     currentObject = newCodeunit;
                     break;
                 case UncommonSense.Nav.Parser.ObjectType.XmlPort:
-                    var newXmlPort = application.XmlPorts.Add(objectID, objectName);
+                    var newXmlPort = application.XmlPorts.Add(new XmlPort(objectID, objectName));
                     currentProperties.Push(newXmlPort.Properties);
                     currentXmlPortRequestPage = newXmlPort.RequestPage;
                     currentCode = newXmlPort.Code;

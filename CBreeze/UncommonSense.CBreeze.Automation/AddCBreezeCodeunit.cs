@@ -49,7 +49,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var codeunit = Application.Codeunits.Add(ID, Name);
+                var codeunit = Application.Codeunits.Add(new Codeunit(ID, Name));
 
                 codeunit.ObjectProperties.DateTime = DateTime;
                 codeunit.ObjectProperties.Modified = Modified;

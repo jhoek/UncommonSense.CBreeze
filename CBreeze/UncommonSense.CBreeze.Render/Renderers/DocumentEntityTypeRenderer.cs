@@ -14,8 +14,8 @@ namespace UncommonSense.CBreeze.Render
 		{
             var manifest = new DocumentEntityTypeManifest();
 
-			manifest.HeaderTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.HeaderName).AutoObjectProperties(renderingContext).AutoCaption();
-			manifest.LineTable = application.Tables.Add(renderingContext.GetNextTableID(), entityType.LineName).AutoObjectProperties(renderingContext).AutoCaption();
+			manifest.HeaderTable = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.HeaderName)).AutoObjectProperties(renderingContext).AutoCaption();
+			manifest.LineTable = application.Tables.Add(new Table(renderingContext.GetNextTableID(), entityType.LineName)).AutoObjectProperties(renderingContext).AutoCaption();
 
 			var nextFieldNo = 1;
 			manifest.HeaderTableDocumentTypeField = !string.IsNullOrEmpty(entityType.DocumentTypeOptions) ? manifest.HeaderTable.Fields.Add(new OptionTableField(nextFieldNo++, "Document Type")).AutoCaption() : null;

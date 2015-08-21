@@ -15,16 +15,15 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class Parameter
+    public abstract partial class Parameter : KeyedAndNamedItem<int>
     {
         private Boolean var;
         private String dimensions;
-        private Int32 id;
         private String name;
 
         internal Parameter(Boolean var, Int32 id, String name)
         {
-            this.id = id;
+            ID = id;
             this.name = name;
             this.var = var;
         }
@@ -54,14 +53,6 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 ID
-        {
-            get
-            {
-                return this.id;
-            }
-        }
-
         public String Name
         {
             get
@@ -70,5 +61,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }

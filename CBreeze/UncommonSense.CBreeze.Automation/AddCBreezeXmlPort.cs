@@ -148,7 +148,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var xmlport = Application.XmlPorts.Add(ID, Name);
+                var xmlport = Application.XmlPorts.Add(new XmlPort(ID, Name));
 
                 xmlport.ObjectProperties.DateTime = DateTime;
                 xmlport.ObjectProperties.Modified = Modified;
