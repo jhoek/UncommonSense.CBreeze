@@ -18,8 +18,12 @@ namespace UncommonSense.CBreeze.Core
     public class ActionList : IntegerKeyedAndNamedContainer<PageActionBase>
     {
         internal ActionList()
-            : base(Validators.NameOptionalAndUnique)
         {
+        }
+
+        public override void ValidateName(PageActionBase item)
+        {
+            TestNameUnique(item);
         }
     }
 }

@@ -18,8 +18,13 @@ namespace UncommonSense.CBreeze.Core
     public class TableFields : IntegerKeyedAndNamedContainer<TableField>
     {
         internal TableFields()
-            : base(Validators.NameRequiredAndUnique<int, TableField>)
         {
+        }
+
+        public override void ValidateName(TableField item)
+        {
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
         }
     }
 }

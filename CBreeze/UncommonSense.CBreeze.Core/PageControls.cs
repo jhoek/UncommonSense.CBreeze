@@ -18,8 +18,12 @@ namespace UncommonSense.CBreeze.Core
     public class PageControls : IntegerKeyedAndNamedContainer<PageControl>
     {
         internal PageControls()
-            : base(Validators.NameOptionalAndUnique<int, PageControl>)
         {
+        }
+
+        public override void ValidateName(PageControl item)
+        {
+            TestNameUnique(item);
         }
     }
 }

@@ -18,8 +18,13 @@ namespace UncommonSense.CBreeze.Core
     public class Codeunits : IntegerKeyedAndNamedContainer<Codeunit>
     {
         internal Codeunits()
-            : base(Validators.NameRequiredAndUnique<int, Codeunit>)
         {
+        }
+
+        public override void ValidateName(Codeunit item)
+        {
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
         }
     }
 }

@@ -18,8 +18,13 @@ namespace UncommonSense.CBreeze.Core
     public class Pages : IntegerKeyedAndNamedContainer<Page>
     {
         internal Pages()
-            : base(Validators.NameRequiredAndUnique<int, Page>)
         {
+        }
+
+        public override void ValidateName(Page item)
+        {
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
         }
     }
 }

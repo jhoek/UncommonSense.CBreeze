@@ -7,11 +7,6 @@ namespace UncommonSense.CBreeze.Core
 {
     public abstract class IntegerKeyedAndNamedContainer<TItem> : KeyedAndNamedContainer<int, TItem> where TItem : KeyedAndNamedItem<int>
     {
-        public IntegerKeyedAndNamedContainer(NameValidator<int, TItem> nameValidator)
-            : base(nameValidator)
-        {
-        }
-
         protected override bool IsUninitializedKey(int key)
         {
             return key == 0;

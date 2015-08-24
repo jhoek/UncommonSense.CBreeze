@@ -18,8 +18,13 @@ namespace UncommonSense.CBreeze.Core
     public class Parameters : IntegerKeyedAndNamedContainer<Parameter>
     {
         internal Parameters()
-            : base(Validators.NameRequiredAndUnique)
         {
+        }
+
+        public override void ValidateName(Parameter item)
+        {
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
         }
     }
 }

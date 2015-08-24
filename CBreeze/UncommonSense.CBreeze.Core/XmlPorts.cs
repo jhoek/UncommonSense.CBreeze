@@ -18,8 +18,12 @@ namespace UncommonSense.CBreeze.Core
     public class XmlPorts : IntegerKeyedAndNamedContainer<XmlPort>
     {
         internal XmlPorts()
-            : base(Validators.NameRequiredAndUnique<int, XmlPort>)
         {
+        }
+
+        public override void ValidateName(XmlPort item)
+        {
+            
         }
     }
 }

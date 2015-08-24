@@ -18,8 +18,12 @@ namespace UncommonSense.CBreeze.Core
     public class Variables : IntegerKeyedAndNamedContainer<Variable>
     {
         internal Variables()
-            : base(Validators.NameRequiredAndUnique<int, Variable>)
         {
+        }
+
+        public override void ValidateName(Variable item)
+        {
+            TestNameNotNullOrEmpty(item);
         }
     }
 }

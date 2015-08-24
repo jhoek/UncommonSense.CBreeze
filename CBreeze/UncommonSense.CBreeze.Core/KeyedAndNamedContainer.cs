@@ -6,22 +6,13 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public delegate void NameValidator<TKey, TItem>(TItem item, KeyedAndNamedContainer<TKey, TItem> container)
-        where TItem : KeyedAndNamedItem<TKey>
-        where TKey : struct;
-
     public abstract class KeyedAndNamedContainer<TKey, TItem> : KeyedContainer<TKey, TItem>
         where TItem : KeyedAndNamedItem<TKey>
         where TKey : struct
     {
-        public KeyedAndNamedContainer(NameValidator<TKey, TItem> nameValidator)
-        {
-            NameValidator = nameValidator;
-        }
-
         protected override void InsertItem(int index, TItem item)
         {
-            NameValidator(item, this);
+            ValidateName(item);
             base.InsertItem(index, item);
         }
 
@@ -33,10 +24,21 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public NameValidator<TKey, TItem> NameValidator
+        public abstract void ValidateName(TItem item);
+
+        protected void TestNameNotNullOrEmpty(TItem item)
         {
-            get;
-            protected set;
+            if (string.IsNullOrEmpty(item.GetName()))
+                throw new ArgumentOutOfRangeException("Collection items must have a name.");
+        }
+
+        protected void TestNameUnique(TItem item)
+        {
+            if (item.GetName() != null)
+            {
+                if (this.Any(i=>i.GetName() == item.GetName()))
+                    throw new ArgumentOutOfRangeException("Collection item names must be unique.");
+            }
         }
     }
 }
