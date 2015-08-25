@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public abstract class KeyedAndNamedItem<T> : KeyedItem<T>
+    public abstract class KeyedAndNamedItem<T> : KeyedItem<T> where T : struct
     {
-        // This supports both elements that have a name property (e.g. table fields),
+        // This supports both elements that have a Name property (e.g. table fields),
         // and elements whose names are stored in their Properties (e.g. page controls).
-        // FIXME: Currently not tested: what if somebody changes a page control's name
-        // to something that already exists within the same PageControls collection?
+
+        // FIXME: What if somebody later changes a page control's name to something that 
+        // already exists within the same PageControls collection?
 
         public abstract string GetName();
     }

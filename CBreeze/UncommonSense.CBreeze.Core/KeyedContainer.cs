@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Core
 {
+    /// <summary>
+    /// Abstract container for keyed items
+    /// </summary>
+    /// <typeparam name="TKey">The type of key, typically int or Guid. Needs to be a struct.</typeparam>
+    /// <typeparam name="TItem">The type of item. Needs to derive from KeyedItem.</typeparam>
     public abstract class KeyedContainer<TKey, TItem> : KeyedCollection<TKey, TItem>
         where TItem : KeyedItem<TKey>
         where TKey : struct

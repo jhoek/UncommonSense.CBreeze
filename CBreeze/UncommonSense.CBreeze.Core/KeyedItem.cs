@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public abstract class KeyedItem<TKey>
+    /// <summary>
+    /// Abstract base class for keyed items.
+    /// </summary>
+    /// <typeparam name="TKey">Type of key. Needs to be a struct.</typeparam>
+    public abstract class KeyedItem<TKey> where TKey : struct
     {
         public TKey ID
         {
