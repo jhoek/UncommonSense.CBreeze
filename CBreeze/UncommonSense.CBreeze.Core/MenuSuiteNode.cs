@@ -15,27 +15,16 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class MenuSuiteNode
+    public abstract partial class MenuSuiteNode : KeyedAndNamedItem<Guid>
     {
-        private Guid id;
-
         internal MenuSuiteNode(Guid id)
         {
-            this.id = id;
+            ID = id;
         }
 
         public abstract MenuSuiteNodeType Type
         {
             get;
         }
-
-        public Guid ID
-        {
-            get
-            {
-                return this.id;
-            }
-        }
-
     }
 }

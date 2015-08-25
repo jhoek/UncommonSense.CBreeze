@@ -34,9 +34,9 @@ namespace UncommonSense.CBreeze.Core
 
         protected void TestNameUnique(TItem item)
         {
-            if (item.GetName() != null)
+            if (!string.IsNullOrEmpty(item.GetName()))
             {
-                if (this.Any(i=>i.GetName() == item.GetName()))
+                if (this.Any(i => i.GetName() == item.GetName()))
                     throw new ArgumentOutOfRangeException("Collection item names must be unique.");
             }
         }

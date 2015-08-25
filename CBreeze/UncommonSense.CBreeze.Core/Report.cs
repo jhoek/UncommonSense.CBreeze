@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
         private RdlData rdlData = new RdlData();
         private ReportRequestPage requestPage = new ReportRequestPage();
 
-        internal Report(Int32 id, String name) : base(id, name)
+        public Report(Int32 id, String name) : base(id, name)
         {
         }
 

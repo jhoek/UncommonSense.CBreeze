@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private MenuSuiteProperties properties = new MenuSuiteProperties();
         private MenuSuiteNodes nodes = new MenuSuiteNodes();
 
-        internal MenuSuite(Int32 id, String name) : base(id, name)
+        public MenuSuite(Int32 id, String name) : base(id, name)
         {
         }
 

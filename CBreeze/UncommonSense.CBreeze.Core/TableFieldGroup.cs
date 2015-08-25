@@ -15,25 +15,16 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class TableFieldGroup
+    public partial class TableFieldGroup : KeyedAndNamedItem<int>
     {
-        private Int32 id;
         private String name;
         private FieldList fields = new FieldList();
         private TableFieldGroupProperties properties = new TableFieldGroupProperties();
 
-        internal TableFieldGroup(Int32 id, String name)
+        public TableFieldGroup(Int32 id, String name)
         {
-            this.id = id;
+            ID = id;
             this.name = name;
-        }
-
-        public Int32 ID
-        {
-            get
-            {
-                return this.id;
-            }
         }
 
         public String Name
@@ -60,5 +51,9 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }

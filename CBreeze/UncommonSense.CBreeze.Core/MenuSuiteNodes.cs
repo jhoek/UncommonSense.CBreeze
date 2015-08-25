@@ -15,33 +15,19 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class MenuSuiteNodes : IEnumerable<MenuSuiteNode>
+    public class MenuSuiteNodes : GuidKeyedContainer<MenuSuiteNode>
     {
-        private Dictionary<Guid,MenuSuiteNode> innerList = new Dictionary<Guid,MenuSuiteNode>();
-
         internal MenuSuiteNodes()
         {
         }
 
-        public T Add<T>(T item) where T: MenuSuiteNode
+        protected override void InitializeKey(MenuSuiteNode item)
         {
-            innerList.Add(item.ID, item);
-            return item;
-        }
+            // Do not auto-assign Guids to root nodes; they should be Guid.Empty
+            if (item is RootNode)
+                return;
 
-        public bool Remove(Guid id)
-        {
-            return innerList.Remove(id);
-        }
-
-        public IEnumerator<MenuSuiteNode> GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
+            base.InitializeKey(item);
         }
     }
 }

@@ -15,24 +15,15 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ReportLabel
+    public partial class ReportLabel : KeyedAndNamedItem<int>
     {
-        private Int32 id;
         private String name;
         private ReportLabelProperties properties = new ReportLabelProperties();
 
-        internal ReportLabel(Int32 id, String name)
+        public ReportLabel(Int32 id, String name)
         {
-            this.id = id;
+            ID = id;
             this.name = name;
-        }
-
-        public Int32 ID
-        {
-            get
-            {
-                return this.id;
-            }
         }
 
         public String Name
@@ -51,5 +42,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }

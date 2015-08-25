@@ -23,10 +23,26 @@ namespace UncommonSense.CBreeze.Core
             return item;
         }
 
-        protected override void InsertItem(int index, TItem item)
+        public new TItem Insert(int index, TItem item)
+        {
+            this.InsertItem(index, item);
+            return item;
+        }
+
+        public T Insert<T>(int index, T item) where T : TItem
+        {
+            this.InsertItem(index, item);
+            return item;
+        }
+
+        protected virtual void InitializeKey(TItem item)
         {
             item.ID = IsUninitializedKey(item.ID) ? GetNextAvailableKey() : item.ID;
+        }
 
+        protected override void InsertItem(int index, TItem item)
+        {
+            InitializeKey(item);    
             base.InsertItem(index, item);
         }
 

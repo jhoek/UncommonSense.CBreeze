@@ -15,29 +15,20 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class ReportElement
+    public abstract partial class ReportElement : KeyedAndNamedItem<int>
     {
-        private Int32 id;
         private Int32? indentationLevel;
         private String name;
 
-        internal ReportElement(Int32 id, Int32? indentationLevel)
+        public ReportElement(Int32 id, Int32? indentationLevel)
         {
-            this.id = id;
+            ID = id;
             this.indentationLevel = indentationLevel;
         }
 
         public abstract ReportElementType Type
         {
             get;
-        }
-
-        public Int32 ID
-        {
-            get
-            {
-                return this.id;
-            }
         }
 
         public Int32? IndentationLevel
@@ -60,5 +51,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }

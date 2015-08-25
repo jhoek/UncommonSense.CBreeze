@@ -15,34 +15,16 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ReportLabels : IEnumerable<ReportLabel>
+    public class ReportLabels : IntegerKeyedAndNamedContainer<ReportLabel>
     {
-        private Dictionary<Int32,ReportLabel> innerList = new Dictionary<Int32,ReportLabel>();
-
         internal ReportLabels()
         {
         }
 
-        public ReportLabel Add(Int32 id, String name)
+        public override void ValidateName(ReportLabel item)
         {
-            ReportLabel item = new ReportLabel(id, name);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public bool Remove(Int32 id)
-        {
-            return innerList.Remove(id);
-        }
-
-        public IEnumerator<ReportLabel> GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
         }
     }
 }

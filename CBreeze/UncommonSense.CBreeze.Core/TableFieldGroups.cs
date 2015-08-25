@@ -15,34 +15,15 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TableFieldGroups : IEnumerable<TableFieldGroup>
+    public class TableFieldGroups : IntegerKeyedAndNamedContainer<TableFieldGroup>
     {
-        private Dictionary<Int32,TableFieldGroup> innerList = new Dictionary<Int32,TableFieldGroup>();
-
         internal TableFieldGroups()
         {
         }
 
-        public TableFieldGroup Add(Int32 id, String name)
+        public override void ValidateName(TableFieldGroup item)
         {
-            TableFieldGroup item = new TableFieldGroup(id, name);
-            innerList.Add(id, item);
-            return item;
-        }
-
-        public bool Remove(Int32 id)
-        {
-            return innerList.Remove(id);
-        }
-
-        public IEnumerator<TableFieldGroup> GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.Values.GetEnumerator();
+            TestNameUnique(item);
         }
     }
 }

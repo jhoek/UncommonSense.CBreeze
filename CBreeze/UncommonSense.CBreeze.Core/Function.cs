@@ -15,9 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Function
+    public partial class Function : KeyedAndNamedItem<int>
     {
-        private Int32 id;
         private String name;
         private CodeLines codeLines = new CodeLines();
         private Parameters parameters = new Parameters();
@@ -25,18 +24,10 @@ namespace UncommonSense.CBreeze.Core
         private FunctionReturnValue returnValue = new FunctionReturnValue();
         private Variables variables = new Variables();
 
-        internal Function(Int32 id, String name)
+        public Function(Int32 id, String name)
         {
-            this.id = id;
+            ID = id;
             this.name = name;
-        }
-
-        public Int32 ID
-        {
-            get
-            {
-                return this.id;
-            }
         }
 
         public String Name
@@ -87,5 +78,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }

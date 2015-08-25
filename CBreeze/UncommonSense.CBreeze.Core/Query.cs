@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private QueryElements elements = new QueryElements();
         private QueryProperties properties = new QueryProperties();
 
-        internal Query(Int32 id, String name) : base(id, name)
+        public Query(Int32 id, String name) : base(id, name)
         {
         }
 
