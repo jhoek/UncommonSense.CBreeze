@@ -15,15 +15,14 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class QueryElement
+    public abstract partial class QueryElement : KeyedAndNamedItem<int>
     {
-        private Int32 id;
         private String name;
         private Int32? indentationLevel;
 
-        internal QueryElement(Int32 id, String name, Int32? indentationLevel)
+        public QueryElement(Int32 id, String name, Int32? indentationLevel)
         {
-            this.id = id;
+            ID = id;
             this.indentationLevel = indentationLevel;
             this.name = name;
         }
@@ -31,14 +30,6 @@ namespace UncommonSense.CBreeze.Core
         public abstract QueryElementType Type
         {
             get;
-        }
-
-        public Int32 ID
-        {
-            get
-            {
-                return this.id;
-            }
         }
 
         public String Name
@@ -57,5 +48,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public override string GetName()
+        {
+            return Name;
+        }
     }
 }
