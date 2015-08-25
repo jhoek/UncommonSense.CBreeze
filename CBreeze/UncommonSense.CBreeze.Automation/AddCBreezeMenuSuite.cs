@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -13,7 +14,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var menuSuite = Application.MenuSuites.Add(ID, Name);
+                var menuSuite = Application.MenuSuites.Add(new MenuSuite(ID, Name));
 
                 menuSuite.ObjectProperties.DateTime = DateTime;
                 menuSuite.ObjectProperties.Modified = Modified;

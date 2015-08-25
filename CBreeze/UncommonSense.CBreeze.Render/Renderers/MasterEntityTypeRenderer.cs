@@ -76,11 +76,11 @@ namespace UncommonSense.CBreeze.Render
             var secundaryKey = manifest.Table.Keys.Add();
             secundaryKey.Fields.Add(manifest.SearchDescriptionField.Name);
 
-            manifest.Table.FieldGroups.Add(1, "DropDown").Fields.AddRange(manifest.NoField.Name, manifest.DescriptionField.Name);
+            manifest.Table.FieldGroups.Add(new TableFieldGroup(1, "DropDown")).Fields.AddRange(manifest.NoField.Name, manifest.DescriptionField.Name);
 
             var nextFunctionID = 1;
 
-            var assistEdit = manifest.Table.Code.Functions.Add(nextFunctionID++, "AssistEdit");
+            var assistEdit = manifest.Table.Code.Functions.Add(new Function(nextFunctionID++, "AssistEdit"));
             var variableName = entityType.Name.MakeVariableName();
             var parameterName = string.Format("Old{0}", variableName);
             var parameter = assistEdit.Parameters.Add(new RecordParameter(false, 1000, parameterName, manifest.Table.ID));

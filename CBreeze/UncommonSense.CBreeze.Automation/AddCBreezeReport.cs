@@ -99,7 +99,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var report = Application.Reports.Add(ID, Name);
+                var report = Application.Reports.Add(new Report(ID, Name));
 
                 report.ObjectProperties.DateTime = DateTime;
                 report.ObjectProperties.Modified = Modified;

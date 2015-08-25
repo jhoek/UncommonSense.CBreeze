@@ -108,7 +108,7 @@ namespace UncommonSense.CBreeze.Automation
                     }
                 }
 
-                var function = Functions.Add(ID, Name);
+                var function = Functions.Add(new Function(ID, Name));
                 function.Properties.Local = Local;
                 function.Properties.FunctionType = FunctionType;
                 function.Properties.HandlerFunctions = HandlerFunctions;

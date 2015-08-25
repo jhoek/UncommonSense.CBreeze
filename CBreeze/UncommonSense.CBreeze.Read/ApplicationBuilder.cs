@@ -89,7 +89,7 @@ namespace UncommonSense.CBreeze.Read
                     currentObject = newPage;
                     break;
                 case UncommonSense.Nav.Parser.ObjectType.Report:
-                    var newReport = application.Reports.Add(objectID, objectName);
+                    var newReport = application.Reports.Add(new Report(objectID, objectName));
                     currentProperties.Push(newReport.Properties);
                     currentReportElements = newReport.Elements;
                     currentReportLabels = newReport.Labels;
@@ -114,13 +114,13 @@ namespace UncommonSense.CBreeze.Read
                     currentObject = newXmlPort;
                     break;
                 case UncommonSense.Nav.Parser.ObjectType.MenuSuite:
-                    var newMenuSuite = application.MenuSuites.Add(objectID, objectName);
+                    var newMenuSuite = application.MenuSuites.Add(new MenuSuite(objectID, objectName));
                     currentProperties.Push(newMenuSuite.Properties);
                     currentMenuSuiteNodes = newMenuSuite.Nodes;
                     currentObject = newMenuSuite;
                     break;
                 case UncommonSense.Nav.Parser.ObjectType.Query:
-                    var newQuery = application.Queries.Add(objectID, objectName);
+                    var newQuery = application.Queries.Add(new Query(objectID, objectName));
                     // currentObjectLevelProperties = newQuery.Properties;
                     currentProperties.Push(newQuery.Properties);
                     currentQueryElements = newQuery.Elements;
@@ -420,7 +420,7 @@ namespace UncommonSense.CBreeze.Read
 
         public void OnBeginTableFieldGroup(int fieldGroupID, string fieldGroupName, string[] fieldGroupFields)
         {
-            currentTableFieldGroup = (currentObject as Table).FieldGroups.Add(fieldGroupID, fieldGroupName);
+            currentTableFieldGroup = (currentObject as Table).FieldGroups.Add(new TableFieldGroup(fieldGroupID, fieldGroupName));
             currentTableFieldGroup.Fields.AddRange(fieldGroupFields);
             currentProperties.Push(currentTableFieldGroup.Properties);
         }
@@ -433,7 +433,7 @@ namespace UncommonSense.CBreeze.Read
 
         public void OnBeginFunction(int functionID, string functionName, bool functionLocal, string functionAttributes)
         {
-            currentFunction = currentCode.Functions.Add(functionID, functionName);
+            currentFunction = currentCode.Functions.Add(new Function(functionID, functionName));
             currentFunction.Properties.Local = functionLocal;
             // FIXME: Process functionAttributes
         }
@@ -1088,13 +1088,15 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case UncommonSense.Nav.Parser.ReportElementType.DataItem:
-                    var newDataItemElement = currentReportElements.Add(new DataItemReportElement(elementID, elementIndentation));
+                    var newDataItemElement = new DataItemReportElement(elementID, elementIndentation);
                     newDataItemElement.Name = elementName;
+                    currentReportElements.Add(newDataItemElement);
                     currentProperties.Push(newDataItemElement.Properties);
                     break;
                 case UncommonSense.Nav.Parser.ReportElementType.Column:
-                    var newColumnElement = currentReportElements.Add(new ColumnReportElement(elementID, elementIndentation));
+                    var newColumnElement = new ColumnReportElement(elementID, elementIndentation);
                     newColumnElement.Name = elementName;
+                    currentReportElements.Add(newColumnElement);
                     currentProperties.Push(newColumnElement.Properties);
                     break;
             }
@@ -1130,7 +1132,7 @@ namespace UncommonSense.CBreeze.Read
 
         public void OnBeginReportLabel(int labelID, string labelName)
         {
-            var newReportLabel = currentReportLabels.Add(labelID, labelName);
+            var newReportLabel = currentReportLabels.Add(new ReportLabel(labelID, labelName));
             currentProperties.Push(newReportLabel.Properties);
         }
 

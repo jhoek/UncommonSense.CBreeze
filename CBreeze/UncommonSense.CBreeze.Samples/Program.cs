@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
@@ -12,7 +13,7 @@ namespace UncommonSense.CBreeze.Samples
     {
         static void Main(string[] args)
         {
-            // CBreezeCoreDemo();
+            CBreezeCoreDemo();
             CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
             CBreezeReaderDemo(@"c:\users\jhoek\desktop\sample.txt", @"c:\users\jhoek\desktop\sample.txt");
         }
@@ -24,8 +25,7 @@ namespace UncommonSense.CBreeze.Samples
             application.Tables.Add(new Table(0, "Oink"));
             application.Tables.Add(new Table(0, "Foo"));
 
-
-            var table = application.Tables.FirstOrDefault(t=>t.Name.Contains("Demo"));
+            var table = application.Tables["Oink"];
 
             var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
             codeField.Properties.NotBlank = true;
@@ -51,6 +51,12 @@ namespace UncommonSense.CBreeze.Samples
 
             table.Fields.Add(new CodeTableField(1, "Primary Key")).Properties.NotBlank = true;
             table.Fields.Add(new TextTableField(0, "Description"));
+
+            var page = application.Pages.Add(new Page(50000, "Demo"));
+            page.Controls.Add(new ContainerPageControl(0, 0)).Properties.ContainerType = ContainerType.ContentArea;
+            page.Controls.Add(new GroupPageControl(0, 1)).Properties.GroupType = GroupType.Group;
+            page.Controls.Add(new FieldPageControl(0, 2)).Properties.SourceExpr = "Foo";
+            page.Controls.Insert(2, new FieldPageControl(0, 2)).Properties.SourceExpr = "First";
 
             var xmlport = application.XmlPorts.Add(new XmlPort(50000, "Demo"));
             xmlport.Nodes.Add(new XmlPortTextElement(Guid.Empty, "Foo", 0));

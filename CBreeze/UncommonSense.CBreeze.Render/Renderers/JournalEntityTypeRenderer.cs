@@ -55,7 +55,7 @@ namespace UncommonSense.CBreeze.Render
             manifest.BatchTablePostingNoSeriesField = manifest.BatchTable.Fields.Add(new CodeTableField(nextFieldNo++, "Posting No. Series", 10)).AutoCaption();
             manifest.BatchTableRecurringField = manifest.BatchTable.Fields.Add(new BooleanTableField(nextFieldNo++, "Recurring")).AutoCaption();
             manifest.BatchTableText000 = manifest.BatchTable.Code.Variables.Add(new TextConstant(nextGlobalUID++, "Text000"));
-            manifest.BatchTableSetupNewBatchFunction = manifest.BatchTable.Code.Functions.Add(nextFunctionID++, "SetupNewBatch");
+            manifest.BatchTableSetupNewBatchFunction = manifest.BatchTable.Code.Functions.Add(new Function(nextFunctionID++, "SetupNewBatch"));
 
             nextFieldNo = 1;
             manifest.LineTableJournalTemplateNameField = manifest.LineTable.Fields.Add(new CodeTableField(nextFieldNo++, "Journal Template Name", 10)).AutoCaption();
@@ -69,14 +69,14 @@ namespace UncommonSense.CBreeze.Render
             manifest.LineTableDocumentDateField = manifest.LineTable.Fields.Add(new DateTableField(nextFieldNo++, "Document Date")).AutoCaption();
 
             nextFunctionID = 1;
-            manifest.TemplateSelectionFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "TemplateSelection");
-            manifest.TemplateSelectionFromBatchFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "TemplateSelectionFromBatch");
-            manifest.OpenJnlFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "OpenJnl");
-            manifest.OpenJnlBatchFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "OpenJnlBatch");
-            manifest.CheckTemplateNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "CheckTemplateName");
-            manifest.CheckNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "CheckName");
-            manifest.SetNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "SetName");
-            manifest.LookupNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(nextFunctionID++, "LookupName");
+            manifest.TemplateSelectionFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "TemplateSelection"));
+            manifest.TemplateSelectionFromBatchFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "TemplateSelectionFromBatch"));
+            manifest.OpenJnlFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "OpenJnl"));
+            manifest.OpenJnlBatchFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "OpenJnlBatch"));
+            manifest.CheckTemplateNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "CheckTemplateName"));
+            manifest.CheckNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "CheckName"));
+            manifest.SetNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "SetName"));
+            manifest.LookupNameFunction = manifest.JournalMgtCodeunit.Code.Functions.Add(new Function(nextFunctionID++, "LookupName"));
 
             nextGlobalUID = 1000;
             manifest.OpenFromBatchVariable = manifest.JournalMgtCodeunit.Code.Variables.Add(new BooleanVariable(nextGlobalUID++, "OpenFromBatch"));

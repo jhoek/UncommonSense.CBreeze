@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var query = Application.Queries.Add(ID, Name);
+                var query = Application.Queries.Add(new Query(ID, Name));
 
                 query.ObjectProperties.DateTime = DateTime;
                 query.ObjectProperties.Modified = Modified;
