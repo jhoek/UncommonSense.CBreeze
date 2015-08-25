@@ -9,12 +9,13 @@ namespace UncommonSense.CBreeze.Demo
     {
         internal CommandLine(string[] args)
         {
-            IsValid = args.Length == 2;
+            IsValid = args.Length == 3;
 
             if (IsValid)
             {
                 InputFileName = args[0];
                 OutputFileName = args[1];
+                CompareToolFileName = args[2];
             }
         }
 
@@ -31,6 +32,12 @@ namespace UncommonSense.CBreeze.Demo
         }
 
         public string OutputFileName
+        {
+            get;
+            internal set;
+        }
+
+        public string CompareToolFileName
         {
             get;
             internal set;

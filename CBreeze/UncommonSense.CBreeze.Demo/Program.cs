@@ -6,10 +6,10 @@ using UncommonSense.CBreeze.Read;
 
 namespace UncommonSense.CBreeze.Demo
 {
-	class MainClass
-	{
-		public static void Main(string[] args)
-		{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
             var commandLine = new CommandLine(args);
 
             var parserStopwatch = new Stopwatch();
@@ -20,9 +20,11 @@ namespace UncommonSense.CBreeze.Demo
 
             var writerStopwatch = new Stopwatch();
             writerStopwatch.Start();
-			application.Write(commandLine.OutputFileName);
+            application.Write(commandLine.OutputFileName);
             writerStopwatch.Stop();
             Console.WriteLine(writerStopwatch.Elapsed);
-		}
-	}
+
+            Process.Start(commandLine.CompareToolFileName, string.Format("\"{0}\" \"{1}\"", commandLine.InputFileName, commandLine.OutputFileName));
+        }
+    }
 }
