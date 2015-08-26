@@ -4121,8 +4121,8 @@ OBJECT Codeunit 60001 Export Object Model as Files
 {
   OBJECT-PROPERTIES
   {
-    Date=15-08-15;
-    Time=17:40:07;
+    Date=26-08-15;
+    Time=11:56:05;
     Modified=Yes;
     Version List=;
   }
@@ -4149,6 +4149,9 @@ OBJECT Codeunit 60001 Export Object Model as Files
     VAR
       ObjectModel@1000000002 : Record 50000;
     BEGIN
+      IF NOT CONFIRM('Overwrite existing classes?', FALSE)
+        THEN EXIT;
+
       ObjectModel.GET(ObjectModelCode);
       ObjectModel.TESTFIELD("Object Model Src. Folder Name");
 
