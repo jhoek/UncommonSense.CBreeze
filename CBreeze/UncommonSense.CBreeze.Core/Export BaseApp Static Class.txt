@@ -1,0 +1,71 @@
+OBJECT Codeunit 50000 Export BaseApp Static Class
+{
+  OBJECT-PROPERTIES
+  {
+    Date=26-08-15;
+    Time=11:18:35;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    OnRun=BEGIN
+            WriteBaseAppTableID;
+          END;
+
+  }
+  CODE
+  {
+
+    PROCEDURE WriteBaseAppTableID@1000000000();
+    VAR
+      AllObj@1000000005 : Record 2000000038;
+      CompilationUnit@1000000000 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.CompilationUnit";
+      Namespace@1000000001 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Namespace";
+      BaseAppClass@1000000002 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
+      TableIDsClass@1000000004 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
+      TableNamesClass@1000000008 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
+      Constant@1000000006 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Constant";
+      Visibility@1000000003 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Visibility";
+      NormalizedName@1000000007 : Text[30];
+    BEGIN
+      CompilationUnit := CompilationUnit.CompilationUnit();
+      Namespace := Namespace.Namespace('UncommonSense.CBreeze.Core');
+      BaseAppClass := BaseAppClass.Class(Visibility.Public, 'BaseApp', '');
+      BaseAppClass.Static := TRUE;
+
+      TableIDsClass := TableIDsClass.Class(Visibility.Public, 'TableIDs', '');
+      TableIDsClass.Static := TRUE;
+
+      TableNamesClass := TableNamesClass.Class(Visibility.Public, 'TableNames' ,'');
+      TableNamesClass.Static := TRUE;
+
+      AllObj.SETRANGE("Object Type", AllObj."Object Type"::Table);
+
+      IF AllObj.FINDSET THEN
+        REPEAT
+          NormalizedName := NormalizeName(AllObj."Object Name");
+          Constant := Constant.Constant(Visibility.Public, NormalizedName, 'int', FORMAT(AllObj."Object ID"));
+          TableIDsClass.Constants.Add(Constant);
+          Constant := Constant.Constant(Visibility.Public, NormalizedName, 'string', STRSUBSTNO('@"%1"', AllObj."Object Name"));
+          TableNamesClass.Constants.Add(Constant);
+        UNTIL AllObj.NEXT = 0;
+
+      BaseAppClass.NestedClasses.Add(TableIDsClass);
+      BaseAppClass.NestedClasses.Add(TableNamesClass);
+      Namespace.Types.Add(BaseAppClass);
+      CompilationUnit.Namespaces.Add(Namespace);
+
+      CompilationUnit.WriteTo('C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\BaseAppTableID.cs');
+    END;
+
+    PROCEDURE NormalizeName@1000000005(ObjectName@1000000000 : Text[30]) NormalizedName : Text[30];
+    BEGIN
+      EXIT(DELCHR(ObjectName, '=', ' &()%./-'));
+    END;
+
+    BEGIN
+    END.
+  }
+}
+

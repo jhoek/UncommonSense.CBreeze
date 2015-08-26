@@ -59,6 +59,7 @@
     <Compile Include="AutoFormatTypeProperty.cs" />
     <Compile Include="AutomationParameter.cs" />
     <Compile Include="AutomationVariable.cs" />
+    <Compile Include="BaseApp.cs" />
     <Compile Include="BigIntegerParameter.cs" />
     <Compile Include="BigIntegerTableField.cs" />
     <Compile Include="BigIntegerTableFieldProperties.cs" />
@@ -473,6 +474,9 @@
     <Compile Include="XmlPortVariable.cs" />
     <Compile Include="XmlVersionNo.cs" />
     <Compile Include="XmlVersionNoProperty.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Export BaseApp Static Class.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
