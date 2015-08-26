@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Utils
 #>
 		public static <#= @type.Name #> AutoCaption(this <#= @type.Name #> item)
 		{
-			item.Properties.CaptionML.Add("ENU", item.Name);
+			item.Properties.CaptionML.Set("ENU", item.Name);
 			return item;
 		}
 
@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Utils
 #>
 		public static <#= @type.Name #> AutoCaption(this <#= @type.Name #> item)
 		{
-			item.Properties.CaptionML.Add("ENU", item.Name);
+			item.Properties.CaptionML.Set("ENU", item.Name);
 			return item;
 		}
 
@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Utils
 
 		public static OptionTableField AutoOptionCaption(this OptionTableField item)
 		{
-			item.Properties.OptionCaptionML.Add("ENU", item.Properties.OptionString);
+			item.Properties.OptionCaptionML.Set("ENU", item.Properties.OptionString);
 			return item;
 		}
 	}

@@ -17,20 +17,24 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class MultiLanguageValue : IEnumerable<MultiLanguageEntry>
     {
-        private Dictionary<String,MultiLanguageEntry> innerList = new Dictionary<String,MultiLanguageEntry>();
+        private Dictionary<String, MultiLanguageEntry> innerList = new Dictionary<String, MultiLanguageEntry>();
 
         internal MultiLanguageValue()
         {
         }
 
-        public MultiLanguageEntry Add(String languageID, String value)
+        public void Set(String languageID, String value)
         {
-            MultiLanguageEntry item = new MultiLanguageEntry(languageID, value);
-            innerList.Add(languageID, item);
-            return item;
+            Unset(languageID);
+            innerList.Add(languageID, new MultiLanguageEntry(languageID, value));
         }
 
-        public bool Remove(String languageID)
+        public void Reset()
+        {
+            innerList.Clear();
+        }
+
+        public bool Unset(String languageID)
         {
             return innerList.Remove(languageID);
         }

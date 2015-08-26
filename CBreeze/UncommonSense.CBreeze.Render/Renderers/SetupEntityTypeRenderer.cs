@@ -62,11 +62,11 @@ namespace UncommonSense.CBreeze.Render
 			manifest.Page.Properties.SourceTable = manifest.Table.ID;
 
 			manifest.PageContentAreaControl.Properties.ContainerType = ContainerType.ContentArea;
-			manifest.PageGeneralGroupControl.Properties.CaptionML.Add("ENU", "General");
+			manifest.PageGeneralGroupControl.Properties.CaptionML.Set("ENU", "General");
 
 			if (entityType.HasNoSeriesFields())
 			{
-				manifest.PageNumberingGroupControl.Properties.CaptionML.Add("ENU", "Numbering");
+				manifest.PageNumberingGroupControl.Properties.CaptionML.Set("ENU", "Numbering");
 			}
 
 			codeLines = manifest.Page.Properties.OnOpenPage.CodeLines;
@@ -85,7 +85,7 @@ namespace UncommonSense.CBreeze.Render
 		private static void AddNoSeriesField(string fieldName, ref int nextFieldNo, ref int nextControlID, SetupEntityTypeManifest manifest)
 		{
 			var field = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, fieldName, 10));
-			field.Properties.CaptionML.Add("ENU", field.Name);
+			field.Properties.CaptionML.Set("ENU", field.Name);
 			field.Properties.TableRelation.Add("No. Series");
 
 			manifest.Page.Controls.Add(new FieldPageControl(nextControlID++, 2)).Properties.SourceExpr = field.Name.Quoted();

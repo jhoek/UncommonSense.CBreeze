@@ -126,7 +126,7 @@ namespace UncommonSense.CBreeze.Render
             // FIXME: AddActions(masterEntityType, manifest, renderingContext, ref nextControlID, manifest.CardPage.Properties.ActionList);
 
             manifest.CardPage.Controls.Add(new ContainerPageControl(nextControlID++, null)).Properties.ContainerType = ContainerType.ContentArea;
-            manifest.CardPage.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.CaptionML.Add("ENU", "General");
+            manifest.CardPage.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.CaptionML.Set("ENU", "General");
 
             var noControl = manifest.CardPage.Controls.Add(new FieldPageControl(nextControlID++, 2));
             noControl.Properties.SourceExpr = manifest.NoField.Name.Quoted();
@@ -189,14 +189,14 @@ namespace UncommonSense.CBreeze.Render
 
 
             actionList.Add(new PageActionContainer(nextControlID++, null)).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
-            actionList.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Add("ENU", masterEntityType.Name);
+            actionList.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Set("ENU", masterEntityType.Name);
 
             foreach (var keyValuePair in renderingContext.Manifests.OfType<KeyValuePair<LedgerEntityType, LedgerEntityTypeManifest>>())
             {
                 if (keyValuePair.Key.MasterEntityType == masterEntityType)
                 {
                     var action = actionList.Add(new PageAction(nextControlID++, 2));
-                    action.Properties.CaptionML.Add("ENU", keyValuePair.Key.PluralName);
+                    action.Properties.CaptionML.Set("ENU", keyValuePair.Key.PluralName);
                     action.Properties.ShortCutKey = "Ctrl+F7";
                     action.Properties.RunObject.Type = RunObjectType.Page;
                     action.Properties.RunObject.ID = keyValuePair.Value.Page.ID;
@@ -211,7 +211,7 @@ namespace UncommonSense.CBreeze.Render
             if (masterEntityType.HasStatisticsPage)
             {
                 var action = actionList.Add(new PageAction(nextControlID++, 2));
-                action.Properties.CaptionML.Add("ENU", "Statistics");
+                action.Properties.CaptionML.Set("ENU", "Statistics");
                 action.Properties.ShortCutKey = "F7";
                 action.Properties.RunObject.Type = RunObjectType.Page;
                 action.Properties.RunObject.ID = manifest.StatisticsPage.ID;

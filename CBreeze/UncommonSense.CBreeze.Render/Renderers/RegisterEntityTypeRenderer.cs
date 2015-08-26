@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Render
 
 			var actionList = manifest.Page.Properties.ActionList;
 			actionList.Add(new PageActionContainer(nextControlID++, 0)).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
-			actionList.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Add("ENU", "&Register");
+			actionList.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Set("ENU", "&Register");
 
 			manifest.Page.Controls.Add(new ContainerPageControl(nextControlID++, 0)).Properties.ContainerType = ContainerType.ContentArea;
 			manifest.Page.Controls.Add(new GroupPageControl(nextControlID++, 1)).Properties.GroupType = GroupType.Repeater;
@@ -46,12 +46,12 @@ namespace UncommonSense.CBreeze.Render
 				var ledgerEntityTypeManifest = renderingContext.GetManifest(ledgerEntityType) as LedgerEntityTypeManifest;
 
 				var fromEntryNoField = manifest.Table.Fields.Add(new IntegerTableField(nextFieldNo++, string.Format("From {0} No.", ledgerEntityType.Name)));
-				fromEntryNoField.Properties.CaptionML.Add("ENU", fromEntryNoField.Name);
+				fromEntryNoField.Properties.CaptionML.Set("ENU", fromEntryNoField.Name);
 				fromEntryNoField.Properties.TableRelation.Add(ledgerEntityTypeManifest.Table.Name);
 				fromEntryNoField.Properties.TestTableRelation = false;
 
 				var toEntryNoField = manifest.Table.Fields.Add(new IntegerTableField(nextFieldNo++, string.Format("To {0} No.", ledgerEntityType.Name)));
-				toEntryNoField.Properties.CaptionML.Add("ENU", toEntryNoField.Name);
+				toEntryNoField.Properties.CaptionML.Set("ENU", toEntryNoField.Name);
 				toEntryNoField.Properties.TableRelation.Add(ledgerEntityTypeManifest.Table.Name);
 				toEntryNoField.Properties.TestTableRelation = false;
 
@@ -61,7 +61,7 @@ namespace UncommonSense.CBreeze.Render
 				var action = actionList.Add(new PageAction(nextControlID++, 2));
 				var caption = ledgerEntityType.Name.EndsWith(" Entry") ? ledgerEntityType.Name.Substring(0, ledgerEntityType.Name.Length - " Entry".Length) : ledgerEntityType.Name;
 
-				action.Properties.CaptionML.Add("ENU", caption);
+				action.Properties.CaptionML.Set("ENU", caption);
 				action.Properties.Promoted = true;
 				action.Properties.PromotedIsBig = true;
 				action.Properties.Image = "GLRegisters";

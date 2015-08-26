@@ -113,8 +113,8 @@ namespace UncommonSense.CBreeze.Render
 
             manifest.TemplateTableNameField.Properties.NotBlank = true;
 
-            manifest.TemplateTableText000.Values.Add("ENU", "Only the %1 field can be filled in on recurring journals.");
-            manifest.TemplateTableText001.Values.Add("ENU", "must not be %1");
+            manifest.TemplateTableText000.Values.Set("ENU", "Only the %1 field can be filled in on recurring journals.");
+            manifest.TemplateTableText001.Values.Set("ENU", "must not be %1");
 
             if (entityType.HasTestReportIDField)
             {
@@ -264,7 +264,7 @@ namespace UncommonSense.CBreeze.Render
             manifest.BatchTableJournalTemplateNameField.Properties.TableRelation.Add(manifest.TemplateTable.Name);
             manifest.BatchTableNameField.Properties.NotBlank = true;
 
-            manifest.BatchTableText000.Values.Add("ENU", "Only the %1 field can be filled in on recurring journals.");
+            manifest.BatchTableText000.Values.Set("ENU", "Only the %1 field can be filled in on recurring journals.");
 
             Trigger onValidate = null;
 
@@ -383,10 +383,10 @@ namespace UncommonSense.CBreeze.Render
 
             var group = actions.Add(new PageActionGroup(nextControlID++, 1));
             group.Properties.Image = "Template";
-            group.Properties.CaptionML.Add("ENU", "Te&mplate");
+            group.Properties.CaptionML.Set("ENU", "Te&mplate");
 
             var action = actions.Add(new PageAction(nextControlID++, 2));
-            action.Properties.CaptionML.Add("ENU", "Batches");
+            action.Properties.CaptionML.Set("ENU", "Batches");
             action.Properties.RunObject.Type = RunObjectType.Page;
             action.Properties.RunObject.ID = manifest.BatchesPage.ID;
             action.Properties.RunPageLink.Add(manifest.BatchTableJournalTemplateNameField.Name.Quoted(), RunObjectLinkLineType.Field, manifest.TemplateTableNameField.Name.Quoted());
@@ -574,11 +574,11 @@ namespace UncommonSense.CBreeze.Render
                 var actions = manifest.JournalPage.Properties.ActionList;
 
                 actions.Add(new PageActionContainer(nextControlID++, 0)).Properties.ActionContainerType = ActionContainerType.RelatedInformation;
-                actions.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Add("ENU", entityType.MasterEntityType.Name);
+                actions.Add(new PageActionGroup(nextControlID++, 1)).Properties.CaptionML.Set("ENU", entityType.MasterEntityType.Name);
 
                 var action = actions.Add(new PageAction(nextControlID++, 2));
                 action.Properties.ShortCutKey = "Shift+F7";
-                action.Properties.CaptionML.Add("ENU", "Card");
+                action.Properties.CaptionML.Set("ENU", "Card");
                 action.Properties.RunObject.Type = RunObjectType.Page;
                 action.Properties.RunObject.ID = masterEntityTypeManifest.CardPage.ID;
                 action.Properties.RunPageLink.Add(masterEntityTypeManifest.NoField.Name.Quoted(), RunObjectLinkLineType.Field, manifest.LineTableMasterEntityTypeField.Name.Quoted());
@@ -590,7 +590,7 @@ namespace UncommonSense.CBreeze.Render
 
                     action = actions.Add(new PageAction(nextControlID++, 2));
                     action.Properties.ShortCutKey = "Ctrl+F7";
-                    action.Properties.CaptionML.Add("ENU", ledgerEntityType.PluralName);
+                    action.Properties.CaptionML.Set("ENU", ledgerEntityType.PluralName);
                     action.Properties.RunObject.Type = RunObjectType.Page;
                     action.Properties.RunObject.ID = ledgerEntityTypeManifest.Page.ID;
                     action.Properties.RunPageLink.Add(ledgerEntityTypeManifest.MasterEntityTypeField.Name.Quoted(), RunObjectLinkLineType.Field, manifest.LineTableMasterEntityTypeField.Name.Quoted());
@@ -604,7 +604,7 @@ namespace UncommonSense.CBreeze.Render
 
             var batchNameField = manifest.JournalPage.Controls.Add(new FieldPageControl(nextControlID++, 1));
             batchNameField.Properties.Lookup = true;
-            batchNameField.Properties.CaptionML.Add("ENU", "Batch Name");
+            batchNameField.Properties.CaptionML.Set("ENU", "Batch Name");
             batchNameField.Properties.SourceExpr = currentJnlBatchName.Name;
             nextUID = 1000;
             journalMgt = batchNameField.Properties.OnValidate.Variables.Add(new CodeunitVariable(nextUID++, manifest.JournalMgtCodeunit.Name.MakeVariableName(), manifest.JournalMgtCodeunit.ID));
@@ -620,15 +620,15 @@ namespace UncommonSense.CBreeze.Render
 
         private static void FinalizeJournalMgtCodeunit(JournalEntityType entityType, RenderingContext renderingContext, JournalEntityTypeManifest manifest)
         {
-            manifest.JournalMgtCodeunit.Properties.Permissions.Add(manifest.TemplateTable.ID, false, true, true, true);
-            manifest.JournalMgtCodeunit.Properties.Permissions.Add(manifest.BatchTable.ID, false, true, true, true);
+            manifest.JournalMgtCodeunit.Properties.Permissions.Set(manifest.TemplateTable.ID, false, true, true, true);
+            manifest.JournalMgtCodeunit.Properties.Permissions.Set(manifest.BatchTable.ID, false, true, true, true);
 
-            manifest.JournalMgtCodeunitText000.Values.Add("ENU", entityType.BasePluralName.MakeVariableName().ToUpperInvariant().Substring(0, 10));
-            manifest.JournalMgtCodeunitText001.Values.Add("ENU", entityType.BasePluralName);
-            manifest.JournalMgtCodeunitText002.Values.Add("ENU", "RECURRING");
-            manifest.JournalMgtCodeunitText003.Values.Add("ENU", string.Format("Recurring {0}", entityType.BaseName));
-            manifest.JournalMgtCodeunitText004.Values.Add("ENU", "DEFAULT");
-            manifest.JournalMgtCodeunitText005.Values.Add("ENU", "Default Journal");
+            manifest.JournalMgtCodeunitText000.Values.Set("ENU", entityType.BasePluralName.MakeVariableName().ToUpperInvariant().Substring(0, 10));
+            manifest.JournalMgtCodeunitText001.Values.Set("ENU", entityType.BasePluralName);
+            manifest.JournalMgtCodeunitText002.Values.Set("ENU", "RECURRING");
+            manifest.JournalMgtCodeunitText003.Values.Set("ENU", string.Format("Recurring {0}", entityType.BaseName));
+            manifest.JournalMgtCodeunitText004.Values.Set("ENU", "DEFAULT");
+            manifest.JournalMgtCodeunitText005.Values.Set("ENU", "Default Journal");
 
             FinalizeTemplateSelectionFunction(entityType, manifest);
             FinalizeOpenJnlFunction(entityType, manifest);

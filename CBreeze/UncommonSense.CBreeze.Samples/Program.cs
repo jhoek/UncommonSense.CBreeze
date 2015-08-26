@@ -29,10 +29,10 @@ namespace UncommonSense.CBreeze.Samples
 
             var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
             codeField.Properties.NotBlank = true;
-            codeField.Properties.CaptionML.Add("ENU", codeField.Name);
+            codeField.Properties.CaptionML.Set("ENU", codeField.Name);
 
             var descriptionField = table.Fields.Add(new TextTableField(10, "Description", 30));
-            descriptionField.Properties.CaptionML.Add("ENU", descriptionField.Name);
+            descriptionField.Properties.CaptionML.Set("ENU", descriptionField.Name);
 
             table.Properties.DataCaptionFields.AddRange(codeField.Name, descriptionField.Name);
         }
@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Samples
             table.ObjectProperties.Modified = true;
 
             table.Properties.PasteIsValid = true;
-            table.Properties.Permissions.Add(50000, true, false, false, false);
+            table.Properties.Permissions.Set(50000, true, false, false, false);
             table.Properties.OnInsert.Variables.Add(new IntegerVariable(1000, "Foo"));
             table.Properties.OnInsert.Variables.Add(new RecordVariable(0, "Baz", 18));
 
@@ -72,14 +72,14 @@ namespace UncommonSense.CBreeze.Samples
             foreach (var table in application.Tables)
             {
                 if (!table.Properties.CaptionML.Any(e => e.LanguageID == "ENU"))
-                    table.Properties.CaptionML.Add("ENU", table.Name);
+                    table.Properties.CaptionML.Set("ENU", table.Name);
 
                 foreach (var field in table.Fields)
                 {
                     var captionML = field.GetPropertyByName("CaptionML") as MultiLanguageProperty;
 
                     if (!captionML.Value.Any(e => e.LanguageID == "ENU"))
-                        captionML.Value.Add("ENU", field.Name);
+                        captionML.Value.Set("ENU", field.Name);
                 }
             }
 

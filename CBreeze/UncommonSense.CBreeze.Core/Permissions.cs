@@ -23,14 +23,18 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public Permission Add(Int32 tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
+        public void Set(Int32 tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
         {
-            Permission item = new Permission(tableID, readPermission, insertPermission, modifyPermission, deletePermission);
-            innerList.Add(tableID, item);
-            return item;
+            Unset(tableID);
+            innerList.Add(tableID, new Permission(tableID, readPermission, insertPermission, modifyPermission, deletePermission));
         }
 
-        public bool Remove(Int32 tableID)
+        public void Reset()
+        {
+            innerList.Clear();
+        }
+
+        public bool Unset(Int32 tableID)
         {
             return innerList.Remove(tableID);
         }

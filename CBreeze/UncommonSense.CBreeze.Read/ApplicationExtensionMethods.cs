@@ -59,7 +59,7 @@ namespace UncommonSense.CBreeze.Read
 			{
 				var languageCode = Parsing.MustMatch(ref value, @"^([A-Z@]{3})=").Groups [1].Value;
 				var languageValue = GetLanguageValue(ref value);
-				multiLanguageValue.Add(languageCode, languageValue);
+				multiLanguageValue.Set(languageCode, languageValue);
 
 				Parsing.TryMatch(ref value, @"^;\s?");
 			}
@@ -106,7 +106,7 @@ namespace UncommonSense.CBreeze.Read
 			while (propertyValue.Length > 0)
 			{
 				var match = Parsing.MustMatch(ref propertyValue, @"^TableData\s(\d+)=(r?)(i?)(m?)(d?)(,\s)?");
-				property.Value.Add(match.Groups [1].Value.ToInteger(), match.Groups [2].Value == "r", match.Groups [3].Value == "i", match.Groups [4].Value == "m", match.Groups [5].Value == "d");
+				property.Value.Set(match.Groups [1].Value.ToInteger(), match.Groups [2].Value == "r", match.Groups [3].Value == "i", match.Groups [4].Value == "m", match.Groups [5].Value == "d");
 			}
 		}
 
