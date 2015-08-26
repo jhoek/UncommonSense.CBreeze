@@ -14,6 +14,14 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
+    // Normally, names for derived types are formed by prefixing the base type
+    // name with it's specialisation description, e.g. Parameter -> IntegerParameter.
+    // In case of page actions, the base class would be called PageAction, from
+    // which e.g. ContainerPageAction would be derived. However, that would make
+    // normal page actions ActionPageAction. Instead we'll call the base class
+    // PageActionBase, and the derived classes PageActionContainer, PageActionGroup
+    // PageActionSeparator and PageAction.
+
     [Serializable]
     public abstract partial class PageActionBase : KeyedAndNamedItem<int>
     {
