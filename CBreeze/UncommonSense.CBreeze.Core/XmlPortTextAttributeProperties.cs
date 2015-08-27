@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class XmlPortTextAttributeProperties : IEnumerable<Property>
+    public class XmlPortTextAttributeProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence");
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
         private ScopedTriggerProperty onBeforePassVariable = new ScopedTriggerProperty("OnBeforePassVariable");
@@ -34,14 +32,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAfterAssignVariable);
             innerList.Add(onBeforePassVariable);
             innerList.Add(width);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public Occurrence? Occurrence
@@ -107,16 +97,5 @@ namespace UncommonSense.CBreeze.Core
                 this.width.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

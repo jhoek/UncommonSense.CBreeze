@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private PageActionContainerProperties properties = new PageActionContainerProperties();
 
-        public PageActionContainer(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
+        public PageActionContainer(Int32 id, Int32? indentationLevel)
+            : base(id, indentationLevel)
         {
         }
 
@@ -39,10 +40,17 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-
         public override string GetName()
         {
             return Properties.Name;
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
     }
 }

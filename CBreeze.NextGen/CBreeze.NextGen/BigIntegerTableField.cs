@@ -2,44 +2,52 @@
 
 namespace CBreeze.NextGen
 {
-	public class BigIntegerTableField : TableField
-	{
-		public BigIntegerTableField(int no, string name)
-			: base(no, name)
-		{
-			Properties = new BigIntegerTableFieldProperties(this);
-		}
+    public class BigIntegerTableField : TableField
+    {
+        public BigIntegerTableField(int no, string name)
+            : base(no, name)
+        {
+            Properties = new BigIntegerTableFieldProperties(this);
+        }
 
-		public override string ToString()
-		{
-			return "BigIntegerTableField";
-		}
+        public override string ToString()
+        {
+            return "BigIntegerTableField";
+        }
 
-		public override TableFieldType Type
-		{
-			get
-			{
-				return TableFieldType.BigInteger;
-			}
-		}
+        public override TableFieldType Type
+        {
+            get
+            {
+                return TableFieldType.BigInteger;
+            }
+        }
 
-		public BigIntegerTableFieldProperties Properties
-		{
-			get;
-			internal set;
-		}
+        public BigIntegerTableFieldProperties Properties
+        {
+            get;
+            internal set;
+        }
 
-		public override IEnumerable<INode> ChildNodes
-		{
-			get
-			{
-                foreach(var childNode in base.ChildNodes)
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                foreach (var childNode in base.ChildNodes)
                 {
                     yield return childNode;
                 }
-                
-				yield return Properties;
-			}
-		}
-	}
+
+                yield return Properties;
+            }
+        }
+    }
 }

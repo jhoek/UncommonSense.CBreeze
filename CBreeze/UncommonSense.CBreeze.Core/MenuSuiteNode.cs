@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class MenuSuiteNode : KeyedAndNamedItem<Guid>
+    public abstract partial class MenuSuiteNode : KeyedAndNamedItem<Guid>, IHasProperties
     {
         internal MenuSuiteNode(Guid id)
         {
@@ -23,6 +23,11 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public abstract MenuSuiteNodeType Type
+        {
+            get;
+        }
+
+        public abstract Properties AllProperties
         {
             get;
         }

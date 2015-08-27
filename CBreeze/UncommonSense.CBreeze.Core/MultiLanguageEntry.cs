@@ -17,29 +17,22 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class MultiLanguageEntry
     {
-        private String languageID;
-        private String value;
-
-        internal MultiLanguageEntry(String languageID, String value)
+        internal MultiLanguageEntry(string languageID, string value)
         {
-            this.languageID = languageID;
-            this.value = value;
+            LanguageID = languageID;
+            Value = value;
         }
 
-        public String LanguageID
+        public string LanguageID
         {
-            get
-            {
-                return this.languageID;
-            }
+            get;
+            protected set;
         }
 
-        public String Value
+        public string Value
         {
-            get
-            {
-                return this.value;
-            }
+            get;
+            set;
         }
 
     }

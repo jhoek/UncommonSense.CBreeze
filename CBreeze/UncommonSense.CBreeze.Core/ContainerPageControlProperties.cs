@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ContainerPageControlProperties : IEnumerable<Property>
+    public class ContainerPageControlProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private ContainerTypeProperty containerType = new ContainerTypeProperty("ContainerType");
         private StringProperty description = new StringProperty("Description");
@@ -30,14 +28,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionML);
             innerList.Add(description);
             innerList.Add(containerType);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MultiLanguageValue CaptionML
@@ -83,16 +73,5 @@ namespace UncommonSense.CBreeze.Core
                 this.name.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

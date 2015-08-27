@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ReportRequestPageProperties : IEnumerable<Property>
+    public class ReportRequestPageProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
@@ -88,14 +86,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onQueryClosePage);
             innerList.Add(onAfterGetCurrRecord);
             innerList.Add(actionList);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public ActionList ActionList
@@ -421,16 +411,5 @@ namespace UncommonSense.CBreeze.Core
                 return this.sourceTableView.Value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

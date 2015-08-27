@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class ReportElement : KeyedAndNamedItem<int>
+    public abstract partial class ReportElement : KeyedAndNamedItem<int>, IHasProperties
     {
         private Int32? indentationLevel;
         private String name;
@@ -51,6 +51,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public abstract Properties AllProperties
+        {
+            get;
+        }
 
         public override string GetName()
         {

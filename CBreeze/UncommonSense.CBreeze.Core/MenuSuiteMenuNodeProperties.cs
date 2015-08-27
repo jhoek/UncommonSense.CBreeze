@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class MenuSuiteMenuNodeProperties : IEnumerable<Property>
+    public class MenuSuiteMenuNodeProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty enabled = new NullableBooleanProperty("Enabled");
         private NullableGuidProperty firstChild = new NullableGuidProperty("FirstChild");
@@ -42,14 +40,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(enabled);
             innerList.Add(nextNodeID);
             innerList.Add(firstChild);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MultiLanguageValue CaptionML
@@ -167,16 +157,5 @@ namespace UncommonSense.CBreeze.Core
                 this.visible.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

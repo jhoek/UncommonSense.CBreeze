@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class Object : KeyedAndNamedItem<int>
+    public abstract partial class Object : KeyedAndNamedItem<int>, IHasProperties
     {
         private ObjectProperties objectProperties = new ObjectProperties();
 
@@ -47,6 +47,11 @@ namespace UncommonSense.CBreeze.Core
         public override string GetName()
         {
             return Name;
+        }
+
+        public abstract Properties AllProperties
+        {
+            get;
         }
     }
 }

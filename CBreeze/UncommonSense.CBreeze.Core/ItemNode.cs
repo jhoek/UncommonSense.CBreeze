@@ -39,6 +39,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
         public override string GetName()
         {

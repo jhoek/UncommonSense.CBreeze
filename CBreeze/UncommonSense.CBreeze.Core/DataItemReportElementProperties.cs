@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class DataItemReportElementProperties : IEnumerable<Property>
+    public class DataItemReportElementProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private FieldListProperty calcFields = new FieldListProperty("CalcFields");
         private ReportDataItemLinkProperty dataItemLink = new ReportDataItemLinkProperty("DataItemLink");
         private StringProperty dataItemLinkReference = new StringProperty("DataItemLinkReference");
@@ -46,14 +44,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(calcFields);
             innerList.Add(dataItemLinkReference);
             innerList.Add(dataItemLink);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public FieldList CalcFields
@@ -167,16 +157,5 @@ namespace UncommonSense.CBreeze.Core
                 return this.reqFilterHeadingML.Value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

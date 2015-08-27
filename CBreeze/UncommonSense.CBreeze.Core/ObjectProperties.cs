@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ObjectProperties : IEnumerable<Property>
+    public class ObjectProperties : IProperties
     {
         private List<Property> innerList = new List<Property>();
 

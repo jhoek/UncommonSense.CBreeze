@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class CodeunitProperties : IEnumerable<Property>
+    public class CodeunitProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private NullableBooleanProperty cFRONTMayUsePermissions = new NullableBooleanProperty("CFRONTMayUsePermissions");
         private TriggerProperty onRun = new TriggerProperty("OnRun");
         private PermissionsProperty permissions = new PermissionsProperty("Permissions");
@@ -38,15 +36,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onRun);
         }
 
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
-        }
-
-      public System.Boolean? CFRONTMayUsePermissions
+        public System.Boolean? CFRONTMayUsePermissions
         {
             get
             {
@@ -74,7 +64,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? SingleInstance
+        public System.Boolean? SingleInstance
         {
             get
             {
@@ -98,7 +88,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? TableNo
+        public System.Int32? TableNo
         {
             get
             {
@@ -121,16 +111,5 @@ namespace UncommonSense.CBreeze.Core
                 this.testIsolation.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

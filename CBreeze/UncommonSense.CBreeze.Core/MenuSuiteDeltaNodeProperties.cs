@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class MenuSuiteDeltaNodeProperties : IEnumerable<Property>
+    public class MenuSuiteDeltaNodeProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private NullableBooleanProperty deleted = new NullableBooleanProperty("Deleted");
         private NullableGuidProperty nextNodeID = new NullableGuidProperty("NextNodeID");
 
@@ -28,15 +26,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(nextNodeID);
         }
 
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
-        }
-
-      public System.Boolean? Deleted
+        public System.Boolean? Deleted
         {
             get
             {
@@ -48,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? NextNodeID
+        public System.Guid? NextNodeID
         {
             get
             {
@@ -59,16 +49,5 @@ namespace UncommonSense.CBreeze.Core
                 this.nextNodeID.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

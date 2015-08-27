@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class DateFormulaTableFieldProperties : IEnumerable<Property>
+    public class DateFormulaTableFieldProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private StringProperty altSearchField = new StringProperty("AltSearchField");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -60,15 +58,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionClass);
         }
 
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
-        }
-
-      public System.String AltSearchField
+        public System.String AltSearchField
         {
             get
             {
@@ -80,7 +70,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String AutoFormatExpr
+        public System.String AutoFormatExpr
         {
             get
             {
@@ -112,7 +102,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String CaptionClass
+        public System.String CaptionClass
         {
             get
             {
@@ -132,7 +122,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+        public System.String Description
         {
             get
             {
@@ -144,7 +134,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Editable
+        public System.Boolean? Editable
         {
             get
             {
@@ -180,7 +170,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String InitValue
+        public System.String InitValue
         {
             get
             {
@@ -192,7 +182,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? NotBlank
+        public System.Boolean? NotBlank
         {
             get
             {
@@ -228,7 +218,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? TestTableRelation
+        public System.Boolean? TestTableRelation
         {
             get
             {
@@ -240,7 +230,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ValidateTableRelation
+        public System.Boolean? ValidateTableRelation
         {
             get
             {
@@ -252,7 +242,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String ValuesAllowed
+        public System.String ValuesAllowed
         {
             get
             {
@@ -263,16 +253,5 @@ namespace UncommonSense.CBreeze.Core
                 this.valuesAllowed.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

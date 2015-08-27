@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class PageControl : KeyedAndNamedItem<int>
+    public abstract partial class PageControl : KeyedAndNamedItem<int>, IHasProperties
     {
         private Int32? indentationLevel;
 
@@ -38,5 +38,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public abstract Properties AllProperties
+        {
+            get;
+        }
     }
 }

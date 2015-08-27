@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TimeTableFieldProperties : IEnumerable<Property>
+    public class TimeTableFieldProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private StringProperty altSearchField = new StringProperty("AltSearchField");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -66,14 +64,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
       public System.String AltSearchField
@@ -319,16 +309,5 @@ namespace UncommonSense.CBreeze.Core
                 this.valuesAllowed.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

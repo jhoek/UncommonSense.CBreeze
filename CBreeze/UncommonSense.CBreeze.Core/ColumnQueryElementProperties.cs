@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ColumnQueryElementProperties : IEnumerable<Property>
+    public class ColumnQueryElementProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private ColumnFilterProperty columnFilter = new ColumnFilterProperty("ColumnFilter");
         private StringProperty dataSource = new StringProperty("DataSource");
@@ -38,14 +36,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(methodType);
             innerList.Add(dateMethod);
             innerList.Add(totalsMethod);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MultiLanguageValue CaptionML
@@ -135,16 +125,5 @@ namespace UncommonSense.CBreeze.Core
                 this.totalsMethod.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

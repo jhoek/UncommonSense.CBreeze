@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class BlobTableFieldProperties : IEnumerable<Property>
+    public class BlobTableFieldProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty compressed = new NullableBooleanProperty("Compressed");
         private StringProperty description = new StringProperty("Description");
@@ -38,14 +36,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(description);
             innerList.Add(owner);
             innerList.Add(subType);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MultiLanguageValue CaptionML
@@ -131,16 +121,5 @@ namespace UncommonSense.CBreeze.Core
                 this.@volatile.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

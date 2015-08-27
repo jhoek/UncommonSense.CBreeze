@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class XmlPortFieldElementProperties : IEnumerable<Property>
+    public class XmlPortFieldElementProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField");
         private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
         private NullableBooleanProperty fieldValidate = new NullableBooleanProperty("FieldValidate");
@@ -42,15 +40,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
-        }
-
-      public System.Boolean? AutoCalcField
+        public System.Boolean? AutoCalcField
         {
             get
             {
@@ -74,7 +64,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? FieldValidate
+        public System.Boolean? FieldValidate
         {
             get
             {
@@ -134,7 +124,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? Width
+        public System.Int32? Width
         {
             get
             {
@@ -145,16 +135,5 @@ namespace UncommonSense.CBreeze.Core
                 this.width.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

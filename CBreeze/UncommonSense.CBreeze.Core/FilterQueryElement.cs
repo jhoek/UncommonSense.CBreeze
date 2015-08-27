@@ -31,6 +31,14 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
+
         public FilterQueryElementProperties Properties
         {
             get
@@ -38,6 +46,5 @@ namespace UncommonSense.CBreeze.Core
                 return this.properties;
             }
         }
-
     }
 }

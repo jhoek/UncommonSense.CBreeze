@@ -23,10 +23,39 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public string this[string languageID]
+        {
+            get
+            {
+                return Get(languageID);
+            }
+            set
+            {
+                Set(languageID, value);
+            }
+        }
+
+        public string Get(string languageID)
+        {
+            try
+            {
+                return innerList[languageID].Value;
+            }
+            catch (KeyNotFoundException)
+            {
+                return null;
+            }
+        }
+
         public void Set(String languageID, String value)
         {
-            Unset(languageID);
-            innerList.Add(languageID, new MultiLanguageEntry(languageID, value));
+            if (value == null)
+            {
+                Unset(languageID);
+                return;
+            }
+
+            innerList[languageID] = new MultiLanguageEntry(languageID, value);
         }
 
         public void Reset()

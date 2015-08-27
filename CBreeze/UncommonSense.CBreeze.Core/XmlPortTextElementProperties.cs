@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class XmlPortTextElementProperties : IEnumerable<Property>
+    public class XmlPortTextElementProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
@@ -36,14 +34,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAfterAssignVariable);
             innerList.Add(onBeforePassVariable);
             innerList.Add(width);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MaxOccurs? MaxOccurs
@@ -98,7 +88,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String VariableName
+        public System.String VariableName
         {
             get
             {
@@ -110,7 +100,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? Width
+        public System.Int32? Width
         {
             get
             {
@@ -121,16 +111,5 @@ namespace UncommonSense.CBreeze.Core
                 this.width.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

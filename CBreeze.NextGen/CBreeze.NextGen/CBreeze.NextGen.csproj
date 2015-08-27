@@ -42,6 +42,7 @@
     <Compile Include="DateFormulaParameter.cs" />
     <Compile Include="DateParameter.cs" />
     <Compile Include="DateTimeParameter.cs" />
+    <Compile Include="IHasProperties.cs" />
     <Compile Include="MaxOccurs.cs" />
     <Compile Include="MaxOccursProperty.cs" />
     <Compile Include="ParameterType.cs" />

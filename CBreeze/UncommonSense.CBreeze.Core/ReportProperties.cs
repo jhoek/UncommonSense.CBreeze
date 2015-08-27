@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ReportProperties : IEnumerable<Property>
+    public class ReportProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
         private NullableBooleanProperty enableExternalAssemblies = new NullableBooleanProperty("EnableExternalAssemblies");
@@ -56,14 +54,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(paperSourceFirstPage);
             innerList.Add(paperSourceLastPage);
             innerList.Add(useRequestPage);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MultiLanguageValue CaptionML
@@ -249,16 +239,5 @@ namespace UncommonSense.CBreeze.Core
                 this.useSystemPrinter.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

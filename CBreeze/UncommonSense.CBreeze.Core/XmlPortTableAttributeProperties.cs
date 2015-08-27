@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class XmlPortTableAttributeProperties : IEnumerable<Property>
+    public class XmlPortTableAttributeProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private NullableBooleanProperty autoReplace = new NullableBooleanProperty("AutoReplace");
         private NullableBooleanProperty autoSave = new NullableBooleanProperty("AutoSave");
         private NullableBooleanProperty autoUpdate = new NullableBooleanProperty("AutoUpdate");
@@ -66,14 +64,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(temporary);
             innerList.Add(variableName);
             innerList.Add(width);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
       public System.Boolean? AutoReplace
@@ -291,16 +281,5 @@ namespace UncommonSense.CBreeze.Core
                 this.width.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

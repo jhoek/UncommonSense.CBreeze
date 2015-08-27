@@ -24,6 +24,14 @@ namespace CBreeze.NextGen
 			internal set;
 		}
 
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
+
 		public override System.Collections.Generic.IEnumerable<INode> ChildNodes
 		{
 			get

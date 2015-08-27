@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class GroupPageControlProperties : IEnumerable<Property>
+    public class GroupPageControlProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
@@ -50,14 +48,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(freezeColumnID);
             innerList.Add(layout);
             innerList.Add(actionList);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public ActionList ActionList
@@ -211,16 +201,5 @@ namespace UncommonSense.CBreeze.Core
                 this.visible.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

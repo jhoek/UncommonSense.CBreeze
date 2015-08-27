@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class FunctionProperties : IEnumerable<Property>
+    public class FunctionProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private FunctionTypeProperty functionType = new FunctionTypeProperty("FunctionType");
         private StringProperty handlerFunctions = new StringProperty("HandlerFunctions");
         private NullableBooleanProperty local = new NullableBooleanProperty("Local");
@@ -30,14 +28,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(handlerFunctions);
             innerList.Add(local);
             innerList.Add(transactionModel);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public FunctionType? FunctionType
@@ -87,16 +77,5 @@ namespace UncommonSense.CBreeze.Core
                 this.transactionModel.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

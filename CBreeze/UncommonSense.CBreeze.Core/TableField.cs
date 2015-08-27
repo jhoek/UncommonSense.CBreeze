@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class TableField : KeyedAndNamedItem<int>
+    public abstract partial class TableField : KeyedAndNamedItem<int>, IHasProperties
     {
         private Boolean? enabled;
 
@@ -52,6 +52,11 @@ namespace UncommonSense.CBreeze.Core
         public override string GetName()
         {
             return Name;
+        }
+
+        public abstract Properties AllProperties
+        {
+            get;
         }
     }
 }

@@ -17,6 +17,11 @@ namespace CBreeze.NextGen
             return "Properties";
         }
 
+        public T ByName<T>(string name) where T : Property
+        {
+            return (ChildNodes.Cast<Property>().FirstOrDefault(p => p.Name == name) as T);
+        }
+
 		public IEnumerator<Property> GetEnumerator()
 		{
 			return ChildNodes.Cast<Property>().GetEnumerator();
@@ -26,6 +31,14 @@ namespace CBreeze.NextGen
 		{
 			return ChildNodes.Cast<Property>().GetEnumerator();
 		}
+
+        public IEnumerable<Property> WithAValue
+        {
+            get
+            {
+                return ChildNodes.Cast<Property>().Where(p => p.HasValue);
+            }
+        }
 
 		public Property this[string name]
 		{

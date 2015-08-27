@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class XmlPortNode : KeyedItem<Guid>
+    public abstract partial class XmlPortNode : KeyedItem<Guid>, IHasProperties
     {
         private String nodeName;
         private Int32? indentationLevel;
@@ -46,6 +46,11 @@ namespace UncommonSense.CBreeze.Core
             {
                 return this.indentationLevel;
             }
+        }
+
+        public abstract Properties AllProperties
+        {
+            get;
         }
     }
 }

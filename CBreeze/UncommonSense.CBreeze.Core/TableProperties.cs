@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TableProperties : IEnumerable<Property>
+    public class TableProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private FieldListProperty dataCaptionFields = new FieldListProperty("DataCaptionFields");
         private NullableBooleanProperty dataPerCompany = new NullableBooleanProperty("DataPerCompany");
@@ -50,14 +48,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(drillDownPageID);
             innerList.Add(linkedInTransaction);
             innerList.Add(linkedObject);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MultiLanguageValue CaptionML
@@ -199,16 +189,5 @@ namespace UncommonSense.CBreeze.Core
                 return this.permissions.Value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

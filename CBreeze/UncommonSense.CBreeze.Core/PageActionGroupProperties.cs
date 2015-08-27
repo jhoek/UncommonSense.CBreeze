@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class PageActionGroupProperties : IEnumerable<Property>
+    public class PageActionGroupProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private ActionContainerTypeProperty actionContainerType = new ActionContainerTypeProperty("ActionContainerType");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
@@ -36,14 +34,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(enabled);
             innerList.Add(actionContainerType);
             innerList.Add(image);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public ActionContainerType? ActionContainerType
@@ -125,16 +115,5 @@ namespace UncommonSense.CBreeze.Core
                 this.visible.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

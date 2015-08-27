@@ -43,5 +43,14 @@ namespace UncommonSense.CBreeze.Core
         {
             return null;    
         }
+
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
     }
 }

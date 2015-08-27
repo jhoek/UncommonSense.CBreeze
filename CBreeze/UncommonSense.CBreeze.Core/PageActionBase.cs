@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Core
     // PageActionSeparator and PageAction.
 
     [Serializable]
-    public abstract partial class PageActionBase : KeyedAndNamedItem<int>
+    public abstract partial class PageActionBase : KeyedAndNamedItem<int>, IHasProperties
     {
         private Int32? indentationLevel;
 
@@ -46,5 +46,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public abstract Properties AllProperties
+        {
+            get;
+        }
     }
 }

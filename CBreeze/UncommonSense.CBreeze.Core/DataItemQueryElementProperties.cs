@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class DataItemQueryElementProperties : IEnumerable<Property>
+    public class DataItemQueryElementProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private QueryDataItemLinkProperty dataItemLink = new QueryDataItemLinkProperty("DataItemLink");
         private DataItemLinkTypeProperty dataItemLinkType = new DataItemLinkTypeProperty("DataItemLinkType");
         private TableReferenceProperty dataItemTable = new TableReferenceProperty("DataItemTable");
@@ -34,14 +32,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataItemLink);
             innerList.Add(dataItemLinkType);
             innerList.Add(sQLJoinType);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public QueryDataItemLink DataItemLink
@@ -107,16 +97,5 @@ namespace UncommonSense.CBreeze.Core
                 this.sQLJoinType.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

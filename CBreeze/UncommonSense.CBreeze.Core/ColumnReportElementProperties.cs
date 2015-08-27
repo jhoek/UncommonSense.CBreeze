@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ColumnReportElementProperties : IEnumerable<Property>
+    public class ColumnReportElementProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -42,15 +40,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
         }
 
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
-        }
-
-      public System.Boolean? AutoCalcField
+        public System.Boolean? AutoCalcField
         {
             get
             {
@@ -62,7 +52,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String AutoFormatExpr
+        public System.String AutoFormatExpr
         {
             get
             {
@@ -94,7 +84,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+        public System.String Description
         {
             get
             {
@@ -106,7 +96,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? IncludeCaption
+        public System.Boolean? IncludeCaption
         {
             get
             {
@@ -126,7 +116,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String OptionString
+        public System.String OptionString
         {
             get
             {
@@ -138,7 +128,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String SourceExpr
+        public System.String SourceExpr
         {
             get
             {
@@ -149,16 +139,5 @@ namespace UncommonSense.CBreeze.Core
                 this.sourceExpr.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

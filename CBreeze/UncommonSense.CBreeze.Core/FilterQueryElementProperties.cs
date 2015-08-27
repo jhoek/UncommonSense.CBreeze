@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class FilterQueryElementProperties : IEnumerable<Property>
+    public class FilterQueryElementProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private ColumnFilterProperty columnFilter = new ColumnFilterProperty("ColumnFilter");
         private StringProperty dataSource = new StringProperty("DataSource");
@@ -30,14 +28,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(description);
             innerList.Add(columnFilter);
             innerList.Add(dataSource);
-        }
-
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
         }
 
         public MultiLanguageValue CaptionML
@@ -79,16 +69,5 @@ namespace UncommonSense.CBreeze.Core
                 this.description.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

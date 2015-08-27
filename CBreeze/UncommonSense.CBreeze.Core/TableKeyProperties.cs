@@ -15,9 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TableKeyProperties : IEnumerable<Property>
+    public class TableKeyProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
 
         private NullableBooleanProperty clustered = new NullableBooleanProperty("Clustered");
         private StringProperty keyGroups = new StringProperty("KeyGroups");
@@ -38,15 +37,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(clustered);
         }
 
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
-        }
-
-      public System.Boolean? Clustered
+        public System.Boolean? Clustered
         {
             get
             {
@@ -58,7 +49,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String KeyGroups
+        public System.String KeyGroups
         {
             get
             {
@@ -70,7 +61,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? MaintainSIFTIndex
+        public System.Boolean? MaintainSIFTIndex
         {
             get
             {
@@ -82,7 +73,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? MaintainSQLIndex
+        public System.Boolean? MaintainSQLIndex
         {
             get
             {
@@ -117,16 +108,5 @@ namespace UncommonSense.CBreeze.Core
                 return this.sumIndexFields.Value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }

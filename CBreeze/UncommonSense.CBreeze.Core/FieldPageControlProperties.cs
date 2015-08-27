@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class FieldPageControlProperties : IEnumerable<Property>
+    public class FieldPageControlProperties : Properties
     {
-        private List<Property> innerList = new List<Property>();
-
         private NullableBooleanProperty assistEdit = new NullableBooleanProperty("AssistEdit");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -118,15 +116,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(quickEntry);
         }
 
-        public Property this[string name]
-        {
-            get
-            {
-                return innerList.FirstOrDefault(p => p.Name == name);
-            }
-        }
-
-      public System.Boolean? AssistEdit
+        public System.Boolean? AssistEdit
         {
             get
             {
@@ -138,7 +128,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String AutoFormatExpr
+        public System.String AutoFormatExpr
         {
             get
             {
@@ -174,7 +164,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? BlankZero
+        public System.Boolean? BlankZero
         {
             get
             {
@@ -186,7 +176,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String CaptionClass
+        public System.String CaptionClass
         {
             get
             {
@@ -206,7 +196,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String CharAllowed
+        public System.String CharAllowed
         {
             get
             {
@@ -218,7 +208,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ClosingDates
+        public System.Boolean? ClosingDates
         {
             get
             {
@@ -230,7 +220,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? ColumnSpan
+        public System.Int32? ColumnSpan
         {
             get
             {
@@ -242,7 +232,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String ControlAddIn
+        public System.String ControlAddIn
         {
             get
             {
@@ -254,7 +244,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? DateFormula
+        public System.Boolean? DateFormula
         {
             get
             {
@@ -274,7 +264,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+        public System.String Description
         {
             get
             {
@@ -286,7 +276,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? DrillDown
+        public System.Boolean? DrillDown
         {
             get
             {
@@ -298,7 +288,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String DrillDownPageID
+        public System.String DrillDownPageID
         {
             get
             {
@@ -310,7 +300,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Editable
+        public System.String Editable
         {
             get
             {
@@ -322,7 +312,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Enabled
+        public System.String Enabled
         {
             get
             {
@@ -346,7 +336,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String HideValue
+        public System.String HideValue
         {
             get
             {
@@ -370,7 +360,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Lookup
+        public System.Boolean? Lookup
         {
             get
             {
@@ -382,7 +372,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String LookupPageID
+        public System.String LookupPageID
         {
             get
             {
@@ -394,7 +384,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Object MaxValue
+        public System.Object MaxValue
         {
             get
             {
@@ -406,7 +396,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Object MinValue
+        public System.Object MinValue
         {
             get
             {
@@ -418,7 +408,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? MultiLine
+        public System.Boolean? MultiLine
         {
             get
             {
@@ -430,7 +420,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Name
+        public System.String Name
         {
             get
             {
@@ -442,7 +432,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? NotBlank
+        public System.Boolean? NotBlank
         {
             get
             {
@@ -454,7 +444,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Numeric
+        public System.Boolean? Numeric
         {
             get
             {
@@ -514,7 +504,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String QuickEntry
+        public System.String QuickEntry
         {
             get
             {
@@ -526,7 +516,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? RowSpan
+        public System.Int32? RowSpan
         {
             get
             {
@@ -538,7 +528,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ShowCaption
+        public System.Boolean? ShowCaption
         {
             get
             {
@@ -550,7 +540,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String SourceExpr
+        public System.String SourceExpr
         {
             get
             {
@@ -574,7 +564,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String StyleExpr
+        public System.String StyleExpr
         {
             get
             {
@@ -594,7 +584,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Title
+        public System.Boolean? Title
         {
             get
             {
@@ -614,7 +604,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String ValuesAllowed
+        public System.String ValuesAllowed
         {
             get
             {
@@ -626,7 +616,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Visible
+        public System.String Visible
         {
             get
             {
@@ -638,7 +628,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? Width
+        public System.Int32? Width
         {
             get
             {
@@ -649,16 +639,5 @@ namespace UncommonSense.CBreeze.Core
                 this.width.Value = value;
             }
         }
-
-        public IEnumerator<Property> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
     }
 }
