@@ -14,8 +14,8 @@ namespace UncommonSense.CBreeze.Samples
         static void Main(string[] args)
         {
             CBreezeCoreDemo();
-            CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
-            CBreezeReaderDemo(@"c:\users\jhoek\desktop\sample.txt", @"c:\users\jhoek\desktop\sample.txt");
+            //CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
+            //CBreezeReaderDemo(@"c:\users\jhoek\desktop\sample.txt", @"c:\users\jhoek\desktop\sample.txt");
         }
 
         static void CBreezeCoreDemo()
@@ -71,15 +71,14 @@ namespace UncommonSense.CBreeze.Samples
 
             foreach (var table in application.Tables)
             {
-                if (!table.Properties.CaptionML.Any(e => e.LanguageID == "ENU"))
-                    table.Properties.CaptionML.Set("ENU", table.Name);
+                table.Properties.CaptionML["ENU"] = table.Name;
+                table.Properties.CaptionML["NLD"] = table.Name.ToUpperInvariant();
+                table.Properties.CaptionML["ENU"] = null;
 
                 foreach (var field in table.Fields)
                 {
-                    var captionML = field.GetPropertyByName("CaptionML") as MultiLanguageProperty;
-
-                    if (!captionML.Value.Any(e => e.LanguageID == "ENU"))
-                        captionML.Value.Set("ENU", field.Name);
+                    field.AllProperties.ByName<MultiLanguageProperty>("CaptionML").Value["ENU"] = field.Name;
+                    field.AllProperties.ByName<MultiLanguageProperty>("CaptionML").Value["NLD"] = field.Name.ToUpperInvariant();
                 }
             }
 
