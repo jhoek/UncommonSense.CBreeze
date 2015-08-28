@@ -11,8 +11,7 @@ namespace UncommonSense.CBreeze.Demo
 	{
 		public static void Main(string[] args)
 		{
-			var programsFolderName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-			var compareToolFileName = Path.Combine(programsFolderName, "Araxis Merge.app");
+            var compareToolFileName = @"c:\Program Files\Araxis\Araxis Merge\compare.exe";
 
 			var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 			var inputFileName = Path.Combine(desktopFolderName, "nl2013.txt");
