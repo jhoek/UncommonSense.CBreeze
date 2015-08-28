@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Read;
+using UncommonSense.CBreeze.Utils;
 using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Samples
@@ -13,28 +14,8 @@ namespace UncommonSense.CBreeze.Samples
     {
         static void Main(string[] args)
         {
-            CBreezeCoreDemo();
-            //CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
+            CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
             //CBreezeReaderDemo(@"c:\users\jhoek\desktop\sample.txt", @"c:\users\jhoek\desktop\sample.txt");
-        }
-
-        static void CBreezeCoreDemo()
-        {
-            var application = new Application();
-            application.Tables.Add(new Table(50000, "My Demo Table"));
-            application.Tables.Add(new Table(0, "Oink"));
-            application.Tables.Add(new Table(0, "Foo"));
-
-            var table = application.Tables["Oink"];
-
-            var codeField = table.Fields.Add(new CodeTableField(1, "Code", 10));
-            codeField.Properties.NotBlank = true;
-            codeField.Properties.CaptionML.Set("ENU", codeField.Name);
-
-            var descriptionField = table.Fields.Add(new TextTableField(10, "Description", 30));
-            descriptionField.Properties.CaptionML.Set("ENU", descriptionField.Name);
-
-            table.Properties.DataCaptionFields.AddRange(codeField.Name, descriptionField.Name);
         }
 
         static void CBreezeWriteDemo(string outputFileName)
@@ -44,13 +25,18 @@ namespace UncommonSense.CBreeze.Samples
             table.ObjectProperties.DateTime = DateTime.Now;
             table.ObjectProperties.Modified = true;
 
+            var codeField = table.Fields.Add(new CodeTableField(1, "Code", 11)).AutoCaption();
+            codeField.Properties.NotBlank = true;
+
+            var descriptionField = table.Fields.Add(new TextTableField(0, "Description", 35)).AutoCaption();
+
             table.Properties.PasteIsValid = true;
             table.Properties.Permissions.Set(50000, true, false, false, false);
             table.Properties.OnInsert.Variables.Add(new IntegerVariable(1000, "Foo"));
-            table.Properties.OnInsert.Variables.Add(new RecordVariable(0, "Baz", 18));
+            table.Properties.OnInsert.Variables.Add(new RecordVariable(0, "Baz", BaseApp.TableIDs.Customer));
+            table.Properties.DataCaptionFields.AddRange(codeField.Name, descriptionField.Name);
 
-            table.Fields.Add(new CodeTableField(1, "Primary Key")).Properties.NotBlank = true;
-            table.Fields.Add(new TextTableField(0, "Description"));
+            table.AddAddressFields();
 
             var page = application.Pages.Add(new Page(50000, "Demo"));
             page.Controls.Add(new ContainerPageControl(0, 0)).Properties.ContainerType = ContainerType.ContentArea;
