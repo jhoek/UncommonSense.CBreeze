@@ -14,44 +14,44 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract partial class Object : KeyedAndNamedItem<int>, IHasProperties
-    {
-        private ObjectProperties objectProperties = new ObjectProperties();
+	[Serializable]
+	public abstract partial class Object : KeyedItem<int>, IHasName, IHasProperties
+	{
+		private ObjectProperties objectProperties = new ObjectProperties();
 
-        internal Object(Int32 id, String name)
-        {
-            ID = id;
-            Name = name;
-        }
+		internal Object(Int32 id, String name)
+		{
+			ID = id;
+			Name = name;
+		}
 
-        public string Name
-        {
-            get;
-            set;
-        }
+		public string Name
+		{
+			get;
+			set;
+		}
 
-        public abstract ObjectType Type
-        {
-            get;
-        }
+		public abstract ObjectType Type
+		{
+			get;
+		}
 
-        public ObjectProperties ObjectProperties
-        {
-            get
-            {
-                return this.objectProperties;
-            }
-        }
+		public ObjectProperties ObjectProperties
+		{
+			get
+			{
+				return this.objectProperties;
+			}
+		}
 
-        public override string GetName()
-        {
-            return Name;
-        }
+		public  string GetName()
+		{
+			return Name;
+		}
 
-        public abstract Properties AllProperties
-        {
-            get;
-        }
-    }
+		public abstract Properties AllProperties
+		{
+			get;
+		}
+	}
 }

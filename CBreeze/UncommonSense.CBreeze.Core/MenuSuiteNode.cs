@@ -14,22 +14,24 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract partial class MenuSuiteNode : KeyedAndNamedItem<Guid>, IHasProperties
-    {
-        internal MenuSuiteNode(Guid id)
-        {
-            ID = id;
-        }
+	[Serializable]
+	public abstract partial class MenuSuiteNode : KeyedItem<Guid>, IHasName, IHasProperties
+	{
+		internal MenuSuiteNode(Guid id)
+		{
+			ID = id;
+		}
 
-        public abstract MenuSuiteNodeType Type
-        {
-            get;
-        }
+		public abstract MenuSuiteNodeType Type
+		{
+			get;
+		}
 
-        public abstract Properties AllProperties
-        {
-            get;
-        }
-    }
+		public abstract string GetName();
+
+		public abstract Properties AllProperties
+		{
+			get;
+		}
+	}
 }

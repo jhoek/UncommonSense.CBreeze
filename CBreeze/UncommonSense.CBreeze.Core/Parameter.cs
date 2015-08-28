@@ -14,57 +14,57 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract partial class Parameter : KeyedAndNamedItem<int>
-    {
-        private Boolean var;
-        private String dimensions;
-        private String name;
+	[Serializable]
+	public abstract partial class Parameter : KeyedItem<int>, IHasName
+	{
+		private Boolean var;
+		private String dimensions;
+		private String name;
 
-        internal Parameter(Boolean var, Int32 id, String name)
-        {
-            ID = id;
-            this.name = name;
-            this.var = var;
-        }
+		internal Parameter(Boolean var, Int32 id, String name)
+		{
+			ID = id;
+			this.name = name;
+			this.var = var;
+		}
 
-        public abstract ParameterType Type
-        {
-            get;
-        }
+		public abstract ParameterType Type
+		{
+			get;
+		}
 
-        public Boolean Var
-        {
-            get
-            {
-                return this.var;
-            }
-        }
+		public Boolean Var
+		{
+			get
+			{
+				return this.var;
+			}
+		}
 
-        public String Dimensions
-        {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
-        }
+		public String Dimensions
+		{
+			get
+			{
+				return this.dimensions;
+			}
+			set
+			{
+				this.dimensions = value;
+			}
+		}
 
-        public String Name
-        {
-            get
-            {
-                return this.name;
-            }
-        }
+		public String Name
+		{
+			get
+			{
+				return this.name;
+			}
+		}
 
 
-        public override string GetName()
-        {
-            return Name;
-        }
-    }
+		public string GetName()
+		{
+			return Name;
+		}
+	}
 }

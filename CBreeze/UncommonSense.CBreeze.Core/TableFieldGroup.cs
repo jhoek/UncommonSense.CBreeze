@@ -14,46 +14,46 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public partial class TableFieldGroup : KeyedAndNamedItem<int>
-    {
-        private String name;
-        private FieldList fields = new FieldList();
-        private TableFieldGroupProperties properties = new TableFieldGroupProperties();
+	[Serializable]
+	public partial class TableFieldGroup : KeyedItem<int>, IHasName
+	{
+		private String name;
+		private FieldList fields = new FieldList();
+		private TableFieldGroupProperties properties = new TableFieldGroupProperties();
 
-        public TableFieldGroup(Int32 id, String name)
-        {
-            ID = id;
-            this.name = name;
-        }
+		public TableFieldGroup(Int32 id, String name)
+		{
+			ID = id;
+			this.name = name;
+		}
 
-        public String Name
-        {
-            get
-            {
-                return this.name;
-            }
-        }
+		public String Name
+		{
+			get
+			{
+				return this.name;
+			}
+		}
 
-        public FieldList Fields
-        {
-            get
-            {
-                return this.fields;
-            }
-        }
+		public FieldList Fields
+		{
+			get
+			{
+				return this.fields;
+			}
+		}
 
-        public TableFieldGroupProperties Properties
-        {
-            get
-            {
-                return this.properties;
-            }
-        }
+		public TableFieldGroupProperties Properties
+		{
+			get
+			{
+				return this.properties;
+			}
+		}
 
-        public override string GetName()
-        {
-            return Name;
-        }
-    }
+		public string GetName()
+		{
+			return Name;
+		}
+	}
 }

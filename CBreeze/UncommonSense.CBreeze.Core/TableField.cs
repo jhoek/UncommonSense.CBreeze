@@ -14,49 +14,49 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract partial class TableField : KeyedAndNamedItem<int>, IHasProperties
-    {
-        private Boolean? enabled;
+	[Serializable]
+	public abstract partial class TableField : KeyedItem<int>, IHasName, IHasProperties
+	{
+		private Boolean? enabled;
 
-        internal TableField(Int32 id, String name)
-        {
-            ID = id;
-            Name = name;
-        }
+		internal TableField(Int32 id, String name)
+		{
+			ID = id;
+			Name = name;
+		}
 
-        public abstract TableFieldType Type
-        {
-            get;
-        }
+		public abstract TableFieldType Type
+		{
+			get;
+		}
 
-        public String Name
-        {
-            get;
-            set;
-        }
+		public String Name
+		{
+			get;
+			set;
+		}
 
-        public Boolean? Enabled
-        {
-            get
-            {
-                return this.enabled;
-            }
-            set
-            {
-                this.enabled = value;
-            }
-        }
+		public Boolean? Enabled
+		{
+			get
+			{
+				return this.enabled;
+			}
+			set
+			{
+				this.enabled = value;
+			}
+		}
 
 
-        public override string GetName()
-        {
-            return Name;
-        }
+		public string GetName()
+		{
+			return Name;
+		}
 
-        public abstract Properties AllProperties
-        {
-            get;
-        }
-    }
+		public abstract Properties AllProperties
+		{
+			get;
+		}
+	}
 }

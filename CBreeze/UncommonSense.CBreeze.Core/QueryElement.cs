@@ -14,49 +14,49 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract partial class QueryElement : KeyedAndNamedItem<int>, IHasProperties
-    {
-        private String name;
-        private Int32? indentationLevel;
+	[Serializable]
+	public abstract partial class QueryElement : KeyedItem<int>, IHasName, IHasProperties
+	{
+		private String name;
+		private Int32? indentationLevel;
 
-        public QueryElement(Int32 id, String name, Int32? indentationLevel)
-        {
-            ID = id;
-            this.indentationLevel = indentationLevel;
-            this.name = name;
-        }
+		public QueryElement(Int32 id, String name, Int32? indentationLevel)
+		{
+			ID = id;
+			this.indentationLevel = indentationLevel;
+			this.name = name;
+		}
 
-        public abstract QueryElementType Type
-        {
-            get;
-        }
+		public abstract QueryElementType Type
+		{
+			get;
+		}
 
-        public String Name
-        {
-            get
-            {
-                return this.name;
-            }
-        }
+		public String Name
+		{
+			get
+			{
+				return this.name;
+			}
+		}
 
-        public Int32? IndentationLevel
-        {
-            get
-            {
-                return this.indentationLevel;
-            }
-        }
+		public Int32? IndentationLevel
+		{
+			get
+			{
+				return this.indentationLevel;
+			}
+		}
 
 
-        public override string GetName()
-        {
-            return Name;
-        }
+		public  string GetName()
+		{
+			return Name;
+		}
 
-        public abstract Properties AllProperties
-        {
-            get;
-        }
-    }
+		public abstract Properties AllProperties
+		{
+			get;
+		}
+	}
 }

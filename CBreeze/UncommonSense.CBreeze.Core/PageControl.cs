@@ -14,34 +14,35 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract partial class PageControl : KeyedAndNamedItem<int>, IHasProperties
-    {
-        private Int32? indentationLevel;
+	[Serializable]
+	public abstract partial class PageControl : KeyedItem<int>, IHasName, IHasProperties
+	{
+		private Int32? indentationLevel;
 
-        internal PageControl(Int32 id, Int32? indentationLevel)
-        {
-            ID = id;
-            this.indentationLevel = indentationLevel;
-        }
+		internal PageControl(Int32 id, Int32? indentationLevel)
+		{
+			ID = id;
+			this.indentationLevel = indentationLevel;
+		}
 
-        public abstract PageControlType Type
-        {
-            get;
-        }
+		public abstract PageControlType Type
+		{
+			get;
+		}
 
-        public Int32? IndentationLevel
-        {
-            get
-            {
-                return this.indentationLevel;
-            }
-        }
+		public Int32? IndentationLevel
+		{
+			get
+			{
+				return this.indentationLevel;
+			}
+		}
 
+		public abstract string GetName();
 
-        public abstract Properties AllProperties
-        {
-            get;
-        }
-    }
+		public abstract Properties AllProperties
+		{
+			get;
+		}
+	}
 }

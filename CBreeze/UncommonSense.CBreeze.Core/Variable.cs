@@ -14,29 +14,29 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract partial class Variable : KeyedAndNamedItem<int>
-    {
-        internal Variable(Int32 id, String name)
-        {
-            ID = id;
-            Name = name;
-        }
+	[Serializable]
+	public abstract partial class Variable : KeyedItem<int>, IHasName
+	{
+		internal Variable(Int32 id, String name)
+		{
+			ID = id;
+			Name = name;
+		}
 
-        public abstract VariableType Type
-        {
-            get;
-        }
+		public abstract VariableType Type
+		{
+			get;
+		}
 
-        public String Name
-        {
-            get;
-            protected set;
-        }
+		public String Name
+		{
+			get;
+			protected set;
+		}
 
-        public override string GetName()
-        {
-            return Name;
-        }
-    }
+		public string GetName()
+		{
+			return Name;
+		}
+	}
 }

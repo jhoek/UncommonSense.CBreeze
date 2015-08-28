@@ -14,42 +14,43 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public partial class PageAction : PageActionBase
-    {
-        private PageActionProperties properties = new PageActionProperties();
+	[Serializable]
+	public partial class PageAction : PageActionBase
+	{
+		private PageActionProperties properties = new PageActionProperties();
 
-        public PageAction(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
-        {
-        }
+		public PageAction(Int32 id, Int32? indentationLevel)
+			: base(id, indentationLevel)
+		{
+		}
 
-        public override PageActionBaseType Type
-        {
-            get
-            {
-                return PageActionBaseType.PageAction;
-            }
-        }
+		public override PageActionBaseType Type
+		{
+			get
+			{
+				return PageActionBaseType.PageAction;
+			}
+		}
 
-        public PageActionProperties Properties
-        {
-            get
-            {
-                return this.properties;
-            }
-        }
+		public PageActionProperties Properties
+		{
+			get
+			{
+				return this.properties;
+			}
+		}
 
-        public override string GetName()
-        {
-            return Properties.Name;
-        }
+		public override string GetName()
+		{
+			return Properties.Name;
+		}
 
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
-    }
+		public override Properties AllProperties
+		{
+			get
+			{
+				return Properties;
+			}
+		}
+	}
 }
