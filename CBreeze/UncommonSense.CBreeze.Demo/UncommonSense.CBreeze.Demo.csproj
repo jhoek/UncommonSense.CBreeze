@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7CE45259-8593-4DDF-A527-9D6256EF95A7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>UncommonSense.CBreeze.Demo</RootNamespace>
@@ -48,22 +46,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandLine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
-      <Project>{11bf778b-6524-4845-895d-ccdf90329fb2}</Project>
+      <Project>{11BF778B-6524-4845-895D-CCDF90329FB2}</Project>
       <Name>UncommonSense.CBreeze.Read</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Render\UncommonSense.CBreeze.Render.csproj">
-      <Project>{c897cee2-f672-43db-b75d-17dfb7eeab07}</Project>
+      <Project>{C897CEE2-F672-43DB-B75D-17DFB7EEAB07}</Project>
       <Name>UncommonSense.CBreeze.Render</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
-      <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
+      <Project>{1233B6B5-8D24-4483-A974-FF921DBA85C1}</Project>
       <Name>UncommonSense.CBreeze.Write</Name>
     </ProjectReference>
   </ItemGroup>
