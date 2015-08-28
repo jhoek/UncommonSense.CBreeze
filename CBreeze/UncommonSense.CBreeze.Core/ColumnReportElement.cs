@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ColumnReportElement : ReportElement
+    public partial class ColumnReportElement : ReportElement, IHasOptionString
     {
         private ColumnReportElementProperties properties = new ColumnReportElementProperties();
 
@@ -45,6 +45,11 @@ namespace UncommonSense.CBreeze.Core
             {
                 return Properties;
             }
+        }
+
+        public string GetOptionString()
+        {
+            return Properties.OptionString;
         }
     }
 }

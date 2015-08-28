@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class OptionVariable : Variable
+    public partial class OptionVariable : Variable, IHasOptionString
     {
         private String dimensions;
         private String optionString;
@@ -56,5 +56,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public string GetOptionString()
+        {
+            return OptionString;
+        }
     }
 }

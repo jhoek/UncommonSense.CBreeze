@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class OptionParameter : Parameter
+    public partial class OptionParameter : Parameter, IHasOptionString
     {
         private String optionString;
 
@@ -43,5 +43,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+
+        public string GetOptionString()
+        {
+            return OptionString;
+        }
     }
 }
