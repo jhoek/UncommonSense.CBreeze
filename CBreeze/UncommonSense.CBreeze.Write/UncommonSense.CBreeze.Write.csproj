@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1233B6B5-8D24-4483-A974-FF921DBA85C1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -35,11 +33,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="BeforeBuild" command="&quot;../../../Visual Studio Projects/Code Snippets and Proof of Concepts/IncrementBuildNo/IncrementBuildNo/bin/Debug/IncrementBuildNo.exe&quot; &quot;${ProjectDir}/Properties/AssemblyInfo.cs&quot;" />
-      </CustomCommands>
-    </CustomCommands>
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -130,14 +123,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
-      <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
+      <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -57,15 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
-      <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
+      <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
-      <Project>{11bf778b-6524-4845-895d-ccdf90329fb2}</Project>
+      <Project>{11BF778B-6524-4845-895D-CCDF90329FB2}</Project>
       <Name>UncommonSense.CBreeze.Read</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
-      <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
+      <Project>{1233B6B5-8D24-4483-A974-FF921DBA85C1}</Project>
       <Name>UncommonSense.CBreeze.Write</Name>
     </ProjectReference>
   </ItemGroup>

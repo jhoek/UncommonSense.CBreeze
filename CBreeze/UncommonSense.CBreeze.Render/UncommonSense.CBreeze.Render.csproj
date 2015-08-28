@@ -12,8 +12,6 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -81,15 +79,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Model\UncommonSense.CBreeze.Model.csproj">
-      <Project>{8f8349dc-f535-4a3b-9875-5d610b729d0c}</Project>
+      <Project>{8F8349DC-F535-4A3B-9875-5D610B729D0C}</Project>
       <Name>UncommonSense.CBreeze.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Utils\UncommonSense.CBreeze.Utils.csproj">
-      <Project>{8cdab257-683a-4ad2-a266-3c0ef538628c}</Project>
+      <Project>{8CDAB257-683A-4AD2-A266-3C0EF538628C}</Project>
       <Name>UncommonSense.CBreeze.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
-      <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
+      <Project>{1233B6B5-8D24-4483-A974-FF921DBA85C1}</Project>
       <Name>UncommonSense.CBreeze.Write</Name>
     </ProjectReference>
   </ItemGroup>
