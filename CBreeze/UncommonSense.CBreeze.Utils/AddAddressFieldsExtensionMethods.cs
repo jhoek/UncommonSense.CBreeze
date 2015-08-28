@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Utils
 {
     public static class AddAddressFieldsExtensionMethods
     {
-        public static AddAddressFieldsManifest AddAddressFields(Table table, string prefix = null, int fieldNoOffset = 0)
+        public static AddAddressFieldsManifest AddAddressFields(this Table table, string prefix = null, int fieldNoOffset = 0)
         {
             var manifest = new AddAddressFieldsManifest();
 
