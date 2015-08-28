@@ -23,7 +23,8 @@ namespace UncommonSense.CBreeze.Core
         private CalcFormulaTableFilter tableFilter = new CalcFormulaTableFilter();
         private String tableName;
 
-        internal CalcFormula()
+        // Ctor made public to allow CalcFormulaProperty to new up an instance
+        public CalcFormula()
         {
         }
 

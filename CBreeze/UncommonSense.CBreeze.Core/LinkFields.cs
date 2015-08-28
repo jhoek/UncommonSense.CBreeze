@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<LinkField> innerList = new List<LinkField>();
 
-        internal LinkFields()
+        // Made ctor public so that LinkFieldsProperty can new up a new instance
+        public LinkFields()
         {
         }
 

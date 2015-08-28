@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class DataItemLinkTypeProperty : Property
+    public class DataItemLinkTypeProperty : NullableValueProperty<DataItemLinkType>
     {
-        private DataItemLinkType? value = null;
-
-        internal DataItemLinkTypeProperty(string name) : base(name)
+        internal DataItemLinkTypeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public DataItemLinkType? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

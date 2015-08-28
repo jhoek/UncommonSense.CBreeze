@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class NullableDateTimeProperty : Property
+    public class NullableDateTimeProperty : NullableValueProperty<DateTime>
     {
-        private System.DateTime? value = null;
-
-        internal NullableDateTimeProperty(string name) : base(name)
+        internal NullableDateTimeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public System.DateTime? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

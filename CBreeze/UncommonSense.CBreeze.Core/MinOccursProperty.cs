@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class MinOccursProperty : Property
+    public class MinOccursProperty : NullableValueProperty<MinOccurs>
     {
-        private MinOccurs? value = null;
-
-        internal MinOccursProperty(string name) : base(name)
+        internal MinOccursProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public MinOccurs? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

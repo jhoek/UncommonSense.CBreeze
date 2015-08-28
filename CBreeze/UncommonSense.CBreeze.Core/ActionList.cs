@@ -17,7 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class ActionList : IntegerKeyedAndNamedContainer<PageActionBase>
     {
-        internal ActionList()
+        // Ctor made public so that ActionListProperty can new this up
+        public ActionList()
         {
         }
 

@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class XmlPortEncodingProperty : Property
+    public class XmlPortEncodingProperty : NullableValueProperty<XmlPortEncoding>
     {
-        private XmlPortEncoding? value = null;
-
-        internal XmlPortEncodingProperty(string name) : base(name)
+        internal XmlPortEncodingProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public XmlPortEncoding? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class BooleanProperty : Property
+    public class BooleanProperty : ValueProperty<bool>
     {
-        private System.Boolean value = false;
-
         internal BooleanProperty(string name) : base(name)
         {
         }
@@ -30,18 +28,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value;
             }
         }
-
-        public System.Boolean Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
-        }
     }
-
 }

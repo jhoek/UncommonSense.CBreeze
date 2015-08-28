@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TransactionTypeProperty : Property
+    public class TransactionTypeProperty : NullableValueProperty<TransactionType>
     {
-        private TransactionType? value = null;
-
-        internal TransactionTypeProperty(string name) : base(name)
+        internal TransactionTypeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public TransactionType? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

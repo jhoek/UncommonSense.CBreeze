@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TableRelationLinesProperty : Property
+    public class TableRelationLinesProperty : ReferenceProperty<TableRelationLines>
     {
-        private TableRelationLines value = new TableRelationLines();
-
-        internal TableRelationLinesProperty(string name) : base(name)
+        internal TableRelationLinesProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public TableRelationLines Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

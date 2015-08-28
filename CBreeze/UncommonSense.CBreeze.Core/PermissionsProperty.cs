@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class PermissionsProperty : Property
+    public class PermissionsProperty : ReferenceProperty<Permissions>
     {
-        private Permissions value = new Permissions();
-
-        internal PermissionsProperty(string name) : base(name)
+        internal PermissionsProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public Permissions Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

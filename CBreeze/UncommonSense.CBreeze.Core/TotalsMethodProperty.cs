@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TotalsMethodProperty : Property
+    public class TotalsMethodProperty : NullableValueProperty<TotalsMethod>
     {
-        private TotalsMethod? value = null;
-
-        internal TotalsMethodProperty(string name) : base(name)
+        internal TotalsMethodProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public TotalsMethod? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

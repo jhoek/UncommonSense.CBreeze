@@ -8,7 +8,7 @@ namespace CBreeze.NextGen
 {
 	public class XmlPortTextElementNodeProperties : Properties
 	{
-		private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
+		private NullableValueProperty<MaxOccurs> maxOccurs = new NullableValueProperty<MaxOccurs>("MaxOccurs");
 		private NullableValueProperty<MinOccurs> minOccurs = new NullableValueProperty<MinOccurs>("MinOccurs");
 
 

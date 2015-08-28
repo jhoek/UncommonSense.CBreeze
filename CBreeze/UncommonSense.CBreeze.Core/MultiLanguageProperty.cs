@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class MultiLanguageProperty : Property
+    public class MultiLanguageProperty : ReferenceProperty<MultiLanguageValue>
     {
-        private MultiLanguageValue value = new MultiLanguageValue();
-
-        internal MultiLanguageProperty(string name) : base(name)
+        internal MultiLanguageProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public MultiLanguageValue Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

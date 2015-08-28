@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class XmlVersionNoProperty : Property
+    public class XmlVersionNoProperty : NullableValueProperty<XmlVersionNo>
     {
-        private XmlVersionNo? value = null;
-
-        internal XmlVersionNoProperty(string name) : base(name)
+        internal XmlVersionNoProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public XmlVersionNo? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

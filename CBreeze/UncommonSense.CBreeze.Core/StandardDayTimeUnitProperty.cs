@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class StandardDayTimeUnitProperty : Property
+    public class StandardDayTimeUnitProperty : NullableValueProperty<StandardDayTimeUnit>
     {
-        private StandardDayTimeUnit? value = null;
-
-        internal StandardDayTimeUnitProperty(string name) : base(name)
+        internal StandardDayTimeUnitProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public StandardDayTimeUnit? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

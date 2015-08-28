@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String fieldName;
         private String tableVariableName;
 
-        internal SourceField()
+        public SourceField()
         {
         }
 

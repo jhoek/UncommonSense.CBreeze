@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<DataItemQueryElementTableFilterLine> innerList = new List<DataItemQueryElementTableFilterLine>();
 
-        internal DataItemQueryElementTableFilter()
+        // Made public to allow DataItemQueryElementTableFilterProperty to new up a new instance
+        public DataItemQueryElementTableFilter()
         {
         }
 

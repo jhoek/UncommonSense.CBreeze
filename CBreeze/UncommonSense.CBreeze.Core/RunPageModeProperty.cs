@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class RunPageModeProperty : Property
+    public class RunPageModeProperty : NullableValueProperty<RunPageMode>
     {
-        private RunPageMode? value = null;
-
-        internal RunPageModeProperty(string name) : base(name)
+        internal RunPageModeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public RunPageMode? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

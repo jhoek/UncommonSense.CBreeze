@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<QueryDataItemLinkLine> innerList = new List<QueryDataItemLinkLine>();
 
-        internal QueryDataItemLink()
+        public QueryDataItemLink()
         {
         }
 

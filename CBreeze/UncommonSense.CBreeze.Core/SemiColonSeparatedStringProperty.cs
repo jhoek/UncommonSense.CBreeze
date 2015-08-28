@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class SemiColonSeparatedStringProperty : Property
+    public class SemiColonSeparatedStringProperty : StringProperty
     {
-        private System.String value = null;
-
-        internal SemiColonSeparatedStringProperty(string name) : base(name)
+        internal SemiColonSeparatedStringProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value != null;
-            }
-        }
-
-        public System.String Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

@@ -15,32 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class AutoFormatTypeProperty : Property
+    public class AutoFormatTypeProperty : NullableValueProperty<AutoFormatType>
     {
-        private AutoFormatType? value = null;
-
-        internal AutoFormatTypeProperty(string name) : base(name)
+        internal AutoFormatTypeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public AutoFormatType? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
 

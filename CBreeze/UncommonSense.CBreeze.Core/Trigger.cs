@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private CodeLines codeLines = new CodeLines();
         private Variables variables = new Variables();
 
-        internal Trigger()
+        public Trigger()
         {
         }
 

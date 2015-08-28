@@ -20,7 +20,8 @@ namespace UncommonSense.CBreeze.Core
         private Int32? atLeast;
         private Int32? atMost;
 
-        internal DecimalPlaces()
+        // Made ctor public so that DecimalPlacesProperty can new up a new instance
+        public DecimalPlaces()
         {
         }
 

@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private Dictionary<String, MultiLanguageEntry> innerList = new Dictionary<String, MultiLanguageEntry>();
 
-        internal MultiLanguageValue()
+        // Made ctor public to allow MultiLanguageProperty to new up an instance
+        public MultiLanguageValue()
         {
         }
 

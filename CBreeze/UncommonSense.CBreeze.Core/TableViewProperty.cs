@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TableViewProperty : Property
+    public class TableViewProperty : ReferenceProperty<TableView>
     {
-        private TableView value = new TableView();
-
-        internal TableViewProperty(string name) : base(name)
+        internal TableViewProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Key != null || Value.Order.HasValue || Value.TableFilter.Any();
             }
         }
-
-        public TableView Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

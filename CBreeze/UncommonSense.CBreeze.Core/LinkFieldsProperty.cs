@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class LinkFieldsProperty : Property
+    public class LinkFieldsProperty : ReferenceProperty<LinkFields>
     {
-        private LinkFields value = new LinkFields();
-
-        internal LinkFieldsProperty(string name) : base(name)
+        internal LinkFieldsProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public LinkFields Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

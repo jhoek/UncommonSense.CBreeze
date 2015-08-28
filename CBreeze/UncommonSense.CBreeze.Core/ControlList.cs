@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<ControlReference> innerList = new List<ControlReference>();
 
-        internal ControlList()
+        // Ctor made public to allow ControlListProperty to new up an instance
+        public ControlList()
         {
         }
 

@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class PageTypeProperty : Property
+    public class PageTypeProperty : NullableValueProperty<PageType>
     {
-        private PageType? value = null;
-
-        internal PageTypeProperty(string name) : base(name)
+        internal PageTypeProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,18 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.HasValue;
             }
         }
-
-        public PageType? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
-        }
     }
-
 }

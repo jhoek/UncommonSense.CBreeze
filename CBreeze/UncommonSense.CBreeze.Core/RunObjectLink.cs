@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<RunObjectLinkLine> innerList = new List<RunObjectLinkLine>();
 
-        internal RunObjectLink()
+        public RunObjectLink()
         {
         }
 

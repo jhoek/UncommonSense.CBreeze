@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TriggerProperty : Property
+    public class TriggerProperty : ReferenceProperty<Trigger>
     {
-        private Trigger value = new Trigger();
-
-        internal TriggerProperty(string name) : base(name)
+        internal TriggerProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.CodeLines.Any() || Value.Variables.Any();
             }
         }
-
-        public Trigger Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

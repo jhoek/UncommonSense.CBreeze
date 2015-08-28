@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<SIFTLevel> innerList = new List<SIFTLevel>();
 
-        internal SIFTLevels()
+        public SIFTLevels()
         {
         }
 

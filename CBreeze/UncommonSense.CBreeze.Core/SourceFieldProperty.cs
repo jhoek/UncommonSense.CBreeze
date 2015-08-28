@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class SourceFieldProperty : Property
+    public class SourceFieldProperty : ReferenceProperty<SourceField>
     {
-        private SourceField value = new SourceField();
-
-        internal SourceFieldProperty(string name) : base(name)
+        internal SourceFieldProperty(string name)
+            : base(name)
         {
         }
 
@@ -27,17 +26,8 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return Value.TableVariableName != null || value.FieldName != null;
-            }
-        }
-
-        public SourceField Value
-        {
-            get
-            {
-                return this.value;
+                return Value.TableVariableName != null || Value.FieldName != null;
             }
         }
     }
-
 }

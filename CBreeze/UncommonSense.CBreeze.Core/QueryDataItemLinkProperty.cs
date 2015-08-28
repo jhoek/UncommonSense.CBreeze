@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class QueryDataItemLinkProperty : Property
+    public class QueryDataItemLinkProperty : ReferenceProperty<QueryDataItemLink>
     {
-        private QueryDataItemLink value = new QueryDataItemLink();
-
-        internal QueryDataItemLinkProperty(string name) : base(name)
+        internal QueryDataItemLinkProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public QueryDataItemLink Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

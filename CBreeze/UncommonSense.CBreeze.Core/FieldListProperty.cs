@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class FieldListProperty : Property
+    public class FieldListProperty : ReferenceProperty<FieldList>
     {
-        private FieldList value = new FieldList();
-
-        internal FieldListProperty(string name) : base(name)
+        internal FieldListProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public FieldList Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

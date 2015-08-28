@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class BlobSubTypeProperty : Property
+    public class BlobSubTypeProperty : NullableValueProperty<BlobSubType>
     {
-        private BlobSubType? value = null;
-
-        internal BlobSubTypeProperty(string name) : base(name)
+        internal BlobSubTypeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public BlobSubType? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

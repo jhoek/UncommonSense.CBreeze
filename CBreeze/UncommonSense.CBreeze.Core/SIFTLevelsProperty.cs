@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class SIFTLevelsProperty : Property
+    public class SIFTLevelsProperty : ReferenceProperty<SIFTLevels>
     {
-        private SIFTLevels value = new SIFTLevels();
-
-        internal SIFTLevelsProperty(string name) : base(name)
+        internal SIFTLevelsProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public SIFTLevels Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

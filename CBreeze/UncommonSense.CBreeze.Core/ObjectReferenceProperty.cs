@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ObjectReferenceProperty : Property
+    public class ObjectReferenceProperty : ReferenceProperty<ObjectReference>
     {
-        private ObjectReference value = new ObjectReference();
-
-        internal ObjectReferenceProperty(string name) : base(name)
+        internal ObjectReferenceProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.ID != 0;
             }
         }
-
-        public ObjectReference Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

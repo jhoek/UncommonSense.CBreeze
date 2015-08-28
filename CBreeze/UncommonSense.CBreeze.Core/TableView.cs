@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private Order? order;
         private TableFilter tableFilter = new TableFilter();
 
-        internal TableView()
+        public TableView()
         {
         }
 

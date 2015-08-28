@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<TableRelationLine> innerList = new List<TableRelationLine>();
 
-        internal TableRelationLines()
+        public TableRelationLines()
         {
         }
 

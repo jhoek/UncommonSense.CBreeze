@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TextTypeProperty : Property
+    public class TextTypeProperty : NullableValueProperty<TextType>
     {
-        private TextType? value = null;
-
-        internal TextTypeProperty(string name) : base(name)
+        internal TextTypeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public TextType? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

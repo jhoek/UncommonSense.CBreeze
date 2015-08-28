@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private Dictionary<Int32,Permission> innerList = new Dictionary<Int32,Permission>();
 
-        internal Permissions()
+        // Ctor made public to allow PermissionProperty to new up an instance
+        public Permissions()
         {
         }
 

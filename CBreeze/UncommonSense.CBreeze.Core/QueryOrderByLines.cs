@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<QueryOrderByLine> innerList = new List<QueryOrderByLine>();
 
-        internal QueryOrderByLines()
+        public QueryOrderByLines()
         {
         }
 

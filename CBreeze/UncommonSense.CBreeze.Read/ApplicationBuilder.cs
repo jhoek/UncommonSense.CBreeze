@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Read
         {
             var parser = new UncommonSense.Nav.Parser.Parser();
             var application = new Application();
-            var applicationBuilder= new ApplicationBuilder(application);
+            var applicationBuilder = new ApplicationBuilder(application);
 
             parser.Listener = applicationBuilder;
             parser.Parse(fileName);
@@ -238,10 +238,6 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Value = propertyValue.ToEnum<MenuItemRunObjectType>()),
                 TypeSwitch.Case<MinOccursProperty>(p => p.Value = propertyValue.ToEnum<MinOccurs>()),
                 TypeSwitch.Case<MultiLanguageProperty>(p => p.Value.SetMultiLanguageValue(propertyValue)),
-                TypeSwitch.Case<NullableBooleanProperty>(p => p.Value = propertyValue.ToNullableBoolean()),
-                TypeSwitch.Case<NullableDecimalProperty>(p => p.Value = propertyValue.ToNullableDecimal()),
-                TypeSwitch.Case<NullableGuidProperty>(p => p.Value = propertyValue.ToNullableGuid()),
-                TypeSwitch.Case<NullableIntegerProperty>(p => p.Value = propertyValue.ToNullableInteger()),
                 TypeSwitch.Case<ObjectProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<ObjectReferenceProperty>(p => p.SetObjectReferenceProperty(propertyValue)),
                 TypeSwitch.Case<OccurrenceProperty>(p => p.Value = propertyValue.ToEnum<Occurrence>()),
@@ -270,7 +266,11 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<TextTypeProperty>(p => p.Value = propertyValue.ToEnum<TextType>()),
                 TypeSwitch.Case<TotalsMethodProperty>(p => p.Value = propertyValue.ToEnum<TotalsMethod>()),
                 TypeSwitch.Case<TransactionTypeProperty>(p => p.Value = propertyValue.ToEnum<TransactionType>()),
-                TypeSwitch.Case<XmlPortFormatProperty>(p => p.Value = propertyValue.ToEnum<XmlPortFormat>()));
+                TypeSwitch.Case<XmlPortFormatProperty>(p => p.Value = propertyValue.ToEnum<XmlPortFormat>()),
+                TypeSwitch.Case<NullableBooleanProperty>(p => p.Value = propertyValue.ToNullableBoolean()),
+                TypeSwitch.Case<NullableDecimalProperty>(p => p.Value = propertyValue.ToNullableDecimal()),
+                TypeSwitch.Case<NullableGuidProperty>(p => p.Value = propertyValue.ToNullableGuid()),
+                TypeSwitch.Case<NullableIntegerProperty>(p => p.Value = propertyValue.ToNullableInteger()));
         }
 
         public void OnBeginTrigger(string triggerName)
@@ -358,7 +358,7 @@ namespace UncommonSense.CBreeze.Read
                     currentTableField = durationTableField;
                     break;
                 case FieldType.Guid:
-                    var guidTableField = fields.Add( new GuidTableField(fieldNo, fieldName));
+                    var guidTableField = fields.Add(new GuidTableField(fieldNo, fieldName));
                     currentProperties.Push(guidTableField.Properties);
                     currentTableField = guidTableField;
                     break;
@@ -690,7 +690,7 @@ namespace UncommonSense.CBreeze.Read
         }
 
 
-        public void OnParameter(bool parameterVar, int parameterID, string parameterName, UncommonSense.Nav.Parser.ParameterType parameterType,  string parameterSubType, int? parameterLength, string parameterOptionString, bool parameterTemporary, string parameterDimensions, bool parameterRunOnClient, string parameterSecurityFiltering, bool parameterSuppressDispose)
+        public void OnParameter(bool parameterVar, int parameterID, string parameterName, UncommonSense.Nav.Parser.ParameterType parameterType, string parameterSubType, int? parameterLength, string parameterOptionString, bool parameterTemporary, string parameterDimensions, bool parameterRunOnClient, string parameterSecurityFiltering, bool parameterSuppressDispose)
         {
             Parameters parameters = null;
 

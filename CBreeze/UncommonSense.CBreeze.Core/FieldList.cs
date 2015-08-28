@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<FieldReference> innerList = new List<FieldReference>();
 
-        internal FieldList()
+        // Made ctor public so that FieldListProperty can new up an instance
+        public FieldList()
         {
         }
 

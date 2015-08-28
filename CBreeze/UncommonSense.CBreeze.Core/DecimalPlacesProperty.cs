@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class DecimalPlacesProperty : Property
+    public class DecimalPlacesProperty : ReferenceProperty<DecimalPlaces>
     {
-        private DecimalPlaces value = new DecimalPlaces();
-
-        internal DecimalPlacesProperty(string name) : base(name)
+        internal DecimalPlacesProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.AtLeast.HasValue || Value.AtMost.HasValue;
             }
         }
-
-        public DecimalPlaces Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<ColumnFilterLine> innerList = new List<ColumnFilterLine>();
 
-        internal ColumnFilter()
+        // Ctor made public to allow ColumnFilterProperty to new up a new instance
+        public ColumnFilter()
         {
         }
 

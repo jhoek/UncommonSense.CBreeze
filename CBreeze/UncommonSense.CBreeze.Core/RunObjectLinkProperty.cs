@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class RunObjectLinkProperty : Property
+    public class RunObjectLinkProperty : ReferenceProperty<RunObjectLink>
     {
-        private RunObjectLink value = new RunObjectLink();
-
-        internal RunObjectLinkProperty(string name) : base(name)
+        internal RunObjectLinkProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public RunObjectLink Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

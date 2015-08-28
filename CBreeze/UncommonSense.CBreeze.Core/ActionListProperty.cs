@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ActionListProperty : Property
+    public class ActionListProperty : ReferenceProperty<ActionList>
     {
-        private ActionList value = new ActionList();
-
-        internal ActionListProperty(string name) : base(name)
+        internal ActionListProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public ActionList Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

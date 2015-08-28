@@ -20,7 +20,8 @@ namespace UncommonSense.CBreeze.Core
         private Int32 id;
         private RunObjectType? type;
 
-        internal ObjectReference()
+        // Made public to allow ObjectReferenceProperty to new up an instance
+        public ObjectReference()
         {
         }
 

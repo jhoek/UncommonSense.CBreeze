@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class OptionStringProperty : Property
+    public class OptionStringProperty : StringProperty
     {
-        private System.String value = null;
-
-        internal OptionStringProperty(string name) : base(name)
+        internal OptionStringProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,18 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value != null;
             }
         }
-
-        public System.String Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
-        }
     }
-
 }

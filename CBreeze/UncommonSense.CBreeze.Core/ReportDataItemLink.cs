@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private List<ReportDataItemLinkLine> innerList = new List<ReportDataItemLinkLine>();
 
-        internal ReportDataItemLink()
+        public ReportDataItemLink()
         {
         }
 

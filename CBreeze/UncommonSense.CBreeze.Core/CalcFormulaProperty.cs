@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class CalcFormulaProperty : Property
+    public class CalcFormulaProperty : ReferenceProperty<CalcFormula>
     {
-        private CalcFormula value = new CalcFormula();
-
-        internal CalcFormulaProperty(string name) : base(name)
+        internal CalcFormulaProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Method.HasValue;
             }
         }
-
-        public CalcFormula Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

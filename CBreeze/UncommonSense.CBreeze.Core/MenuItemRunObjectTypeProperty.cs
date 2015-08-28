@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class MenuItemRunObjectTypeProperty : Property
+    public class MenuItemRunObjectTypeProperty : NullableValueProperty<MenuItemRunObjectType>
     {
-        private MenuItemRunObjectType? value = null;
-
-        internal MenuItemRunObjectTypeProperty(string name) : base(name)
+        internal MenuItemRunObjectTypeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public MenuItemRunObjectType? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

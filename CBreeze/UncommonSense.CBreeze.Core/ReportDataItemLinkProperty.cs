@@ -15,10 +15,8 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ReportDataItemLinkProperty : Property
+    public class ReportDataItemLinkProperty : ReferenceProperty<ReportDataItemLink>
     {
-        private ReportDataItemLink value = new ReportDataItemLink();
-
         internal ReportDataItemLinkProperty(string name) : base(name)
         {
         }
@@ -30,14 +28,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public ReportDataItemLink Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

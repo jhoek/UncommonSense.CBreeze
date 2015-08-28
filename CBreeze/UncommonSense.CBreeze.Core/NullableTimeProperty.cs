@@ -15,33 +15,11 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class NullableTimeProperty : Property
+    public class NullableTimeProperty : NullableValueProperty<TimeSpan>
     {
-        private System.TimeSpan? value = null;
-
-        internal NullableTimeProperty(string name) : base(name)
+        internal NullableTimeProperty(string name)
+            : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
-        }
-
-        public System.TimeSpan? Value
-        {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
         }
     }
-
 }

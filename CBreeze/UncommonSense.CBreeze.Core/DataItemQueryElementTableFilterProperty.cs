@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class DataItemQueryElementTableFilterProperty : Property
+    public class DataItemQueryElementTableFilterProperty : ReferenceProperty<DataItemQueryElementTableFilter>
     {
-        private DataItemQueryElementTableFilter value = new DataItemQueryElementTableFilter();
-
-        internal DataItemQueryElementTableFilterProperty(string name) : base(name)
+        internal DataItemQueryElementTableFilterProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public DataItemQueryElementTableFilter Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

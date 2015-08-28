@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ColumnFilterProperty : Property
+    public class ColumnFilterProperty : ReferenceProperty<ColumnFilter>
     {
-        private ColumnFilter value = new ColumnFilter();
-
-        internal ColumnFilterProperty(string name) : base(name)
+        internal ColumnFilterProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public ColumnFilter Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }

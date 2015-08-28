@@ -15,11 +15,10 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class QueryOrderByLinesProperty : Property
+    public class QueryOrderByLinesProperty : ReferenceProperty<QueryOrderByLines>
     {
-        private QueryOrderByLines value = new QueryOrderByLines();
-
-        internal QueryOrderByLinesProperty(string name) : base(name)
+        internal QueryOrderByLinesProperty(string name)
+            : base(name)
         {
         }
 
@@ -30,14 +29,5 @@ namespace UncommonSense.CBreeze.Core
                 return Value.Any();
             }
         }
-
-        public QueryOrderByLines Value
-        {
-            get
-            {
-                return this.value;
-            }
-        }
     }
-
 }
