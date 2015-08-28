@@ -23,4 +23,7 @@
 - C# (usable from both PowerShell and C#)
 - PowerShell (as samples)
 
+##Fluent interface
+e.g. table.Fields.Add(new CodeTableField(1, "Code", 10)).MakeNotBlank();
+
 ## Support NAV 2013R2, 2015, 2016
