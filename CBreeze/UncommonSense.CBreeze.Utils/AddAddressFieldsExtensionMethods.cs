@@ -50,21 +50,17 @@ namespace UncommonSense.CBreeze.Utils
                 manifest.CountryRegionCodeField.Name.QuotedVariableName());
 
             // Table relations
-            var tableRelation = manifest.PostCodeField.Properties.TableRelation.Add("Post Code");
-            tableRelation.FieldName = "Code";
+            var tableRelation = manifest.PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
             tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Const, "''");
 
-            tableRelation = manifest.PostCodeField.Properties.TableRelation.Add("Post Code");
-            tableRelation.FieldName = "Code";
+            tableRelation = manifest.PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
             tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Filter, "<>''");
             tableRelation.TableFilter.Add("Country/Region Code", TableRelationTableFilterLineType.Field, manifest.CountryRegionCodeField.Name);
 
-            tableRelation = manifest.CityField.Properties.TableRelation.Add("Post Code");
-            tableRelation.FieldName = "City";
+            tableRelation = manifest.CityField.Properties.TableRelation.Set("Post Code", "City");
             tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Const, "''");
 
-            tableRelation = manifest.CityField.Properties.TableRelation.Add("Post Code");
-            tableRelation.FieldName = "City";
+            tableRelation = manifest.CityField.Properties.TableRelation.Set("Post Code", "City");
             tableRelation.Conditions.Add(manifest.CountryRegionCodeField.Name, TableRelationConditionType.Filter, "<>''");
             tableRelation.TableFilter.Add("Country/Region Code", TableRelationTableFilterLineType.Field, manifest.CountryRegionCodeField.Name);
 
