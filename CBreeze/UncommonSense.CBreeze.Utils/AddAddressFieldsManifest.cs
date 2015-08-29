@@ -15,37 +15,37 @@ namespace UncommonSense.CBreeze.Utils
         public TextTableField AddressField
         {
             get;
-            set;
+            internal set;
         }
 
         public TextTableField Address2Field
         {
             get;
-            set;
+            internal set;
         }
 
         public CodeTableField PostCodeField
         {
             get;
-            set;
+            internal set;
         }
 
         public TextTableField CityField
         {
             get;
-            set;
+            internal set;
         }
 
         public TextTableField CountyField
         {
             get;
-            set;
+            internal set;
         }
 
         public CodeTableField CountryRegionCodeField
         {
             get;
-            set;
+            internal set;
         }
     }
 }
