@@ -43,6 +43,8 @@
     <Compile Include="AddAddressFieldsExtensionMethods.cs" />
     <Compile Include="AddAddressFieldsManifest.cs" />
     <Compile Include="AddCommunicationFieldsExtensionMethods.cs" />
+    <Compile Include="AddDescriptionFieldsExtensionMethods.cs" />
+    <Compile Include="AddDescriptionFieldsManifest.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs" />
     <Compile Include="FindAvailableFieldNoExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
