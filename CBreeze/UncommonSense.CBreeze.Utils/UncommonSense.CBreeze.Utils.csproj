@@ -43,6 +43,7 @@
     <Compile Include="AddAddressFieldsExtensionMethods.cs" />
     <Compile Include="AddAddressFieldsManifest.cs" />
     <Compile Include="AddCommunicationFieldsExtensionMethods.cs" />
+    <Compile Include="AddCommunicationFieldsManifest.cs" />
     <Compile Include="AddDescriptionFieldsExtensionMethods.cs" />
     <Compile Include="AddDescriptionFieldsManifest.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs" />
