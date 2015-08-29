@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DescriptionStyle.cs" />
     <Compile Include="DocumentEntityType.cs" />
     <Compile Include="ISubsidiaryTo.cs" />
     <Compile Include="RegisterEntityType.cs" />
@@ -67,6 +66,12 @@
     <Compile Include="ExceptionMessages.cs" />
     <Compile Include="DescriptionLength.cs" />
     <Compile Include="DifferentiatorType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Utils\UncommonSense.CBreeze.Utils.csproj">
+      <Project>{8cdab257-683a-4ad2-a266-3c0ef538628c}</Project>
+      <Name>UncommonSense.CBreeze.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

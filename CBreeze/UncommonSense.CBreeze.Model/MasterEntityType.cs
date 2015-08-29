@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Model
 {
@@ -11,7 +12,7 @@ namespace UncommonSense.CBreeze.Model
         {
             Name = name;
             SetupEntityType = setupEntityType;
-            DescriptionStyle = Model.DescriptionStyle.Description;
+            DescriptionStyle = DescriptionStyle.Description;
             HasDescription2Field = true;
             HasSearchDescriptionField = true;
             HasLastDateModifiedField = true;
