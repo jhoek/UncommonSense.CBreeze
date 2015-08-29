@@ -46,6 +46,8 @@
     <Compile Include="AddCommunicationFieldsManifest.cs" />
     <Compile Include="AddDescriptionFieldsExtensionMethods.cs" />
     <Compile Include="AddDescriptionFieldsManifest.cs" />
+    <Compile Include="AddLastDateModifiedFieldExtensionMethods.cs" />
+    <Compile Include="AddLastDateModifiedFieldManifest.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs" />
     <Compile Include="FindAvailableFieldNoExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
