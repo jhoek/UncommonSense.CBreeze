@@ -20,15 +20,22 @@ namespace UncommonSense.CBreeze.Render
             manifest.ListPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption();
             manifest.StatisticsPage = entityType.HasStatisticsPage ? application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} Statistics", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption() : null;
 
-            var nextFieldNo = 1;
+            var addNoFromNoSeriesManifest = manifest.Table.AddNoFromNoSeriesField(entityType.SetupEntityType 
+            manifest.NoField = addNoFromNoSeriesManifest.NoField;
+            manifest.NoSeriesField = addNoFromNoSeriesManifest.NoSeriesField;
 
-            manifest.NoField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "No.", 20)).AutoCaption();
-            manifest.DescriptionField = manifest.Table.Fields.Add(new TextTableField(nextFieldNo++, entityType.DescriptionFieldName(), 50)).AutoCaption();
-            manifest.Description2Field = entityType.HasDescription2Field ? manifest.Table.Fields.Add(new TextTableField(nextFieldNo++, entityType.Description2FieldName(), 50)).AutoCaption() : null;
-            manifest.SearchDescriptionField = entityType.HasSearchDescriptionField ? manifest.Table.AddSearchDescription(nextFieldNo++, manifest.NoField, manifest.DescriptionField) : null;
-            manifest.LastDateModifiedField = entityType.HasLastDateModifiedField ? manifest.Table.AddLastDateModified(nextFieldNo++) : null;
-            manifest.DateFilterField = entityType.NeedsDateFilterField() ? manifest.Table.Fields.Add(new DateTableField(nextFieldNo++, "Date Filter")).AutoCaption() : null;
-            manifest.NoSeriesField = manifest.Table.Fields.Add(new CodeTableField(nextFieldNo++, "No. Series", 10)).AutoCaption();
+            var addDescriptionFieldsManifest = manifest.Table.AddDescriptionFields(entityType.DescriptionStyle, entityType.HasDescription2Field, entityType.HasSearchDescriptionField);
+            manifest.DescriptionField = addDescriptionFieldsManifest.DescriptionField;
+            manifest.Description2Field = addDescriptionFieldsManifest.Description2Field;
+            manifest.SearchDescriptionField = addDescriptionFieldsManifest.SearchDescriptionField;
+
+            if (entityType.HasLastDateModifiedField)
+            {
+                var lastDateModifiedManifest = manifest.Table.AddLastDateModifiedField(manifest.Table.NextFieldNo());
+                manifest.LastDateModifiedField = lastDateModifiedManifest.LastDateModifiedField;
+            }
+
+            manifest.DateFilterField = entityType.NeedsDateFilterField() ? manifest.Table.Fields.Add(new DateTableField(manifest.Table.NextFieldNo(), "Date Filter")).AutoCaption() : null;
 
             return manifest;
         }
@@ -45,20 +52,10 @@ namespace UncommonSense.CBreeze.Render
         {
             var setupEntityTypeManifest = renderingContext.GetManifest(entityType.SetupEntityType) as SetupEntityTypeManifest;
 
-            //if (entityType.HasSearchDescriptionField)
-            //{
-            //    manifest.NoField.Properties.AltSearchField = manifest.SearchDescriptionField.Name;
-            //    manifest.DescriptionField.Properties.OnValidate.CodeLines.Add(string.Format("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", manifest.SearchDescriptionField.Name.Quoted(), manifest.DescriptionField.Name.Quoted()));
-            //    manifest.DescriptionField.Properties.OnValidate.CodeLines.Add(string.Format("  {0} := {1};", manifest.SearchDescriptionField.Name.Quoted(), manifest.DescriptionField.Name.Quoted()));
-            //}
-
             if (entityType.NeedsDateFilterField())
             {
                 manifest.DateFilterField.Properties.FieldClass = FieldClass.FlowFilter;
             }
-
-            manifest.NoSeriesField.Properties.Editable = false;
-            manifest.NoSeriesField.Properties.TableRelation.Add("No. Series");
 
             var onValidate = manifest.NoField.Properties.OnValidate;
             var setupRecordVariable = onValidate.Variables.Add(new RecordVariable(1000, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID));
@@ -68,10 +65,6 @@ namespace UncommonSense.CBreeze.Render
             onValidate.CodeLines.Add(string.Format("  {0}.TestManual({1}.\"{2} Nos.\");", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, entityType.Name));
             onValidate.CodeLines.Add("  \"No. Series\" := '';");
             onValidate.CodeLines.Add("END;");
-
-            var primaryKey = manifest.Table.Keys.Add();
-            primaryKey.Fields.Add(manifest.NoField.Name);
-            primaryKey.Properties.Clustered = true;
 
             var secundaryKey = manifest.Table.Keys.Add();
             secundaryKey.Fields.Add(manifest.SearchDescriptionField.Name);
@@ -222,27 +215,6 @@ namespace UncommonSense.CBreeze.Render
                 // FIXME: RunPageLink: all FlowFilters
             }
             // FIXME: Actions for all subsidiary entity types
-        }
-
-        private static string DescriptionFieldName(this MasterEntityType masterEntityType)
-        {
-            switch (masterEntityType.DescriptionStyle)
-            {
-                case DescriptionStyle.Name:
-                    return "Name";
-                default:
-                    return "Description";
-            }
-        }
-
-        private static string Description2FieldName(this MasterEntityType masterEntityType)
-        {
-            return string.Format("{0} 2", masterEntityType.DescriptionFieldName());
-        }
-
-        private static string SearchDescriptionFieldName(this MasterEntityType masterEntityType)
-        {
-            return string.Format("Search {0}", masterEntityType.DescriptionFieldName());
         }
 
         private static bool NeedsDateFilterField(this MasterEntityType masterEntityType)

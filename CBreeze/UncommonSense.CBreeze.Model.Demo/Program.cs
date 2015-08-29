@@ -20,8 +20,8 @@ namespace UncommonSense.CBreeze.Model.Demo
             //var subsidiaryEntityType = applicationDesign.Add(new SubsidiaryEntityType("Item Vendor", "Item Vendors", item, vendor));
             //subsidiaryEntityType.DifferentiatorType = DifferentiatorType.None;
 
-            var ledgerEntityType = applicationDesign.Add(new LedgerEntityType("Item Ledger Entry", "Item Ledger Entries"));
-            ledgerEntityType.MasterEntityType = item;
+            //var ledgerEntityType = applicationDesign.Add(new LedgerEntityType("Item Ledger Entry", "Item Ledger Entries"));
+            //ledgerEntityType.MasterEntityType = item;
 
             var application = applicationDesign.RenderTo(new Application(), new RenderingContext());
             application.Write(Console.Out);
