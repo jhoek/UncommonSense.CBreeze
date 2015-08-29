@@ -27,16 +27,47 @@ namespace UncommonSense.CBreeze.Utils
                 get;
                 private set;
             }
+
+            public IEnumerable<int> IDs
+            {
+                get
+                {
+                    return Enumerable.Range(From, To - From + 1);
+                }
+            }
         }
 
-        public static int FindAvailableID(this Table table, params IDRange[] ranges)
+        public static int NextFieldNo(this Table table)
         {
-
-
-            throw new NotImplementedException();
+            return NextFieldNo(table, 1);
         }
 
-        public static IEnumerable<int> FindAvailableIDs(this Table table, int noOfFields, int interval = 1, params IDRange[] ranges)
+        public static int NextFieldNo(this Table table, int from)
+        {
+            return NextFieldNo(table, from, int.MaxValue);
+        }
+
+        public static int NextFieldNo(this Table table, int from, int to)
+        {
+            return NextFieldNo(table, new IDRange(from, to));
+        }
+
+        public static int NextFieldNo(this Table table, params IDRange[] ranges)
+        {
+            foreach (var range in ranges)
+            {
+                foreach (var id in range.IDs)
+                {
+                    if (!table.Fields.Any(f=>f.ID == id))
+                        return id;
+                }
+            }
+
+            throw new ApplicationException(string.Format("Could not find an available field no. in table {0}.", table.Name));
+        }
+
+        /*
+        public static IEnumerable<int> FindAvailableFieldNos(this Table table, int noOfFields, int interval = 1, params IDRange[] ranges)
         {
             throw new NotImplementedException();
         }
@@ -45,7 +76,7 @@ namespace UncommonSense.CBreeze.Utils
         {
             try
             {
-                fieldNo = FindAvailableID(table, ranges);
+                fieldNo = FindAvailableFieldNo(table, ranges);
                 return true;
             }
             catch
@@ -59,7 +90,7 @@ namespace UncommonSense.CBreeze.Utils
         {
             try
             {
-                fieldNos = FindAvailableIDs(table, noOfFields, interval, ranges);
+                fieldNos = FindAvailableFieldNos(table, noOfFields, interval, ranges);
                 return true;
             }
             catch
@@ -68,5 +99,6 @@ namespace UncommonSense.CBreeze.Utils
                 return false;
             }
         }
+         */
     }
 }
