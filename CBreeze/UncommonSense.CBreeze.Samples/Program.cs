@@ -14,6 +14,8 @@ namespace UncommonSense.CBreeze.Samples
     {
         static void Main(string[] args)
         {
+            IDManager.ObjectIDRanges.Add(new IDManager.IDRange(11143800, 11143899));
+
             CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
             //CBreezeReaderDemo(@"c:\users\jhoek\desktop\sample.txt", @"c:\users\jhoek\desktop\sample.txt");
         }

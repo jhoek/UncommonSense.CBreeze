@@ -8,9 +8,9 @@ namespace UncommonSense.CBreeze.Utils
 {
     public static class IDManager
     {
-        private class IDRange
+        public class IDRange
         {
-            private IDRange(int from, int to)
+            public IDRange(int from, int to)
             {
                 From = from;
                 To = to;
