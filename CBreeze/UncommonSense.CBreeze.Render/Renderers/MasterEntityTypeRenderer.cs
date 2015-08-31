@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Render
             manifest.ListPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption();
             manifest.StatisticsPage = entityType.HasStatisticsPage ? application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} Statistics", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption() : null;
 
-            var addNoFromNoSeriesManifest = manifest.Table.AddNoFromNoSeriesField(entityType.SetupEntityType 
+            var addNoFromNoSeriesManifest = manifest.Table.AddNoFromNoSeriesField(entityType.SetupEntityType,  
             manifest.NoField = addNoFromNoSeriesManifest.NoField;
             manifest.NoSeriesField = addNoFromNoSeriesManifest.NoSeriesField;
 
@@ -57,56 +57,15 @@ namespace UncommonSense.CBreeze.Render
                 manifest.DateFilterField.Properties.FieldClass = FieldClass.FlowFilter;
             }
 
-            var onValidate = manifest.NoField.Properties.OnValidate;
-            var setupRecordVariable = onValidate.Variables.Add(new RecordVariable(1000, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID));
-            var noSeriesMgtCodeunitVariable = onValidate.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
-            onValidate.CodeLines.Add(string.Format("IF {0} <> xRec.{0} THEN BEGIN", manifest.NoField.Name.Quoted()));
-            onValidate.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
-            onValidate.CodeLines.Add(string.Format("  {0}.TestManual({1}.\"{2} Nos.\");", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, entityType.Name));
-            onValidate.CodeLines.Add("  \"No. Series\" := '';");
-            onValidate.CodeLines.Add("END;");
-
             var secundaryKey = manifest.Table.Keys.Add();
             secundaryKey.Fields.Add(manifest.SearchDescriptionField.Name);
 
             manifest.Table.FieldGroups.Add(new TableFieldGroup(1, "DropDown")).Fields.AddRange(manifest.NoField.Name, manifest.DescriptionField.Name);
 
-            var nextFunctionID = 1;
-
-            var assistEdit = manifest.Table.Code.Functions.Add(new Function(nextFunctionID++, "AssistEdit"));
-            var variableName = entityType.Name.MakeVariableName();
-            var parameterName = string.Format("Old{0}", variableName);
-            var parameter = assistEdit.Parameters.Add(new RecordParameter(false, 1000, parameterName, manifest.Table.ID));
-            assistEdit.Variables.Add(new RecordVariable(1001, variableName, manifest.Table.ID));
-            setupRecordVariable = assistEdit.Variables.Add(new RecordVariable(1002, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID));
-            noSeriesMgtCodeunitVariable = assistEdit.Variables.Add(new CodeunitVariable(1003, "NoSeriesMgt", 396));
-            assistEdit.ReturnValue.Type = FunctionReturnValueType.Boolean;
-            assistEdit.CodeLines.Add(string.Format("WITH {0} DO BEGIN", variableName));
-            assistEdit.CodeLines.Add(string.Format("  {0} := Rec;", variableName));
-            assistEdit.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
-            assistEdit.CodeLines.Add(string.Format("  {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, entityType.Name));
-            assistEdit.CodeLines.Add(string.Format("  IF {0}.SelectSeries({1}.\"{2} Nos.\", {3}.{4}, {4}) THEN BEGIN", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, entityType.Name, parameter.Name, manifest.NoSeriesField.Name.Quoted()));
-            assistEdit.CodeLines.Add(string.Format("    {0}.GET;", setupRecordVariable.Name));
-            assistEdit.CodeLines.Add(string.Format("    {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, entityType.Name));
-            assistEdit.CodeLines.Add(string.Format("    {0}.SetSeries({1});", noSeriesMgtCodeunitVariable.Name, manifest.NoField.Name.Quoted()));
-            assistEdit.CodeLines.Add(string.Format("    Rec := {0};", variableName));
-            assistEdit.CodeLines.Add("    EXIT(TRUE);");
-            assistEdit.CodeLines.Add("  END;");
-            assistEdit.CodeLines.Add("END;");
-
             manifest.Table.Properties.DataCaptionFields.Add(manifest.NoField.Name);
             manifest.Table.Properties.DataCaptionFields.Add(manifest.DescriptionField.Name);
             manifest.Table.Properties.LookupPageID = manifest.ListPage.ID;
             manifest.Table.Properties.DrillDownPageID = manifest.ListPage.ID;
-
-            var onInsert = manifest.Table.Properties.OnInsert;
-            setupRecordVariable = onInsert.Variables.Add(new RecordVariable(1000, setupEntityTypeManifest.Table.Name.MakeVariableName(), setupEntityTypeManifest.Table.ID));
-            noSeriesMgtCodeunitVariable = onInsert.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
-            onInsert.CodeLines.Add(string.Format("IF {0} = '' THEN BEGIN", manifest.NoField.Name.Quoted()));
-            onInsert.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
-            onInsert.CodeLines.Add(string.Format("  {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, entityType.Name));
-            onInsert.CodeLines.Add(string.Format("  {0}.InitSeries({1}.\"{2} Nos.\", xRec.{3}, 0D, {4}, {3});", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, entityType.Name, manifest.NoSeriesField.Name.Quoted(), manifest.NoField.Name.Quoted()));
-            onInsert.CodeLines.Add("END;");
         }
 
         private static void FinalizeCardPage(MasterEntityType entityType, RenderingContext renderingContext, MasterEntityTypeManifest manifest)
