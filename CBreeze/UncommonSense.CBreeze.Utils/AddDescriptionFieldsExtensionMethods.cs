@@ -30,8 +30,8 @@ namespace UncommonSense.CBreeze.Utils
             if (searchDescription)
             {
                 manifest.SearchDescriptionField = table.Fields.Add(new CodeTableField(fieldNoOffset++, string.Format("{0}Search {1}", prefix, descriptionStyle), 50)).AutoCaption();
-                manifest.DescriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", manifest.SearchDescriptionField.Name.QuotedVariableName(), manifest.DescriptionField.Name.QuotedVariableName());
-                manifest.DescriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", manifest.SearchDescriptionField.Name.QuotedVariableName(), manifest.DescriptionField.Name.QuotedVariableName());
+                manifest.DescriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", manifest.SearchDescriptionField.Name.Quoted(), manifest.DescriptionField.Name.Quoted());
+                manifest.DescriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", manifest.SearchDescriptionField.Name.Quoted(), manifest.DescriptionField.Name.Quoted());
             }
 
             return manifest;

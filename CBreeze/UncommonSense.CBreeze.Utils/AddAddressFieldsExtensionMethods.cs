@@ -36,18 +36,18 @@ namespace UncommonSense.CBreeze.Utils
             manifest.PostCodeField.Properties.OnValidate.CodeLines.Add(
                 "{0}.ValidatePostCode({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);", 
                 variableName, 
-                manifest.CityField.Name.QuotedVariableName(), 
-                manifest.PostCodeField.Name.QuotedVariableName(),
-                manifest.CountyField.Name.QuotedVariableName(), 
-                manifest.CountryRegionCodeField.Name.QuotedVariableName());
+                manifest.CityField.Name.Quoted(), 
+                manifest.PostCodeField.Name.Quoted(),
+                manifest.CountyField.Name.Quoted(), 
+                manifest.CountryRegionCodeField.Name.Quoted());
 
             manifest.CityField.Properties.OnValidate.CodeLines.Add(
                 "{0}.ValidateCity({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);",
                 variableName,
-                manifest.CityField.Name.QuotedVariableName(),
-                manifest.PostCodeField.Name.QuotedVariableName(),
-                manifest.CountyField.Name.QuotedVariableName(),
-                manifest.CountryRegionCodeField.Name.QuotedVariableName());
+                manifest.CityField.Name.Quoted(),
+                manifest.PostCodeField.Name.Quoted(),
+                manifest.CountyField.Name.Quoted(),
+                manifest.CountryRegionCodeField.Name.Quoted());
 
             // Table relations
             var tableRelation = manifest.PostCodeField.Properties.TableRelation.Set("Post Code", "Code");

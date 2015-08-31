@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Utils
             manifest.LastDateModifiedField = table.Fields.Add(new DateTableField(fieldNoOffset, "Last Date Modified")).AutoCaption();
             manifest.LastDateModifiedField.Properties.Editable = false;
 
-            var codeLine = string.Format("{0} := TODAY;", manifest.LastDateModifiedField.Name.QuotedVariableName());
+            var codeLine = string.Format("{0} := TODAY;", manifest.LastDateModifiedField.Name.Quoted());
             table.Properties.OnModify.CodeLines.Add(codeLine);
             table.Properties.OnRename.CodeLines.Add(codeLine);
 
