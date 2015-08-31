@@ -11,15 +11,6 @@ namespace UncommonSense.CBreeze.Render
 {
     internal static class ExtensionMethods
     {
-        internal static string MakeVariableName(this string text)
-        {
-            text = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(text);
-
-            return new string((from c in text
-                               where Char.IsLetterOrDigit(c)
-                               select c).ToArray());
-        }
-
         internal static Table AutoObjectProperties(this Table table, RenderingContext renderingContext)
         {
             table.ObjectProperties.DateTime = renderingContext.DateTime;
