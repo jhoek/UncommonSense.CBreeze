@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Table : Object
+    public partial class Table : Object, IHasCode
     {
         private TableFields fields = new TableFields();
         private TableProperties properties = new TableProperties();
@@ -82,6 +82,11 @@ namespace UncommonSense.CBreeze.Core
             {
                 return Properties;
             }
+        }
+
+        public Code GetCode()
+        {
+            return Code;
         }
     }
 }

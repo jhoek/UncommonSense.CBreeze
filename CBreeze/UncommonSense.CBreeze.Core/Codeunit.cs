@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Codeunit : Object
+    public partial class Codeunit : Object, IHasCode
     {
         private CodeunitProperties properties = new CodeunitProperties();
         private Code code = new Code();
@@ -55,6 +55,11 @@ namespace UncommonSense.CBreeze.Core
             {
                 return Properties;
             }
+        }
+
+        public Code GetCode()
+        {
+            return Code;
         }
     }
 }

@@ -203,6 +203,7 @@
     <Compile Include="GuidTableField.cs" />
     <Compile Include="GuidTableFieldProperties.cs" />
     <Compile Include="GuidVariable.cs" />
+    <Compile Include="IHasCode.cs" />
     <Compile Include="IHasOptionString.cs" />
     <Compile Include="IHasProperties.cs" />
     <Compile Include="Importance.cs" />
