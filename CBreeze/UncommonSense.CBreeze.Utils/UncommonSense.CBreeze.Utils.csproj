@@ -49,7 +49,6 @@
     <Compile Include="AddLastDateModifiedFieldExtensionMethods.cs" />
     <Compile Include="AddLastDateModifiedFieldManifest.cs" />
     <Compile Include="AddNoFromNoSeriesFieldExtensionMethods.cs" />
-    <Compile Include="AddNoFromNoSeriesFieldManifest.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs" />
     <Compile Include="IDManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

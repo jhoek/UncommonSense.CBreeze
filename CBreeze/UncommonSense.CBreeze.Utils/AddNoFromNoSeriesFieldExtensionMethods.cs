@@ -6,6 +6,31 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Utils
 {
+    public class AddNoFromNoSeriesFieldManifest
+    {
+        internal AddNoFromNoSeriesFieldManifest()
+        {
+        }
+
+        public CodeTableField NoField
+        {
+            get;
+            internal set;
+        }
+
+        public CodeTableField NoSeriesField
+        {
+            get;
+            internal set;
+        }
+
+        public CodeTableField NoSeriesSetupField
+        {
+            get;
+            internal set;
+        }
+    }
+
     public static class AddNoFromNoSeriesFieldExtensionMethods
     {
         public static AddNoFromNoSeriesFieldManifest AddNoFromNoSeriesField(this Table table, IEnumerable<int> range, Page[] pages, Table setupTable, Page setupPage)
