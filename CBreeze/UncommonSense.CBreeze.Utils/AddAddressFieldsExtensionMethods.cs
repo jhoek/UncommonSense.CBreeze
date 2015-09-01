@@ -8,18 +8,16 @@ namespace UncommonSense.CBreeze.Utils
 {
     public static class AddAddressFieldsExtensionMethods
     {
-        public static AddAddressFieldsManifest AddAddressFields(this Table table, string prefix = null, int fieldNoOffset = 0)
+        public static AddAddressFieldsManifest AddAddressFields(this Table table, IEnumerable<int> range, string prefix = null)
         {
             var manifest = new AddAddressFieldsManifest();
 
-            fieldNoOffset = fieldNoOffset == 0 ? table.Fields.Max(f=>f.ID) + 1 : fieldNoOffset;
-
-            manifest.AddressField = table.Fields.Add(new TextTableField(fieldNoOffset++, string.Format("{0}Address", prefix), 50).AutoCaption());
-            manifest.Address2Field = table.Fields.Add(new TextTableField(fieldNoOffset++, string.Format("{0}Address 2", prefix), 50).AutoCaption());
-            manifest.PostCodeField = table.Fields.Add(new CodeTableField(fieldNoOffset++, string.Format("{0}Post Code", prefix), 20).AutoCaption());
-            manifest.CityField = table.Fields.Add(new TextTableField(fieldNoOffset++, string.Format("{0}City", prefix), 30).AutoCaption());
-            manifest.CountyField = table.Fields.Add(new TextTableField(fieldNoOffset++, string.Format("{0}County", prefix), 30).AutoCaption());
-            manifest.CountryRegionCodeField = table.Fields.Add(new CodeTableField(fieldNoOffset++, string.Format("{0}Country/Region Code", prefix), 10).AutoCaption());
+            manifest.AddressField = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}Address", prefix), 50).AutoCaption());
+            manifest.Address2Field = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}Address 2", prefix), 50).AutoCaption());
+            manifest.PostCodeField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), string.Format("{0}Post Code", prefix), 20).AutoCaption());
+            manifest.CityField = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}City", prefix), 30).AutoCaption());
+            manifest.CountyField = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}County", prefix), 30).AutoCaption());
+            manifest.CountryRegionCodeField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), string.Format("{0}Country/Region Code", prefix), 10).AutoCaption());
 
             // TestTableRelation/ValidateTableRelation
             manifest.PostCodeField.Properties.TestTableRelation = false;

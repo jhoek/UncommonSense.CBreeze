@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Render
 {
     public static class MasterEntityTypeRenderer
     {
-        internal static MasterEntityTypeManifest Allocate(this MasterEntityType entityType, RenderingContext renderingContext, Application application)
+        internal static MasterEntityTypeManifest Allocate(this MasterEntityType entityType, IEnumerable<int> range, RenderingContext renderingContext, Application application)
         {
             var manifest = new MasterEntityTypeManifest();
 
@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Render
             manifest.ListPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption();
             manifest.StatisticsPage = entityType.HasStatisticsPage ? application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} Statistics", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption() : null;
 
-            var addNoFromNoSeriesManifest = manifest.Table.AddNoFromNoSeriesField(entityType.SetupEntityType,  
+            var addNoFromNoSeriesManifest = manifest.Table.AddNoFromNoSeriesField(entityType.SetupEntityType, 
             manifest.NoField = addNoFromNoSeriesManifest.NoField;
             manifest.NoSeriesField = addNoFromNoSeriesManifest.NoSeriesField;
 
