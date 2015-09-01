@@ -3,7 +3,7 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
   OBJECT-PROPERTIES
   {
     Date=26-08-15;
-    Time=11:18:35;
+    Time=11:23:32;
     Modified=Yes;
     Version List=;
   }
@@ -56,7 +56,7 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
       Namespace.Types.Add(BaseAppClass);
       CompilationUnit.Namespaces.Add(Namespace);
 
-      CompilationUnit.WriteTo('C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\BaseAppTableID.cs');
+      CompilationUnit.WriteTo('C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\BaseApp.cs');
     END;
 
     PROCEDURE NormalizeName@1000000005(ObjectName@1000000000 : Text[30]) NormalizedName : Text[30];
