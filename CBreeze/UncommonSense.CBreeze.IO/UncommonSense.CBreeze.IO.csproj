@@ -4,24 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34E1CC84-0630-441C-AF3D-D22AEE3F6F3D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{8F590103-F4B1-456B-BD22-A159846B0687}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UncommonSense.CBreeze.Samples</RootNamespace>
-    <AssemblyName>UncommonSense.CBreeze.Samples</AssemblyName>
+    <RootNamespace>UncommonSense.CBreeze.IO</RootNamespace>
+    <AssemblyName>UncommonSense.CBreeze.IO</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -31,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,33 +38,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.Nav.Parser">
-      <HintPath>..\..\..\UncommonSense.Nav.Parser\UncommonSense.Nav.Parser\bin\Debug\UncommonSense.Nav.Parser.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ApplicationReader.cs" />
+    <Compile Include="ApplicationWriter.cs" />
+    <Compile Include="Arguments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
-      <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
+      <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UncommonSense.CBreeze.IO\UncommonSense.CBreeze.IO.csproj">
-      <Project>{8f590103-f4b1-456b-bd22-a159846b0687}</Project>
-      <Name>UncommonSense.CBreeze.IO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
-      <Project>{11BF778B-6524-4845-895D-CCDF90329FB2}</Project>
-      <Name>UncommonSense.CBreeze.Read</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UncommonSense.CBreeze.Utils\UncommonSense.CBreeze.Utils.csproj">
-      <Project>{8cdab257-683a-4ad2-a266-3c0ef538628c}</Project>
-      <Name>UncommonSense.CBreeze.Utils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
-      <Project>{1233B6B5-8D24-4483-A974-FF921DBA85C1}</Project>
+      <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
       <Name>UncommonSense.CBreeze.Write</Name>
     </ProjectReference>
   </ItemGroup>
