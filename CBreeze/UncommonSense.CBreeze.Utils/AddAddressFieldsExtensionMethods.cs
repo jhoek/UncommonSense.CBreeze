@@ -55,6 +55,7 @@ namespace UncommonSense.CBreeze.Utils
         {
             var manifest = new AddAddressFieldsManifest();
 
+            // Create fields
             manifest.AddressField = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}Address", prefix), 50).AutoCaption());
             manifest.Address2Field = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}Address 2", prefix), 50).AutoCaption());
             manifest.PostCodeField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), string.Format("{0}Post Code", prefix), 20).AutoCaption());
