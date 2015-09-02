@@ -47,10 +47,17 @@ namespace UncommonSense.CBreeze.Utils
         #region Subobjects
         public static int GetNextTableFieldNo(this IEnumerable<int> range, Table table)
         {
+            const int offset = 10;
+
             if (range.Contains(table.ID))
-                range = Enumerable.Range(1, int.MaxValue);
+                range = Enumerable.Range(offset, int.MaxValue - offset + 1);
 
             return range.Except(table.Fields.Select(f => f.ID)).First();
+        }
+
+        public static int GetNextPrimaryKeyFieldNo(this IEnumerable<int> range, Table table)
+        {
+            return Enumerable.Range(1, 10).Except(table.Fields.Select(f => f.ID)).First();
         }
 
         public static int GetNextPageControlID(this IEnumerable<int> range, Page page)
