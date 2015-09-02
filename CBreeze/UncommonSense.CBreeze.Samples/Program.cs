@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Samples
 
             application.Write(outputFileName);
 
-            application.Write(@"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe", @"JANHOEK1FC5\NAVDEMO", "Demo Database NAV (7-0)", IO.ApplicationWriter.ImportAction.Skip);
+            application.Write(@"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe", @"JANHOEK1FC5\NAVDEMO", "Demo Database NAV (7-0)");
         }
 
         static void CBreezeReaderDemo(string inputFileName, string outputFileName)

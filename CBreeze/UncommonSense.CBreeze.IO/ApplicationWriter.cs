@@ -12,16 +12,9 @@ namespace UncommonSense.CBreeze.IO
 {
     public static class ApplicationWriter
     {
-        public enum ImportAction
-        {
-            Default,
-            Overwrite,
-            Skip
-        }
-
         // Reads from Application object, imports into database
 
-        public static void Write(this Application application, string devClient, string serverName, string database, ImportAction importAction)
+        public static void Write(this Application application, string devClient, string serverName, string database)
         {
             var tempFileName = Path.ChangeExtension(Path.GetTempFileName(), "txt");
             var logFileName = Path.GetTempFileName();
@@ -33,8 +26,9 @@ namespace UncommonSense.CBreeze.IO
             arguments.Add("servername", serverName);
             arguments.Add("database", database);
             arguments.Add("logfile", logFileName);
-            arguments.Add("importaction", importAction.ToString());
             arguments.Add("ntauthentication", "1");
+
+            Debug.Print(arguments.ToString());
 
             var processStartInfo = new ProcessStartInfo();
             processStartInfo.FileName = devClient;
