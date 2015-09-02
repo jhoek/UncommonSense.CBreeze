@@ -25,6 +25,12 @@ namespace UncommonSense.CBreeze.Core
 			this.indentationLevel = indentationLevel;
 		}
 
+        public PageControls Parent
+        {
+            get;
+            internal set;
+        }
+
 		public abstract PageControlType Type
 		{
 			get;

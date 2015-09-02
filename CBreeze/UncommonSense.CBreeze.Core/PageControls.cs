@@ -21,6 +21,18 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        protected override void InsertItem(int index, PageControl item)
+        {
+            base.InsertItem(index, item);
+            item.Parent = this;
+        }
+
+        protected override void RemoveItem(int index)
+        {
+            this.ElementAt(index).Parent = null;
+            base.RemoveItem(index);
+        }
+
         public override void ValidateName(PageControl item)
         {
             TestNameUnique(item);
