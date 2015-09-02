@@ -12,6 +12,31 @@ namespace UncommonSense.CBreeze.Utils
         Description
     }
 
+    public class AddDescriptionFieldsManifest
+    {
+        internal AddDescriptionFieldsManifest()
+        {
+        }
+
+        public TextTableField DescriptionField
+        {
+            get;
+            internal set;
+        }
+
+        public TextTableField Description2Field
+        {
+            get;
+            internal set;
+        }
+
+        public CodeTableField SearchDescriptionField
+        {
+            get;
+            internal set;
+        }
+    }
+
     public static class AddDescriptionFieldsExtensionMethods
     {
         public static AddDescriptionFieldsManifest AddDescriptionFields(this Table table, IEnumerable<int> range, Page[] pages, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)

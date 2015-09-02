@@ -6,6 +6,19 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Utils
 {
+    public class AddLastDateModifiedFieldManifest
+    {
+        internal AddLastDateModifiedFieldManifest()
+        {
+        }
+
+        public DateTableField LastDateModifiedField
+        {
+            get;
+            internal set;
+        }
+    }
+
     public static class AddLastDateModifiedFieldExtensionMethods
     {
         public static AddLastDateModifiedFieldManifest AddLastDateModifiedField(this Table table, int fieldNoOffset = 0)

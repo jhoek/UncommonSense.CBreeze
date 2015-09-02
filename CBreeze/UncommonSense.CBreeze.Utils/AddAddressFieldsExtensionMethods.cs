@@ -6,6 +6,49 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Utils
 {
+    public class AddAddressFieldsManifest
+    {
+        internal AddAddressFieldsManifest()
+        {
+        }
+
+        public TextTableField AddressField
+        {
+            get;
+            internal set;
+        }
+
+        public TextTableField Address2Field
+        {
+            get;
+            internal set;
+        }
+
+        public CodeTableField PostCodeField
+        {
+            get;
+            internal set;
+        }
+
+        public TextTableField CityField
+        {
+            get;
+            internal set;
+        }
+
+        public TextTableField CountyField
+        {
+            get;
+            internal set;
+        }
+
+        public CodeTableField CountryRegionCodeField
+        {
+            get;
+            internal set;
+        }
+    }
+
     public static class AddAddressFieldsExtensionMethods
     {
         public static AddAddressFieldsManifest AddAddressFields(this Table table, IEnumerable<int> range, string prefix = null)
