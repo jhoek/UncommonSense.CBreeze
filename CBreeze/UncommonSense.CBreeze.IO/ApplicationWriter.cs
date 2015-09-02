@@ -10,61 +10,24 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.IO
 {
+    // Reads from Application object, imports into database
     public static class ApplicationWriter
     {
-        // Reads from Application object, imports into database
-
         public static void Write(this Application application, string devClient, string serverName, string database)
         {
-            var tempFileName = Path.ChangeExtension(Path.GetTempFileName(), "txt");
-            var logFileName = Path.GetTempFileName();
-            var resultFileName = Path.Combine(Path.GetTempPath(), "navcommandresult.txt");
+            var fileName = Path.ChangeExtension(Path.GetTempFileName(), "txt");
 
-            var arguments = new Arguments();
-            arguments.Add("command", "importobjects");
-            arguments.Add("file", tempFileName);
-            arguments.Add("servername", serverName);
-            arguments.Add("database", database);
-            arguments.Add("logfile", logFileName);
-            arguments.Add("ntauthentication", "1");
-
-            Debug.Print(arguments.ToString());
-
-            var processStartInfo = new ProcessStartInfo();
-            processStartInfo.FileName = devClient;
-            processStartInfo.Arguments = arguments.ToString();
-            processStartInfo.UseShellExecute = false;
+            var arguments = new Arguments("importobjects", serverName, database);
+            arguments.Add("file", fileName);
 
             try
             {
-                application.Write(tempFileName);
-                Process.Start(processStartInfo).WaitForExit();
-                if (File.Exists(logFileName))
-                {
-                    var lines = File.ReadAllLines(logFileName).Where(l => !l.Contains("Caution: Your program license expires in"));
-
-                    if (lines.Any())
-                    {
-                        throw new ApplicationException(string.Join("\n", lines));
-                    }
-                }
+                application.Write(fileName);
+                DevClient.Run(devClient, arguments);
             }
             finally
             {
-                if (File.Exists(tempFileName))
-                {
-                    File.Delete(tempFileName);
-                }
-
-                if (File.Exists(logFileName))
-                {
-                    File.Delete(logFileName);
-                }
-
-                if (File.Exists(resultFileName))
-                {
-                    File.Delete(resultFileName);
-                }
+                File.Delete(fileName);
             }
         }
     }

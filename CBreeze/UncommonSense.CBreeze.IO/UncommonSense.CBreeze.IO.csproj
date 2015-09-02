@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationCompiler.cs" />
     <Compile Include="ApplicationReader.cs" />
     <Compile Include="ApplicationWriter.cs" />
     <Compile Include="Arguments.cs" />
+    <Compile Include="DevClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
