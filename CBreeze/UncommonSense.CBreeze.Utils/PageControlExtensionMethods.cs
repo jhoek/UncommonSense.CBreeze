@@ -8,69 +8,83 @@ namespace UncommonSense.CBreeze.Utils
 {
     public static class PageControlExtensionMethods
     {
-        public static IEnumerable<PageControl> GetChildPageControls(this PageControl pageControl, Page page)
+        /// <summary>
+        /// Returns an IEnumerable of PageControls indented exactly one level relative to <paramref name="parent"/>.
+        /// </summary>
+        public static IEnumerable<PageControl> GetChildPageControls(this PageControl parent)
         {
-            return
-                page.Controls.
-                Skip(page.Controls.IndexOf(pageControl) + 1).
-                TakeWhile(c => c.IndentationLevel > pageControl.IndentationLevel).
-                Where(c => c.IndentationLevel == pageControl.IndentationLevel + 1);
+            var controls = parent.Parent;
+
+            return controls.
+                Skip(parent.Index() + 1).
+                TakeWhile(c => c.IndentationLevel > parent.IndentationLevel).
+                Where(c => c.IndentationLevel == parent.IndentationLevel + 1);
         }
 
+        /// <summary>
+        /// Returns the index of PageControl <paramref name="pageControl"/> within the PageControls collection.
+        /// </summary>
+        public static int Index(this PageControl pageControl)
+        {
+            return pageControl.Parent.IndexOf(pageControl);
+        }
+
+        /// <summary>
+        /// Inserts PageControl <paramref name="child"/> directly after PageControl <paramref name="parent"/>.
+        /// </summary>
+        public static T InsertFirstChildPageControl<T>(this PageControl parent, T child) where T : PageControl
+        {
+            var controls = parent.Parent;
+            var parentIndex = controls.IndexOf(parent);
+            controls.Insert(parentIndex + 1, child);
+            return child;
+        }
+
+        /// <summary>
+        /// Inserts PageControl <paramref name="child"/> as the last child of PageControl <paramref name="parent"/>.
+        /// </summary>
+        public static T AppendLastChildPageControl<T>(this PageControl parent, T child) where T : PageControl
+        {
+            var controls = parent.Parent;
+            var childControls = parent.GetChildPageControls();
+            var lastIndex = childControls.Any() ? childControls.Last().Index() : parent.Index();
+            controls.Insert(lastIndex + 1, child);
+            return child;
+        }
+
+        /// <summary>
+        /// Returns the first/only ContentArea container page control.
+        /// </summary>
         public static ContainerPageControl GetContentAreaControl(this Page page)
         {
             return page.Controls.OfType<ContainerPageControl>().FirstOrDefault(c => c.Properties.ContainerType == ContainerType.ContentArea);
         }
 
-        public static ContainerPageControl GetOrCreateContentAreaControl(this Page page, IEnumerable<int> range, int index )
+        public static ContainerPageControl GetOrCreateContentAreaControl(this Page page, IEnumerable<int> range)
         {
-            var result = GetContentAreaControl(page) ?? page.Controls.Insert(index, new ContainerPageControl(range.GetNextPageControlID(page), 0));
+            var result = GetContentAreaControl(page) ?? page.Controls.Insert(0, new ContainerPageControl(range.GetNextPageControlID(page), 0));
             result.Properties.ContainerType = ContainerType.ContentArea;
             return result;
         }
 
-        public static GroupPageControl GetGeneralGroupControl(this Page page)
+        public static GroupPageControl GetGroupControlByCaption(this Page page, string caption)
         {
             var contentArea = GetContentAreaControl(page);
 
             if (contentArea == null)
                 return null;
 
-            return contentArea.GetChildPageControls(page).OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == "General");
+            return contentArea.GetChildPageControls().OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
         }
 
-        public static GroupPageControl GetOrCreateGeneralGroupControl(this Page page,IEnumerable<int> range, int index )
+        public static GroupPageControl GetOrCreateGroupControlByCaption(this Page page, string caption, IEnumerable<int> range, int index )
         {
-            var groupPageControl = GetGeneralGroupControl(page);
+            var groupPageControl = GetGroupControlByCaption(page, caption);
 
             if (groupPageControl == null)
             {
                 groupPageControl = page.Controls.Insert(index, new GroupPageControl(range.GetNextPageControlID(page), 1));
-                groupPageControl.Properties.CaptionML.Set("ENU", "General");
-                GetOrCreateContentAreaControl(page, range, index);
-            }
-
-            return groupPageControl;
-        }
-
-        public static GroupPageControl GetNumeringGroupControl(this Page page)
-        {
-            var contentArea = GetContentAreaControl(page);
-
-            if (contentArea == null)
-                return null;
-
-            return contentArea.GetChildPageControls(page).OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == "Numbering");
-        }
-
-        public static GroupPageControl GetOrCreateNumberingGroupControl(this Page page, IEnumerable<int> range, int index)
-        {
-            var groupPageControl = GetNumeringGroupControl(page);
-
-            if (groupPageControl == null)
-            {
-                groupPageControl = page.Controls.Insert(index, new GroupPageControl(range.GetNextPageControlID(page), 1));
-                groupPageControl.Properties.CaptionML.Set("ENU", "Numbering");
+                groupPageControl.Properties.CaptionML.Set("ENU", caption);
                 GetOrCreateContentAreaControl(page, range, index);
             }
 

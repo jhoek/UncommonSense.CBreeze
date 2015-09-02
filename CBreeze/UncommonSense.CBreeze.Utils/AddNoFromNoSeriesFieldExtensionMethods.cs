@@ -58,7 +58,7 @@ namespace UncommonSense.CBreeze.Utils
             manifest.NoSeriesSetupField = setupTable.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(setupTable), string.Format("{0} Nos.", table.Name), 10));
             manifest.NoSeriesSetupField.Properties.TableRelation.Add(BaseApp.TableNames.NoSeries);
 
-            var group = cardPage.GetOrCreateGeneralGroupControl(range, 0);
+            var group = cardPage.GetOrCreateGroupControlByCaption("General", range, 0);
 
             manifest.NoControl = cardPage.Controls.Insert(cardPage.Controls.IndexOf(group) + 1, new FieldPageControl(range.GetNextPageControlID(cardPage), 2));
             manifest.NoControl.Properties.SourceExpr = manifest.NoField.Name.Quoted();
@@ -66,8 +66,8 @@ namespace UncommonSense.CBreeze.Utils
             manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("IF AssistEdit(xRec) THEN");
             manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
 
-            group = setupCard.GetOrCreateNumberingGroupControl(range, 0);
-            var index = group.GetChildPageControls(setupCard).Any() ? setupCard.Controls.IndexOf(group.GetChildPageControls(setupCard).Last()) + 1 : setupCard.Controls.IndexOf(group) + 1;
+            group = setupCard.GetOrCreateGroupControlByCaption("Numbering", range, 0);
+            var index = group.GetChildPageControls().Any() ? setupCard.Controls.IndexOf(group.GetChildPageControls().Last()) + 1 : setupCard.Controls.IndexOf(group) + 1;
             manifest.NoSeriesSetupControl = setupCard.Controls.Insert(index, new FieldPageControl(range.GetNextPageControlID(setupCard), 2));
             manifest.NoSeriesSetupControl.Properties.SourceExpr = manifest.NoSeriesSetupField.Name.Quoted();
 
