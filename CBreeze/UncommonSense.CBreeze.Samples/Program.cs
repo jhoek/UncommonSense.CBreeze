@@ -57,7 +57,7 @@ namespace UncommonSense.CBreeze.Samples
             setupCard.Properties.OnOpenPage.CodeLines.Add("END;");
 
             var addNoFromNoSeriesFieldManifest = table.AddNoFromNoSeriesField(range, cardPage, setupTable, setupCard);
-            var addDescriptionFieldsManifest = table.AddDescriptionFields(range);
+            var addDescriptionFieldsManifest = table.AddDescriptionTableFields(range);
             var addAddressFieldsManifest = table.AddAddressFields(range);
 
             table.Properties.DataCaptionFields.AddRange(addNoFromNoSeriesFieldManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);

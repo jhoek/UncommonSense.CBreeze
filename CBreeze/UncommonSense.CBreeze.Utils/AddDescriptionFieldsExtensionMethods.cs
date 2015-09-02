@@ -12,9 +12,9 @@ namespace UncommonSense.CBreeze.Utils
         Description
     }
 
-    public class AddDescriptionFieldsManifest
+    public class AddDescriptionTableFieldsManifest
     {
-        internal AddDescriptionFieldsManifest()
+        internal AddDescriptionTableFieldsManifest()
         {
         }
 
@@ -37,25 +37,44 @@ namespace UncommonSense.CBreeze.Utils
         }
     }
 
+    public class AddDescriptionPageControlsManifest
+    {
+        internal AddDescriptionPageControlsManifest(){}
+
+        public FieldPageControl DescriptionControl{get;internal set;}
+    }
+
     public static class AddDescriptionFieldsExtensionMethods
     {
-        public static AddDescriptionFieldsManifest AddDescriptionFields(this Table table, IEnumerable<int> range, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)
+        public static AddDescriptionTableFieldsManifest AddDescriptionTableFields(this Table table, IEnumerable<int> range, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)
         {
-            var manifest = new AddDescriptionFieldsManifest();
+            var manifest = new AddDescriptionTableFieldsManifest();
 
+            // Description
             manifest.DescriptionField = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}{1}", prefix, descriptionStyle), 50)).AutoCaption();
 
+            // Description 2
             if (description2)
             {
                 manifest.Description2Field = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}{1} 2", prefix, descriptionStyle), 50)).AutoCaption();
             }
 
+            // Search Description
             if (searchDescription)
             {
                 manifest.SearchDescriptionField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), string.Format("{0}Search {1}", prefix, descriptionStyle), 50)).AutoCaption();
                 manifest.DescriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", manifest.SearchDescriptionField.Name.Quoted(), manifest.DescriptionField.Name.Quoted());
                 manifest.DescriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", manifest.SearchDescriptionField.Name.Quoted(), manifest.DescriptionField.Name.Quoted());
             }
+
+            return manifest;
+        }
+
+        public static AddDescriptionPageControlsManifest AddDescriptionPageControls(this Page page, AddDescriptionTableFieldsManifest tableFieldsManifest, string groupCaption, IEnumerable<int> range)
+        {
+            var manifest = new AddDescriptionPageControlsManifest();
+
+            var group = page.GetOrCreateGroupControlByCaption(groupCaption, range, 
 
             return manifest;
         }
