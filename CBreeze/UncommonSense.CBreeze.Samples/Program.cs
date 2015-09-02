@@ -24,25 +24,24 @@ namespace UncommonSense.CBreeze.Samples
             var range = 50000.To(59999);
 
             var application = new Application();
-            var setupTable = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo Setup"));
-            var setupPage = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo Setup"));
+
             var table = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo"));
-            var page = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo Card"));
+            table.ObjectProperties.DateTime = DateTime.Now;
 
-            setupTable.Fields.Add(new CodeTableField(1, "Primary Key", 10));
+            var cardPage = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo Card"));
+            cardPage.Properties.SourceTable = table.ID;
 
-            var addNoFromNoSeriesFieldManifest = table.AddNoFromNoSeriesField(range, new Page[] { page }, setupTable, setupPage);
-            var addDescriptionFieldsManifest = table.AddDescriptionFields(range, new Page[] { page });
+            var setupTable = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo Setup"));
+            setupTable.ObjectProperties.DateTime = DateTime.Now;
+            setupTable.Fields.Add(new CodeTableField(range.GetNextPrimaryKeyFieldNo(table), "Primary Key", 10));
+
+            var addNoFromNoSeriesFieldManifest = table.AddNoFromNoSeriesField(range, setupTable, cardPage);
+            var addDescriptionFieldsManifest = table.AddDescriptionFields(range);
             var addAddressFieldsManifest = table.AddAddressFields(range);
 
             table.Properties.DataCaptionFields.AddRange(addNoFromNoSeriesFieldManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
 
-            page.Properties.SourceTable = table.ID;
-            page.Controls.Add(new ContainerPageControl(0, 0)).Properties.ContainerType = ContainerType.ContentArea;
-            page.Controls.Add(new GroupPageControl(0, 1)).Properties.GroupType = GroupType.Group;
-            page.Controls.Add(new FieldPageControl(0, 2)).Properties.SourceExpr = "Foo";
-
-            application.Write(outputFileName);
+            //application.Write(outputFileName);
 
             application.Write(@"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe", @"JANHOEK1FC5\NAVDEMO", "Demo Database NAV (7-0)");
         }

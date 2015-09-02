@@ -29,15 +29,21 @@ namespace UncommonSense.CBreeze.Utils
             get;
             internal set;
         }
+
+        public FieldPageControl NoControl
+        {
+            get;
+            internal set;
+        }
     }
 
     public static class AddNoFromNoSeriesFieldExtensionMethods
     {
-        public static AddNoFromNoSeriesFieldManifest AddNoFromNoSeriesField(this Table table, IEnumerable<int> range, Page[] pages, Table setupTable, Page setupPage)
+        public static AddNoFromNoSeriesFieldManifest AddNoFromNoSeriesField(this Table table, IEnumerable<int> range, Table setupTable, Page cardPage)
         {
             var manifest = new AddNoFromNoSeriesFieldManifest();
 
-            manifest.NoField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), "No.", 20)).AutoCaption();
+            manifest.NoField = table.Fields.Add(new CodeTableField(range.GetNextPrimaryKeyFieldNo(table), "No.", 20)).AutoCaption();
 
             manifest.NoSeriesField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), "No. Series", 10)).AutoCaption();
             manifest.NoSeriesField.Properties.Editable = false;
@@ -45,6 +51,17 @@ namespace UncommonSense.CBreeze.Utils
 
             manifest.NoSeriesSetupField = setupTable.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(setupTable), string.Format("{0} Nos.", table.Name), 10));
             manifest.NoSeriesSetupField.Properties.TableRelation.Add(BaseApp.TableNames.NoSeries);
+
+            var container = cardPage.Controls.OfType<ContainerPageControl>().FirstOrDefault(c=>c.Properties.ContainerType == ContainerType.ContentArea) ?? cardPage.Controls.Insert(0, new ContainerPageControl(range.GetNextPageControlID(cardPage), 0));
+            container.Properties.ContainerType = ContainerType.ContentArea;
+
+            var group = container.ChildPageControls(cardPage).OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == "General") ?? cardPage.Controls.Insert(1, new GroupPageControl(range.GetNextPageControlID(cardPage), 1));
+
+            manifest.NoControl = cardPage.Controls.Insert(cardPage.Controls.IndexOf(group) + 1, new FieldPageControl(range.GetNextPageControlID(cardPage), 2));
+            manifest.NoControl.Properties.SourceExpr = manifest.NoField.Name.Quoted();
+            manifest.NoControl.Properties.Importance = Importance.Promoted;
+            manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("IF AssistEdit(xRec) THEN");
+            manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
 
             var primaryKey = table.Keys.Add();
             primaryKey.Fields.Add(manifest.NoField.Name);

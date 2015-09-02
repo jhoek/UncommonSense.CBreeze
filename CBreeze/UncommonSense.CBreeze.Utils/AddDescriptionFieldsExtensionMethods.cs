@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.Utils
 
     public static class AddDescriptionFieldsExtensionMethods
     {
-        public static AddDescriptionFieldsManifest AddDescriptionFields(this Table table, IEnumerable<int> range, Page[] pages, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)
+        public static AddDescriptionFieldsManifest AddDescriptionFields(this Table table, IEnumerable<int> range, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)
         {
             var manifest = new AddDescriptionFieldsManifest();
 
