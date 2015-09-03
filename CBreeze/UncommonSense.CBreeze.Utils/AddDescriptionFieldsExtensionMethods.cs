@@ -70,11 +70,18 @@ namespace UncommonSense.CBreeze.Utils
             return manifest;
         }
 
-        public static AddDescriptionPageControlsManifest AddDescriptionPageControls(this Page page, AddDescriptionTableFieldsManifest tableFieldsManifest, string groupCaption, IEnumerable<int> range)
+        public static AddDescriptionPageControlsManifest AddDescriptionPageControls(this GroupPageControl group, AddDescriptionTableFieldsManifest tableFieldsManifest, IEnumerable<int> range, Position position)
         {
             var manifest = new AddDescriptionPageControlsManifest();
+            manifest.DescriptionControl = new FieldPageControl(range.GetNextPageControlID(group.Container.Page), group.IndentationLevel + 1);
 
-            var group = page.GetOrCreateGroupControlByCaption(groupCaption, range, 
+            switch (position)
+            {
+                case Position.FirstWithinContainer:
+                    break;
+                case Position.LastWithinContainer:
+                    break;
+            }
 
             return manifest;
         }
