@@ -24,12 +24,12 @@ namespace UncommonSense.CBreeze.Core
         protected override void InsertItem(int index, PageControl item)
         {
             base.InsertItem(index, item);
-            item.Parent = this;
+            item.Container = this;
         }
 
         protected override void RemoveItem(int index)
         {
-            this.ElementAt(index).Parent = null;
+            this.ElementAt(index).Container = null;
             base.RemoveItem(index);
         }
 
