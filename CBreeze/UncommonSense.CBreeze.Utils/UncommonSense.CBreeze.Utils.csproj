@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAddressFieldsExtensionMethods.cs" />
+    <Compile Include="AddressExtensionMethods.cs" />
     <Compile Include="AddCommunicationFieldsExtensionMethods.cs" />
     <Compile Include="AddDescriptionFieldsExtensionMethods.cs" />
     <Compile Include="AddLastDateModifiedFieldExtensionMethods.cs" />

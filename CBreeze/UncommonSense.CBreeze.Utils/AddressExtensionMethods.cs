@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Utils
 {
-    public class AddAddressFieldsManifest
+    public class AddressFieldsManifest
     {
-        internal AddAddressFieldsManifest()
+        internal AddressFieldsManifest()
         {
         }
 
@@ -49,11 +49,18 @@ namespace UncommonSense.CBreeze.Utils
         }
     }
 
-    public static class AddAddressFieldsExtensionMethods
+    public class AddressControlsManifest
     {
-        public static AddAddressFieldsManifest AddAddressFields(this Table table, IEnumerable<int> range, string prefix = null)
+        internal AddressControlsManifest()
         {
-            var manifest = new AddAddressFieldsManifest();
+        }
+    }
+
+    public static class AddressExtensionMethods
+    {
+        public static AddressFieldsManifest AddAddressFields(this Table table, string prefix, IEnumerable<int> range)
+        {
+            var manifest = new AddressFieldsManifest();
 
             // Create fields
             manifest.AddressField = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}Address", prefix), 50).AutoCaption());
@@ -76,11 +83,11 @@ namespace UncommonSense.CBreeze.Utils
 
             // Codelines in OnValidate
             manifest.PostCodeField.Properties.OnValidate.CodeLines.Add(
-                "{0}.ValidatePostCode({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);", 
-                variableName, 
-                manifest.CityField.Name.Quoted(), 
+                "{0}.ValidatePostCode({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);",
+                variableName,
+                manifest.CityField.Name.Quoted(),
                 manifest.PostCodeField.Name.Quoted(),
-                manifest.CountyField.Name.Quoted(), 
+                manifest.CountyField.Name.Quoted(),
                 manifest.CountryRegionCodeField.Name.Quoted());
 
             manifest.CityField.Properties.OnValidate.CodeLines.Add(
@@ -107,6 +114,27 @@ namespace UncommonSense.CBreeze.Utils
             tableRelation.TableFilter.Add("Country/Region Code", TableRelationTableFilterLineType.Field, manifest.CountryRegionCodeField.Name);
 
             manifest.CountryRegionCodeField.Properties.TableRelation.Add("Country/Region");
+
+            return manifest;
+        }
+
+        public static AddressControlsManifest AddAddressControls(this Page page, AddressFieldsManifest fieldsManifest, IEnumerable<int> range)
+        {
+            var manifest = new AddressControlsManifest();
+            var container = page.GetContentArea(range);
+
+            switch (page.Properties.PageType)
+            {
+                case PageType.Card:
+                    // FIXME: Parameter for group caption
+                    // FIXME: Address, Address 2, Post Code (promoted), City, Country/Region Code
+                    break;
+                case PageType.List:
+                    // FIXME: Post Code, Country/Region Code
+                    break;
+            }
+
+            // FIXME: Conclusion: card pages and list pages require different parameters. Also, they might require different manifests.
 
             return manifest;
         }
