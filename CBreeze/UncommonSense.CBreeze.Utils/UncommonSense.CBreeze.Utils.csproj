@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressExtensionMethods.cs" />
-    <Compile Include="AddCommunicationFieldsExtensionMethods.cs" />
+    <Compile Include="CommunicationExtensionMethods.cs" />
     <Compile Include="AddDescriptionFieldsExtensionMethods.cs" />
     <Compile Include="AddLastDateModifiedFieldExtensionMethods.cs" />
     <Compile Include="NoSeriesExtensionMethods.cs" />
