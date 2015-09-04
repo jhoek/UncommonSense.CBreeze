@@ -73,7 +73,12 @@ namespace UncommonSense.CBreeze.Utils
         public static AddDescriptionPageControlsManifest AddDescriptionPageControls(this GroupPageControl group, AddDescriptionTableFieldsManifest tableFieldsManifest, IEnumerable<int> range, Position position)
         {
             var manifest = new AddDescriptionPageControlsManifest();
-            manifest.DescriptionControl = new FieldPageControl(range.GetNextPageControlID(group.Container.Page), group.IndentationLevel + 1);
+
+            if (tableFieldsManifest.DescriptionField != null)
+            {
+                manifest.DescriptionControl = new FieldPageControl(range.GetNextPageControlID(group.Container.Page), group.IndentationLevel + 1);
+                
+            }
 
             switch (position)
             {
