@@ -29,8 +29,14 @@ namespace UncommonSense.CBreeze.Samples
 
             var cardPage = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo Card").AutoCaption());
             cardPage.ObjectProperties.DateTime = DateTime.Now;
+            cardPage.Properties.PageType = PageType.Card;
             cardPage.Properties.SourceTable = table.ID;
 
+            var listPage = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo List").AutoCaption());
+            listPage.ObjectProperties.DateTime = DateTime.Now;
+            listPage.Properties.PageType = PageType.List;
+            listPage.Properties.SourceTable = table.ID;
+            listPage.Properties.CardPageID = cardPage.Name;
 
             var setupTable = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo Setup").AutoCaption());
             setupTable.ObjectProperties.DateTime = DateTime.Now;
@@ -49,12 +55,17 @@ namespace UncommonSense.CBreeze.Samples
             setupCard.Properties.OnOpenPage.CodeLines.Add("  INSERT;");
             setupCard.Properties.OnOpenPage.CodeLines.Add("END;");
 
-            var addNoFromNoSeriesFieldManifest = table.AddNoFromNoSeriesField(range, cardPage, setupTable, setupCard);
+            var noSeriesFieldsManifest = table.AddNoSeriesFields(setupTable, setupCard,range);
+            cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
+            listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
+
             var addDescriptionFieldsManifest = table.AddDescriptionTableFields(range);
-            var addAddressFieldsManifest = table.AddAddressFields(range);
 
-            table.Properties.DataCaptionFields.AddRange(addNoFromNoSeriesFieldManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
+            var addressFieldsManifest = table.AddAddressFields(null, range);
+            cardPage.AddAddressControls(addressFieldsManifest, range);
+            listPage.AddAddressControls(addressFieldsManifest, range);
 
+            table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
 
             //application.Write(outputFileName);
 
