@@ -65,6 +65,10 @@ namespace UncommonSense.CBreeze.Samples
             cardPage.AddAddressControls(addressFieldsManifest, range);
             listPage.AddAddressControls(addressFieldsManifest, range);
 
+            var communicationFieldsManifest = table.AddCommunicationFields(range, prefix: "Ship-To ");
+            cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
+            listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
+
             table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
 
             //application.Write(outputFileName);

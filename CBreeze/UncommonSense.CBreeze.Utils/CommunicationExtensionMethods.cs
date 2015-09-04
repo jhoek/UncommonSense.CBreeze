@@ -73,6 +73,12 @@ namespace UncommonSense.CBreeze.Utils
             internal set;
         }
 
+        public FieldPageControl PhoneNoControl2
+        {
+            get;
+            internal set;
+        }
+
         public FieldPageControl TelexNoControl
         {
             get;
@@ -159,7 +165,44 @@ namespace UncommonSense.CBreeze.Utils
 
                     if (fieldsManifest.PhoneNoField != null)
                     {
-                        
+                        manifest.PhoneNoControl = generalGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                        manifest.PhoneNoControl.Properties.SourceExpr = fieldsManifest.PhoneNoField.Name.Quoted();
+                    }
+
+                    if (fieldsManifest.ContactField != null)
+                    {
+                        manifest.ContactControl = generalGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                        manifest.ContactControl.Properties.SourceExpr = fieldsManifest.ContactField.Name.Quoted();
+                        manifest.ContactControl.Properties.Importance = Importance.Promoted;
+                    }
+
+                    var communicationGroup = contentArea.GetGroupByCaption("Communication", range, position);
+
+                    if (fieldsManifest.PhoneNoField != null)
+                    {
+                        manifest.PhoneNoControl2 = communicationGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                        manifest.PhoneNoControl2.Properties.Name = "Phone No.2";
+                        manifest.PhoneNoControl2.Properties.SourceExpr = fieldsManifest.PhoneNoField.Name.Quoted();
+                        manifest.PhoneNoControl2.Properties.Importance = Importance.Promoted;
+                    }
+
+                    if (fieldsManifest.FaxNoField != null)
+                    {
+                        manifest.FaxNoControl = communicationGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                        manifest.FaxNoControl.Properties.SourceExpr = fieldsManifest.FaxNoField.Name.Quoted();
+                    }
+
+                    if (fieldsManifest.EMailField != null)
+                    {
+                        manifest.EMailControl = communicationGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                        manifest.EMailControl.Properties.SourceExpr = fieldsManifest.EMailField.Name.Quoted();
+                        manifest.EMailControl.Properties.Importance = Importance.Promoted;
+                    }
+
+                    if (fieldsManifest.HomePageField != null)
+                    {
+                        manifest.HomePageControl = communicationGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                        manifest.HomePageControl.Properties.SourceExpr = fieldsManifest.HomePageField.Name.Quoted();
                     }
 
                     break;
