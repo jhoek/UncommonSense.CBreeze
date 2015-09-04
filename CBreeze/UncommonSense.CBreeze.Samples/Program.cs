@@ -16,7 +16,6 @@ namespace UncommonSense.CBreeze.Samples
         static void Main(string[] args)
         {
             CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
-            //CBreezeReaderDemo(@"c:\users\jhoek\desktop\sample.txt", @"c:\users\jhoek\desktop\sample.txt");
         }
 
         static void CBreezeWriteDemo(string outputFileName)
@@ -72,26 +71,6 @@ namespace UncommonSense.CBreeze.Samples
 
             application.Write(devClient, serverName, database);
             application.Compile(devClient, serverName, database);
-        }
-
-        static void CBreezeReaderDemo(string inputFileName, string outputFileName)
-        {
-            var application = ApplicationBuilder.FromFile(inputFileName);
-
-            foreach (var table in application.Tables)
-            {
-                table.Properties.CaptionML["ENU"] = table.Name;
-                table.Properties.CaptionML["NLD"] = table.Name.ToUpperInvariant();
-                table.Properties.CaptionML["ENU"] = null;
-
-                foreach (var field in table.Fields)
-                {
-                    field.AllProperties.ByName<MultiLanguageProperty>("CaptionML").Value["ENU"] = field.Name;
-                    field.AllProperties.ByName<MultiLanguageProperty>("CaptionML").Value["NLD"] = field.Name.ToUpperInvariant();
-                }
-            }
-
-            application.Write(outputFileName);
         }
     }
 }
