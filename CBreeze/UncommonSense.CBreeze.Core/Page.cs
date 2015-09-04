@@ -23,6 +23,8 @@ namespace UncommonSense.CBreeze.Core
             Properties = new PageProperties();
             Controls = new PageControls();
             Code = new Code();
+
+            Controls.Page = this;
         }
 
         public override ObjectType Type

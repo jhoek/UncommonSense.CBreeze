@@ -37,5 +37,11 @@ namespace UncommonSense.CBreeze.Core
         {
             TestNameUnique(item);
         }
+
+        public Page Page
+        {
+            get;
+            internal set;
+        }
     }
 }
