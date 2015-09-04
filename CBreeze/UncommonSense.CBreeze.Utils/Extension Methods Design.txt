@@ -1,0 +1,13 @@
+﻿Kies een eenvoudige naam, bijv. Address, NoSeries, Description.
+Hieronder verwijst {basename} naar deze naam.
+
+- C# source file heet {basename}ExtensionMethods.cs
+- manifestklasse voor tabelvelden heet {basename}FieldsManifest
+- manifestklasse voor paginacontrols heet {basename}ControlsManifest
+- klasse met extension methods heet {basename}ExtensionMethods
+- extension method voor tabelvelden heet Add{basename}Fields
+- extension method voor paginacontrols heet Add{basename}Controls
+- extension method voor tabelvelden heeft als eerste parameter de tabel waaraan wordt toegevoegd
+- extension method voor paginacontrols heeft als eerste parameter de pagina waaraan wordt toegevoegd
+- extension method voor paginacontrols heeft als tweede parameter het resultaat van de extension method voor tabelvelden, met als naam fieldsManifest
+- extension methods hebben als laatste parameter de ID-range
