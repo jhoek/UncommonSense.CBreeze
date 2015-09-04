@@ -38,66 +38,60 @@ namespace UncommonSense.CBreeze.Utils
         /// <summary>
         /// Inserts PageControl <paramref name="child"/> directly after PageControl <paramref name="parent"/>.
         /// </summary>
-        public static T InsertFirstChildPageControl<T>(this PageControl parent, T child) where T : PageControl
+        public static T AddChildPageControl<T>(this PageControl parent, T child, Position position) where T : PageControl
         {
             var controls = parent.Container;
-            var parentIndex = controls.IndexOf(parent);
-            controls.Insert(parentIndex + 1, child);
+
+            switch(position)
+            {
+                case Position.FirstWithinContainer:
+                    controls.Insert(parent.Index() + 1, child);
+                    break;
+                case Position.LastWithinContainer:
+                    var childControls = parent.GetChildPageControls();
+                    var lastIndex = childControls.Any()? childControls.Last().Index() : parent.Index();
+                    controls.Insert(lastIndex+ 1, child);
+                    break;
+            }
+
             return child;
         }
 
-        /// <summary>
-        /// Inserts PageControl <paramref name="child"/> as the last child of PageControl <paramref name="parent"/>.
-        /// </summary>
-        public static T AppendLastChildPageControl<T>(this PageControl parent, T child) where T : PageControl
-        {
-            var controls = parent.Container;
-            var childControls = parent.GetChildPageControls();
-            var lastIndex = childControls.Any() ? childControls.Last().Index() : parent.Index();
-            controls.Insert(lastIndex + 1, child);
-            return child;
-        }
-
-        /// <summary>
-        /// Returns the first/only ContentArea container page control.
-        /// </summary>
-        public static ContainerPageControl GetContentArea(this Page page)
-        {
-            return page.Controls.OfType<ContainerPageControl>().FirstOrDefault(c => c.Properties.ContainerType == ContainerType.ContentArea);
-        }
-
-        public static ContainerPageControl GetContentArea(this Page page, IEnumerable<int> range)
-        {
-            var result = GetContentArea(page) ?? page.Controls.Insert(0, new ContainerPageControl(range.GetNextPageControlID(page), 0));
-            result.Properties.ContainerType = ContainerType.ContentArea;
-            return result;
-        }
-
-        public static GroupPageControl GetGroup(this ContainerPageControl container, string caption)
+        public static GroupPageControl GetGroupByCaption(this ContainerPageControl container, string caption)
         {
             return container.GetChildPageControls().OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
         }
 
-        public static GroupPageControl GetGroup(this ContainerPageControl container, string caption, IEnumerable<int> range, Position position)
+        public static GroupPageControl GetGroupByCaption(this ContainerPageControl container, string caption, IEnumerable<int> range, Position position)
         {
-            var groupPageControl = GetGroup(container, caption);
+            var groupPageControl = container.GetGroupByCaption(caption);
 
             if (groupPageControl == null)
             {
                 groupPageControl = new GroupPageControl(range.GetNextPageControlID(container.Container.Page), 1);
                 groupPageControl.Properties.CaptionML.Set("ENU", caption);
-
-                switch (position)
-                {
-                    case Position.FirstWithinContainer:
-                        container.InsertFirstChildPageControl(groupPageControl);
-                        break;
-                    case Position.LastWithinContainer:
-                        container.AppendLastChildPageControl(groupPageControl);
-                        break;
-                }
+                container.AddChildPageControl(groupPageControl, position);
             }
 
+            return groupPageControl;
+        }
+
+        public static GroupPageControl GetGroupByType(this ContainerPageControl container, GroupType type)
+        {
+            return container.GetChildPageControls().OfType<GroupPageControl>().FirstOrDefault(g => g.Properties.GroupType == type);
+        }
+
+        public static GroupPageControl GetGroupByType(this ContainerPageControl container, GroupType type, IEnumerable<int> range, Position position)
+        {
+            var groupPageControl = container.GetGroupByType(type);
+
+            if (groupPageControl == null)
+            {
+                groupPageControl = new GroupPageControl(range.GetNextPageControlID(container.Container.Page), 1);
+                groupPageControl.Properties.GroupType = type;
+                container.AddChildPageControl(groupPageControl, position);
+            }
+            
             return groupPageControl;
         }
     }
