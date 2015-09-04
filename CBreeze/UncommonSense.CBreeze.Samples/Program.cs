@@ -55,7 +55,7 @@ namespace UncommonSense.CBreeze.Samples
             setupCard.Properties.OnOpenPage.CodeLines.Add("  INSERT;");
             setupCard.Properties.OnOpenPage.CodeLines.Add("END;");
 
-            var noSeriesFieldsManifest = table.AddNoSeriesFields(setupTable, setupCard,range);
+            var noSeriesFieldsManifest = table.AddNoSeriesFields(range, setupTable, setupCard);
             cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
             listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
 

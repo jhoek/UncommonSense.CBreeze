@@ -52,7 +52,7 @@ namespace UncommonSense.CBreeze.Utils
 
     public static class NoSeriesExtensionMethods
     {
-        public static NoSeriesFieldsManifest AddNoSeriesFields(this Table table,  Table setupTable, Page setupCard,IEnumerable<int> range)
+        public static NoSeriesFieldsManifest AddNoSeriesFields(this Table table, IEnumerable<int> range, Table setupTable, Page setupCard)
         {
             var manifest = new NoSeriesFieldsManifest();
 
