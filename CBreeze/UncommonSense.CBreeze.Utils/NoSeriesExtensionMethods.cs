@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Utils
 {
-    public class AddNoFromNoSeriesFieldManifest
+    public class NoSeriesFieldsManifest
     {
-        internal AddNoFromNoSeriesFieldManifest()
+        internal NoSeriesFieldsManifest()
         {
         }
 
@@ -30,12 +30,6 @@ namespace UncommonSense.CBreeze.Utils
             internal set;
         }
 
-        public FieldPageControl NoControl
-        {
-            get;
-            internal set;
-        }
-
         public FieldPageControl NoSeriesSetupControl
         {
             get;
@@ -43,32 +37,37 @@ namespace UncommonSense.CBreeze.Utils
         }
     }
 
-    public static class AddNoFromNoSeriesFieldExtensionMethods
+    public class NoSeriesControlsManifest
     {
-        public static AddNoFromNoSeriesFieldManifest AddNoFromNoSeriesField(this Table table, IEnumerable<int> range, Page cardPage, Table setupTable, Page setupCard )
+        internal NoSeriesControlsManifest()
         {
-            var manifest = new AddNoFromNoSeriesFieldManifest();
+        }
+
+        public FieldPageControl NoControl
+        {
+            get;
+            internal set;
+        }
+    }
+
+    public static class NoSeriesExtensionMethods
+    {
+        public static NoSeriesFieldsManifest AddNoSeriesFields(this Table table,  Table setupTable, Page setupCard,IEnumerable<int> range)
+        {
+            var manifest = new NoSeriesFieldsManifest();
 
             manifest.NoField = table.Fields.Add(new CodeTableField(range.GetNextPrimaryKeyFieldNo(table), "No.", 20)).AutoCaption();
 
-            manifest.NoSeriesField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), "No. Series", 10)).AutoCaption();
+            manifest.NoSeriesField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), "No. Series", 10)).AutoCaption(); // FIXME: hoger ID?
             manifest.NoSeriesField.Properties.Editable = false;
             manifest.NoSeriesField.Properties.TableRelation.Add("No. Series");
 
             manifest.NoSeriesSetupField = setupTable.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(setupTable), string.Format("{0} Nos.", table.Name), 10));
             manifest.NoSeriesSetupField.Properties.TableRelation.Add(BaseApp.TableNames.NoSeries);
 
-            var group = cardPage.GetOrCreateGroupControlByCaption("General", range, 0);
-
-            manifest.NoControl = cardPage.Controls.Insert(cardPage.Controls.IndexOf(group) + 1, new FieldPageControl(range.GetNextPageControlID(cardPage), 2));
-            manifest.NoControl.Properties.SourceExpr = manifest.NoField.Name.Quoted();
-            manifest.NoControl.Properties.Importance = Importance.Promoted;
-            manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("IF AssistEdit(xRec) THEN");
-            manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
-
-            group = setupCard.GetOrCreateGroupControlByCaption("Numbering", range, 0);
-            var index = group.GetChildPageControls().Any() ? setupCard.Controls.IndexOf(group.GetChildPageControls().Last()) + 1 : setupCard.Controls.IndexOf(group) + 1;
-            manifest.NoSeriesSetupControl = setupCard.Controls.Insert(index, new FieldPageControl(range.GetNextPageControlID(setupCard), 2));
+            var container = setupCard.GetContentArea(range);
+            var group = container.GetGroupByCaption("Numbering", range, 0);
+            manifest.NoSeriesSetupControl = group.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(setupCard), 2), Position.LastWithinContainer);
             manifest.NoSeriesSetupControl.Properties.SourceExpr = manifest.NoSeriesSetupField.Name.Quoted();
 
             var primaryKey = table.Keys.Add();
@@ -113,6 +112,31 @@ namespace UncommonSense.CBreeze.Utils
             assistEdit.CodeLines.Add("    EXIT(TRUE);");
             assistEdit.CodeLines.Add("  END;");
             assistEdit.CodeLines.Add("END;");
+
+            return manifest;
+        }
+
+        public static NoSeriesControlsManifest AddNoSeriesControls(this Page page, NoSeriesFieldsManifest fieldsManifest, IEnumerable<int> range)
+        {
+            var manifest = new NoSeriesControlsManifest();
+            var container = page.GetContentArea(range);
+
+            switch (page.Properties.PageType)
+            {
+                case PageType.Card:
+                    var cardGroup = container.GetGroupByCaption("General", range, 0);
+                    manifest.NoControl = cardGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.FirstWithinContainer);
+                    manifest.NoControl.Properties.SourceExpr = fieldsManifest.NoField.Name.Quoted();
+                    manifest.NoControl.Properties.Importance = Importance.Promoted;
+                    manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("IF AssistEdit(xRec) THEN");
+                    manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
+                    break;
+                case PageType.List:
+                    var listGroup = container.GetGroupByType(GroupType.Repeater, range, 0);
+                    manifest.NoControl = listGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.FirstWithinContainer);
+                    manifest.NoControl.Properties.SourceExpr = fieldsManifest.NoField.Name.Quoted();
+                    break;
+            }
 
             return manifest;
         }
