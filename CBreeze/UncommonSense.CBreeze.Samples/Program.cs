@@ -27,16 +27,10 @@ namespace UncommonSense.CBreeze.Samples
             var table = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo").AutoCaption());
             table.ObjectProperties.DateTime = DateTime.Now;
 
-            var table2 = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo 2").AutoCaption());
-            table2.ObjectProperties.DateTime = DateTime.Now;
-
             var cardPage = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo Card").AutoCaption());
             cardPage.ObjectProperties.DateTime = DateTime.Now;
             cardPage.Properties.SourceTable = table.ID;
 
-            var cardPage2 = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo 2 Card").AutoCaption());
-            cardPage2.ObjectProperties.DateTime = DateTime.Now;
-            cardPage2.Properties.SourceTable = table2.ID;
 
             var setupTable = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo Setup").AutoCaption());
             setupTable.ObjectProperties.DateTime = DateTime.Now;
@@ -61,7 +55,6 @@ namespace UncommonSense.CBreeze.Samples
 
             table.Properties.DataCaptionFields.AddRange(addNoFromNoSeriesFieldManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
 
-            table2.AddNoFromNoSeriesField(range, cardPage2, setupTable, setupCard);
 
             //application.Write(outputFileName);
 
