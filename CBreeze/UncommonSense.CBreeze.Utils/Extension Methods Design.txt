@@ -8,6 +8,7 @@ Hieronder verwijst {basename} naar deze naam.
 - extension method voor tabelvelden heet Add{basename}Fields
 - extension method voor paginacontrols heet Add{basename}Controls
 - extension method voor tabelvelden heeft als eerste parameter de tabel waaraan wordt toegevoegd
+- extension method voor tabelvelden heeft als tweede parameter de ID-range
 - extension method voor paginacontrols heeft als eerste parameter de pagina waaraan wordt toegevoegd
 - extension method voor paginacontrols heeft als tweede parameter het resultaat van de extension method voor tabelvelden, met als naam fieldsManifest
-- extension methods hebben als laatste parameter de ID-range
+- extension method voor paginacontrols heeft als derde parameter de ID-range
