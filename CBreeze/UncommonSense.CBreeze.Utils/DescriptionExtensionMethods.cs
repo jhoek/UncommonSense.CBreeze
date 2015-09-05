@@ -12,9 +12,9 @@ namespace UncommonSense.CBreeze.Utils
         Description
     }
 
-    public class AddDescriptionTableFieldsManifest
+    public class DescriptionFieldsManifest
     {
-        internal AddDescriptionTableFieldsManifest()
+        internal DescriptionFieldsManifest()
         {
         }
 
@@ -37,18 +37,18 @@ namespace UncommonSense.CBreeze.Utils
         }
     }
 
-    public class AddDescriptionPageControlsManifest
+    public class DescriptionControlsManifest
     {
-        internal AddDescriptionPageControlsManifest(){}
+        internal DescriptionControlsManifest(){}
 
         public FieldPageControl DescriptionControl{get;internal set;}
     }
 
-    public static class AddDescriptionFieldsExtensionMethods
+    public static class DescriptionExtensionMethods
     {
-        public static AddDescriptionTableFieldsManifest AddDescriptionTableFields(this Table table, IEnumerable<int> range, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)
+        public static DescriptionFieldsManifest AddDescriptionFields(this Table table, IEnumerable<int> range, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)
         {
-            var manifest = new AddDescriptionTableFieldsManifest();
+            var manifest = new DescriptionFieldsManifest();
 
             // Description
             manifest.DescriptionField = table.Fields.Add(new TextTableField(range.GetNextTableFieldNo(table), string.Format("{0}{1}", prefix, descriptionStyle), 50)).AutoCaption();
@@ -70,13 +70,17 @@ namespace UncommonSense.CBreeze.Utils
             return manifest;
         }
 
-        public static AddDescriptionPageControlsManifest AddDescriptionPageControls(this GroupPageControl group, AddDescriptionTableFieldsManifest tableFieldsManifest, IEnumerable<int> range, Position position)
+        public static DescriptionControlsManifest AddDescriptionControls(this Page page, DescriptionFieldsManifest tableFieldsManifest, IEnumerable<int> range, Position position)
         {
-            var manifest = new AddDescriptionPageControlsManifest();
+            var manifest = new DescriptionControlsManifest();
+            var container = page.GetContentArea(range);
+
+
+
 
             if (tableFieldsManifest.DescriptionField != null)
             {
-                manifest.DescriptionControl = new FieldPageControl(range.GetNextPageControlID(group.Container.Page), group.IndentationLevel + 1);
+                manifest.DescriptionControl = new FieldPageControl(range.GetNextPageControlID(page), group.IndentationLevel + 1);
                 
             }
 

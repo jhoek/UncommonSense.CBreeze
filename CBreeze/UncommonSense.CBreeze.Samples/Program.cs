@@ -59,7 +59,7 @@ namespace UncommonSense.CBreeze.Samples
             cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
             listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
 
-            var addDescriptionFieldsManifest = table.AddDescriptionTableFields(range);
+            var addDescriptionFieldsManifest = table.AddDescriptionFields(range);
 
             var addressFieldsManifest = table.AddAddressFields(null, range);
             cardPage.AddAddressControls(addressFieldsManifest, range);
