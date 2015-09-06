@@ -124,7 +124,7 @@ namespace UncommonSense.CBreeze.Utils
             switch (page.Properties.PageType)
             {
                 case PageType.Card:
-                    var cardGroup = container.GetGroupByCaption("General", range, 0);
+                    var cardGroup = container.GetGroupByCaption("General", range, Position.FirstWithinContainer);
                     manifest.NoControl = cardGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.FirstWithinContainer);
                     manifest.NoControl.Properties.SourceExpr = fieldsManifest.NoField.Name.Quoted();
                     manifest.NoControl.Properties.Importance = Importance.Promoted;
@@ -132,7 +132,7 @@ namespace UncommonSense.CBreeze.Utils
                     manifest.NoControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
                     break;
                 case PageType.List:
-                    var listGroup = container.GetGroupByType(GroupType.Repeater, range, 0);
+                    var listGroup = container.GetGroupByType(GroupType.Repeater, range, Position.FirstWithinContainer);
                     manifest.NoControl = listGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.FirstWithinContainer);
                     manifest.NoControl.Properties.SourceExpr = fieldsManifest.NoField.Name.Quoted();
                     break;
