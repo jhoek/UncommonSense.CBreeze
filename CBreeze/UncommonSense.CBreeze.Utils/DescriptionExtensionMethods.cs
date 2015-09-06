@@ -75,7 +75,14 @@ namespace UncommonSense.CBreeze.Utils
             var manifest = new DescriptionControlsManifest();
             var container = page.GetContentArea(range);
 
+            switch (page.Properties.PageType)
+            {
+                case PageType.Card:
 
+                    break;
+                case PageType.List:
+                    break;
+            }
 
 
             if (tableFieldsManifest.DescriptionField != null)
