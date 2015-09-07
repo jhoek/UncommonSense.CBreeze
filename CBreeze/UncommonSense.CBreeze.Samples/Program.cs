@@ -60,15 +60,17 @@ namespace UncommonSense.CBreeze.Samples
             cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
             listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
 
-            //var addDescriptionFieldsManifest = table.AddDescriptionFields(range, DescriptionStyle.Name);
+            var descriptionFieldsManifest = table.AddDescriptionFields(range, DescriptionStyle.Name, prefix: "Ship-To ");
+            cardPage.AddDescriptionControls(descriptionFieldsManifest, "General", range, Position.LastWithinContainer);
+            listPage.AddDescriptionControls(descriptionFieldsManifest, "General", range, Position.LastWithinContainer);
 
-            //var addressFieldsManifest = table.AddAddressFields(null, range);
-            //cardPage.AddAddressControls(addressFieldsManifest, range);
-            //listPage.AddAddressControls(addressFieldsManifest, range);
+            var addressFieldsManifest = table.AddAddressFields( range, "Ship-To ");
+            cardPage.AddAddressControls(addressFieldsManifest, "General", range, Position.FirstWithinContainer);
+            listPage.AddAddressControls(addressFieldsManifest, "General", range, Position.FirstWithinContainer);
 
-            //var communicationFieldsManifest = table.AddCommunicationFields(range, prefix: "Ship-To ");
-            //cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
-            //listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
+            var communicationFieldsManifest = table.AddCommunicationFields(range, prefix: "Ship-To ");
+            cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
+            listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
 
             //table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
 

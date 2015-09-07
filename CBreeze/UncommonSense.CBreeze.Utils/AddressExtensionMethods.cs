@@ -54,11 +54,47 @@ namespace UncommonSense.CBreeze.Utils
         internal AddressControlsManifest()
         {
         }
+
+        public FieldPageControl AddressControl
+        {
+            get;
+            internal set;
+        }
+
+        public FieldPageControl Address2Control
+        {
+            get;
+            internal set;
+        }
+
+        public FieldPageControl PostCodeControl
+        {
+            get;
+            internal set;
+        }
+
+        public FieldPageControl CityControl
+        {
+            get;
+            internal set;
+        }
+
+        public FieldPageControl CountyControl
+        {
+            get;
+            internal set;
+        }
+
+        public FieldPageControl CountryRegionCodeControl
+        {
+            get;
+            internal set;
+        }
     }
 
     public static class AddressExtensionMethods
     {
-        public static AddressFieldsManifest AddAddressFields(this Table table, string prefix, IEnumerable<int> range)
+        public static AddressFieldsManifest AddAddressFields(this Table table, IEnumerable<int> range, string prefix=null)
         {
             var manifest = new AddressFieldsManifest();
 
@@ -118,7 +154,7 @@ namespace UncommonSense.CBreeze.Utils
             return manifest;
         }
 
-        public static AddressControlsManifest AddAddressControls(this Page page, AddressFieldsManifest fieldsManifest, IEnumerable<int> range)
+        public static AddressControlsManifest AddAddressControls(this Page page, AddressFieldsManifest fieldsManifest, string groupCaption, IEnumerable<int> range, Position position)
         {
             var manifest = new AddressControlsManifest();
             var container = page.GetContentArea(range);
@@ -126,15 +162,36 @@ namespace UncommonSense.CBreeze.Utils
             switch (page.Properties.PageType)
             {
                 case PageType.Card:
-                    // FIXME: Parameter for group caption
-                    // FIXME: Address, Address 2, Post Code (promoted), City, Country/Region Code
+                    var cardGroup = container.GetGroupByCaption(groupCaption, range, position);
+
+                    manifest.AddressControl = cardGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                    manifest.AddressControl.Properties.SourceExpr = fieldsManifest.AddressField.Name.Quoted();
+
+                    manifest.Address2Control = cardGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                    manifest.Address2Control.Properties.SourceExpr = fieldsManifest.Address2Field.Name.Quoted();
+
+                    manifest.PostCodeControl = cardGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                    manifest.PostCodeControl.Properties.SourceExpr = fieldsManifest.PostCodeField.Name.Quoted();
+                    manifest.PostCodeControl.Properties.Importance = Importance.Promoted;
+
+                    manifest.CityControl = cardGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                    manifest.CityControl.Properties.SourceExpr = fieldsManifest.CityField.Name.Quoted();
+
+                    manifest.CountryRegionCodeControl = cardGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                    manifest.CountryRegionCodeControl.Properties.SourceExpr = fieldsManifest.CountryRegionCodeField.Name.Quoted();
+
                     break;
                 case PageType.List:
-                    // FIXME: Post Code, Country/Region Code
+                    var listGroup = container.GetGroupByType(GroupType.Repeater, range, position);
+
+                    manifest.PostCodeControl = listGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                    manifest.PostCodeControl.Properties.SourceExpr = fieldsManifest.PostCodeField.Name.Quoted();
+
+                    manifest.CountryRegionCodeControl = listGroup.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                    manifest.CountryRegionCodeControl.Properties.SourceExpr = fieldsManifest.CountryRegionCodeField.Name.Quoted();
+
                     break;
             }
-
-            // FIXME: Conclusion: card pages and list pages require different parameters. Also, they might require different manifests.
 
             return manifest;
         }
