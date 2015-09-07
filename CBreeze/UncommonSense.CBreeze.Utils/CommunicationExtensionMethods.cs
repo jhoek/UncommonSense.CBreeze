@@ -161,7 +161,7 @@ namespace UncommonSense.CBreeze.Utils
             switch (page.Properties.PageType)
             {
                 case PageType.Card:
-                    var generalGroup = contentArea.GetGroupByCaption("General", range, position);
+                    var generalGroup = contentArea.GetGroupByCaption("General", range, Position.FirstWithinContainer);
 
                     if (fieldsManifest.PhoneNoField != null)
                     {
@@ -176,7 +176,7 @@ namespace UncommonSense.CBreeze.Utils
                         manifest.ContactControl.Properties.Importance = Importance.Promoted;
                     }
 
-                    var communicationGroup = contentArea.GetGroupByCaption("Communication", range, position);
+                    var communicationGroup = contentArea.GetGroupByCaption("Communication", range, Position.LastWithinContainer);
 
                     if (fieldsManifest.PhoneNoField != null)
                     {
