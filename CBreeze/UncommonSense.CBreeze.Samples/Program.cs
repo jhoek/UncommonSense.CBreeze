@@ -15,10 +15,10 @@ namespace UncommonSense.CBreeze.Samples
     {
         static void Main(string[] args)
         {
-            CBreezeWriteDemo(@"c:\users\jhoek\desktop\sample.txt");
+            CBreezeWriteDemo();
         }
 
-        static void CBreezeWriteDemo(string outputFileName)
+        static void CBreezeWriteDemo()
         {
             var range = 50000.To(59999);
 
@@ -55,23 +55,22 @@ namespace UncommonSense.CBreeze.Samples
             setupCard.Properties.OnOpenPage.CodeLines.Add("  INSERT;");
             setupCard.Properties.OnOpenPage.CodeLines.Add("END;");
 
+            // ===
             var noSeriesFieldsManifest = table.AddNoSeriesFields(range, setupTable, setupCard);
             cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
             listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
 
-            var addDescriptionFieldsManifest = table.AddDescriptionFields(range);
+            //var addDescriptionFieldsManifest = table.AddDescriptionFields(range, DescriptionStyle.Name);
 
-            var addressFieldsManifest = table.AddAddressFields(null, range);
-            cardPage.AddAddressControls(addressFieldsManifest, range);
-            listPage.AddAddressControls(addressFieldsManifest, range);
+            //var addressFieldsManifest = table.AddAddressFields(null, range);
+            //cardPage.AddAddressControls(addressFieldsManifest, range);
+            //listPage.AddAddressControls(addressFieldsManifest, range);
 
-            var communicationFieldsManifest = table.AddCommunicationFields(range, prefix: "Ship-To ");
-            cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
-            listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
+            //var communicationFieldsManifest = table.AddCommunicationFields(range, prefix: "Ship-To ");
+            //cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
+            //listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
 
-            table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
-
-            //application.Write(outputFileName);
+            //table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
 
             const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
             const string serverName = @"JANHOEK1FC5\NAVDEMO";
