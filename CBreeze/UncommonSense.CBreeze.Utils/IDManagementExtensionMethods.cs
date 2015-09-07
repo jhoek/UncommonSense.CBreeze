@@ -86,6 +86,13 @@ namespace UncommonSense.CBreeze.Utils
             return range.Except(hasCode.GetCode().Variables.Select(v=>v.ID)).First();
         }
 
+        public static int GetNextVariableID(this IEnumerable<int> range, Trigger trigger)
+        {
+            // FIXME: You'd need access to the object ID to know whether to use 
+            // existing range, or to start from 1.
+            return range.Except(trigger.Variables.Select(v => v.ID)).First();
+        }
+
         public static int GetNextParameterID(this IEnumerable<int> range, Function function)
         {
             if (range.Contains(function.ID))
