@@ -39,14 +39,32 @@ namespace UncommonSense.CBreeze.Utils
 
     public class DescriptionControlsManifest
     {
-        internal DescriptionControlsManifest(){}
+        internal DescriptionControlsManifest()
+        {
+        }
 
-        public FieldPageControl DescriptionControl{get;internal set;}
+        public FieldPageControl DescriptionControl
+        {
+            get;
+            internal set;
+        }
+
+        public FieldPageControl Description2Control
+        {
+            get;
+            internal set;
+        }
+
+        public FieldPageControl SearchDescriptionControl
+        {
+            get;
+            internal set;
+        }
     }
 
     public static class DescriptionExtensionMethods
     {
-        public static DescriptionFieldsManifest AddDescriptionFields(this Table table, IEnumerable<int> range, DescriptionStyle descriptionStyle = DescriptionStyle.Description,bool description2 = true, bool searchDescription = true, string prefix = null)
+        public static DescriptionFieldsManifest AddDescriptionFields(this Table table, IEnumerable<int> range, DescriptionStyle descriptionStyle = DescriptionStyle.Description, bool description2 = true, bool searchDescription = true, string prefix = null)
         {
             var manifest = new DescriptionFieldsManifest();
 
@@ -70,36 +88,42 @@ namespace UncommonSense.CBreeze.Utils
             return manifest;
         }
 
-        public static DescriptionControlsManifest AddDescriptionControls(this Page page, DescriptionFieldsManifest tableFieldsManifest, IEnumerable<int> range, Position position)
+        public static DescriptionControlsManifest AddDescriptionControls(this Page page, DescriptionFieldsManifest fieldsManifest, string groupCaption, IEnumerable<int> range, Position position)
         {
             var manifest = new DescriptionControlsManifest();
-            var container = page.GetContentArea(range);
+            var group = GetGroup(page, range, groupCaption, position);
+
+            manifest.DescriptionControl = group.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+            manifest.DescriptionControl.Properties.SourceExpr = fieldsManifest.DescriptionField.Name.Quoted();
+
+            if (fieldsManifest.Description2Field != null)
+            {
+                manifest.Description2Control = group.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                manifest.Description2Control.Properties.SourceExpr = fieldsManifest.Description2Field.Name.Quoted();
+            }
+
+            if (fieldsManifest.SearchDescriptionField != null)
+            {
+                manifest.SearchDescriptionControl = group.AddChildPageControl(new FieldPageControl(range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
+                manifest.SearchDescriptionControl.Properties.SourceExpr = fieldsManifest.SearchDescriptionField.Name.Quoted();
+            }
+
+            return manifest;
+        }
+
+        private static GroupPageControl GetGroup(this Page page, IEnumerable<int> range, string groupCaption, Position position)
+        {
+            var contentArea = page.GetContentArea(range);
 
             switch (page.Properties.PageType)
             {
                 case PageType.Card:
-
-                    break;
+                    return contentArea.GetGroupByCaption(groupCaption, range, position);
                 case PageType.List:
-                    break;
+                    return contentArea.GetGroupByType(GroupType.Repeater, range, position);
+                default:
+                    return null;
             }
-
-
-            if (tableFieldsManifest.DescriptionField != null)
-            {
-                manifest.DescriptionControl = new FieldPageControl(range.GetNextPageControlID(page), group.IndentationLevel + 1);
-                
-            }
-
-            switch (position)
-            {
-                case Position.FirstWithinContainer:
-                    break;
-                case Position.LastWithinContainer:
-                    break;
-            }
-
-            return manifest;
         }
     }
 }
