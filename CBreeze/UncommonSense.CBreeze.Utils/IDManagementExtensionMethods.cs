@@ -45,14 +45,15 @@ namespace UncommonSense.CBreeze.Utils
         #endregion
 
         #region Subobjects
-        public static int GetNextTableFieldNo(this IEnumerable<int> range, Table table)
+        public static int GetNextTableFieldNo(this IEnumerable<int> range, Table table, int offset = 0)
         {
-            const int offset = 10;
+            // Skip first 10 field IDs for primary key
+            const int nonKeyFieldsOffset = 10;
 
             if (range.Contains(table.ID))
-                range = Enumerable.Range(offset, int.MaxValue - offset + 1);
+                range = Enumerable.Range(nonKeyFieldsOffset, int.MaxValue - nonKeyFieldsOffset + 1);
 
-            return range.Except(table.Fields.Select(f => f.ID)).First();
+            return range.Skip(offset).Except(table.Fields.Select(f => f.ID)).First();
         }
 
         public static int GetNextPrimaryKeyFieldNo(this IEnumerable<int> range, Table table)
@@ -88,7 +89,7 @@ namespace UncommonSense.CBreeze.Utils
 
         public static int GetNextVariableID(this IEnumerable<int> range, Trigger trigger)
         {
-            // FIXME: You'd need access to the object ID to know whether to use 
+            // Note: You'd need access to the object ID to know whether to use 
             // existing range, or to start from 1.
             return range.Except(trigger.Variables.Select(v => v.ID)).First();
         }

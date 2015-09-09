@@ -58,7 +58,7 @@ namespace UncommonSense.CBreeze.Utils
 
             manifest.NoField = table.Fields.Add(new CodeTableField(range.GetNextPrimaryKeyFieldNo(table), "No.", 20)).AutoCaption();
 
-            manifest.NoSeriesField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table), "No. Series", 10)).AutoCaption(); // FIXME: hoger ID?
+            manifest.NoSeriesField = table.Fields.Add(new CodeTableField(range.GetNextTableFieldNo(table,90), "No. Series", 10)).AutoCaption(); 
             manifest.NoSeriesField.Properties.Editable = false;
             manifest.NoSeriesField.Properties.TableRelation.Add("No. Series");
 
