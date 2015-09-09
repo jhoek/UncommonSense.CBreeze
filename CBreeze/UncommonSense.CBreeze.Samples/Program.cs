@@ -72,7 +72,7 @@ namespace UncommonSense.CBreeze.Samples
             cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
             listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
 
-            //table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, addDescriptionFieldsManifest.DescriptionField.Name);
+            table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, descriptionFieldsManifest.DescriptionField.Name);
 
             const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
             const string serverName = @"JANHOEK1FC5\NAVDEMO";
