@@ -126,6 +126,10 @@
       <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Utils\UncommonSense.CBreeze.Utils.csproj">
+      <Project>{8cdab257-683a-4ad2-a266-3c0ef538628c}</Project>
+      <Name>UncommonSense.CBreeze.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
