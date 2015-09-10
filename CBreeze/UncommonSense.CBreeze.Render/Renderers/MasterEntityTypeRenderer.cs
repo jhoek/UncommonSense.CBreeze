@@ -20,22 +20,23 @@ namespace UncommonSense.CBreeze.Render
             manifest.ListPage = application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} List", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption();
             manifest.StatisticsPage = entityType.HasStatisticsPage ? application.Pages.Add(new Page(renderingContext.GetNextPageID(), string.Format("{0} Statistics", entityType.Name))).AutoObjectProperties(renderingContext).AutoCaption() : null;
 
-            var addNoFromNoSeriesManifest = manifest.Table.AddNoFromNoSeriesField(entityType.SetupEntityType, 
+            var setupEntityTypeManifest = renderingContext.GetManifest<SetupEntityTypeManifest>(entityType.SetupEntityType);
+            var addNoFromNoSeriesManifest = manifest.Table.AddNoSeriesFields(range, setupEntityTypeManifest.Table, setupEntityTypeManifest.Page);
             manifest.NoField = addNoFromNoSeriesManifest.NoField;
             manifest.NoSeriesField = addNoFromNoSeriesManifest.NoSeriesField;
 
-            var addDescriptionFieldsManifest = manifest.Table.AddDescriptionFields(entityType.DescriptionStyle, entityType.HasDescription2Field, entityType.HasSearchDescriptionField);
+            var addDescriptionFieldsManifest = manifest.Table.AddDescriptionFields(range, entityType.DescriptionStyle, entityType.HasDescription2Field, entityType.HasSearchDescriptionField);
             manifest.DescriptionField = addDescriptionFieldsManifest.DescriptionField;
             manifest.Description2Field = addDescriptionFieldsManifest.Description2Field;
             manifest.SearchDescriptionField = addDescriptionFieldsManifest.SearchDescriptionField;
 
             if (entityType.HasLastDateModifiedField)
             {
-                var lastDateModifiedManifest = manifest.Table.AddLastDateModifiedField(manifest.Table.NextFieldNo());
+                var lastDateModifiedManifest = manifest.Table.AddLastDateModifiedField(range);
                 manifest.LastDateModifiedField = lastDateModifiedManifest.LastDateModifiedField;
             }
 
-            manifest.DateFilterField = entityType.NeedsDateFilterField() ? manifest.Table.Fields.Add(new DateTableField(manifest.Table.NextFieldNo(), "Date Filter")).AutoCaption() : null;
+            manifest.DateFilterField = entityType.NeedsDateFilterField() ? manifest.Table.Fields.Add(new DateTableField(manifest.Table.NextTableFieldNo(), "Date Filter")).AutoCaption() : null;
 
             return manifest;
         }
