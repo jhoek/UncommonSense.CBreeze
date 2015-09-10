@@ -29,9 +29,9 @@ namespace UncommonSense.CBreeze.Render
             this.manifests.Add(entityType, manifest);
         }
 
-        internal RenderingManifest GetManifest(EntityType entityType)
+        internal T GetManifest<T>(EntityType entityType) where T: RenderingManifest
         {
-            return Manifests.Where(k => k.Key == entityType).FirstOrDefault().Value;
+            return Manifests.Where(k => k.Key == entityType).FirstOrDefault().Value as T;
         }
 
         public int GetNextTableID()
