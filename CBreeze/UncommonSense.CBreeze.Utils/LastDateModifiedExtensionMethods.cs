@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Utils
 {
-    public class LastDateModifiedFieldsManifest
+    public class LastDateModifiedFieldManifest
     {
-        internal LastDateModifiedFieldsManifest()
+        internal LastDateModifiedFieldManifest()
         {
         }
 
@@ -19,9 +19,9 @@ namespace UncommonSense.CBreeze.Utils
         }
     }
 
-    public class LastDateModifiedControlsManifest
+    public class LastDateModifiedControlManifest
     {
-        internal LastDateModifiedControlsManifest()
+        internal LastDateModifiedControlManifest()
         {
         }
 
@@ -34,9 +34,9 @@ namespace UncommonSense.CBreeze.Utils
 
     public static class LastDateModifiedExtensionMethods
     {
-        public static LastDateModifiedFieldsManifest AddLastDateModifiedFields(this Table table, IEnumerable<int> range)
+        public static LastDateModifiedFieldManifest AddLastDateModifiedField(this Table table, IEnumerable<int> range)
         {
-            var manifest = new LastDateModifiedFieldsManifest();
+            var manifest = new LastDateModifiedFieldManifest();
 
             manifest.LastDateModifiedField = table.Fields.Add(new DateTableField(range.GetNextTableFieldNo(table), "Last Date Modified")).AutoCaption();
             manifest.LastDateModifiedField.Properties.Editable = false;
@@ -48,9 +48,9 @@ namespace UncommonSense.CBreeze.Utils
             return manifest;
         }
 
-        public static LastDateModifiedControlsManifest AddLastDateModifiedControls(this Page page, LastDateModifiedFieldsManifest fieldsManifest, IEnumerable<int> range)
+        public static LastDateModifiedControlManifest AddLastDateModifiedControl(this Page page, LastDateModifiedFieldManifest fieldsManifest, IEnumerable<int> range)
         {
-            var manifest = new LastDateModifiedControlsManifest();
+            var manifest = new LastDateModifiedControlManifest();
             var container = page.GetContentArea();
 
             switch (page.Properties.PageType)
