@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 using System.Globalization;
 
 namespace UncommonSense.CBreeze.Write
@@ -202,14 +203,14 @@ namespace UncommonSense.CBreeze.Write
             {
                 case CalcFormulaMethod.Exist:
                 case CalcFormulaMethod.Count:
-                    writer.Write(property.Value.TableName.Quoted());
+                    writer.Write(property.Value.TableName.QuotedExcept());
                     break;
                 case CalcFormulaMethod.Lookup:
                 case CalcFormulaMethod.Average:
                 case CalcFormulaMethod.Max:
                 case CalcFormulaMethod.Min:
                 case CalcFormulaMethod.Sum:
-                    writer.Write("{0}.{1}", property.Value.TableName.Quoted(), property.Value.FieldName.Quoted());
+                    writer.Write("{0}.{1}", property.Value.TableName.QuotedExcept(), property.Value.FieldName.QuotedExcept());
                     break;
             }
 
@@ -421,11 +422,11 @@ namespace UncommonSense.CBreeze.Write
                     writer.Write(") ");
                 }
 
-                writer.Write(tableRelationLine.TableName.Quoted());
+                writer.Write(tableRelationLine.TableName.QuotedExcept());
 
                 if (!string.IsNullOrEmpty(tableRelationLine.FieldName))
                 {
-                    writer.Write(".{0}", tableRelationLine.FieldName.Quoted());
+                    writer.Write(".{0}", tableRelationLine.FieldName.QuotedExcept());
                 }
 
                 if (tableRelationLine.TableFilter.Any())
