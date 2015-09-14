@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Model
         {
             Name = name;
             SetupEntityType = setupEntityType;
-            DescriptionStyle = DescriptionStyle.Description;
+            //DescriptionStyle = DescriptionStyle.Description;
             HasDescription2Field = true;
             HasSearchDescriptionField = true;
             HasLastDateModifiedField = true;
@@ -31,11 +31,11 @@ namespace UncommonSense.CBreeze.Model
             internal set;
         }
 
-        public DescriptionStyle DescriptionStyle
-        {
-            get;
-            set;
-        }
+        //public DescriptionStyle DescriptionStyle
+        //{
+        //    get;
+        //    set;
+        //}
 
         public bool HasDescription2Field
         {

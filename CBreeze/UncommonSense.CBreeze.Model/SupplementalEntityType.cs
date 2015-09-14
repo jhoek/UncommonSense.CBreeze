@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Model
 		{
 			Name = name;
 			PluralName = pluralName;
-            DescriptionStyle = DescriptionStyle.Description;
+            //DescriptionStyle = DescriptionStyle.Description;
             DescriptionLength = DescriptionLength.Normal;
 		}
 
@@ -28,11 +28,11 @@ namespace UncommonSense.CBreeze.Model
             internal set;
 		}
 
-		public DescriptionStyle DescriptionStyle
-		{
-			get;
-             set;
-		}
+        //public DescriptionStyle DescriptionStyle
+        //{
+        //    get;
+        //     set;
+        //}
 
         public DescriptionLength DescriptionLength
         {
