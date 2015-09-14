@@ -9,6 +9,7 @@
 ## Why use C/Breeze?
 - Script your development work as much as possible
 - Avoid the friction caused by an outdated development environment
+- Focus on the semantics; leave the syntax to C/Breeze
 
 ## Design decisions
 ### Keep UncommonSense.CBreeze.Core lean and mean
