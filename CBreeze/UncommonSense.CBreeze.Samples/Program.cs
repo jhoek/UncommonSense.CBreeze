@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.IO;
+using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Read;
 using UncommonSense.CBreeze.Utils;
 using UncommonSense.CBreeze.Write;
@@ -60,19 +61,34 @@ namespace UncommonSense.CBreeze.Samples
             cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
             listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
 
-            var descriptionFieldsManifest = table.AddDescriptionFields(range, DescriptionStyle.Name, prefix: "Ship-To ");
-            cardPage.AddDescriptionControls(descriptionFieldsManifest, "General", range, Position.LastWithinContainer);
-            listPage.AddDescriptionControls(descriptionFieldsManifest, "General", range, Position.LastWithinContainer);
+            var shipToNamePattern = new DescriptionPattern(range,table,cardPage, listPage);
+            shipToNamePattern.DescriptionStyle = DescriptionStyle.Name;
+            shipToNamePattern.Prefix = "Ship-to ";
+            shipToNamePattern.GroupCaption = "Shipping";
+            shipToNamePattern.Apply();
 
-            var addressFieldsManifest = table.AddAddressFields( range, "Ship-To ");
-            cardPage.AddAddressControls(addressFieldsManifest, "General", range, Position.FirstWithinContainer);
-            listPage.AddAddressControls(addressFieldsManifest, "General", range, Position.FirstWithinContainer);
+            var shipToAddressBlockPattern = new AddressBlockPattern(range, table, cardPage, listPage);
+            shipToAddressBlockPattern.Prefix = "Ship-to ";
+            shipToAddressBlockPattern.GroupCaption = "General";
+            shipToAddressBlockPattern.CardPageGroupPosition = Position.FirstWithinContainer;
+            shipToAddressBlockPattern.Apply();
+
+            var billToNamePattern = new DescriptionPattern(range, table, cardPage, listPage);
+            billToNamePattern.DescriptionStyle = DescriptionStyle.Name;
+            billToNamePattern.Prefix = "Bill-to ";
+            billToNamePattern.GroupCaption = "Invoicing";
+            billToNamePattern.Apply();
+
+            var billToAddressBlockPattern = new AddressBlockPattern(range,table,cardPage, listPage);
+            billToAddressBlockPattern.Prefix = "Bill-to ";
+            billToAddressBlockPattern.GroupCaption = "Invoicing";
+            billToAddressBlockPattern.Apply();
 
             var communicationFieldsManifest = table.AddCommunicationFields(range, prefix: "Ship-To ");
             cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
             listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
 
-            table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, descriptionFieldsManifest.DescriptionField.Name);
+            // FIXME: table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, descriptionFieldsManifest.DescriptionField.Name);
 
             const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
             const string serverName = @"JANHOEK1FC5\NAVDEMO";

@@ -64,6 +64,10 @@
       <Project>{8f590103-f4b1-456b-bd22-a159846b0687}</Project>
       <Name>UncommonSense.CBreeze.IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Patterns\UncommonSense.CBreeze.Patterns.csproj">
+      <Project>{c8e52865-242a-43be-948e-533d83318fd6}</Project>
+      <Name>UncommonSense.CBreeze.Patterns</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
       <Project>{11BF778B-6524-4845-895D-CCDF90329FB2}</Project>
       <Name>UncommonSense.CBreeze.Read</Name>
