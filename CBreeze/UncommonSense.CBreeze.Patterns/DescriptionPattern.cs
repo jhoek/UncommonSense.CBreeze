@@ -18,6 +18,7 @@ namespace UncommonSense.CBreeze.Patterns
         {
             HasDescription2 = true;
             HasSearchDescription = true;
+            CreateKeyOnSearchDescription = true;
             CardPageGroupPosition = Position.LastWithinContainer;
         }
 
@@ -40,6 +41,12 @@ namespace UncommonSense.CBreeze.Patterns
             if (HasSearchDescription)
             {
                 SearchDescriptionField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Search {1}", Prefix, Style), 50).AutoCaption());
+
+                if (CreateKeyOnSearchDescription)
+                {
+                    KeyOnSearchDescription = Table.Keys.Add();
+                    KeyOnSearchDescription.Fields.Add(SearchDescriptionField.Name);
+                }
             }
         }
 
@@ -120,6 +127,12 @@ namespace UncommonSense.CBreeze.Patterns
             set;
         }
 
+        public bool CreateKeyOnSearchDescription
+        {
+            get;
+            set;
+        }
+
         public TextTableField DescriptionField
         {
             get;
@@ -133,6 +146,12 @@ namespace UncommonSense.CBreeze.Patterns
         }
 
         public CodeTableField SearchDescriptionField
+        {
+            get;
+            internal set;
+        }
+
+        public TableKey KeyOnSearchDescription
         {
             get;
             internal set;
