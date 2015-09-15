@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Patterns
 {
-    public class NoSeriesPattern : AddFieldsPattern
+    public class NoSeriesPattern : AddPrimaryKeyFieldsPattern
     {
         private Dictionary<Page, FieldPageControl> noControls = new Dictionary<Page, FieldPageControl>();
         private Dictionary<Page, FieldPageControl> noSeriesControls = new Dictionary<Page, FieldPageControl>();
@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Patterns
         {
         }
 
-        public override void VerifyRequirements()
+        protected override void VerifyRequirements()
         {
             base.VerifyRequirements();
 
@@ -26,15 +26,10 @@ namespace UncommonSense.CBreeze.Patterns
 
             if (SetupPage == null)
                 throw new ArgumentNullException("SetupPage");
-
-            if (SetupTable.Keys.Any())
-                throw new ArgumentException("SetupTable already has a primary key.");
         }
 
-        public override void Apply()
+        protected override void MakeChanges()
         {
-            base.Apply();
-
             CreateFields();
             CreateKey();
             SetFieldProperties();
@@ -45,7 +40,7 @@ namespace UncommonSense.CBreeze.Patterns
             CreateSetupControls();
         }
 
-        protected override void CreateFields()
+        protected void CreateFields()
         {
             NoField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), "No.", 20).AutoCaption());
             NoSeriesField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table, 90), "No. Series", 10).AutoCaption());
@@ -116,7 +111,23 @@ namespace UncommonSense.CBreeze.Patterns
             assistEdit.CodeLines.Add("END;");
         }
 
-        protected override void CreateCardPageControls(Page page)
+        protected void CreateControls()
+        {
+            foreach (var page in Pages)
+            {
+                switch (page.Properties.PageType)
+                {
+                    case PageType.Card:
+                        CreateCardPageControls(page);
+                        break;
+                    case PageType.List:
+                        CreateListPageControls(page);
+                        break;
+                }
+            }
+        }
+
+        protected void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption("General", Range, Position.FirstWithinContainer);
@@ -130,7 +141,7 @@ namespace UncommonSense.CBreeze.Patterns
             noControls.Add(page, noControl);
         }
 
-        protected override void CreateListPageControls(Page page)
+        protected void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
