@@ -30,9 +30,19 @@ namespace UncommonSense.CBreeze.Patterns
         protected override void MakeChanges()
         {
             CreateObjects();
+            LinkObjects();
+
             CreatePrimaryKeyField();
             CreateDescriptionFields();
+            CreateDropDownFieldGroup();
             CreateLastDateModifiedField();
+
+            AddActionsToPages();
+
+            FinalizeCardPage();
+            FinalizeListPage();
+
+            SetDataCaptionFields();
         }
 
         protected void CreateObjects()
@@ -41,6 +51,22 @@ namespace UncommonSense.CBreeze.Patterns
             CardPage = Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Card", Name)).AutoCaption());
             ListPage = Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} List", Name)).AutoCaption());
             StatisticsPage = HasStatisticsPage ? Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Statistics", Name)).AutoCaption()) : null;
+        }
+
+        protected void LinkObjects()
+        {
+            Table.Properties.LookupPageID = ListPage.ID;
+            Table.Properties.DrillDownPageID = ListPage.ID;
+
+            CardPage.Properties.SourceTable = Table.ID;
+            
+            ListPage.Properties.SourceTable = Table.ID;
+            ListPage.Properties.CardPageID = CardPage.Name;
+
+            if (HasStatisticsPage)
+            {
+                StatisticsPage.Properties.SourceTable = Table.ID;
+            }
         }
 
         protected void CreatePrimaryKeyField()
@@ -67,6 +93,12 @@ namespace UncommonSense.CBreeze.Patterns
             SearchDescriptionField = descriptionPattern.SearchDescriptionField;
         }
 
+        protected void CreateDropDownFieldGroup()
+        {
+            var fieldGroup = Table.FieldGroups.Add(new TableFieldGroup(1, "DropDown"));
+            fieldGroup.Fields.AddRange(NoField.Name, DescriptionField.Name);
+        }
+
         protected void CreateLastDateModifiedField()
         {
             if (HasLastDateModified)
@@ -81,6 +113,41 @@ namespace UncommonSense.CBreeze.Patterns
                     lastDateModifiedControls.Add(keyValuePair.Key, keyValuePair.Value);
                 }
             }
+        }
+
+        protected void AddActionsToPages()
+        {
+            AddActionsToPage(CardPage);
+            AddActionsToPage(ListPage);
+        }
+
+        protected void AddActionsToPage(Page page)
+        {
+            // FIXME
+        }
+
+        protected void FinalizeCardPage()
+        {
+            CardPage.Properties.RefreshOnActivate = true;
+
+            var factBoxArea = CardPage.GetFactboxArea(Range);
+
+            RecordLinksControl = factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.RecordLinks);
+            RecordLinksControl.Properties.Visible = false.ToString();
+
+            NotesControl = factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes);
+            NotesControl.Properties.Visible = false.ToString();
+        }
+
+        protected void FinalizeListPage()
+        {
+            ListPage.Properties.Editable = false;
+
+        }
+
+        protected void SetDataCaptionFields()
+        {
+            Table.Properties.DataCaptionFields.AddRange(NoField.Name, DescriptionField.Name);
         }
 
         public string Name
@@ -197,6 +264,18 @@ namespace UncommonSense.CBreeze.Patterns
             {
                 return lastDateModifiedControls.AsReadOnly();
             }
+        }
+
+        public PartPageControl RecordLinksControl
+        {
+            get;
+            protected set;
+        }
+
+        public PartPageControl NotesControl
+        {
+            get;
+            protected set;
         }
     }
 }
