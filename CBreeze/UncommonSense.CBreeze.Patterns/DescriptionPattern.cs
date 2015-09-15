@@ -24,18 +24,17 @@ namespace UncommonSense.CBreeze.Patterns
         {
             HasDescription2 = true;
             HasSearchDescription = true;
+            CardPageGroupPosition = Position.LastWithinContainer;
         }
 
-        public override void Apply()
+        protected override void MakeChanges()
         {
-            base.Apply();
-
             CreateFields();
             AddValidationCode();
             CreateControls();
         }
 
-        protected override void CreateFields()
+        protected  void CreateFields()
         {
             DescriptionField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}{1}", Prefix, Style), 50).AutoCaption());
 
@@ -46,7 +45,7 @@ namespace UncommonSense.CBreeze.Patterns
 
             if (HasSearchDescription)
             {
-                SearchDescriptionField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Search {1}", Prefix, Style), 50).AutoCaption());                
+                SearchDescriptionField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Search {1}", Prefix, Style), 50).AutoCaption());
             }
         }
 
@@ -59,7 +58,23 @@ namespace UncommonSense.CBreeze.Patterns
             }
         }
 
-        protected override void CreateCardPageControls(Page page)
+        protected void CreateControls()
+        {
+            foreach (var page in Pages)
+            {
+                switch (page.Properties.PageType)
+                {
+                    case PageType.Card:
+                        CreateCardPageControls(page);
+                        break;
+                    case PageType.List:
+                        CreateListPageControls(page);
+                        break;
+                }
+            }
+        }
+
+        protected void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
@@ -76,7 +91,7 @@ namespace UncommonSense.CBreeze.Patterns
             }
         }
 
-        protected override void CreateListPageControls(Page page)
+        protected void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, ListPageGroupPosition);
@@ -90,7 +105,7 @@ namespace UncommonSense.CBreeze.Patterns
                 var searchDescriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
                 searchDescriptionControl.Properties.SourceExpr = SearchDescriptionField.Name.Quoted();
                 searchDescriptionControls.Add(page, searchDescriptionControl);
-            }            
+            }
         }
 
         public DescriptionStyle Style
