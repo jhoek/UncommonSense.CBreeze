@@ -39,39 +39,20 @@ namespace UncommonSense.CBreeze.Samples
             listPage.Properties.SourceTable = table.ID;
             listPage.Properties.CardPageID = cardPage.Name;
 
-            var setupTable = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo Setup").AutoCaption());
-            setupTable.ObjectProperties.DateTime = DateTime.Now;
-            setupTable.Fields.Add(new CodeTableField(range.GetNextPrimaryKeyFieldNo(table), "Primary Key", 10));
-
-            var setupCard = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo Setup").AutoCaption());
-            setupCard.ObjectProperties.DateTime = DateTime.Now;
-            setupCard.Properties.InsertAllowed = false;
-            setupCard.Properties.DeleteAllowed = false;
-            setupCard.Properties.PageType = PageType.Card;
-            setupCard.Properties.SourceTable = setupTable.ID;
-
-            setupCard.Properties.OnOpenPage.CodeLines.Add("RESET;");
-            setupCard.Properties.OnOpenPage.CodeLines.Add("IF NOT GET THEN BEGIN");
-            setupCard.Properties.OnOpenPage.CodeLines.Add("  INIT;");
-            setupCard.Properties.OnOpenPage.CodeLines.Add("  INSERT;");
-            setupCard.Properties.OnOpenPage.CodeLines.Add("END;");
-
-            // ===
-            //var noSeriesFieldsManifest = table.AddNoSeriesFields(range, setupTable, setupCard);
-            //cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
-            //listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
+            var setupEntityTypePattern = new SetupEntityTypePattern(application, range, "Demo Setup");
+            setupEntityTypePattern.Apply();
 
             var noSeriesPattern = new NoSeriesPattern(range, table, cardPage, listPage);
-            noSeriesPattern.SetupTable = setupTable;
-            noSeriesPattern.SetupPage = setupCard;
+            noSeriesPattern.SetupTable = setupEntityTypePattern.Table;
+            noSeriesPattern.SetupPage = setupEntityTypePattern.Page;
             noSeriesPattern.Apply();
-
+            
             var shipToNamePattern = new DescriptionPattern(range,table,cardPage, listPage);
             shipToNamePattern.Style = DescriptionPattern.DescriptionStyle.Name;
             shipToNamePattern.Prefix = "Ship-to ";
             shipToNamePattern.GroupCaption = "Shipping";
             shipToNamePattern.Apply();
-
+            /*
             var shipToAddressBlockPattern = new AddressBlockPattern(range, table, cardPage, listPage);
             shipToAddressBlockPattern.Prefix = "Ship-to ";
             shipToAddressBlockPattern.GroupCaption = "General";
@@ -93,6 +74,7 @@ namespace UncommonSense.CBreeze.Samples
             cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
             listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
 
+             */
             // FIXME: table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, descriptionFieldsManifest.DescriptionField.Name);
 
             const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
