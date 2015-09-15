@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Utils
         /// <summary>
         /// Returns the (first/only) ContentArea container page control.
         /// </summary>
-        public static ContainerPageControl GetContentArea(this Page page)
+        private static ContainerPageControl GetContentArea(this Page page)
         {
             return page.Controls.OfType<ContainerPageControl>().FirstOrDefault(c => c.Properties.ContainerType == ContainerType.ContentArea);
         }

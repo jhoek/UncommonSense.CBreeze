@@ -51,7 +51,7 @@ namespace UncommonSense.CBreeze.Utils
         public static LastDateModifiedControlManifest AddLastDateModifiedControl(this Page page, LastDateModifiedFieldManifest fieldsManifest, IEnumerable<int> range)
         {
             var manifest = new LastDateModifiedControlManifest();
-            var container = page.GetContentArea();
+            var container = page.GetContentArea(range);
 
             switch (page.Properties.PageType)
             {

@@ -156,7 +156,7 @@ namespace UncommonSense.CBreeze.Utils
         public static CommunicationControlsManifest AddCommunicationControls(this Page page, CommunicationFieldsManifest fieldsManifest, IEnumerable<int> range, Position position)
         {
             var manifest = new CommunicationControlsManifest();
-            var contentArea = page.GetContentArea();
+            var contentArea = page.GetContentArea(range);
 
             switch (page.Properties.PageType)
             {

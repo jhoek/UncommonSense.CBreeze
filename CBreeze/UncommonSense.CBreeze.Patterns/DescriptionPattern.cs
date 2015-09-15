@@ -61,7 +61,7 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void CreateCardPageControls(Page page)
         {
-            var contentArea = page.GetContentArea();
+            var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
 
             var descriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
@@ -78,7 +78,7 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void CreateListPageControls(Page page)
         {
-            var contentArea = page.GetContentArea();
+            var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, ListPageGroupPosition);
 
             var descriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
