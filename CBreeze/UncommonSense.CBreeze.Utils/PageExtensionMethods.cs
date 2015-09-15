@@ -8,6 +8,19 @@ namespace UncommonSense.CBreeze.Utils
 {
     public static class PageExtensionMethods
     {
+        private static PageActionContainer GetRelatedInformation(this Page page)
+        {
+            return page.Properties.ActionList.OfType<PageActionContainer>().FirstOrDefault(c => c.Properties.ActionContainerType == ActionContainerType.RelatedInformation);
+        }
+
+        public static PageActionContainer GetRelatedInformation(this Page page, IEnumerable<int> range)
+        {
+            var result = GetRelatedInformation(page) ?? page.Properties.ActionList.Insert(0, new PageActionContainer(range.GetNextPageControlID(page), 0));
+            result.Properties.ActionContainerType = ActionContainerType.RelatedInformation;
+            return result;
+        }
+
+
         /// <summary>
         /// Returns the (first/only) ContentArea container page control.
         /// </summary>
