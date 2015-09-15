@@ -8,11 +8,13 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public abstract class Pattern
     {
-        public abstract void VerifyRequirements();
+        protected abstract void VerifyRequirements();
+        protected abstract void MakeChanges();
 
-        public virtual void Apply()
+        public void Apply()
         {
             VerifyRequirements();
+            MakeChanges();
         }
     }
 }
