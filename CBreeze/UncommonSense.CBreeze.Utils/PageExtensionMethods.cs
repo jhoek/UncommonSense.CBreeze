@@ -17,6 +17,16 @@ namespace UncommonSense.CBreeze.Utils
         }
 
         /// <summary>
+        /// Returns the (first/only) FactBoxArea container page control.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        private static ContainerPageControl GetFactBoxArea(this Page page)
+        {
+            return page.Controls.OfType<ContainerPageControl>().FirstOrDefault(c => c.Properties.ContainerType == ContainerType.FactBoxArea);
+        }
+
+        /// <summary>
         /// Returns the (first/only) ContentArea container page control. If it didn't exist before,
         /// it will be created with an ID from <paramref name="range"/>, and inserted as the first 
         /// control.
@@ -25,6 +35,21 @@ namespace UncommonSense.CBreeze.Utils
         {
             var result = GetContentArea(page) ?? page.Controls.Insert(0, new ContainerPageControl(range.GetNextPageControlID(page), 0));
             result.Properties.ContainerType = ContainerType.ContentArea;
+            return result;
+        }
+
+        /// <summary>
+        /// Returns the (first/only) FactBoxArea container page control. If it didn't exist before,
+        /// it will be created with an ID form <paramref name="range"/>, and appended as the last 
+        /// control.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="range"></param>
+        /// <returns></returns>
+        public static ContainerPageControl GetFactboxArea(this Page page, IEnumerable<int> range)
+        {
+            var result = GetFactBoxArea(page) ?? page.Controls.Add(new ContainerPageControl(range.GetNextPageControlID(page), 0));
+            result.Properties.ContainerType = ContainerType.FactBoxArea;
             return result;
         }
     }
