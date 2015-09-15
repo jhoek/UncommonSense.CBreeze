@@ -68,7 +68,6 @@
     <Compile Include="Renderers\LedgerEntityTypeRenderer.cs" />
     <Compile Include="Renderers\MasterEntityTypeRenderer.cs" />
     <Compile Include="Renderers\SetupEntityTypeRenderer.cs" />
-    <Compile Include="Renderers\SupplementalEntityTypeRenderer.cs" />
     <Compile Include="RenderingContext.cs" />
     <Compile Include="Renderers\SubsidiaryEntityTypeRenderer.cs" />
     <Compile Include="Renderers\RegisterEntityTypeRenderer.cs" />
