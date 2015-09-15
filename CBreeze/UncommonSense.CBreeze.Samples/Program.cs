@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Samples
             listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
 
             var shipToNamePattern = new DescriptionPattern(range,table,cardPage, listPage);
-            shipToNamePattern.DescriptionStyle = DescriptionStyle.Name;
+            shipToNamePattern.Style = DescriptionPattern.DescriptionStyle.Name;
             shipToNamePattern.Prefix = "Ship-to ";
             shipToNamePattern.GroupCaption = "Shipping";
             shipToNamePattern.Apply();
@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Samples
             shipToAddressBlockPattern.Apply();
 
             var billToNamePattern = new DescriptionPattern(range, table, cardPage, listPage);
-            billToNamePattern.DescriptionStyle = DescriptionStyle.Name;
+            billToNamePattern.Style = DescriptionPattern.DescriptionStyle.Name;
             billToNamePattern.Prefix = "Bill-to ";
             billToNamePattern.GroupCaption = "Invoicing";
             billToNamePattern.Apply();

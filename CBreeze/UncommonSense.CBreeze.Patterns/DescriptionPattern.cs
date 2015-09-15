@@ -9,6 +9,12 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class DescriptionPattern : AddFieldsPattern
     {
+        public enum DescriptionStyle
+        {
+            Name,
+            Description
+        }
+
         private Dictionary<Page, FieldPageControl> descriptionControls = new Dictionary<Page, FieldPageControl>();
         private Dictionary<Page, FieldPageControl> description2Controls = new Dictionary<Page, FieldPageControl>();
         private Dictionary<Page, FieldPageControl> searchDescriptionControls = new Dictionary<Page, FieldPageControl>();
@@ -31,16 +37,16 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void CreateFields()
         {
-            DescriptionField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}{1}", Prefix, DescriptionStyle), 50).AutoCaption());
+            DescriptionField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}{1}", Prefix, Style), 50).AutoCaption());
 
             if (HasDescription2)
             {
-                Description2Field = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}{1} 2", Prefix, DescriptionStyle), 50).AutoCaption());
+                Description2Field = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}{1} 2", Prefix, Style), 50).AutoCaption());
             }
 
             if (HasSearchDescription)
             {
-                SearchDescriptionField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Search {1}", Prefix, DescriptionStyle), 50).AutoCaption());                
+                SearchDescriptionField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Search {1}", Prefix, Style), 50).AutoCaption());                
             }
         }
 
@@ -87,7 +93,7 @@ namespace UncommonSense.CBreeze.Patterns
             }            
         }
 
-        public DescriptionStyle DescriptionStyle
+        public DescriptionStyle Style
         {
             get;
             set;

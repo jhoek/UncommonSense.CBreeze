@@ -43,7 +43,6 @@
     <Compile Include="AddFieldsPattern.cs" />
     <Compile Include="AddressBlockPattern.cs" />
     <Compile Include="DescriptionPattern.cs" />
-    <Compile Include="DescriptionStyle.cs" />
     <Compile Include="DictionaryExtensionMethods.cs" />
     <Compile Include="Pattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
