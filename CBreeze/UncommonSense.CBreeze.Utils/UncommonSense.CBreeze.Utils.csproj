@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="CommunicationExtensionMethods.cs" />
     <Compile Include="LastDateModifiedExtensionMethods.cs" />
-    <Compile Include="NoSeriesExtensionMethods.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="PageControlExtensionMethods.cs" />

@@ -57,9 +57,14 @@ namespace UncommonSense.CBreeze.Samples
             setupCard.Properties.OnOpenPage.CodeLines.Add("END;");
 
             // ===
-            var noSeriesFieldsManifest = table.AddNoSeriesFields(range, setupTable, setupCard);
-            cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
-            listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
+            //var noSeriesFieldsManifest = table.AddNoSeriesFields(range, setupTable, setupCard);
+            //cardPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
+            //listPage.AddNoSeriesControls(noSeriesFieldsManifest, range);
+
+            var noSeriesPattern = new NoSeriesPattern(range, table, cardPage, listPage);
+            noSeriesPattern.SetupTable = setupTable;
+            noSeriesPattern.SetupPage = setupCard;
+            noSeriesPattern.Apply();
 
             var shipToNamePattern = new DescriptionPattern(range,table,cardPage, listPage);
             shipToNamePattern.Style = DescriptionPattern.DescriptionStyle.Name;
