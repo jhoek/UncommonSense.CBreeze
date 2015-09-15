@@ -37,19 +37,6 @@ namespace UncommonSense.CBreeze.Utils
         }
     }
 
-    public class NoSeriesControlsManifest
-    {
-        internal NoSeriesControlsManifest()
-        {
-        }
-
-        public FieldPageControl NoControl
-        {
-            get;
-            internal set;
-        }
-    }
-
     public static class NoSeriesExtensionMethods
     {
         public static NoSeriesFieldsManifest AddNoSeriesFields(this Table table, IEnumerable<int> range, Table setupTable, Page setupCard)
@@ -116,9 +103,9 @@ namespace UncommonSense.CBreeze.Utils
             return manifest;
         }
 
-        public static NoSeriesControlsManifest AddNoSeriesControls(this Page page, NoSeriesFieldsManifest fieldsManifest, IEnumerable<int> range)
+        public static void AddNoSeriesControls(this Page page, NoSeriesFieldsManifest fieldsManifest, IEnumerable<int> range)
         {
-            var manifest = new NoSeriesControlsManifest();
+            //var manifest = new NoSeriesControlsManifest();
             var container = page.GetContentArea(range);
 
             switch (page.Properties.PageType)
