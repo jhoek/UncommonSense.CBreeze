@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Samples
             noSeriesPattern.Apply();
             
             var shipToNamePattern = new DescriptionPattern(range,table,cardPage, listPage);
-            shipToNamePattern.Style = DescriptionPattern.DescriptionStyle.Name;
+            shipToNamePattern.Style = DescriptionStyle.Name;
             shipToNamePattern.Prefix = "Ship-to ";
             shipToNamePattern.GroupCaption = "Shipping";
             shipToNamePattern.Apply();

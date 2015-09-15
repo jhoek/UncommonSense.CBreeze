@@ -9,12 +9,6 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class DescriptionPattern : AddFieldsPattern
     {
-        public enum DescriptionStyle
-        {
-            Name,
-            Description
-        }
-
         private Dictionary<Page, FieldPageControl> descriptionControls = new Dictionary<Page, FieldPageControl>();
         private Dictionary<Page, FieldPageControl> description2Controls = new Dictionary<Page, FieldPageControl>();
         private Dictionary<Page, FieldPageControl> searchDescriptionControls = new Dictionary<Page, FieldPageControl>();

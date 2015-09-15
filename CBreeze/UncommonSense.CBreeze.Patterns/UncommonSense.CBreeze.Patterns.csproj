@@ -44,6 +44,7 @@
     <Compile Include="AddPrimaryKeyFieldsPattern.cs" />
     <Compile Include="AddressBlockPattern.cs" />
     <Compile Include="DescriptionPattern.cs" />
+    <Compile Include="DescriptionStyle.cs" />
     <Compile Include="DictionaryExtensionMethods.cs" />
     <Compile Include="EntityTypePattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />
