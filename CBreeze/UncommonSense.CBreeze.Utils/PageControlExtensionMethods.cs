@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Utils
         /// </summary>
         public static IEnumerable<PageControl> GetChildPageControls(this PageControl parent)
         {
-            return parent.GetDescendantPageControls().Where(c => c.IndentationLevel == parent.IndentationLevel + 1);                
+            return parent.GetDescendantPageControls().Where(c => c.IndentationLevel == parent.IndentationLevel + 1);
         }
 
         public static IEnumerable<PageControl> GetDescendantPageControls(this PageControl parent)
@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Utils
 
             return controls.
                 Skip(parent.Index() + 1).
-                TakeWhile(c => c.IndentationLevel > parent.IndentationLevel);                
+                TakeWhile(c => c.IndentationLevel > parent.IndentationLevel);
         }
 
         /// <summary>
@@ -46,19 +46,35 @@ namespace UncommonSense.CBreeze.Utils
         {
             var controls = parent.Container;
 
-            switch(position)
+            switch (position)
             {
                 case Position.FirstWithinContainer:
                     controls.Insert(parent.Index() + 1, child);
                     break;
                 case Position.LastWithinContainer:
                     var childControls = parent.GetDescendantPageControls();
-                    var lastIndex = childControls.Any()? childControls.Last().Index() : parent.Index();
-                    controls.Insert(lastIndex+ 1, child);
+                    var lastIndex = childControls.Any() ? childControls.Last().Index() : parent.Index();
+                    controls.Insert(lastIndex + 1, child);
                     break;
             }
 
             return child;
+        }
+
+        // FIXME: Use this method in more places, instead of AddChildPageControl<T>
+        public static FieldPageControl AddFieldPageControl(this PageControl parent, int id, Position position, string sourceExpr)
+        {
+            var childPageControl = AddChildPageControl(parent, new FieldPageControl(id, parent.IndentationLevel + 1), position);
+            childPageControl.Properties.SourceExpr = sourceExpr.Quoted();
+            return childPageControl;
+        }
+
+        public static PartPageControl AddSystemPartPageControl(this PageControl parent, int id, Position position, SystemPartID systemPartID)
+        {
+            var childPageControl = AddChildPageControl(parent, new PartPageControl(id, parent.IndentationLevel + 1), position);
+            childPageControl.Properties.PartType = PartType.System;
+            childPageControl.Properties.SystemPartID = systemPartID;
+            return childPageControl;
         }
 
         public static GroupPageControl GetGroupByCaption(this ContainerPageControl container, string caption)
@@ -95,7 +111,7 @@ namespace UncommonSense.CBreeze.Utils
                 groupPageControl.Properties.GroupType = type;
                 container.AddChildPageControl(groupPageControl, position);
             }
-            
+
             return groupPageControl;
         }
     }
