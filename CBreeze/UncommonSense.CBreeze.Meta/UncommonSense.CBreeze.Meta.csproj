@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DifferentiatorType.cs" />
-    <Compile Include="DocumentEntityTypePattern.cs" />
+    <Compile Include="DocumentEntityTypePattern.Methods.cs" />
+    <Compile Include="DocumentEntityTypePattern.Inputs.cs" />
+    <Compile Include="DocumentEntityTypePattern.Outputs.cs" />
     <Compile Include="DocumentHistoryEntityTypePattern.cs" />
     <Compile Include="EntityTypePattern.cs" />
     <Compile Include="JournalEntityTypePattern.cs" />

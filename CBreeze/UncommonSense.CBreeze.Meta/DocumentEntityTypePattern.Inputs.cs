@@ -6,17 +6,24 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Meta
 {
-    public class DocumentEntityTypePattern : EntityTypePattern
+    public partial class DocumentEntityTypePattern
     {
         private string headerName;
         private string lineName;
 
-        public DocumentEntityTypePattern(Application application, IEnumerable<int> range, string name)
-            : base(application, range, name)
+        public string DocumentTypeOptions
         {
+            get;
+            set;
         }
 
-        public string DocumentTypeOptions
+        public Table SetupTable
+        {
+            get;
+            set;
+        }
+
+        public Page SetupPage
         {
             get;
             set;
@@ -44,18 +51,6 @@ namespace UncommonSense.CBreeze.Meta
             {
                 this.lineName = value;
             }
-        }
-
-        public Table SetupTable
-        {
-            get;
-            set;
-        }
-
-        public Page SetupPage
-        {
-            get;
-            set;
         }
     }
 }
