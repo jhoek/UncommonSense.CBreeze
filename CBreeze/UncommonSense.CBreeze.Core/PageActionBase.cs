@@ -33,6 +33,12 @@ namespace UncommonSense.CBreeze.Core
 			this.indentationLevel = indentationLevel;
 		}
 
+        public ActionList Container
+        {
+            get;
+            internal set;
+        }
+
 		public abstract PageActionBaseType Type
 		{
 			get;
