@@ -16,14 +16,6 @@ namespace UncommonSense.CBreeze.Meta
         {
         }
 
-        protected override void VerifyRequirements()
-        {
-            base.VerifyRequirements();
-
-            if (Name == null)
-                throw new ArgumentNullException("Name");
-        }
-
         protected override void MakeChanges()
         {
             CreateObjects();
