@@ -20,6 +20,8 @@ namespace UncommonSense.CBreeze.Patterns
         {
             CreateFields();
             CreateControls();
+
+            // FIXME: Make primary key (also applies to other AddPrimaryKeyFields patterns)
         }
 
         protected void CreateFields()
