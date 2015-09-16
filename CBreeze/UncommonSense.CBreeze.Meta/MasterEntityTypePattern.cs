@@ -17,25 +17,14 @@ namespace UncommonSense.CBreeze.Meta
         {
         }
 
-        protected override void VerifyRequirements()
-        {
-            base.VerifyRequirements();
-
-            if (string.IsNullOrEmpty(Name))
-                throw new ArgumentOutOfRangeException("Name");
-
-            // FIXME
-        }
-
         protected override void MakeChanges()
         {
             CreateObjects();
             LinkObjects();
 
-            CreatePrimaryKeyField();
-            CreateDescriptionFields();
+            CreateFields();
+
             CreateDropDownFieldGroup();
-            CreateLastDateModifiedField();
 
             AddActionsToPages();
 
@@ -69,6 +58,13 @@ namespace UncommonSense.CBreeze.Meta
             }
         }
 
+        protected override void CreateFields()
+        {
+            CreatePrimaryKeyField();
+            CreateDescriptionFields();
+            CreateLastDateModifiedField();
+        }
+
         protected void CreatePrimaryKeyField()
         {
             var noSeriesPattern = new NoSeriesPattern(Range, Table, CardPage, ListPage);
@@ -93,7 +89,7 @@ namespace UncommonSense.CBreeze.Meta
             SearchDescriptionField = descriptionPattern.SearchDescriptionField;
         }
 
-        protected void CreateDropDownFieldGroup()
+        protected override void CreateDropDownFieldGroup()
         {
             var fieldGroup = Table.FieldGroups.Add(new TableFieldGroup(1, "DropDown"));
             fieldGroup.Fields.AddRange(NoField.Name, DescriptionField.Name);
