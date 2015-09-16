@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.IO;
+using UncommonSense.CBreeze.Meta;
 using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Read;
 using UncommonSense.CBreeze.Utils;
