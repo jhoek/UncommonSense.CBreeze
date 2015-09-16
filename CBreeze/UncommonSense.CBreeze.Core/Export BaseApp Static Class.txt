@@ -2,8 +2,8 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
 {
   OBJECT-PROPERTIES
   {
-    Date=26-08-15;
-    Time=11:23:32;
+    Date=15-09-15;
+    Time=18:03:06;
     Modified=Yes;
     Version List=;
   }
@@ -25,6 +25,7 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
       BaseAppClass@1000000002 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
       TableIDsClass@1000000004 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
       TableNamesClass@1000000008 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
+      CodeunitIDsClass@1000000009 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
       Constant@1000000006 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Constant";
       Visibility@1000000003 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Visibility";
       NormalizedName@1000000007 : Text[30];
@@ -40,6 +41,9 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
       TableNamesClass := TableNamesClass.Class(Visibility.Public, 'TableNames' ,'');
       TableNamesClass.Static := TRUE;
 
+      CodeunitIDsClass := CodeunitIDsClass.Class(Visibility.Public, 'CodeunitIDs', '');
+      CodeunitIDsClass.Static := TRUE;
+
       AllObj.SETRANGE("Object Type", AllObj."Object Type"::Table);
 
       IF AllObj.FINDSET THEN
@@ -51,8 +55,18 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
           TableNamesClass.Constants.Add(Constant);
         UNTIL AllObj.NEXT = 0;
 
+      AllObj.SETRANGE("Object Type", AllObj."Object Type"::Codeunit);
+
+      IF AllObj.FINDSET THEN
+        REPEAT
+          NormalizedName := NormalizeName(AllObj."Object Name");
+          Constant := Constant.Constant(Visibility.Public, NormalizedName, 'int', FORMAT(AllObj."Object ID"));
+          CodeunitIDsClass.Constants.Add(Constant);
+        UNTIL AllObj.NEXT = 0;
+
       BaseAppClass.NestedClasses.Add(TableIDsClass);
       BaseAppClass.NestedClasses.Add(TableNamesClass);
+      BaseAppClass.NestedClasses.Add(CodeunitIDsClass);
       Namespace.Types.Add(BaseAppClass);
       CompilationUnit.Namespaces.Add(Namespace);
 
@@ -61,7 +75,8 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
 
     PROCEDURE NormalizeName@1000000005(ObjectName@1000000000 : Text[30]) NormalizedName : Text[30];
     BEGIN
-      EXIT(DELCHR(ObjectName, '=', ' &()%./-'));
+      ObjectName := CONVERTSTR(ObjectName, ' ', '_');
+      EXIT(DELCHR(ObjectName, '=', '&()%./-+'));
     END;
 
     BEGIN
@@ -69,3 +84,29 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
   }
 }
 
+OBJECT MenuSuite 1060 Export BaseApp Static Class
+{
+  OBJECT-PROPERTIES
+  {
+    Date=15-09-15;
+    Time=17:53:04;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  MENUNODES
+  {
+    {                ;[{2CCAB851-35AA-4183-B3E0-8AE6966A7868}] ;NextNodeID=[{2315ECA4-3DA3-4222-9D47-18F02C2EB931}] }
+    { MenuItem       ;[{2315ECA4-3DA3-4222-9D47-18F02C2EB931}] ;Name=Export BaseApp Static Class;
+                                                                CaptionML=ENU=Export BaseApp Static Class;
+                                                                MemberOfMenu=[{19A352FE-D90D-424E-B85F-CF3B8E98CF0E}];
+                                                                RunObjectType=Codeunit;
+                                                                RunObjectID=50000;
+                                                                ParentNodeID=[{F92B71B3-1719-40AA-B896-ACFA2FA993F8}];
+                                                                Visible=Yes;
+                                                                NextNodeID=[{399DBF58-9482-4693-9719-DE17917E7022}];
+                                                                DepartmentCategory=Administration }
+  }
+}

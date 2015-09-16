@@ -57,9 +57,9 @@ namespace UncommonSense.CBreeze.Patterns
         protected void SetFieldProperties()
         {
             NoSeriesField.Properties.Editable = false;
-            NoSeriesField.Properties.TableRelation.Add(BaseApp.TableNames.NoSeries);
+            NoSeriesField.Properties.TableRelation.Add(BaseApp.TableNames.No_Series);
 
-            SetupField.Properties.TableRelation.Add(BaseApp.TableNames.NoSeries);
+            SetupField.Properties.TableRelation.Add(BaseApp.TableNames.No_Series);
         }
 
         protected void AddOnValidate()
