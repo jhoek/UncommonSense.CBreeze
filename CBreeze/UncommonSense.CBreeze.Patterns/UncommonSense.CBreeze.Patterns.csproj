@@ -46,18 +46,13 @@
     <Compile Include="DescriptionPattern.cs" />
     <Compile Include="DescriptionStyle.cs" />
     <Compile Include="DictionaryExtensionMethods.cs" />
-    <Compile Include="EntityTypePattern.cs" />
     <Compile Include="EntryNoPattern.cs" />
     <Compile Include="LastDateModifiedPattern.cs" />
-    <Compile Include="LedgerEntityTypePattern.cs" />
-    <Compile Include="MasterEntityTypePattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />
     <Compile Include="Pattern.cs" />
     <Compile Include="PrimaryKeyPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnlyDictionary.cs" />
-    <Compile Include="SetupEntityTypePattern.cs" />
-    <Compile Include="SupplementalEntityTypePattern.cs" />
     <Compile Include="UserIDPattern.cs" />
   </ItemGroup>
   <ItemGroup>
