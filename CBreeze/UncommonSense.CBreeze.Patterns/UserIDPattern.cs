@@ -30,6 +30,28 @@ namespace UncommonSense.CBreeze.Patterns
             UserIDField.Properties.OnLookup.CodeLines.Add("{0}.LookupUserID({1});", userMgt.Name, UserIDField.Name.Quoted());
         }
 
+        protected void CreateControls()
+        {
+            foreach (var page in Pages)
+            {
+                switch (page.Properties.PageType)
+                {
+                    case PageType.List:
+                        CreateListPageControls(page);
+                        break;
+                }
+            }
+        }
+
+        protected void CreateListPageControls(Page page)
+        {
+            var contentArea = page.GetContentArea(Range);
+            var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
+            var userIDControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, UserIDField.Name.Quoted());
+
+            userIDControls.Add(page, userIDControl);
+        }
+
         public CodeTableField UserIDField
         {
             get;
