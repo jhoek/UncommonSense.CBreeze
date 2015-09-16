@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Model
 {
-    public class JournalEntityType : EntityType
+    public class JournalEntityType 
     {
         public JournalEntityType(string baseName)
         {
