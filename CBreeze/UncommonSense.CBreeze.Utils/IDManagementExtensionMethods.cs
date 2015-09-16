@@ -66,7 +66,10 @@ namespace UncommonSense.CBreeze.Utils
             if (range.Contains(page.ID))
                 range = Enumerable.Range(1, int.MaxValue);
 
-            return range.Except(page.Controls.Select(c => c.ID)).First();
+            var pageControlIDs = page.Controls.Select(c => c.ID);
+            var pageActionIDs = page.Properties.ActionList.Select(a => a.ID);
+
+            return range.Except(pageControlIDs).Except(pageActionIDs).First();
         }
         #endregion
 
