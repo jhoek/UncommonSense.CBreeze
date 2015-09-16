@@ -13,5 +13,15 @@ namespace UncommonSense.CBreeze.Patterns
         {
             return new ReadOnlyDictionary<TKey, TValue>(dictionary);
         }
+
+        public static void FromReadOnly<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, ReadOnlyDictionary<TKey, TValue> readonlyDictionary)
+        {
+            dictionary.Clear();
+
+            foreach (var keyValuePair in readonlyDictionary)
+            {
+                dictionary.Add(keyValuePair.Key, keyValuePair.Value);
+            }
+        }
     }
 }

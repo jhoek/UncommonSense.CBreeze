@@ -107,11 +107,7 @@ namespace UncommonSense.CBreeze.Patterns
                 lastDateModifiedPattern.Apply();
 
                 LastDateModifiedField = lastDateModifiedPattern.LastDateModifiedField;
-
-                foreach (var keyValuePair in lastDateModifiedPattern.LastDateModifiedControls)
-                {
-                    lastDateModifiedControls.Add(keyValuePair.Key, keyValuePair.Value);
-                }
+                lastDateModifiedControls.FromReadOnly(lastDateModifiedPattern.LastDateModifiedControls);
             }
         }
 
