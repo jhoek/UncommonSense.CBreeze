@@ -9,10 +9,15 @@ namespace UncommonSense.CBreeze.Meta
 {
     public abstract class EntityTypePattern : Pattern
     {
-        public EntityTypePattern(Application application, IEnumerable<int> range)
+        // FIXME: Consider making these classes partial, and creating separate
+        // .cs files for interface and implementation. Perhaps even for "input"
+        // properties and "output" properties?
+
+        public EntityTypePattern(Application application, IEnumerable<int> range, string name)
         {
             Application = application;
             Range = range;
+            Name = name;
         }
 
         protected override void VerifyRequirements()
@@ -22,18 +27,53 @@ namespace UncommonSense.CBreeze.Meta
 
             if (Range == null)
                 throw new ArgumentNullException("Range");
+
+            if (string.IsNullOrEmpty(Name))
+                throw new ArgumentNullException("Name");
+        }
+
+        // FIXME: Override in as few patterns as possible. Try and make
+        // all patterns follow the same basic process
+        protected override void MakeChanges()
+        {
+            CreateObjects();
+            LinkObjects();
+            CreateFields();
+            CreateControls();
+        }
+
+        protected virtual void CreateObjects()
+        {
+        }
+
+        protected virtual void LinkObjects()
+        {
+        }
+
+        protected virtual void CreateFields()
+        {
+        }
+
+        protected virtual void CreateControls()
+        {
         }
 
         public Application Application
         {
             get;
-            set;
+            protected set;
         }
 
         public IEnumerable<int> Range
         {
             get;
-            set;
+            protected set;
+        }
+
+        public string Name
+        {
+            get;
+            protected set;
         }
     }
 }
