@@ -16,20 +16,19 @@ namespace UncommonSense.CBreeze.Patterns
         {
         }
 
-        protected override void MakeChanges()
-        {
-            CreateFields();
-            CreateControls();
-
-            // FIXME: Make primary key (also applies to other AddPrimaryKeyFields patterns)
-        }
-
-        protected void CreateFields()
+        protected override void CreateFields()
         {
             EntryNoField = Table.Fields.Add(new IntegerTableField(Range.GetNextPrimaryKeyFieldNo(Table), "Entry No.").AutoCaption());
         }
 
-        protected void CreateControls()
+        protected override void CreateKey()
+        {
+            PrimaryKey = Table.Keys.Add();
+            PrimaryKey.Fields.Add(EntryNoField.Name);
+            PrimaryKey.Properties.Clustered = true;
+        }
+
+        protected override void CreateControls()
         {
             foreach (var page in Pages)
             {

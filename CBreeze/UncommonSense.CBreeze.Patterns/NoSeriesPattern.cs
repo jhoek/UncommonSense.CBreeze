@@ -30,36 +30,31 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void MakeChanges()
         {
-            CreateFields();
-            CreateKey();
-            SetFieldProperties();
+            base.MakeChanges();
+
             AddOnValidate();
             AddOnInsert();
             AddAssistEditFunction();
-            CreateControls();
             CreateSetupControls();
         }
 
-        protected void CreateFields()
+        protected override void  CreateFields()
         {
             NoField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), "No.", 20).AutoCaption());
             NoSeriesField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table, 90), "No. Series", 10).AutoCaption());
             SetupField = SetupTable.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(SetupTable), string.Format("{0} Nos.", Table.Name), 10).AutoCaption());
-        }
 
-        protected void CreateKey()
-        {
-            var primaryKey = Table.Keys.Add();
-            primaryKey.Fields.Add(NoField.Name);
-            primaryKey.Properties.Clustered = true;
-        }
-
-        protected void SetFieldProperties()
-        {
             NoSeriesField.Properties.Editable = false;
             NoSeriesField.Properties.TableRelation.Add(BaseApp.TableNames.No_Series);
 
             SetupField.Properties.TableRelation.Add(BaseApp.TableNames.No_Series);
+        }
+
+        protected override void CreateKey()
+        {
+            var primaryKey = Table.Keys.Add();
+            primaryKey.Fields.Add(NoField.Name);
+            primaryKey.Properties.Clustered = true;
         }
 
         protected void AddOnValidate()
@@ -111,22 +106,6 @@ namespace UncommonSense.CBreeze.Patterns
             assistEdit.CodeLines.Add("END;");
         }
 
-        protected void CreateControls()
-        {
-            foreach (var page in Pages)
-            {
-                switch (page.Properties.PageType)
-                {
-                    case PageType.Card:
-                        CreateCardPageControls(page);
-                        break;
-                    case PageType.List:
-                        CreateListPageControls(page);
-                        break;
-                }
-            }
-        }
-
         protected void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
@@ -141,7 +120,7 @@ namespace UncommonSense.CBreeze.Patterns
             noControls.Add(page, noControl);
         }
 
-        protected void CreateListPageControls(Page page)
+        protected override void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);

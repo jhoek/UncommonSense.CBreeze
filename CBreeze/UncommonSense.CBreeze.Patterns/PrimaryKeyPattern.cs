@@ -14,9 +14,16 @@ namespace UncommonSense.CBreeze.Patterns
         {
         }
 
-        protected override void MakeChanges()
+        protected override void CreateFields()
         {
             PrimaryKeyField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), "Primary Key", 10).AutoCaption());
+        }
+
+        protected override void CreateKey()
+        {
+            PrimaryKey = Table.Keys.Add();
+            PrimaryKey.Fields.Add(PrimaryKeyField.Name);
+            PrimaryKey.Properties.Clustered = true;
         }
 
         public CodeTableField PrimaryKeyField
