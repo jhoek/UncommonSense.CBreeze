@@ -47,6 +47,7 @@
     <Compile Include="DescriptionStyle.cs" />
     <Compile Include="DictionaryExtensionMethods.cs" />
     <Compile Include="EntityTypePattern.cs" />
+    <Compile Include="EntryNoPattern.cs" />
     <Compile Include="LastDateModifiedPattern.cs" />
     <Compile Include="MasterEntityTypePattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />
