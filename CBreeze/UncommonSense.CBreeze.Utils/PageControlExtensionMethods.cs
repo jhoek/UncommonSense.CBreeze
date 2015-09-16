@@ -147,7 +147,7 @@ namespace UncommonSense.CBreeze.Utils
             {
                 pageActionGroup = new PageActionGroup(range.GetNextPageControlID(page), 1);
                 pageActionGroup.Properties.CaptionML.Set("ENU", caption);
-                container.AddChildAction(pageActionGroup, position);
+                // FIXME: container.AddChildAction(pageActionGroup, position);
             }
 
             return pageActionGroup;
