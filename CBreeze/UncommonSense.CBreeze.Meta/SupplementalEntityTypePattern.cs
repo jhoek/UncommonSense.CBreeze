@@ -11,9 +11,9 @@ namespace UncommonSense.CBreeze.Meta
     {
         private string pluralName;
 
-        public SupplementalEntityTypePattern(Application application, IEnumerable<int> range, string name) : base(application, range)
+        public SupplementalEntityTypePattern(Application application, IEnumerable<int> range, string name)
+            : base(application, range, name)
         {
-            Name = name;
         }
 
         protected override void VerifyRequirements()
@@ -73,12 +73,6 @@ namespace UncommonSense.CBreeze.Meta
             RecordLinksControl.Properties.Visible = false.ToString();
             NotesControl = factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes);
             NotesControl.Properties.Visible = false.ToString();
-        }
-
-        public string Name
-        {
-            get;
-            set;
         }
 
         public string PluralName
