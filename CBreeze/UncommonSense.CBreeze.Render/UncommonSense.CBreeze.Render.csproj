@@ -65,7 +65,6 @@
     <Compile Include="Renderers\DocumentEntityTypeRenderer.cs" />
     <Compile Include="Renderers\DocumentHistoryEntityTypeRenderer.cs" />
     <Compile Include="Renderers\JournalEntityTypeRenderer.cs" />
-    <Compile Include="Renderers\LedgerEntityTypeRenderer.cs" />
     <Compile Include="Renderers\MasterEntityTypeRenderer.cs" />
     <Compile Include="Renderers\SetupEntityTypeRenderer.cs" />
     <Compile Include="RenderingContext.cs" />
