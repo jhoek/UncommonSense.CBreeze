@@ -32,10 +32,6 @@ namespace UncommonSense.CBreeze.Render
             return codeunit;
         }
 
-        internal static IEnumerable<LedgerEntityType> LedgerEntityTypes(this MasterEntityType masterEntityType, RenderingContext renderingContext)
-        {
-            return renderingContext.EntityTypes.OfType<LedgerEntityType>().Where(l => l.MasterEntityType == masterEntityType);
-        }
     }
 }
 
