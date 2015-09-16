@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JournalEntityType.cs" />
     <Compile Include="MasterEntityType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
