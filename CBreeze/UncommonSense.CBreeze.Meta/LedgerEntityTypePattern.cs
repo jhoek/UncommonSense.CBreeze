@@ -15,9 +15,14 @@ namespace UncommonSense.CBreeze.Meta
         private Dictionary<Page, FieldPageControl> masterEntityTypeControls = new Dictionary<Page, FieldPageControl>();
         private Dictionary<Page, FieldPageControl> descriptionControls = new Dictionary<Page, FieldPageControl>();
 
-        public LedgerEntityTypePattern(Application application, IEnumerable<int> range)
-            : base(application, range)
+        public LedgerEntityTypePattern(Application application, IEnumerable<int> range, string name)
+            : base(application, range, name)
         {
+        }
+
+        protected override void VerifyRequirements()
+        {
+            base.VerifyRequirements();
         }
 
         protected override void MakeChanges()
@@ -30,7 +35,7 @@ namespace UncommonSense.CBreeze.Meta
             AddDescription();
         }
 
-        protected void CreateObjects()
+        protected override void CreateObjects()
         {
             Table = Application.Tables.Add(new Table(Range.GetNextTableID(Application), Name).AutoCaption());
             Page = Application.Pages.Add(new Page(Range.GetNextPageID(Application), PluralName).AutoCaption());
@@ -38,7 +43,7 @@ namespace UncommonSense.CBreeze.Meta
             Page.Properties.PageType = PageType.List;
         }
 
-        protected void LinkObjects()
+        protected override void LinkObjects()
         {
             Table.Properties.DrillDownPageID = Page.ID;
             Table.Properties.LookupPageID = Page.ID;
@@ -76,12 +81,6 @@ namespace UncommonSense.CBreeze.Meta
 
             DescriptionField = descriptionPattern.DescriptionField;
             descriptionControls.FromReadOnly(descriptionPattern.DescriptionControls);
-        }
-
-        public string Name
-        {
-            get;
-            set;
         }
 
         public string PluralName

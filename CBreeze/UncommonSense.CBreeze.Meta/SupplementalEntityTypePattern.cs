@@ -16,22 +16,22 @@ namespace UncommonSense.CBreeze.Meta
         {
         }
 
-        protected override void MakeChanges()
-        {
-            CreateObjects();
-            CreateFields();
-            SetTableProperties();
-            SetPageProperties();
-            CreateControls();
-        }
-
-        protected void CreateObjects()
+        protected override void CreateObjects()
         {
             Table = Application.Tables.Add(new Table(Range.GetNextTableID(Application), Name).AutoCaption());
             Page = Application.Pages.Add(new Page(Range.GetNextPageID(Application), PluralName).AutoCaption());
+
+            Page.Properties.PageType = PageType.List;
         }
 
-        protected void CreateFields()
+        protected override void LinkObjects()
+        {
+            Table.Properties.LookupPageID = Page.ID;
+            Table.Properties.DrillDownPageID = Page.ID;
+            Page.Properties.SourceTable = Table.ID;
+        }
+
+        protected override void CreateFields()
         {
             CodeField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), "Code", 10).AutoCaption());
             DescriptionField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), "Description", 50).AutoCaption());
@@ -39,19 +39,7 @@ namespace UncommonSense.CBreeze.Meta
             CodeField.Properties.NotBlank = true;
         }
 
-        protected void SetTableProperties()
-        {
-            Table.Properties.LookupPageID = Page.ID;
-            Table.Properties.DrillDownPageID = Page.ID;
-        }
-
-        protected void SetPageProperties()
-        {
-            Page.Properties.PageType = PageType.List;
-            Page.Properties.SourceTable = Table.ID;
-        }
-
-        protected void CreateControls()
+        protected override void CreateControls()
         {
             var contentArea = Page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);

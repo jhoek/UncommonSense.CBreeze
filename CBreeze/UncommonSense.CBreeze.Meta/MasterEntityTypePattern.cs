@@ -13,9 +13,8 @@ namespace UncommonSense.CBreeze.Meta
         private Dictionary<Page, FieldPageControl> lastDateModifiedControls = new Dictionary<Page, FieldPageControl>();
 
         public MasterEntityTypePattern(Application application, IEnumerable<int> range, string name)
-            : base(application, range)
+            : base(application, range,name)
         {
-            Name = name;
         }
 
         protected override void VerifyRequirements()
@@ -46,7 +45,7 @@ namespace UncommonSense.CBreeze.Meta
             SetDataCaptionFields();
         }
 
-        protected void CreateObjects()
+        protected override void CreateObjects()
         {
             Table = Application.Tables.Add(new Table(Range.GetNextTableID(Application), Name).AutoCaption());
             CardPage = Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Card", Name)).AutoCaption());
@@ -54,7 +53,7 @@ namespace UncommonSense.CBreeze.Meta
             StatisticsPage = HasStatisticsPage ? Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Statistics", Name)).AutoCaption()) : null;
         }
 
-        protected void LinkObjects()
+        protected override void LinkObjects()
         {
             Table.Properties.LookupPageID = ListPage.ID;
             Table.Properties.DrillDownPageID = ListPage.ID;
@@ -121,7 +120,23 @@ namespace UncommonSense.CBreeze.Meta
         protected void AddActionsToPage(Page page)
         {
             var relatedInfo = page.GetRelatedInformation(Range);
-            // var group = relatedInfo.
+
+            // FIXME:
+             /*             if (masterEntityType.HasStatisticsPage)
+            {
+                var action = actionList.Add(new PageAction(nextControlID++, 2));
+                action.Properties.CaptionML.Set("ENU", "Statistics");
+                action.Properties.ShortCutKey = "F7";
+                action.Properties.RunObject.Type = RunObjectType.Page;
+                action.Properties.RunObject.ID = manifest.StatisticsPage.ID;
+                action.Properties.RunPageLink.Add("No.", RunObjectLinkLineType.Field, "No.");
+                action.Properties.Image = "Statistics";
+                action.Properties.Promoted = true;
+                action.Properties.PromotedCategory = PromotedCategory.Process;
+                // FIXME: RunPageLink: all FlowFilters
+            }
+
+             */
         }
 
         protected void FinalizeCardPage()
@@ -146,12 +161,6 @@ namespace UncommonSense.CBreeze.Meta
         protected void SetDataCaptionFields()
         {
             Table.Properties.DataCaptionFields.AddRange(NoField.Name, DescriptionField.Name);
-        }
-
-        public string Name
-        {
-            get;
-            set;
         }
 
         public Table SetupTable
