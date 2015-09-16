@@ -136,25 +136,25 @@ namespace UncommonSense.CBreeze.Patterns
         public TextTableField DescriptionField
         {
             get;
-            internal set;
+            protected set;
         }
 
         public TextTableField Description2Field
         {
             get;
-            internal set;
+            protected set;
         }
 
         public CodeTableField SearchDescriptionField
         {
             get;
-            internal set;
+            protected set;
         }
 
         public TableKey KeyOnSearchDescription
         {
             get;
-            internal set;
+            protected set;
         }
 
         public ReadOnlyDictionary<Page, FieldPageControl> DescriptionControls

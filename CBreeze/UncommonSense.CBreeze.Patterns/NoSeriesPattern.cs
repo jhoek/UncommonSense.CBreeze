@@ -210,7 +210,7 @@ namespace UncommonSense.CBreeze.Patterns
         public FieldPageControl SetupControl
         {
             get;
-            internal set;
+            protected set;
         }
     }
 }

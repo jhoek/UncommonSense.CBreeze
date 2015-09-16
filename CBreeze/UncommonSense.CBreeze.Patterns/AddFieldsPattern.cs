@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Patterns
         public List<Page> Pages
         {
             get;
-            internal set;
+            protected set;
         }
 
         public string Prefix
