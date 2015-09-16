@@ -49,6 +49,7 @@
     <Compile Include="EntityTypePattern.cs" />
     <Compile Include="EntryNoPattern.cs" />
     <Compile Include="LastDateModifiedPattern.cs" />
+    <Compile Include="LedgerEntityTypePattern.cs" />
     <Compile Include="MasterEntityTypePattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />
     <Compile Include="Pattern.cs" />
