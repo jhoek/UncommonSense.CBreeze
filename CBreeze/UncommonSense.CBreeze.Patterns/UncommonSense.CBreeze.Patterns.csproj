@@ -56,6 +56,7 @@
     <Compile Include="ReadOnlyDictionary.cs" />
     <Compile Include="SetupEntityTypePattern.cs" />
     <Compile Include="SupplementalEntityTypePattern.cs" />
+    <Compile Include="UserIDPattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
