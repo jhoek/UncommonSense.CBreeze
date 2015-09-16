@@ -6,12 +6,11 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Model
 {
-    public class MasterEntityType : EntityType, ISubsidiaryTo
+    public class MasterEntityType
     {
-        public MasterEntityType(string name, SetupEntityType setupEntityType)
+        public MasterEntityType(string name)
         {
             Name = name;
-            SetupEntityType = setupEntityType;
             //DescriptionStyle = DescriptionStyle.Description;
             HasDescription2Field = true;
             HasSearchDescriptionField = true;
@@ -20,12 +19,6 @@ namespace UncommonSense.CBreeze.Model
         }
 
         public string Name
-        {
-            get;
-            internal set;
-        }
-
-        public SetupEntityType SetupEntityType
         {
             get;
             internal set;
