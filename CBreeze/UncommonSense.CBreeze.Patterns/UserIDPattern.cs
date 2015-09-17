@@ -16,7 +16,7 @@ namespace UncommonSense.CBreeze.Patterns
         {
         }
 
-        protected override void MakeChanges()
+        protected override void CreateFields()
         {
             UserIDField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), "User ID", 50).AutoCaption());
             UserIDField.Properties.TableRelation.Set(BaseApp.TableNames.User, "User Name");
@@ -30,24 +30,11 @@ namespace UncommonSense.CBreeze.Patterns
             UserIDField.Properties.OnLookup.CodeLines.Add("{0}.LookupUserID({1});", userMgt.Name, UserIDField.Name.Quoted());
         }
 
-        protected void CreateControls()
-        {
-            foreach (var page in Pages)
-            {
-                switch (page.Properties.PageType)
-                {
-                    case PageType.List:
-                        CreateListPageControls(page);
-                        break;
-                }
-            }
-        }
-
-        protected void CreateListPageControls(Page page)
+        protected override void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-            var userIDControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, UserIDField.Name.Quoted());
+            var userIDControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, UserIDField.Name);
 
             userIDControls.Add(page, userIDControl);
         }
