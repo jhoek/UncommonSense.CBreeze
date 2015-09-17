@@ -46,16 +46,14 @@
     <Compile Include="CreationDatePattern.cs" />
     <Compile Include="DescriptionPattern.cs" />
     <Compile Include="DescriptionStyle.cs" />
-    <Compile Include="DictionaryExtensionMethods.cs" />
     <Compile Include="EntryNoPattern.cs" />
-    <Compile Include="FieldPageControls.cs" />
+    <Compile Include="PatternResults.cs" />
     <Compile Include="LastDateModifiedPattern.cs" />
     <Compile Include="NoPattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />
     <Compile Include="Pattern.cs" />
     <Compile Include="PrimaryKeyPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadOnlyDictionary.cs" />
     <Compile Include="SourceCodePattern.cs" />
     <Compile Include="UserIDPattern.cs" />
   </ItemGroup>

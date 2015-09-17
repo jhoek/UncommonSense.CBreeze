@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Patterns
         public SourceCodePattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
-            SourceCodeControls = new FieldPageControls();
+            SourceCodeControls = new PatternResults<Page, FieldPageControl>();
         }
 
         protected override void CreateFields()
@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public FieldPageControls SourceCodeControls
+        public PatternResults<Page, FieldPageControl> SourceCodeControls
         {
             get;
             protected set;

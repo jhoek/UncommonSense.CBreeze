@@ -10,12 +10,16 @@ namespace UncommonSense.CBreeze.Meta
 {
     public class RegisterEntityTypePattern : EntityTypePattern
     {
-        public RegisterEntityTypePattern(Application application, IEnumerable<int> range, string name)
+        private List<Table> ledgerEntryTables = new List<Table>();
+
+        public RegisterEntityTypePattern(Application application, IEnumerable<int> range, string name, params Table[] ledgerEntryTables)
             : base(application, range, name)
         {
-            CreationDateControls = new FieldPageControls();
-            UserIDControls = new FieldPageControls();
-            SourceCodeControls = new FieldPageControls();
+            CreationDateControls = new PatternResults<Page, FieldPageControl>();
+            UserIDControls = new PatternResults<Page, FieldPageControl>();
+            SourceCodeControls = new PatternResults<Page,FieldPageControl>();
+
+            this.ledgerEntryTables.AddRange(ledgerEntryTables);
 
             HasCreationDate = true;
             HasSourceCode = true;
@@ -45,6 +49,11 @@ namespace UncommonSense.CBreeze.Meta
             noPattern.Apply();
             NoField = noPattern.NoField;
 
+            foreach (var ledgerEntryTable in LedgerEntryTables)
+            {
+
+            }
+
             if (HasCreationDate)
             {
                 var creationDatePattern = new CreationDatePattern(Range, Table, Page);
@@ -70,6 +79,14 @@ namespace UncommonSense.CBreeze.Meta
             }
 
             // FIXME: other fields
+        }
+
+        public IEnumerable<Table> LedgerEntryTables
+        {
+            get
+            {
+                return this.ledgerEntryTables.AsEnumerable();
+            }
         }
 
         public bool HasCreationDate
@@ -120,7 +137,7 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public FieldPageControls CreationDateControls
+        public PatternResults<Page, FieldPageControl> CreationDateControls
         {
             get;
             protected set;
@@ -132,7 +149,7 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public FieldPageControls UserIDControls
+        public PatternResults<Page,FieldPageControl> UserIDControls
         {
             get;
             protected set;
@@ -144,7 +161,7 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public FieldPageControls SourceCodeControls
+        public PatternResults<Page, FieldPageControl> SourceCodeControls
         {
             get;
             protected set;

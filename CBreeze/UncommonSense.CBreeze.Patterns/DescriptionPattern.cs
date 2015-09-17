@@ -127,28 +127,22 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> DescriptionControls
+        public PatternResults<Page, FieldPageControl> DescriptionControls
         {
-            get
-            {
-                return descriptionControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> Description2Controls
+        public PatternResults<Page, FieldPageControl> Description2Controls
         {
-            get
-            {
-                return description2Controls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> SearchDescriptionControls
+        public PatternResults<Page, FieldPageControl> SearchDescriptionControls
         {
-            get
-            {
-                return searchDescriptionControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
     }
 }

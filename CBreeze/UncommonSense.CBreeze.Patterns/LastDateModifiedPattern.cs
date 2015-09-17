@@ -9,11 +9,10 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class LastDateModifiedPattern : AddFieldsPattern
     {
-        private Dictionary<Page, FieldPageControl> lastDateModifiedControls = new Dictionary<Page, FieldPageControl>();
-
         public LastDateModifiedPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
+            LastDateModifiedControls = new PatternResults<Page, FieldPageControl>();
         }
 
         protected override void MakeChanges()
@@ -57,7 +56,7 @@ namespace UncommonSense.CBreeze.Patterns
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
 
-            lastDateModifiedControls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, LastDateModifiedField.Name));
+            LastDateModifiedControls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, LastDateModifiedField.Name));
         }
 
         protected void AddListPageControls(Page page)
@@ -67,7 +66,7 @@ namespace UncommonSense.CBreeze.Patterns
 
             var lastDateModifiedControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, LastDateModifiedField.Name);
             lastDateModifiedControl.Properties.Visible = false.ToString();
-            lastDateModifiedControls.Add(page, lastDateModifiedControl);
+            LastDateModifiedControls.Add(page, lastDateModifiedControl);
         }
 
         public DateTableField LastDateModifiedField
@@ -76,12 +75,9 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> LastDateModifiedControls
+        public PatternResults<Page, FieldPageControl> LastDateModifiedControls
         {
-            get
-            {
-                return lastDateModifiedControls.AsReadOnly();
-            }
+            get;protected set;
         }
     }
 }

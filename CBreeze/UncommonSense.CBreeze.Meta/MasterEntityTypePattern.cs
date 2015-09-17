@@ -10,11 +10,10 @@ namespace UncommonSense.CBreeze.Meta
 {
     public class MasterEntityTypePattern : EntityTypePattern
     {
-        private Dictionary<Page, FieldPageControl> lastDateModifiedControls = new Dictionary<Page, FieldPageControl>();
-
         public MasterEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range,name)
         {
+            LastDateModifiedControls = new PatternResults<Page, FieldPageControl>();
         }
 
         protected override void MakeChanges()
@@ -103,7 +102,7 @@ namespace UncommonSense.CBreeze.Meta
                 lastDateModifiedPattern.Apply();
 
                 LastDateModifiedField = lastDateModifiedPattern.LastDateModifiedField;
-                lastDateModifiedControls.FromReadOnly(lastDateModifiedPattern.LastDateModifiedControls);
+                LastDateModifiedControls.AddRange(lastDateModifiedPattern.LastDateModifiedControls);
             }
         }
 
@@ -261,12 +260,9 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> LastDateModifiedControls
+        public PatternResults<Page, FieldPageControl> LastDateModifiedControls
         {
-            get
-            {
-                return lastDateModifiedControls.AsReadOnly();
-            }
+            get;protected set;
         }
 
         public PartPageControl RecordLinksControl

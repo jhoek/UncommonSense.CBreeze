@@ -6,20 +6,20 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Patterns
 {
-    public class FieldPageControls : IEnumerable<KeyValuePair<Page,FieldPageControl>>
+    public class PatternResults<TKey, TValue> : IEnumerable<KeyValuePair<TKey,TValue>>
     {
-        private Dictionary<Page, FieldPageControl> innerDictionary = new Dictionary<Page, FieldPageControl>();
+        private Dictionary<TKey, TValue> innerDictionary = new Dictionary<TKey, TValue>();
 
-        public FieldPageControls()
+        public PatternResults()
         {
         }
 
-        public void Add(Page page, FieldPageControl fieldPageControl)
+        public void Add(TKey key, TValue value)
         {
-            innerDictionary.Add(page, fieldPageControl);
+            innerDictionary.Add(key, value);
         }
 
-        public void AddRange(IEnumerable<KeyValuePair<Page, FieldPageControl>> values)
+        public void AddRange(IEnumerable<KeyValuePair<TKey, TValue>> values)
         {
             foreach (var value in values)
             {
@@ -32,20 +32,20 @@ namespace UncommonSense.CBreeze.Patterns
             innerDictionary.Clear();
         }
 
-        public FieldPageControl Get(Page page)
+        public TValue Get(TKey key)
         {
-            return innerDictionary[page];
+            return innerDictionary[key];
         }
 
-        public FieldPageControl this[Page page]
+        public TValue this[TKey key]
         {
             get
             {
-                return Get(page);
+                return Get(key);
             }
         }
 
-        public IEnumerator<KeyValuePair<Page, FieldPageControl>> GetEnumerator()
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return innerDictionary.GetEnumerator();
         }

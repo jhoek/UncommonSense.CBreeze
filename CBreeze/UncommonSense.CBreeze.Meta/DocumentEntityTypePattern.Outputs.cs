@@ -21,20 +21,14 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public ReadOnlyDictionary<string, Page> CardPages
+        public PatternResults<string, Page> CardPages
         {
-            get
-            {
-                return cardPages.AsReadOnly();
-            }
+            get;protected set;
         }
 
-        public ReadOnlyDictionary<string, Page> ListPages
+        public PatternResults<string, Page> ListPages
         {
-            get
-            {
-                return listPages.AsReadOnly();
-            }
+            get;protected set;
         }
     }
 }

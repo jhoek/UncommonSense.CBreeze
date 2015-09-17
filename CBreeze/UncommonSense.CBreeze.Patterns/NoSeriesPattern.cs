@@ -9,12 +9,12 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class NoSeriesPattern : AddPrimaryKeyFieldsPattern
     {
-        private Dictionary<Page, FieldPageControl> noControls = new Dictionary<Page, FieldPageControl>();
         private Dictionary<Page, FieldPageControl> noSeriesControls = new Dictionary<Page, FieldPageControl>();
 
         public NoSeriesPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
+            NoControls = new PatternResults<Page, FieldPageControl>();
         }
 
         protected override void VerifyRequirements()
@@ -117,7 +117,7 @@ namespace UncommonSense.CBreeze.Patterns
             noControl.Properties.OnAssistEdit.CodeLines.Add("IF AssistEdit(xRec) THEN");
             noControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
 
-            noControls.Add(page, noControl);
+            NoControls.Add(page, noControl);
         }
 
         protected override void CreateListPageControls(Page page)
@@ -128,7 +128,7 @@ namespace UncommonSense.CBreeze.Patterns
 
             noControl.Properties.SourceExpr = NoField.Name.Quoted();
 
-            noControls.Add(page, noControl);
+            NoControls.Add(page, noControl);
         }
 
         protected void CreateSetupControls()
@@ -170,20 +170,16 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> NoControls
+        public PatternResults<Page, FieldPageControl> NoControls
         {
-            get
-            {
-                return noControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> NoSeriesControls
+        public PatternResults<Page, FieldPageControl> NoSeriesControls
         {
-            get
-            {
-                return noSeriesControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
         public FieldPageControl SetupControl

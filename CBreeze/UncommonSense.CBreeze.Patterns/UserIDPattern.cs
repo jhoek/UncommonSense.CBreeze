@@ -9,11 +9,10 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class UserIDPattern : AddFieldsPattern
     {
-        private Dictionary<Page, FieldPageControl> userIDControls = new Dictionary<Page, FieldPageControl>();
-
         public UserIDPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
+            UserIDControls = new PatternResults<Page, FieldPageControl>();
         }
 
         protected override void CreateFields()
@@ -36,7 +35,7 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
             var userIDControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, UserIDField.Name);
 
-            userIDControls.Add(page, userIDControl);
+            UserIDControls.Add(page, userIDControl);
         }
 
         public CodeTableField UserIDField
@@ -45,12 +44,9 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> UserIDControls
+        public PatternResults<Page, FieldPageControl> UserIDControls
         {
-            get
-            {
-                return userIDControls.AsReadOnly();
-            }
+            get;protected set;
         }
     }
 }

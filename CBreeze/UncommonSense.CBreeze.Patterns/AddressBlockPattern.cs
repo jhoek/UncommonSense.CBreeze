@@ -7,15 +7,15 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class AddressBlockPattern : AddFieldsPattern
     {
-        private Dictionary<Page, FieldPageControl> addressControls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> address2Controls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> postCodeControls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> cityControls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> countryRegionCodeControls = new Dictionary<Page, FieldPageControl>();
-
         public AddressBlockPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
+            AddressControls = new PatternResults<Page, FieldPageControl>();
+            Address2Controls = new PatternResults<Page, FieldPageControl>();
+            PostCodeControls = new PatternResults<Page, FieldPageControl>();
+            CityControls = new PatternResults<Page, FieldPageControl>();
+            CountryRegionCodeControls = new PatternResults<Page, FieldPageControl>();
+
             GroupCaption = "General";
             CardPageGroupPosition = Position.LastWithinContainer;
             ListPageGroupPosition = Position.FirstWithinContainer;
@@ -94,20 +94,20 @@ namespace UncommonSense.CBreeze.Patterns
 
             var addressControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             addressControl.Properties.SourceExpr = AddressField.Name.Quoted();
-            addressControls.Add(page, addressControl);
+            AddressControls.Add(page, addressControl);
 
-            address2Controls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, Address2Field.Name));
+            Address2Controls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, Address2Field.Name));
 
             var postCodeControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             postCodeControl.Properties.SourceExpr = PostCodeField.Name.Quoted();
             postCodeControl.Properties.Importance = Importance.Promoted;
-            postCodeControls.Add(page, postCodeControl);
+            PostCodeControls.Add(page, postCodeControl);
 
             var cityControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             cityControl.Properties.SourceExpr = CityField.Name.Quoted();
-            cityControls.Add(page, cityControl);
+            CityControls.Add(page, cityControl);
 
-            countryRegionCodeControls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, CountryRegionCodeField.Name));
+            CountryRegionCodeControls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, CountryRegionCodeField.Name));
         }
 
         protected override void CreateListPageControls(Page page)
@@ -117,11 +117,11 @@ namespace UncommonSense.CBreeze.Patterns
 
             var postCodeControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             postCodeControl.Properties.SourceExpr = PostCodeField.Name.Quoted();
-            postCodeControls.Add(page, postCodeControl);
+            PostCodeControls.Add(page, postCodeControl);
 
             var countryRegionCodeControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             countryRegionCodeControl.Properties.SourceExpr = CountryRegionCodeField.Name.Quoted();
-            countryRegionCodeControls.Add(page, countryRegionCodeControl);
+            CountryRegionCodeControls.Add(page, countryRegionCodeControl);
         }
 
         public TextTableField AddressField
@@ -161,44 +161,34 @@ namespace UncommonSense.CBreeze.Patterns
         }
 
 
-        public ReadOnlyDictionary<Page, FieldPageControl> AddressControls
+        public PatternResults<Page, FieldPageControl> AddressControls
         {
-            get
-            {
-                return addressControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> Address2Controls
+        public PatternResults<Page, FieldPageControl> Address2Controls
         {
-            get
-            {
-                return address2Controls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> PostCodeControls
+        public PatternResults<Page, FieldPageControl> PostCodeControls
         {
-            get
-            {
-                return postCodeControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> CityControls
+        public PatternResults<Page, FieldPageControl> CityControls
         {
-            get
-            {
-                return cityControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> CountryRegionCodeControls
+        public PatternResults<Page, FieldPageControl> CountryRegionCodeControls
         {
-            get
-            {
-                return countryRegionCodeControls.AsReadOnly();
-            }
+            get;
+            protected set;
         }
     }
 }

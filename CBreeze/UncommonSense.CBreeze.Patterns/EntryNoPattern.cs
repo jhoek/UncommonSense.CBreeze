@@ -9,11 +9,10 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class EntryNoPattern : AddPrimaryKeyFieldsPattern
     {
-        private Dictionary<Page, FieldPageControl> entryNoControls = new Dictionary<Page, FieldPageControl>();
-
         public EntryNoPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
+            EntryNoControls = new PatternResults<Page, FieldPageControl>();
         }
 
         protected override void CreateFields()
@@ -33,7 +32,8 @@ namespace UncommonSense.CBreeze.Patterns
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
             var entryNoControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, EntryNoField.Name.Quoted());
-            entryNoControls.Add(page, entryNoControl);
+
+            EntryNoControls.Add(page, entryNoControl);
         }
 
         public IntegerTableField EntryNoField
@@ -42,12 +42,9 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> EntryNoControls
+        public PatternResults<Page, FieldPageControl> EntryNoControls
         {
-            get
-            {
-                return entryNoControls.AsReadOnly();
-            }
+            get;protected set;
         }
     }
 }

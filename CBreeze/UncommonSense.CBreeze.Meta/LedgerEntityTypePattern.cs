@@ -11,13 +11,13 @@ namespace UncommonSense.CBreeze.Meta
     public class LedgerEntityTypePattern : EntityTypePattern
     {
         private string pluralName;
-        private Dictionary<Page, FieldPageControl> entryNoControls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> masterEntityTypeControls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> descriptionControls = new Dictionary<Page, FieldPageControl>();
 
         public LedgerEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range, name)
         {
+            EntryNoControls = new PatternResults<Page, FieldPageControl>();
+            MasterEntityTypeControls = new PatternResults<Page, FieldPageControl>();
+            DescriptionControls = new PatternResults<Page, FieldPageControl>();
         }
 
         protected override void VerifyRequirements()
@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Meta
             entryNoPattern.Apply();
 
             EntryNoField = entryNoPattern.EntryNoField;
-            entryNoControls.FromReadOnly(entryNoPattern.EntryNoControls);
+            EntryNoControls.AddRange(entryNoPattern.EntryNoControls);
         }
 
         protected void AddMasterEntityTypeReference()
@@ -68,7 +68,7 @@ namespace UncommonSense.CBreeze.Meta
 
                 var contentArea = Page.GetContentArea(Range);
                 var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-                masterEntityTypeControls.Add(Page, group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, MasterEntityTypeField.Name));
+                MasterEntityTypeControls.Add(Page, group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, MasterEntityTypeField.Name));
             }
         }
 
@@ -80,7 +80,7 @@ namespace UncommonSense.CBreeze.Meta
             descriptionPattern.Apply();
 
             DescriptionField = descriptionPattern.DescriptionField;
-            descriptionControls.FromReadOnly(descriptionPattern.DescriptionControls);
+            DescriptionControls.AddRange(descriptionPattern.DescriptionControls);
         }
 
         public string PluralName
@@ -131,28 +131,19 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> EntryNoControls
+        public PatternResults<Page, FieldPageControl> EntryNoControls
         {
-            get
-            {
-                return entryNoControls.AsReadOnly();
-            }
+            get;protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> MasterEntityTypeControls
+        public PatternResults<Page, FieldPageControl> MasterEntityTypeControls
         {
-            get
-            {
-                return masterEntityTypeControls.AsReadOnly();
-            }
+            get;protected set;
         }
 
-        public ReadOnlyDictionary<Page, FieldPageControl> DescriptionControls
+        public PatternResults<Page, FieldPageControl> DescriptionControls
         {
-            get
-            {
-                return descriptionControls.AsReadOnly();
-            }
+            get;protected set;
         }
     }
 }
