@@ -22,27 +22,28 @@ namespace UncommonSense.CBreeze.Meta
             HeaderTable = Application.Tables.Add(new Table(Range.GetNextTableID(Application), HeaderName).AutoCaption());
             LineTable = Application.Tables.Add(new Table(Range.GetNextTableID(Application), LineName).AutoCaption());
 
-            var documentTypes = new List<string>();
-
-            if (string.IsNullOrEmpty(DocumentTypeOptions))
-            {
-                documentTypes.Add(Name);
-            }
-            else
-            {
-                documentTypes.AddRange(DocumentTypeOptions.Split(','));
-            }
-
-            foreach(var documentType in documentTypes)
+            foreach (var documentType in DocumentTypes)
             {
                 CardPages.Add(documentType, Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} {1}", Name, documentType)).AutoCaption()));
                 ListPages.Add(documentType, Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} {1} List", Name, documentType)).AutoCaption()));
             }
         }
 
-        protected override void LinkObjects()
+        protected IEnumerable<string> DocumentTypes
         {
-               
+            get
+            {
+                if (string.IsNullOrEmpty(DocumentTypeOptions))
+                {
+                    yield return Name;
+                    yield break;
+                }
+
+                foreach(var documentType in DocumentTypeOptions.Split(','))
+                {
+                    yield return documentType;
+                }
+            }
         }
     }
 }
