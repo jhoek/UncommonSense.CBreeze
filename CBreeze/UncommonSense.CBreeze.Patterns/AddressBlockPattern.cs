@@ -23,13 +23,13 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void MakeChanges()
         {
-            CreateFields();
+            base.MakeChanges();
+
             AddTableRelations();
             AddValidationCode();
-            CreateControls();
         }
 
-        protected void CreateFields()
+        protected override void CreateFields()
         {
             AddressField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Address", Prefix), 50).AutoCaption());
             Address2Field = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Address 2", Prefix), 50).AutoCaption());
@@ -87,23 +87,7 @@ namespace UncommonSense.CBreeze.Patterns
                 CountryRegionCodeField.Name.Quoted());
         }
 
-        protected void CreateControls()
-        {
-            foreach (var page in Pages)
-            {
-                switch (page.Properties.PageType)
-                {
-                    case PageType.Card:
-                        CreateCardPageControls(page);
-                        break;
-                    case PageType.List:
-                        CreateListPageControls(page);
-                        break;
-                }
-            }
-        }
-
-        protected void CreateCardPageControls(Page page)
+        protected override void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
@@ -126,7 +110,7 @@ namespace UncommonSense.CBreeze.Patterns
             countryRegionCodeControls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, CountryRegionCodeField.Name));
         }
 
-        protected void CreateListPageControls(Page page)
+        protected override void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, ListPageGroupPosition);
