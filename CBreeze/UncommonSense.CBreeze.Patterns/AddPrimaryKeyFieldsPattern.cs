@@ -23,40 +23,11 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void MakeChanges()
         {
-            CreateFields();
+            base.MakeChanges();
             CreateKey();
-            CreateControls();
-        }
-
-        protected virtual void CreateFields()
-        {
         }
 
         protected virtual void CreateKey()
-        {
-        }
-
-        protected virtual void CreateControls()
-        {
-            foreach (var page in Pages)
-            {
-                switch (page.Properties.PageType)
-                {
-                    case PageType.Card:
-                        CreateCardPageControls(page);
-                        break;
-                    case PageType.List:
-                        CreateListPageControls(page);
-                        break;
-                }
-            }
-        }
-
-        protected virtual void CreateCardPageControls(Page page)
-        {
-        }
-
-        protected virtual void CreateListPageControls(Page page)
         {
         }
 
