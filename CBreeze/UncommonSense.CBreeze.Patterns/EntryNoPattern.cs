@@ -28,20 +28,7 @@ namespace UncommonSense.CBreeze.Patterns
             PrimaryKey.Properties.Clustered = true;
         }
 
-        protected override void CreateControls()
-        {
-            foreach (var page in Pages)
-            {
-                switch (page.Properties.PageType)
-                {
-                    case PageType.List:
-                        CreateListPageControls(page);
-                        break;
-                }
-            }
-        }
-
-        protected void CreateListPageControls(Page page)
+        protected override void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
