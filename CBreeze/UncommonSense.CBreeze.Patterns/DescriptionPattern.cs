@@ -22,14 +22,7 @@ namespace UncommonSense.CBreeze.Patterns
             CardPageGroupPosition = Position.LastWithinContainer;
         }
 
-        protected override void MakeChanges()
-        {
-            CreateFields();
-            AddValidationCode();
-            CreateControls();
-        }
-
-        protected  void CreateFields()
+        protected override void CreateFields()
         {
             DescriptionField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}{1}", Prefix, Style), 50).AutoCaption());
 
@@ -41,6 +34,8 @@ namespace UncommonSense.CBreeze.Patterns
             if (HasSearchDescription)
             {
                 SearchDescriptionField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Search {1}", Prefix, Style), 50).AutoCaption());
+                SearchDescriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", SearchDescriptionField.Name.Quoted(), DescriptionField.Name.Quoted());
+                SearchDescriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", SearchDescriptionField.Name.Quoted(), DescriptionField.Name.Quoted());
 
                 if (CreateKeyOnSearchDescription)
                 {
@@ -50,32 +45,7 @@ namespace UncommonSense.CBreeze.Patterns
             }
         }
 
-        protected void AddValidationCode()
-        {
-            if (HasSearchDescription)
-            {
-                SearchDescriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", SearchDescriptionField.Name.Quoted(), DescriptionField.Name.Quoted());
-                SearchDescriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", SearchDescriptionField.Name.Quoted(), DescriptionField.Name.Quoted());
-            }
-        }
-
-        protected void CreateControls()
-        {
-            foreach (var page in Pages)
-            {
-                switch (page.Properties.PageType)
-                {
-                    case PageType.Card:
-                        CreateCardPageControls(page);
-                        break;
-                    case PageType.List:
-                        CreateListPageControls(page);
-                        break;
-                }
-            }
-        }
-
-        protected void CreateCardPageControls(Page page)
+        protected override void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
@@ -92,7 +62,7 @@ namespace UncommonSense.CBreeze.Patterns
             }
         }
 
-        protected void CreateListPageControls(Page page)
+        protected override void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, ListPageGroupPosition);
