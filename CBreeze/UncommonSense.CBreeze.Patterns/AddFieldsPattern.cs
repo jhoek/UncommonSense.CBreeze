@@ -27,6 +27,47 @@ namespace UncommonSense.CBreeze.Patterns
                 throw new ArgumentNullException("Table");
         }
 
+        protected override void MakeChanges()
+        {
+            CreateFields();
+            CreateControls();
+        }
+
+        protected virtual void CreateFields()
+        {
+        }
+
+        protected void CreateControls()
+        {
+            foreach (var page in Pages)
+            {
+                switch (page.Properties.PageType)
+                {
+                    case PageType.Card:
+                        CreateCardPageControls(page);
+                        break;
+                    case PageType.List:
+                        CreateListPageControls(page);
+                        break;
+                }
+            }
+        }
+
+        protected virtual void CreateCardPageControls(Page page)
+        {
+        }
+
+        protected virtual void CreateListPageControls(Page page)
+        {
+        }
+
+        protected virtual FieldPageControl CreateListPageControl(Page page, Position position, string sourceExpr)
+        {
+            var contentArea = page.GetContentArea(Range);
+            var repeater = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
+            return repeater.AddFieldPageControl(Range.GetNextPageControlID(page), position, sourceExpr);
+        }
+
         public IEnumerable<int> Range
         {
             get;
