@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Patterns
             CreateSetupControls();
         }
 
-        protected override void  CreateFields()
+        protected override void CreateFields()
         {
             NoField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), "No.", 20).AutoCaption());
             NoSeriesField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table, 90), "No. Series", 10).AutoCaption());
@@ -106,7 +106,7 @@ namespace UncommonSense.CBreeze.Patterns
             assistEdit.CodeLines.Add("END;");
         }
 
-        protected void CreateCardPageControls(Page page)
+        protected override void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption("General", Range, Position.FirstWithinContainer);
