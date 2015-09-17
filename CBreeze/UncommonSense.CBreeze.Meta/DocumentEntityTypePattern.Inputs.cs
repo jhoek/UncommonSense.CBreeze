@@ -10,6 +10,8 @@ namespace UncommonSense.CBreeze.Meta
     {
         private string headerName;
         private string lineName;
+        private Dictionary<string, Page> cardPages = new Dictionary<string, Page>();
+        private Dictionary<string, Page> listPages = new Dictionary<string, Page>();
 
         public string DocumentTypeOptions
         {
