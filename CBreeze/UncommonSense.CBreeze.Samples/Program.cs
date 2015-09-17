@@ -26,6 +26,14 @@ namespace UncommonSense.CBreeze.Samples
 
             var application = new Application();
 
+            var registerEntityTypePattern = new RegisterEntityTypePattern(application, range, "Demo Register");
+            registerEntityTypePattern.HasCreationDate = true;
+            registerEntityTypePattern.Apply();
+
+            application.Write(Console.Out);
+
+            return; // FIXME
+
             var table = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo").AutoCaption());
             table.ObjectProperties.DateTime = DateTime.Now;
 
