@@ -13,6 +13,10 @@ namespace UncommonSense.CBreeze.Meta
         public RegisterEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range, name)
         {
+            CreationDateControls = new FieldPageControls();
+            UserIDControls = new FieldPageControls();
+            SourceCodeControls = new FieldPageControls();
+
             HasCreationDate = true;
             HasSourceCode = true;
             HasUserID = true;
@@ -40,6 +44,30 @@ namespace UncommonSense.CBreeze.Meta
             var noPattern = new NoPattern(Range, Table, Page);
             noPattern.Apply();
             NoField = noPattern.NoField;
+
+            if (HasCreationDate)
+            {
+                var creationDatePattern = new CreationDatePattern(Range, Table, Page);
+                creationDatePattern.Apply();
+                CreationDateField = creationDatePattern.CreationDateField;
+                CreationDateControls.AddRange(creationDatePattern.CreationDateControls);
+            }
+
+            if (HasUserID)
+            {
+                var userIDPattern = new UserIDPattern(Range, Table, Page);
+                userIDPattern.Apply();
+                UserIDField = userIDPattern.UserIDField;
+                UserIDControls.AddRange(userIDPattern.UserIDControls);
+            }
+
+            if (HasSourceCode)
+            {
+                var sourceCodePattern = new SourceCodePattern(Range, Table, Page);
+                sourceCodePattern.Apply();
+                SourceCodeField = sourceCodePattern.SourceCodeField;
+                SourceCodeControls.AddRange(sourceCodePattern.SourceCodeControls);
+            }
 
             // FIXME: other fields
         }
@@ -81,6 +109,42 @@ namespace UncommonSense.CBreeze.Meta
         }
 
         public IntegerTableField NoField
+        {
+            get;
+            protected set;
+        }
+
+        public DateTableField CreationDateField
+        {
+            get;
+            protected set;
+        }
+
+        public FieldPageControls CreationDateControls
+        {
+            get;
+            protected set;
+        }
+
+        public CodeTableField UserIDField
+        {
+            get;
+            protected set;
+        }
+
+        public FieldPageControls UserIDControls
+        {
+            get;
+            protected set;
+        }
+
+        public CodeTableField SourceCodeField
+        {
+            get;
+            protected set;
+        }
+
+        public FieldPageControls SourceCodeControls
         {
             get;
             protected set;
