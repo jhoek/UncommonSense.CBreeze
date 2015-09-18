@@ -49,9 +49,7 @@ namespace UncommonSense.CBreeze.Meta
 
             var factboxArea = Page.GetFactboxArea(Range);
 
-            RecordLinksControl = factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks);
             RecordLinksControl.Properties.Visible = false.ToString();
-            NotesControl = factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes);
             NotesControl.Properties.Visible = false.ToString();
         }
 
@@ -98,18 +96,6 @@ namespace UncommonSense.CBreeze.Meta
         }
 
         public FieldPageControl DescriptionControl
-        {
-            get;
-            protected set;
-        }
-
-        public PartPageControl RecordLinksControl
-        {
-            get;
-            protected set;
-        }
-
-        public PartPageControl NotesControl
         {
             get;
             protected set;

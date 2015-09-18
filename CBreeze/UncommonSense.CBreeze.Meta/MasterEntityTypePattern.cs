@@ -140,10 +140,8 @@ namespace UncommonSense.CBreeze.Meta
 
             var factBoxArea = CardPage.GetFactboxArea(Range);
 
-            RecordLinksControl = factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.RecordLinks);
             RecordLinksControl.Properties.Visible = false.ToString();
 
-            NotesControl = factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes);
             NotesControl.Properties.Visible = false.ToString();
         }
 
@@ -263,18 +261,6 @@ namespace UncommonSense.CBreeze.Meta
         public MappedResults<Page, FieldPageControl> LastDateModifiedControls
         {
             get;protected set;
-        }
-
-        public PartPageControl RecordLinksControl
-        {
-            get;
-            protected set;
-        }
-
-        public PartPageControl NotesControl
-        {
-            get;
-            protected set;
         }
     }
 }
