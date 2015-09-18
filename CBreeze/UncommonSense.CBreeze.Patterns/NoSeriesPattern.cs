@@ -9,7 +9,8 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class NoSeriesPattern : AddPrimaryKeyFieldsPattern
     {
-        private Dictionary<Page, FieldPageControl> noSeriesControls = new Dictionary<Page, FieldPageControl>();
+        // FIXME: Should be made aware of DocumentTypeOptions for document entity types
+        // FIXME: In other words, we may create more than one setup field
 
         public NoSeriesPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
@@ -171,12 +172,6 @@ namespace UncommonSense.CBreeze.Patterns
         }
 
         public MappedResults<Page, FieldPageControl> NoControls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> NoSeriesControls
         {
             get;
             protected set;
