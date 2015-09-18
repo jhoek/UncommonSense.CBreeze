@@ -30,7 +30,6 @@ namespace UncommonSense.CBreeze.Meta
             Page.Properties.DeleteAllowed = false;
 
             var codeLines = Page.Properties.OnOpenPage.CodeLines;
-
             codeLines.Add("RESET;");
             codeLines.Add("IF NOT GET THEN BEGIN");
             codeLines.Add("  INIT;");
@@ -45,7 +44,15 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateFields()
         {
-            new PrimaryKeyPattern(Range, Table).Apply();
+            var primaryKeyPattern = new PrimaryKeyPattern(Range, Table);
+            primaryKeyPattern.Apply();
+            PrimaryKeyField = primaryKeyPattern.PrimaryKeyField;
+        }
+
+        protected override void CreateControls()
+        {
+            var contentArea = Page.GetContentArea(Range);
+            contentArea.GetGroupByCaption("General", Range, Position.FirstWithinContainer);
         }
 
         public Table Table
@@ -55,6 +62,12 @@ namespace UncommonSense.CBreeze.Meta
         }
 
         public Page Page
+        {
+            get;
+            protected set;
+        }
+
+        public CodeTableField PrimaryKeyField
         {
             get;
             protected set;
