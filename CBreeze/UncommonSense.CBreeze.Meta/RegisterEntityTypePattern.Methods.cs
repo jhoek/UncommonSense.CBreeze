@@ -8,16 +8,21 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Meta
 {
-    public class RegisterEntityTypePattern : EntityTypePattern
+    public partial class RegisterEntityTypePattern : EntityTypePattern
     {
         private List<Table> ledgerEntryTables = new List<Table>();
 
         public RegisterEntityTypePattern(Application application, IEnumerable<int> range, string name, params Table[] ledgerEntryTables)
             : base(application, range, name)
         {
-            CreationDateControls = new PatternResults<Page, FieldPageControl>();
-            UserIDControls = new PatternResults<Page, FieldPageControl>();
-            SourceCodeControls = new PatternResults<Page,FieldPageControl>();
+            NoControls = new MappedResults<Page, FieldPageControl>();
+            FromEntryNoFields = new MappedResults<Core.Table, IntegerTableField>();
+            FromEntryNoControls = new MappedResults<Core.Table, FieldPageControl>();
+            ToEntryNoFields = new MappedResults<Core.Table, IntegerTableField>();
+            ToEntryNoControls = new MappedResults<Core.Table, FieldPageControl>();
+            CreationDateControls = new MappedResults<Page, FieldPageControl>();
+            UserIDControls = new MappedResults<Page, FieldPageControl>();
+            SourceCodeControls = new MappedResults<Page, FieldPageControl>();
 
             this.ledgerEntryTables.AddRange(ledgerEntryTables);
 
@@ -48,10 +53,28 @@ namespace UncommonSense.CBreeze.Meta
             var noPattern = new NoPattern(Range, Table, Page);
             noPattern.Apply();
             NoField = noPattern.NoField;
+            NoControls.AddRange(noPattern.NoControls);
+
+            var contentArea = Page.GetContentArea(Range);
+            var repeater = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
 
             foreach (var ledgerEntryTable in LedgerEntryTables)
             {
+                var fromEntryNoField = Table.Fields.Add(new IntegerTableField(Range.GetNextTableFieldNo(Table), string.Format("From {0} No.", ledgerEntryTable.Name)).AutoCaption());
+                fromEntryNoField.Properties.TableRelation.Add(ledgerEntryTable.Name);
+                fromEntryNoField.Properties.TestTableRelation = false;
+                FromEntryNoFields.Add(ledgerEntryTable, fromEntryNoField);
 
+                var fromEntryNoControl = repeater.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, fromEntryNoField.Name);
+                FromEntryNoControls.Add(ledgerEntryTable, fromEntryNoControl);
+
+                var toEntryNoField = Table.Fields.Add(new IntegerTableField(Range.GetNextTableFieldNo(Table), string.Format("To {0} No.", ledgerEntryTable.Name)).AutoCaption());
+                toEntryNoField.Properties.TableRelation.Add(ledgerEntryTable.Name);
+                toEntryNoField.Properties.TestTableRelation = false;
+                ToEntryNoFields.Add(ledgerEntryTable, toEntryNoField);
+
+                var toEntryNoControl = repeater.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, toEntryNoField.Name);
+                ToEntryNoControls.Add(ledgerEntryTable, toEntryNoControl);
             }
 
             if (HasCreationDate)
@@ -81,90 +104,13 @@ namespace UncommonSense.CBreeze.Meta
             // FIXME: other fields
         }
 
-        public IEnumerable<Table> LedgerEntryTables
+        protected override void CreateControls()
         {
-            get
-            {
-                return this.ledgerEntryTables.AsEnumerable();
-            }
-        }
+            base.CreateControls();
 
-        public bool HasCreationDate
-        {
-            get;
-            set;
-        }
-
-        public bool HasSourceCode
-        {
-            get;
-            set;
-        }
-
-        public bool HasUserID
-        {
-            get;
-            set;
-        }
-
-        public bool HasJournalBatchName
-        {
-            get;
-            set;
-        }
-
-        public Table Table
-        {
-            get;
-            protected set;
-        }
-
-        public Page Page
-        {
-            get;
-            protected set;
-        }
-
-        public IntegerTableField NoField
-        {
-            get;
-            protected set;
-        }
-
-        public DateTableField CreationDateField
-        {
-            get;
-            protected set;
-        }
-
-        public PatternResults<Page, FieldPageControl> CreationDateControls
-        {
-            get;
-            protected set;
-        }
-
-        public CodeTableField UserIDField
-        {
-            get;
-            protected set;
-        }
-
-        public PatternResults<Page,FieldPageControl> UserIDControls
-        {
-            get;
-            protected set;
-        }
-
-        public CodeTableField SourceCodeField
-        {
-            get;
-            protected set;
-        }
-
-        public PatternResults<Page, FieldPageControl> SourceCodeControls
-        {
-            get;
-            protected set;
+            var factboxArea = Page.GetFactboxArea(Range);
+            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks, true);
+            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes, true);
         }
     }
 }

@@ -49,7 +49,9 @@
     <Compile Include="LedgerEntityTypePattern.cs" />
     <Compile Include="MasterEntityTypePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterEntityTypePattern.cs" />
+    <Compile Include="RegisterEntityTypePattern.Inputs.cs" />
+    <Compile Include="RegisterEntityTypePattern.Methods.cs" />
+    <Compile Include="RegisterEntityTypePattern.Outputs.cs" />
     <Compile Include="SetupEntityTypePattern.cs" />
     <Compile Include="SubsidiaryEntityTypePattern.cs" />
     <Compile Include="SupplementalEntityTypePattern.cs" />
