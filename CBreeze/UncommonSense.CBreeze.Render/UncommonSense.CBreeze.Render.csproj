@@ -52,7 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDesignRenderer.cs" />
     <Compile Include="Manifests\DocumentEntityTypeManifest.cs" />
     <Compile Include="Manifests\DocumentHistoryEntityTypeManifest.cs" />
     <Compile Include="Manifests\JournalEntityTypeManifest.cs" />
@@ -65,14 +64,10 @@
     <Compile Include="Renderers\DocumentEntityTypeRenderer.cs" />
     <Compile Include="Renderers\DocumentHistoryEntityTypeRenderer.cs" />
     <Compile Include="Renderers\JournalEntityTypeRenderer.cs" />
-    <Compile Include="Renderers\SetupEntityTypeRenderer.cs" />
-    <Compile Include="RenderingContext.cs" />
     <Compile Include="Renderers\SubsidiaryEntityTypeRenderer.cs" />
     <Compile Include="Renderers\RegisterEntityTypeRenderer.cs" />
     <Compile Include="Manifests\RegisterEntityTypeManifest.cs" />
     <Compile Include="Manifests\SubsidiaryEntityTypeManifest.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="TypeSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Model\UncommonSense.CBreeze.Model.csproj">

@@ -1,6 +1,5 @@
 using System;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Model;
 using UncommonSense.CBreeze.Utils;
 using UncommonSense.CBreeze.Write;
 
