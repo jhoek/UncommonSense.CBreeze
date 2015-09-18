@@ -26,68 +26,19 @@ namespace UncommonSense.CBreeze.Samples
 
             var application = new Application();
 
-            var demoLedgerEntryTable = application.Tables.Add(new Table(50000, "Demo Ledger Entry"));
-            var vatLedgerEntryTable = application.Tables.Add(new Table(50001, "VAT Entry"));
+            var demoLedgerEntry = new LedgerEntityTypePattern(application, range, "Demo Ledger Entry");
+            var vatEntry = new LedgerEntityTypePattern(application, range, "Another VAT Entry");
+            var glEntry = new LedgerEntityTypePattern(application, range, "Another G/L Entry");
 
-            var registerEntityTypePattern = new RegisterEntityTypePattern(application, range, "Demo Register", demoLedgerEntryTable, vatLedgerEntryTable);
+            demoLedgerEntry.Apply();
+            vatEntry.Apply();
+            glEntry.Apply();
+
+            var registerEntityTypePattern = new RegisterEntityTypePattern(application, range, "Demo Register", glEntry.Table, demoLedgerEntry.Table, vatEntry.Table);
             registerEntityTypePattern.HasCreationDate = true;
             registerEntityTypePattern.Apply();
 
             application.Write(Console.Out);
-
-            return; // FIXME
-
-            var table = application.Tables.Add(new Table(range.GetNextTableID(application), "Demo").AutoCaption());
-            table.ObjectProperties.DateTime = DateTime.Now;
-
-            var cardPage = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo Card").AutoCaption());
-            cardPage.ObjectProperties.DateTime = DateTime.Now;
-            cardPage.Properties.PageType = PageType.Card;
-            cardPage.Properties.SourceTable = table.ID;
-
-            var listPage = application.Pages.Add(new Page(range.GetNextPageID(application), "Demo List").AutoCaption());
-            listPage.ObjectProperties.DateTime = DateTime.Now;
-            listPage.Properties.PageType = PageType.List;
-            listPage.Properties.SourceTable = table.ID;
-            listPage.Properties.CardPageID = cardPage.Name;
-
-            var setupEntityTypePattern = new SetupEntityTypePattern(application, range, "Demo Setup");
-            setupEntityTypePattern.Apply();
-
-            var noSeriesPattern = new NoSeriesPattern(range, table, cardPage, listPage);
-            noSeriesPattern.SetupTable = setupEntityTypePattern.Table;
-            noSeriesPattern.SetupPage = setupEntityTypePattern.Page;
-            noSeriesPattern.Apply();
-
-            var shipToNamePattern = new DescriptionPattern(range, table, cardPage, listPage);
-            shipToNamePattern.Style = DescriptionStyle.Name;
-            shipToNamePattern.Prefix = "Ship-to ";
-            shipToNamePattern.GroupCaption = "Shipping";
-            shipToNamePattern.Apply();
-            /*
-            var shipToAddressBlockPattern = new AddressBlockPattern(range, table, cardPage, listPage);
-            shipToAddressBlockPattern.Prefix = "Ship-to ";
-            shipToAddressBlockPattern.GroupCaption = "General";
-            shipToAddressBlockPattern.CardPageGroupPosition = Position.FirstWithinContainer;
-            shipToAddressBlockPattern.Apply();
-
-            var billToNamePattern = new DescriptionPattern(range, table, cardPage, listPage);
-            billToNamePattern.Style = DescriptionPattern.DescriptionStyle.Name;
-            billToNamePattern.Prefix = "Bill-to ";
-            billToNamePattern.GroupCaption = "Invoicing";
-            billToNamePattern.Apply();
-
-            var billToAddressBlockPattern = new AddressBlockPattern(range,table,cardPage, listPage);
-            billToAddressBlockPattern.Prefix = "Bill-to ";
-            billToAddressBlockPattern.GroupCaption = "Invoicing";
-            billToAddressBlockPattern.Apply();
-
-            var communicationFieldsManifest = table.AddCommunicationFields(range, prefix: "Ship-To ");
-            cardPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
-            listPage.AddCommunicationControls(communicationFieldsManifest, range, Position.LastWithinContainer);
-
-             */
-            // FIXME: table.Properties.DataCaptionFields.AddRange(noSeriesFieldsManifest.NoField.Name, descriptionFieldsManifest.DescriptionField.Name);
 
             const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
             const string serverName = @"JANHOEK1FC5\NAVDEMO";
