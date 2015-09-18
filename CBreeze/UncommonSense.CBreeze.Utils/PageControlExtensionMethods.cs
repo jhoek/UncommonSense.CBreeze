@@ -88,12 +88,16 @@ namespace UncommonSense.CBreeze.Utils
             return childPageControl;
         }
 
-        public static PartPageControl AddSystemPartPageControl(this PageControl parent, int id, Position position, SystemPartID systemPartID)
+        public static PartPageControl AddSystemPartPageControl(this PageControl parent, int id, Position position, SystemPartID systemPartID, bool hide = true )
         {
             var childPageControl = AddChildPageControl(parent, new PartPageControl(id, parent.IndentationLevel + 1), position);
             childPageControl.Properties.PartType = PartType.System;
             childPageControl.Properties.SystemPartID = systemPartID;
             return childPageControl;
+            if (hide)
+            {
+                partPageControl.Properties.Visible = false.ToString();
+            }
         }
 
         private static GroupPageControl GetGroupByCaption(this ContainerPageControl container, string caption)
