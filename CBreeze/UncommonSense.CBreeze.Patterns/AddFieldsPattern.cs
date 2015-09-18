@@ -61,11 +61,18 @@ namespace UncommonSense.CBreeze.Patterns
         {
         }
 
-        protected virtual FieldPageControl CreateListPageControl(Page page, Position position, string sourceExpr)
+        protected virtual FieldPageControl CreateCardPageControl(Page page, string groupCaption, Position groupPosition, Position controlPosition, string sourceExpr)
+        {
+            var contentArea = page.GetContentArea(Range);
+            var group = contentArea.GetGroupByCaption(GroupCaption, Range, groupPosition);
+            return group.AddFieldPageControl(Range.GetNextPageControlID(page), controlPosition, sourceExpr);
+        }
+
+        protected virtual FieldPageControl CreateListPageControl(Page page, Position controlPosition, string sourceExpr)
         {
             var contentArea = page.GetContentArea(Range);
             var repeater = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-            return repeater.AddFieldPageControl(Range.GetNextPageControlID(page), position, sourceExpr);
+            return repeater.AddFieldPageControl(Range.GetNextPageControlID(page), controlPosition, sourceExpr);
         }
 
         public IEnumerable<int> Range
@@ -98,6 +105,7 @@ namespace UncommonSense.CBreeze.Patterns
             set;
         }
 
+        // FIXME: Should these positions be in AddFieldsPattern? Or rather in derived classes?
         public Position CardPageGroupPosition
         {
             get;
