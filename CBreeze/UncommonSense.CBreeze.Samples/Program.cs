@@ -46,6 +46,8 @@ namespace UncommonSense.CBreeze.Samples
 
             application.Write(devClient, serverName, database);
             application.Compile(devClient, serverName, database);
+
+            registerEntityTypePattern.Page.Run(@"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\Microsoft.Dynamics.Nav.Client.exe", "localhost", 7146, "DynamicsNAV70", "CRONUS Nederland BV", PageMode.Edit, false, true);
         }
     }
 }
