@@ -29,6 +29,15 @@ namespace UncommonSense.CBreeze.Meta
             }
         }
 
+        protected override void LinkObjects()
+        {
+            foreach (var documentType in DocumentTypes)
+            {
+                CardPages[documentType].Properties.SourceTable = HeaderTable.ID;
+                ListPages[documentType].Properties.SourceTable = HeaderTable.ID;
+            }
+        }
+
         protected IEnumerable<string> DocumentTypes
         {
             get
