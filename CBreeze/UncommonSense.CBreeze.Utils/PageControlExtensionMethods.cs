@@ -107,6 +107,13 @@ namespace UncommonSense.CBreeze.Utils
 
             return groupPageControl;
         }
+
+        public static FieldPageControl Promote(this FieldPageControl control)
+        {
+            control.Properties.Importance = Importance.Promoted;
+            return control;
+        }
+
         public static FieldPageControl Hide(this FieldPageControl control)
         {
             control.Properties.Visible = false.ToString();
