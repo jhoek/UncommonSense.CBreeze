@@ -14,18 +14,11 @@ namespace UncommonSense.CBreeze.Utils
 
     public static class PageControlExtensionMethods
     {
-        /// <summary>
-        /// Returns an IEnumerable of PageControls indented exactly one level relative to <paramref name="parent"/>.
-        /// </summary>
         public static IEnumerable<PageControl> GetChildPageControls(this PageControl parent)
         {
             return parent.GetDescendantPageControls().Where(c => c.IndentationLevel == parent.IndentationLevel + 1);
         }
 
-        public static IEnumerable<PageActionBase> GetChildPageActions(this PageActionBase parent)
-        {
-            return parent.GetDescendantPageActions().Where(a => a.IndentationLevel == parent.IndentationLevel + 1);
-        }
 
         public static IEnumerable<PageControl> GetDescendantPageControls(this PageControl parent)
         {
@@ -36,31 +29,11 @@ namespace UncommonSense.CBreeze.Utils
                 TakeWhile(c => c.IndentationLevel > parent.IndentationLevel);
         }
 
-        public static IEnumerable<PageActionBase> GetDescendantPageActions(this PageActionBase parent)
-        {
-            var actions = parent.Container;
-
-            return actions.
-                Skip(parent.Index() + 1).
-                TakeWhile(a => a.IndentationLevel > parent.IndentationLevel);
-        }
-
-        /// <summary>
-        /// Returns the index of PageControl <paramref name="pageControl"/> within the PageControls collection.
-        /// </summary>
         public static int Index(this PageControl pageControl)
         {
             return pageControl.Container.IndexOf(pageControl);
         }
 
-        public static int Index(this PageActionBase pageAction)
-        {
-            return pageAction.Container.IndexOf(pageAction);
-        }
-
-        /// <summary>
-        /// Inserts PageControl <paramref name="child"/> directly after PageControl <paramref name="parent"/>.
-        /// </summary>
         public static T AddChildPageControl<T>(this PageControl parent, T child, Position position) where T : PageControl
         {
             var controls = parent.Container;
@@ -138,25 +111,6 @@ namespace UncommonSense.CBreeze.Utils
             }
 
             return groupPageControl;
-        }
-
-        private static PageActionGroup GetGroupByCaption(this PageActionContainer container, string caption)
-        {
-            return container.GetChildPageActions().OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
-        }
-
-        public static PageActionGroup GetGroupByCaption(this PageActionContainer container, Page page, string caption, IEnumerable<int> range, Position position)
-        {
-            var pageActionGroup = container.GetGroupByCaption(caption);
-
-            if (pageActionGroup == null)
-            {
-                pageActionGroup = new PageActionGroup(range.GetNextPageControlID(page), 1);
-                pageActionGroup.Properties.CaptionML.Set("ENU", caption);
-                // FIXME: container.AddChildAction(pageActionGroup, position);
-            }
-
-            return pageActionGroup;
         }
     }
 }

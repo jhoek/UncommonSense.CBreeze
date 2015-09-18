@@ -43,6 +43,7 @@
     <Compile Include="CommunicationExtensionMethods.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
+    <Compile Include="PageActionExtensionMethods.cs" />
     <Compile Include="PageControlExtensionMethods.cs" />
     <Compile Include="PageExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
