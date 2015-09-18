@@ -13,8 +13,8 @@ namespace UncommonSense.CBreeze.Meta
         public DocumentEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range, name)
         {
-            CardPages = new PatternResults<string, Page>();
-            ListPages = new PatternResults<string, Page>();
+            CardPages = new MappedResults<string, Page>();
+            ListPages = new MappedResults<string, Page>();
         }
 
         protected override void CreateObjects()

@@ -47,7 +47,7 @@
     <Compile Include="DescriptionPattern.cs" />
     <Compile Include="DescriptionStyle.cs" />
     <Compile Include="EntryNoPattern.cs" />
-    <Compile Include="PatternResults.cs" />
+    <Compile Include="MappedResults.cs" />
     <Compile Include="LastDateModifiedPattern.cs" />
     <Compile Include="NoPattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />

@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Patterns
         public LastDateModifiedPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
-            LastDateModifiedControls = new PatternResults<Page, FieldPageControl>();
+            LastDateModifiedControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void MakeChanges()
@@ -75,7 +75,7 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> LastDateModifiedControls
+        public MappedResults<Page, FieldPageControl> LastDateModifiedControls
         {
             get;protected set;
         }

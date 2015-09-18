@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Meta
         public MasterEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range,name)
         {
-            LastDateModifiedControls = new PatternResults<Page, FieldPageControl>();
+            LastDateModifiedControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void MakeChanges()
@@ -260,7 +260,7 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> LastDateModifiedControls
+        public MappedResults<Page, FieldPageControl> LastDateModifiedControls
         {
             get;protected set;
         }

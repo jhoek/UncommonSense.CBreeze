@@ -21,12 +21,12 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public PatternResults<string, Page> CardPages
+        public MappedResults<string, Page> CardPages
         {
             get;protected set;
         }
 
-        public PatternResults<string, Page> ListPages
+        public MappedResults<string, Page> ListPages
         {
             get;protected set;
         }

@@ -6,11 +6,11 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Patterns
 {
-    public class PatternResults<TKey, TValue> : IEnumerable<KeyValuePair<TKey,TValue>>
+    public class MappedResults<TKey, TValue> : IEnumerable<KeyValuePair<TKey,TValue>>
     {
         private Dictionary<TKey, TValue> innerDictionary = new Dictionary<TKey, TValue>();
 
-        public PatternResults()
+        public MappedResults()
         {
         }
 

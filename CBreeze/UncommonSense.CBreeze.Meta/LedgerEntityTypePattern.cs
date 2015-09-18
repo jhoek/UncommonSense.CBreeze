@@ -15,9 +15,9 @@ namespace UncommonSense.CBreeze.Meta
         public LedgerEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range, name)
         {
-            EntryNoControls = new PatternResults<Page, FieldPageControl>();
-            MasterEntityTypeControls = new PatternResults<Page, FieldPageControl>();
-            DescriptionControls = new PatternResults<Page, FieldPageControl>();
+            EntryNoControls = new MappedResults<Page, FieldPageControl>();
+            MasterEntityTypeControls = new MappedResults<Page, FieldPageControl>();
+            DescriptionControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void VerifyRequirements()
@@ -131,17 +131,17 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> EntryNoControls
+        public MappedResults<Page, FieldPageControl> EntryNoControls
         {
             get;protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> MasterEntityTypeControls
+        public MappedResults<Page, FieldPageControl> MasterEntityTypeControls
         {
             get;protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> DescriptionControls
+        public MappedResults<Page, FieldPageControl> DescriptionControls
         {
             get;protected set;
         }

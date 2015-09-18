@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Patterns
         public CreationDatePattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
-            CreationDateControls = new PatternResults<Page, FieldPageControl>();
+            CreationDateControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void VerifyRequirements()
@@ -63,7 +63,7 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> CreationDateControls
+        public MappedResults<Page, FieldPageControl> CreationDateControls
         {
             get;protected set;
         }

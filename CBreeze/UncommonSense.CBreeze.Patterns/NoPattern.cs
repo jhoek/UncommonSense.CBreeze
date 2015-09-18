@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Patterns
         public NoPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
-            NoControls = new PatternResults<Page, FieldPageControl>();
+            NoControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void CreateFields()        
@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> NoControls
+        public MappedResults<Page, FieldPageControl> NoControls
         {
             get;protected set;
         }

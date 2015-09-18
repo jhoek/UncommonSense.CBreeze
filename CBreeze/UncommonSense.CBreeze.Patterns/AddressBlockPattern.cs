@@ -10,11 +10,11 @@ namespace UncommonSense.CBreeze.Patterns
         public AddressBlockPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
-            AddressControls = new PatternResults<Page, FieldPageControl>();
-            Address2Controls = new PatternResults<Page, FieldPageControl>();
-            PostCodeControls = new PatternResults<Page, FieldPageControl>();
-            CityControls = new PatternResults<Page, FieldPageControl>();
-            CountryRegionCodeControls = new PatternResults<Page, FieldPageControl>();
+            AddressControls = new MappedResults<Page, FieldPageControl>();
+            Address2Controls = new MappedResults<Page, FieldPageControl>();
+            PostCodeControls = new MappedResults<Page, FieldPageControl>();
+            CityControls = new MappedResults<Page, FieldPageControl>();
+            CountryRegionCodeControls = new MappedResults<Page, FieldPageControl>();
 
             GroupCaption = "General";
             CardPageGroupPosition = Position.LastWithinContainer;
@@ -161,31 +161,31 @@ namespace UncommonSense.CBreeze.Patterns
         }
 
 
-        public PatternResults<Page, FieldPageControl> AddressControls
+        public MappedResults<Page, FieldPageControl> AddressControls
         {
             get;
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> Address2Controls
+        public MappedResults<Page, FieldPageControl> Address2Controls
         {
             get;
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> PostCodeControls
+        public MappedResults<Page, FieldPageControl> PostCodeControls
         {
             get;
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> CityControls
+        public MappedResults<Page, FieldPageControl> CityControls
         {
             get;
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> CountryRegionCodeControls
+        public MappedResults<Page, FieldPageControl> CountryRegionCodeControls
         {
             get;
             protected set;

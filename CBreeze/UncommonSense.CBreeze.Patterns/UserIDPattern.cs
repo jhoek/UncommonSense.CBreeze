@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Patterns
         public UserIDPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
-            UserIDControls = new PatternResults<Page, FieldPageControl>();
+            UserIDControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void CreateFields()
@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> UserIDControls
+        public MappedResults<Page, FieldPageControl> UserIDControls
         {
             get;protected set;
         }

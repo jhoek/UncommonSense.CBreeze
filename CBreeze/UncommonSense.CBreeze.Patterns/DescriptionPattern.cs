@@ -127,19 +127,19 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> DescriptionControls
+        public MappedResults<Page, FieldPageControl> DescriptionControls
         {
             get;
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> Description2Controls
+        public MappedResults<Page, FieldPageControl> Description2Controls
         {
             get;
             protected set;
         }
 
-        public PatternResults<Page, FieldPageControl> SearchDescriptionControls
+        public MappedResults<Page, FieldPageControl> SearchDescriptionControls
         {
             get;
             protected set;
