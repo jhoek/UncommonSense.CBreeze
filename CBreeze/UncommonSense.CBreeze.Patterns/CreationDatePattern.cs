@@ -65,7 +65,8 @@ namespace UncommonSense.CBreeze.Patterns
 
         public MappedResults<Page, FieldPageControl> CreationDateControls
         {
-            get;protected set;
+            get;
+            protected set;
         }
 
         public TableKey KeyOnCreationDate
