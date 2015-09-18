@@ -61,16 +61,11 @@ namespace UncommonSense.CBreeze.Utils
             return childPageControl;
         }
 
-        public static PartPageControl AddSystemPartPageControl(this PageControl parent, int id, Position position, SystemPartID systemPartID, bool hide = true )
+        public static PartPageControl AddSystemPartPageControl(this PageControl parent, int id, Position position, SystemPartID systemPartID)
         {
             var partPageControl = AddChildPageControl(parent, new PartPageControl(id, parent.IndentationLevel + 1), position);
             partPageControl.Properties.PartType = PartType.System;
             partPageControl.Properties.SystemPartID = systemPartID;
-
-            if (hide)
-            {
-                partPageControl.Properties.Visible = false.ToString();
-            }
 
             return partPageControl;
         }
@@ -111,6 +106,17 @@ namespace UncommonSense.CBreeze.Utils
             }
 
             return groupPageControl;
+        }
+        public static FieldPageControl Hide(this FieldPageControl control)
+        {
+            control.Properties.Visible = false.ToString();
+            return control;
+        }
+
+        public static PartPageControl Hide(this PartPageControl control)
+        {
+            control.Properties.Visible = false.ToString();
+            return control;
         }
     }
 }

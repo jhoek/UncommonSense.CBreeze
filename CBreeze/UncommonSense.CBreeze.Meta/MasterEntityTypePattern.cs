@@ -139,8 +139,8 @@ namespace UncommonSense.CBreeze.Meta
             CardPage.Properties.RefreshOnActivate = true;
 
             var factBoxArea = CardPage.GetFactboxArea(Range);
-            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.RecordLinks,true);
-            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes,true);
+            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
+            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes).Hide();
         }
 
         protected void FinalizeListPage()

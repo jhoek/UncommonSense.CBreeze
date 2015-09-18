@@ -48,8 +48,8 @@ namespace UncommonSense.CBreeze.Meta
             DescriptionControl = group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, DescriptionField.Name);
 
             var factboxArea = Page.GetFactboxArea(Range);
-            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks, true);
-            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes,true);
+            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
+            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes).Hide();
         }
 
         public string PluralName

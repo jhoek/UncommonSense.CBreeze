@@ -121,8 +121,8 @@ namespace UncommonSense.CBreeze.Meta
             }
 
             var factboxArea = Page.GetFactboxArea(Range);
-            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks, true);
-            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes, true);
+            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
+            factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes).Hide();
         }
 
         protected virtual string ActionCaptionFromLedgerTableName(string ledgerTableName)
