@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommunicationExtensionMethods.cs" />
     <Compile Include="AutoCaptionExtensionMethods.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="PageActionExtensionMethods.cs" />
