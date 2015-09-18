@@ -26,7 +26,10 @@ namespace UncommonSense.CBreeze.Samples
 
             var application = new Application();
 
-            var registerEntityTypePattern = new RegisterEntityTypePattern(application, range, "Demo Register");
+            var demoLedgerEntryTable = application.Tables.Add(new Table(50000, "Demo Ledger Entry"));
+            var vatLedgerEntryTable = application.Tables.Add(new Table(50001, "VAT Entry"));
+
+            var registerEntityTypePattern = new RegisterEntityTypePattern(application, range, "Demo Register", demoLedgerEntryTable, vatLedgerEntryTable);
             registerEntityTypePattern.HasCreationDate = true;
             registerEntityTypePattern.Apply();
 
@@ -55,8 +58,8 @@ namespace UncommonSense.CBreeze.Samples
             noSeriesPattern.SetupTable = setupEntityTypePattern.Table;
             noSeriesPattern.SetupPage = setupEntityTypePattern.Page;
             noSeriesPattern.Apply();
-            
-            var shipToNamePattern = new DescriptionPattern(range,table,cardPage, listPage);
+
+            var shipToNamePattern = new DescriptionPattern(range, table, cardPage, listPage);
             shipToNamePattern.Style = DescriptionStyle.Name;
             shipToNamePattern.Prefix = "Ship-to ";
             shipToNamePattern.GroupCaption = "Shipping";
