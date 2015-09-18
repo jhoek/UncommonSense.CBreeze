@@ -9,13 +9,13 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class DescriptionPattern : AddFieldsPattern
     {
-        private Dictionary<Page, FieldPageControl> descriptionControls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> description2Controls = new Dictionary<Page, FieldPageControl>();
-        private Dictionary<Page, FieldPageControl> searchDescriptionControls = new Dictionary<Page, FieldPageControl>();
-
         public DescriptionPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
+            DescriptionControls = new MappedResults<Page, FieldPageControl>();
+            Description2Controls = new MappedResults<Page, FieldPageControl>();
+            SearchDescriptionControls = new MappedResults<Page, FieldPageControl>();
+
             HasDescription2 = true;
             HasSearchDescription = true;
             CreateKeyOnSearchDescription = true;
@@ -52,13 +52,13 @@ namespace UncommonSense.CBreeze.Patterns
 
             var descriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             descriptionControl.Properties.SourceExpr = DescriptionField.Name.Quoted();
-            descriptionControls.Add(page, descriptionControl);
+            DescriptionControls.Add(page, descriptionControl);
 
             if (HasSearchDescription)
             {
                 var searchDescriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
                 searchDescriptionControl.Properties.SourceExpr = SearchDescriptionField.Name.Quoted();
-                searchDescriptionControls.Add(page, searchDescriptionControl);
+                SearchDescriptionControls.Add(page, searchDescriptionControl);
             }
         }
 
@@ -69,13 +69,13 @@ namespace UncommonSense.CBreeze.Patterns
 
             var descriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             descriptionControl.Properties.SourceExpr = DescriptionField.Name.Quoted();
-            descriptionControls.Add(page, descriptionControl);
+            DescriptionControls.Add(page, descriptionControl);
 
             if (HasSearchDescription)
             {
                 var searchDescriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
                 searchDescriptionControl.Properties.SourceExpr = SearchDescriptionField.Name.Quoted();
-                searchDescriptionControls.Add(page, searchDescriptionControl);
+                SearchDescriptionControls.Add(page, searchDescriptionControl);
             }
         }
 
