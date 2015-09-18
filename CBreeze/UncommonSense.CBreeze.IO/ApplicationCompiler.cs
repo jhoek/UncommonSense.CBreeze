@@ -8,6 +8,8 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.IO
 {
+    // FIXME: In additional to the compiler, also create a class for opening pages, reports, running codeunits etc.
+
     public static class ApplicationCompiler
     {
         public static string Summarize(this IEnumerable<int> ids)
