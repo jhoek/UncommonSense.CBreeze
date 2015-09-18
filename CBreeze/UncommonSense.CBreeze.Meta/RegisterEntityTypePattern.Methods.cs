@@ -108,14 +108,13 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateControls()
         {
-            base.CreateControls();
-
             var relatedInformation = Page.GetRelatedInformation(Range);
             var routingChoices = relatedInformation.GetGroupByCaption(Page, "&Register", Range, Position.FirstWithinContainer);
 
             foreach (var ledgerEntryTable in LedgerEntryTables)
             {
                 var caption = ActionCaptionFromLedgerTableName(ledgerEntryTable.Name);
+                // FIXME: Image should not always be GLRegisters; there are plenty more images for registers?!
                 var routingChoiceAction = routingChoices.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, caption, "GLRegisters").Promote(true, PromotedCategory.Process);
                 RoutingChoiceActions.Add(ledgerEntryTable, routingChoiceAction);
             }
