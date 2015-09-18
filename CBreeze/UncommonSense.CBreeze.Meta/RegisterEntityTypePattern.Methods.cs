@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Utils;
@@ -23,6 +24,7 @@ namespace UncommonSense.CBreeze.Meta
             CreationDateControls = new MappedResults<Page, FieldPageControl>();
             UserIDControls = new MappedResults<Page, FieldPageControl>();
             SourceCodeControls = new MappedResults<Page, FieldPageControl>();
+            RoutingChoiceActions = new MappedResults<Table, PageAction>();
 
             this.ledgerEntryTables.AddRange(ledgerEntryTables);
 
@@ -108,9 +110,30 @@ namespace UncommonSense.CBreeze.Meta
         {
             base.CreateControls();
 
+            var relatedInformation = Page.GetRelatedInformation(Range);
+            var routingChoices = relatedInformation.GetGroupByCaption(Page, "&Register", Range, Position.FirstWithinContainer);
+
+            foreach (var ledgerEntryTable in LedgerEntryTables)
+            {
+                var caption = ActionCaptionFromLedgerTableName(ledgerEntryTable.Name);
+                var routingChoiceAction = routingChoices.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, caption, "GLRegisters").Promote(true, PromotedCategory.Process);
+                RoutingChoiceActions.Add(ledgerEntryTable, routingChoiceAction);
+            }
+
             var factboxArea = Page.GetFactboxArea(Range);
             factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks, true);
             factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes, true);
+        }
+
+        protected virtual string ActionCaptionFromLedgerTableName(string ledgerTableName)
+        {
+            var result = ledgerTableName;
+
+            result = Regex.Replace(result, @"\bG/L\b", "General Ledger");
+            result = Regex.Replace(result, @"\bLedger Entry$", "Ledger");
+            result = Regex.Replace(result, @"\bEntry$", "Entries");
+
+            return result;
         }
     }
 }

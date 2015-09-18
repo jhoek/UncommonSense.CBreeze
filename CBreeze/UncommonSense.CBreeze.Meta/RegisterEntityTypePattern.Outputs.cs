@@ -93,5 +93,10 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
+        public MappedResults<Core.Table, PageAction> RoutingChoiceActions
+        {
+            get;
+            protected set;
+        }
     }
 }
