@@ -17,6 +17,12 @@ namespace UncommonSense.CBreeze.Meta
             set;
         }
 
+        public bool HasStatisticsPage
+        {
+            get;
+            set;
+        }
+
         public Table SetupTable
         {
             get;
