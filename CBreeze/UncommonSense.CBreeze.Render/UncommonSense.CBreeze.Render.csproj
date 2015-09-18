@@ -61,7 +61,6 @@
     <Compile Include="Manifests\SetupEntityTypeManifest.cs" />
     <Compile Include="Manifests\SupplementalEntityTypeManifest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderers\DocumentEntityTypeRenderer.cs" />
     <Compile Include="Renderers\DocumentHistoryEntityTypeRenderer.cs" />
     <Compile Include="Renderers\JournalEntityTypeRenderer.cs" />
     <Compile Include="Manifests\RegisterEntityTypeManifest.cs" />

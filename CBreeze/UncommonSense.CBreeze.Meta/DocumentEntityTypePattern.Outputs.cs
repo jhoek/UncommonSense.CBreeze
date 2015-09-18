@@ -21,6 +21,36 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
+        public OptionTableField HeaderTableDocumentTypeField
+        {
+            get;
+            protected set;
+        }
+
+        public CodeTableField HeaderTableNoField
+        {
+            get;
+            protected set;
+        }
+
+        public OptionTableField LineTableDocumentTypeField
+        {
+            get;
+            protected set;
+        }
+
+        public CodeTableField LineTableDocumentNoField
+        {
+            get;
+            protected set;
+        }
+
+        public IntegerTableField LineTableLineNoField
+        {
+            get;
+            protected set;
+        }
+
         public MappedResults<string, Page> CardPages
         {
             get;protected set;
