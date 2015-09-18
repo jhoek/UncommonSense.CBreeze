@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Patterns
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-            var entryNoControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, EntryNoField.Name.Quoted());
+            var entryNoControl = group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, EntryNoField.Name);
 
             EntryNoControls.Add(page, entryNoControl);
         }
