@@ -59,18 +59,12 @@
     <Compile Include="Manifests\MasterEntityTypeManifest.cs" />
     <Compile Include="Manifests\RenderingManifest.cs" />
     <Compile Include="Manifests\SetupEntityTypeManifest.cs" />
-    <Compile Include="Manifests\SupplementalEntityTypeManifest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderers\DocumentHistoryEntityTypeRenderer.cs" />
     <Compile Include="Renderers\JournalEntityTypeRenderer.cs" />
     <Compile Include="Manifests\RegisterEntityTypeManifest.cs" />
     <Compile Include="Manifests\SubsidiaryEntityTypeManifest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UncommonSense.CBreeze.Model\UncommonSense.CBreeze.Model.csproj">
-      <Project>{8F8349DC-F535-4A3B-9875-5D610B729D0C}</Project>
-      <Name>UncommonSense.CBreeze.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Utils\UncommonSense.CBreeze.Utils.csproj">
       <Project>{8CDAB257-683A-4AD2-A266-3C0EF538628C}</Project>
       <Name>UncommonSense.CBreeze.Utils</Name>
