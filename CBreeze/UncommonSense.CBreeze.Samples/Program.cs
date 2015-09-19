@@ -41,13 +41,20 @@ namespace UncommonSense.CBreeze.Samples
             application.Write(Console.Out);
 
             const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
-            const string serverName = @"JANHOEK1FC5\NAVDEMO";
-            const string database = @"Demo Database NAV (7-0)";
+            const string databaseServerName = @"JANHOEK1FC5\NAVDEMO";
+            const string databaseName = @"Demo Database NAV (7-0)";
 
-            application.Write(devClient, serverName, database);
-            application.Compile(devClient, serverName, database);
+            application.Write(devClient, databaseServerName, databaseName);
+            application.Compile(devClient, databaseServerName, databaseName);
 
-            registerEntityTypePattern.Page.Run(@"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\Microsoft.Dynamics.Nav.Client.exe", "localhost", 7146, "DynamicsNAV70", "CRONUS Nederland BV", PageMode.Edit, false, true);
+            const string roleTailoredClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\Microsoft.Dynamics.Nav.Client.exe";
+            const string serverName = "localhost";
+            const int serverPort = 7146;
+            const string serverInstance = "DynamicsNAV70";
+            const string companyName = "CRONUS Nederland BV";
+
+            //registerEntityTypePattern.Table.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName);
+            //registerEntityTypePattern.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.Edit);
         }
     }
 }
