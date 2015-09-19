@@ -59,7 +59,7 @@ namespace UncommonSense.CBreeze.IO
 
         public static string BuildHyperlink(string serverName, int? serverPort, string serverInstance, string companyName, string commands)
         {
-            return string.Format("DynamicsNAV://{0}{1}/{2}/{3}/{4}", serverName, serverPort.HasValue ? string.Format(":{0}", serverPort.Value) : null, serverInstance, companyName == null ? null : string.Format("\"{0}\"", companyName), commands);
+            return string.Format("DynamicsNAV://{0}{1}/{2}/{3}/{4}", serverName, serverPort.HasValue ? string.Format(":{0}", serverPort.Value) : null, serverInstance, companyName, commands);
         }
     }
 }
