@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, Position = 0)]
-        [ValidateSet("CaptionML")] // FIXME
+        [ValidateSet("CaptionML", "OptionCaptionML", "ReqFilterHeadingML", "TooltipML", "InstructionalTextML", "PromotedActionCategoriesML")] 
         public string Property
         {
             get;
