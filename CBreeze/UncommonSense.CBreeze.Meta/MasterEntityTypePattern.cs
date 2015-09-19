@@ -115,23 +115,17 @@ namespace UncommonSense.CBreeze.Meta
         protected void AddActionsToPage(Page page)
         {
             var relatedInfo = page.GetRelatedInformation(Range);
+            var routingChoices = relatedInfo.GetGroupByCaption(page, Name, Range, Position.FirstWithinContainer);
 
-            // FIXME:
-             /*             if (masterEntityType.HasStatisticsPage)
+            if (HasStatisticsPage)
             {
-                var action = actionList.Add(new PageAction(nextControlID++, 2));
-                action.Properties.CaptionML.Set("ENU", "Statistics");
-                action.Properties.ShortCutKey = "F7";
-                action.Properties.RunObject.Type = RunObjectType.Page;
-                action.Properties.RunObject.ID = manifest.StatisticsPage.ID;
-                action.Properties.RunPageLink.Add("No.", RunObjectLinkLineType.Field, "No.");
-                action.Properties.Image = "Statistics";
-                action.Properties.Promoted = true;
-                action.Properties.PromotedCategory = PromotedCategory.Process;
-                // FIXME: RunPageLink: all FlowFilters
+                StatisticsAction = routingChoices.AddPageAction(Range.GetNextPageControlID(page), Position.LastWithinContainer, "Statistics", "Statistics").Promote(false, PromotedCategory.Process);
+                StatisticsAction.Properties.ShortCutKey = "F7";
+                StatisticsAction.Properties.RunObject.Type = RunObjectType.Page;
+                StatisticsAction.Properties.RunObject.ID = StatisticsPage.ID;
+                StatisticsAction.Properties.RunPageLink.Add(NoField.Name, RunObjectLinkLineType.Field, NoField.Name);
+                // FIXME: RunPageLink: ook alle flowfilters
             }
-
-             */
         }
 
         protected void FinalizeCardPage()
@@ -259,6 +253,12 @@ namespace UncommonSense.CBreeze.Meta
         public MappedResults<Page, FieldPageControl> LastDateModifiedControls
         {
             get;protected set;
+        }
+
+        public PageAction StatisticsAction
+        {
+            get;
+            protected set;
         }
     }
 }
