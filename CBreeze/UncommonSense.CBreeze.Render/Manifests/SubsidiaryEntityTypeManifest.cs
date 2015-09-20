@@ -53,18 +53,6 @@ namespace UncommonSense.CBreeze.Render
 			get;
 			internal set;
 		}
-
-        public ContainerPageControl PageContentAreaControl
-        {
-            get;
-            internal set;
-        }
-
-        public GroupPageControl PageRepeaterControl
-        {
-            get;
-            internal set;
-        }
 	}
 }
 
