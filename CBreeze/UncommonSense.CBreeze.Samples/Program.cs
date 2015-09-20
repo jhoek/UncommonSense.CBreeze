@@ -53,7 +53,7 @@ namespace UncommonSense.CBreeze.Samples
             const string serverInstance = "DynamicsNAV70";
             const string companyName = "CRONUS Nederland BV";
 
-            //registerEntityTypePattern.Table.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName);
+            registerEntityTypePattern.Table.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName);
             //registerEntityTypePattern.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.Edit);
         }
     }
