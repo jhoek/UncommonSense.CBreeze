@@ -39,5 +39,17 @@ namespace UncommonSense.CBreeze.Meta
                 this.lineName = value;
             }
         }
+
+        public Table HeaderTable
+        {
+            get;
+            protected set;
+        }
+
+        public Table LineTable
+        {
+            get;
+            protected set;
+        }
     }
 }
