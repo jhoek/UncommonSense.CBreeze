@@ -15,24 +15,11 @@ namespace UncommonSense.CBreeze.Meta
         public LedgerEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range, name)
         {
-            EntryNoControls = new MappedResults<Page, FieldPageControl>();
-            MasterEntityTypeControls = new MappedResults<Page, FieldPageControl>();
-            DescriptionControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void VerifyRequirements()
         {
             base.VerifyRequirements();
-        }
-
-        protected override void MakeChanges()
-        {
-            CreateObjects();
-            LinkObjects();
-
-            AddEntryNo();
-            AddMasterEntityTypeReference();
-            AddDescription();
         }
 
         protected override void CreateObjects()
@@ -50,13 +37,21 @@ namespace UncommonSense.CBreeze.Meta
             Page.Properties.SourceTable = Table.ID;
         }
 
+        protected override void CreateFields()
+        {
+            AddEntryNo();
+            AddMasterEntityTypeReference();
+            AddDescription();
+            AddPostingDate();
+        }
+
         protected void AddEntryNo()
         {
             var entryNoPattern = new EntryNoPattern(Range, Table, Page);
             entryNoPattern.Apply();
 
             EntryNoField = entryNoPattern.EntryNoField;
-            EntryNoControls.AddRange(entryNoPattern.EntryNoControls);
+            EntryNoControl = entryNoPattern.EntryNoControls.First().Value;
         }
 
         protected void AddMasterEntityTypeReference()
@@ -131,19 +126,28 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public MappedResults<Page, FieldPageControl> EntryNoControls
+        public DateTableField PostingDateField
         {
-            get;protected set;
+            get;
+            protected set;
         }
 
-        public MappedResults<Page, FieldPageControl> MasterEntityTypeControls
+        public FieldPageControl EntryNoControl
         {
-            get;protected set;
+            get;
+            protected set;
         }
 
-        public MappedResults<Page, FieldPageControl> DescriptionControls
+        public FieldPageControl MasterEntityTypeControl
         {
-            get;protected set;
+            get;
+            protected set;
+        }
+
+        public FieldPageControl DescriptionControl
+        {
+            get;
+            protected set;
         }
     }
 }
