@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manifests\DocumentEntityTypeManifest.cs" />
-    <Compile Include="Manifests\JournalEntityTypeManifest.cs" />
     <Compile Include="Manifests\LedgerEntityTypeManifest.cs" />
     <Compile Include="Manifests\MasterEntityTypeManifest.cs" />
     <Compile Include="Manifests\RenderingManifest.cs" />
