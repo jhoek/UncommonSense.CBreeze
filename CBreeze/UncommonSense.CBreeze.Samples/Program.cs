@@ -43,7 +43,7 @@ namespace UncommonSense.CBreeze.Samples
             registerEntityTypePattern.HasCreationDate = true;
             registerEntityTypePattern.Apply();
 
-            application.Write(Console.Out);
+            //application.Write(Console.Out);
 
             const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
             const string databaseServerName = @"JANHOEK1FC5\NAVDEMO";
