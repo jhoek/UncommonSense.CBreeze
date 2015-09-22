@@ -20,6 +20,18 @@ namespace UncommonSense.CBreeze.Utils
             return result;
         }
 
+        private static PageActionContainer GetActionItems(this Page page)
+        {
+            return page.Properties.ActionList.OfType<PageActionContainer>().FirstOrDefault(c => c.Properties.ActionContainerType == ActionContainerType.ActionItems);
+        }
+
+        public static PageActionContainer GetActionItems(this Page page, IEnumerable<int> range)
+        {
+            var result = GetActionItems(page) ?? page.Properties.ActionList.Add(new PageActionContainer(range.GetNextPageControlID(page), 0));
+            result.Properties.ActionContainerType = ActionContainerType.ActionItems;
+            return result;
+        }
+
         public static IEnumerable<PageActionBase> GetDescendantPageActions(this PageActionBase parent)
         {
             var actions = parent.Container;
