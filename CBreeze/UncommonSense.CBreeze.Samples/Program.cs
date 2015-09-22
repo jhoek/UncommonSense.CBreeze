@@ -23,9 +23,27 @@ namespace UncommonSense.CBreeze.Samples
         static void CBreezeWriteDemo()
         {
             var range = 50000.To(59999);
-
             var application = new Application();
 
+            var setupEntityType = new SetupEntityTypePattern(application, range, "Demo Setup");
+            setupEntityType.Apply();
+
+            var newItem = new MasterEntityTypePattern(application, range, "New Item");
+            newItem.SetupTable = setupEntityType.Table;
+            newItem.SetupPage = setupEntityType.Page;
+            newItem.Apply();
+
+            var newVendor = new MasterEntityTypePattern(application, range, "New Vendor");
+            newVendor.SetupTable = setupEntityType.Table;
+            newVendor.SetupPage = setupEntityType.Page;
+            newVendor.Apply();
+
+            var subsidiaryEntityType = new SubsidiaryEntityTypePattern(application, range, "New Item Vendor", newItem.Table, newVendor.Table);
+            subsidiaryEntityType.DifferentiatorType = DifferentiatorType.Code;
+            subsidiaryEntityType.Apply();
+            
+
+            /*
             var demoLedgerEntry = new LedgerEntityTypePattern(application, range, "Demo Ledger Entry");
             demoLedgerEntry.PluralName = "Demo Ledger Entries";
             
@@ -42,6 +60,7 @@ namespace UncommonSense.CBreeze.Samples
             var registerEntityTypePattern = new RegisterEntityTypePattern(application, range, "Demo Register", glEntry.Table, demoLedgerEntry.Table, vatEntry.Table);
             registerEntityTypePattern.HasCreationDate = true;
             registerEntityTypePattern.Apply();
+             */
 
             //application.Write(Console.Out);
 
@@ -59,7 +78,8 @@ namespace UncommonSense.CBreeze.Samples
             const string companyName = "CRONUS Nederland BV";
 
             //registerEntityTypePattern.Table.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName);
-            demoLedgerEntry.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.Edit);
+            //demoLedgerEntry.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.Edit);
+            subsidiaryEntityType.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
         }
     }
 }
