@@ -28,6 +28,7 @@ namespace UncommonSense.CBreeze.Meta
             Page = Application.Pages.Add(new Page(Range.GetNextPageID(Application), PluralName).AutoCaption());
 
             Page.Properties.PageType = PageType.List;
+            Page.Properties.Editable = false;
         }
 
         protected override void LinkObjects()
@@ -41,8 +42,9 @@ namespace UncommonSense.CBreeze.Meta
         {
             AddEntryNo();
             AddMasterEntityTypeReference();
-            AddDescription();
             AddPostingDate();
+            AddDocumentTypeAndDocumentNo();
+            AddDescription();            
         }
 
         protected void AddEntryNo()
@@ -61,21 +63,8 @@ namespace UncommonSense.CBreeze.Meta
                 MasterEntityTypeField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0} No.", MasterEntityTypeTable.Name), 20).AutoCaption());
                 MasterEntityTypeField.Properties.TableRelation.Add(MasterEntityTypeTable.Name);
 
-                var contentArea = Page.GetContentArea(Range);
-                var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-                MasterEntityTypeControl= group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, MasterEntityTypeField.Name);
+                CreateListPageControl(Page, Position.LastWithinContainer, MasterEntityTypeField.Name);
             }
-        }
-
-        protected void AddDescription()
-        {
-            var descriptionPattern = new DescriptionPattern(Range, Table, Page);
-            descriptionPattern.HasDescription2 = false;
-            descriptionPattern.HasSearchDescription = false;
-            descriptionPattern.Apply();
-
-            DescriptionField = descriptionPattern.DescriptionField;
-            DescriptionControl = descriptionPattern.DescriptionControls.First().Value;
         }
 
         protected void AddPostingDate()
@@ -83,9 +72,31 @@ namespace UncommonSense.CBreeze.Meta
             PostingDateField = Table.Fields.Add(new DateTableField(Range.GetNextTableFieldNo(Table), "Posting Date").AutoCaption());
             PostingDateField.Properties.ClosingDates = true;
 
-            var contentArea = Page.GetContentArea(Range);
-            var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-            PostingDateControl = group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.FirstWithinContainer, PostingDateField.Name);
+            CreateListPageControl(Page, Position.FirstWithinContainer, PostingDateField.Name);
+        }
+
+        protected void AddDocumentTypeAndDocumentNo()
+        {
+            DocumentTypeField = Table.Fields.Add(new OptionTableField(Range.GetNextTableFieldNo(Table), "Document Type").AutoCaption());
+            DocumentTypeField.Properties.OptionString = "";
+            DocumentTypeField.AutoOptionCaption();
+
+            DocumentNoField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), "Document No.", 20).AutoCaption());
+
+            CreateListPageControl(Page, Position.LastWithinContainer, DocumentTypeField.Name);
+            CreateListPageControl(Page, Position.LastWithinContainer, DocumentNoField.Name);
+        }
+
+        protected void AddDescription()
+        {
+            var descriptionPattern = new DescriptionPattern(Range, Table, Page);
+            descriptionPattern.Style = DescriptionStyle.Description;
+            descriptionPattern.HasDescription2 = false;
+            descriptionPattern.HasSearchDescription = false;
+            descriptionPattern.Apply();
+
+            DescriptionField = descriptionPattern.DescriptionField;
+            DescriptionControl = descriptionPattern.DescriptionControls.First().Value;
         }
 
         protected override void CreateDropDownFieldGroup()
@@ -107,17 +118,9 @@ namespace UncommonSense.CBreeze.Meta
             var actionItems = Page.GetActionItems(Range);
             var navigateAction = actionItems.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, "&Navigate", "Navigate").Promote(false, PromotedCategory.Process);
             var trigger = navigateAction.Properties.OnAction;
-            var variable = trigger.Variables.Add(new PageVariable(Range.GetNextVariableID(trigger), "Navigate", BaseApp.PageIDs.Navigate);
-
-            /*
-                          OnAction=VAR
-                                     Navigate@1000 : Page 344;
-                                   BEGIN
-                                     Navigate.SetDoc("Posting Date","Document No.");
-                                     Navigate.RUN;
-                                   END;
-                                    }
-            */
+            var variable = trigger.Variables.Add(new PageVariable(Range.GetNextVariableID(trigger), "Navigate", BaseApp.PageIDs.Navigate));
+            trigger.CodeLines.Add("{0}.SetDoc({1},{2});", variable.Name.Quoted(), PostingDateField.Name.Quoted(), DocumentNoField.Name.Quoted());
+            trigger.CodeLines.Add("{0}.RUN;", variable.Name.Quoted());
         }
 
         public string PluralName
@@ -162,13 +165,25 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public TextTableField DescriptionField
+        public DateTableField PostingDateField
         {
             get;
             protected set;
         }
 
-        public DateTableField PostingDateField
+        public OptionTableField DocumentTypeField
+        {
+            get;
+            protected set;
+        }
+
+        public CodeTableField DocumentNoField
+        {
+            get;
+            protected set;
+        }
+
+        public TextTableField DescriptionField
         {
             get;
             protected set;
@@ -181,6 +196,18 @@ namespace UncommonSense.CBreeze.Meta
         }
 
         public FieldPageControl MasterEntityTypeControl
+        {
+            get;
+            protected set;
+        }
+
+        public FieldPageControl DocumentTypeControl
+        {
+            get;
+            protected set;
+        }
+
+        public FieldPageControl DocumentNoControl
         {
             get;
             protected set;
