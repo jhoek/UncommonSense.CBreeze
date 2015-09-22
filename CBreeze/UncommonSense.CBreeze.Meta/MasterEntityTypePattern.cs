@@ -16,29 +16,15 @@ namespace UncommonSense.CBreeze.Meta
             LastDateModifiedControls = new MappedResults<Page, FieldPageControl>();
         }
 
-        protected override void MakeChanges()
-        {
-            CreateObjects();
-            LinkObjects();
-
-            CreateFields();
-
-            CreateDropDownFieldGroup();
-
-            AddActionsToPages();
-
-            FinalizeCardPage();
-            FinalizeListPage();
-
-            SetDataCaptionFields();
-        }
-
         protected override void CreateObjects()
         {
             Table = Application.Tables.Add(new Table(Range.GetNextTableID(Application), Name).AutoCaption());
             CardPage = Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Card", Name)).AutoCaption());
             ListPage = Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} List", Name)).AutoCaption());
             StatisticsPage = HasStatisticsPage ? Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Statistics", Name)).AutoCaption()) : null;
+
+            CardPage.Properties.RefreshOnActivate = true;
+            ListPage.Properties.Editable = false;
         }
 
         protected override void LinkObjects()
@@ -62,6 +48,8 @@ namespace UncommonSense.CBreeze.Meta
             CreatePrimaryKeyField();
             CreateDescriptionFields();
             CreateLastDateModifiedField();
+
+            Table.Properties.DataCaptionFields.AddRange(NoField.Name, DescriptionField.Name);
         }
 
         protected void CreatePrimaryKeyField()
@@ -88,12 +76,6 @@ namespace UncommonSense.CBreeze.Meta
             SearchDescriptionField = descriptionPattern.SearchDescriptionField;
         }
 
-        protected override void CreateDropDownFieldGroup()
-        {
-            var fieldGroup = Table.FieldGroups.Add(new TableFieldGroup(1, "DropDown"));
-            fieldGroup.Fields.AddRange(NoField.Name, DescriptionField.Name);
-        }
-
         protected void CreateLastDateModifiedField()
         {
             if (HasLastDateModified)
@@ -106,7 +88,20 @@ namespace UncommonSense.CBreeze.Meta
             }
         }
 
-        protected void AddActionsToPages()
+        protected override void CreateDropDownFieldGroup()
+        {
+            var fieldGroup = Table.FieldGroups.Add(new TableFieldGroup(1, "DropDown"));
+            fieldGroup.Fields.AddRange(NoField.Name, DescriptionField.Name);
+        }
+
+        protected override void CreateControls()
+        {
+            var factBoxArea = CardPage.GetFactboxArea(Range);
+            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
+            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes).Hide();            
+        }
+
+        protected void CreateActions()
         {
             AddActionsToPage(CardPage);
             AddActionsToPage(ListPage);
@@ -126,26 +121,6 @@ namespace UncommonSense.CBreeze.Meta
                 StatisticsAction.Properties.RunPageLink.Add(NoField.Name, RunObjectLinkLineType.Field, NoField.Name);
                 // FIXME: RunPageLink: ook alle flowfilters
             }
-        }
-
-        protected void FinalizeCardPage()
-        {
-            CardPage.Properties.RefreshOnActivate = true;
-
-            var factBoxArea = CardPage.GetFactboxArea(Range);
-            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
-            factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes).Hide();
-        }
-
-        protected void FinalizeListPage()
-        {
-            ListPage.Properties.Editable = false;
-
-        }
-
-        protected void SetDataCaptionFields()
-        {
-            Table.Properties.DataCaptionFields.AddRange(NoField.Name, DescriptionField.Name);
         }
 
         public Table SetupTable
