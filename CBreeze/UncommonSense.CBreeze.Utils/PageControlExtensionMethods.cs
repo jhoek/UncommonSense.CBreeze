@@ -54,6 +54,7 @@ namespace UncommonSense.CBreeze.Utils
         }
 
         // FIXME: Use this method in more places, instead of AddChildPageControl<T>
+        // FIXME: Or even better - CreateCardPageControl/CreateListPageControl
         public static FieldPageControl AddFieldPageControl(this PageControl parent, int id, Position position, string sourceExpr)
         {
             var childPageControl = AddChildPageControl(parent, new FieldPageControl(id, parent.IndentationLevel + 1), position);
