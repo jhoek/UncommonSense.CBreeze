@@ -63,7 +63,7 @@ namespace UncommonSense.CBreeze.Meta
 
                 var contentArea = Page.GetContentArea(Range);
                 var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-                MasterEntityTypeControls.Add(Page, group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, MasterEntityTypeField.Name));
+                MasterEntityTypeControl= group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, MasterEntityTypeField.Name);
             }
         }
 
@@ -75,7 +75,49 @@ namespace UncommonSense.CBreeze.Meta
             descriptionPattern.Apply();
 
             DescriptionField = descriptionPattern.DescriptionField;
-            DescriptionControls.AddRange(descriptionPattern.DescriptionControls);
+            DescriptionControl = descriptionPattern.DescriptionControls.First().Value;
+        }
+
+        protected void AddPostingDate()
+        {
+            PostingDateField = Table.Fields.Add(new DateTableField(Range.GetNextTableFieldNo(Table), "Posting Date").AutoCaption());
+            PostingDateField.Properties.ClosingDates = true;
+
+            var contentArea = Page.GetContentArea(Range);
+            var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
+            PostingDateControl = group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.FirstWithinContainer, PostingDateField.Name);
+        }
+
+        protected override void CreateDropDownFieldGroup()
+        {
+            var fieldGroup = Table.FieldGroups.Add(new TableFieldGroup(1, "DropDown"));
+            fieldGroup.Fields.Add(EntryNoField.Name);
+            fieldGroup.Fields.Add(DescriptionField.Name);
+
+            if (MasterEntityTypeTable != null)
+            {
+                fieldGroup.Fields.Add(MasterEntityTypeField.Name);
+            }
+            
+            fieldGroup.Fields.Add(PostingDateField.Name); // FIXME: Document Type,Document No. }
+        }
+
+        protected override void CreateControls()
+        {
+            var actionItems = Page.GetActionItems(Range);
+            var navigateAction = actionItems.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, "&Navigate", "Navigate").Promote(false, PromotedCategory.Process);
+            var trigger = navigateAction.Properties.OnAction;
+            var variable = trigger.Variables.Add(new PageVariable(Range.GetNextVariableID(trigger), "Navigate", BaseApp.PageIDs.Navigate);
+
+            /*
+                          OnAction=VAR
+                                     Navigate@1000 : Page 344;
+                                   BEGIN
+                                     Navigate.SetDoc("Posting Date","Document No.");
+                                     Navigate.RUN;
+                                   END;
+                                    }
+            */
         }
 
         public string PluralName
@@ -145,6 +187,12 @@ namespace UncommonSense.CBreeze.Meta
         }
 
         public FieldPageControl DescriptionControl
+        {
+            get;
+            protected set;
+        }
+
+        public FieldPageControl PostingDateControl
         {
             get;
             protected set;
