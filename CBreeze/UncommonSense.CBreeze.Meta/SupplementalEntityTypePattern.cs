@@ -41,11 +41,8 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateControls()
         {
-            var contentArea = Page.GetContentArea(Range);
-            var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
-
-            CodeControl = group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, CodeField.Name);
-            DescriptionControl = group.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, DescriptionField.Name);
+            CodeControl = CreateListPageControl(Page, Position.LastWithinContainer, CodeField.Name);
+            DescriptionControl = CreateListPageControl(Page, Position.LastWithinContainer, DescriptionField.Name);
 
             var factboxArea = Page.GetFactboxArea(Range);
             factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
