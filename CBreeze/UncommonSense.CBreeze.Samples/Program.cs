@@ -27,8 +27,13 @@ namespace UncommonSense.CBreeze.Samples
             var application = new Application();
 
             var demoLedgerEntry = new LedgerEntityTypePattern(application, range, "Demo Ledger Entry");
+            demoLedgerEntry.PluralName = "Demo Ledger Entries";
+            
             var vatEntry = new LedgerEntityTypePattern(application, range, "Another VAT Entry");
+            vatEntry.PluralName = "Other VAT Entries";
+
             var glEntry = new LedgerEntityTypePattern(application, range, "Another G/L Entry");
+            glEntry.PluralName = "Other G/L Entries";
 
             demoLedgerEntry.Apply();
             vatEntry.Apply();
