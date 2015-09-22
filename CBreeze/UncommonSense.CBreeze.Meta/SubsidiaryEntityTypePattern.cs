@@ -36,6 +36,8 @@ namespace UncommonSense.CBreeze.Meta
         {
             Table = Application.Tables.Add(new Table(Range.GetNextTableID(Application), Name).AutoCaption());
             Page = Application.Pages.Add(new Page(Range.GetNextPageID(Application), PluralName).AutoCaption());
+
+            Page.Properties.PageType = PageType.List;
         }
 
         protected override void LinkObjects()
@@ -55,10 +57,12 @@ namespace UncommonSense.CBreeze.Meta
                 var theirPrimaryKeyField = GetSubsidiaryToPrimaryKeyField(subsidiaryTo);
                 var myPrimaryKeyField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), string.Format("{0} {1}", subsidiaryTo.Name, theirPrimaryKeyField.Name), theirPrimaryKeyField.DataLength).AutoCaption());
                 myPrimaryKeyField.Properties.TableRelation.Add(subsidiaryTo.Name);
+                myPrimaryKeyField.Properties.NotBlank = true;
+
+                CreateListPageControl(Page, Position.LastWithinContainer, myPrimaryKeyField.Name);
 
                 myPrimaryKey.Fields.Add(myPrimaryKeyField.Name);
-                SubsidiaryToFields.Add(subsidiaryTo, myPrimaryKeyField);               
-                // FIXME: add to page
+                SubsidiaryToFields.Add(subsidiaryTo, myPrimaryKeyField);     
             }
 
             switch (DifferentiatorType)
@@ -66,12 +70,14 @@ namespace UncommonSense.CBreeze.Meta
                 case Meta.DifferentiatorType.Code:
                     CodeField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), "Code", 10).AutoCaption());
                     myPrimaryKey.Fields.Add(CodeField.Name);
-                    // FIXME: Add to page?
+
+                    CreateListPageControl(Page, Position.LastWithinContainer, CodeField.Name);
                     break;
                 case Meta.DifferentiatorType.LineNo:
                     LineNoField = Table.Fields.Add(new IntegerTableField(Range.GetNextPrimaryKeyFieldNo(Table), "Line No.").AutoCaption());
                     myPrimaryKey.Fields.Add(LineNoField.Name);
-                    // FIXME: Add to page?
+
+                    CreateListPageControl(Page, Position.LastWithinContainer, LineNoField.Name);
                     break;
             }
         }
