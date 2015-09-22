@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Patterns;
+using UncommonSense.CBreeze.Utils;
 
-namespace UncommonSense.CBreeze.Meta    
+namespace UncommonSense.CBreeze.Meta
 {
     public abstract class EntityTypePattern : Pattern
     {
@@ -61,6 +62,20 @@ namespace UncommonSense.CBreeze.Meta
 
         protected virtual void CreateControls()
         {
+        }
+
+        protected virtual FieldPageControl CreateCardPageControl(Page page, string groupCaption, Position groupPosition, Position controlPosition, string sourceExpr)
+        {
+            var contentArea = page.GetContentArea(Range);
+            var group = contentArea.GetGroupByCaption(groupCaption, Range, groupPosition);
+            return group.AddFieldPageControl(Range.GetNextPageControlID(page), controlPosition, sourceExpr);
+        }
+
+        protected virtual FieldPageControl CreateListPageControl(Page page, Position controlPosition, string sourceExpr)
+        {
+            var contentArea = page.GetContentArea(Range);
+            var repeater = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
+            return repeater.AddFieldPageControl(Range.GetNextPageControlID(page), controlPosition, sourceExpr);
         }
 
         public Application Application
