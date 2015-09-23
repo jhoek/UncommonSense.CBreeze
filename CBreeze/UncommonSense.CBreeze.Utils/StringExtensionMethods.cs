@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace UncommonSense.CBreeze.Utils
 {
@@ -39,6 +40,20 @@ namespace UncommonSense.CBreeze.Utils
             return new string((from c in text
                                where Char.IsLetterOrDigit(c)
                                select c).ToArray());
+        }
+
+        public static string MakePlural(this string text)
+        {
+            if (text.EndsWith("y"))
+                return Regex.Replace(text, "y$", "ies");
+
+            if (text.EndsWith("s") || text.EndsWith("ch") || text.EndsWith("sh"))
+                return string.Format("{0}es", text);
+
+            if (text.EndsWith("f") || text.EndsWith("fe"))
+                return Regex.Replace(text, "fe?$", "ves");
+
+            return string.Format("{0}s", text);                
         }
     }
 }
