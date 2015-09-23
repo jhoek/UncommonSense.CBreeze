@@ -97,6 +97,44 @@ namespace UncommonSense.CBreeze.Meta
             LineTableDocumentDateField = LineTable.Fields.Add(new DateTableField(Range.GetNextTableFieldNo(LineTable), "Document Date").AutoCaption());
         }
 
+        protected override void SetFieldProperties()
+        {
+            TemplateTableNameField.Properties.NotBlank = true;
+
+            BatchTableJournalTemplateNameField.Properties.NotBlank = true;
+            BatchTableNameField.Properties.NotBlank = true;
+
+            if (HasTestReportID)
+            {
+                TemplateTableTestReportIDField.Properties.TableRelation.Set("Object", "ID").TableFilter.Add("Type", TableRelationTableFilterLineType.Const, "Report");
+
+                TemplateTableTestReportCaptionField.Properties.FieldClass = FieldClass.FlowField;
+                TemplateTableTestReportCaptionField.Properties.Editable = false;
+                TemplateTableTestReportCaptionField.Properties.CalcFormula.Set(
+                    CalcFormulaMethod.Lookup, 
+                    "AllObjWithCaption", 
+                    "Object Caption", 
+                    false, 
+                    new CalcFormulaTableFilterLine("Object Type", CalcFormulaTableFilterType.Const, "Report"), 
+                    new CalcFormulaTableFilterLine("Object ID", CalcFormulaTableFilterType.Field, TemplateTableTestReportIDField.Name));
+            }
+        }
+
+        protected override void CreateKeys()
+        {
+            var templateTableKey = TemplateTable.Keys.Add();
+            templateTableKey.Fields.Add(TemplateTableNameField.Name);
+            templateTableKey.Properties.Clustered = true;
+
+            var batchTableKey = BatchTable.Keys.Add();
+            batchTableKey.Fields.AddRange(BatchTableJournalTemplateNameField.Name, BatchTableNameField.Name);
+            batchTableKey.Properties.Clustered = true;
+
+            var lineTableKey = LineTable.Keys.Add();
+            lineTableKey.Fields.AddRange(LineTableJournalTemplateNameField.Name, LineTableJournalBatchNameField.Name, LineTableLineNoField.Name);
+            lineTableKey.Properties.Clustered = true;
+        }
+
         protected override void CreateGlobals()
         {
             JournalMgtCodeunitOpenFromBatchVariable = JournalMgtCodeunit.Code.Variables.Add(new BooleanVariable(Range.GetNextVariableID(JournalMgtCodeunit), "OpenFromBatch"));
