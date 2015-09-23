@@ -91,9 +91,23 @@ namespace UncommonSense.CBreeze.Meta
             LineTableDocumentDateField = LineTable.Fields.Add(new DateTableField(Range.GetNextTableFieldNo(LineTable), "Document Date").AutoCaption());
         }
 
+        protected override void CreateGlobals()
+        {
+            JournalMgtCodeunitOpenFromBatchVariable = JournalMgtCodeunit.Code.Variables.Add(new BooleanVariable(Range.GetNextVariableID(JournalMgtCodeunit), "OpenFromBatch"));
+        }
+
         protected override void CreateFunctions()
         {
             BatchTableSetupNewBatchFunction = BatchTable.Code.Functions.Add(new Function(Range.GetNextFunctionID(BatchTable), "SetupNewBatch"));
+
+            JournalMgtCodeunitTemplateSelectionFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "TemplateSelection"));
+            JournalMgtCodeunitTemplateSelectionFromBatchFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "TemplateSelectionFromBatch"));
+            JournalMgtCodeunitOpenJnlFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "OpenJnl"));
+            JournalMgtCodeunitOpenJnlBatchFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "OpenJnlBatch"));
+            JournalMgtCodeunitCheckTemplateNameFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "CheckTemplateName"));
+            JournalMgtCodeunitCheckNameFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "CheckName"));
+            JournalMgtCodeunitSetNameFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "SetName"));
+            JournalMgtCodeunitLookupNameFunction = JournalMgtCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(JournalMgtCodeunit), "LookupName"));
         }
     }
 }
