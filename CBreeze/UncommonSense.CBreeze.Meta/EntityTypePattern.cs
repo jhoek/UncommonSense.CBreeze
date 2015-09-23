@@ -40,6 +40,7 @@ namespace UncommonSense.CBreeze.Meta
             CreateObjects();
             LinkObjects();
             CreateFields();
+            CreateFunctions();
             CreateDropDownFieldGroup();
             CreateControls();
             CreateActions();
@@ -54,6 +55,10 @@ namespace UncommonSense.CBreeze.Meta
         }
 
         protected virtual void CreateFields()
+        {
+        }
+
+        protected virtual void CreateFunctions()
         {
         }
 
