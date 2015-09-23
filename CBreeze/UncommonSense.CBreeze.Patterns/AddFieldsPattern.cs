@@ -51,6 +51,8 @@ namespace UncommonSense.CBreeze.Patterns
                     case PageType.List:
                         CreateListPageControls(page);
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException(string.Format("Unsure how to add controls to pages of type {0}", page.Properties.PageType));
                 }
             }
         }
