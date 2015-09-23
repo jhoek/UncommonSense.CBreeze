@@ -101,7 +101,7 @@ namespace UncommonSense.CBreeze.Meta
             factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes).Hide();            
         }
 
-        protected void CreateActions()
+        protected override void CreateActions()
         {
             AddActionsToPage(CardPage);
             AddActionsToPage(ListPage);
