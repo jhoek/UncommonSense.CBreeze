@@ -51,7 +51,7 @@ namespace UncommonSense.CBreeze.Utils
             const int nonKeyFieldsOffset = 10;
 
             if (range.Contains(table.ID))
-                range = Enumerable.Range(nonKeyFieldsOffset, int.MaxValue - nonKeyFieldsOffset + 1);
+                range = nonKeyFieldsOffset.To(int.MaxValue);
 
             return range.Skip(offset).Except(table.Fields.Select(f => f.ID)).First();
         }
@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Utils
         public static int GetNextPageControlID(this IEnumerable<int> range, Page page)
         {
             if (range.Contains(page.ID))
-                range = Enumerable.Range(1, int.MaxValue);
+                range = 1.To(int.MaxValue);
 
             var pageControlIDs = page.Controls.Select(c => c.ID);
             var pageActionIDs = page.Properties.ActionList.Select(a => a.ID);
@@ -77,7 +77,7 @@ namespace UncommonSense.CBreeze.Utils
         public static int GetNextFunctionID<T>(this IEnumerable<int> range, T hasCode) where T : Object, IHasCode
         {
             if (range.Contains(hasCode.ID))
-                range = Enumerable.Range(1, int.MaxValue);
+                range = 1.To(int.MaxValue);
 
             return range.Except(hasCode.GetCode().Functions.Select(f => f.ID)).First();
         }
@@ -86,7 +86,7 @@ namespace UncommonSense.CBreeze.Utils
         {
             // Note: The first 1000 global variable IDs are reserved for C/SIDE
             if (range.Contains(hasCode.ID))
-                range = Enumerable.Range(1000, int.MaxValue - 1000 + 1);
+                range = 1000.To(int.MaxValue);
 
             return range.Except(hasCode.GetCode().Variables.Select(v => v.ID)).First();
         }
@@ -101,7 +101,7 @@ namespace UncommonSense.CBreeze.Utils
         public static int GetNextParameterID(this IEnumerable<int> range, Function function)
         {
             if (range.Contains(function.ID))
-                range = Enumerable.Range(1, int.MaxValue);
+                range = 1.To(int.MaxValue);
 
             return range.Except(function.Parameters.Select(p => p.ID)).First();
         }
@@ -109,7 +109,7 @@ namespace UncommonSense.CBreeze.Utils
         public static int GetNextVariableID(this IEnumerable<int> range, Function function)
         {
             if (range.Contains(function.ID))
-                range = Enumerable.Range(1, int.MaxValue);
+                range = 1.To(int.MaxValue);
 
             return range.Except(function.Variables.Select(v => v.ID)).First();
         }
