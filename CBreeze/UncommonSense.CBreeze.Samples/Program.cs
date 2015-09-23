@@ -30,10 +30,11 @@ namespace UncommonSense.CBreeze.Samples
             var application = new Application();
             var range = 50000.To(59999);
 
-            CBreezeWriteDemo(application, range);
+            JournalEntityType(application, range);
+
         }
 
-        static void CBreezeWriteDemo(Application application, IEnumerable<int> range)
+        static void JournalEntityType(Application application, IEnumerable<int> range)
         {
             var setupEntityType = new SetupEntityTypePattern(application, range, "Demo Setup");
             setupEntityType.Apply();
@@ -41,50 +42,19 @@ namespace UncommonSense.CBreeze.Samples
             var newItem = new MasterEntityTypePattern(application, range, "New Item");
             newItem.SetupTable = setupEntityType.Table;
             newItem.SetupPage = setupEntityType.Page;
+            newItem.HasDescription2 = true;
+            newItem.HasSearchDescription = true;
+            newItem.HasStatisticsPage=true;
+            newItem.HasLastDateModified = true;
             newItem.Apply();
-
-            var newVendor = new MasterEntityTypePattern(application, range, "New Vendor");
-            newVendor.SetupTable = setupEntityType.Table;
-            newVendor.SetupPage = setupEntityType.Page;
-            newVendor.Apply();
-
-            var subsidiaryEntityType = new SubsidiaryEntityTypePattern(application, range, "New Item Vendor", newItem.Table, newVendor.Table);
-            subsidiaryEntityType.DifferentiatorType = DifferentiatorType.Code;
-            subsidiaryEntityType.Apply();
 
             var journalEntityType = new JournalEntityTypePattern(application, range, "New Item Journal");
             journalEntityType.MasterEntityTypeTable = newItem.Table;
             journalEntityType.Apply();
 
-            /*
-            var demoLedgerEntry = new LedgerEntityTypePattern(application, range, "Demo Ledger Entry");
-            demoLedgerEntry.PluralName = "Demo Ledger Entries";
-            
-            var vatEntry = new LedgerEntityTypePattern(application, range, "Another VAT Entry");
-            vatEntry.PluralName = "Other VAT Entries";
-
-            var glEntry = new LedgerEntityTypePattern(application, range, "Another G/L Entry");
-            glEntry.PluralName = "Other G/L Entries";
-
-            demoLedgerEntry.Apply();
-            vatEntry.Apply();
-            glEntry.Apply();
-
-            var registerEntityTypePattern = new RegisterEntityTypePattern(application, range, "Demo Register", glEntry.Table, demoLedgerEntry.Table, vatEntry.Table);
-            registerEntityTypePattern.HasCreationDate = true;
-            registerEntityTypePattern.Apply();
-             */
-
-            //application.Write(Console.Out);
-
-
             application.Write(devClient, databaseServerName, databaseName);
             application.Compile(devClient, databaseServerName, databaseName);
 
-
-            //registerEntityTypePattern.Table.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName);
-            //demoLedgerEntry.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.Edit);
-            //subsidiaryEntityType.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
             journalEntityType.JournalPage.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
         }
     }
