@@ -16,6 +16,8 @@ namespace UncommonSense.CBreeze.Patterns
             Pages = new List<Page>();
 
             Pages.AddRange(pages);
+
+            GroupCaption = "General";
         }
 
         protected override void VerifyRequirements()
