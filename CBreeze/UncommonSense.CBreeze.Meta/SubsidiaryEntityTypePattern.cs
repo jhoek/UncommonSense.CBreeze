@@ -105,7 +105,7 @@ namespace UncommonSense.CBreeze.Meta
         {
             get
             {
-                return this.pluralName ?? string.Format("{0}s", Name);
+                return this.pluralName ?? Name.MakePlural();
             }
             set
             {
