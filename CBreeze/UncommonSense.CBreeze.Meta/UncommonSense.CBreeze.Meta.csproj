@@ -45,7 +45,9 @@
     <Compile Include="DocumentEntityTypePattern.Outputs.cs" />
     <Compile Include="DocumentHistoryEntityTypePattern.cs" />
     <Compile Include="EntityTypePattern.cs" />
-    <Compile Include="JournalEntityTypePattern.cs" />
+    <Compile Include="JournalEntityTypePattern.Inputs.cs" />
+    <Compile Include="JournalEntityTypePattern.Methods.cs" />
+    <Compile Include="JournalEntityTypePattern.Output.cs" />
     <Compile Include="LedgerEntityTypePattern.cs" />
     <Compile Include="MasterEntityTypePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
