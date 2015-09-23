@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Utils
         #endregion
 
         #region Code
-        public static int GetNextFunctionID<T>(this IEnumerable<int> range, T hasCode) where T: Object, IHasCode
+        public static int GetNextFunctionID<T>(this IEnumerable<int> range, T hasCode) where T : Object, IHasCode
         {
             if (range.Contains(hasCode.ID))
                 range = Enumerable.Range(1, int.MaxValue);
@@ -82,12 +82,13 @@ namespace UncommonSense.CBreeze.Utils
             return range.Except(hasCode.GetCode().Functions.Select(f => f.ID)).First();
         }
 
-        public static int GetNextVariableID<T>(this IEnumerable<int> range, T hasCode) where T:Object, IHasCode
+        public static int GetNextVariableID<T>(this IEnumerable<int> range, T hasCode) where T : Object, IHasCode
         {
+            // Note: The first 1000 global variable IDs are reserved for C/SIDE
             if (range.Contains(hasCode.ID))
-                range = Enumerable.Range(1, int.MaxValue);
+                range = Enumerable.Range(1000, int.MaxValue - 1000 + 1);
 
-            return range.Except(hasCode.GetCode().Variables.Select(v=>v.ID)).First();
+            return range.Except(hasCode.GetCode().Variables.Select(v => v.ID)).First();
         }
 
         public static int GetNextVariableID(this IEnumerable<int> range, Trigger trigger)
@@ -104,7 +105,7 @@ namespace UncommonSense.CBreeze.Utils
 
             return range.Except(function.Parameters.Select(p => p.ID)).First();
         }
-        
+
         public static int GetNextVariableID(this IEnumerable<int> range, Function function)
         {
             if (range.Contains(function.ID))
