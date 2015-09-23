@@ -128,11 +128,63 @@ namespace UncommonSense.CBreeze.Meta
         {
             var result = ledgerTableName;
 
-            result = Regex.Replace(result, @"\bG/L\b", "General Ledger");
-            result = Regex.Replace(result, @"\bLedger Entry$", "Ledger");
-            result = Regex.Replace(result, @"\bEntry$", "Entries");
+            result = Regex.Replace(result, @"\bG/L\b", "General Ledger");  // G/L Entry => General Ledger Entry
+            result = Regex.Replace(result, @"\bLedger Entry$", "Ledger");  // General Ledger Entry => General Ledger
+            result = Regex.Replace(result, @"\bEntry$", "Entries");        // VAT Entry => VAT Entries
 
             return result;
+        }
+
+        protected virtual string ImageFromLedgerCaption(string ledgerCaption)
+        {
+            switch (ledgerCaption)
+            {
+                case "Bank Account Ledger":
+                    return RunTime.Images.BankAccountLedger;
+                case "Bin Ledger":
+                    return RunTime.Images.BinLedger;
+                case "BOM Ledger":
+                    return RunTime.Images.BOMLedger;
+                case "Capacity Ledger":
+                    return RunTime.Images.CapacityLedger;
+                case "Check Ledger":
+                    return RunTime.Images.CheckLedger;
+                case "Customer Ledger":
+                    return RunTime.Images.CustomerLedger;
+                case "Fixed Asset Ledger":
+                    return RunTime.Images.FixedAssetLedger;
+                case "Insurance Ledger":
+                    return RunTime.Images.InsuranceLedger;
+                case "Item Ledger":
+                    return RunTime.Images.ItemLedger;
+                case "Item Tracking Ledger":
+                    return RunTime.Images.ItemTrackingLedger;
+                case "Job Ledger":
+                    return RunTime.Images.JobLedger;
+                case "Maintenance Ledger":
+                    return RunTime.Images.MaintenanceLedger;
+                case "Physical Inventory Ledger":
+                    return RunTime.Images.PhysicalInventoryLedger;
+                case "Reservation Ledger":
+                    return RunTime.Images.ReservationLedger;
+                case "Resource Ledger":
+                    return RunTime.Images.ResourceLedger;
+                case "Service Ledger":
+                    return RunTime.Images.ServiceLedger;
+                case "Value Ledger":
+                    return RunTime.Images.ValueLedger;
+                case "VAT Ledger":
+                    return RunTime.Images.VATLedger;
+                case "Vendor Ledger":
+                    return RunTime.Images.VendorLedger;
+                case "Warrantly Ledger":
+                    return RunTime.Images.WarrantyLedger;
+                case "WIP Ledger":
+                    return RunTime.Images.WIPLedger;
+                    
+                default:
+                    return RunTime.Images.GeneralLedger;
+            }
         }
     }
 }
