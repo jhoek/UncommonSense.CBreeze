@@ -9,6 +9,12 @@ namespace UncommonSense.CBreeze.Meta
 {
     public partial class JournalEntityTypePattern
     {
+        protected override void VerifyRequirements()
+        {
+            if (MasterEntityTypeTable == null)
+                throw new ArgumentNullException("MasterEntityTypeTable");
+        }
+
         protected override void CreateObjects()
         {
             TemplateTable = Application.Tables.Add(new Table(Range.GetNextTableID(Application), TemplateName).AutoCaption());
