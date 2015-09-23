@@ -15,16 +15,26 @@ namespace UncommonSense.CBreeze.Samples
 {
     class Program
     {
+        const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
+        const string databaseServerName = @"JANHOEK1FC5\NAVDEMO";
+        const string databaseName = @"Demo Database NAV (7-0)";
+
+        const string roleTailoredClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\Microsoft.Dynamics.Nav.Client.exe";
+        const string serverName = "localhost";
+        const int serverPort = 7146;
+        const string serverInstance = "DynamicsNAV70";
+        const string companyName = "CRONUS Nederland BV";
+
         static void Main(string[] args)
         {
-            CBreezeWriteDemo();
+            var application = new Application();
+            var range = 50000.To(59999);
+
+            CBreezeWriteDemo(application, range);
         }
 
-        static void CBreezeWriteDemo()
+        static void CBreezeWriteDemo(Application application, IEnumerable<int> range)
         {
-            var range = 50000.To(59999);
-            var application = new Application();
-
             var setupEntityType = new SetupEntityTypePattern(application, range, "Demo Setup");
             setupEntityType.Apply();
 
@@ -67,18 +77,10 @@ namespace UncommonSense.CBreeze.Samples
 
             //application.Write(Console.Out);
 
-            const string devClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
-            const string databaseServerName = @"JANHOEK1FC5\NAVDEMO";
-            const string databaseName = @"Demo Database NAV (7-0)";
 
             application.Write(devClient, databaseServerName, databaseName);
             application.Compile(devClient, databaseServerName, databaseName);
 
-            const string roleTailoredClient = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\Microsoft.Dynamics.Nav.Client.exe";
-            const string serverName = "localhost";
-            const int serverPort = 7146;
-            const string serverInstance = "DynamicsNAV70";
-            const string companyName = "CRONUS Nederland BV";
 
             //registerEntityTypePattern.Table.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName);
             //demoLedgerEntry.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.Edit);
