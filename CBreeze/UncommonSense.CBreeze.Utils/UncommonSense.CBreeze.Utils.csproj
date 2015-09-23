@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoCaptionExtensionMethods.cs" />
+    <Compile Include="CalcFormulaExtensionMethods.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="PageActionExtensionMethods.cs" />
     <Compile Include="PageControlExtensionMethods.cs" />

@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Core
         private String value;
         private Boolean valueIsFilter;
 
-        internal CalcFormulaTableFilterLine(String fieldName, CalcFormulaTableFilterType type, String value)
+        public CalcFormulaTableFilterLine(String fieldName, CalcFormulaTableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;
