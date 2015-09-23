@@ -248,55 +248,55 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public Function OpenJnlFunction
+        public Function JournalMgtCodeunitOpenJnlFunction
         {
             get;
             protected set;
         }
 
-        public Function TemplateSelectionFunction
+        public Function JournalMgtCodeunitTemplateSelectionFunction
         {
             get;
             protected set;
         }
 
-        public Function CheckTemplateNameFunction
+        public Function JournalMgtCodeunitCheckTemplateNameFunction
         {
             get;
             protected set;
         }
 
-        public Function LookupNameFunction
+        public Function JournalMgtCodeunitLookupNameFunction
         {
             get;
             protected set;
         }
 
-        public Function SetNameFunction
+        public Function JournalMgtCodeunitSetNameFunction
         {
             get;
             protected set;
         }
 
-        public Function ChechNameFunction
+        public Function JournalMgtCodeunitCheckNameFunction
         {
             get;
             protected set;
         }
 
-        public Function TemplateSelectionFromBatchFunction
+        public Function JournalMgtCodeunitTemplateSelectionFromBatchFunction
         {
             get;
             protected set;
         }
 
-        public Function OpenJnlBatchFunction
+        public Function JournalMgtCodeunitOpenJnlBatchFunction
         {
             get;
             protected set;
         }
 
-        public BooleanVariable OpenFromBatchVariable
+        public BooleanVariable JournalMgtCodeunitOpenFromBatchVariable
         {
             get;
             protected set;
