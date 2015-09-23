@@ -153,12 +153,6 @@ namespace UncommonSense.CBreeze.Patterns
             set;
         }
 
-        public string Prefix
-        {
-            get;
-            set;
-        }
-
         public TextTableField ContactField
         {
             get;
