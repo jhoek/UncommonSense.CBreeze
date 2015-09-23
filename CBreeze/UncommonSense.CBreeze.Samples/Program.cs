@@ -41,7 +41,10 @@ namespace UncommonSense.CBreeze.Samples
             var subsidiaryEntityType = new SubsidiaryEntityTypePattern(application, range, "New Item Vendor", newItem.Table, newVendor.Table);
             subsidiaryEntityType.DifferentiatorType = DifferentiatorType.Code;
             subsidiaryEntityType.Apply();
-            
+
+            var journalEntityType = new JournalEntityTypePattern(application, range, "New Item Journal");
+            journalEntityType.MasterEntityTypeTable = newItem.Table;
+            journalEntityType.Apply();
 
             /*
             var demoLedgerEntry = new LedgerEntityTypePattern(application, range, "Demo Ledger Entry");
@@ -79,7 +82,8 @@ namespace UncommonSense.CBreeze.Samples
 
             //registerEntityTypePattern.Table.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName);
             //demoLedgerEntry.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.Edit);
-            subsidiaryEntityType.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
+            //subsidiaryEntityType.Page.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
+            journalEntityType.JournalPage.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
         }
     }
 }
