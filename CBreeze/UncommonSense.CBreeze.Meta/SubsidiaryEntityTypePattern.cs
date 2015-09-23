@@ -40,7 +40,7 @@ namespace UncommonSense.CBreeze.Meta
             Page.Properties.PageType = PageType.List;
         }
 
-        protected override void LinkObjects()
+        protected override void AfterCreateObjects()
         {
             Page.Properties.SourceTable = Table.ID;
             Table.Properties.LookupPageID = Page.ID;

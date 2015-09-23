@@ -29,7 +29,7 @@ namespace UncommonSense.CBreeze.Meta
             }
         }
 
-        protected override void LinkObjects()
+        protected override void AfterCreateObjects()
         {
             var tableRelation = LineTableDocumentNoField.Properties.TableRelation.Set(HeaderTable.Name, HeaderTableNoField.Name);
 
@@ -41,7 +41,10 @@ namespace UncommonSense.CBreeze.Meta
             foreach (var documentType in DocumentTypes)
             {
                 CardPages[documentType].Properties.SourceTable = HeaderTable.ID;
+                CardPages[documentType].Properties.PageType = PageType.Card;
+
                 ListPages[documentType].Properties.SourceTable = HeaderTable.ID;
+                ListPages[documentType].Properties.PageType = PageType.List;
             }
         }
 

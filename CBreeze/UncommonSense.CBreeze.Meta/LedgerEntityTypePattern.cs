@@ -17,25 +17,21 @@ namespace UncommonSense.CBreeze.Meta
         {
         }
 
-        protected override void VerifyRequirements()
-        {
-            base.VerifyRequirements();
-        }
-
         protected override void CreateObjects()
         {
             Table = Application.Tables.Add(new Table(Range.GetNextTableID(Application), Name).AutoCaption());
             Page = Application.Pages.Add(new Page(Range.GetNextPageID(Application), PluralName).AutoCaption());
-
-            Page.Properties.PageType = PageType.List;
-            Page.Properties.Editable = false;
         }
 
-        protected override void LinkObjects()
+        protected override void AfterCreateObjects()
         {
             Table.Properties.DrillDownPageID = Page.ID;
             Table.Properties.LookupPageID = Page.ID;
+
             Page.Properties.SourceTable = Table.ID;
+            Page.Properties.PageType = PageType.List;
+            Page.Properties.Editable = false;
+            
         }
 
         protected override void CreateFields()

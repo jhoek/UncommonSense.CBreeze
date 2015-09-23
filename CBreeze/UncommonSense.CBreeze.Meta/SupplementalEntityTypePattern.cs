@@ -22,16 +22,12 @@ namespace UncommonSense.CBreeze.Meta
             Page = Application.Pages.Add(new Page(Range.GetNextPageID(Application), PluralName).AutoCaption());
         }
 
-        protected override void SetObjectProperties()
-        {
-            Page.Properties.PageType = PageType.List;
-        }
-
-        protected override void LinkObjects()
+        protected override void AfterCreateObjects()
         {
             Table.Properties.LookupPageID = Page.ID;
             Table.Properties.DrillDownPageID = Page.ID;
 
+            Page.Properties.PageType = PageType.List;
             Page.Properties.SourceTable = Table.ID;
         }
 
@@ -41,7 +37,7 @@ namespace UncommonSense.CBreeze.Meta
             DescriptionField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), "Description", 50).AutoCaption());
         }
 
-        protected override void SetFieldProperties()
+        protected override void AfterCreateFields()
         {
             CodeField.Properties.NotBlank = true;
         }

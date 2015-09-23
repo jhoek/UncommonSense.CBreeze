@@ -38,27 +38,32 @@ namespace UncommonSense.CBreeze.Meta
         protected override void MakeChanges()
         {
             CreateObjects();
-            LinkObjects();
+            AfterCreateObjects();
+
             CreateFields();
+            AfterCreateFields();
+
             CreateKeys();
             CreateGlobals();
             CreateFunctions();
             CreateDropDownFieldGroup();
             CreateControls();
             CreateActions();
-            SetObjectProperties();
-            SetFieldProperties();
         }
 
         protected virtual void CreateObjects()
         {
         }
 
-        protected virtual void LinkObjects()
+        protected virtual void AfterCreateObjects()
         {
         }
 
         protected virtual void CreateFields()
+        {
+        }
+
+        protected virtual void AfterCreateFields()
         {
         }
 
@@ -83,14 +88,6 @@ namespace UncommonSense.CBreeze.Meta
         }
 
         protected virtual void CreateActions()
-        {
-        }
-
-        protected virtual void SetObjectProperties()
-        {
-        }
-
-        protected virtual void SetFieldProperties()
         {
         }
 

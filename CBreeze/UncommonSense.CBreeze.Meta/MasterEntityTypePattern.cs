@@ -22,23 +22,25 @@ namespace UncommonSense.CBreeze.Meta
             CardPage = Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Card", Name)).AutoCaption());
             ListPage = Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} List", Name)).AutoCaption());
             StatisticsPage = HasStatisticsPage ? Application.Pages.Add(new Page(Range.GetNextPageID(Application), string.Format("{0} Statistics", Name)).AutoCaption()) : null;
-
-            CardPage.Properties.RefreshOnActivate = true;
-            ListPage.Properties.Editable = false;
         }
 
-        protected override void LinkObjects()
+        protected override void AfterCreateObjects()
         {
             Table.Properties.LookupPageID = ListPage.ID;
             Table.Properties.DrillDownPageID = ListPage.ID;
 
+            CardPage.Properties.PageType = PageType.Card;
             CardPage.Properties.SourceTable = Table.ID;
-            
+            CardPage.Properties.RefreshOnActivate = true;
+
+            ListPage.Properties.PageType = PageType.List;
             ListPage.Properties.SourceTable = Table.ID;
             ListPage.Properties.CardPageID = CardPage.Name;
+            ListPage.Properties.Editable = false;
 
             if (HasStatisticsPage)
             {
+                StatisticsPage.Properties.PageType = PageType.Card;
                 StatisticsPage.Properties.SourceTable = Table.ID;
             }
         }
@@ -114,7 +116,7 @@ namespace UncommonSense.CBreeze.Meta
 
             if (HasStatisticsPage)
             {
-                StatisticsAction = routingChoices.AddPageAction(Range.GetNextPageControlID(page), Position.LastWithinContainer, "Statistics", "Statistics").Promote(false, PromotedCategory.Process);
+                StatisticsAction = routingChoices.AddPageAction(Range.GetNextPageControlID(page), Position.LastWithinContainer, "Statistics", RunTime.Images.Statistics).Promote(false, PromotedCategory.Process);
                 StatisticsAction.Properties.ShortCutKey = "F7";
                 StatisticsAction.Properties.RunObject.Type = RunObjectType.Page;
                 StatisticsAction.Properties.RunObject.ID = StatisticsPage.ID;

@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Meta
             codeLines.Add("END;");
         }
 
-        protected override void LinkObjects()
+        protected override void AfterCreateObjects()
         {
             Page.Properties.SourceTable = Table.ID;
         }

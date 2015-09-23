@@ -43,7 +43,7 @@ namespace UncommonSense.CBreeze.Meta
             Page.Properties.Editable = false;
         }
 
-        protected override void LinkObjects()
+        protected override void AfterCreateObjects()
         {
             Table.Properties.DrillDownPageID = Page.ID;
             Table.Properties.LookupPageID = Page.ID;
@@ -115,7 +115,7 @@ namespace UncommonSense.CBreeze.Meta
             {
                 var caption = ActionCaptionFromLedgerTableName(ledgerEntryTable.Name);
                 // FIXME: Image should not always be GLRegisters; there are plenty more images for registers?!
-                var routingChoiceAction = routingChoices.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, caption, "GLRegisters").Promote(true, PromotedCategory.Process);
+                var routingChoiceAction = routingChoices.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, caption, RunTime.Images.GLRegisters).Promote(true, PromotedCategory.Process);
                 RoutingChoiceActions.Add(ledgerEntryTable, routingChoiceAction);
             }
 
