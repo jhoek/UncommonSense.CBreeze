@@ -29,7 +29,9 @@ namespace UncommonSense.CBreeze.IO
             Compile("Codeunit", application.Codeunits.Select(c => c.ID), devClient, serverName, database);
             Compile("Page", application.Pages.Select(p => p.ID), devClient, serverName, database);
             Compile("Report", application.Pages.Select(r => r.ID), devClient, serverName, database);
-
+            Compile("XMLport", application.XmlPorts.Select(x => x.ID), devClient, serverName, database);
+            Compile("Query", application.Queries.Select(x => x.ID), devClient, serverName, database);
+            Compile("MenuSuite", application.MenuSuites.Select(m => m.ID), devClient, serverName, database);
         }
 
         public static void Compile(string type, IEnumerable<int> ids, string devClient, string serverName, string database)
