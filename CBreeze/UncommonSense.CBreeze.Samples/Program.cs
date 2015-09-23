@@ -39,23 +39,23 @@ namespace UncommonSense.CBreeze.Samples
             var setupEntityType = new SetupEntityTypePattern(application, range, "Demo Setup");
             setupEntityType.Apply();
 
-            var newItem = new MasterEntityTypePattern(application, range, "New Item");
-            newItem.SetupTable = setupEntityType.Table;
-            newItem.SetupPage = setupEntityType.Page;
-            newItem.HasDescription2 = true;
-            newItem.HasSearchDescription = true;
-            newItem.HasStatisticsPage=true;
-            newItem.HasLastDateModified = true;
-            newItem.Apply();
+            var masterEntityType = new MasterEntityTypePattern(application, range, "New Item");
+            masterEntityType.SetupTable = setupEntityType.Table;
+            masterEntityType.SetupPage = setupEntityType.Page;
+            masterEntityType.HasDescription2 = true;
+            masterEntityType.HasSearchDescription = true;
+            masterEntityType.HasStatisticsPage=true;
+            masterEntityType.HasLastDateModified = true;
+            masterEntityType.Apply();
 
             var journalEntityType = new JournalEntityTypePattern(application, range, "New Item Journal");
-            journalEntityType.MasterEntityTypeTable = newItem.Table;
+            journalEntityType.MasterEntityTypeTable = masterEntityType.Table;
             journalEntityType.Apply();
 
             application.Write(devClient, databaseServerName, databaseName);
             application.Compile(devClient, databaseServerName, databaseName);
 
-            journalEntityType.JournalPage.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
+            masterEntityType.CardPage.Run(roleTailoredClient, serverName, serverPort, serverInstance, companyName, PageMode.View);
         }
     }
 }
