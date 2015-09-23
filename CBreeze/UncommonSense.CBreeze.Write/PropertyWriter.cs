@@ -87,14 +87,14 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<QueryOrderByLinesProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<DataItemQueryElementTableFilterProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<SIFTLevelsProperty>(p => p.Write(isLastProperty, style, writer)),
-                TypeSwitch.Case<TestIsolationProperty>(p=> WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<TestIsolationProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<NullableBooleanProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<NullableDateTimeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString("dd-MM-yy HH:mm"), isLastProperty, writer)),
                 TypeSwitch.Case<NullableDateProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString("dd-MM-yy"), isLastProperty, writer)),
                 TypeSwitch.Case<NullableDecimalProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<NullableBigIntegerProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<NullableGuidProperty>(p => WriteSimpleProperty(p.Name, string.Format("[{0}]", p.Value.GetValueOrDefault().ToString("B").ToUpper()), isLastProperty, writer)),
-                TypeSwitch.Case<NullableIntegerProperty>(p=> WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<NullableIntegerProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<NullableTimeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString("c"), isLastProperty, writer))
             );
         }
@@ -203,14 +203,14 @@ namespace UncommonSense.CBreeze.Write
             {
                 case CalcFormulaMethod.Exist:
                 case CalcFormulaMethod.Count:
-                    writer.Write(property.Value.TableName.QuotedExcept());
+                    writer.Write(property.Value.TableName.QuotedExcept('-', '/', '.'));
                     break;
                 case CalcFormulaMethod.Lookup:
                 case CalcFormulaMethod.Average:
                 case CalcFormulaMethod.Max:
                 case CalcFormulaMethod.Min:
                 case CalcFormulaMethod.Sum:
-                    writer.Write("{0}.{1}", property.Value.TableName.QuotedExcept(), property.Value.FieldName.QuotedExcept());
+                    writer.Write("{0}.{1}", property.Value.TableName.QuotedExcept('-', '/', '.'), property.Value.FieldName.QuotedExcept('-', '/', '.'));
                     break;
             }
 
@@ -345,18 +345,18 @@ namespace UncommonSense.CBreeze.Write
         {
             var requiresBrackets = (
                 property.Value.Count() > 1 ||
-                property.Value.Any(e=>e.Value.Contains('{')));
+                property.Value.Any(e => e.Value.Contains('{')));
 
             writer.Write("{0}=", property.Name);
             if (requiresBrackets)
                 writer.Write("[");
             writer.Indent(writer.Column);
 
-            foreach (var multiLanguageEntry in property.Value.OrderBy(e=>GetLCIDFromLanguageCode(e.LanguageID)))
+            foreach (var multiLanguageEntry in property.Value.OrderBy(e => GetLCIDFromLanguageCode(e.LanguageID)))
             {
                 var requiresQuotes = (
-                    multiLanguageEntry.Value != multiLanguageEntry.Value.Trim() || 
-                    multiLanguageEntry.Value.Contains('=') || 
+                    multiLanguageEntry.Value != multiLanguageEntry.Value.Trim() ||
+                    multiLanguageEntry.Value.Contains('=') ||
                     multiLanguageEntry.Value == string.Empty);
                 writer.Write("{0}={1}", multiLanguageEntry.LanguageID, requiresQuotes ? multiLanguageEntry.Value.ForceQuoted() : multiLanguageEntry.Value);
                 writer.WriteLineIf(multiLanguageEntry != property.Value.Last(), ";");
@@ -422,11 +422,11 @@ namespace UncommonSense.CBreeze.Write
                     writer.Write(") ");
                 }
 
-                writer.Write(tableRelationLine.TableName.QuotedExcept());
+                writer.Write(tableRelationLine.TableName.QuotedExcept('/', '.', '-'));
 
                 if (!string.IsNullOrEmpty(tableRelationLine.FieldName))
                 {
-                    writer.Write(".{0}", tableRelationLine.FieldName.QuotedExcept());
+                    writer.Write(".{0}", tableRelationLine.FieldName.QuotedExcept('/', '.', '-'));
                 }
 
                 if (tableRelationLine.TableFilter.Any())
@@ -690,7 +690,7 @@ namespace UncommonSense.CBreeze.Write
             if (languageCode == "@@@")
                 return 0;
 
-            if (cultures == null) 
+            if (cultures == null)
                 cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
 
             return cultures.FirstOrDefault(c => c.ThreeLetterWindowsLanguageName == languageCode).LCID;
