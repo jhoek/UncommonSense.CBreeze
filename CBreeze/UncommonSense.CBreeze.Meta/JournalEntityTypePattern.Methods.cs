@@ -33,29 +33,40 @@ namespace UncommonSense.CBreeze.Meta
         protected override void LinkObjects()
         {
             TemplatesPage.Properties.SourceTable = TemplateTable.ID;
+            TemplateListPage.Properties.SourceTable = TemplateTable.ID;
+            BatchesPage.Properties.SourceTable = BatchTable.ID;
+            JournalPage.Properties.SourceTable = LineTable.ID;
+
+            if (CanBeRecurring)
+            {
+                RecurringJournalPage.Properties.SourceTable = LineTable.ID;
+            }
+        }
+
+        protected override void SetObjectProperties()
+        {
             TemplatesPage.Properties.PageType = PageType.List;
 
-            TemplateListPage.Properties.SourceTable = TemplateTable.ID;
             TemplateListPage.Properties.PageType = PageType.List;
             TemplateListPage.Properties.Editable = false;
             TemplateListPage.Properties.RefreshOnActivate = true;
 
-            BatchesPage.Properties.SourceTable = BatchTable.ID;
             BatchesPage.Properties.PageType = PageType.List;
 
-            JournalPage.Properties.SourceTable = LineTable.ID;
             JournalPage.Properties.PageType = PageType.Worksheet;
             JournalPage.Properties.SaveValues = true;
             JournalPage.Properties.DelayedInsert = true;
             JournalPage.Properties.AutoSplitKey = true;
             JournalPage.Properties.DataCaptionFields.Add(LineTableJournalBatchNameField.Name);
 
-            RecurringJournalPage.Properties.SourceTable = LineTable.ID;
-            RecurringJournalPage.Properties.PageType = PageType.Worksheet;
-            RecurringJournalPage.Properties.SaveValues = true;
-            RecurringJournalPage.Properties.DelayedInsert = true;
-            RecurringJournalPage.Properties.AutoSplitKey = true;
-            RecurringJournalPage.Properties.DataCaptionFields.Add(LineTableJournalBatchNameField.Name);
+            if (CanBeRecurring)
+            {
+                RecurringJournalPage.Properties.PageType = PageType.Worksheet;
+                RecurringJournalPage.Properties.SaveValues = true;
+                RecurringJournalPage.Properties.DelayedInsert = true;
+                RecurringJournalPage.Properties.AutoSplitKey = true;
+                RecurringJournalPage.Properties.DataCaptionFields.Add(LineTableJournalBatchNameField.Name);
+            }
 
             JournalMgtCodeunit.Properties.Permissions.Set(TemplateTable.ID, false, true, true, true);
             JournalMgtCodeunit.Properties.Permissions.Set(BatchTable.ID, false, true, true, true);
