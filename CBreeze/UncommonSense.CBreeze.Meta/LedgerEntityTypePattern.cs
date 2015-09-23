@@ -112,7 +112,7 @@ namespace UncommonSense.CBreeze.Meta
         protected override void CreateControls()
         {
             var actionItems = Page.GetActionItems(Range);
-            var navigateAction = actionItems.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, "&Navigate", "Navigate").Promote(false, PromotedCategory.Process);
+            var navigateAction = actionItems.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, "&Navigate", RunTime.Images.Navigate).Promote(false, PromotedCategory.Process);
             var trigger = navigateAction.Properties.OnAction;
             var variable = trigger.Variables.Add(new PageVariable(Range.GetNextVariableID(trigger), "Navigate", BaseApp.PageIDs.Navigate));
             trigger.CodeLines.Add("{0}.SetDoc({1},{2});", variable.Name.Quoted(), PostingDateField.Name.Quoted(), DocumentNoField.Name.Quoted());
