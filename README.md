@@ -22,3 +22,6 @@ Any cleverness like auto-captioning, auto-objectproperties or even auto-assignin
 (U)IDs are mandatory for items, and should be tested when adding an item to a collection. Auto-assigning (U)IDs complexifies the container code too much. We could aways introduce a (set of) extension method(s) later that will add container items with auto-assigned (U)IDs.
 ### Type property for derived types
 If type AB and AC derive from type A, type A should have an abstract read-only property of an enum type that has B and C as its values. AB and AC should implement the abstract property and return the correct enum value.
+
+## Roadmap
+- Support for NAV 2013R2, 2015 and 2016
