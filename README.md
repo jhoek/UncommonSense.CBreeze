@@ -25,3 +25,6 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 
 ## Roadmap
 - Support for NAV 2013R2, 2015 and 2016
+
+## Ideas for future patterns
+- A pattern for adding dimension support
