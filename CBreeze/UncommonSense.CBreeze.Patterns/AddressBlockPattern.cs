@@ -27,6 +27,7 @@ namespace UncommonSense.CBreeze.Patterns
 
             AddTableRelations();
             AddValidationCode();
+            AddFormatFunction();
         }
 
         protected override void CreateFields()
@@ -63,7 +64,7 @@ namespace UncommonSense.CBreeze.Patterns
             CountryRegionCodeField.Properties.TableRelation.Add("Country/Region");
         }
 
-        protected void AddValidationCode()
+        protected virtual void AddValidationCode()
         {
             const string variableName = "PostCode";
 
@@ -85,6 +86,41 @@ namespace UncommonSense.CBreeze.Patterns
                 PostCodeField.Name.Quoted(),
                 CountyField.Name.Quoted(),
                 CountryRegionCodeField.Name.Quoted());
+        }
+
+        protected virtual void AddFormatFunction()
+        {
+            if (FormatAddressCodeunit != null)
+            {
+                FormatFunction = FormatAddressCodeunit.Code.Functions.Add(new Function(Range.GetNextFunctionID(FormatAddressCodeunit), FormatFunctionName()));
+
+                var arrayParameter = FormatFunction.Parameters.Add(new TextParameter(true, Range.GetNextParameterID(FormatFunction), "AddrArray", 50));
+                arrayParameter.Dimensions = "8";
+
+                var recordParameter = FormatFunction.Parameters.Add(new RecordParameter(true, Range.GetNextParameterID(FormatFunction), Table.Name.MakeVariableName(), Table.ID));
+                
+                FormatFunction.CodeLines.Add("WITH {0} DO", recordParameter.Name);
+                FormatFunction.CodeLines.Add("  FormatAddr(");
+                FormatFunction.CodeLines.Add(
+                    "    {0},{1},{2},{3},{4},{5},", 
+                    arrayParameter.Name, 
+                    string.Format("{0}Name", Prefix).Quoted(), 
+                    string.Format("{0}Name 2", Prefix).Quoted(),
+                    string.Format("{0}Contact", Prefix).Quoted(),
+                    AddressField.Name.Quoted(),
+                    Address2Field.Name.Quoted());
+                FormatFunction.CodeLines.Add(
+                    "    {0},{1},{2},{3});",
+                    CityField.Name.Quoted(),
+                    PostCodeField.Name.Quoted(),
+                    CountyField.Name.Quoted(),
+                    CountryRegionCodeField.Name.Quoted());
+            }
+        }
+
+        protected virtual string FormatFunctionName()
+        {
+            return string.Format("{0} {1}", Table.Name, Prefix).MakeVariableName();
         }
 
         protected override void CreateCardPageControls(Page page)
@@ -122,6 +158,12 @@ namespace UncommonSense.CBreeze.Patterns
             var countryRegionCodeControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
             countryRegionCodeControl.Properties.SourceExpr = CountryRegionCodeField.Name.Quoted();
             CountryRegionCodeControls.Add(page, countryRegionCodeControl);
+        }
+
+        public Codeunit FormatAddressCodeunit
+        {
+            get;
+            set;
         }
 
         public TextTableField AddressField
@@ -186,6 +228,12 @@ namespace UncommonSense.CBreeze.Patterns
         }
 
         public MappedResults<Page, FieldPageControl> CountryRegionCodeControls
+        {
+            get;
+            protected set;
+        }
+
+        public Function FormatFunction
         {
             get;
             protected set;
