@@ -26,7 +26,16 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 ## Roadmap
 - PowerShell wrapper around Core classes
 - PowerShell wrapper around the patterns in Meta/Patterns
-- Support for NAV 2013R2, 2015 and 2016
+- Support for NAV 2013R2, 2015 and 2016:
+  - AccessByPermission, EvalForAccessByPermission
+  - DefaultLayOut, WordMergeDataItem [report]
+  - Temporary [dataitem]
+  - UpdatePropagation
+  - Scope
+  - Image
+  - ShowMandatory
+  - Upgrade [codeunit type]
+  - Upgrade|TableSynchSetup|CheckProcondition [upgrade codeunit function type]
 
 ## Ideas for future patterns
 - A pattern for adding dimension support
