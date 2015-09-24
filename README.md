@@ -10,6 +10,7 @@
 - Script your development work as much as possible
 - Avoid the friction caused by an outdated development environment
 - Focus on the semantics; leave the syntax to C/Breeze
+- Don't just apply design patterns - automate them!
 
 ## Design Goals
 - Intuitive object model for anybody familiar with C/SIDE;
