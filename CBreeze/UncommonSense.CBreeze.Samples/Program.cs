@@ -30,8 +30,45 @@ namespace UncommonSense.CBreeze.Samples
             var application = new Application();
             var range = 50000.To(59999);
 
-            JournalEntityType(application, range);
+            AddressBlock(application, range);
+            //JournalEntityType(application, range);
+        }
 
+        static void AddressBlock(Application application, IEnumerable<int> range)
+        {
+            var codeunit = application.Codeunits.Add(new Codeunit(50000, "New Format Address"));
+            var table = application.Tables.Add(new Table(range.GetNextTableID(application), "New Customer"));
+
+            var descriptionPattern = new DescriptionPattern(range, table);
+            descriptionPattern.Style = DescriptionStyle.Name;
+            descriptionPattern.Prefix = "Ship-to ";
+            descriptionPattern.Apply();
+
+            var communicationPattern = new CommunicationPattern(range, table);
+            communicationPattern.Prefix = "Ship-to ";
+            communicationPattern.Apply();
+
+            var addressBlockPattern = new AddressBlockPattern(range, table);
+            addressBlockPattern.FormatAddressCodeunit = codeunit;
+            addressBlockPattern.Prefix = "Ship-to ";
+            addressBlockPattern.Apply();
+
+            var formatAddrFunction = codeunit.Code.Functions.Add(new Function(range.GetNextFunctionID(codeunit), "FormatAddr"));
+            formatAddrFunction.Parameters.Add(new TextParameter(true, range.GetNextParameterID(formatAddrFunction), "AddrArray", 90)).Dimensions = "8";
+            formatAddrFunction.Parameters.Add(new TextParameter(false, range.GetNextParameterID(formatAddrFunction), "Name", 90));
+            formatAddrFunction.Parameters.Add(new TextParameter(false, range.GetNextParameterID(formatAddrFunction), "Name2", 90));
+            formatAddrFunction.Parameters.Add(new TextParameter(false, range.GetNextParameterID(formatAddrFunction), "Contact", 90));
+            formatAddrFunction.Parameters.Add(new TextParameter(false, range.GetNextParameterID(formatAddrFunction), "Addr", 50));
+            formatAddrFunction.Parameters.Add(new TextParameter(false, range.GetNextParameterID(formatAddrFunction), "Addr2", 50));
+            formatAddrFunction.Parameters.Add(new TextParameter(false, range.GetNextParameterID(formatAddrFunction), "City", 50));
+            formatAddrFunction.Parameters.Add(new CodeParameter(false, range.GetNextParameterID(formatAddrFunction), "PostCode", 20));
+            formatAddrFunction.Parameters.Add(new TextParameter(false, range.GetNextParameterID(formatAddrFunction), "County", 50));
+            formatAddrFunction.Parameters.Add(new CodeParameter(false, range.GetNextParameterID(formatAddrFunction), "CountryCode", 10));
+
+            application.Write(devClient, databaseServerName, databaseName);
+            application.Compile(devClient, databaseServerName, databaseName);
+
+            codeunit.Design(devClient, databaseServerName, databaseName);
         }
 
         static void JournalEntityType(Application application, IEnumerable<int> range)
