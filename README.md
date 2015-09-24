@@ -11,7 +11,11 @@
 - Avoid the friction caused by an outdated development environment
 - Focus on the semantics; leave the syntax to C/Breeze
 
-## Design decisions
+## Design Goals
+- Intuitive object model for anybody familiar with C/SIDE;
+- ...
+
+## Design Decisions
 ### Keep UncommonSense.CBreeze.Core lean and mean
 Any cleverness like auto-captioning, auto-objectproperties or even auto-assigning (U)IDs (see also below) would unnecessarily complexify UncommonSense.CBreeze.Core, and could always be implemented later as extension methods.
 ### Auto-assigned (U)IDs
