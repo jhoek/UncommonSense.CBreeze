@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(Mandatory = true)]
         [ValidateLength(1, 30)]
         public string Name
         {
