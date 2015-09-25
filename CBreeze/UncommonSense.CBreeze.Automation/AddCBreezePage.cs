@@ -148,7 +148,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var page = Application.Pages.Add(new Page(ID, Name));
+                var page = Application.Pages.Add(new Page(GetID(), Name));
 
                 page.ObjectProperties.DateTime = DateTime;
                 page.ObjectProperties.Modified = Modified;
@@ -179,6 +179,11 @@ namespace UncommonSense.CBreeze.Automation
 
                 yield return page;
             }
+        }
+
+        protected override IEnumerable<int> GetExistingIDs()
+        {
+            return Application.Pages.Select(p => p.ID);
         }
     }
 }

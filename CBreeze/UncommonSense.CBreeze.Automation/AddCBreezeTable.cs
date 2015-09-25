@@ -71,7 +71,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var table = Application.Tables.Add(new Table(ID, Name));
+                var table = Application.Tables.Add(new Table(GetID(), Name));
 
                 table.ObjectProperties.DateTime = DateTime;
                 table.ObjectProperties.Modified = Modified;
@@ -91,6 +91,11 @@ namespace UncommonSense.CBreeze.Automation
 
                 yield return table;
             }
+        }
+
+        protected override IEnumerable<int> GetExistingIDs()
+        {
+            return Application.Tables.Select(t => t.ID);
         }
     }
 }

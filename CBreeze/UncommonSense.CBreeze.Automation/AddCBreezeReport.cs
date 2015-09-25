@@ -99,7 +99,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var report = Application.Reports.Add(new Report(ID, Name));
+                var report = Application.Reports.Add(new Report(GetID(), Name));
 
                 report.ObjectProperties.DateTime = DateTime;
                 report.ObjectProperties.Modified = Modified;
@@ -123,6 +123,11 @@ namespace UncommonSense.CBreeze.Automation
 
                 yield return report;
             }
+        }
+
+        protected override IEnumerable<int> GetExistingIDs()
+        {
+            return Application.Reports.Select(r => r.ID);
         }
     }
 }

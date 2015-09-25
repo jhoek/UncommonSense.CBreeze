@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -16,7 +17,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(ParameterSetName = "Range")]
+        public IEnumerable<int> Range
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "No")]
         [ValidateRange(1, int.MaxValue)]
         public int No
         {
@@ -38,15 +46,34 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected int AutoAssignNo(int no)
+        [Parameter()]
+        public SwitchParameter PrimaryKeyFieldNoRange
         {
-            if (no != 0)
-                return no;
+            get;
+            set;
+        }
 
-            if (!Table.Fields.Any())
-                return 1;
+        protected int GetNo()
+        {
+            if (No != 0)
+                return No;
 
-            return Table.Fields.Max(f => f.ID) + 1;
+            var range = Range;
+
+            if (Range.Contains(Table.ID))
+            {
+                switch (PrimaryKeyFieldNoRange.IsPresent)
+                {
+                    case true:
+                        range = 1.To(int.MaxValue);
+                        break;
+                    case false:
+                        range = 10.To(int.MaxValue);
+                        break;
+                }
+            }
+
+            return range.Except(Table.Fields.Select(f => f.ID)).First();
         }
     }
 }

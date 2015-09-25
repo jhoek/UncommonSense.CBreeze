@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var query = Application.Queries.Add(new Query(ID, Name));
+                var query = Application.Queries.Add(new Query(GetID(), Name));
 
                 query.ObjectProperties.DateTime = DateTime;
                 query.ObjectProperties.Modified = Modified;
@@ -51,6 +51,11 @@ namespace UncommonSense.CBreeze.Automation
 
                 yield return query;
             }
+        }
+
+        protected override IEnumerable<int> GetExistingIDs()
+        {
+            return Application.Queries.Select(q => q.ID);
         }
     }
 }

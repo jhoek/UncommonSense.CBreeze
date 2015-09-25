@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -49,7 +50,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var codeunit = Application.Codeunits.Add(new Codeunit(ID, Name));
+                var codeunit = Application.Codeunits.Add(new Codeunit(GetID(), Name));
 
                 codeunit.ObjectProperties.DateTime = DateTime;
                 codeunit.ObjectProperties.Modified = Modified;
@@ -63,6 +64,11 @@ namespace UncommonSense.CBreeze.Automation
 
                 yield return codeunit;                
             }
+        }
+
+        protected override IEnumerable<int> GetExistingIDs()
+        {
+            return Application.Codeunits.Select(c => c.ID);
         }
     }
 }

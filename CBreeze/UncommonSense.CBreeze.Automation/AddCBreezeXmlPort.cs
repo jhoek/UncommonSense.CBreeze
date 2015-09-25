@@ -148,7 +148,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var xmlport = Application.XmlPorts.Add(new XmlPort(ID, Name));
+                var xmlport = Application.XmlPorts.Add(new XmlPort(GetID(), Name));
 
                 xmlport.ObjectProperties.DateTime = DateTime;
                 xmlport.ObjectProperties.Modified = Modified;
@@ -179,6 +179,11 @@ namespace UncommonSense.CBreeze.Automation
 
                 yield return xmlport;
             }
+        }
+
+        protected override IEnumerable<int> GetExistingIDs()
+        {
+            return Application.XmlPorts.Select(x => x.ID);
         }
     }
 }

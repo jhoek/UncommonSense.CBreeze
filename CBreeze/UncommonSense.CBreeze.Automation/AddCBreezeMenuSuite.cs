@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -14,7 +15,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                var menuSuite = Application.MenuSuites.Add(new MenuSuite(ID, Name));
+                var menuSuite = Application.MenuSuites.Add(new MenuSuite(GetID(), Name));
 
                 menuSuite.ObjectProperties.DateTime = DateTime;
                 menuSuite.ObjectProperties.Modified = Modified;
@@ -22,6 +23,11 @@ namespace UncommonSense.CBreeze.Automation
 
                 yield return menuSuite;
             }
+        }
+
+        protected override IEnumerable<int> GetExistingIDs()
+        {
+            return Application.MenuSuites.Select(m => m.ID);
         }
     }
 }

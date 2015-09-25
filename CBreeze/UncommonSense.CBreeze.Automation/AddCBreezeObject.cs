@@ -14,14 +14,15 @@ namespace UncommonSense.CBreeze.Automation
             PassThru = true;
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Application Application
+        [Parameter(Mandatory = true, ParameterSetName = "Range")]
+        public IEnumerable<int> Range
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, ParameterSetName = "ID")]
+        [ValidateRange(1, int.MaxValue)]
         public int ID
         {
             get;
@@ -63,5 +64,15 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
+        protected int GetID()
+        {
+            if (ID != 0)
+                return ID;
+
+            return Range.Except(GetExistingIDs()).First();
+        }
+
+        protected abstract IEnumerable<int> GetExistingIDs();
     }
 }

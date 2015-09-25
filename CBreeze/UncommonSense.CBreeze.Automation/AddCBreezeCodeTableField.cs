@@ -84,7 +84,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                No = AutoAssignNo(No);
+                No = GetNo();
 
                 var field = Table.Fields.Add(new CodeTableField(No, Name, DataLength));
                 field.Properties.AltSearchField = AltSearchField;
@@ -104,6 +104,5 @@ namespace UncommonSense.CBreeze.Automation
                 yield return field;
             }
         }
-
     }
 }

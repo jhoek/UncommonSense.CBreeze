@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                No = AutoAssignNo(No);
+                No = GetNo();
 
                 var field = Table.Fields.Add(new TextTableField(No, Name, DataLength));
 
