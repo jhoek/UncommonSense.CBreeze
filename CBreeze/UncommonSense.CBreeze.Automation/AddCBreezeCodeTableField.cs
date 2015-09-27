@@ -80,13 +80,11 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override System.Collections.IEnumerable AddedObjects
+        protected override void ProcessRecord()
         {
-            get
+            foreach (var table in Table)
             {
-                No = GetNo();
-
-                var field = Table.Fields.Add(new CodeTableField(No, Name, DataLength));
+                var field = table.Fields.Add(new CodeTableField(GetNo(), Name, DataLength));
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;
                 field.Properties.AutoFormatType = AutoFormatType;
@@ -94,14 +92,15 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.CalcFormula.Method = CalcFormulaMethod;
                 field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
                 field.Properties.CalcFormula.TableName = CalcFormulaTableName;
-                
+                // FIXME: field.Properties.CalcFormula.T
 
                 field.Properties.NotBlank = NotBlank;
 
                 if (AutoCaption)
                     field.AutoCaption();
 
-                yield return field;
+                if (PassThru)
+                    WriteObject(field);
             }
         }
     }

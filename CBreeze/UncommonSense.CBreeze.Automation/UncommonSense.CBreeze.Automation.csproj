@@ -45,6 +45,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCBreezeDateTimeTableField.cs" />
+    <Compile Include="AddCBreezeDateFormulaTableField.cs" />
+    <Compile Include="AddCBreezeDateTableField.cs" />
+    <Compile Include="AddCBreezeBigIntegerTableField.cs" />
+    <Compile Include="AddCBreezeBinaryTableField.cs" />
+    <Compile Include="AddCBreezeBlobTableField.cs" />
+    <Compile Include="AddCBreezeBooleanTableField.cs" />
+    <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezeDecimalTableField.cs" />
+    <Compile Include="AddCBreezeDurationTableField.cs" />
+    <Compile Include="AddCBreezeGuidTableField.cs" />
+    <Compile Include="AddCBreezeIntegerTableField.cs" />
+    <Compile Include="AddCBreezeMenuSuite.cs" />
+    <Compile Include="AddCBreezeOptionTableField.cs" />
+    <Compile Include="AddCBreezePage.cs" />
+    <Compile Include="AddCBreezeQuery.cs" />
+    <Compile Include="AddCBreezeRecordIDTableField.cs" />
+    <Compile Include="AddCBreezeReport.cs" />
+    <Compile Include="AddCBreezeTable.cs" />
     <Compile Include="AddCBreezeActionParameter.cs" />
     <Compile Include="AddCBreezeAutomationParameter.cs" />
     <Compile Include="AddCBreezeBigIntegerParameter.cs" />
@@ -67,10 +86,13 @@
     <Compile Include="AddCBreezeObject.cs" />
     <Compile Include="AddCBreezeParameter.cs" />
     <Compile Include="AddCBreezeTableField.cs" />
+    <Compile Include="AddCBreezeTableFilterTableField.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
     <Compile Include="AddCBreezeTextTableField.cs" />
+    <Compile Include="AddCBreezeTimeTableField.cs" />
     <Compile Include="AddCBreezeVariable.cs" />
     <Compile Include="AddCmdlet.cs" />
+    <Compile Include="AddCBreezeXmlPort.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
     <Compile Include="ImportCBreezeApplication.cs" />
     <Compile Include="NewCBreezeApplication.cs" />

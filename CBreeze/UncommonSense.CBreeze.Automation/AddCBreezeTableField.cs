@@ -8,10 +8,10 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class AddCBreezeTableField : AddCmdlet
+    public abstract class AddCBreezeTableField : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Table Table
+        public Table[] Table
         {
             get;
             set;
@@ -41,6 +41,13 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter PassThru
         {
             get;
             set;

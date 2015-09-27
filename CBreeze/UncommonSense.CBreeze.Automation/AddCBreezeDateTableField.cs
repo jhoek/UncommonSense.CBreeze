@@ -4,21 +4,14 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTextTableField")]
-    public class AddCBreezeTextTableField : AddCBreezeTableField
+    [Cmdlet(VerbsCommon.Add, "CBreezeDateTableField")]
+    public class AddCBreezeDateTableField : AddCBreezeTableField
     {
-        public AddCBreezeTextTableField()
-        {
-            DataLength = 30;
-        }
-
         [Parameter()]
-        [ValidateRange(1, 250)]
-        public int DataLength
+        public string AltSearchField
         {
             get;
             set;
@@ -28,7 +21,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new TextTableField(GetNo(), Name, DataLength));
+                var field = table.Fields.Add(new DateTableField(GetNo(), Name));
+
+                field.Properties.AltSearchField = AltSearchField;
 
                 if (AutoCaption)
                     field.AutoCaption();

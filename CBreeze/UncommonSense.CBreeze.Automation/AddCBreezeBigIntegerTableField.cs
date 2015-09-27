@@ -8,17 +8,18 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTextTableField")]
-    public class AddCBreezeTextTableField : AddCBreezeTableField
+    [Cmdlet(VerbsCommon.Add, "CBreezeBigIntegerTableField")]
+    public class AddCBreezeBigIntegerTableField : AddCBreezeTableField
     {
-        public AddCBreezeTextTableField()
+        [Parameter()]
+        public string AltSearchField
         {
-            DataLength = 30;
+            get;
+            set;
         }
 
         [Parameter()]
-        [ValidateRange(1, 250)]
-        public int DataLength
+        public bool BlankZero
         {
             get;
             set;
@@ -28,7 +29,10 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new TextTableField(GetNo(), Name, DataLength));
+                var field = table.Fields.Add(new IntegerTableField(GetNo(), Name));
+
+                field.Properties.AltSearchField = AltSearchField;
+                field.Properties.BlankZero = BlankZero;
 
                 if (AutoCaption)
                     field.AutoCaption();
