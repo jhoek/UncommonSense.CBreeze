@@ -10,15 +10,16 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeDecimalParameter")]
     public class AddCBreezeDecimalParameter : AddCBreezeParameter
     {
-        protected override System.Collections.IEnumerable AddedObjects
+        protected override void ProcessRecord()
         {
-            get
+            foreach (var inputObject in InputObject)
             {
-                ID = AutoAssignID(ID);
+                var parameter = GetParameters(inputObject).Add(new DecimalParameter(Var, GetParameterID(inputObject), Name));
 
-                var decimalParameter = Parameters.Add(new DecimalParameter(Var, ID, Name));
-                decimalParameter.Dimensions = Dimensions;
-                yield return decimalParameter;
+                parameter.Dimensions = Dimensions;
+
+                if (PassThru)
+                    WriteObject(parameter);
             }
         }
     }

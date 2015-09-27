@@ -7,10 +7,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class AddCBreezeParameter : AddCmdlet
+    public abstract class AddCBreezeParameter : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        public PSObject[] InputObject
         {
             get;
             set;
@@ -23,9 +23,16 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(Mandatory=true,ParameterSetName="ID")]
         [ValidateRange(1, int.MaxValue)]
         public int ID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory=true, ParameterSetName = "Range")]
+        public IEnumerable<int> Range
         {
             get;
             set;
@@ -45,6 +52,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
         protected int AutoAssignID(int id)
         {
             if (id != 0)
@@ -56,19 +70,24 @@ namespace UncommonSense.CBreeze.Automation
             return Parameters.Last().ID + 1;
         }
 
-        protected Parameters Parameters
+        protected int GetParameterID(PSObject inputObject)
         {
-            get
-            {
-                if (InputObject.BaseObject is Parameters)
-                    return (InputObject.BaseObject as Parameters);
-                if (InputObject.BaseObject is Function)
-                    return (InputObject.BaseObject as Function).Parameters;
-                if (InputObject.BaseObject is Event)
-                    return (InputObject.BaseObject as Event).Parameters;
+            if (ID != 0)
+                return ID;
 
-                throw new ApplicationException("Cannot add parameters to this object.");
-            }
+            return Range.Except(GetParameters(inputObject).Select(p => p.ID)).First();
+        }
+
+        protected Parameters GetParameters(PSObject inputObject)
+        {
+            if (inputObject.BaseObject is Parameters)
+                return (inputObject.BaseObject as Parameters);
+            if (inputObject.BaseObject is Function)
+                return (inputObject.BaseObject as Function).Parameters;
+            if (inputObject.BaseObject is Event)
+                return (inputObject.BaseObject as Event).Parameters;
+
+            throw new ApplicationException("Cannot add parameters to this object.");
         }
     }
 }

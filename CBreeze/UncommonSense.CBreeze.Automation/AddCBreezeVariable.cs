@@ -8,34 +8,25 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    // This cmdlet used to have parameter sets for each combination of scope (Global, Function, Trigger, Event) 
-    // and variable type (e.g. Record). The scope aspect was controlled by the type of object received
-    // via the pipeline (Code, Function, Trigger, Event).
-
-    // Alternatively, we could have accepted a Variables collection instead of the Code, Function, Trigger 
-    // and Event objects. However, Variables is an IEnumerable<Variable>, so PowerShell would have 
-    // unravelled it. To work around this, users would have needed to put the variables collection in a 
-    // single-element array, like this: (,$MyTable.Code.Variables) | Add-CBreezeVariable ...
-
-    // In the original design, users could do this: $MyTable.Code | Add-CBreezeVariable ... or 
-    // $MyFunction | Add-CBreezeVariable ... I felt this was more intuitive, even if it implied a more
-    // complex set of parametersetnames. 
-
-    // Sadly, however, PowerShell is unable to handle this many unique parameter sets. :(
-
-    [Cmdlet(VerbsCommon.Add, "CBreezeVariable")]
-    public class AddCBreezeVariable : AddCmdlet
+    public abstract class AddCBreezeVariable : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        public PSObject[] InputObject
         {
             get;
             set;
         }
 
-        [Parameter()]
+        [Parameter(Mandatory = true, ParameterSetName = "ID")]
         [ValidateRange(1, int.MaxValue)]
         public int ID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "Range")]
+        public IEnumerable<int> Range
         {
             get;
             set;
@@ -55,110 +46,32 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "Option", Position = 0)]
-        public SwitchParameter Option
+        private Variables GetVariables(PSObject inputObject)
         {
-            get;
-            set;
-        }
+            if (inputObject.BaseObject is Table)
+                return (inputObject.BaseObject as Table).Code.Variables;
+            if (inputObject.BaseObject is Page)
+                return (inputObject.BaseObject as Page).Code.Variables;
+            if (inputObject.BaseObject is Report)
+                return (inputObject.BaseObject as Report).Code.Variables;
+            if (inputObject.BaseObject is Codeunit)
+                return (inputObject.BaseObject as Codeunit).Code.Variables;
+            if (inputObject.BaseObject is Query)
+                return (inputObject.BaseObject as Query).Code.Variables;
+            if (inputObject.BaseObject is XmlPort)
+                return (inputObject.BaseObject as XmlPort).Code.Variables;
 
-        [Parameter(Mandatory = true, ParameterSetName = "Record", Position = 0)]
-        public SwitchParameter Record
-        {
-            get;
-            set;
-        }
+            if (inputObject.BaseObject is Code)
+                return (inputObject.BaseObject as Code).Variables;
 
-        [Parameter(Mandatory = true, ParameterSetName = "Option")]
-        public string OptionString
-        {
-            get;
-            set;
-        }
+            if (inputObject.BaseObject is Function)
+                return (inputObject.BaseObject as Function).Variables;
+            if (inputObject.BaseObject is Trigger)
+                return (inputObject.BaseObject as Trigger).Variables;
+            if (inputObject.BaseObject is Event)
+                return (inputObject.BaseObject as Event).Variables;
 
-        [Parameter(Mandatory = true, ParameterSetName = "Record")]
-        public int SubType
-        {
-            get;
-            set;
-        }
-
-        private VariableType GetVariableType()
-        {
-            if (Record.IsPresent)
-                return VariableType.Record;
-            if (Option.IsPresent)
-                return VariableType.Option;
-
-            // FIXME
-
-            throw new ArgumentOutOfRangeException();
-        }
-
-        protected override System.Collections.IEnumerable AddedObjects
-        {
-            get
-            {
-                ID = AutoAssignID(ID);
-
-                switch (GetVariableType())
-                {
-                    case VariableType.Option:
-                        var optionVariable = Variables.Add(new OptionVariable(ID, Name));
-                        optionVariable.OptionString = OptionString;
-                        optionVariable.Dimensions = Dimensions;
-                        yield return optionVariable;
-                        break;
-
-                    case VariableType.Record:
-                        var recordVariable = Variables.Add(new RecordVariable(ID, Name, SubType));
-                        recordVariable.Dimensions = Dimensions;
-                        yield return recordVariable;
-                        break;
-                }
-            }
-        }
-
-        private int AutoAssignID(int id)
-        {
-            if (id != 0)
-                return id;
-
-            if (!Variables.Any())
-                return 1;
-
-            return Variables.Last().ID + 1;
-        }
-
-        private Variables Variables
-        {
-            get
-            {
-                if (InputObject.BaseObject is Table)
-                    return (InputObject.BaseObject as Table).Code.Variables;
-                if (InputObject.BaseObject is Page)
-                    return (InputObject.BaseObject as Page).Code.Variables;
-                if (InputObject.BaseObject is Report)
-                    return (InputObject.BaseObject as Report).Code.Variables;
-                if (InputObject.BaseObject is Codeunit)
-                    return (InputObject.BaseObject as Codeunit).Code.Variables;
-                if (InputObject.BaseObject is Query)
-                    return (InputObject.BaseObject as Query).Code.Variables;
-                if (InputObject.BaseObject is XmlPort)
-                    return (InputObject.BaseObject as XmlPort).Code.Variables;
-
-                if (InputObject.BaseObject is Code)
-                    return (InputObject.BaseObject as Code).Variables;
-
-                if (InputObject.BaseObject is Function)
-                    return (InputObject.BaseObject as Function).Variables;
-                if (InputObject.BaseObject is Trigger)
-                    return (InputObject.BaseObject as Trigger).Variables;
-                if (InputObject.BaseObject is Event)
-                    return (InputObject.BaseObject as Event).Variables;
-
-                throw new ApplicationException("Cannot add variables to this object.");
-            }
+            throw new ApplicationException("Cannot add variables to this object.");
         }
     }
 }

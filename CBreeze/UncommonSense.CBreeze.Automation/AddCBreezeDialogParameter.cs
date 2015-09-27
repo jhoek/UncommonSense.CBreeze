@@ -10,16 +10,16 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeDialogParameter")]
     public class AddCBreezeDialogParameter : AddCBreezeParameter
     {
-        protected override System.Collections.IEnumerable AddedObjects
+        protected override void ProcessRecord()
         {
-            get
+            foreach (var inputObject in InputObject)
             {
-                ID = AutoAssignID(ID);
+                var parameter = GetParameters(inputObject).Add(new DialogParameter(Var, GetParameterID(inputObject), Name));
+                parameter.Dimensions = Dimensions;
 
-                var dialogParameter = Parameters.Add(new DialogParameter(Var, ID, Name));
-                dialogParameter.Dimensions = Dimensions;
-                yield return dialogParameter;
+                if (PassThru)
+                    WriteObject(parameter);
             }
-        }
+        }   
     }
 }

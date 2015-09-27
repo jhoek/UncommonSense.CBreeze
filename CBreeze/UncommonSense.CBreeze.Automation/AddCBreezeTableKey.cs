@@ -8,10 +8,10 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeTableKey")]
-    public class AddCBreezeTableKey : AddCmdlet
+    public class AddCBreezeTableKey : Cmdlet
     {
-        [Parameter(Mandatory=true, ValueFromPipeline=true)]
-        public Table Table
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public Table[] Table
         {
             get;
             set;
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true)]
+        [Parameter(Mandatory = true)]
         public string[] Fields
         {
             get;
@@ -73,11 +73,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override System.Collections.IEnumerable AddedObjects
+        [Parameter()]
+        public SwitchParameter PassThru
         {
-            get
+            get;
+            set;
+        }
+
+        protected override void ProcessRecord()
+        {
+            foreach (var table in Table)
             {
-                var tableKey = Table.Keys.Add();
+                var tableKey = table.Keys.Add();
                 tableKey.Enabled = Enabled;
                 tableKey.Fields.AddRange(Fields);
                 tableKey.Properties.Clustered = Clustered;
@@ -85,10 +92,12 @@ namespace UncommonSense.CBreeze.Automation
                 tableKey.Properties.MaintainSIFTIndex = MaintainSIFTIndex;
                 tableKey.Properties.MaintainSQLIndex = MaintainSQLIndex;
                 // FIXME: tableKey.Properties.SIFTLevelsToMaintain = ...
-                tableKey.Properties.SQLIndex.AddRange(SQLIndex ?? new string[] {});
-                tableKey.Properties.SumIndexFields.AddRange(SumIndexFields ?? new string[] {});
+                tableKey.Properties.SQLIndex.AddRange(SQLIndex ?? new string[] { });
+                tableKey.Properties.SumIndexFields.AddRange(SumIndexFields ?? new string[] { });
 
-                yield return tableKey;
+                if (PassThru)
+                    WriteObject(tableKey);
+
             }
         }
     }

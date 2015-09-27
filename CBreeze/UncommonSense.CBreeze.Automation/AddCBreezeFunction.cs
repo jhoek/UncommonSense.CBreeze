@@ -4,22 +4,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeFunction")]
-    public class AddCBreezeFunction : AddCmdlet
+    public class AddCBreezeFunction : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        public PSObject[] InputObject
         {
             get;
             set;
         }
 
-        [Parameter()]
+        [Parameter(Mandatory = true, ParameterSetName = "ID")]
         [ValidateRange(1, int.MaxValue)]
         public int ID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "Range")]
+        public IEnumerable<int> Range
         {
             get;
             set;
@@ -89,26 +97,31 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override System.Collections.IEnumerable AddedObjects
+        [Parameter()]
+        public SwitchParameter PassThru
         {
-            get
+            get;
+            set;
+        }
+
+        protected override void ProcessRecord()
+        {
+            if (ReturnValueType.HasValue && (ReturnValueDataLength ?? 0) == 0)
             {
-                ID = AutoAssignID(ID);
-
-                if (ReturnValueType.HasValue && (ReturnValueDataLength ?? 0) == 0)
+                switch (ReturnValueType.Value)
                 {
-                    switch (ReturnValueType.Value)
-                    {
-                        case FunctionReturnValueType.Text:
-                            ReturnValueDataLength = 30;
-                            break;
-                        case FunctionReturnValueType.Code:
-                            ReturnValueDataLength = 10;
-                            break;
-                    }
+                    case FunctionReturnValueType.Text:
+                        ReturnValueDataLength = 30;
+                        break;
+                    case FunctionReturnValueType.Code:
+                        ReturnValueDataLength = 10;
+                        break;
                 }
+            }
 
-                var function = Functions.Add(new Function(ID, Name));
+            foreach (var inputObject in InputObject)
+            {
+                var function = GetFunctions(inputObject).Add(new Function(GetFunctionID(inputObject), Name));
                 function.Properties.Local = Local;
                 function.Properties.FunctionType = FunctionType;
                 function.Properties.HandlerFunctions = HandlerFunctions;
@@ -119,45 +132,41 @@ namespace UncommonSense.CBreeze.Automation
                 function.ReturnValue.DataLength = ReturnValueDataLength;
                 function.ReturnValue.Dimensions = ReturnValueDimensions;
 
-                yield return function;
+                if (PassThru)
+                    WriteObject(function);
             }
         }
 
-        private int AutoAssignID(int id)
+
+        private int GetFunctionID(PSObject inputObject)
         {
-            if (id != 0)
-                return id;
+            if (ID != 0)
+                return ID;
 
-            if (!Functions.Any())
-                return 1;
-
-            return Functions.Last().ID + 1;
+            return Range.Except(GetFunctions(inputObject).Select(f => f.ID)).First();
         }
 
-        private Functions Functions
+        private Functions GetFunctions(PSObject inputObject)
         {
-            get
-            {
-                if (InputObject.BaseObject is Functions)
-                    return (InputObject.BaseObject as Functions);
-                if (InputObject.BaseObject is Code)
-                    return (InputObject.BaseObject as Code).Functions;
+            if (inputObject.BaseObject is Functions)
+                return (inputObject.BaseObject as Functions);
+            if (inputObject.BaseObject is Code)
+                return (inputObject.BaseObject as Code).Functions;
 
-                if (InputObject.BaseObject is Table)
-                    return (InputObject.BaseObject as Table).Code.Functions;
-                if (InputObject.BaseObject is Page)
-                    return (InputObject.BaseObject as Page).Code.Functions;
-                if (InputObject.BaseObject is Report)
-                    return (InputObject.BaseObject as Report).Code.Functions;
-                if (InputObject.BaseObject is Codeunit)
-                    return (InputObject.BaseObject as Codeunit).Code.Functions;
-                if (InputObject.BaseObject is Query)
-                    return (InputObject.BaseObject as Query).Code.Functions;
-                if (InputObject.BaseObject is XmlPort)
-                    return (InputObject.BaseObject as XmlPort).Code.Functions;
+            if (inputObject.BaseObject is Table)
+                return (inputObject.BaseObject as Table).Code.Functions;
+            if (inputObject.BaseObject is Page)
+                return (inputObject.BaseObject as Page).Code.Functions;
+            if (inputObject.BaseObject is Report)
+                return (inputObject.BaseObject as Report).Code.Functions;
+            if (inputObject.BaseObject is Codeunit)
+                return (inputObject.BaseObject as Codeunit).Code.Functions;
+            if (inputObject.BaseObject is Query)
+                return (inputObject.BaseObject as Query).Code.Functions;
+            if (inputObject.BaseObject is XmlPort)
+                return (inputObject.BaseObject as XmlPort).Code.Functions;
 
-                throw new ApplicationException("Cannot add functions to this object.");
-            }
+            throw new ApplicationException("Cannot add functions to this object.");
         }
     }
 }
