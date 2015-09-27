@@ -19,7 +19,35 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool BlankZero
+        public string AutoFormatExpr
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public AutoFormatType? AutoFormatType
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? AutoIncrement
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public BlankNumbers? BlankNumbers
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? BlankZero
         {
             get;
             set;
@@ -32,6 +60,10 @@ namespace UncommonSense.CBreeze.Automation
                 var field = table.Fields.Add(new IntegerTableField(GetNo(), Name));
 
                 field.Properties.AltSearchField = AltSearchField;
+                field.Properties.AutoFormatExpr = AutoFormatExpr;
+                field.Properties.AutoFormatType = AutoFormatType;
+                field.Properties.AutoIncrement = AutoIncrement;
+                field.Properties.BlankNumbers = BlankNumbers;
                 field.Properties.BlankZero = BlankZero;
 
                 if (AutoCaption)

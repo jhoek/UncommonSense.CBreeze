@@ -24,11 +24,36 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public string AltSearchField
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public string AutoFormatExpr
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public AutoFormatType? AutoFormatType
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
             {
                 var field = table.Fields.Add(new TextTableField(GetNo(), Name, DataLength));
+
+                field.Properties.AltSearchField = AltSearchField;
+                field.Properties.AutoFormatExpr = AutoFormatExpr;
+                field.Properties.AutoFormatType = AutoFormatType;
 
                 if (AutoCaption)
                     field.AutoCaption();
