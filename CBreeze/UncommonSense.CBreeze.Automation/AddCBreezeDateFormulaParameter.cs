@@ -10,15 +10,16 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeDateFormulaParameter")]
     public class AddCBreezeDateFormulaParameter : AddCBreezeParameter
     {
-        protected override System.Collections.IEnumerable AddedObjects
+        protected override void ProcessRecord()
         {
-            get
+            foreach (var inputObject in InputObject)
             {
-                ID = AutoAssignID(ID);
+                var parameter = GetParameters(inputObject).Add(new DateFormulaParameter(Var, GetParameterID(inputObject), Name));
 
-                var dateFormulaParameter = Parameters.Add(new DateFormulaParameter(Var, ID, Name));
-                dateFormulaParameter.Dimensions = Dimensions;
-                yield return dateFormulaParameter;
+                parameter.Dimensions = Dimensions;
+
+                if (PassThru)
+                    WriteObject(parameter);
             }
         }
     }

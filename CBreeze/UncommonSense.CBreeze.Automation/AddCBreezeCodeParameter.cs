@@ -18,15 +18,15 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override System.Collections.IEnumerable AddedObjects
+        protected override void ProcessRecord()
         {
-            get
+            foreach (var inputObject in InputObject)
             {
-                ID = AutoAssignID(ID);
+                var parameter = GetParameters(inputObject).Add(new CodeParameter(Var, GetParameterID(inputObject), Name, DataLength));
+                parameter.Dimensions = Dimensions;
 
-                var codeParameter = Parameters.Add(new CodeParameter(Var, ID, Name, DataLength));
-                codeParameter.Dimensions = Dimensions;
-                yield return codeParameter;
+                if (PassThru)
+                    WriteObject(parameter);
             }
         }
     }
