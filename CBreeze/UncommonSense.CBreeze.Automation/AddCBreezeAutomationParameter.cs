@@ -17,16 +17,16 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override System.Collections.IEnumerable AddedObjects
-        {
-            get
-            {
-                ID = AutoAssignID(ID);
+        //protected override System.Collections.IEnumerable AddedObjects
+        //{
+        //    get
+        //    {
+        //        ID = AutoAssignID(ID);
 
-                var automationParameter = Parameters.Add(new AutomationParameter(Var, ID, Name, SubType));
-                automationParameter.Dimensions = Dimensions;
-                yield return automationParameter;
-            }
-        }
+        //        var automationParameter = Parameters.Add(new AutomationParameter(Var, ID, Name, SubType));
+        //        automationParameter.Dimensions = Dimensions;
+        //        yield return automationParameter;
+        //    }
+        //}
     }
 }
