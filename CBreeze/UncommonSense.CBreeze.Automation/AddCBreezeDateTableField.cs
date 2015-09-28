@@ -39,16 +39,97 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public string CalcFormulaFieldName
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public CalcFormulaMethod? CalcFormulaMethod
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter CalcFormulaReverseSign
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public string CalcFormulaTableName
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public string CaptionClass
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? ClosingDates
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? Editable
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public ExtendedDataType? ExtendedDataType
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public FieldClass? FieldClass
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public DateTime? InitValue
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new DateTableField(GetNo(), Name));
+                var field = table.Fields.Add(new DateTableField(GetNo(table), Name));
 
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;
                 field.Properties.AutoFormatType = AutoFormatType;
                 field.Properties.BlankNumbers = BlankNumbers;
+                field.Properties.CalcFormula.FieldName = CalcFormulaFieldName;
+                field.Properties.CalcFormula.Method = CalcFormulaMethod;
+                field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
+                field.Properties.CalcFormula.TableName = CalcFormulaTableName;
+                field.Properties.CaptionClass = CaptionClass;
+                field.Properties.ClosingDates = ClosingDates;
+                field.Properties.Description = Description;
+                field.Properties.Editable = Editable;
+                field.Properties.ExtendedDatatype = ExtendedDataType;
+                field.Properties.FieldClass = FieldClass;
+                field.Properties.InitValue = InitValue;
 
                 if (AutoCaption)
                     field.AutoCaption();

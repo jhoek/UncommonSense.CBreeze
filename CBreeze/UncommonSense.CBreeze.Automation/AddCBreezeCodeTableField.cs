@@ -74,7 +74,56 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public string CaptionClass
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public string CharAllowed
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? DateFormula
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public ExtendedDataType? ExtendedDataType
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
         public bool? NotBlank
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? Editable
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public FieldClass? FieldClass
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public string InitValue
         {
             get;
             set;
@@ -84,7 +133,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new CodeTableField(GetNo(), Name, DataLength));
+                var field = table.Fields.Add(new CodeTableField(GetNo(table), Name, DataLength));
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;
                 field.Properties.AutoFormatType = AutoFormatType;
@@ -92,7 +141,15 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.CalcFormula.Method = CalcFormulaMethod;
                 field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
                 field.Properties.CalcFormula.TableName = CalcFormulaTableName;
-                // FIXME: field.Properties.CalcFormula.T
+                // FIXME: field.Properties.CalcFormula.TableFilter
+                field.Properties.CaptionClass = CaptionClass;
+                field.Properties.CharAllowed = CharAllowed;
+                field.Properties.DateFormula = DateFormula;
+                field.Properties.Description = Description;
+                field.Properties.Editable = Editable;
+                field.Properties.ExtendedDatatype = ExtendedDataType;
+                field.Properties.FieldClass = FieldClass;
+                field.Properties.InitValue = InitValue;
 
                 field.Properties.NotBlank = NotBlank;
 

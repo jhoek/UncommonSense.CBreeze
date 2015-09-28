@@ -60,14 +60,21 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected int GetNo()
+        [Parameter()]
+        public string Description
+        {
+            get;
+            set;
+        }
+
+        protected int GetNo(Table table)
         {
             if (No != 0)
                 return No;
 
             var range = Range;
 
-            if (Range.Contains(Table.ID))
+            if (Range.Contains(table.ID))
             {
                 switch (PrimaryKeyFieldNoRange.IsPresent)
                 {
@@ -80,7 +87,7 @@ namespace UncommonSense.CBreeze.Automation
                 }
             }
 
-            return range.Except(Table.Fields.Select(f => f.ID)).First();
+            return range.Except(table.Fields.Select(f => f.ID)).First();
         }
     }
 }
