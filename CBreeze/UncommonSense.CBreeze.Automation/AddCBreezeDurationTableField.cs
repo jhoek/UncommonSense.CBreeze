@@ -130,6 +130,41 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public int? SignDisplacement
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public StandardDayTimeUnit StandardDayTimeUnit
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? TestTableRelation
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? ValidateTableRelation
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public string ValuesAllowed
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
@@ -154,6 +189,11 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.MinValue = MinValue;
                 field.Properties.MaxValue = MaxValue;
                 field.Properties.NotBlank = NotBlank;
+                field.Properties.SignDisplacement = SignDisplacement;
+                field.Properties.StandardDayTimeUnit = StandardDayTimeUnit;
+                field.Properties.TestTableRelation = TestTableRelation;
+                field.Properties.ValidateTableRelation = ValidateTableRelation;
+                field.Properties.ValuesAllowed = ValuesAllowed;
 
                 if (AutoCaption)
                     field.AutoCaption();

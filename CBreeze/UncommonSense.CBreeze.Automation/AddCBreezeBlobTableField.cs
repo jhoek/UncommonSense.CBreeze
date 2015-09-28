@@ -25,6 +25,20 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public BlobSubType? SubType
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? Volatile
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
@@ -34,6 +48,8 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.Compressed = Compressed;
                 field.Properties.Description = Description;
                 field.Properties.Owner = Owner;
+                field.Properties.SubType = SubType;
+                field.Properties.Volatile = Volatile;
 
                 if (AutoCaption)
                     field.AutoCaption();

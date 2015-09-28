@@ -144,6 +144,41 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public bool? TestTableRelation
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? ValidateTableRelation
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public string ValuesAllowed
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? Volatile
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public int? Width
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
@@ -170,6 +205,11 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.MaxValue = MaxValue;
                 field.Properties.NotBlank = NotBlank;
                 field.Properties.SignDisplacement = SignDisplacement;
+                field.Properties.TestTableRelation = TestTableRelation;
+                field.Properties.ValidateTableRelation = ValidateTableRelation;
+                field.Properties.ValuesAllowed = ValuesAllowed;
+                field.Properties.Volatile = Volatile;
+                field.Properties.Width = Width;
 
                 if (AutoCaption)
                     field.AutoCaption();

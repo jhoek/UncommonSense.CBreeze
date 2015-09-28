@@ -11,6 +11,13 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeTableFilterTableField")]
     public class AddCBreezeTableFilterTableField : AddCBreezeTableField
     {
+        [Parameter()]
+        public string TableIDExpr
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
@@ -18,6 +25,7 @@ namespace UncommonSense.CBreeze.Automation
                 var field = table.Fields.Add(new TableFilterTableField(GetNo(table), Name));
 
                 field.Properties.Description = Description;
+                field.Properties.TableIDExpr = TableIDExpr;
 
                 if (AutoCaption)
                     field.AutoCaption();
