@@ -168,7 +168,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new TextTableField(GetNo(table), Name, DataLength));
+                var field = table.Fields.Add(new TextTableField(GetTableFieldNo(table), Name, DataLength));
 
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;

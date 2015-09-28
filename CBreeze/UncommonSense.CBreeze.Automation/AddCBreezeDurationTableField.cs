@@ -169,7 +169,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new DurationTableField(GetNo(table), Name));
+                var field = table.Fields.Add(new DurationTableField(GetTableFieldNo(table), Name));
 
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;

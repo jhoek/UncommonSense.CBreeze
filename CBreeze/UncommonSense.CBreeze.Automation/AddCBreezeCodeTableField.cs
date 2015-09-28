@@ -175,7 +175,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new CodeTableField(GetNo(table), Name, DataLength));
+                var field = table.Fields.Add(new CodeTableField(GetTableFieldNo(table), Name, DataLength));
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;
                 field.Properties.AutoFormatType = AutoFormatType;

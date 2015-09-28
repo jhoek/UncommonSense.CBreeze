@@ -26,18 +26,15 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var table in Table)
-            {
-                var field = table.Fields.Add(new BinaryTableField(GetNo(table), Name, DataLength));
+            var field = Table.Fields.Add(new BinaryTableField(GetTableFieldNo(), Name, DataLength));
 
-                field.Properties.Description = Description;
+            field.Properties.Description = Description;
 
-                if (AutoCaption)
-                    field.AutoCaption();
+            if (AutoCaption)
+                field.AutoCaption();
 
-                if (PassThru)
-                    WriteObject(field);
-            }
+            if (PassThru)
+                WriteObject(field);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
     public abstract class AddCBreezeParameter : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject[] InputObject
+        public PSObject InputObject
         {
             get;
             set;
@@ -58,17 +58,6 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-
-        //protected int AutoAssignID(int id)
-        //{
-        //    if (id != 0)
-        //        return id;
-
-        //    if (!Parameters.Any())
-        //        return 1;
-
-        //    return Parameters.Last().ID + 1;
-        //}
 
         protected int GetParameterID(PSObject inputObject)
         {

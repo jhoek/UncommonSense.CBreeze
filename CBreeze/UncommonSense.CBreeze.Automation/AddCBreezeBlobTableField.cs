@@ -43,7 +43,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new BlobTableField(GetNo(table), Name));
+                var field = table.Fields.Add(new BlobTableField(GetTableFieldNo(table), Name));
 
                 field.Properties.Compressed = Compressed;
                 field.Properties.Description = Description;

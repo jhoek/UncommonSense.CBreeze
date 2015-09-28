@@ -10,6 +10,11 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeActionParameter")]
     public class AddCBreezeActionParameter : AddCBreezeParameter
     {
+        protected override void ProcessRecord()
+        {
+            
+        }
+
         //protected override System.Collections.IEnumerable AddedObjects
         //{
         //    get

@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Automation
     public abstract class AddCBreezeTableField : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Table[] Table
+        public Table Table
         {
             get;
             set;
@@ -67,14 +67,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected int GetNo(Table table)
+        protected int GetTableFieldNo()
         {
             if (No != 0)
                 return No;
 
             var range = Range;
 
-            if (Range.Contains(table.ID))
+            if (Range.Contains(Table.ID))
             {
                 switch (PrimaryKeyFieldNoRange.IsPresent)
                 {
@@ -87,7 +87,7 @@ namespace UncommonSense.CBreeze.Automation
                 }
             }
 
-            return range.Except(table.Fields.Select(f => f.ID)).First();
+            return range.Except(Table.Fields.Select(f => f.ID)).First();
         }
     }
 }

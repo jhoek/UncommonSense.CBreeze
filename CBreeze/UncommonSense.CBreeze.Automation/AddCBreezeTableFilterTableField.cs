@@ -20,9 +20,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var table in Table)
-            {
-                var field = table.Fields.Add(new TableFilterTableField(GetNo(table), Name));
+                var field = Table.Fields.Add(new TableFilterTableField(GetTableFieldNo(), Name));
 
                 field.Properties.Description = Description;
                 field.Properties.TableIDExpr = TableIDExpr;
@@ -32,7 +30,6 @@ namespace UncommonSense.CBreeze.Automation
 
                 if (PassThru)
                     WriteObject(field);
-            }
         }
     }
 }
