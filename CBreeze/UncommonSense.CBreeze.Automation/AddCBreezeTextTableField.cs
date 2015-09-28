@@ -115,11 +115,32 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public string InitValue
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? NotBlank
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? Numeric
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
             {
-                var field = table.Fields.Add(new TextTableField(GetNo(), Name, DataLength));
+                var field = table.Fields.Add(new TextTableField(GetNo(table), Name, DataLength));
 
                 field.Properties.AltSearchField = AltSearchField;
                 field.Properties.AutoFormatExpr = AutoFormatExpr;
@@ -135,6 +156,9 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.Editable = Editable;
                 field.Properties.ExtendedDatatype = ExtendedDataType;
                 field.Properties.FieldClass = FieldClass;
+                field.Properties.InitValue = InitValue;
+                field.Properties.NotBlank = NotBlank;
+                field.Properties.Numeric = Numeric;
 
                 if (AutoCaption)
                     field.AutoCaption();

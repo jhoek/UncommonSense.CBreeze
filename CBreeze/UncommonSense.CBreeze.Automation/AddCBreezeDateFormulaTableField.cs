@@ -95,6 +95,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public bool? NotBlank
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
@@ -114,6 +121,7 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.ExtendedDatatype = ExtendedDataType;
                 field.Properties.FieldClass = FieldClass;
                 field.Properties.InitValue = InitValue;
+                field.Properties.NotBlank = NotBlank;
 
                 if (AutoCaption)
                     field.AutoCaption();

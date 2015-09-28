@@ -18,6 +18,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public string Owner
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
@@ -26,6 +33,7 @@ namespace UncommonSense.CBreeze.Automation
 
                 field.Properties.Compressed = Compressed;
                 field.Properties.Description = Description;
+                field.Properties.Owner = Owner;
 
                 if (AutoCaption)
                     field.AutoCaption();

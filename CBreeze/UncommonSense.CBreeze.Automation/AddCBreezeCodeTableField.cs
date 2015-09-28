@@ -102,13 +102,6 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? NotBlank
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
         public bool? Editable
         {
             get;
@@ -124,6 +117,20 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public string InitValue
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? NotBlank
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? Numeric
         {
             get;
             set;
@@ -150,8 +157,8 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.ExtendedDatatype = ExtendedDataType;
                 field.Properties.FieldClass = FieldClass;
                 field.Properties.InitValue = InitValue;
-
                 field.Properties.NotBlank = NotBlank;
+                field.Properties.Numeric = Numeric;
 
                 if (AutoCaption)
                     field.AutoCaption();

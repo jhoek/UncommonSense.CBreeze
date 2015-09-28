@@ -102,6 +102,34 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public DateTime? MaxValue
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public DateTime? MinValue
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public bool? NotBlank
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public int? SignDisplacement
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var table in Table)
@@ -122,6 +150,10 @@ namespace UncommonSense.CBreeze.Automation
                 field.Properties.ExtendedDatatype = ExtendedDataType;
                 field.Properties.FieldClass = FieldClass;
                 field.Properties.InitValue = InitValue;
+                field.Properties.MinValue = MinValue;
+                field.Properties.MaxValue = MaxValue;
+                field.Properties.NotBlank = NotBlank;
+                field.Properties.SignDisplacement = SignDisplacement;
 
                 if (AutoCaption)
                     field.AutoCaption();
