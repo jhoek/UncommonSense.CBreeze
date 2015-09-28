@@ -59,16 +59,16 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected int AutoAssignID(int id)
-        {
-            if (id != 0)
-                return id;
+        //protected int AutoAssignID(int id)
+        //{
+        //    if (id != 0)
+        //        return id;
 
-            if (!Parameters.Any())
-                return 1;
+        //    if (!Parameters.Any())
+        //        return 1;
 
-            return Parameters.Last().ID + 1;
-        }
+        //    return Parameters.Last().ID + 1;
+        //}
 
         protected int GetParameterID(PSObject inputObject)
         {
