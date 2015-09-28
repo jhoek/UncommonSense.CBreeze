@@ -41,22 +41,19 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var table in Table)
-            {
-                var field = table.Fields.Add(new BlobTableField(GetTableFieldNo(table), Name));
+            var field = Table.Fields.Add(new BlobTableField(GetTableFieldNo(), Name));
 
-                field.Properties.Compressed = Compressed;
-                field.Properties.Description = Description;
-                field.Properties.Owner = Owner;
-                field.Properties.SubType = SubType;
-                field.Properties.Volatile = Volatile;
+            field.Properties.Compressed = Compressed;
+            field.Properties.Description = Description;
+            field.Properties.Owner = Owner;
+            field.Properties.SubType = SubType;
+            field.Properties.Volatile = Volatile;
 
-                if (AutoCaption)
-                    field.AutoCaption();
+            if (AutoCaption)
+                field.AutoCaption();
 
-                if (PassThru)
-                    WriteObject(field);
-            }
+            if (PassThru)
+                WriteObject(field);
         }
     }
 }

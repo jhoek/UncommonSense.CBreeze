@@ -10,14 +10,15 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeBigIntegerParameter")]
     public class AddCBreezeBigIntegerParameter : AddCBreezeParameter
     {
-        //protected override System.Collections.IEnumerable AddedObjects
-        //{
-        //    get
-        //    {
-        //        var bigIntegerParameter = Parameters.Add(new BigIntegerParameter(Var, ID, Name));
-        //        bigIntegerParameter.Dimensions = Dimensions;
-        //        yield return bigIntegerParameter;
-        //    }
-        //}
+        protected override void ProcessRecord()
+        {
+            var parameter = GetParameters().Add(new BigIntegerParameter(Var, GetParameterID(), Name));
+
+            parameter.Dimensions = Dimensions;
+
+            if (PassThru)
+                WriteObject(parameter);
+
+        }
     }
 }

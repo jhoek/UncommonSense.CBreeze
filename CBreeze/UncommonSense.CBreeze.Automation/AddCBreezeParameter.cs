@@ -59,22 +59,22 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected int GetParameterID(PSObject inputObject)
+        protected int GetParameterID()
         {
             if (ID != 0)
                 return ID;
 
-            return Range.Except(GetParameters(inputObject).Select(p => p.ID)).First();
+            return Range.Except(GetParameters().Select(p => p.ID)).First();
         }
 
-        protected Parameters GetParameters(PSObject inputObject)
+        protected Parameters GetParameters()
         {
-            if (inputObject.BaseObject is Parameters)
-                return (inputObject.BaseObject as Parameters);
-            if (inputObject.BaseObject is Function)
-                return (inputObject.BaseObject as Function).Parameters;
-            if (inputObject.BaseObject is Event)
-                return (inputObject.BaseObject as Event).Parameters;
+            if (InputObject.BaseObject is Parameters)
+                return (InputObject.BaseObject as Parameters);
+            if (InputObject.BaseObject is Function)
+                return (InputObject.BaseObject as Function).Parameters;
+            if (InputObject.BaseObject is Event)
+                return (InputObject.BaseObject as Event).Parameters;
 
             throw new ApplicationException("Cannot add parameters to this object.");
         }

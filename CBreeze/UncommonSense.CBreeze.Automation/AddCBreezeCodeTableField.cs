@@ -173,39 +173,37 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var table in Table)
-            {
-                var field = table.Fields.Add(new CodeTableField(GetTableFieldNo(table), Name, DataLength));
-                field.Properties.AltSearchField = AltSearchField;
-                field.Properties.AutoFormatExpr = AutoFormatExpr;
-                field.Properties.AutoFormatType = AutoFormatType;
-                field.Properties.CalcFormula.FieldName = CalcFormulaFieldName;
-                field.Properties.CalcFormula.Method = CalcFormulaMethod;
-                field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
-                field.Properties.CalcFormula.TableName = CalcFormulaTableName;
-                // FIXME: field.Properties.CalcFormula.TableFilter
-                field.Properties.CaptionClass = CaptionClass;
-                field.Properties.CharAllowed = CharAllowed;
-                field.Properties.DateFormula = DateFormula;
-                field.Properties.Description = Description;
-                field.Properties.Editable = Editable;
-                field.Properties.ExtendedDatatype = ExtendedDataType;
-                field.Properties.FieldClass = FieldClass;
-                field.Properties.InitValue = InitValue;
-                field.Properties.NotBlank = NotBlank;
-                field.Properties.Numeric = Numeric;
-                field.Properties.SQLDataType = SqlDataType;
-                field.Properties.TestTableRelation = TestTableRelation;
-                field.Properties.ValidateTableRelation = ValidateTableRelation;
-                field.Properties.ValuesAllowed = ValuesAllowed;
-                field.Properties.Width = Width;
+            var field = Table.Fields.Add(new CodeTableField(GetTableFieldNo(), Name, DataLength));
 
-                if (AutoCaption)
-                    field.AutoCaption();
+            field.Properties.AltSearchField = AltSearchField;
+            field.Properties.AutoFormatExpr = AutoFormatExpr;
+            field.Properties.AutoFormatType = AutoFormatType;
+            field.Properties.CalcFormula.FieldName = CalcFormulaFieldName;
+            field.Properties.CalcFormula.Method = CalcFormulaMethod;
+            field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
+            field.Properties.CalcFormula.TableName = CalcFormulaTableName;
+            // FIXME: field.Properties.CalcFormula.TableFilter
+            field.Properties.CaptionClass = CaptionClass;
+            field.Properties.CharAllowed = CharAllowed;
+            field.Properties.DateFormula = DateFormula;
+            field.Properties.Description = Description;
+            field.Properties.Editable = Editable;
+            field.Properties.ExtendedDatatype = ExtendedDataType;
+            field.Properties.FieldClass = FieldClass;
+            field.Properties.InitValue = InitValue;
+            field.Properties.NotBlank = NotBlank;
+            field.Properties.Numeric = Numeric;
+            field.Properties.SQLDataType = SqlDataType;
+            field.Properties.TestTableRelation = TestTableRelation;
+            field.Properties.ValidateTableRelation = ValidateTableRelation;
+            field.Properties.ValuesAllowed = ValuesAllowed;
+            field.Properties.Width = Width;
 
-                if (PassThru)
-                    WriteObject(field);
-            }
+            if (AutoCaption)
+                field.AutoCaption();
+
+            if (PassThru)
+                WriteObject(field);
         }
     }
 }

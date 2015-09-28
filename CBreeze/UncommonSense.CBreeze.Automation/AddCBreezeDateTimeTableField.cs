@@ -160,39 +160,36 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var table in Table)
-            {
-                var field = table.Fields.Add(new DateTimeTableField(GetTableFieldNo(table), Name));
+            var field = Table.Fields.Add(new DateTimeTableField(GetTableFieldNo(), Name));
 
-                field.Properties.AltSearchField = AltSearchField;
-                field.Properties.AutoFormatExpr = AutoFormatExpr;
-                field.Properties.AutoFormatType = AutoFormatType;
-                field.Properties.BlankNumbers = BlankNumbers;
-                field.Properties.CalcFormula.FieldName = CalcFormulaFieldName;
-                field.Properties.CalcFormula.Method = CalcFormulaMethod;
-                field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
-                field.Properties.CalcFormula.TableName = CalcFormulaTableName;
-                field.Properties.CaptionClass = CaptionClass;
-                field.Properties.Description = Description;
-                field.Properties.Editable = Editable;
-                field.Properties.ExtendedDatatype = ExtendedDataType;
-                field.Properties.FieldClass = FieldClass;
-                field.Properties.InitValue = InitValue;
-                field.Properties.MinValue = MinValue;
-                field.Properties.MaxValue = MaxValue;
-                field.Properties.NotBlank = NotBlank;
-                field.Properties.SignDisplacement = SignDisplacement;
-                field.Properties.TestTableRelation = TestTableRelation;
-                field.Properties.ValidateTableRelation = ValidateTableRelation;
-                field.Properties.ValuesAllowed = ValuesAllowed;
-                field.Properties.Volatile = Volatile;
+            field.Properties.AltSearchField = AltSearchField;
+            field.Properties.AutoFormatExpr = AutoFormatExpr;
+            field.Properties.AutoFormatType = AutoFormatType;
+            field.Properties.BlankNumbers = BlankNumbers;
+            field.Properties.CalcFormula.FieldName = CalcFormulaFieldName;
+            field.Properties.CalcFormula.Method = CalcFormulaMethod;
+            field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
+            field.Properties.CalcFormula.TableName = CalcFormulaTableName;
+            field.Properties.CaptionClass = CaptionClass;
+            field.Properties.Description = Description;
+            field.Properties.Editable = Editable;
+            field.Properties.ExtendedDatatype = ExtendedDataType;
+            field.Properties.FieldClass = FieldClass;
+            field.Properties.InitValue = InitValue;
+            field.Properties.MinValue = MinValue;
+            field.Properties.MaxValue = MaxValue;
+            field.Properties.NotBlank = NotBlank;
+            field.Properties.SignDisplacement = SignDisplacement;
+            field.Properties.TestTableRelation = TestTableRelation;
+            field.Properties.ValidateTableRelation = ValidateTableRelation;
+            field.Properties.ValuesAllowed = ValuesAllowed;
+            field.Properties.Volatile = Volatile;
 
-                if (AutoCaption)
-                    field.AutoCaption();
+            if (AutoCaption)
+                field.AutoCaption();
 
-                if (PassThru)
-                    WriteObject(field);
-            }
+            if (PassThru)
+                WriteObject(field);
         }
 
     }

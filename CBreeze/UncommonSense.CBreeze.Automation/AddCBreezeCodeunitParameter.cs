@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeCodeunitParameter")]
     public class AddCBreezeCodeunitParameter : AddCBreezeParameter
     {
-        [Parameter(Mandatory =true)]
+        [Parameter(Mandatory = true)]
         [ValidateRange(1, int.MaxValue)]
         public int SubType
         {
@@ -20,15 +20,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var inputObject in InputObject)
-            {
-                var parameter = GetParameters(inputObject).Add(new CodeunitParameter(Var, GetParameterID(inputObject), Name, SubType));
+            var parameter = GetParameters().Add(new CodeunitParameter(Var, GetParameterID(), Name, SubType));
 
-                parameter.Dimensions = Dimensions;
+            parameter.Dimensions = Dimensions;
 
-                if (PassThru)
-                    WriteObject(parameter);
-            }
+            if (PassThru)
+                WriteObject(parameter);
         }
     }
 }

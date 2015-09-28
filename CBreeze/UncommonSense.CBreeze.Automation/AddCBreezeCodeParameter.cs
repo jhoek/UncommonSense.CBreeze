@@ -20,14 +20,11 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var inputObject in InputObject)
-            {
-                var parameter = GetParameters(inputObject).Add(new CodeParameter(Var, GetParameterID(inputObject), Name, DataLength));
-                parameter.Dimensions = Dimensions;
+            var parameter = GetParameters().Add(new CodeParameter(Var, GetParameterID(), Name, DataLength));
+            parameter.Dimensions = Dimensions;
 
-                if (PassThru)
-                    WriteObject(parameter);
-            }
+            if (PassThru)
+                WriteObject(parameter);
         }
     }
 }

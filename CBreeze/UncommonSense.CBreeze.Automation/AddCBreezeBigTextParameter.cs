@@ -10,16 +10,14 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeBigTextParameter")]
     public class AddCBreezeBigTextParameter : AddCBreezeParameter
     {
-        //protected override System.Collections.IEnumerable AddedObjects
-        //{
-        //    get
-        //    {
-        //        ID = AutoAssignID(ID);
+        protected override void ProcessRecord()
+        {
+            var parameter = GetParameters().Add(new BigTextParameter(Var, GetParameterID(), Name));
 
-        //        var bigTextParameter = Parameters.Add(new BigTextParameter(Var, ID, Name));
-        //        bigTextParameter.Dimensions = Dimensions;
-        //        yield return bigTextParameter;
-        //    }
-        //}
+            parameter.Dimensions = Dimensions;
+
+            if (PassThru)
+                WriteObject(parameter);
+        }
     }
 }

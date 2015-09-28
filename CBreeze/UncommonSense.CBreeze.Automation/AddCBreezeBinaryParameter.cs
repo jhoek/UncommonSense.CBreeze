@@ -18,21 +18,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        //protected override System.Collections.IEnumerable AddedObjects
-        //{
-        //    get
-        //    {
-        //        ID = AutoAssignID(ID);
+        protected override void ProcessRecord()
+        {
+            var parameter = GetParameters().Add(new BinaryParameter(Var, GetParameterID(), Name, DataLength.GetValueOrDefault(4)));
 
-        //        if ((DataLength ?? 0) == 0)
-        //        {
-        //            DataLength = 100;
-        //        }
+            parameter.Dimensions = Dimensions;
 
-        //        var binaryParameter = Parameters.Add(new BinaryParameter(Var, ID, Name, DataLength.Value));
-        //        binaryParameter.Dimensions = Dimensions;
-        //        yield return binaryParameter;
-        //    }
-        //}
+            if (PassThru)
+                WriteObject(parameter);
+        }
     }
 }

@@ -12,19 +12,12 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void ProcessRecord()
         {
-            
+            var parameter = GetParameters().Add(new ActionParameter(Var, GetParameterID(), Name));
+
+            parameter.Dimensions = Dimensions;
+
+            if (PassThru)
+                WriteObject(parameter);
         }
-
-        //protected override System.Collections.IEnumerable AddedObjects
-        //{
-        //    get
-        //    {
-        //        ID = AutoAssignID(ID);
-
-        //        var actionParameter = Parameters.Add(new ActionParameter(Var, ID, Name));
-        //        actionParameter.Dimensions = Dimensions;
-        //        yield return actionParameter;
-        //    }
-        //}
     }
 }

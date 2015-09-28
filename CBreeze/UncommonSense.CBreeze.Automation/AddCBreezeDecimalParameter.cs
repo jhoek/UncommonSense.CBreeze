@@ -12,15 +12,12 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void ProcessRecord()
         {
-            foreach (var inputObject in InputObject)
-            {
-                var parameter = GetParameters(inputObject).Add(new DecimalParameter(Var, GetParameterID(inputObject), Name));
+            var parameter = GetParameters().Add(new DecimalParameter(Var, GetParameterID(), Name));
 
-                parameter.Dimensions = Dimensions;
+            parameter.Dimensions = Dimensions;
 
-                if (PassThru)
-                    WriteObject(parameter);
-            }
+            if (PassThru)
+                WriteObject(parameter);
         }
     }
 }
