@@ -61,6 +61,7 @@
     <Compile Include="AddCBreezeExecutionModeParameter.cs" />
     <Compile Include="AddCBreezeFieldRefParameter.cs" />
     <Compile Include="AddCBreezeFileParameter.cs" />
+    <Compile Include="AddCBreezeGroupPageControl.cs" />
     <Compile Include="AddCBreezeGuidParameter.cs" />
     <Compile Include="AddCBreezeGuidTableField.cs" />
     <Compile Include="AddCBreezeInStreamParameter.cs" />
