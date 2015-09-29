@@ -8,16 +8,11 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeDialogParameter")]
-    public class AddCBreezeDialogParameter : AddCBreezeParameter
+    public class AddCBreezeDialogParameter : AddCBreezeParameter<DialogParameter>
     {
-        protected override void ProcessRecord()
+        protected override DialogParameter CreateParameter()
         {
-            var parameter = GetParameters().Add(new DialogParameter(Var, GetParameterID(), Name));
-
-            parameter.Dimensions = Dimensions;
-
-            if (PassThru)
-                WriteObject(parameter);
+            return Parameters.Add(new DialogParameter(Var, GetParameterID(), Name));
         }
     }
 }

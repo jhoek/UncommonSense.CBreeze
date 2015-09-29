@@ -8,16 +8,11 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeDecimalParameter")]
-    public class AddCBreezeDecimalParameter : AddCBreezeParameter
+    public class AddCBreezeDecimalParameter : AddCBreezeParameter<DecimalParameter>
     {
-        protected override void ProcessRecord()
+        protected override DecimalParameter CreateParameter()
         {
-            var parameter = GetParameters().Add(new DecimalParameter(Var, GetParameterID(), Name));
-
-            parameter.Dimensions = Dimensions;
-
-            if (PassThru)
-                WriteObject(parameter);
+            return Parameters.Add(new DecimalParameter(Var, GetParameterID(), Name));
         }
     }
 }

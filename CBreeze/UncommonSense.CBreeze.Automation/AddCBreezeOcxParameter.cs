@@ -7,8 +7,8 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeAutomationParameter")]
-    public class AddCBreezeAutomationParameter : AddCBreezeParameter<AutomationParameter>
+    [Cmdlet(VerbsCommon.Add, "CBreezeOcxParameter")]
+    public class AddCBreezeOcxParameter : AddCBreezeParameter<OcxParameter>
     {
         [Parameter(Mandatory = true)]
         public string SubType
@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override AutomationParameter CreateParameter()
+        protected override OcxParameter CreateParameter()
         {
-            return Parameters.Add(new AutomationParameter(Var, GetParameterID(), Name, SubType));
+            return Parameters.Add(new OcxParameter(Var, GetParameterID(), Name, SubType));
         }
     }
 }

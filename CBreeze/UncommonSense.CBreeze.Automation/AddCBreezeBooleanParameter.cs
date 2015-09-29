@@ -8,18 +8,11 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeBooleanParameter")]
-    public class AddCBreezeBooleanParameter : AddCBreezeParameter
+    public class AddCBreezeBooleanParameter : AddCBreezeParameter<BooleanParameter>
     {
-        //protected override System.Collections.IEnumerable AddedObjects
-        //{
-        //    get
-        //    {
-        //        ID = AutoAssignID(ID);
-
-        //        var booleanParameter = Parameters.Add(new BooleanParameter(Var, ID, Name));
-        //        booleanParameter.Dimensions = Dimensions;
-        //        yield return booleanParameter;
-        //    }
-        //}
+        protected override BooleanParameter CreateParameter()
+        {
+            return Parameters.Add(new BooleanParameter(Var, GetParameterID(), Name));
+        }
     }
 }

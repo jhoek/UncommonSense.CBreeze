@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeCodeunitParameter")]
-    public class AddCBreezeCodeunitParameter : AddCBreezeParameter
+    public class AddCBreezeCodeunitParameter : AddCBreezeParameter<CodeunitParameter>
     {
         [Parameter(Mandatory = true)]
         [ValidateRange(1, int.MaxValue)]
@@ -18,14 +18,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override void ProcessRecord()
+        protected override CodeunitParameter CreateParameter()
         {
-            var parameter = GetParameters().Add(new CodeunitParameter(Var, GetParameterID(), Name, SubType));
-
-            parameter.Dimensions = Dimensions;
-
-            if (PassThru)
-                WriteObject(parameter);
+            return Parameters.Add(new CodeunitParameter(Var, GetParameterID(), Name, SubType));
         }
     }
 }

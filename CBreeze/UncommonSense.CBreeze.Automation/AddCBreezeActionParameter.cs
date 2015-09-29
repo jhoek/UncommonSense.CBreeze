@@ -8,16 +8,11 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeActionParameter")]
-    public class AddCBreezeActionParameter : AddCBreezeParameter
+    public class AddCBreezeActionParameter : AddCBreezeParameter<ActionParameter>
     {
-        protected override void ProcessRecord()
+        protected override ActionParameter CreateParameter()
         {
-            var parameter = GetParameters().Add(new ActionParameter(Var, GetParameterID(), Name));
-
-            parameter.Dimensions = Dimensions;
-
-            if (PassThru)
-                WriteObject(parameter);
+            return Parameters.Add(new ActionParameter(Var, GetParameterID(), Name));
         }
     }
 }

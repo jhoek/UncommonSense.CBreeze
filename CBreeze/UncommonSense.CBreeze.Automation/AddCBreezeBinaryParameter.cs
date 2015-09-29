@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeBinaryParameter")]
-    public class AddCBreezeBinaryParameter : AddCBreezeParameter
+    public class AddCBreezeBinaryParameter : AddCBreezeParameter<BinaryParameter>
     {
         [Parameter()]
         [ValidateRange(1, int.MaxValue)]
@@ -18,14 +18,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override void ProcessRecord()
+        protected override BinaryParameter CreateParameter()
         {
-            var parameter = GetParameters().Add(new BinaryParameter(Var, GetParameterID(), Name, DataLength.GetValueOrDefault(4)));
-
-            parameter.Dimensions = Dimensions;
-
-            if (PassThru)
-                WriteObject(parameter);
+            return Parameters.Add(new BinaryParameter(Var, GetParameterID(), Name, DataLength.GetValueOrDefault(4)));
         }
     }
 }

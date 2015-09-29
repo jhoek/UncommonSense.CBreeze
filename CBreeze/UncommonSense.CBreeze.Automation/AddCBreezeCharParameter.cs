@@ -8,18 +8,11 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeCharParameter")]
-    public class AddCBreezeCharParameter : AddCBreezeParameter
+    public class AddCBreezeCharParameter : AddCBreezeParameter<CharParameter>
     {
-        //protected override System.Collections.IEnumerable AddedObjects
-        //{
-        //    get
-        //    {
-        //        ID = AutoAssignID(ID);
-
-        //        var charParameter = Parameters.Add(new CharParameter(Var, ID, Name));
-        //        charParameter.Dimensions = Dimensions;
-        //        yield return charParameter;
-        //    }
-        //}
+        protected override CharParameter CreateParameter()
+        {
+            return Parameters.Add(new CharParameter(Var, GetParameterID(), Name));
+        }
     }
 }

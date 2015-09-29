@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class AddCBreezeParameter : Cmdlet
+    public abstract class AddCBreezeParameter<T> : Cmdlet where T : Parameter
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true,ParameterSetName="ID")]
+        [Parameter(Mandatory = true, ParameterSetName = "ID")]
         [ValidateRange(1, int.MaxValue)]
         public int ID
         {
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true, ParameterSetName = "Range")]
+        [Parameter(Mandatory = true, ParameterSetName = "Range")]
         public IEnumerable<int> Range
         {
             get;
@@ -59,24 +59,47 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected override void ProcessRecord()
+        {
+            var parameter = CreateParameter();
+            SetParameterProperties(parameter);
+            WriteParameterToPipeline(parameter);
+        }
+
+        protected abstract T CreateParameter();
+
+        protected virtual void SetParameterProperties(T parameter)
+        {
+            parameter.Dimensions = Dimensions;
+        }
+
+        protected virtual void WriteParameterToPipeline(T parameter)
+        {
+            if (PassThru)
+                WriteObject(parameter);
+        }
+
         protected int GetParameterID()
         {
             if (ID != 0)
                 return ID;
 
-            return Range.Except(GetParameters().Select(p => p.ID)).First();
+            return Range.Except(Parameters.Select(p => p.ID)).First();
         }
 
-        protected Parameters GetParameters()
+        protected Parameters Parameters
         {
-            if (InputObject.BaseObject is Parameters)
-                return (InputObject.BaseObject as Parameters);
-            if (InputObject.BaseObject is Function)
-                return (InputObject.BaseObject as Function).Parameters;
-            if (InputObject.BaseObject is Event)
-                return (InputObject.BaseObject as Event).Parameters;
+            get
+            {
+                if (InputObject.BaseObject is Parameters)
+                    return (InputObject.BaseObject as Parameters);
+                if (InputObject.BaseObject is Function)
+                    return (InputObject.BaseObject as Function).Parameters;
+                if (InputObject.BaseObject is Event)
+                    return (InputObject.BaseObject as Event).Parameters;
 
-            throw new ApplicationException("Cannot add parameters to this object.");
+                throw new ApplicationException("Cannot add parameters to this object.");
+            }
         }
     }
 }
