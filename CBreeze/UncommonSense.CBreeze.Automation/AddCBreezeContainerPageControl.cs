@@ -10,6 +10,13 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeContainerPageControl")]
     public class AddCBreezeContainerPageControl : AddCBreezePageControl
     {
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public Page Page
+        {
+            get;
+            set;
+        }
+
         [Parameter(Mandatory = true)]
         public ContainerType Type
         {
@@ -55,5 +62,9 @@ namespace UncommonSense.CBreeze.Automation
                 WriteObject(control);
         }
 
+        protected override Page GetPage()
+        {
+            return Page;
+        }
     }
 }

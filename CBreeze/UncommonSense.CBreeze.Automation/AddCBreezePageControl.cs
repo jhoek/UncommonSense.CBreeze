@@ -10,13 +10,6 @@ namespace UncommonSense.CBreeze.Automation
 {
     public abstract class AddCBreezePageControl : Cmdlet
     {
-        [Parameter(Mandatory=true, ValueFromPipeline=true)]
-        public Page Page
-        {
-            get;
-            set;
-        }
-
         [Parameter(ParameterSetName = "Range")]
         public IEnumerable<int> Range
         {
@@ -39,6 +32,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected abstract Page GetPage();
+
         protected int GetPageControlID()
         {
             if (ID != 0)
@@ -46,10 +41,10 @@ namespace UncommonSense.CBreeze.Automation
 
             var range = Range;
 
-            if (Range.Contains(Page.ID))
+            if (Range.Contains(GetPage().ID))
                 range = 1.To(int.MaxValue);
 
-            return range.Except(Page.Controls.Select(c => c.ID)).First();
+            return range.Except(GetPage().Controls.Select(c => c.ID)).First();
         }
     }
 }
