@@ -106,10 +106,17 @@
     <Compile Include="AddCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableFilterTableField.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
+    <Compile Include="AddCBreezeTestPageParameter.cs" />
+    <Compile Include="AddCBreezeTestRequestPageParameter.cs" />
+    <Compile Include="AddCBreezeTextParameter.cs" />
     <Compile Include="AddCBreezeTextTableField.cs" />
+    <Compile Include="AddCBreezeTimeParameter.cs" />
     <Compile Include="AddCBreezeTimeTableField.cs" />
+    <Compile Include="AddCBreezeTransactionTypeParameter.cs" />
     <Compile Include="AddCBreezeVariable.cs" />
+    <Compile Include="AddCBreezeVariantParameter.cs" />
     <Compile Include="AddCBreezeXmlPort.cs" />
+    <Compile Include="AddCBreezeXmlPortParameter.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
     <Compile Include="ImportCBreezeApplication.cs" />
     <Compile Include="NewCBreezeApplication.cs" />
