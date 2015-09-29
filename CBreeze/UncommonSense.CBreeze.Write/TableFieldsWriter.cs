@@ -12,22 +12,12 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.BeginSection("FIELDS");
 
-            //var fieldNoWidth = 0;
-
-            //if (tableFields.Any())
-            //    fieldNoWidth = Math.Max(tableFields.Max(f => f.No).ToString().Length, 4);
-
-            foreach (TableField tableField in tableFields)
+            foreach (TableField tableField in tableFields.OrderBy(f => f.ID))
             {
                 tableField.Write(writer);
             }
 
             writer.EndSection();
-        }
-
-        public static int RoundUpToNearestTen(this int value)
-        {
-            return ((value + 10 - 1) / 10) * 10;
         }
     }
 }
