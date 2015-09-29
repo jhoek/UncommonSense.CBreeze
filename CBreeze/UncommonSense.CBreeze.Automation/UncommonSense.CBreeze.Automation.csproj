@@ -80,6 +80,7 @@
     <Compile Include="AddCBreezeRecordParameter.cs" />
     <Compile Include="AddCBreezeRecordRefParameter.cs" />
     <Compile Include="AddCBreezeReport.cs" />
+    <Compile Include="AddCBreezeReportParameter.cs" />
     <Compile Include="AddCBreezeTable.cs" />
     <Compile Include="AddCBreezeActionParameter.cs" />
     <Compile Include="AddCBreezeAutomationParameter.cs" />
