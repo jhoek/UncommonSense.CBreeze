@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCBreezeContainerPageControl.cs" />
     <Compile Include="AddCBreezeDateTimeTableField.cs" />
     <Compile Include="AddCBreezeDateFormulaTableField.cs" />
     <Compile Include="AddCBreezeDateTableField.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="AddCBreezeOptionTableField.cs" />
     <Compile Include="AddCBreezeOutStreamParameter.cs" />
     <Compile Include="AddCBreezePage.cs" />
+    <Compile Include="AddCBreezePageControl.cs" />
     <Compile Include="AddCBreezePageParameter.cs" />
     <Compile Include="AddCBreezeQuery.cs" />
     <Compile Include="AddCBreezeQueryParameter.cs" />
