@@ -24,9 +24,19 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public object[] ArgumentList
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
-            InputObject.CodeLines.Add(Line);
+            if (ArgumentList == null)
+                InputObject.CodeLines.Add(Line);
+            else
+                InputObject.CodeLines.Add(Line, ArgumentList);
         }
     }
 }
