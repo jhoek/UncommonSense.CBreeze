@@ -11,11 +11,45 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeVariable")]
     public class AddCBreezeVariable : CmdletWithDynamicParams
     {
-        private RuntimeDefinedParameter integerSubType = DynamicParameterMgt.IntegerSubType();
-        private RuntimeDefinedParameter recordSecurityFiltering = DynamicParameterMgt.RecordSecurityFiltering();
-        private RuntimeDefinedParameter stringSubType = DynamicParameterMgt.StringSubType();
-        private RuntimeDefinedParameter temporary = DynamicParameterMgt.Temporary();
-        private RuntimeDefinedParameter withEvents = DynamicParameterMgt.WithEvents();
+
+        public AddCBreezeVariable()
+        {
+            IntegerSubType = new DynamicParameter<int>("SubType", true, 1, int.MaxValue);
+            StringSubType = new DynamicParameter<string>("SubType", true);
+            RecordSecurityFiltering = new DynamicParameter<RecordSecurityFiltering?>("SecurityFiltering", false);
+            Temporary = new DynamicParameter<bool?>("Temporary", false);
+            WithEvents = new DynamicParameter<bool?>("WithEvents", false);
+        }
+
+        protected DynamicParameter<int> IntegerSubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> StringSubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<RecordSecurityFiltering?> RecordSecurityFiltering
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> Temporary
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> WithEvents
+        {
+            get;
+            set;
+        }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject[] InputObject
@@ -80,17 +114,17 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case VariableType.Automation:
-                        var automationVariable = GetVariables(inputObject).Add(new AutomationVariable(GetVariableID(inputObject), Name, StringSubType));
+                        var automationVariable = GetVariables(inputObject).Add(new AutomationVariable(GetVariableID(inputObject), Name, StringSubType.Value));
                         automationVariable.Dimensions = Dimensions;
-                        automationVariable.WithEvents = WithEvents;
+                        automationVariable.WithEvents = WithEvents.Value;
                         WriteVariable(automationVariable);
                         break;
 
-                    case VariableType.Record:                        
-                        var recordVariable = GetVariables(inputObject).Add(new RecordVariable(GetVariableID(inputObject), Name, IntegerSubType));
+                    case VariableType.Record:
+                        var recordVariable = GetVariables(inputObject).Add(new RecordVariable(GetVariableID(inputObject), Name, IntegerSubType.Value));
                         recordVariable.Dimensions = Dimensions;
-                        recordVariable.SecurityFiltering = RecordSecurityFiltering;
-                        recordVariable.Temporary = Temporary;
+                        recordVariable.SecurityFiltering = RecordSecurityFiltering.Value;
+                        recordVariable.Temporary = Temporary.Value;
                         WriteVariable(recordVariable);
                         break;
                 }
@@ -146,57 +180,16 @@ namespace UncommonSense.CBreeze.Automation
                 switch (Type)
                 {
                     case VariableType.Record:
-                        yield return integerSubType;
-                        yield return recordSecurityFiltering;
-                        yield return temporary;
+                        yield return IntegerSubType.RuntimeDefinedParameter;
+                        yield return RecordSecurityFiltering.RuntimeDefinedParameter;
+                        yield return Temporary.RuntimeDefinedParameter;
                         break;
                     case VariableType.Automation:
-                        yield return stringSubType;
-                        yield return withEvents;
+                        yield return StringSubType.RuntimeDefinedParameter;
+                        yield return WithEvents.RuntimeDefinedParameter;
                         break;
                 }
             }
         }
-
-        public int IntegerSubType
-        {
-            get
-            {
-                return (int)this.integerSubType.Value;
-            }
-        }
-
-        public RecordSecurityFiltering? RecordSecurityFiltering
-        {
-            get
-            {
-                return (RecordSecurityFiltering?)this.recordSecurityFiltering.Value;
-            }
-        }
-
-        public string StringSubType
-        {
-            get
-            {
-                return (string)this.stringSubType.Value;
-            }
-        }
-
-        public bool? Temporary
-        {
-            get
-            {
-                return (bool?)this.temporary.Value;
-            }
-        }
-
-        public bool? WithEvents
-        {
-            get
-            {
-                return (bool?)this.withEvents.Value;
-            }
-        }
-
     }
 }
