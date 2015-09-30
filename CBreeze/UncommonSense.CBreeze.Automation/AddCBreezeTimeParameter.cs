@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeTimeParameter")]
     public class AddCBreezeTimeParameter : AddCBreezeParameter<TimeParameter>
     {
-        protected override TimeParameter CreateParameter()
+        protected override TimeParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new TimeParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new TimeParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

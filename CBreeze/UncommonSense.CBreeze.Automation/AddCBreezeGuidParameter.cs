@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeGuidParameter")]
     public class AddCBreezeGuidParameter : AddCBreezeParameter<GuidParameter>
     {
-        protected override GuidParameter CreateParameter()
+        protected override GuidParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new GuidParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new GuidParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

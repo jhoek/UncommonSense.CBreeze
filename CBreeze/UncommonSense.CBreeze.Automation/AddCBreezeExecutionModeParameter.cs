@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeExecutionModeParameter")]
     public class AddCBreezeExecutionModeParameter : AddCBreezeParameter<ExecutionModeParameter>
     {
-        protected override ExecutionModeParameter CreateParameter()
+        protected override ExecutionModeParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new ExecutionModeParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new ExecutionModeParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

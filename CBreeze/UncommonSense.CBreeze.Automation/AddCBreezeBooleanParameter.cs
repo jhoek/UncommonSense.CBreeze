@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeBooleanParameter")]
     public class AddCBreezeBooleanParameter : AddCBreezeParameter<BooleanParameter>
     {
-        protected override BooleanParameter CreateParameter()
+        protected override BooleanParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new BooleanParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new BooleanParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

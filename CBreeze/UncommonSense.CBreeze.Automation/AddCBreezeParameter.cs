@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
     public abstract class AddCBreezeParameter<T> : Cmdlet where T : Parameter
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        public PSObject[] InputObject
         {
             get;
             set;
@@ -61,12 +61,15 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var parameter = CreateParameter();
-            SetParameterProperties(parameter);
-            WriteParameterToPipeline(parameter);
+            foreach (var inputObject in InputObject)
+            {
+                var parameter = CreateParameter(inputObject);
+                SetParameterProperties(parameter);
+                WriteParameterToPipeline(parameter);
+            }
         }
 
-        protected abstract T CreateParameter();
+        protected abstract  T CreateParameter(PSObject inputObject);
 
         protected virtual void SetParameterProperties(T parameter)
         {
@@ -79,27 +82,24 @@ namespace UncommonSense.CBreeze.Automation
                 WriteObject(parameter);
         }
 
-        protected int GetParameterID()
+        protected int GetParameterID(PSObject inputObject)
         {
             if (ID != 0)
                 return ID;
 
-            return Range.Except(Parameters.Select(p => p.ID)).First();
+            return Range.Except(GetParameters(inputObject).Select(p => p.ID)).First();
         }
 
-        protected Parameters Parameters
+        protected Parameters GetParameters(PSObject inputObject)
         {
-            get
-            {
-                if (InputObject.BaseObject is Parameters)
-                    return (InputObject.BaseObject as Parameters);
-                if (InputObject.BaseObject is Function)
-                    return (InputObject.BaseObject as Function).Parameters;
-                if (InputObject.BaseObject is Event)
-                    return (InputObject.BaseObject as Event).Parameters;
+            if (inputObject.BaseObject is Parameters)
+                return (inputObject.BaseObject as Parameters);
+            if (inputObject.BaseObject is Function)
+                return (inputObject.BaseObject as Function).Parameters;
+            if (inputObject.BaseObject is Event)
+                return (inputObject.BaseObject as Event).Parameters;
 
-                throw new ApplicationException("Cannot add parameters to this object.");
-            }
+            throw new ApplicationException("Cannot add parameters to this object.");
         }
     }
 }

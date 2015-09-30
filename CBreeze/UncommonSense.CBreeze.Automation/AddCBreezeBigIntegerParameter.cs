@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeBigIntegerParameter")]
     public class AddCBreezeBigIntegerParameter : AddCBreezeParameter<BigIntegerParameter>
     {
-        protected override BigIntegerParameter CreateParameter()
+        protected override BigIntegerParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new BigIntegerParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new BigIntegerParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

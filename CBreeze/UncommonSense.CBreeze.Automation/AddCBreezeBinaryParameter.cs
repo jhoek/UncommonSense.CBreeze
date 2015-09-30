@@ -18,9 +18,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override BinaryParameter CreateParameter()
+        protected override BinaryParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new BinaryParameter(Var, GetParameterID(), Name, DataLength.GetValueOrDefault(4)));
+            return GetParameters(inputObject).Add(new BinaryParameter(Var, GetParameterID(inputObject), Name, DataLength.GetValueOrDefault(4)));
         }
     }
 }

@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeInStreamParameter")]
     public class AddCBreezeInStreamParameter : AddCBreezeParameter<InStreamParameter>
     {
-        protected override InStreamParameter CreateParameter()
+        protected override InStreamParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new InStreamParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new InStreamParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

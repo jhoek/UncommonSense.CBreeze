@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeByteParameter")]
     public class AddCBreezeByteParameter : AddCBreezeParameter<ByteParameter>   
     {
-        protected override ByteParameter CreateParameter()
+        protected override ByteParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new ByteParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new ByteParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

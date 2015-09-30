@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeTransactionTypeParameter")]
     public class AddCBreezeTransactionTypeParameter : AddCBreezeParameter<TransactionTypeParameter>
     {
-        protected override TransactionTypeParameter CreateParameter()
+        protected override TransactionTypeParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new TransactionTypeParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new TransactionTypeParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

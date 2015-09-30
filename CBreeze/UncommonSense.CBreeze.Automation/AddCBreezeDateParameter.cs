@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeDateParameter")]
     public class AddCBreezeDateParameter : AddCBreezeParameter<DateParameter>
     {
-        protected override DateParameter CreateParameter()
+        protected override DateParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new DateParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new DateParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeActionParameter")]
     public class AddCBreezeActionParameter : AddCBreezeParameter<ActionParameter>
     {
-        protected override ActionParameter CreateParameter()
+        protected override ActionParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new ActionParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new ActionParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

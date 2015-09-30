@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeRecordIDParameter")]
     public class AddCBreezeRecordIDParameter : AddCBreezeParameter<RecordIDParameter>
     {
-        protected override RecordIDParameter CreateParameter()
+        protected override RecordIDParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new RecordIDParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new RecordIDParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

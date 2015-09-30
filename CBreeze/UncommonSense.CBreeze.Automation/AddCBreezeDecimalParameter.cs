@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeDecimalParameter")]
     public class AddCBreezeDecimalParameter : AddCBreezeParameter<DecimalParameter>
     {
-        protected override DecimalParameter CreateParameter()
+        protected override DecimalParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new DecimalParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new DecimalParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

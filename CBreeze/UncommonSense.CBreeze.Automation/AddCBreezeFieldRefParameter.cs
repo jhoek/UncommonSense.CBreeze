@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeFieldRefParameter")]
     public class AddCBreezeFieldRefParameter : AddCBreezeParameter<FieldRefParameter>
     {
-        protected override FieldRefParameter CreateParameter()
+        protected override FieldRefParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new FieldRefParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new FieldRefParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

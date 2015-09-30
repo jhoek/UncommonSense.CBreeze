@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeDialogParameter")]
     public class AddCBreezeDialogParameter : AddCBreezeParameter<DialogParameter>
     {
-        protected override DialogParameter CreateParameter()
+        protected override DialogParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new DialogParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new DialogParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

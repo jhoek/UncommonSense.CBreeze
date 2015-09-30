@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeIntegerParameter")]
     public class AddCBreezeIntegerParameter : AddCBreezeParameter<IntegerParameter>
     {
-        protected override IntegerParameter CreateParameter()
+        protected override IntegerParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new IntegerParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new IntegerParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

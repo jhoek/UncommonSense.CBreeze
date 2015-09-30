@@ -18,9 +18,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override XmlPortParameter CreateParameter()
+        protected override XmlPortParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new XmlPortParameter(Var, GetParameterID(), Name, SubType));
+            return GetParameters(inputObject).Add(new XmlPortParameter(Var, GetParameterID(inputObject), Name, SubType));
         }
     }
 }

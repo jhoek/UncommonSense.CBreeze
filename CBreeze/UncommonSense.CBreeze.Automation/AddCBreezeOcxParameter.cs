@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override OcxParameter CreateParameter()
+        protected override OcxParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new OcxParameter(Var, GetParameterID(), Name, SubType));
+            return GetParameters(inputObject).Add(new OcxParameter(Var, GetParameterID(inputObject), Name, SubType));
         }
     }
 }

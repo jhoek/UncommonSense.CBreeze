@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeFileParameter")]
     public class AddCBreezeFileParameter : AddCBreezeParameter<FileParameter>
     {
-        protected override FileParameter CreateParameter()
+        protected override FileParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new FileParameter(Var, GetParameterID(), Name));
+            return GetParameters(inputObject).Add(new FileParameter(Var, GetParameterID(inputObject), Name));
         }
     }
 }

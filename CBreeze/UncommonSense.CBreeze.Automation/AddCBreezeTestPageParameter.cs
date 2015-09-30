@@ -18,9 +18,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override TestPageParameter CreateParameter()
+        protected override TestPageParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new TestPageParameter(Var, GetParameterID(), Name, SubType));
+            return GetParameters(inputObject).Add(new TestPageParameter(Var, GetParameterID(inputObject), Name, SubType));
         }
     }
 }

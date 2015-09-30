@@ -32,9 +32,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override RecordParameter CreateParameter()
+        protected override RecordParameter CreateParameter(PSObject inputObject)
         {
-            return Parameters.Add(new RecordParameter(Var, GetParameterID(), Name, SubType));
+            return GetParameters(inputObject).Add(new RecordParameter(Var, GetParameterID(inputObject), Name, SubType));
         }
 
         protected override void SetParameterProperties(RecordParameter parameter)
