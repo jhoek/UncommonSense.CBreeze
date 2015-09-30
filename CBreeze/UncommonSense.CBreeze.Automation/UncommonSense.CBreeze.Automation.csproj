@@ -120,6 +120,7 @@
     <Compile Include="AddCBreezeVariantParameter.cs" />
     <Compile Include="AddCBreezeXmlPort.cs" />
     <Compile Include="AddCBreezeXmlPortParameter.cs" />
+    <Compile Include="CmdletWithDynamicParams.cs" />
     <Compile Include="DynamicParameters.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
     <Compile Include="ImportCBreezeApplication.cs" />
@@ -156,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Design Guidelines.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
