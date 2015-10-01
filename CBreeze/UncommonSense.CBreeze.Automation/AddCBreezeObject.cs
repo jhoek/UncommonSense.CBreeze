@@ -24,6 +24,9 @@ namespace UncommonSense.CBreeze.Automation
             Description = new DynamicParameter<string>("Description", false);
             DrillDownPageID = new DynamicParameter<int?>("DrillDownPageID", false, 1, int.MaxValue);
             Editable = new DynamicParameter<bool?>("Editable", false);
+            EnableExternalAssemblies = new DynamicParameter<bool?>("EnableExternalAssemblies", false);
+            EnableExternalImages = new DynamicParameter<bool?>("EnableExternalImages", false);
+            EnableHyperlinks = new DynamicParameter<bool?>("EnableHyperlinks", false);
             InsertAllowed = new DynamicParameter<bool?>("InsertAllowed", false);
             LinkedInTransaction = new DynamicParameter<bool?>("LinkedInTransaction", false);
             LinkedObject = new DynamicParameter<bool?>("LinkedObject", false);
@@ -32,17 +35,27 @@ namespace UncommonSense.CBreeze.Automation
             ModifyAllowed = new DynamicParameter<bool?>("ModifyAllowed", false);
             MultipleNewLines = new DynamicParameter<bool?>("MultipleNewLines", false);
             PageType = new DynamicParameter<Core.PageType?>("PageType", false);
+            PaperSourceDefaultPage = new DynamicParameter<PaperSource?>("PaperSourceDefaultPage", false);
+            PaperSourceFirstPage = new DynamicParameter<PaperSource?>("PaperSourceFirstPage", false);
+            PaperSourceLastPage = new DynamicParameter<PaperSource?>("PaperSourceLastPage", false);
             PasteIsValid = new DynamicParameter<bool?>("PasteIsValid", false);
             PopulateAllFields = new DynamicParameter<bool?>("PopulateAllFields", false);
+            ProcessingOnly = new DynamicParameter<bool?>("ProcessingOnly", false);
+            ReadState = new DynamicParameter<Core.ReadState?>("ReadState", false);
             RefreshOnActivate = new DynamicParameter<bool?>("RefreshOnActivate", false);
             SaveValues = new DynamicParameter<bool?>("SaveValues", false);
             ShowFilter = new DynamicParameter<bool?>("ShowFilter", false);
+            ShowPrintStatus = new DynamicParameter<bool?>("ShowPrintStatus", false);
             SingleInstance = new DynamicParameter<bool?>("SingleInstance", false);
             SourceTable = new DynamicParameter<int?>("SourceTable", false, 1, int.MaxValue);
             SourceTableTemporary = new DynamicParameter<bool?>("SourceTableTemporary", false);
             SubType = new DynamicParameter<CodeunitSubType?>("SubType", false);
             TableNo = new DynamicParameter<int?>("TableNo", false, 1, int.MaxValue);
             TestIsolation = new DynamicParameter<TestIsolation?>("TestIsolation", false);
+            TopNoOfRows = new DynamicParameter<int?>("TopNoOfRows", false, 0, int.MaxValue);
+            TransactionType = new DynamicParameter<TransactionType?>("TransactionType", false);
+            UseRequestPage = new DynamicParameter<bool?>("UseRequestPage", false);
+            UseSystemPrinter = new DynamicParameter<bool?>("UseSystemPrinter", false);
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -53,7 +66,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true)]
-        public ObjectType Type
+        public ObjectType? Type
         {
             get;
             set;
@@ -183,6 +196,24 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> EnableExternalAssemblies
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> EnableExternalImages
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> EnableHyperlinks
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> InsertAllowed
         {
             get;
@@ -231,6 +262,24 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<PaperSource?> PaperSourceDefaultPage
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<PaperSource?> PaperSourceFirstPage
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<PaperSource?> PaperSourceLastPage
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> PasteIsValid
         {
             get;
@@ -238,6 +287,18 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> PopulateAllFields
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> ProcessingOnly
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<ReadState?> ReadState
         {
             get;
             set;
@@ -256,6 +317,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> ShowFilter
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> ShowPrintStatus
         {
             get;
             set;
@@ -292,6 +359,30 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<TestIsolation?> TestIsolation
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> TopNoOfRows
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<TransactionType?> TransactionType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> UseRequestPage
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> UseSystemPrinter
         {
             get;
             set;
@@ -362,6 +453,34 @@ namespace UncommonSense.CBreeze.Automation
 
                         break;
 
+                    case ObjectType.Report:
+                        var report = application.Reports.Add(new Report(GetObjectID(application), Name));
+
+                        report.ObjectProperties.DateTime = DateTime;
+                        report.ObjectProperties.Modified = Modified;
+                        report.ObjectProperties.VersionList = VersionList;
+
+                        report.Properties.Description = Description.Value;
+                        report.Properties.EnableExternalAssemblies = EnableExternalAssemblies.Value;
+                        report.Properties.EnableExternalImages = EnableExternalImages.Value;
+                        report.Properties.EnableHyperlinks = EnableHyperlinks.Value;
+                        report.Properties.PaperSourceDefaultPage = PaperSourceDefaultPage.Value;
+                        report.Properties.PaperSourceFirstPage = PaperSourceFirstPage.Value;
+                        report.Properties.PaperSourceLastPage = PaperSourceLastPage.Value;
+                        report.Properties.ProcessingOnly = ProcessingOnly.Value;
+                        report.Properties.ShowPrintStatus = ShowPrintStatus.Value;
+                        report.Properties.TransactionType = TransactionType.Value;
+                        report.Properties.UseRequestPage = UseRequestPage.Value;
+                        report.Properties.UseSystemPrinter = UseSystemPrinter.Value;
+
+                        if (AutoCaption)
+                            report.AutoCaption();
+
+                        if (PassThru)
+                            WriteObject(report);
+
+                        break;
+
                     case ObjectType.Codeunit:
                         var codeunit = application.Codeunits.Add(new Codeunit(GetObjectID(application), Name));
 
@@ -377,6 +496,37 @@ namespace UncommonSense.CBreeze.Automation
 
                         if (PassThru)
                             WriteObject(codeunit);
+
+                        break;
+
+                    case ObjectType.Query:
+                        var query = application.Queries.Add(new Query(GetObjectID(application), Name));
+
+                        query.ObjectProperties.DateTime = DateTime;
+                        query.ObjectProperties.Modified = Modified;
+                        query.ObjectProperties.VersionList = VersionList;
+
+                        query.Properties.Description = Description.Value;
+                        query.Properties.ReadState = ReadState.Value;
+                        query.Properties.TopNumberOfRows = TopNoOfRows.Value;
+
+                        if (AutoCaption)
+                            query.AutoCaption();
+
+                        if (PassThru)
+                            WriteObject(query);
+
+                        break;
+
+                    case ObjectType.MenuSuite:
+                        var menusuite = application.MenuSuites.Add(new MenuSuite(GetObjectID(application), Name));
+
+                        menusuite.ObjectProperties.DateTime = DateTime;
+                        menusuite.ObjectProperties.Modified = Modified;
+                        menusuite.ObjectProperties.VersionList = VersionList;
+
+                        if (PassThru)
+                            WriteObject(menusuite);
 
                         break;
                 }
@@ -399,10 +549,18 @@ namespace UncommonSense.CBreeze.Automation
                     return application.Tables.Select(t => t.ID);
                 case ObjectType.Page:
                     return application.Pages.Select(p => p.ID);
+                case ObjectType.Report:
+                    return application.Reports.Select(r => r.ID);
                 case ObjectType.Codeunit:
                     return application.Codeunits.Select(c => c.ID);
+                case ObjectType.XmlPort:
+                    return application.XmlPorts.Select(x => x.ID);
+                case ObjectType.Query:
+                    return application.Queries.Select(q => q.ID);
+                case ObjectType.MenuSuite:
+                    return application.MenuSuites.Select(m => m.ID);
                 default:
-                    throw new ArgumentOutOfRangeException("FIXME");
+                    throw new ArgumentOutOfRangeException("Unknown object type.");
             }
         }
 
@@ -421,7 +579,6 @@ namespace UncommonSense.CBreeze.Automation
                         yield return LinkedObject.RuntimeDefinedParameter;
                         yield return LookupPageID.RuntimeDefinedParameter;
                         yield return PasteIsValid.RuntimeDefinedParameter;
-
                         break;
 
                     case ObjectType.Page:
@@ -444,7 +601,21 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ShowFilter.RuntimeDefinedParameter;
                         yield return SourceTable.RuntimeDefinedParameter;
                         yield return SourceTableTemporary.RuntimeDefinedParameter;
+                        break;
 
+                    case ObjectType.Report:
+                        yield return Description.RuntimeDefinedParameter;
+                        yield return EnableExternalAssemblies.RuntimeDefinedParameter;
+                        yield return EnableExternalImages.RuntimeDefinedParameter;
+                        yield return EnableHyperlinks.RuntimeDefinedParameter;
+                        yield return PaperSourceDefaultPage.RuntimeDefinedParameter;
+                        yield return PaperSourceFirstPage.RuntimeDefinedParameter;
+                        yield return PaperSourceLastPage.RuntimeDefinedParameter;
+                        yield return ProcessingOnly.RuntimeDefinedParameter;
+                        yield return ShowPrintStatus.RuntimeDefinedParameter;
+                        yield return TransactionType.RuntimeDefinedParameter;
+                        yield return UseRequestPage.RuntimeDefinedParameter;
+                        yield return UseSystemPrinter.RuntimeDefinedParameter;
                         break;
 
                     case ObjectType.Codeunit:
@@ -453,7 +624,12 @@ namespace UncommonSense.CBreeze.Automation
                         yield return SubType.RuntimeDefinedParameter;
                         yield return TableNo.RuntimeDefinedParameter;
                         yield return TestIsolation.RuntimeDefinedParameter;
+                        break;
 
+                    case ObjectType.Query:
+                        yield return Description.RuntimeDefinedParameter;
+                        yield return ReadState.RuntimeDefinedParameter;
+                        yield return TopNoOfRows.RuntimeDefinedParameter;
                         break;
                 }
             }
