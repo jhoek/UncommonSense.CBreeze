@@ -18,6 +18,8 @@ namespace UncommonSense.CBreeze.Automation
             IntegerSubType = new DynamicParameter<int>("SubType", true, 1, int.MaxValue);
             MandatoryDataLength = new DynamicParameter<int>("DataLength", true, 1, 250);
             OptionalDataLength = new DynamicParameter<int>("DataLength", false, 1, 250);
+            OptionString = new DynamicParameter<string>("OptionString", false);
+            QuerySecurityFiltering = new DynamicParameter<Core.QuerySecurityFiltering?>("SecurityFiltering", false);
             RunOnClient = new DynamicParameter<bool?>("RunOnClient", false);
             StringSubType = new DynamicParameter<string>("SubType", true);
             RecordSecurityFiltering = new DynamicParameter<RecordSecurityFiltering?>("SecurityFiltering", false);
@@ -93,6 +95,18 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<int> OptionalDataLength
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> OptionString
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<QuerySecurityFiltering?> QuerySecurityFiltering
         {
             get;
             set;
@@ -260,12 +274,100 @@ namespace UncommonSense.CBreeze.Automation
                     instreamVariable.Dimensions = Dimensions.Value;
                     return instreamVariable;
 
+                case VariableType.Integer:
+                    var integerVariable = new IntegerVariable(id, Name);
+                    integerVariable.Dimensions = Dimensions.Value;
+                    integerVariable.IncludeInDataset = IncludeInDataset.Value;
+                    return integerVariable;
+
+                case VariableType.KeyRef:
+                    var keyRefVariable = new KeyRefVariable(id, Name);
+                    keyRefVariable.Dimensions = Dimensions.Value;
+                    return keyRefVariable;
+
+                case VariableType.Ocx:
+                    var ocxVariable = new OcxVariable(id, Name, StringSubType.Value);
+                    ocxVariable.Dimensions = Dimensions.Value;
+                    return ocxVariable;
+
+                case VariableType.Option:
+                    var optionVariable = new OptionVariable(id, Name);
+                    optionVariable.Dimensions = Dimensions.Value;
+                    optionVariable.OptionString = OptionString.Value;
+                    return optionVariable;
+
+                case VariableType.OutStream:
+                    var outStreamVariable = new OutStreamVariable(id, Name);
+                    outStreamVariable.Dimensions = Dimensions.Value;
+                    return outStreamVariable;
+
+                case VariableType.Page:
+                    var pageVariable = new PageVariable(id, Name, IntegerSubType.Value);
+                    pageVariable.Dimensions = Dimensions.Value;
+                    return pageVariable;
+
+                case VariableType.Query:
+                    var queryVariable = new QueryVariable(id, Name, IntegerSubType.Value);
+                    queryVariable.Dimensions = Dimensions.Value;
+                    queryVariable.SecurityFiltering = QuerySecurityFiltering.Value;
+                    return queryVariable;
+
                 case VariableType.Record:
                     var recordVariable = new RecordVariable(id, Name, IntegerSubType.Value);
                     recordVariable.Dimensions = Dimensions.Value;
                     recordVariable.SecurityFiltering = RecordSecurityFiltering.Value;
                     recordVariable.Temporary = Temporary.Value;
                     return recordVariable;
+
+                case VariableType.RecordID:
+                    var recordIDVariable = new RecordIDVariable(id, Name);
+                    recordIDVariable.Dimensions = Dimensions.Value;
+                    return recordIDVariable;
+
+                case VariableType.RecordRef:
+                    var recordRefVariable = new RecordRefVariable(id, Name);
+                    recordRefVariable.Dimensions = Dimensions.Value;
+                    recordRefVariable.SecurityFiltering = RecordSecurityFiltering.Value;
+                    return recordRefVariable;
+
+                case VariableType.Report:
+                    var reportVariable = new ReportVariable(id, Name, IntegerSubType.Value);
+                    reportVariable.Dimensions = Dimensions.Value;
+                    return reportVariable;
+
+                case VariableType.TestPage:
+                    var testPageVariable = new TestPageVariable(id, Name, IntegerSubType.Value);
+                    testPageVariable.Dimensions = Dimensions.Value;
+                    return testPageVariable;
+
+                case VariableType.Text:
+                    var textVariable = new TextVariable(id, Name, OptionalDataLength.Value);
+                    textVariable.Dimensions = Dimensions.Value;
+                    textVariable.IncludeInDataset = IncludeInDataset.Value;
+                    return textVariable;
+
+                case VariableType.TextConstant:
+                    return new TextConstant(id, Name);
+
+                case VariableType.Time:
+                    var timeVariable = new TimeVariable(id, Name);
+                    timeVariable.Dimensions = Dimensions.Value;
+                    return timeVariable;
+
+                case VariableType.TransactionType:
+                    var transactionTypeVariable = new TransactionTypeVariable(id, Name);
+                    transactionTypeVariable.Dimensions = Dimensions.Value;
+                    return transactionTypeVariable;
+
+                case VariableType.Variant:
+                    var variantVariable = new VariantVariable(id, Name);
+                    variantVariable.Dimensions = Dimensions.Value;
+                    return variantVariable;
+
+                case VariableType.XmlPort:
+                    var xmlPortVariable = new XmlPortVariable(id, Name, IntegerSubType.Value);
+                    xmlPortVariable.Dimensions = Dimensions.Value;
+                    return xmlPortVariable;
 
                 default:
                     throw new ArgumentOutOfRangeException("Unknown variable type.");
@@ -300,6 +402,7 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case VariableType.Code:
+                        yield return OptionalDataLength.RuntimeDefinedParameter;
                         yield return IncludeInDataset.RuntimeDefinedParameter;
                         break;
 
@@ -312,11 +415,53 @@ namespace UncommonSense.CBreeze.Automation
                         yield return StringSubType.RuntimeDefinedParameter;
                         yield return WithEvents.RuntimeDefinedParameter;
                         break;
+
+                    case VariableType.Integer:
+                        yield return IncludeInDataset.RuntimeDefinedParameter;
+                        break;
                     
+                    case VariableType.Ocx:
+                        yield return StringSubType.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.Option:
+                        yield return OptionString.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.Page:
+                        yield return IntegerSubType.RuntimeDefinedParameter;
+                        break;
+                    
+                    case VariableType.Query:
+                        yield return IntegerSubType.RuntimeDefinedParameter;
+                        yield return QuerySecurityFiltering.RuntimeDefinedParameter;
+                        break;
+
                     case VariableType.Record:
                         yield return IntegerSubType.RuntimeDefinedParameter;
                         yield return RecordSecurityFiltering.RuntimeDefinedParameter;
                         yield return Temporary.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.RecordRef:
+                        yield return RecordSecurityFiltering.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.Report:
+                        yield return IntegerSubType.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.TestPage:
+                        yield return IntegerSubType.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.Text:
+                        yield return OptionalDataLength.RuntimeDefinedParameter;
+                        yield return IncludeInDataset.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.XmlPort:
+                        yield return IntegerSubType.RuntimeDefinedParameter;
                         break;
                 }
 
