@@ -7,10 +7,27 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class AddCBreezeParameter<T> : Cmdlet where T : Parameter
+    [Cmdlet(VerbsCommon.Add, "CBreezeParameter")]
+    public class AddCBreezeParameter : CmdletWithDynamicParams
     {
+        public AddCBreezeParameter()
+        {
+            DataLength = new DynamicParameter<int?>("DataLength", true, 1, int.MaxValue);
+            IntegerSubType = new DynamicParameter<int?>("SubType", true, 1, int.MaxValue);
+            RunOnClient = new DynamicParameter<bool?>("RunOnClient", false);
+            StringSubType = new DynamicParameter<string>("SubType", true);
+            SuppressDispose = new DynamicParameter<bool?>("SuppressDispose", false);
+        }
+
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject[] InputObject
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true)]
+        public ParameterType? Type
         {
             get;
             set;
@@ -59,27 +76,96 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int?> DataLength
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> IntegerSubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> RunOnClient
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> StringSubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> SuppressDispose
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var inputObject in InputObject)
             {
-                var parameter = CreateParameter(inputObject);
-                SetParameterProperties(parameter);
-                WriteParameterToPipeline(parameter);
+                var parameter = GetParameters(inputObject).Add(CreateParameter(inputObject));
+                parameter.Dimensions = Dimensions;
+
+                if (PassThru)
+                    WriteObject(parameter);
             }
         }
 
-        protected abstract  T CreateParameter(PSObject inputObject);
-
-        protected virtual void SetParameterProperties(T parameter)
+        protected Parameter CreateParameter(PSObject inputObject)
         {
-            parameter.Dimensions = Dimensions;
-        }
+            var id = GetParameterID(inputObject);
 
-        protected virtual void WriteParameterToPipeline(T parameter)
-        {
-            if (PassThru)
-                WriteObject(parameter);
+            switch (Type)
+            {
+                case ParameterType.Action:
+                    return new ActionParameter(Var, id, Name);
+                case ParameterType.Automation:
+                    return new AutomationParameter(Var, id, Name, StringSubType.Value);
+                case ParameterType.BigInteger:
+                    return new BigIntegerParameter(Var, id, Name);
+                case ParameterType.BigText:
+                    return new BigTextParameter(Var, id, Name);
+                case ParameterType.Binary:
+                    return new BinaryParameter(Var, id, Name, DataLength.Value.Value);
+                case ParameterType.Boolean:
+                    return new BooleanParameter(Var, id, Name);
+                case ParameterType.Byte:
+                    return new ByteParameter(Var, id, Name);
+                case ParameterType.Char:
+                    return new CharParameter(Var, id, Name);
+                case ParameterType.Code:
+                    return new CodeParameter(Var, id, Name, DataLength.Value.Value);
+                case ParameterType.Codeunit:
+                    return new CodeunitParameter(Var, id, Name, IntegerSubType.Value.Value);
+                case ParameterType.Date:
+                    return new DateParameter(Var, id, Name);
+                case ParameterType.DateFormula:
+                    return new DateFormulaParameter(Var, id, Name);
+                case ParameterType.DateTime:
+                    return new DateTimeParameter(Var, id, Name);
+                case ParameterType.Decimal:
+                    return new DecimalParameter(Var, id, Name);
+                case ParameterType.Dialog:
+                    return new DialogParameter(Var, id, Name);
+                case ParameterType.DotNet:
+                    var dotnetParameter = new DotNetParameter(Var, id, Name, StringSubType.Value);
+                    dotnetParameter.RunOnClient = RunOnClient.Value;
+                    dotnetParameter.SuppressDispose = SuppressDispose.Value;
+                    return dotnetParameter;
+                case ParameterType.Duration:
+                    return new DurationParameter(Var, id, Name);
+                case ParameterType.ExecutionMode:
+                    return new ExecutionModeParameter(Var, id, Name);
+                default:
+                    throw new ArgumentOutOfRangeException("Unknown parameter type.");
+            }
         }
 
         protected int GetParameterID(PSObject inputObject)
@@ -100,6 +186,33 @@ namespace UncommonSense.CBreeze.Automation
                 return (inputObject.BaseObject as Event).Parameters;
 
             throw new ApplicationException("Cannot add parameters to this object.");
+        }
+
+        public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case ParameterType.Automation:
+                        yield return StringSubType.RuntimeDefinedParameter;
+                        break;
+                    case ParameterType.Binary:
+                        yield return DataLength.RuntimeDefinedParameter;
+                        break;
+                    case ParameterType.Code:
+                        yield return DataLength.RuntimeDefinedParameter;
+                        break;
+                    case ParameterType.Codeunit:
+                        yield return IntegerSubType.RuntimeDefinedParameter;
+                        break;
+                    case ParameterType.DotNet:
+                        yield return StringSubType.RuntimeDefinedParameter;
+                        yield return RunOnClient.RuntimeDefinedParameter;
+                        yield return SuppressDispose.RuntimeDefinedParameter;
+                        break;
+                }
+            }
         }
     }
 }
