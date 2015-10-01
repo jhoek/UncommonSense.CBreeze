@@ -77,6 +77,7 @@
     <Compile Include="DynamicParameter.cs" />
     <Compile Include="DynamicParameters.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ImportCBreezeApplication.cs" />
     <Compile Include="NewCBreezeApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
