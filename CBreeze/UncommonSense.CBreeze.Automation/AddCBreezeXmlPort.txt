@@ -9,7 +9,7 @@ using UncommonSense.CBreeze.Utils;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeXmlPort")]
-    public class AddCBreezeXmlPort : AddCBreezeObject
+    public class AddCBreezeXmlPort : Cmdlet //AddCBreezeObject
     {
         [Parameter()]
         public bool? DefaultFieldsValidation
@@ -181,11 +181,6 @@ namespace UncommonSense.CBreeze.Automation
                 if (PassThru)
                     WriteObject(xmlport);
             }   
-        }
-
-        protected override IEnumerable<int> GetExistingObjectIDs(Application application)
-        {
-            return application.XmlPorts.Select(x => x.ID);
         }
     }
 }
