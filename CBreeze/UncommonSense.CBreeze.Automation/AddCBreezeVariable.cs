@@ -11,7 +11,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeVariable")]
     public class AddCBreezeVariable : CmdletWithDynamicParams
     {
-
         public AddCBreezeVariable()
         {
             IntegerSubType = new DynamicParameter<int>("SubType", true, 1, int.MaxValue);
@@ -19,36 +18,6 @@ namespace UncommonSense.CBreeze.Automation
             RecordSecurityFiltering = new DynamicParameter<RecordSecurityFiltering?>("SecurityFiltering", false);
             Temporary = new DynamicParameter<bool?>("Temporary", false);
             WithEvents = new DynamicParameter<bool?>("WithEvents", false);
-        }
-
-        protected DynamicParameter<int> IntegerSubType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> StringSubType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<RecordSecurityFiltering?> RecordSecurityFiltering
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> Temporary
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> WithEvents
-        {
-            get;
-            set;
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -96,6 +65,36 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int> IntegerSubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> StringSubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<RecordSecurityFiltering?> RecordSecurityFiltering
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> Temporary
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> WithEvents
         {
             get;
             set;
