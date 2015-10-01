@@ -145,7 +145,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var inputObject in InputObject)
             {
-                var parameter = GetParameters(inputObject).Add(CreateParameter(inputObject));
+                var parameter = inputObject.GetParameters().Add(CreateParameter(inputObject));
                 parameter.Dimensions = Dimensions;
 
                 if (PassThru)
@@ -301,19 +301,7 @@ namespace UncommonSense.CBreeze.Automation
             if (ID != 0)
                 return ID;
 
-            return Range.Except(GetParameters(inputObject).Select(p => p.ID)).First();
-        }
-
-        protected Parameters GetParameters(PSObject inputObject)
-        {
-            if (inputObject.BaseObject is Parameters)
-                return (inputObject.BaseObject as Parameters);
-            if (inputObject.BaseObject is Function)
-                return (inputObject.BaseObject as Function).Parameters;
-            if (inputObject.BaseObject is Event)
-                return (inputObject.BaseObject as Event).Parameters;
-
-            throw new ApplicationException("Cannot add parameters to this object.");
+            return Range.Except(inputObject.GetParameters().Select(p => p.ID)).First();
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
