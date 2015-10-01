@@ -112,7 +112,6 @@
     <Compile Include="AddCBreezeTransactionTypeParameter.cs" />
     <Compile Include="AddCBreezeVariable.cs" />
     <Compile Include="AddCBreezeVariantParameter.cs" />
-    <Content Include="AddCBreezeXmlPort.txt" />
     <Compile Include="AddCBreezeXmlPortParameter.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />
     <Compile Include="DynamicParameter.cs" />

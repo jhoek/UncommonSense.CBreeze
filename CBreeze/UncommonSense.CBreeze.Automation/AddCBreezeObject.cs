@@ -19,14 +19,24 @@ namespace UncommonSense.CBreeze.Automation
             DataCaptionExpr = new DynamicParameter<string>("DataCaptionExpr", false);
             DataCaptionFields = new DynamicParameter<string[]>("DataCaptionFields", false);
             DataPerCompany = new DynamicParameter<bool?>("DataPerCompany", false);
+            DefaultFieldsValidation = new DynamicParameter<bool?>("DefaultFieldsValidation", false);
+            DefaultNamespace = new DynamicParameter<string>("DefaultNamespace", false);
             DelayedInsert = new DynamicParameter<bool?>("DelayedInsert", false);
             DeleteAllowed = new DynamicParameter<bool?>("DeleteAllowed", false);
             Description = new DynamicParameter<string>("Description", false);
+            Direction = new DynamicParameter<Core.Direction?>("Direction", false);
             DrillDownPageID = new DynamicParameter<int?>("DrillDownPageID", false, 1, int.MaxValue);
             Editable = new DynamicParameter<bool?>("Editable", false);
             EnableExternalAssemblies = new DynamicParameter<bool?>("EnableExternalAssemblies", false);
             EnableExternalImages = new DynamicParameter<bool?>("EnableExternalImages", false);
             EnableHyperlinks = new DynamicParameter<bool?>("EnableHyperlinks", false);
+            Encoding = new DynamicParameter<XmlPortEncoding?>("Encoding", false);
+            FieldDelimiter = new DynamicParameter<string>("FieldDelimiter", false);
+            FieldSeparator = new DynamicParameter<string>("FieldSeparator", false);
+            FileName = new DynamicParameter<string>("FileName", false);
+            Format = new DynamicParameter<XmlPortFormat?>("Format", false);
+            FormatEvaluate = new DynamicParameter<Core.FormatEvaluate?>("FormatEvaluate", false);
+            InlineSchema = new DynamicParameter<bool?>("InlineSchema", false);
             InsertAllowed = new DynamicParameter<bool?>("InsertAllowed", false);
             LinkedInTransaction = new DynamicParameter<bool?>("LinkedInTransaction", false);
             LinkedObject = new DynamicParameter<bool?>("LinkedObject", false);
@@ -40,8 +50,10 @@ namespace UncommonSense.CBreeze.Automation
             PaperSourceLastPage = new DynamicParameter<PaperSource?>("PaperSourceLastPage", false);
             PasteIsValid = new DynamicParameter<bool?>("PasteIsValid", false);
             PopulateAllFields = new DynamicParameter<bool?>("PopulateAllFields", false);
+            PreserveWhitespace = new DynamicParameter<bool?>("PreserveWhitespace", false);
             ProcessingOnly = new DynamicParameter<bool?>("ProcessingOnly", false);
             ReadState = new DynamicParameter<Core.ReadState?>("ReadState", false);
+            RecordSeparator = new DynamicParameter<string>("RecordSeparator", false);
             RefreshOnActivate = new DynamicParameter<bool?>("RefreshOnActivate", false);
             SaveValues = new DynamicParameter<bool?>("SaveValues", false);
             ShowFilter = new DynamicParameter<bool?>("ShowFilter", false);
@@ -51,11 +63,16 @@ namespace UncommonSense.CBreeze.Automation
             SourceTableTemporary = new DynamicParameter<bool?>("SourceTableTemporary", false);
             SubType = new DynamicParameter<CodeunitSubType?>("SubType", false);
             TableNo = new DynamicParameter<int?>("TableNo", false, 1, int.MaxValue);
+            TableSeparator = new DynamicParameter<string>("TableSeparator", false);
             TestIsolation = new DynamicParameter<TestIsolation?>("TestIsolation", false);
+            TextEncoding = new DynamicParameter<Core.TextEncoding?>("TextEncoding", false);
             TopNoOfRows = new DynamicParameter<int?>("TopNoOfRows", false, 0, int.MaxValue);
             TransactionType = new DynamicParameter<TransactionType?>("TransactionType", false);
+            UseDefaultNamespace = new DynamicParameter<bool?>("UseDefaultNamespace", false);
+            UseLax = new DynamicParameter<bool?>("UseLax", false);
             UseRequestPage = new DynamicParameter<bool?>("UseRequestPage", false);
             UseSystemPrinter = new DynamicParameter<bool?>("UseSystemPrinter", false);
+            XmlVersionNo = new DynamicParameter<XmlVersionNo?>("XmlVersionNo", false);
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -166,6 +183,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> DefaultFieldsValidation
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> DefaultNamespace
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> DelayedInsert
         {
             get;
@@ -179,6 +208,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> Description
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Direction?> Direction
         {
             get;
             set;
@@ -209,6 +244,48 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> EnableHyperlinks
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<XmlPortEncoding?> Encoding
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> FieldDelimiter
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> FieldSeparator
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> FileName
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<XmlPortFormat?> Format
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<FormatEvaluate?> FormatEvaluate
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> InlineSchema
         {
             get;
             set;
@@ -292,6 +369,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> PreserveWhitespace
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> ProcessingOnly
         {
             get;
@@ -299,6 +382,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<ReadState?> ReadState
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> RecordSeparator
         {
             get;
             set;
@@ -358,7 +447,19 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> TableSeparator
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<TestIsolation?> TestIsolation
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<TextEncoding?> TextEncoding
         {
             get;
             set;
@@ -376,6 +477,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> UseDefaultNamespace
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> UseLax
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> UseRequestPage
         {
             get;
@@ -383,6 +496,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> UseSystemPrinter
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<XmlVersionNo?> XmlVersionNo
         {
             get;
             set;
@@ -496,6 +615,41 @@ namespace UncommonSense.CBreeze.Automation
 
                         if (PassThru)
                             WriteObject(codeunit);
+
+                        break;
+
+                    case ObjectType.XmlPort:
+                        var xmlPort = application.XmlPorts.Add(new XmlPort(GetObjectID(application), Name));
+
+                        xmlPort.ObjectProperties.DateTime = DateTime;
+                        xmlPort.ObjectProperties.Modified = Modified;
+                        xmlPort.ObjectProperties.VersionList = VersionList;
+
+                        xmlPort.Properties.DefaultFieldsValidation = DefaultFieldsValidation.Value;
+                        xmlPort.Properties.DefaultNamespace = DefaultNamespace.Value;
+                        xmlPort.Properties.Direction = Direction.Value;
+                        xmlPort.Properties.Encoding = Encoding.Value;
+                        xmlPort.Properties.FieldDelimiter = FieldDelimiter.Value;
+                        xmlPort.Properties.FieldSeparator = FieldSeparator.Value;
+                        xmlPort.Properties.FileName = FileName.Value;
+                        xmlPort.Properties.Format = Format.Value;
+                        xmlPort.Properties.FormatEvaluate = FormatEvaluate.Value;
+                        xmlPort.Properties.InlineSchema = InlineSchema.Value;
+                        xmlPort.Properties.PreserveWhiteSpace = PreserveWhitespace.Value;
+                        xmlPort.Properties.RecordSeparator = RecordSeparator.Value;
+                        xmlPort.Properties.TableSeparator = TableSeparator.Value;
+                        xmlPort.Properties.TextEncoding = TextEncoding.Value;
+                        xmlPort.Properties.TransactionType = TransactionType.Value;
+                        xmlPort.Properties.UseDefaultNamespace = UseDefaultNamespace.Value;
+                        xmlPort.Properties.UseLax = UseLax.Value;
+                        xmlPort.Properties.UseRequestPage = UseRequestPage.Value;
+                        xmlPort.Properties.XmlVersionNo = XmlVersionNo.Value;
+
+                        if (AutoCaption)
+                            xmlPort.AutoCaption();
+
+                        if (PassThru)
+                            WriteObject(xmlPort);
 
                         break;
 
@@ -624,6 +778,28 @@ namespace UncommonSense.CBreeze.Automation
                         yield return SubType.RuntimeDefinedParameter;
                         yield return TableNo.RuntimeDefinedParameter;
                         yield return TestIsolation.RuntimeDefinedParameter;
+                        break;
+
+                    case ObjectType.XmlPort:
+                        yield return DefaultFieldsValidation.RuntimeDefinedParameter;
+                        yield return DefaultNamespace.RuntimeDefinedParameter;
+                        yield return Direction.RuntimeDefinedParameter;
+                        yield return Encoding.RuntimeDefinedParameter;
+                        yield return FieldDelimiter.RuntimeDefinedParameter;
+                        yield return FieldSeparator.RuntimeDefinedParameter;
+                        yield return FileName.RuntimeDefinedParameter;
+                        yield return Format.RuntimeDefinedParameter;
+                        yield return FormatEvaluate.RuntimeDefinedParameter;
+                        yield return InlineSchema.RuntimeDefinedParameter;
+                        yield return PreserveWhitespace.RuntimeDefinedParameter;
+                        yield return RecordSeparator.RuntimeDefinedParameter;
+                        yield return TableSeparator.RuntimeDefinedParameter;
+                        yield return TextEncoding.RuntimeDefinedParameter;
+                        yield return TransactionType.RuntimeDefinedParameter;
+                        yield return UseDefaultNamespace.RuntimeDefinedParameter;
+                        yield return UseLax.RuntimeDefinedParameter;
+                        yield return UseRequestPage.RuntimeDefinedParameter;
+                        yield return XmlVersionNo.RuntimeDefinedParameter;
                         break;
 
                     case ObjectType.Query:
