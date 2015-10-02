@@ -55,6 +55,7 @@
     <Compile Include="AddCBreezeBooleanTableField.cs" />
     <Compile Include="AddCBreezeDecimalTableField.cs" />
     <Compile Include="AddCBreezeDurationTableField.cs" />
+    <Compile Include="AddCBreezeFilter.cs" />
     <Compile Include="AddCBreezeGroupPageControl.cs" />
     <Compile Include="AddCBreezeGuidTableField.cs" />
     <Compile Include="AddCBreezeIntegerTableField.cs" />
