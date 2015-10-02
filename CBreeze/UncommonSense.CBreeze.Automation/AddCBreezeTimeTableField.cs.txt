@@ -8,72 +8,9 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeBigIntegerTableField")]
-    public class AddCBreezeBigIntegerTableField : AddCBreezeTableField
+    [Cmdlet(VerbsCommon.Add, "CBreezeTimeTableField")]
+    public class AddCBreezeTimeTableField : AddCBreezeTableField
     {
-        [Parameter()]
-        public string AltSearchField
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string AutoFormatExpr
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public AutoFormatType? AutoFormatType
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? AutoIncrement
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public BlankNumbers? BlankNumbers
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? BlankZero
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string CalcFormulaFieldName
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public CalcFormulaMethod? CalcFormulaMethod
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter CalcFormulaReverseSign
-        {
-            get;
-            set;
-        }
-
         [Parameter()]
         public string CalcFormulaTableName
         {
@@ -110,21 +47,21 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public long? InitValue
+        public TimeSpan? InitValue
         {
             get;
             set;
         }
 
         [Parameter()]
-        public long? MaxValue
+        public TimeSpan? MaxValue
         {
             get;
             set;
         }
 
         [Parameter()]
-        public long? MinValue
+        public TimeSpan? MinValue
         {
             get;
             set;
@@ -165,30 +102,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
-        public bool? Volatile
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public int? Width
-        {
-            get;
-            set;
-        }
-
         protected override void ProcessRecord()
         {
-            var field = Table.Fields.Add(new BigIntegerTableField(GetTableFieldNo(), Name));
+            var field = Table.Fields.Add(new TimeTableField(GetTableFieldNo(), Name));
 
             field.Properties.AltSearchField = AltSearchField;
             field.Properties.AutoFormatExpr = AutoFormatExpr;
             field.Properties.AutoFormatType = AutoFormatType;
-            field.Properties.AutoIncrement = AutoIncrement;
             field.Properties.BlankNumbers = BlankNumbers;
-            field.Properties.BlankZero = BlankZero;
             field.Properties.CalcFormula.FieldName = CalcFormulaFieldName;
             field.Properties.CalcFormula.Method = CalcFormulaMethod;
             field.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign;
@@ -199,15 +120,11 @@ namespace UncommonSense.CBreeze.Automation
             field.Properties.ExtendedDatatype = ExtendedDataType;
             field.Properties.FieldClass = FieldClass;
             field.Properties.InitValue = InitValue;
-            field.Properties.MinValue = MinValue;
-            field.Properties.MaxValue = MaxValue;
             field.Properties.NotBlank = NotBlank;
             field.Properties.SignDisplacement = SignDisplacement;
             field.Properties.TestTableRelation = TestTableRelation;
             field.Properties.ValidateTableRelation = ValidateTableRelation;
             field.Properties.ValuesAllowed = ValuesAllowed;
-            field.Properties.Volatile = Volatile;
-            field.Properties.Width = Width;
 
             if (AutoCaption)
                 field.AutoCaption();
