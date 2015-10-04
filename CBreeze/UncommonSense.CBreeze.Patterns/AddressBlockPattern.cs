@@ -52,14 +52,14 @@ namespace UncommonSense.CBreeze.Patterns
 
             tableRelation = PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
             tableRelation.Conditions.Add(CountryRegionCodeField.Name, TableRelationConditionType.Filter, "<>''");
-            tableRelation.TableFilter.Add("Country/Region Code", TableRelationTableFilterLineType.Field, CountryRegionCodeField.Name);
+            tableRelation.TableFilter.Add("Country/Region Code", ExtendedTableFilterType.Field, CountryRegionCodeField.Name);
 
             tableRelation = CityField.Properties.TableRelation.Set("Post Code", "City");
             tableRelation.Conditions.Add(CountryRegionCodeField.Name, TableRelationConditionType.Const, "''");
 
             tableRelation = CityField.Properties.TableRelation.Set("Post Code", "City");
             tableRelation.Conditions.Add(CountryRegionCodeField.Name, TableRelationConditionType.Filter, "<>''");
-            tableRelation.TableFilter.Add("Country/Region Code", TableRelationTableFilterLineType.Field, CountryRegionCodeField.Name);
+            tableRelation.TableFilter.Add("Country/Region Code", ExtendedTableFilterType.Field, CountryRegionCodeField.Name);
 
             CountryRegionCodeField.Properties.TableRelation.Add("Country/Region");
         }

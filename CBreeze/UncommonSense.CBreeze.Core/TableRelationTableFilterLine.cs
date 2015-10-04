@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
     public partial class TableRelationTableFilterLine
     {
         private String fieldName;
-        private TableRelationTableFilterLineType? type;
+        private ExtendedTableFilterType? type;
         private String value;
 
-        internal TableRelationTableFilterLine(String fieldName, TableRelationTableFilterLineType type, String value)
+        internal TableRelationTableFilterLine(String fieldName, ExtendedTableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;
@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableRelationTableFilterLineType? Type
+        public ExtendedTableFilterType? Type
         {
             get
             {

@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Meta
 
             if (!string.IsNullOrEmpty(DocumentTypeOptions))
             {
-                tableRelation.TableFilter.Add(HeaderTableDocumentTypeField.Name, TableRelationTableFilterLineType.Field, LineTableDocumentTypeField.Name);
+                tableRelation.TableFilter.Add(HeaderTableDocumentTypeField.Name, ExtendedTableFilterType.Field, LineTableDocumentTypeField.Name);
             }
 
             foreach (var documentType in DocumentTypes)

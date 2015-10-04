@@ -110,15 +110,15 @@ namespace UncommonSense.CBreeze.Write
             }
         }
 
-        public static string AsString(this TableRelationTableFilterLineType type)
+        public static string AsString(this ExtendedTableFilterType type)
         {
             switch (type)
             {
-                case TableRelationTableFilterLineType.Const:
+                case ExtendedTableFilterType.Const:
                     return "CONST";
-                case TableRelationTableFilterLineType.Field:
+                case ExtendedTableFilterType.Field:
                     return "FIELD";
-                case TableRelationTableFilterLineType.Filter:
+                case ExtendedTableFilterType.Filter:
                     return "FILTER";
                 default:
                     throw new ArgumentOutOfRangeException("type");
@@ -221,19 +221,6 @@ namespace UncommonSense.CBreeze.Write
                     return "Fixed Text";
                 case XmlPortFormat.VariableText:
                     return "Variable Text";
-                default:
-                    throw new ArgumentOutOfRangeException("value");
-            }
-        }
-
-        public static string AsString(this DataItemQueryElementTableFilterLineType value)
-        {
-            switch (value)
-            {
-                case DataItemQueryElementTableFilterLineType.Const:
-                    return "CONST";
-                case DataItemQueryElementTableFilterLineType.Filter:
-                    return "FILTER";
                 default:
                     throw new ArgumentOutOfRangeException("value");
             }

@@ -19,11 +19,11 @@ namespace UncommonSense.CBreeze.Core
     {
         private String fieldName;
         private Boolean onlyMaxLimit;
-        private CalcFormulaTableFilterType? type;
+        private ExtendedTableFilterType? type;
         private String value;
         private Boolean valueIsFilter;
 
-        public CalcFormulaTableFilterLine(String fieldName, CalcFormulaTableFilterType type, String value)
+        public CalcFormulaTableFilterLine(String fieldName, ExtendedTableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;
@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public CalcFormulaTableFilterType? Type
+        public ExtendedTableFilterType? Type
         {
             get
             {

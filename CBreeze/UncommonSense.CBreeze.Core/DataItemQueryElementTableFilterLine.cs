@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
     public partial class DataItemQueryElementTableFilterLine
     {
         private String fieldName;
-        private DataItemQueryElementTableFilterLineType? type;
+        private TableFilterType? type;
         private String value;
 
-        internal DataItemQueryElementTableFilterLine(String fieldName, DataItemQueryElementTableFilterLineType type, String value)
+        internal DataItemQueryElementTableFilterLine(String fieldName, TableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;
@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public DataItemQueryElementTableFilterLineType? Type
+        public TableFilterType? Type
         {
             get
             {

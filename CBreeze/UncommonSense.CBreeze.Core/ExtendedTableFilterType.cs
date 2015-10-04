@@ -14,11 +14,11 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public enum CalcFormulaTableFilterType
+    public enum ExtendedTableFilterType
     {
         Const,
         Filter,
-        Field,
+        Field
     }
 
 }
