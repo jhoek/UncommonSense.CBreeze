@@ -18,10 +18,14 @@ namespace UncommonSense.CBreeze.Automation
             AutoFormatType = new DynamicParameter<AutoFormatType?>("AutoFormatType", false);
             AutoIncrement = new DynamicParameter<bool?>("AutoIncrement", false);
             BlankNumbers = new DynamicParameter<BlankNumbers?>("BlankNumbers", false);
+            BlankZero = new DynamicParameter<bool?>("BlankZero", false);
             CalcFormulaFieldName = new DynamicParameter<string>("CalcFormulaFieldName", false);
             CalcFormulaMethod = new DynamicParameter<Core.CalcFormulaMethod?>("CalcFormulaMethod", false);
             CalcFormulaReverseSign = new DynamicParameter<bool>("CalcFormulaReverseSign", false);
             CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName", false);
+            CaptionClass = new DynamicParameter<string>("CaptionClass", false);
+            Editable = new DynamicParameter<bool?>("Editable", false);
+            ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType", false);
             // FIXME
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
         }
@@ -127,6 +131,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> BlankZero
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<CalcFormulaMethod?> CalcFormulaMethod
         {
             get;
@@ -146,6 +156,24 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> CalcFormulaTableName
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> CaptionClass
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> Editable
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<ExtendedDataType?> ExtendedDataType
         {
             get;
             set;
@@ -177,12 +205,14 @@ namespace UncommonSense.CBreeze.Automation
                     bigIntegerTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     bigIntegerTableField.Properties.AutoIncrement = AutoIncrement.Value;
                     bigIntegerTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    bigIntegerTableField.Properties.BlankZero = BlankZero.Value;
                     bigIntegerTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
                     bigIntegerTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
                     //FIXME bigIntegerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value;
-                    bigIntegerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value; 
-                    
-                    // FIXME
+                    bigIntegerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    bigIntegerTableField.Properties.CaptionClass = CaptionClass.Value;
+                    bigIntegerTableField.Properties.Editable = Editable.Value;
+                    bigIntegerTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
                     bigIntegerTableField.Properties.FieldClass = FieldClass.Value;
                     // FIXME
                     return bigIntegerTableField;
@@ -237,12 +267,16 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return AutoIncrement.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return BlankZero.RuntimeDefinedParameter;
                         // FIXME
                         yield return CalcFormulaFieldName.RuntimeDefinedParameter;
                         yield return CalcFormulaMethod.RuntimeDefinedParameter;
                         yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
                         yield return CalcFormulaTableName.RuntimeDefinedParameter;
-                        
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
                         // FIXME
                         yield return FieldClass.RuntimeDefinedParameter;
 
