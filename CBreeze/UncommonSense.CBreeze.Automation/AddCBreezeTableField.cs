@@ -18,9 +18,12 @@ namespace UncommonSense.CBreeze.Automation
             AutoFormatType = new DynamicParameter<AutoFormatType?>("AutoFormatType", false);
             AutoIncrement = new DynamicParameter<bool?>("AutoIncrement", false);
             BlankNumbers = new DynamicParameter<BlankNumbers?>("BlankNumbers", false);
-            CalcFormulaMethod = new DynamicParameter<Core.CalcFormulaMethod?>("CalcFormulaMethod", false);
             CalcFormulaFieldName = new DynamicParameter<string>("CalcFormulaFieldName", false);
+            CalcFormulaMethod = new DynamicParameter<Core.CalcFormulaMethod?>("CalcFormulaMethod", false);
             CalcFormulaReverseSign = new DynamicParameter<bool>("CalcFormulaReverseSign", false);
+            CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName", false);
+            // FIXME
+            FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -142,6 +145,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> CalcFormulaTableName
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<FieldClass?> FieldClass
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             var tableField = Table.Fields.Add(CreateTableField());
@@ -162,6 +177,13 @@ namespace UncommonSense.CBreeze.Automation
                     bigIntegerTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     bigIntegerTableField.Properties.AutoIncrement = AutoIncrement.Value;
                     bigIntegerTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    bigIntegerTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    bigIntegerTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    //FIXME bigIntegerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value;
+                    bigIntegerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value; 
+                    
+                    // FIXME
+                    bigIntegerTableField.Properties.FieldClass = FieldClass.Value;
                     // FIXME
                     return bigIntegerTableField;
 
@@ -215,6 +237,15 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return AutoIncrement.RuntimeDefinedParameter;
+                        // FIXME
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        
+                        // FIXME
+                        yield return FieldClass.RuntimeDefinedParameter;
+
                         break;
                     case TableFieldType.Time:
                         yield return AltSearchField.RuntimeDefinedParameter;
