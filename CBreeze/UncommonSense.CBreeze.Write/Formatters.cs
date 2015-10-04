@@ -239,19 +239,6 @@ namespace UncommonSense.CBreeze.Write
             }
         }
 
-        public static string AsString(this ColumnFilterLineType value)
-        {
-            switch (value)
-            {
-                case ColumnFilterLineType.Const:
-                    return "CONST";
-                case ColumnFilterLineType.Filter:
-                    return "FILTER";
-                default:
-                    throw new ArgumentOutOfRangeException("value");
-            }
-        }
-
         public static string AsString(this TableFieldType value)
         {
             switch (value)

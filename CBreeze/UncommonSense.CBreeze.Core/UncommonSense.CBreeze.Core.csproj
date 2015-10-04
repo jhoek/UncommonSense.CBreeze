@@ -107,7 +107,6 @@
     <Compile Include="CodeVariable.cs" />
     <Compile Include="ColumnFilter.cs" />
     <Compile Include="ColumnFilterLine.cs" />
-    <Compile Include="ColumnFilterLineType.cs" />
     <Compile Include="ColumnFilterProperty.cs" />
     <Compile Include="ColumnQueryElement.cs" />
     <Compile Include="ColumnQueryElementProperties.cs" />

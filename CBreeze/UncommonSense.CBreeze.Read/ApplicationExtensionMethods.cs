@@ -298,7 +298,7 @@ namespace UncommonSense.CBreeze.Read
             while (!string.IsNullOrEmpty(propertyValue))
             {
                 var column = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
-                var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<ColumnFilterLineType>();
+                var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<TableFilterType>();
                 var value = Parsing.MustMatch(ref propertyValue, @"^\(([^\)]*)\)").Groups[1].Value;
 
                 property.Value.Add(column, type, value);

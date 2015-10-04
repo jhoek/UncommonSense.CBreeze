@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
     public partial class ColumnFilterLine
     {
         private String column;
-        private ColumnFilterLineType? type;
+        private TableFilterType? type;
         private String value;
 
-        internal ColumnFilterLine(String column, ColumnFilterLineType type, String value)
+        internal ColumnFilterLine(String column, TableFilterType type, String value)
         {
             this.column = column;
             this.type = type;
@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public ColumnFilterLineType? Type
+        public TableFilterType? Type
         {
             get
             {
