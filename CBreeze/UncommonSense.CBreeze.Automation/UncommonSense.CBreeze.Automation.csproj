@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="AddCBreezeContainerPageControl.cs" />
     <Content Include="AddCBreezeDateTimeTableField.cs.txt" />
-    <Content Include="AddCBreezeDateFormulaTableField.cs.txt" />
     <Content Include="AddCBreezeDateTableField.cs.txt" />
     <Content Include="AddCBreezeDecimalTableField.cs.txt" />
     <Content Include="AddCBreezeDurationTableField.cs.txt" />

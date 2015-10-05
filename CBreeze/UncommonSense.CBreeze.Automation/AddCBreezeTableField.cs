@@ -476,6 +476,33 @@ namespace UncommonSense.CBreeze.Automation
                     return codeTableField;
                 #endregion
 
+                #region DateFormula
+                case TableFieldType.DateFormula:
+                    var dateFormulaTableField = new DateFormulaTableField(GetTableFieldNo(), Name);
+                    dateFormulaTableField.Properties.AltSearchField = AltSearchField.Value;
+                    dateFormulaTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    dateFormulaTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    dateFormulaTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    dateFormulaTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    dateFormulaTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    dateFormulaTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    dateFormulaTableField.Properties.CaptionClass = CaptionClass.Value;
+                    dateFormulaTableField.Properties.Description = Description;
+                    dateFormulaTableField.Properties.Editable = Editable.Value;
+                    dateFormulaTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    dateFormulaTableField.Properties.FieldClass = FieldClass.Value;
+                    dateFormulaTableField.Properties.InitValue = TextualInitValue.Value;
+                    dateFormulaTableField.Properties.NotBlank = NotBlank.Value;
+                    dateFormulaTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    dateFormulaTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    dateFormulaTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+
+                    if (AutoCaption)
+                        dateFormulaTableField.AutoCaption();
+
+                    return dateFormulaTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -623,6 +650,27 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region DateFormula
+                    case TableFieldType.DateFormula:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return TextualInitValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
                     #endregion
 
