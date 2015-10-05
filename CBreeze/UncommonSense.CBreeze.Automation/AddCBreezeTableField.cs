@@ -24,10 +24,23 @@ namespace UncommonSense.CBreeze.Automation
             CalcFormulaReverseSign = new DynamicParameter<bool>("CalcFormulaReverseSign", false);
             CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName", false);
             CaptionClass = new DynamicParameter<string>("CaptionClass", false);
+            Compressed = new DynamicParameter<bool?>("Compressed", false);
+            DataLength = new DynamicParameter<int>("DataLength", true, 1, 250);
             Editable = new DynamicParameter<bool?>("Editable", false);
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType", false);
-            // FIXME
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
+            BigIntegerInitValue = new DynamicParameter<long?>("InitValue", false);
+            BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue", false);
+            BigIntegerMinValue = new DynamicParameter<long?>("MinValue", false);
+            NotBlank = new DynamicParameter<bool?>("NotBlank", false);
+            Owner = new DynamicParameter<string>("Owner", false);
+            SignDisplacement = new DynamicParameter<int?>("SignDisplacement", false);
+            SubType = new DynamicParameter<BlobSubType?>("SubType", false);
+            TestTableRelation = new DynamicParameter<bool?>("TestTableRelation", false);
+            ValidateTableRelation = new DynamicParameter<bool?>("ValidateTableRelation", false);
+            ValuesAllowed = new DynamicParameter<string>("ValuesAllowed", false);
+            Volatile = new DynamicParameter<bool?>("Volatile", false);
+            Width = new DynamicParameter<int?>("Width", false);
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -167,6 +180,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> Compressed
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int> DataLength
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> Editable
         {
             get;
@@ -185,6 +210,78 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<long?> BigIntegerInitValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<long?> BigIntegerMaxValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<long?> BigIntegerMinValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> NotBlank
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> Owner
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> SignDisplacement
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<BlobSubType?> SubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> TestTableRelation
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> ValidateTableRelation
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> ValuesAllowed
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> Volatile
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> Width
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             var tableField = Table.Fields.Add(CreateTableField());
@@ -198,6 +295,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (Type)
             {
+                #region BigInteger
                 case TableFieldType.BigInteger:
                     var bigIntegerTableField = new BigIntegerTableField(GetTableFieldNo(), Name);
                     bigIntegerTableField.Properties.AltSearchField = AltSearchField.Value;
@@ -208,15 +306,57 @@ namespace UncommonSense.CBreeze.Automation
                     bigIntegerTableField.Properties.BlankZero = BlankZero.Value;
                     bigIntegerTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
                     bigIntegerTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    //FIXME bigIntegerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value;
+                    // FIXME: bigIntegerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value;
                     bigIntegerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
                     bigIntegerTableField.Properties.CaptionClass = CaptionClass.Value;
+                    bigIntegerTableField.Properties.Description = Description;
                     bigIntegerTableField.Properties.Editable = Editable.Value;
                     bigIntegerTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
                     bigIntegerTableField.Properties.FieldClass = FieldClass.Value;
-                    // FIXME
-                    return bigIntegerTableField;
+                    bigIntegerTableField.Properties.InitValue = BigIntegerInitValue.Value;
+                    bigIntegerTableField.Properties.MaxValue = BigIntegerMaxValue.Value;
+                    bigIntegerTableField.Properties.MinValue = BigIntegerMinValue.Value;
+                    bigIntegerTableField.Properties.NotBlank = NotBlank.Value;
+                    bigIntegerTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    bigIntegerTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    bigIntegerTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    bigIntegerTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+                    bigIntegerTableField.Properties.Volatile = Volatile.Value;
+                    bigIntegerTableField.Properties.Width = Width.Value;
 
+                    if (AutoCaption)
+                        bigIntegerTableField.AutoCaption();
+
+                    return bigIntegerTableField;
+                #endregion
+
+                #region Binary
+                case TableFieldType.Binary:
+                    var binaryTableField = new BinaryTableField(GetTableFieldNo(), Name, DataLength.Value);
+                    binaryTableField.Properties.Description = Description;
+
+                    if (AutoCaption)
+                        binaryTableField.AutoCaption();
+
+                    return binaryTableField;
+                #endregion
+
+                #region Blob
+                case TableFieldType.Blob:
+                    var blobTableField = new BlobTableField(GetTableFieldNo(), Name);
+                    blobTableField.Properties.Compressed = Compressed.Value;
+                    blobTableField.Properties.Description = Description;
+                    blobTableField.Properties.Owner = Owner.Value;
+                    blobTableField.Properties.SubType = SubType.Value;
+                    blobTableField.Properties.Volatile = Volatile.Value;
+
+                    if (AutoCaption)
+                        blobTableField.AutoCaption();
+
+                    return blobTableField;
+                #endregion
+
+                #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
                     timeTableField.Properties.AltSearchField = AltSearchField.Value;
@@ -226,7 +366,13 @@ namespace UncommonSense.CBreeze.Automation
                     timeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
                     timeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
                     timeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value;
+                    timeTableField.Properties.Description = Description;
+
+                    if (AutoCaption)
+                        timeTableField.AutoCaption();
+
                     return timeTableField;
+                #endregion
 
                 default:
                     throw new ArgumentOutOfRangeException("Unknown field type.");
@@ -262,6 +408,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 switch (Type)
                 {
+                    #region BigInteger
                     case TableFieldType.BigInteger:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -269,7 +416,6 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoIncrement.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
-                        // FIXME
                         yield return CalcFormulaFieldName.RuntimeDefinedParameter;
                         yield return CalcFormulaMethod.RuntimeDefinedParameter;
                         yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
@@ -277,15 +423,46 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
-                        // FIXME
                         yield return FieldClass.RuntimeDefinedParameter;
+                        yield return BigIntegerInitValue.RuntimeDefinedParameter;
+                        yield return BigIntegerMaxValue.RuntimeDefinedParameter;
+                        yield return BigIntegerMinValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        yield return Volatile.RuntimeDefinedParameter;
+                        yield return Width.RuntimeDefinedParameter;
 
                         break;
+                    #endregion
+
+                    #region Binary
+                    case TableFieldType.Binary:
+                        yield return DataLength.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Blob
+                    case TableFieldType.Blob:
+                        yield return Compressed.RuntimeDefinedParameter;
+                        yield return Owner.RuntimeDefinedParameter;
+                        yield return SubType.RuntimeDefinedParameter;
+                        yield return Volatile.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Time
                     case TableFieldType.Time:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         break;
+                    #endregion
+
+                    default:
+                        throw new ArgumentOutOfRangeException("Unknown field type.");
                 }
             }
         }

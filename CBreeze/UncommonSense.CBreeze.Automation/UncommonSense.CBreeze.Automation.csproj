@@ -49,8 +49,6 @@
     <Content Include="AddCBreezeDateTimeTableField.cs.txt" />
     <Content Include="AddCBreezeDateFormulaTableField.cs.txt" />
     <Content Include="AddCBreezeDateTableField.cs.txt" />
-    <Content Include="AddCBreezeBigIntegerTableField.cs.txt" />
-    <Content Include="AddCBreezeBinaryTableField.cs.txt" />
     <Content Include="AddCBreezeBlobTableField.cs.txt" />
     <Content Include="AddCBreezeBooleanTableField.cs.txt" />
     <Content Include="AddCBreezeDecimalTableField.cs.txt" />
