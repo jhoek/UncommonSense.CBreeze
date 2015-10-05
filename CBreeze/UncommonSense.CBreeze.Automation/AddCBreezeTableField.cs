@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Automation
             BlankZero = new DynamicParameter<bool?>("BlankZero", false);
             CalcFormulaFieldName = new DynamicParameter<string>("CalcFormulaFieldName", false);
             CalcFormulaMethod = new DynamicParameter<Core.CalcFormulaMethod?>("CalcFormulaMethod", false);
-            CalcFormulaReverseSign = new DynamicParameter<bool>("CalcFormulaReverseSign", false);
+            CalcFormulaReverseSign = new DynamicParameter<bool?>("CalcFormulaReverseSign", false);
             CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName", false);
             CaptionClass = new DynamicParameter<string>("CaptionClass", false);
             Compressed = new DynamicParameter<bool?>("Compressed", false);
@@ -30,8 +30,11 @@ namespace UncommonSense.CBreeze.Automation
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType", false);
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue", false);
+            BooleanInitValue = new DynamicParameter<bool?>("InitValue", false);
             BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue", false);
+            BooleanMaxValue = new DynamicParameter<bool?>("MaxValue", false);
             BigIntegerMinValue = new DynamicParameter<long?>("MinValue", false);
+            BooleanMinValue = new DynamicParameter<bool?>("MinValue", false);
             NotBlank = new DynamicParameter<bool?>("NotBlank", false);
             Owner = new DynamicParameter<string>("Owner", false);
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement", false);
@@ -162,7 +165,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<bool> CalcFormulaReverseSign
+        protected DynamicParameter<bool?> CalcFormulaReverseSign
         {
             get;
             set;
@@ -216,13 +219,31 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> BooleanInitValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerMaxValue
         {
             get;
             set;
         }
 
+        protected DynamicParameter<bool?> BooleanMaxValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerMinValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> BooleanMinValue
         {
             get;
             set;
@@ -306,7 +327,7 @@ namespace UncommonSense.CBreeze.Automation
                     bigIntegerTableField.Properties.BlankZero = BlankZero.Value;
                     bigIntegerTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
                     bigIntegerTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    // FIXME: bigIntegerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value;
+                    bigIntegerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
                     bigIntegerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
                     bigIntegerTableField.Properties.CaptionClass = CaptionClass.Value;
                     bigIntegerTableField.Properties.Description = Description;
@@ -356,6 +377,38 @@ namespace UncommonSense.CBreeze.Automation
                     return blobTableField;
                 #endregion
 
+                #region Boolean
+                case TableFieldType.Boolean:
+                    var booleanTableField = new BooleanTableField(GetTableFieldNo(), Name);
+                    booleanTableField.Properties.AltSearchField = AltSearchField.Value;
+                    booleanTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    booleanTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    booleanTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    booleanTableField.Properties.BlankZero = BlankZero.Value;
+                    booleanTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    booleanTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    booleanTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    booleanTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    booleanTableField.Properties.CaptionClass = CaptionClass.Value;
+                    booleanTableField.Properties.Description = Description;
+                    booleanTableField.Properties.Editable = Editable.Value;
+                    booleanTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    booleanTableField.Properties.FieldClass = FieldClass.Value;
+                    booleanTableField.Properties.InitValue = BooleanInitValue.Value;
+                    booleanTableField.Properties.MaxValue = BooleanMaxValue.Value;
+                    booleanTableField.Properties.MinValue = BooleanMinValue.Value;
+                    booleanTableField.Properties.NotBlank = NotBlank.Value;
+                    booleanTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    booleanTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    booleanTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    booleanTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+
+                    if (AutoCaption)
+                        booleanTableField.AutoCaption();
+
+                    return booleanTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -365,7 +418,7 @@ namespace UncommonSense.CBreeze.Automation
                     timeTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     timeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
                     timeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    timeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value;
+                    timeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
                     timeTableField.Properties.Description = Description;
 
                     if (AutoCaption)
@@ -450,6 +503,32 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Owner.RuntimeDefinedParameter;
                         yield return SubType.RuntimeDefinedParameter;
                         yield return Volatile.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Boolean
+                    case TableFieldType.Boolean:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return BlankZero.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return BooleanInitValue.RuntimeDefinedParameter;
+                        yield return BooleanMaxValue.RuntimeDefinedParameter;
+                        yield return BooleanMinValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
                     #endregion
 
