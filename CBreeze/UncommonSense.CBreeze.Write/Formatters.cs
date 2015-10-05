@@ -69,21 +69,6 @@ namespace UncommonSense.CBreeze.Write
             }
         }
 
-        public static string AsString(this RunObjectLinkLineType type)
-        {
-            switch (type)
-            {
-                case RunObjectLinkLineType.Const:
-                    return "CONST";
-                case RunObjectLinkLineType.Filter:
-                    return "FILTER";
-                case RunObjectLinkLineType.Field:
-                    return "FIELD";
-                default:
-                    throw new ArgumentOutOfRangeException("type");
-            }
-        }
-
         public static string AsString(this TableFilterType type)
         {
             switch (type)

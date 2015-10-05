@@ -85,7 +85,7 @@ namespace UncommonSense.CBreeze.Read
             while (propertyValue.Length > 0)
             {
                 var fieldName = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
-                var type = Parsing.MustMatch(ref propertyValue, @"(CONST|FILTER|FIELD)").Groups[1].Value.ToEnum<RunObjectLinkLineType>();
+                var type = Parsing.MustMatch(ref propertyValue, @"(CONST|FILTER|FIELD)").Groups[1].Value.ToEnum<ExtendedTableFilterType>();
                 Parsing.MustMatch(ref propertyValue, @"^\(");
                 var value = Parsing.MatchUntilUnnested(ref propertyValue, ')', '(');
 

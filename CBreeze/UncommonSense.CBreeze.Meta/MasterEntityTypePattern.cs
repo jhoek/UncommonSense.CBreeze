@@ -120,7 +120,7 @@ namespace UncommonSense.CBreeze.Meta
                 StatisticsAction.Properties.ShortCutKey = "F7";
                 StatisticsAction.Properties.RunObject.Type = RunObjectType.Page;
                 StatisticsAction.Properties.RunObject.ID = StatisticsPage.ID;
-                StatisticsAction.Properties.RunPageLink.Add(NoField.Name, RunObjectLinkLineType.Field, NoField.Name);
+                StatisticsAction.Properties.RunPageLink.Add(NoField.Name, ExtendedTableFilterType.Field, NoField.Name);
                 // FIXME: RunPageLink: ook alle flowfilters
             }
         }

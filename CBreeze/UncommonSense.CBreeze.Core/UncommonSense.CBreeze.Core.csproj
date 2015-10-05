@@ -361,7 +361,6 @@
     <Compile Include="RootNode.cs" />
     <Compile Include="RunObjectLink.cs" />
     <Compile Include="RunObjectLinkLine.cs" />
-    <Compile Include="RunObjectLinkLineType.cs" />
     <Compile Include="RunObjectLinkProperty.cs" />
     <Compile Include="RunObjectType.cs" />
     <Compile Include="RunPageMode.cs" />
