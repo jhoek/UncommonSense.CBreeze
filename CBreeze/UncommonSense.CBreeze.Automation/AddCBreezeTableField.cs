@@ -24,20 +24,25 @@ namespace UncommonSense.CBreeze.Automation
             CalcFormulaReverseSign = new DynamicParameter<bool?>("CalcFormulaReverseSign", false);
             CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName", false);
             CaptionClass = new DynamicParameter<string>("CaptionClass", false);
+            CharAllowed = new DynamicParameter<string>("CharAllowed", false);
             Compressed = new DynamicParameter<bool?>("Compressed", false);
-            DataLength = new DynamicParameter<int>("DataLength", true, 1, 250);
+            DateFormula = new DynamicParameter<bool?>("DateFormula", false);
+            DataLength = new DynamicParameter<int?>("DataLength", false, 1, 250);
             Editable = new DynamicParameter<bool?>("Editable", false);
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType", false);
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue", false);
             BooleanInitValue = new DynamicParameter<bool?>("InitValue", false);
+            TextualInitValue = new DynamicParameter<string>("InitValue", false);
             BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue", false);
             BooleanMaxValue = new DynamicParameter<bool?>("MaxValue", false);
             BigIntegerMinValue = new DynamicParameter<long?>("MinValue", false);
             BooleanMinValue = new DynamicParameter<bool?>("MinValue", false);
             NotBlank = new DynamicParameter<bool?>("NotBlank", false);
+            Numeric = new DynamicParameter<bool?>("Numeric", false);
             Owner = new DynamicParameter<string>("Owner", false);
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement", false);
+            SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType", false);
             SubType = new DynamicParameter<BlobSubType?>("SubType", false);
             TestTableRelation = new DynamicParameter<bool?>("TestTableRelation", false);
             ValidateTableRelation = new DynamicParameter<bool?>("ValidateTableRelation", false);
@@ -183,13 +188,25 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> CharAllowed
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> Compressed
         {
             get;
             set;
         }
 
-        protected DynamicParameter<int> DataLength
+        protected DynamicParameter<bool?> DateFormula
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> DataLength
         {
             get;
             set;
@@ -225,6 +242,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> TextualInitValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerMaxValue
         {
             get;
@@ -255,6 +278,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> Numeric
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> Owner
         {
             get;
@@ -262,6 +291,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<int?> SignDisplacement
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<SqlDataType?> SqlDataType
         {
             get;
             set;
@@ -353,7 +388,7 @@ namespace UncommonSense.CBreeze.Automation
 
                 #region Binary
                 case TableFieldType.Binary:
-                    var binaryTableField = new BinaryTableField(GetTableFieldNo(), Name, DataLength.Value);
+                    var binaryTableField = new BinaryTableField(GetTableFieldNo(), Name, DataLength.Value ?? 4);
                     binaryTableField.Properties.Description = Description;
 
                     if (AutoCaption)
@@ -407,6 +442,38 @@ namespace UncommonSense.CBreeze.Automation
                         booleanTableField.AutoCaption();
 
                     return booleanTableField;
+                #endregion
+
+                #region Code
+                case TableFieldType.Code:
+                    var codeTableField = new CodeTableField(GetTableFieldNo(), Name, DataLength.Value ?? 10);
+                    codeTableField.Properties.AltSearchField = AltSearchField.Value;
+                    codeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    codeTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    codeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    codeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    codeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    codeTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    codeTableField.Properties.CaptionClass = CaptionClass.Value;
+                    codeTableField.Properties.CharAllowed = CharAllowed.Value;
+                    codeTableField.Properties.DateFormula = DateFormula.Value;
+                    codeTableField.Properties.Description = Description;
+                    codeTableField.Properties.Editable = Editable.Value;
+                    codeTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    codeTableField.Properties.FieldClass = FieldClass.Value;
+                    codeTableField.Properties.InitValue = TextualInitValue.Value;
+                    codeTableField.Properties.NotBlank = NotBlank.Value;
+                    codeTableField.Properties.Numeric = Numeric.Value;
+                    codeTableField.Properties.SQLDataType = SqlDataType.Value;
+                    codeTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    codeTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    codeTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+                    codeTableField.Properties.Width = Width.Value;
+
+                    if (AutoCaption)
+                        codeTableField.AutoCaption();
+
+                    return codeTableField;
                 #endregion
 
                 #region Time
@@ -529,6 +596,33 @@ namespace UncommonSense.CBreeze.Automation
                         yield return TestTableRelation.RuntimeDefinedParameter;
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Code
+                    case TableFieldType.Code:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return CharAllowed.RuntimeDefinedParameter;                        
+                        yield return DataLength.RuntimeDefinedParameter;
+                        yield return DateFormula.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return TextualInitValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return Numeric.RuntimeDefinedParameter;
+                        yield return SqlDataType.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        yield return Width.RuntimeDefinedParameter;
                         break;
                     #endregion
 
