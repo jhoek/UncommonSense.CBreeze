@@ -69,19 +69,6 @@ namespace UncommonSense.CBreeze.Write
             }
         }
 
-        public static string AsString(this TableRelationConditionType conditionType)
-        {
-            switch (conditionType)
-            {
-                case TableRelationConditionType.Const:
-                    return "CONST";
-                case TableRelationConditionType.Filter:
-                    return "FILTER";
-                default:
-                    throw new ArgumentOutOfRangeException("conditionType");
-            }
-        }
-
         public static string AsString(this RunObjectLinkLineType type)
         {
             switch (type)

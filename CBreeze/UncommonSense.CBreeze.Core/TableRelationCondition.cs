@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
     public partial class TableRelationCondition
     {
         private String fieldName;
-        private TableRelationConditionType? type;
+        private TableFilterType? type;
         private String value;
 
-        internal TableRelationCondition(String fieldName, TableRelationConditionType type, String value)
+        internal TableRelationCondition(String fieldName, TableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;
@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableRelationConditionType? Type
+        public TableFilterType? Type
         {
             get
             {

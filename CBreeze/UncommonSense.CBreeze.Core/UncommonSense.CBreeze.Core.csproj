@@ -407,7 +407,6 @@
     <Compile Include="TableReferenceProperty.cs" />
     <Compile Include="TableRelationCondition.cs" />
     <Compile Include="TableRelationConditions.cs" />
-    <Compile Include="TableRelationConditionType.cs" />
     <Compile Include="TableRelationLine.cs" />
     <Compile Include="TableRelationLines.cs" />
     <Compile Include="TableRelationLinesProperty.cs" />
