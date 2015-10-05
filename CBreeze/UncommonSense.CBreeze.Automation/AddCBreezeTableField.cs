@@ -25,6 +25,7 @@ namespace UncommonSense.CBreeze.Automation
             CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName", false);
             CaptionClass = new DynamicParameter<string>("CaptionClass", false);
             CharAllowed = new DynamicParameter<string>("CharAllowed", false);
+            ClosingDates = new DynamicParameter<bool?>("ClosingDates", false);
             Compressed = new DynamicParameter<bool?>("Compressed", false);
             DateFormula = new DynamicParameter<bool?>("DateFormula", false);
             DataLength = new DynamicParameter<int?>("DataLength", false, 1, 250);
@@ -33,11 +34,14 @@ namespace UncommonSense.CBreeze.Automation
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue", false);
             BooleanInitValue = new DynamicParameter<bool?>("InitValue", false);
+            DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue", false);
             TextualInitValue = new DynamicParameter<string>("InitValue", false);
             BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue", false);
             BooleanMaxValue = new DynamicParameter<bool?>("MaxValue", false);
+            DateTimeMaxValue = new DynamicParameter<DateTime?>("MaxValue", false);
             BigIntegerMinValue = new DynamicParameter<long?>("MinValue", false);
             BooleanMinValue = new DynamicParameter<bool?>("MinValue", false);
+            DateTimeMinValue = new DynamicParameter<DateTime?>("MinValue", false);
             NotBlank = new DynamicParameter<bool?>("NotBlank", false);
             Numeric = new DynamicParameter<bool?>("Numeric", false);
             Owner = new DynamicParameter<string>("Owner", false);
@@ -194,6 +198,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> ClosingDates
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> Compressed
         {
             get;
@@ -242,6 +252,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<DateTime?> DateTimeInitValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> TextualInitValue
         {
             get;
@@ -260,6 +276,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<DateTime?> DateTimeMaxValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerMinValue
         {
             get;
@@ -267,6 +289,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> BooleanMinValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<DateTime?> DateTimeMinValue
         {
             get;
             set;
@@ -476,6 +504,38 @@ namespace UncommonSense.CBreeze.Automation
                     return codeTableField;
                 #endregion
 
+                #region Date
+                case TableFieldType.Date:
+                    var dateTableField = new DateTableField(GetTableFieldNo(), Name);
+                    dateTableField.Properties.AltSearchField = AltSearchField.Value;
+                    dateTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    dateTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    dateTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    dateTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    dateTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    dateTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    dateTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    dateTableField.Properties.CaptionClass = CaptionClass.Value;
+                    dateTableField.Properties.ClosingDates = ClosingDates.Value;
+                    dateTableField.Properties.Description = Description;
+                    dateTableField.Properties.Editable = Editable.Value;
+                    dateTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    dateTableField.Properties.FieldClass = FieldClass.Value;
+                    dateTableField.Properties.InitValue = DateTimeInitValue.Value;
+                    dateTableField.Properties.MaxValue = DateTimeMaxValue.Value;
+                    dateTableField.Properties.MinValue = DateTimeMinValue.Value;
+                    dateTableField.Properties.NotBlank = NotBlank.Value;
+                    dateTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    dateTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    dateTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    dateTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+
+                    if (AutoCaption)
+                        dateTableField.AutoCaption();
+
+                    return dateTableField;
+                #endregion
+
                 #region DateFormula
                 case TableFieldType.DateFormula:
                     var dateFormulaTableField = new DateFormulaTableField(GetTableFieldNo(), Name);
@@ -501,6 +561,38 @@ namespace UncommonSense.CBreeze.Automation
                         dateFormulaTableField.AutoCaption();
 
                     return dateFormulaTableField;
+                #endregion
+
+                #region DateTime
+                case TableFieldType.DateTime:
+                    var dateTimeTableField = new DateTimeTableField(GetTableFieldNo(), Name);
+                    dateTimeTableField.Properties.AltSearchField = AltSearchField.Value;
+                    dateTimeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    dateTimeTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    dateTimeTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    dateTimeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    dateTimeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    dateTimeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    dateTimeTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    dateTimeTableField.Properties.CaptionClass = CaptionClass.Value;
+                    dateTimeTableField.Properties.Description = Description;
+                    dateTimeTableField.Properties.Editable = Editable.Value;
+                    dateTimeTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    dateTimeTableField.Properties.FieldClass = FieldClass.Value;
+                    dateTimeTableField.Properties.InitValue = DateTimeInitValue.Value;
+                    dateTimeTableField.Properties.MinValue = DateTimeMinValue.Value;
+                    dateTimeTableField.Properties.MaxValue = DateTimeMaxValue.Value;
+                    dateTimeTableField.Properties.NotBlank = NotBlank.Value;
+                    dateTimeTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    dateTimeTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    dateTimeTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    dateTimeTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+                    dateTimeTableField.Properties.Volatile = Volatile.Value;
+
+                    if (AutoCaption)
+                        dateTimeTableField.AutoCaption();
+
+                    return dateTimeTableField;
                 #endregion
 
                 #region Time
@@ -653,6 +745,32 @@ namespace UncommonSense.CBreeze.Automation
                         break;
                     #endregion
 
+                    #region Date
+                    case TableFieldType.Date:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return ClosingDates.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return DateTimeInitValue.RuntimeDefinedParameter;
+                        yield return DateTimeMaxValue.RuntimeDefinedParameter;
+                        yield return DateTimeMinValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
                     #region DateFormula
                     case TableFieldType.DateFormula:
                         yield return AltSearchField.RuntimeDefinedParameter;
@@ -671,6 +789,32 @@ namespace UncommonSense.CBreeze.Automation
                         yield return TestTableRelation.RuntimeDefinedParameter;
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region DateTime
+                    case TableFieldType.DateTime:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return DateTimeInitValue.RuntimeDefinedParameter;
+                        yield return DateTimeMaxValue.RuntimeDefinedParameter;
+                        yield return DateTimeMinValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        yield return Volatile.RuntimeDefinedParameter;
                         break;
                     #endregion
 
