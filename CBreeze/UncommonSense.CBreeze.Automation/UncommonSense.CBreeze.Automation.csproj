@@ -49,7 +49,6 @@
     <Content Include="AddCBreezeDateTimeTableField.cs.txt" />
     <Content Include="AddCBreezeDateFormulaTableField.cs.txt" />
     <Content Include="AddCBreezeDateTableField.cs.txt" />
-    <Content Include="AddCBreezeBlobTableField.cs.txt" />
     <Content Include="AddCBreezeBooleanTableField.cs.txt" />
     <Content Include="AddCBreezeDecimalTableField.cs.txt" />
     <Content Include="AddCBreezeDurationTableField.cs.txt" />
