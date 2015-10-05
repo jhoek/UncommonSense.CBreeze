@@ -29,19 +29,24 @@ namespace UncommonSense.CBreeze.Automation
             Compressed = new DynamicParameter<bool?>("Compressed", false);
             DateFormula = new DynamicParameter<bool?>("DateFormula", false);
             DataLength = new DynamicParameter<int?>("DataLength", false, 1, 250);
+            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", false);
+            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", false);
             Editable = new DynamicParameter<bool?>("Editable", false);
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType", false);
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue", false);
             BooleanInitValue = new DynamicParameter<bool?>("InitValue", false);
             DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue", false);
+            DecimalInitValue = new DynamicParameter<decimal?>("InitValue", false);
             TextualInitValue = new DynamicParameter<string>("InitValue", false);
             BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue", false);
             BooleanMaxValue = new DynamicParameter<bool?>("MaxValue", false);
             DateTimeMaxValue = new DynamicParameter<DateTime?>("MaxValue", false);
+            DecimalMaxValue = new DynamicParameter<decimal?>("MaxValue", false);
             BigIntegerMinValue = new DynamicParameter<long?>("MinValue", false);
             BooleanMinValue = new DynamicParameter<bool?>("MinValue", false);
             DateTimeMinValue = new DynamicParameter<DateTime?>("MinValue", false);
+            DecimalMinValue = new DynamicParameter<decimal?>("MinValue", false);
             NotBlank = new DynamicParameter<bool?>("NotBlank", false);
             Numeric = new DynamicParameter<bool?>("Numeric", false);
             Owner = new DynamicParameter<string>("Owner", false);
@@ -222,6 +227,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int?> DecimalPlacesAtLeast
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> DecimalPlacesAtMost
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> Editable
         {
             get;
@@ -258,6 +275,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<Decimal?> DecimalInitValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> TextualInitValue
         {
             get;
@@ -282,6 +305,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<decimal?> DecimalMaxValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerMinValue
         {
             get;
@@ -295,6 +324,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<DateTime?> DateTimeMinValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<decimal?> DecimalMinValue
         {
             get;
             set;
@@ -595,6 +630,41 @@ namespace UncommonSense.CBreeze.Automation
                     return dateTimeTableField;
                 #endregion
 
+                #region Decimal
+                case TableFieldType.Decimal:
+                    var decimalTableField = new DecimalTableField(GetTableFieldNo(), Name);
+                    decimalTableField.Properties.AltSearchField = AltSearchField.Value;
+                    decimalTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    decimalTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    decimalTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    decimalTableField.Properties.BlankZero = BlankZero.Value;
+                    decimalTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    decimalTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    decimalTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    decimalTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    decimalTableField.Properties.CaptionClass = CaptionClass.Value;
+                    decimalTableField.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast.Value;
+                    decimalTableField.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost.Value;
+                    decimalTableField.Properties.Description = Description;
+                    decimalTableField.Properties.Editable = Editable.Value;
+                    decimalTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    decimalTableField.Properties.FieldClass = FieldClass.Value;
+                    decimalTableField.Properties.InitValue = DecimalInitValue.Value;
+                    decimalTableField.Properties.MinValue = DecimalMinValue.Value;
+                    decimalTableField.Properties.MaxValue = DecimalMaxValue.Value;
+                    decimalTableField.Properties.NotBlank = NotBlank.Value;
+                    decimalTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    decimalTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    decimalTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    decimalTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+                    decimalTableField.Properties.Width = Width.Value;
+
+                    if (AutoCaption)
+                        decimalTableField.AutoCaption();
+
+                    return decimalTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -728,7 +798,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
                         yield return CalcFormulaTableName.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
-                        yield return CharAllowed.RuntimeDefinedParameter;                        
+                        yield return CharAllowed.RuntimeDefinedParameter;
                         yield return DataLength.RuntimeDefinedParameter;
                         yield return DateFormula.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -815,6 +885,35 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Volatile.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Decimal
+                    case TableFieldType.Decimal:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return BlankZero.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return DecimalPlacesAtLeast.RuntimeDefinedParameter;
+                        yield return DecimalPlacesAtMost.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return DecimalInitValue.RuntimeDefinedParameter;
+                        yield return DecimalMaxValue.RuntimeDefinedParameter;
+                        yield return DecimalMinValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        yield return Width.RuntimeDefinedParameter;
                         break;
                     #endregion
 
