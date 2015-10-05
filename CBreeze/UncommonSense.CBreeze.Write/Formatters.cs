@@ -69,28 +69,28 @@ namespace UncommonSense.CBreeze.Write
             }
         }
 
-        public static string AsString(this TableFilterType type)
+        public static string AsString(this SimpleTableFilterType type)
         {
             switch (type)
             {
-                case TableFilterType.Const:
+                case SimpleTableFilterType.Const:
                     return "CONST";
-                case TableFilterType.Filter:
+                case SimpleTableFilterType.Filter:
                     return "FILTER";
                 default:
                     throw new ArgumentOutOfRangeException("type");
             }
         }
 
-        public static string AsString(this ExtendedTableFilterType type)
+        public static string AsString(this TableFilterType type)
         {
             switch (type)
             {
-                case ExtendedTableFilterType.Const:
+                case TableFilterType.Const:
                     return "CONST";
-                case ExtendedTableFilterType.Field:
+                case TableFilterType.Field:
                     return "FIELD";
-                case ExtendedTableFilterType.Filter:
+                case TableFilterType.Filter:
                     return "FILTER";
                 default:
                     throw new ArgumentOutOfRangeException("type");

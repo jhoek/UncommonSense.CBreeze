@@ -107,7 +107,7 @@ namespace UncommonSense.CBreeze.Meta
 
             if (HasTestReportID)
             {
-                TemplateTableTestReportIDField.Properties.TableRelation.Set("Object", "ID").TableFilter.Add("Type", ExtendedTableFilterType.Const, "Report");
+                TemplateTableTestReportIDField.Properties.TableRelation.Set("Object", "ID").TableFilter.Add("Type", TableFilterType.Const, "Report");
 
                 TemplateTableTestReportCaptionField.Properties.FieldClass = FieldClass.FlowField;
                 TemplateTableTestReportCaptionField.Properties.Editable = false;
@@ -116,8 +116,8 @@ namespace UncommonSense.CBreeze.Meta
                     "AllObjWithCaption", 
                     "Object Caption", 
                     false,
-                    new CalcFormulaTableFilterLine("Object Type", ExtendedTableFilterType.Const, "Report"),
-                    new CalcFormulaTableFilterLine("Object ID", ExtendedTableFilterType.Field, TemplateTableTestReportIDField.Name));
+                    new CalcFormulaTableFilterLine("Object Type", TableFilterType.Const, "Report"),
+                    new CalcFormulaTableFilterLine("Object ID", TableFilterType.Field, TemplateTableTestReportIDField.Name));
             }
 
             JournalPage.Properties.DataCaptionFields.Add(LineTableJournalBatchNameField.Name);

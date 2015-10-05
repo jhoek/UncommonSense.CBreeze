@@ -85,7 +85,7 @@ namespace UncommonSense.CBreeze.Read
             while (propertyValue.Length > 0)
             {
                 var fieldName = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
-                var type = Parsing.MustMatch(ref propertyValue, @"(CONST|FILTER|FIELD)").Groups[1].Value.ToEnum<ExtendedTableFilterType>();
+                var type = Parsing.MustMatch(ref propertyValue, @"(CONST|FILTER|FIELD)").Groups[1].Value.ToEnum<TableFilterType>();
                 Parsing.MustMatch(ref propertyValue, @"^\(");
                 var value = Parsing.MatchUntilUnnested(ref propertyValue, ')', '(');
 
@@ -183,12 +183,12 @@ namespace UncommonSense.CBreeze.Read
 
                 foreach (var condition in conditions)
                 {
-                    tableRelationLine.Conditions.Add(condition.FieldName, condition.Type.ToEnum<TableFilterType>(), condition.Value);
+                    tableRelationLine.Conditions.Add(condition.FieldName, condition.Type.ToEnum<SimpleTableFilterType>(), condition.Value);
                 }
 
                 foreach (var filter in filters)
                 {
-                    tableRelationLine.TableFilter.Add(filter.FieldName, filter.Type.ToEnum<ExtendedTableFilterType>(), filter.Value);
+                    tableRelationLine.TableFilter.Add(filter.FieldName, filter.Type.ToEnum<TableFilterType>(), filter.Value);
                 }
 
                 Parsing.TryMatch(ref propertyValue, @"^\sELSE\s");
@@ -285,7 +285,7 @@ namespace UncommonSense.CBreeze.Read
 
             foreach (var filter in filters)
             {
-                var calcFormulaTableFilterLine = property.Value.TableFilter.Add(new CalcFormulaTableFilterLine(filter.FieldName, filter.Type.ToEnum<ExtendedTableFilterType>(), filter.Value));
+                var calcFormulaTableFilterLine = property.Value.TableFilter.Add(new CalcFormulaTableFilterLine(filter.FieldName, filter.Type.ToEnum<TableFilterType>(), filter.Value));
                 calcFormulaTableFilterLine.ValueIsFilter = filter.ValueIsFilter;
                 calcFormulaTableFilterLine.OnlyMaxLimit = filter.OnlyMaxLimit;
             }
@@ -298,7 +298,7 @@ namespace UncommonSense.CBreeze.Read
             while (!string.IsNullOrEmpty(propertyValue))
             {
                 var column = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
-                var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<TableFilterType>();
+                var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<SimpleTableFilterType>();
                 var value = Parsing.MustMatch(ref propertyValue, @"^\(([^\)]*)\)").Groups[1].Value;
 
                 property.Value.Add(column, type, value);
@@ -327,7 +327,7 @@ namespace UncommonSense.CBreeze.Read
             do
             {
                 var fieldName = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
-                var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<TableFilterType>();
+                var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<SimpleTableFilterType>();
                 var value = GetCalcFormulaFilterValue(ref propertyValue);
                 property.Value.Add(fieldName, type, value);
             }
@@ -449,7 +449,7 @@ namespace UncommonSense.CBreeze.Read
 
             foreach (var tableRelationFilterLine in GetTableRelationFilters(ref propertyValue))
             {
-                tableFilter.Add(tableRelationFilterLine.FieldName, tableRelationFilterLine.Type.ToEnum<TableFilterType>(), tableRelationFilterLine.Value);
+                tableFilter.Add(tableRelationFilterLine.FieldName, tableRelationFilterLine.Type.ToEnum<SimpleTableFilterType>(), tableRelationFilterLine.Value);
             }
         }
 

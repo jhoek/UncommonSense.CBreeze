@@ -14,7 +14,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public enum TableFilterType
+    public enum SimpleTableFilterType
     {
         Const,
         Filter,

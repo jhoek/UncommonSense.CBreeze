@@ -83,16 +83,16 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected ExtendedTableFilterType ExtendedTableFilterType
+        protected TableFilterType ExtendedTableFilterType
         {
             get
             {
                 if (Const.IsPresent)
-                    return Core.ExtendedTableFilterType.Const;
+                    return Core.TableFilterType.Const;
                 if (Filter.IsPresent)
-                    return Core.ExtendedTableFilterType.Filter;
+                    return Core.TableFilterType.Filter;
                 if (Field.IsPresent)
-                    return Core.ExtendedTableFilterType.Field;
+                    return Core.TableFilterType.Field;
 
                 throw new ArgumentOutOfRangeException("ExtendedTableFilterType");
             }

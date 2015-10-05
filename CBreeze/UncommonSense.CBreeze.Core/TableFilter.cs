@@ -53,14 +53,14 @@ namespace UncommonSense.CBreeze.Core
             return innerList.FindLastIndex(startIndex, count, match);
         }
 
-        public TableFilterLine Add(String fieldName, TableFilterType type, String value)
+        public TableFilterLine Add(String fieldName, SimpleTableFilterType type, String value)
         {
             TableFilterLine item = new TableFilterLine(fieldName, type, value);
             innerList.Add(item);
             return item;
         }
 
-        public TableFilterLine Insert(int index, String fieldName, TableFilterType type, String value)
+        public TableFilterLine Insert(int index, String fieldName, SimpleTableFilterType type, String value)
         {
             TableFilterLine item = new TableFilterLine(fieldName, type, value);
             innerList.Insert(index, item);

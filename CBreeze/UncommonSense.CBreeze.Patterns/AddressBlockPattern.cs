@@ -48,18 +48,18 @@ namespace UncommonSense.CBreeze.Patterns
             CityField.Properties.ValidateTableRelation = false;
 
             var tableRelation = PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, TableFilterType.Const, "''");
+            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Const, "''");
 
             tableRelation = PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, TableFilterType.Filter, "<>''");
-            tableRelation.TableFilter.Add("Country/Region Code", ExtendedTableFilterType.Field, CountryRegionCodeField.Name);
+            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Filter, "<>''");
+            tableRelation.TableFilter.Add("Country/Region Code", TableFilterType.Field, CountryRegionCodeField.Name);
 
             tableRelation = CityField.Properties.TableRelation.Set("Post Code", "City");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, TableFilterType.Const, "''");
+            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Const, "''");
 
             tableRelation = CityField.Properties.TableRelation.Set("Post Code", "City");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, TableFilterType.Filter, "<>''");
-            tableRelation.TableFilter.Add("Country/Region Code", ExtendedTableFilterType.Field, CountryRegionCodeField.Name);
+            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Filter, "<>''");
+            tableRelation.TableFilter.Add("Country/Region Code", TableFilterType.Field, CountryRegionCodeField.Name);
 
             CountryRegionCodeField.Properties.TableRelation.Add("Country/Region");
         }
