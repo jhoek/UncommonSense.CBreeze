@@ -141,10 +141,5 @@ namespace UncommonSense.CBreeze.Automation
             if (PassThru)
                 WriteObject(control);
         }
-
-        protected override Page GetPage()
-        {
-            return To.Container.Page;
-        }
     }
 }

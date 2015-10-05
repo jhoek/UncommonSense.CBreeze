@@ -57,14 +57,9 @@ namespace UncommonSense.CBreeze.Automation
                     Page.Controls.Insert(0, control);
                     break;
             }
-
+            
             if (PassThru)
                 WriteObject(control);
-        }
-
-        protected override Page GetPage()
-        {
-            return Page;
         }
     }
 }

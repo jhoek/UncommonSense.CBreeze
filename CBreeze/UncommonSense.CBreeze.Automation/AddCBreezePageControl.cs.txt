@@ -8,7 +8,8 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class AddCBreezePageControl : Cmdlet
+    [Cmdlet(VerbsCommon.Add, "CBreezePageControl")]
+    public  class AddCBreezePageControl : CmdletWithDynamicParams
     {
         [Parameter(ParameterSetName = "Range")]
         public IEnumerable<int> Range
@@ -32,8 +33,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected abstract Page GetPage();
-
         protected int GetPageControlID()
         {
             if (ID != 0)
@@ -41,10 +40,18 @@ namespace UncommonSense.CBreeze.Automation
 
             var range = Range;
 
-            if (Range.Contains(GetPage().ID))
-                range = 1.To(int.MaxValue);
+            //if (Range.Contains(GetPage().ID))
+            //    range = 1.To(int.MaxValue);
 
-            return range.Except(GetPage().Controls.Select(c => c.ID)).First();
+            //return range.Except(GetPage().Controls.Select(c => c.ID)).First();
+        }
+
+        public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
+        {
+            get
+            {
+                
+            }
         }
     }
 }

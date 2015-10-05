@@ -45,15 +45,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCBreezeContainerPageControl.cs" />
+    <Content Include="AddCBreezeContainerPageControl.cs.txt" />
     <Content Include="AddCBreezeDecimalTableField.cs.txt" />
     <Content Include="AddCBreezeDurationTableField.cs.txt" />
     <Compile Include="AddCBreezeFilter.cs" />
-    <Compile Include="AddCBreezeGroupPageControl.cs" />
+    <Content Include="AddCBreezeGroupPageControl.cs.txt" />
     <Content Include="AddCBreezeGuidTableField.cs.txt" />
     <Content Include="AddCBreezeIntegerTableField.cs.txt" />
     <Content Include="AddCBreezeOptionTableField.cs.txt" />
-    <Compile Include="AddCBreezePageControl.cs" />
+    <Content Include="AddCBreezePageControl.cs.txt" />
     <Content Include="AddCBreezeRecordIDTableField.cs.txt" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
