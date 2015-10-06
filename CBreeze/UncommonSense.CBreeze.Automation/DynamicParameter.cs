@@ -16,21 +16,15 @@ namespace UncommonSense.CBreeze.Automation
             RuntimeDefinedParameter.Attributes.Add(validateRangeAttribute);
         }
 
-        public DynamicParameter(string name, bool mandatory, string parameterSetName)
+        public DynamicParameter(string name, bool mandatory)
         {
             var attributes = new Collection<Attribute>();
 
             var parameterAttribute = new ParameterAttribute();
             parameterAttribute.Mandatory = mandatory;
-            parameterAttribute.ParameterSetName = parameterSetName;
             attributes.Add(parameterAttribute);
 
             RuntimeDefinedParameter = new RuntimeDefinedParameter(name, typeof(T), attributes);
-        }
-
-        public DynamicParameter(string name, bool mandatory)
-            : this(name, mandatory, null)
-        {
         }
 
         public RuntimeDefinedParameter RuntimeDefinedParameter
