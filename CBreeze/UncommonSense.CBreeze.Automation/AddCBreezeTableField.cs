@@ -916,6 +916,37 @@ namespace UncommonSense.CBreeze.Automation
                     return tableFilterTableField;
                 #endregion
 
+                #region Text
+                case TableFieldType.Text:
+                    var textTableField = new TextTableField(GetTableFieldNo(), Name, DataLength.Value ?? 30);
+                    textTableField.Properties.AltSearchField = AltSearchField.Value;
+                    textTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    textTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    textTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    textTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    textTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    textTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    textTableField.Properties.CaptionClass = CaptionClass.Value;
+                    textTableField.Properties.CharAllowed = CharAllowed.Value;
+                    textTableField.Properties.DateFormula = DateFormula.Value;
+                    textTableField.Properties.Description = Description;
+                    textTableField.Properties.Editable = Editable.Value;
+                    textTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    textTableField.Properties.FieldClass = FieldClass.Value;
+                    textTableField.Properties.InitValue = TextualInitValue.Value;
+                    textTableField.Properties.NotBlank = NotBlank.Value;
+                    textTableField.Properties.Numeric = Numeric.Value;
+                    textTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    textTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    textTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+                    textTableField.Properties.Width = Width.Value;
+
+                    if (AutoCaption)
+                        textTableField.AutoCaption();
+
+                    return textTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -1299,6 +1330,32 @@ namespace UncommonSense.CBreeze.Automation
                     #region TableFilter
                     case TableFieldType.TableFilter:
                         yield return TableIDExpr.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Text
+                    case TableFieldType.Text:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return CharAllowed.RuntimeDefinedParameter;
+                        yield return DataLength.RuntimeDefinedParameter;
+                        yield return DateFormula.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return TextualInitValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return Numeric.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        yield return Width.RuntimeDefinedParameter;
                         break;
                     #endregion
 
