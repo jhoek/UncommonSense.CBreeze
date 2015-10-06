@@ -48,7 +48,6 @@
     <Content Include="AddCBreezeContainerPageControl.cs.txt" />
     <Compile Include="AddCBreezeFilter.cs" />
     <Content Include="AddCBreezeGroupPageControl.cs.txt" />
-    <Content Include="AddCBreezeGuidTableField.cs.txt" />
     <Content Include="AddCBreezeIntegerTableField.cs.txt" />
     <Content Include="AddCBreezeOptionTableField.cs.txt" />
     <Content Include="AddCBreezePageControl.cs.txt" />

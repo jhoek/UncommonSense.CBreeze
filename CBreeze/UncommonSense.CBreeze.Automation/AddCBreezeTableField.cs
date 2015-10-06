@@ -39,6 +39,7 @@ namespace UncommonSense.CBreeze.Automation
             BooleanInitValue = new DynamicParameter<bool?>("InitValue");
             DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue");
             DecimalInitValue = new DynamicParameter<decimal?>("InitValue");
+            GuidInitValue = new DynamicParameter<Guid?>("InitValue");
             TextualInitValue = new DynamicParameter<string>("InitValue");
             TimeSpanInitValue = new DynamicParameter<TimeSpan?>("InitValue");
             BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue");
@@ -117,12 +118,6 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter PrimaryKeyFieldNoRange
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> Enabled
         {
             get;
             set;
@@ -249,6 +244,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> Enabled
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<ExtendedDataType?> ExtendedDataType
         {
             get;
@@ -280,6 +281,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<Decimal?> DecimalInitValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Guid?> GuidInitValue
         {
             get;
             set;
@@ -726,6 +733,33 @@ namespace UncommonSense.CBreeze.Automation
                     return durationTableField;
                 #endregion
 
+                #region Guid
+                case TableFieldType.Guid:
+                    var guidTableField = new GuidTableField(GetTableFieldNo(), Name);
+                    guidTableField.Properties.AltSearchField = AltSearchField.Value;
+                    guidTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    guidTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    guidTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    guidTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    guidTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    guidTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    guidTableField.Properties.CaptionClass = CaptionClass.Value;
+                    guidTableField.Properties.Description = Description;
+                    guidTableField.Properties.Editable = Editable.Value;
+                    guidTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    guidTableField.Properties.FieldClass = FieldClass.Value;
+                    guidTableField.Properties.InitValue = GuidInitValue.Value;
+                    guidTableField.Properties.NotBlank = NotBlank.Value;
+                    guidTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    guidTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    guidTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+
+                    if (AutoCaption)
+                        guidTableField.AutoCaption();
+
+                    return guidTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -1001,6 +1035,28 @@ namespace UncommonSense.CBreeze.Automation
                         yield return NotBlank.RuntimeDefinedParameter;
                         yield return SignDisplacement.RuntimeDefinedParameter;
                         yield return StandardDayTimeUnit.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Guid
+                    case TableFieldType.Guid:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return Enabled.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return GuidInitValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
                         yield return TestTableRelation.RuntimeDefinedParameter;
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
