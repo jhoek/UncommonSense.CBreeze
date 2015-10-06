@@ -49,14 +49,12 @@
     <Compile Include="AddCBreezeFilter.cs" />
     <Content Include="AddCBreezeGroupPageControl.cs.txt" />
     <Content Include="AddCBreezePageControl.cs.txt" />
-    <Content Include="AddCBreezeRecordIDTableField.cs.txt" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMLValue.cs" />
     <Compile Include="AddCBreezeObject.cs" />
     <Compile Include="AddCBreezeParameter.cs" />
     <Compile Include="AddCBreezeTableField.cs" />
-    <Content Include="AddCBreezeTableFilterTableField.cs.txt" />
     <Compile Include="AddCBreezeTableKey.cs" />
     <Content Include="AddCBreezeTextTableField.cs.txt" />
     <Content Include="AddCBreezeTimeTableField.cs.txt" />

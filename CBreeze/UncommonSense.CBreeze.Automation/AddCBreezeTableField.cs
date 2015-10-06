@@ -65,6 +65,7 @@ namespace UncommonSense.CBreeze.Automation
             SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
             StandardDayTimeUnit = new DynamicParameter<Core.StandardDayTimeUnit?>("StandardDayTimeUnit");
             SubType = new DynamicParameter<BlobSubType?>("SubType");
+            TableIDExpr = new DynamicParameter<string>("TableIDExpr");
             TestTableRelation = new DynamicParameter<bool?>("TestTableRelation");
             ValidateTableRelation = new DynamicParameter<bool?>("ValidateTableRelation");
             ValuesAllowed = new DynamicParameter<string>("ValuesAllowed");
@@ -443,6 +444,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<BlobSubType?> SubType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> TableIDExpr
         {
             get;
             set;
@@ -870,6 +877,45 @@ namespace UncommonSense.CBreeze.Automation
                     return optionTableField;
                 #endregion
 
+                #region RecordID
+                case TableFieldType.RecordID:
+                    var recordIDTableField = new RecordIDTableField(GetTableFieldNo(), Name);
+                    recordIDTableField.Properties.AltSearchField = AltSearchField.Value;
+                    recordIDTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    recordIDTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    recordIDTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    recordIDTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    recordIDTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    recordIDTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    recordIDTableField.Properties.CaptionClass = CaptionClass.Value;
+                    recordIDTableField.Properties.Description = Description;
+                    recordIDTableField.Properties.Editable = Editable.Value;
+                    recordIDTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    recordIDTableField.Properties.FieldClass = FieldClass.Value;
+                    recordIDTableField.Properties.InitValue = TextualInitValue.Value;
+                    recordIDTableField.Properties.NotBlank = NotBlank.Value;
+                    recordIDTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    recordIDTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    recordIDTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+
+                    if (AutoCaption)
+                        recordIDTableField.AutoCaption();
+
+                    return recordIDTableField;
+                #endregion
+
+                #region TableFilter
+                case TableFieldType.TableFilter:
+                    var tableFilterTableField = new TableFilterTableField(GetTableFieldNo(), Name);
+                    tableFilterTableField.Properties.Description = Description;
+                    tableFilterTableField.Properties.TableIDExpr = TableIDExpr.Value;
+
+                    if (AutoCaption)
+                        tableFilterTableField.AutoCaption();
+
+                    return tableFilterTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -1226,6 +1272,33 @@ namespace UncommonSense.CBreeze.Automation
                         yield return TestTableRelation.RuntimeDefinedParameter;
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region RecordID
+                    case TableFieldType.RecordID:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return TextualInitValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region TableFilter
+                    case TableFieldType.TableFilter:
+                        yield return TableIDExpr.RuntimeDefinedParameter;
                         break;
                     #endregion
 
