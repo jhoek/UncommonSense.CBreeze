@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTableField")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeTableField", DefaultParameterSetName="Range")]
     public class AddCBreezeTableField : CmdletWithDynamicParams
     {
         public AddCBreezeTableField()
@@ -32,6 +32,7 @@ namespace UncommonSense.CBreeze.Automation
             DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", false);
             DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", false);
             Editable = new DynamicParameter<bool?>("Editable", false);
+            Enabled = new DynamicParameter<bool?>("Enabled", false);
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType", false);
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue", false);
@@ -117,8 +118,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
-        public bool? Enabled
+        protected DynamicParameter<bool?> Enabled
         {
             get;
             set;
@@ -404,7 +404,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var tableField = Table.Fields.Add(CreateTableField());
-            tableField.Enabled = Enabled;
+            tableField.Enabled = Enabled.Value;
 
             if (PassThru)
                 WriteObject(tableField);
@@ -715,6 +715,8 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return Enabled.RuntimeDefinedParameter;
+
                 switch (Type)
                 {
                     #region BigInteger
@@ -924,9 +926,6 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         break;
                     #endregion
-
-                    default:
-                        throw new ArgumentOutOfRangeException("Unknown field type.");
                 }
             }
         }

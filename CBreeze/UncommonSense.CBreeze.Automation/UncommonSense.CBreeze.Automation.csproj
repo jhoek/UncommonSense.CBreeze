@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddCBreezeContainerPageControl.cs.txt" />
-    <Content Include="AddCBreezeDecimalTableField.cs.txt" />
     <Content Include="AddCBreezeDurationTableField.cs.txt" />
     <Compile Include="AddCBreezeFilter.cs" />
     <Content Include="AddCBreezeGroupPageControl.cs.txt" />
