@@ -9,11 +9,9 @@ namespace UncommonSense.CBreeze.Automation
 {
     public class DynamicParameter<T>
     {
-        public DynamicParameter(string name, bool mandatory, T minRange, T maxRange)
-            : this(name, mandatory)
+        public DynamicParameter(string name)
+            : this(name, false)
         {
-            var validateRangeAttribute = new ValidateRangeAttribute(minRange, maxRange);
-            RuntimeDefinedParameter.Attributes.Add(validateRangeAttribute);
         }
 
         public DynamicParameter(string name, bool mandatory)
@@ -25,6 +23,18 @@ namespace UncommonSense.CBreeze.Automation
             attributes.Add(parameterAttribute);
 
             RuntimeDefinedParameter = new RuntimeDefinedParameter(name, typeof(T), attributes);
+        }
+
+        public DynamicParameter(string name, T minRange, T maxRange)
+            : this(name, false, minRange, maxRange)
+        {
+        }
+
+        public DynamicParameter(string name, bool mandatory, T minRange, T maxRange)
+            : this(name, mandatory)
+        {
+            var validateRangeAttribute = new ValidateRangeAttribute(minRange, maxRange);
+            RuntimeDefinedParameter.Attributes.Add(validateRangeAttribute);
         }
 
         public RuntimeDefinedParameter RuntimeDefinedParameter
