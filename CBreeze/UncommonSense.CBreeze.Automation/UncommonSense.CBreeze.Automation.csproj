@@ -56,7 +56,6 @@
     <Compile Include="AddCBreezeParameter.cs" />
     <Compile Include="AddCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
-    <Content Include="AddCBreezeTimeTableField.cs.txt" />
     <Compile Include="AddCBreezeVariable.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />
     <Compile Include="DynamicParameter.cs" />

@@ -953,11 +953,22 @@ namespace UncommonSense.CBreeze.Automation
                     timeTableField.Properties.AltSearchField = AltSearchField.Value;
                     timeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     timeTableField.Properties.AutoFormatType = AutoFormatType.Value;
-                    timeTableField.Properties.BlankNumbers = BlankNumbers.Value;
-                    timeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    timeTableField.Properties.BlankNumbers = BlankNumbers.Value;                    
                     timeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    timeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
                     timeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    timeTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    timeTableField.Properties.CaptionClass = CaptionClass.Value;
                     timeTableField.Properties.Description = Description;
+                    timeTableField.Properties.Editable = Editable.Value;
+                    timeTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    timeTableField.Properties.FieldClass = FieldClass.Value;
+                    timeTableField.Properties.InitValue = TimeSpanInitValue.Value;
+                    timeTableField.Properties.NotBlank = NotBlank.Value;
+                    timeTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    timeTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    timeTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    timeTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
 
                     if (AutoCaption)
                         timeTableField.AutoCaption();
@@ -1364,6 +1375,22 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return TimeSpanInitValue.RuntimeDefinedParameter;
+                        yield return TimeSpanMaxValue.RuntimeDefinedParameter;
+                        yield return TimeSpanMinValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
                     #endregion
                 }
