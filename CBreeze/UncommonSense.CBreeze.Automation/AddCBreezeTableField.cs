@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTableField", DefaultParameterSetName="Range")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeTableField", DefaultParameterSetName = "Range")]
     public class AddCBreezeTableField : CmdletWithDynamicParams
     {
         public AddCBreezeTableField()
@@ -40,17 +40,20 @@ namespace UncommonSense.CBreeze.Automation
             DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue");
             DecimalInitValue = new DynamicParameter<decimal?>("InitValue");
             GuidInitValue = new DynamicParameter<Guid?>("InitValue");
+            IntegerInitValue = new DynamicParameter<int?>("InitValue");
             TextualInitValue = new DynamicParameter<string>("InitValue");
             TimeSpanInitValue = new DynamicParameter<TimeSpan?>("InitValue");
             BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue");
             BooleanMaxValue = new DynamicParameter<bool?>("MaxValue");
             DateTimeMaxValue = new DynamicParameter<DateTime?>("MaxValue");
             DecimalMaxValue = new DynamicParameter<decimal?>("MaxValue");
+            IntegerMaxValue = new DynamicParameter<int?>("MaxValue");
             TimeSpanMaxValue = new DynamicParameter<TimeSpan?>("MaxValue");
             BigIntegerMinValue = new DynamicParameter<long?>("MinValue");
             BooleanMinValue = new DynamicParameter<bool?>("MinValue");
             DateTimeMinValue = new DynamicParameter<DateTime?>("MinValue");
             DecimalMinValue = new DynamicParameter<decimal?>("MinValue");
+            IntegerMinValue = new DynamicParameter<int?>("MinValue");
             TimeSpanMinValue = new DynamicParameter<TimeSpan?>("MinValue");
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
@@ -292,6 +295,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int?> IntegerInitValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> TextualInitValue
         {
             get;
@@ -328,6 +337,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int?> IntegerMaxValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<TimeSpan?> TimeSpanMaxValue
         {
             get;
@@ -353,6 +368,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<decimal?> DecimalMinValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> IntegerMinValue
         {
             get;
             set;
@@ -760,6 +781,41 @@ namespace UncommonSense.CBreeze.Automation
                     return guidTableField;
                 #endregion
 
+                #region Integer
+                case TableFieldType.Integer:
+                    var integerTableField = new IntegerTableField(GetTableFieldNo(), Name);
+                    integerTableField.Properties.AltSearchField = AltSearchField.Value;
+                    integerTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    integerTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    integerTableField.Properties.AutoIncrement = AutoIncrement.Value;
+                    integerTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    integerTableField.Properties.BlankZero = BlankZero.Value;
+                    integerTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    integerTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    integerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    integerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    integerTableField.Properties.CaptionClass = CaptionClass.Value;
+                    integerTableField.Properties.Description = Description;
+                    integerTableField.Properties.Editable = Editable.Value;
+                    integerTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    integerTableField.Properties.FieldClass = FieldClass.Value;
+                    integerTableField.Properties.InitValue = IntegerInitValue.Value;
+                    integerTableField.Properties.MaxValue = IntegerMaxValue.Value;
+                    integerTableField.Properties.MinValue = IntegerMinValue.Value;
+                    integerTableField.Properties.NotBlank = NotBlank.Value;
+                    integerTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    integerTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    integerTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    integerTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+                    integerTableField.Properties.Volatile = Volatile.Value;
+                    integerTableField.Properties.Width = Width.Value;
+
+                    if (AutoCaption)
+                        integerTableField.AutoCaption();
+
+                    return integerTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -1060,6 +1116,35 @@ namespace UncommonSense.CBreeze.Automation
                         yield return TestTableRelation.RuntimeDefinedParameter;
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Integer
+                    case TableFieldType.Integer:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return AutoIncrement.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return BlankZero.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return IntegerInitValue.RuntimeDefinedParameter;
+                        yield return IntegerMinValue.RuntimeDefinedParameter;
+                        yield return IntegerMaxValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        yield return Volatile.RuntimeDefinedParameter;
+                        yield return Width.RuntimeDefinedParameter;
                         break;
                     #endregion
 
