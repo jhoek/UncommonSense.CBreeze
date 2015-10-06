@@ -48,15 +48,18 @@ namespace UncommonSense.CBreeze.Automation
             DateTimeMaxValue = new DynamicParameter<DateTime?>("MaxValue");
             DecimalMaxValue = new DynamicParameter<decimal?>("MaxValue");
             IntegerMaxValue = new DynamicParameter<int?>("MaxValue");
+            TextualMaxValue = new DynamicParameter<string>("MaxValue");
             TimeSpanMaxValue = new DynamicParameter<TimeSpan?>("MaxValue");
             BigIntegerMinValue = new DynamicParameter<long?>("MinValue");
             BooleanMinValue = new DynamicParameter<bool?>("MinValue");
             DateTimeMinValue = new DynamicParameter<DateTime?>("MinValue");
             DecimalMinValue = new DynamicParameter<decimal?>("MinValue");
             IntegerMinValue = new DynamicParameter<int?>("MinValue");
+            TextualMinValue = new DynamicParameter<string>("MinValue");
             TimeSpanMinValue = new DynamicParameter<TimeSpan?>("MinValue");
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
+            OptionString = new DynamicParameter<string>("OptionString");
             Owner = new DynamicParameter<string>("Owner");
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement");
             SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
@@ -343,6 +346,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> TextualMaxValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<TimeSpan?> TimeSpanMaxValue
         {
             get;
@@ -379,6 +388,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> TextualMinValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<TimeSpan?> TimeSpanMinValue
         {
             get;
@@ -392,6 +407,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> Numeric
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> OptionString
         {
             get;
             set;
@@ -816,6 +837,39 @@ namespace UncommonSense.CBreeze.Automation
                     return integerTableField;
                 #endregion
 
+                #region Option
+                case TableFieldType.Option:
+                    var optionTableField = new OptionTableField(GetTableFieldNo(), Name);
+                    optionTableField.Properties.AltSearchField = AltSearchField.Value;
+                    optionTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    optionTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    optionTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    optionTableField.Properties.BlankZero = BlankZero.Value;
+                    optionTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    optionTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    optionTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    optionTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    optionTableField.Properties.CaptionClass = CaptionClass.Value;
+                    optionTableField.Properties.Description = Description;
+                    optionTableField.Properties.Editable = Editable.Value;
+                    optionTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    optionTableField.Properties.FieldClass = FieldClass.Value;
+                    optionTableField.Properties.InitValue = TextualInitValue.Value;
+                    optionTableField.Properties.MaxValue = TextualMaxValue.Value;
+                    optionTableField.Properties.MinValue = TextualMinValue.Value;
+                    optionTableField.Properties.NotBlank = NotBlank.Value;
+                    optionTableField.Properties.OptionString = OptionString.Value;
+                    optionTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    optionTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    optionTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    optionTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+
+                    if (AutoCaption)
+                        optionTableField.AutoCaption();
+
+                    return optionTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -1145,6 +1199,33 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Volatile.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Option
+                    case TableFieldType.Option:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return BlankZero.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return TextualInitValue.RuntimeDefinedParameter;
+                        yield return TextualMinValue.RuntimeDefinedParameter;
+                        yield return TextualMaxValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return OptionString.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
                     #endregion
 
