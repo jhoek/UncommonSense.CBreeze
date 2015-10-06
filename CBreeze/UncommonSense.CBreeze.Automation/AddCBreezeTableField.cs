@@ -13,52 +13,56 @@ namespace UncommonSense.CBreeze.Automation
     {
         public AddCBreezeTableField()
         {
-            AltSearchField = new DynamicParameter<string>("AltSearchField", false);
-            AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr", false);
-            AutoFormatType = new DynamicParameter<AutoFormatType?>("AutoFormatType", false);
-            AutoIncrement = new DynamicParameter<bool?>("AutoIncrement", false);
-            BlankNumbers = new DynamicParameter<BlankNumbers?>("BlankNumbers", false);
-            BlankZero = new DynamicParameter<bool?>("BlankZero", false);
-            CalcFormulaFieldName = new DynamicParameter<string>("CalcFormulaFieldName", false);
-            CalcFormulaMethod = new DynamicParameter<Core.CalcFormulaMethod?>("CalcFormulaMethod", false);
-            CalcFormulaReverseSign = new DynamicParameter<bool?>("CalcFormulaReverseSign", false);
-            CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName", false);
-            CaptionClass = new DynamicParameter<string>("CaptionClass", false);
-            CharAllowed = new DynamicParameter<string>("CharAllowed", false);
-            ClosingDates = new DynamicParameter<bool?>("ClosingDates", false);
-            Compressed = new DynamicParameter<bool?>("Compressed", false);
-            DateFormula = new DynamicParameter<bool?>("DateFormula", false);
-            DataLength = new DynamicParameter<int?>("DataLength", false, 1, 250);
-            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", false);
-            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", false);
-            Editable = new DynamicParameter<bool?>("Editable", false);
-            Enabled = new DynamicParameter<bool?>("Enabled", false);
-            ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType", false);
-            FieldClass = new DynamicParameter<FieldClass?>("FieldClass", false);
-            BigIntegerInitValue = new DynamicParameter<long?>("InitValue", false);
-            BooleanInitValue = new DynamicParameter<bool?>("InitValue", false);
-            DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue", false);
-            DecimalInitValue = new DynamicParameter<decimal?>("InitValue", false);
-            TextualInitValue = new DynamicParameter<string>("InitValue", false);
-            BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue", false);
-            BooleanMaxValue = new DynamicParameter<bool?>("MaxValue", false);
-            DateTimeMaxValue = new DynamicParameter<DateTime?>("MaxValue", false);
-            DecimalMaxValue = new DynamicParameter<decimal?>("MaxValue", false);
-            BigIntegerMinValue = new DynamicParameter<long?>("MinValue", false);
-            BooleanMinValue = new DynamicParameter<bool?>("MinValue", false);
-            DateTimeMinValue = new DynamicParameter<DateTime?>("MinValue", false);
-            DecimalMinValue = new DynamicParameter<decimal?>("MinValue", false);
-            NotBlank = new DynamicParameter<bool?>("NotBlank", false);
-            Numeric = new DynamicParameter<bool?>("Numeric", false);
-            Owner = new DynamicParameter<string>("Owner", false);
-            SignDisplacement = new DynamicParameter<int?>("SignDisplacement", false);
-            SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType", false);
-            SubType = new DynamicParameter<BlobSubType?>("SubType", false);
-            TestTableRelation = new DynamicParameter<bool?>("TestTableRelation", false);
-            ValidateTableRelation = new DynamicParameter<bool?>("ValidateTableRelation", false);
-            ValuesAllowed = new DynamicParameter<string>("ValuesAllowed", false);
-            Volatile = new DynamicParameter<bool?>("Volatile", false);
-            Width = new DynamicParameter<int?>("Width", false);
+            AltSearchField = new DynamicParameter<string>("AltSearchField");
+            AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr");
+            AutoFormatType = new DynamicParameter<AutoFormatType?>("AutoFormatType");
+            AutoIncrement = new DynamicParameter<bool?>("AutoIncrement");
+            BlankNumbers = new DynamicParameter<BlankNumbers?>("BlankNumbers");
+            BlankZero = new DynamicParameter<bool?>("BlankZero");
+            CalcFormulaFieldName = new DynamicParameter<string>("CalcFormulaFieldName");
+            CalcFormulaMethod = new DynamicParameter<Core.CalcFormulaMethod?>("CalcFormulaMethod");
+            CalcFormulaReverseSign = new DynamicParameter<bool?>("CalcFormulaReverseSign");
+            CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName");
+            CaptionClass = new DynamicParameter<string>("CaptionClass");
+            CharAllowed = new DynamicParameter<string>("CharAllowed");
+            ClosingDates = new DynamicParameter<bool?>("ClosingDates");
+            Compressed = new DynamicParameter<bool?>("Compressed");
+            DateFormula = new DynamicParameter<bool?>("DateFormula");
+            DataLength = new DynamicParameter<int?>("DataLength", 1, 250);
+            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast");
+            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost");
+            Editable = new DynamicParameter<bool?>("Editable");
+            Enabled = new DynamicParameter<bool?>("Enabled");
+            ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
+            FieldClass = new DynamicParameter<FieldClass?>("FieldClass");
+            BigIntegerInitValue = new DynamicParameter<long?>("InitValue");
+            BooleanInitValue = new DynamicParameter<bool?>("InitValue");
+            DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue");
+            DecimalInitValue = new DynamicParameter<decimal?>("InitValue");
+            TextualInitValue = new DynamicParameter<string>("InitValue");
+            TimeSpanInitValue = new DynamicParameter<TimeSpan?>("InitValue");
+            BigIntegerMaxValue = new DynamicParameter<long?>("MaxValue");
+            BooleanMaxValue = new DynamicParameter<bool?>("MaxValue");
+            DateTimeMaxValue = new DynamicParameter<DateTime?>("MaxValue");
+            DecimalMaxValue = new DynamicParameter<decimal?>("MaxValue");
+            TimeSpanMaxValue = new DynamicParameter<TimeSpan?>("MaxValue");
+            BigIntegerMinValue = new DynamicParameter<long?>("MinValue");
+            BooleanMinValue = new DynamicParameter<bool?>("MinValue");
+            DateTimeMinValue = new DynamicParameter<DateTime?>("MinValue");
+            DecimalMinValue = new DynamicParameter<decimal?>("MinValue");
+            TimeSpanMinValue = new DynamicParameter<TimeSpan?>("MinValue");
+            NotBlank = new DynamicParameter<bool?>("NotBlank");
+            Numeric = new DynamicParameter<bool?>("Numeric");
+            Owner = new DynamicParameter<string>("Owner");
+            SignDisplacement = new DynamicParameter<int?>("SignDisplacement");
+            SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
+            StandardDayTimeUnit = new DynamicParameter<Core.StandardDayTimeUnit?>("StandardDayTimeUnit");
+            SubType = new DynamicParameter<BlobSubType?>("SubType");
+            TestTableRelation = new DynamicParameter<bool?>("TestTableRelation");
+            ValidateTableRelation = new DynamicParameter<bool?>("ValidateTableRelation");
+            ValuesAllowed = new DynamicParameter<string>("ValuesAllowed");
+            Volatile = new DynamicParameter<bool?>("Volatile");
+            Width = new DynamicParameter<int?>("Width");
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -287,6 +291,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<TimeSpan?> TimeSpanInitValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerMaxValue
         {
             get;
@@ -311,6 +321,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<TimeSpan?> TimeSpanMaxValue
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerMinValue
         {
             get;
@@ -330,6 +346,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<decimal?> DecimalMinValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<TimeSpan?> TimeSpanMinValue
         {
             get;
             set;
@@ -360,6 +382,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<SqlDataType?> SqlDataType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<StandardDayTimeUnit?> StandardDayTimeUnit
         {
             get;
             set;
@@ -665,6 +693,39 @@ namespace UncommonSense.CBreeze.Automation
                     return decimalTableField;
                 #endregion
 
+                #region Duration
+                case TableFieldType.Duration:
+                    var durationTableField = new DurationTableField(GetTableFieldNo(), Name);
+                    durationTableField.Properties.AltSearchField = AltSearchField.Value;
+                    durationTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    durationTableField.Properties.AutoFormatType = AutoFormatType.Value;
+                    durationTableField.Properties.BlankNumbers = BlankNumbers.Value;
+                    durationTableField.Properties.BlankZero = BlankZero.Value;
+                    durationTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
+                    durationTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
+                    durationTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
+                    durationTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    durationTableField.Properties.CaptionClass = CaptionClass.Value;
+                    durationTableField.Properties.Description = Description;
+                    durationTableField.Properties.Editable = Editable.Value;
+                    durationTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    durationTableField.Properties.FieldClass = FieldClass.Value;
+                    durationTableField.Properties.InitValue = TimeSpanInitValue.Value;
+                    durationTableField.Properties.MinValue = TimeSpanMinValue.Value;
+                    durationTableField.Properties.MaxValue = TimeSpanMaxValue.Value;
+                    durationTableField.Properties.NotBlank = NotBlank.Value;
+                    durationTableField.Properties.SignDisplacement = SignDisplacement.Value;
+                    durationTableField.Properties.StandardDayTimeUnit = StandardDayTimeUnit.Value;
+                    durationTableField.Properties.TestTableRelation = TestTableRelation.Value;
+                    durationTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
+                    durationTableField.Properties.ValuesAllowed = ValuesAllowed.Value;
+
+                    if (AutoCaption)
+                        durationTableField.AutoCaption();
+
+                    return durationTableField;
+                #endregion
+
                 #region Time
                 case TableFieldType.Time:
                     var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
@@ -916,6 +977,33 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
+                        break;
+                    #endregion
+
+                    #region Duration
+                    case TableFieldType.Duration:
+                        yield return AltSearchField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return BlankZero.RuntimeDefinedParameter;
+                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
+                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
+                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
+                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return FieldClass.RuntimeDefinedParameter;
+                        yield return TimeSpanInitValue.RuntimeDefinedParameter;
+                        yield return TimeSpanMaxValue.RuntimeDefinedParameter;
+                        yield return TimeSpanMinValue.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return SignDisplacement.RuntimeDefinedParameter;
+                        yield return StandardDayTimeUnit.RuntimeDefinedParameter;
+                        yield return TestTableRelation.RuntimeDefinedParameter;
+                        yield return ValidateTableRelation.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
                     #endregion
 
