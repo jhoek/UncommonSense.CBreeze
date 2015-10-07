@@ -48,7 +48,7 @@
     <Content Include="AddCBreezeContainerPageControl.cs.txt" />
     <Compile Include="AddCBreezeFilter.cs" />
     <Content Include="AddCBreezeGroupPageControl.cs.txt" />
-    <Content Include="AddCBreezePageControl.cs.txt" />
+    <Compile Include="AddCBreezePageControl.cs" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMLValue.cs" />
