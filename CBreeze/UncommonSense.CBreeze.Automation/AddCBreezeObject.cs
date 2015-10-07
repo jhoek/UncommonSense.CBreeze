@@ -75,8 +75,8 @@ namespace UncommonSense.CBreeze.Automation
             XmlVersionNo = new DynamicParameter<XmlVersionNo?>("XmlVersionNo", false);
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Application[] Application
+        [Parameter(Mandatory = true)]
+        public Application Application
         {
             get;
             set;
@@ -509,190 +509,187 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var application in Application)
+            switch (Type)
             {
-                switch (Type)
-                {
-                    case ObjectType.Table:
-                        var table = application.Tables.Add(new Table(GetObjectID(application), Name));
+                case ObjectType.Table:
+                    var table = Application.Tables.Add(new Table(GetObjectID(), Name));
 
-                        table.ObjectProperties.DateTime = DateTime;
-                        table.ObjectProperties.Modified = Modified;
-                        table.ObjectProperties.VersionList = VersionList;
+                    table.ObjectProperties.DateTime = DateTime;
+                    table.ObjectProperties.Modified = Modified;
+                    table.ObjectProperties.VersionList = VersionList;
 
-                        table.Properties.DataCaptionFields.AddRange(DataCaptionFields.Value ?? new string[] { });
-                        table.Properties.DataPerCompany = DataPerCompany.Value;
-                        table.Properties.Description = Description.Value;
-                        table.Properties.DrillDownPageID = DrillDownPageID.Value;
-                        table.Properties.LinkedInTransaction = LinkedInTransaction.Value;
-                        table.Properties.LinkedObject = LinkedObject.Value;
-                        table.Properties.LookupPageID = LookupPageID.Value;
-                        table.Properties.PasteIsValid = PasteIsValid.Value;
+                    table.Properties.DataCaptionFields.AddRange(DataCaptionFields.Value ?? new string[] { });
+                    table.Properties.DataPerCompany = DataPerCompany.Value;
+                    table.Properties.Description = Description.Value;
+                    table.Properties.DrillDownPageID = DrillDownPageID.Value;
+                    table.Properties.LinkedInTransaction = LinkedInTransaction.Value;
+                    table.Properties.LinkedObject = LinkedObject.Value;
+                    table.Properties.LookupPageID = LookupPageID.Value;
+                    table.Properties.PasteIsValid = PasteIsValid.Value;
 
-                        if (AutoCaption)
-                            table.AutoCaption();
+                    if (AutoCaption)
+                        table.AutoCaption();
 
-                        if (PassThru)
-                            WriteObject(table);
+                    if (PassThru)
+                        WriteObject(table);
 
-                        break;
+                    break;
 
-                    case ObjectType.Page:
-                        var page = application.Pages.Add(new Page(GetObjectID(application), Name));
+                case ObjectType.Page:
+                    var page = Application.Pages.Add(new Page(GetObjectID(), Name));
 
-                        page.ObjectProperties.DateTime = DateTime;
-                        page.ObjectProperties.Modified = Modified;
-                        page.ObjectProperties.VersionList = VersionList;
+                    page.ObjectProperties.DateTime = DateTime;
+                    page.ObjectProperties.Modified = Modified;
+                    page.ObjectProperties.VersionList = VersionList;
 
-                        page.Properties.AutoSplitKey = AutoSplitKey.Value;
-                        page.Properties.CardPageID = CardPageID.Value;
-                        page.Properties.DataCaptionExpr = DataCaptionExpr.Value;
-                        page.Properties.DataCaptionFields.AddRange(DataCaptionFields.Value ?? new string[] { });
-                        page.Properties.DelayedInsert = DelayedInsert.Value;
-                        page.Properties.DeleteAllowed = DeleteAllowed.Value;
-                        page.Properties.Description = Description.Value;
-                        page.Properties.Editable = Editable.Value;
-                        page.Properties.InsertAllowed = InsertAllowed.Value;
-                        page.Properties.LinksAllowed = LinksAllowed.Value;
-                        page.Properties.ModifyAllowed = ModifyAllowed.Value;
-                        page.Properties.MultipleNewLines = MultipleNewLines.Value;
-                        page.Properties.PageType = PageType.Value;
-                        page.Properties.PopulateAllFields = PopulateAllFields.Value;
-                        page.Properties.RefreshOnActivate = RefreshOnActivate.Value;
-                        page.Properties.SaveValues = SaveValues.Value;
-                        page.Properties.ShowFilter = ShowFilter.Value;
-                        page.Properties.SourceTable = SourceTable.Value;
-                        page.Properties.SourceTableTemporary = SourceTableTemporary.Value;
+                    page.Properties.AutoSplitKey = AutoSplitKey.Value;
+                    page.Properties.CardPageID = CardPageID.Value;
+                    page.Properties.DataCaptionExpr = DataCaptionExpr.Value;
+                    page.Properties.DataCaptionFields.AddRange(DataCaptionFields.Value ?? new string[] { });
+                    page.Properties.DelayedInsert = DelayedInsert.Value;
+                    page.Properties.DeleteAllowed = DeleteAllowed.Value;
+                    page.Properties.Description = Description.Value;
+                    page.Properties.Editable = Editable.Value;
+                    page.Properties.InsertAllowed = InsertAllowed.Value;
+                    page.Properties.LinksAllowed = LinksAllowed.Value;
+                    page.Properties.ModifyAllowed = ModifyAllowed.Value;
+                    page.Properties.MultipleNewLines = MultipleNewLines.Value;
+                    page.Properties.PageType = PageType.Value;
+                    page.Properties.PopulateAllFields = PopulateAllFields.Value;
+                    page.Properties.RefreshOnActivate = RefreshOnActivate.Value;
+                    page.Properties.SaveValues = SaveValues.Value;
+                    page.Properties.ShowFilter = ShowFilter.Value;
+                    page.Properties.SourceTable = SourceTable.Value;
+                    page.Properties.SourceTableTemporary = SourceTableTemporary.Value;
 
-                        if (AutoCaption)
-                            page.AutoCaption();
+                    if (AutoCaption)
+                        page.AutoCaption();
 
-                        if (PassThru)
-                            WriteObject(page);
+                    if (PassThru)
+                        WriteObject(page);
 
-                        break;
+                    break;
 
-                    case ObjectType.Report:
-                        var report = application.Reports.Add(new Report(GetObjectID(application), Name));
+                case ObjectType.Report:
+                    var report = Application.Reports.Add(new Report(GetObjectID(), Name));
 
-                        report.ObjectProperties.DateTime = DateTime;
-                        report.ObjectProperties.Modified = Modified;
-                        report.ObjectProperties.VersionList = VersionList;
+                    report.ObjectProperties.DateTime = DateTime;
+                    report.ObjectProperties.Modified = Modified;
+                    report.ObjectProperties.VersionList = VersionList;
 
-                        report.Properties.Description = Description.Value;
-                        report.Properties.EnableExternalAssemblies = EnableExternalAssemblies.Value;
-                        report.Properties.EnableExternalImages = EnableExternalImages.Value;
-                        report.Properties.EnableHyperlinks = EnableHyperlinks.Value;
-                        report.Properties.PaperSourceDefaultPage = PaperSourceDefaultPage.Value;
-                        report.Properties.PaperSourceFirstPage = PaperSourceFirstPage.Value;
-                        report.Properties.PaperSourceLastPage = PaperSourceLastPage.Value;
-                        report.Properties.ProcessingOnly = ProcessingOnly.Value;
-                        report.Properties.ShowPrintStatus = ShowPrintStatus.Value;
-                        report.Properties.TransactionType = TransactionType.Value;
-                        report.Properties.UseRequestPage = UseRequestPage.Value;
-                        report.Properties.UseSystemPrinter = UseSystemPrinter.Value;
+                    report.Properties.Description = Description.Value;
+                    report.Properties.EnableExternalAssemblies = EnableExternalAssemblies.Value;
+                    report.Properties.EnableExternalImages = EnableExternalImages.Value;
+                    report.Properties.EnableHyperlinks = EnableHyperlinks.Value;
+                    report.Properties.PaperSourceDefaultPage = PaperSourceDefaultPage.Value;
+                    report.Properties.PaperSourceFirstPage = PaperSourceFirstPage.Value;
+                    report.Properties.PaperSourceLastPage = PaperSourceLastPage.Value;
+                    report.Properties.ProcessingOnly = ProcessingOnly.Value;
+                    report.Properties.ShowPrintStatus = ShowPrintStatus.Value;
+                    report.Properties.TransactionType = TransactionType.Value;
+                    report.Properties.UseRequestPage = UseRequestPage.Value;
+                    report.Properties.UseSystemPrinter = UseSystemPrinter.Value;
 
-                        if (AutoCaption)
-                            report.AutoCaption();
+                    if (AutoCaption)
+                        report.AutoCaption();
 
-                        if (PassThru)
-                            WriteObject(report);
+                    if (PassThru)
+                        WriteObject(report);
 
-                        break;
+                    break;
 
-                    case ObjectType.Codeunit:
-                        var codeunit = application.Codeunits.Add(new Codeunit(GetObjectID(application), Name));
+                case ObjectType.Codeunit:
+                    var codeunit = Application.Codeunits.Add(new Codeunit(GetObjectID(), Name));
 
-                        codeunit.ObjectProperties.DateTime = DateTime;
-                        codeunit.ObjectProperties.Modified = Modified;
-                        codeunit.ObjectProperties.VersionList = VersionList;
+                    codeunit.ObjectProperties.DateTime = DateTime;
+                    codeunit.ObjectProperties.Modified = Modified;
+                    codeunit.ObjectProperties.VersionList = VersionList;
 
-                        codeunit.Properties.CFRONTMayUsePermissions = CFrontMayUsePermissions.Value;
-                        codeunit.Properties.SingleInstance = SingleInstance.Value;
-                        codeunit.Properties.Subtype = SubType.Value;
-                        codeunit.Properties.TableNo = TableNo.Value;
-                        codeunit.Properties.TestIsolation = TestIsolation.Value;
+                    codeunit.Properties.CFRONTMayUsePermissions = CFrontMayUsePermissions.Value;
+                    codeunit.Properties.SingleInstance = SingleInstance.Value;
+                    codeunit.Properties.Subtype = SubType.Value;
+                    codeunit.Properties.TableNo = TableNo.Value;
+                    codeunit.Properties.TestIsolation = TestIsolation.Value;
 
-                        if (PassThru)
-                            WriteObject(codeunit);
+                    if (PassThru)
+                        WriteObject(codeunit);
 
-                        break;
+                    break;
 
-                    case ObjectType.XmlPort:
-                        var xmlPort = application.XmlPorts.Add(new XmlPort(GetObjectID(application), Name));
+                case ObjectType.XmlPort:
+                    var xmlPort = Application.XmlPorts.Add(new XmlPort(GetObjectID(), Name));
 
-                        xmlPort.ObjectProperties.DateTime = DateTime;
-                        xmlPort.ObjectProperties.Modified = Modified;
-                        xmlPort.ObjectProperties.VersionList = VersionList;
+                    xmlPort.ObjectProperties.DateTime = DateTime;
+                    xmlPort.ObjectProperties.Modified = Modified;
+                    xmlPort.ObjectProperties.VersionList = VersionList;
 
-                        xmlPort.Properties.DefaultFieldsValidation = DefaultFieldsValidation.Value;
-                        xmlPort.Properties.DefaultNamespace = DefaultNamespace.Value;
-                        xmlPort.Properties.Direction = Direction.Value;
-                        xmlPort.Properties.Encoding = Encoding.Value;
-                        xmlPort.Properties.FieldDelimiter = FieldDelimiter.Value;
-                        xmlPort.Properties.FieldSeparator = FieldSeparator.Value;
-                        xmlPort.Properties.FileName = FileName.Value;
-                        xmlPort.Properties.Format = Format.Value;
-                        xmlPort.Properties.FormatEvaluate = FormatEvaluate.Value;
-                        xmlPort.Properties.InlineSchema = InlineSchema.Value;
-                        xmlPort.Properties.PreserveWhiteSpace = PreserveWhitespace.Value;
-                        xmlPort.Properties.RecordSeparator = RecordSeparator.Value;
-                        xmlPort.Properties.TableSeparator = TableSeparator.Value;
-                        xmlPort.Properties.TextEncoding = TextEncoding.Value;
-                        xmlPort.Properties.TransactionType = TransactionType.Value;
-                        xmlPort.Properties.UseDefaultNamespace = UseDefaultNamespace.Value;
-                        xmlPort.Properties.UseLax = UseLax.Value;
-                        xmlPort.Properties.UseRequestPage = UseRequestPage.Value;
-                        xmlPort.Properties.XmlVersionNo = XmlVersionNo.Value;
+                    xmlPort.Properties.DefaultFieldsValidation = DefaultFieldsValidation.Value;
+                    xmlPort.Properties.DefaultNamespace = DefaultNamespace.Value;
+                    xmlPort.Properties.Direction = Direction.Value;
+                    xmlPort.Properties.Encoding = Encoding.Value;
+                    xmlPort.Properties.FieldDelimiter = FieldDelimiter.Value;
+                    xmlPort.Properties.FieldSeparator = FieldSeparator.Value;
+                    xmlPort.Properties.FileName = FileName.Value;
+                    xmlPort.Properties.Format = Format.Value;
+                    xmlPort.Properties.FormatEvaluate = FormatEvaluate.Value;
+                    xmlPort.Properties.InlineSchema = InlineSchema.Value;
+                    xmlPort.Properties.PreserveWhiteSpace = PreserveWhitespace.Value;
+                    xmlPort.Properties.RecordSeparator = RecordSeparator.Value;
+                    xmlPort.Properties.TableSeparator = TableSeparator.Value;
+                    xmlPort.Properties.TextEncoding = TextEncoding.Value;
+                    xmlPort.Properties.TransactionType = TransactionType.Value;
+                    xmlPort.Properties.UseDefaultNamespace = UseDefaultNamespace.Value;
+                    xmlPort.Properties.UseLax = UseLax.Value;
+                    xmlPort.Properties.UseRequestPage = UseRequestPage.Value;
+                    xmlPort.Properties.XmlVersionNo = XmlVersionNo.Value;
 
-                        if (AutoCaption)
-                            xmlPort.AutoCaption();
+                    if (AutoCaption)
+                        xmlPort.AutoCaption();
 
-                        if (PassThru)
-                            WriteObject(xmlPort);
+                    if (PassThru)
+                        WriteObject(xmlPort);
 
-                        break;
+                    break;
 
-                    case ObjectType.Query:
-                        var query = application.Queries.Add(new Query(GetObjectID(application), Name));
+                case ObjectType.Query:
+                    var query = Application.Queries.Add(new Query(GetObjectID(), Name));
 
-                        query.ObjectProperties.DateTime = DateTime;
-                        query.ObjectProperties.Modified = Modified;
-                        query.ObjectProperties.VersionList = VersionList;
+                    query.ObjectProperties.DateTime = DateTime;
+                    query.ObjectProperties.Modified = Modified;
+                    query.ObjectProperties.VersionList = VersionList;
 
-                        query.Properties.Description = Description.Value;
-                        query.Properties.ReadState = ReadState.Value;
-                        query.Properties.TopNumberOfRows = TopNoOfRows.Value;
+                    query.Properties.Description = Description.Value;
+                    query.Properties.ReadState = ReadState.Value;
+                    query.Properties.TopNumberOfRows = TopNoOfRows.Value;
 
-                        if (AutoCaption)
-                            query.AutoCaption();
+                    if (AutoCaption)
+                        query.AutoCaption();
 
-                        if (PassThru)
-                            WriteObject(query);
+                    if (PassThru)
+                        WriteObject(query);
 
-                        break;
+                    break;
 
-                    case ObjectType.MenuSuite:
-                        var menusuite = application.MenuSuites.Add(new MenuSuite(GetObjectID(application), Name));
+                case ObjectType.MenuSuite:
+                    var menusuite = Application.MenuSuites.Add(new MenuSuite(GetObjectID(), Name));
 
-                        menusuite.ObjectProperties.DateTime = DateTime;
-                        menusuite.ObjectProperties.Modified = Modified;
-                        menusuite.ObjectProperties.VersionList = VersionList;
+                    menusuite.ObjectProperties.DateTime = DateTime;
+                    menusuite.ObjectProperties.Modified = Modified;
+                    menusuite.ObjectProperties.VersionList = VersionList;
 
-                        if (PassThru)
-                            WriteObject(menusuite);
+                    if (PassThru)
+                        WriteObject(menusuite);
 
-                        break;
-                }
+                    break;
             }
         }
 
-        protected int GetObjectID(Application application)
+        protected int GetObjectID()
         {
             if (ID != 0)
                 return ID;
 
-            return Range.Except(GetExistingObjectIDs(application)).First();
+            return Range.Except(GetExistingObjectIDs(Application)).First();
         }
 
         protected IEnumerable<int> GetExistingObjectIDs(Application application)
