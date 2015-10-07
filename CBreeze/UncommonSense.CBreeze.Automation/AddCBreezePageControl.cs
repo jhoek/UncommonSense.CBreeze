@@ -11,17 +11,22 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezePageControl")]
     public class AddCBreezePageControl : CmdletWithDynamicParams
     {
+        private const string ChartPartWithID = "ChartPartWithID";
+        private const string ChartPartWithRange = "ChartPartWithRange";
+        private const string PagePartWithID = "PagePartWithID";
+        private const string PagePartWithRange = "PagePartWithRange";
+        private const string SystemPartWithID = "SystemPartWithID";
+        private const string SystemPartWithRange = "SystemPartWithRange";
+
         public AddCBreezePageControl()
         {
-            // FIXME: use parameter sets to handle different part types?
-
-            ChartPartID = new DynamicParameter<string>("ChartPartID");
             ContainerType = new DynamicParameter<ContainerType?>("ContainerType");
             Editable = new DynamicParameter<string>("Editable");
             Enabled = new DynamicParameter<string>("Enabled");
-            PagePartID = new DynamicParameter<int?>("PagePartID");
-            PartType = new DynamicParameter<PartType?>("PartType");
-            SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID");
+            ChartPartID = new DynamicParameter<string>("ChartPartID", ChartPartWithID, ChartPartWithRange);
+            PagePartID = new DynamicParameter<int?>("PagePartID", PagePartWithID, PagePartWithRange);
+            SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", SystemPartWithID, SystemPartWithRange);
+            ProviderID = new DynamicParameter<int?>("ProviderID");
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -31,21 +36,30 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithRange)]
+        [Parameter(Mandatory = true, ParameterSetName = PagePartWithRange)]
+        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithRange)]
+        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithID)]
+        [Parameter(Mandatory = true, ParameterSetName = PagePartWithID)]
+        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithID)]
         public PageControlType Type
         {
             get;
             set;
         }
 
-        [Parameter(ParameterSetName = "Range")]
+        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithRange)]
+        [Parameter(Mandatory = true, ParameterSetName = PagePartWithRange)]
+        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithRange)]
         public IEnumerable<int> Range
         {
             get;
             set;
         }
 
-        [Parameter(ParameterSetName = "ID")]
+        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithID)]
+        [Parameter(Mandatory = true, ParameterSetName = PagePartWithID)]
+        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithID)]
         [ValidateRange(1, int.MaxValue)]
         public int ID
         {
@@ -81,12 +95,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<string> ChartPartID
-        {
-            get;
-            set;
-        }
-
         protected DynamicParameter<ContainerType?> ContainerType
         {
             get;
@@ -105,13 +113,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<int?> PagePartID
+        protected DynamicParameter<string> ChartPartID
         {
             get;
             set;
         }
 
-        protected DynamicParameter<PartType?> PartType
+        protected DynamicParameter<int?> PagePartID
         {
             get;
             set;
@@ -123,9 +131,15 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int?> ProviderID
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
-            var pageControl = CreatePageControl();
+            var pageControl = Page.Controls.Add(CreatePageControl());
 
             if (PassThru)
                 WriteObject(pageControl);
@@ -170,10 +184,28 @@ namespace UncommonSense.CBreeze.Automation
                     var partPageControl = new PartPageControl(GetPageControlID(), 2);
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
-                    partPageControl.Properties.ChartPartID = ChartPartID.Value;
+
+                    if (ChartPartID.RuntimeDefinedParameter.IsSet)
+                    {
+                        partPageControl.Properties.PartType = PartType.Chart;
+                        partPageControl.Properties.ChartPartID = ChartPartID.Value;
+                    }
+
+                    if (PagePartID.RuntimeDefinedParameter.IsSet)
+                    {
+                        partPageControl.Properties.PartType = PartType.Page;
+                        partPageControl.Properties.PagePartID = PagePartID.Value;
+                    }
+
+                    if (SystemPartID.RuntimeDefinedParameter.IsSet)
+                    {
+                        partPageControl.Properties.PartType = PartType.System;
+                        partPageControl.Properties.SystemPartID = SystemPartID.Value;
+                    }
+
                     partPageControl.Properties.Editable = Editable.Value;
                     partPageControl.Properties.Enabled = Enabled.Value;
-                    partPageControl.Properties.PartType = PartType.Value;
+                    partPageControl.Properties.ProviderID = ProviderID.Value;
 
                     if (AutoCaption)
                         partPageControl.AutoCaption();
@@ -210,20 +242,10 @@ namespace UncommonSense.CBreeze.Automation
                     case PageControlType.Part:
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
-                        yield return PartType.RuntimeDefinedParameter;
-                        
-                        switch(PartType.Value)
-                        {
-                            case UncommonSense.CBreeze.Core.PartType.Chart:
-                                yield return ChartPartID.RuntimeDefinedParameter;
-                                break;
-                            case UncommonSense.CBreeze.Core.PartType.Page:
-                                yield return PagePartID.RuntimeDefinedParameter;
-                                break;
-                            case UncommonSense.CBreeze.Core.PartType.System:
-                                yield return SystemPartID.RuntimeDefinedParameter;
-                                break;
-                        }
+                        yield return ChartPartID.RuntimeDefinedParameter;
+                        yield return PagePartID.RuntimeDefinedParameter;
+                        yield return SystemPartID.RuntimeDefinedParameter;
+                        yield return ProviderID.RuntimeDefinedParameter;
                         break;
                 }
             }
