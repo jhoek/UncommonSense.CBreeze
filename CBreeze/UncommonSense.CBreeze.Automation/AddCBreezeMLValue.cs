@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            InputObject.Properties[Property].Value.Add(LanguageName, Value);
+            InputObject.Properties[Property].Value.Set(LanguageName, Value);
         }
     }
 }
