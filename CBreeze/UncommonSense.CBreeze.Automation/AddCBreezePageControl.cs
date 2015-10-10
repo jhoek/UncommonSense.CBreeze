@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezePageControl", DefaultParameterSetName=FieldPageControlWithRange)]
+    [Cmdlet(VerbsCommon.Add, "CBreezePageControl", DefaultParameterSetName = FieldPageControlWithRange)]
     public class AddCBreezePageControl : CmdletWithDynamicParams
     {
         private const string ChartPartWithID = "ChartPartWithID";
@@ -26,15 +26,35 @@ namespace UncommonSense.CBreeze.Automation
             AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr");
             AutoFormatType = new DynamicParameter<Core.AutoFormatType?>("AutoFormatType");
             BlankNumbers = new DynamicParameter<Core.BlankNumbers?>("BlankNumbers");
+            BlankZero = new DynamicParameter<bool?>("BlankZero");
+            CaptionClass = new DynamicParameter<string>("CaptionClass");
+            CharAllowed = new DynamicParameter<string>("CharAllowed");
+            ChartPartID = new DynamicParameter<string>("ChartPartID", ChartPartWithID, ChartPartWithRange);
+            ClosingDates = new DynamicParameter<bool?>("ClosingDates");
+            ColumnSpan = new DynamicParameter<int?>("ColumnSpan");
             ContainerType = new DynamicParameter<ContainerType?>("ContainerType");
+            ControlAddIn = new DynamicParameter<string>("ControlAddIn");
+            DateFormula = new DynamicParameter<bool?>("DateFormula");
+            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", 0, int.MaxValue);
+            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", 0, int.MaxValue);
+            DrillDown = new DynamicParameter<bool?>("DrillDown");
+            DrillDownPageID = new DynamicParameter<string>("DrillDownPageID");
             Editable = new DynamicParameter<string>("Editable");
             Enabled = new DynamicParameter<string>("Enabled");
-            ChartPartID = new DynamicParameter<string>("ChartPartID", ChartPartWithID, ChartPartWithRange);
+            FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
+            GroupType = new DynamicParameter<Core.GroupType?>("GroupType");
+            IndentationColumnName = new DynamicParameter<string>("IndentationColumnName");
+            IndentationControls = new DynamicParameter<string[]>("IndentationControls");
+            Layout = new DynamicParameter<GroupPageControlLayout?>("Layout");
             PagePartID = new DynamicParameter<int?>("PagePartID", PagePartWithID, PagePartWithRange);
             SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", SystemPartWithID, SystemPartWithRange);
             ProviderID = new DynamicParameter<int?>("ProviderID");
+            ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
             ShowFilter = new DynamicParameter<bool?>("ShowFilter");
             SourceExpr = new DynamicParameter<string>("SourceExpr", true, FieldPageControlWithID, FieldPageControlWithRange);
+            SubPageViewKey = new DynamicParameter<string>("SubPageViewKey");
+            SubPageViewOrder = new DynamicParameter<Order?>("SubPageViewOrder");
+            Visible = new DynamicParameter<string>("Visible");
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -131,7 +151,79 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> BlankZero
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> CaptionClass
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> CharAllowed
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> ChartPartID
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> ClosingDates
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> ColumnSpan
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<ContainerType?> ContainerType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> ControlAddIn
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> DateFormula
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> DecimalPlacesAtLeast
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> DecimalPlacesAtMost
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> DrillDown
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> DrillDownPageID
         {
             get;
             set;
@@ -149,7 +241,31 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<string> ChartPartID
+        protected DynamicParameter<string> FreezeColumnID
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<GroupType?> GroupType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> IndentationColumnName
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string[]> IndentationControls
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<GroupPageControlLayout?> Layout
         {
             get;
             set;
@@ -161,13 +277,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<SystemPartID?> SystemPartID
+        protected DynamicParameter<int?> ProviderID
         {
             get;
             set;
         }
 
-        protected DynamicParameter<int?> ProviderID
+        protected DynamicParameter<bool?> ShowAsTree
         {
             get;
             set;
@@ -180,6 +296,30 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> SourceExpr
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> SubPageViewKey
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Order?> SubPageViewOrder
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<SystemPartID?> SystemPartID
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> Visible
         {
             get;
             set;
@@ -212,6 +352,15 @@ namespace UncommonSense.CBreeze.Automation
                     var groupPageControl = new GroupPageControl(GetPageControlID(), 1);
                     groupPageControl.Properties.Description = Description;
                     groupPageControl.Properties.Name = Name;
+                    groupPageControl.Properties.Editable = Editable.Value;
+                    groupPageControl.Properties.Enabled = Enabled.Value;
+                    groupPageControl.Properties.FreezeColumnID = FreezeColumnID.Value;
+                    groupPageControl.Properties.GroupType = GroupType.Value;
+                    groupPageControl.Properties.IndentationColumnName = IndentationColumnName.Value;
+                    groupPageControl.Properties.IndentationControls.AddRange(IndentationControls.Value ?? new string[] { });
+                    groupPageControl.Properties.Layout = Layout.Value;
+                    groupPageControl.Properties.ShowAsTree = ShowAsTree.Value;
+                    groupPageControl.Properties.Visible = Visible.Value;
 
                     if (AutoCaption)
                         groupPageControl.AutoCaption();
@@ -226,6 +375,20 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     fieldPageControl.Properties.AutoFormatType = AutoFormatType.Value;
                     fieldPageControl.Properties.BlankNumbers = BlankNumbers.Value;
+                    fieldPageControl.Properties.BlankZero = BlankZero.Value;
+                    fieldPageControl.Properties.CaptionClass = CaptionClass.Value;
+                    fieldPageControl.Properties.CharAllowed = CharAllowed.Value;
+                    fieldPageControl.Properties.ClosingDates = ClosingDates.Value;
+                    fieldPageControl.Properties.ColumnSpan = ColumnSpan.Value;
+                    fieldPageControl.Properties.ControlAddIn = ControlAddIn.Value;
+                    fieldPageControl.Properties.DateFormula = DateFormula.Value;
+                    fieldPageControl.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast.Value;
+                    fieldPageControl.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost.Value;
+                    fieldPageControl.Properties.DrillDown = DrillDown.Value;
+                    fieldPageControl.Properties.DrillDownPageID = DrillDownPageID.Value;
+                    fieldPageControl.Properties.Editable = Editable.Value;
+                    fieldPageControl.Properties.Enabled = Enabled.Value;
+
                     fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
 
                     if (AutoCaption)
@@ -260,6 +423,9 @@ namespace UncommonSense.CBreeze.Automation
                     partPageControl.Properties.Enabled = Enabled.Value;
                     partPageControl.Properties.ProviderID = ProviderID.Value;
                     partPageControl.Properties.ShowFilter = ShowFilter.Value;
+                    partPageControl.Properties.SubPageView.Key = SubPageViewKey.Value;
+                    partPageControl.Properties.SubPageView.Order = SubPageViewOrder.Value;
+                    partPageControl.Properties.Visible = Visible.Value;
 
                     if (AutoCaption)
                         partPageControl.AutoCaption();
@@ -293,11 +459,36 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ContainerType.RuntimeDefinedParameter;
                         break;
 
+                    case PageControlType.Group:
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return Enabled.RuntimeDefinedParameter;
+                        yield return FreezeColumnID.RuntimeDefinedParameter;
+                        yield return GroupType.RuntimeDefinedParameter;
+                        yield return IndentationColumnName.RuntimeDefinedParameter;
+                        yield return IndentationControls.RuntimeDefinedParameter;
+                        yield return Layout.RuntimeDefinedParameter;
+                        yield return ShowAsTree.RuntimeDefinedParameter;
+                        yield return Visible.RuntimeDefinedParameter;
+                        break;
+
                     case PageControlType.Field:
                         yield return AssistEdit.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return BlankZero.RuntimeDefinedParameter;
+                        yield return CaptionClass.RuntimeDefinedParameter;
+                        yield return CharAllowed.RuntimeDefinedParameter;
+                        yield return ClosingDates.RuntimeDefinedParameter;
+                        yield return ColumnSpan.RuntimeDefinedParameter;
+                        yield return ControlAddIn.RuntimeDefinedParameter;
+                        yield return DateFormula.RuntimeDefinedParameter;
+                        yield return DecimalPlacesAtLeast.RuntimeDefinedParameter;
+                        yield return DecimalPlacesAtMost.RuntimeDefinedParameter;
+                        yield return DrillDown.RuntimeDefinedParameter;
+                        yield return DrillDownPageID.RuntimeDefinedParameter;
+                        yield return Editable.RuntimeDefinedParameter;
+                        yield return Enabled.RuntimeDefinedParameter;
                         yield return SourceExpr.RuntimeDefinedParameter;
                         break;
 
@@ -306,9 +497,12 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Enabled.RuntimeDefinedParameter;
                         yield return ChartPartID.RuntimeDefinedParameter;
                         yield return PagePartID.RuntimeDefinedParameter;
-                        yield return SystemPartID.RuntimeDefinedParameter;
                         yield return ProviderID.RuntimeDefinedParameter;
                         yield return ShowFilter.RuntimeDefinedParameter;
+                        yield return SubPageViewKey.RuntimeDefinedParameter;
+                        yield return SubPageViewOrder.RuntimeDefinedParameter;
+                        yield return SystemPartID.RuntimeDefinedParameter;
+                        yield return Visible.RuntimeDefinedParameter;
                         break;
                 }
             }
