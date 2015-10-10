@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCBreezeAction.cs" />
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="TestDynamicParameter.cs" />
     <Content Include="AddCBreezeContainerPageControl.cs.txt" />
