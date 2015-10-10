@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezePageControl")]
+    [Cmdlet(VerbsCommon.Add, "CBreezePageControl", DefaultParameterSetName=FieldPageControlWithRange)]
     public class AddCBreezePageControl : CmdletWithDynamicParams
     {
         private const string ChartPartWithID = "ChartPartWithID";
@@ -17,9 +17,15 @@ namespace UncommonSense.CBreeze.Automation
         private const string PagePartWithRange = "PagePartWithRange";
         private const string SystemPartWithID = "SystemPartWithID";
         private const string SystemPartWithRange = "SystemPartWithRange";
+        private const string FieldPageControlWithID = "FieldPageControlWithID";
+        private const string FieldPageControlWithRange = "FieldPageControlWithRange";
 
         public AddCBreezePageControl()
         {
+            AssistEdit = new DynamicParameter<bool?>("AssistEdit");
+            AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr");
+            AutoFormatType = new DynamicParameter<Core.AutoFormatType?>("AutoFormatType");
+            BlankNumbers = new DynamicParameter<Core.BlankNumbers?>("BlankNumbers");
             ContainerType = new DynamicParameter<ContainerType?>("ContainerType");
             Editable = new DynamicParameter<string>("Editable");
             Enabled = new DynamicParameter<string>("Enabled");
@@ -27,6 +33,8 @@ namespace UncommonSense.CBreeze.Automation
             PagePartID = new DynamicParameter<int?>("PagePartID", PagePartWithID, PagePartWithRange);
             SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", SystemPartWithID, SystemPartWithRange);
             ProviderID = new DynamicParameter<int?>("ProviderID");
+            ShowFilter = new DynamicParameter<bool?>("ShowFilter");
+            SourceExpr = new DynamicParameter<string>("SourceExpr", true, FieldPageControlWithID, FieldPageControlWithRange);
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -42,6 +50,8 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Mandatory = true, ParameterSetName = ChartPartWithID)]
         [Parameter(Mandatory = true, ParameterSetName = PagePartWithID)]
         [Parameter(Mandatory = true, ParameterSetName = SystemPartWithID)]
+        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithID)]
+        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithRange)]
         public PageControlType Type
         {
             get;
@@ -51,6 +61,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Mandatory = true, ParameterSetName = ChartPartWithRange)]
         [Parameter(Mandatory = true, ParameterSetName = PagePartWithRange)]
         [Parameter(Mandatory = true, ParameterSetName = SystemPartWithRange)]
+        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithRange)]
         public IEnumerable<int> Range
         {
             get;
@@ -60,6 +71,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Mandatory = true, ParameterSetName = ChartPartWithID)]
         [Parameter(Mandatory = true, ParameterSetName = PagePartWithID)]
         [Parameter(Mandatory = true, ParameterSetName = SystemPartWithID)]
+        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithID)]
         [ValidateRange(1, int.MaxValue)]
         public int ID
         {
@@ -90,6 +102,30 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter]
         public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> AssistEdit
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> AutoFormatExpr
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<AutoFormatType?> AutoFormatType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<BlankNumbers?> BlankNumbers
         {
             get;
             set;
@@ -137,6 +173,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> ShowFilter
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> SourceExpr
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             var pageControl = Page.Controls.Add(CreatePageControl());
@@ -174,6 +222,11 @@ namespace UncommonSense.CBreeze.Automation
                     var fieldPageControl = new FieldPageControl(GetPageControlID(), 2);
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
+                    fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
+                    fieldPageControl.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    fieldPageControl.Properties.AutoFormatType = AutoFormatType.Value;
+                    fieldPageControl.Properties.BlankNumbers = BlankNumbers.Value;
+                    fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
 
                     if (AutoCaption)
                         fieldPageControl.AutoCaption();
@@ -206,6 +259,7 @@ namespace UncommonSense.CBreeze.Automation
                     partPageControl.Properties.Editable = Editable.Value;
                     partPageControl.Properties.Enabled = Enabled.Value;
                     partPageControl.Properties.ProviderID = ProviderID.Value;
+                    partPageControl.Properties.ShowFilter = ShowFilter.Value;
 
                     if (AutoCaption)
                         partPageControl.AutoCaption();
@@ -239,6 +293,14 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ContainerType.RuntimeDefinedParameter;
                         break;
 
+                    case PageControlType.Field:
+                        yield return AssistEdit.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return BlankNumbers.RuntimeDefinedParameter;
+                        yield return SourceExpr.RuntimeDefinedParameter;
+                        break;
+
                     case PageControlType.Part:
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
@@ -246,6 +308,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return PagePartID.RuntimeDefinedParameter;
                         yield return SystemPartID.RuntimeDefinedParameter;
                         yield return ProviderID.RuntimeDefinedParameter;
+                        yield return ShowFilter.RuntimeDefinedParameter;
                         break;
                 }
             }
