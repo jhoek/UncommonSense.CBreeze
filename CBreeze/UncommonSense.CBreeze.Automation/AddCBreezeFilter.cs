@@ -55,32 +55,37 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            WriteVerbose(InputObject.BaseObject.GetType().FullName);
-
             if (InputObject.BaseObject is CalcFormula)
             {
                 (InputObject.BaseObject as CalcFormula).TableFilter.Add(new CalcFormulaTableFilterLine(FieldName, ExtendedTableFilterType, Value));
                 return;
             }
 
-            throw new ArgumentOutOfRangeException("InputObject"); // FIXME
-        }
-
-        public bool SupportsFieldFilters
-        {
-            get
+            if (InputObject.BaseObject is CalcFormulaTableFilter)
             {
-                if (InputObject == null)
-                    return false;
-
-                if (InputObject.BaseObject is CalcFormula)
-                    return true;
-
-                if (InputObject.BaseObject is TableRelationLines)
-                    return true;
-
-                return false;
+                (InputObject.BaseObject as CalcFormulaTableFilter).Add(new CalcFormulaTableFilterLine(FieldName, ExtendedTableFilterType, Value));
+                return;
             }
+
+            if (InputObject.BaseObject is PartPageControl)
+            {
+                (InputObject.BaseObject as PartPageControl).Properties.SubPageView.TableFilter.Add(FieldName, SimpleTableFilterType, Value);
+                return;
+            }
+
+            if (InputObject.BaseObject is TableView)
+            {
+                (InputObject.BaseObject as TableView).TableFilter.Add(FieldName, SimpleTableFilterType, Value);
+                return;
+            }
+
+            if (InputObject.BaseObject is TableFilter)
+            {
+                (InputObject.BaseObject as TableFilter).Add(FieldName, SimpleTableFilterType, Value);
+                return;
+            }
+
+            throw new ArgumentOutOfRangeException("Cannot add a filter to this object.");
         }
 
         protected TableFilterType ExtendedTableFilterType
@@ -95,6 +100,19 @@ namespace UncommonSense.CBreeze.Automation
                     return Core.TableFilterType.Field;
 
                 throw new ArgumentOutOfRangeException("ExtendedTableFilterType");
+            }
+        }
+
+        protected SimpleTableFilterType SimpleTableFilterType
+        {
+            get
+            {
+                if (Const.IsPresent)
+                    return SimpleTableFilterType.Const;
+                if (Filter.IsPresent)
+                    return Core.SimpleTableFilterType.Filter;
+
+                throw new ArgumentOutOfRangeException("SimpleTableFilterType");
             }
         }
     }
