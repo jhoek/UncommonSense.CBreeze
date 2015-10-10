@@ -41,12 +41,23 @@ namespace UncommonSense.CBreeze.Automation
             DrillDownPageID = new DynamicParameter<string>("DrillDownPageID");
             Editable = new DynamicParameter<string>("Editable");
             Enabled = new DynamicParameter<string>("Enabled");
+            ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
             GroupType = new DynamicParameter<Core.GroupType?>("GroupType");
+            HideValue = new DynamicParameter<string>("HideValue");
+            Importance = new DynamicParameter<Core.Importance?>("Importance");
             IndentationColumnName = new DynamicParameter<string>("IndentationColumnName");
             IndentationControls = new DynamicParameter<string[]>("IndentationControls");
             Layout = new DynamicParameter<GroupPageControlLayout?>("Layout");
+            Lookup = new DynamicParameter<bool?>("Lookup");
+            LookupPageID = new DynamicParameter<string>("LookupPageID");
+            MaxValue = new DynamicParameter<object>("MaxValue");
+            MinValue = new DynamicParameter<object>("MinValue");
+            MultiLine = new DynamicParameter<bool?>("MultiLine");
+            NotBlank = new DynamicParameter<bool?>("NotBlank");
+            Numeric = new DynamicParameter<bool?>("Numeric");
             PagePartID = new DynamicParameter<int?>("PagePartID", PagePartWithID, PagePartWithRange);
+            QuickEntry = new DynamicParameter<string>("QuickEntry");
             SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", SystemPartWithID, SystemPartWithRange);
             ProviderID = new DynamicParameter<int?>("ProviderID");
             ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
@@ -241,6 +252,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<ExtendedDataType?> ExtendedDataType
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> FreezeColumnID
         {
             get;
@@ -248,6 +265,18 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<GroupType?> GroupType
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> HideValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Importance?> Importance
         {
             get;
             set;
@@ -271,6 +300,48 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> Lookup
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> LookupPageID
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<object> MaxValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<object> MinValue
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> MultiLine
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> NotBlank
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> Numeric
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<int?> PagePartID
         {
             get;
@@ -278,6 +349,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<int?> ProviderID
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> QuickEntry
         {
             get;
             set;
@@ -388,6 +465,17 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.DrillDownPageID = DrillDownPageID.Value;
                     fieldPageControl.Properties.Editable = Editable.Value;
                     fieldPageControl.Properties.Enabled = Enabled.Value;
+                    fieldPageControl.Properties.ExtendedDatatype = ExtendedDataType.Value;
+                    fieldPageControl.Properties.HideValue = HideValue.Value;
+                    fieldPageControl.Properties.Importance = Importance.Value;
+                    fieldPageControl.Properties.Lookup = Lookup.Value;
+                    fieldPageControl.Properties.LookupPageID = LookupPageID.Value;
+                    fieldPageControl.Properties.MaxValue = MaxValue.Value;
+                    fieldPageControl.Properties.MinValue = MinValue.Value;
+                    fieldPageControl.Properties.MultiLine = MultiLine.Value;
+                    fieldPageControl.Properties.NotBlank = NotBlank.Value;
+                    fieldPageControl.Properties.Numeric = Numeric.Value;
+                    fieldPageControl.Properties.QuickEntry = QuickEntry.Value;
 
                     fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
 
@@ -489,6 +577,17 @@ namespace UncommonSense.CBreeze.Automation
                         yield return DrillDownPageID.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
+                        yield return ExtendedDataType.RuntimeDefinedParameter;
+                        yield return HideValue.RuntimeDefinedParameter;
+                        yield return Importance.RuntimeDefinedParameter;
+                        yield return Lookup.RuntimeDefinedParameter;
+                        yield return LookupPageID.RuntimeDefinedParameter;
+                        yield return MaxValue.RuntimeDefinedParameter;
+                        yield return MinValue.RuntimeDefinedParameter;
+                        yield return MultiLine.RuntimeDefinedParameter;
+                        yield return NotBlank.RuntimeDefinedParameter;
+                        yield return Numeric.RuntimeDefinedParameter;
+                        yield return QuickEntry.RuntimeDefinedParameter;
                         yield return SourceExpr.RuntimeDefinedParameter;
                         break;
 
