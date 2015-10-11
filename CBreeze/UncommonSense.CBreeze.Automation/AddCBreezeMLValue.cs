@@ -39,9 +39,19 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             InputObject.Properties[Property].Value.Set(LanguageName, Value);
+
+            if (PassThru)
+                WriteObject(InputObject);
         }
     }
 }
