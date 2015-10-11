@@ -89,10 +89,10 @@ namespace UncommonSense.CBreeze.Meta
 
             if (HasUserID)
             {
-                var userIDPattern = new UserIDPattern(Range, Table, Page);
-                userIDPattern.Apply();
-                UserIDField = userIDPattern.UserIDField;
-                UserIDControls.AddRange(userIDPattern.UserIDControls);
+                //var userIDPattern = new UserIDPattern(Range, Table, Page);
+                //userIDPattern.Apply();
+                //UserIDField = userIDPattern.UserIDField;
+                //UserIDControls.AddRange(userIDPattern.UserIDControls);
             }
 
             if (HasSourceCode)
