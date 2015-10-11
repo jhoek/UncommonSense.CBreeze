@@ -75,7 +75,7 @@ namespace UncommonSense.CBreeze.Automation
             XmlVersionNo = new DynamicParameter<XmlVersionNo?>("XmlVersionNo", false);
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true,ValueFromPipeline=true)]
         public Application Application
         {
             get;
