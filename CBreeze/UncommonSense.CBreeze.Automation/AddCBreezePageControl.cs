@@ -412,6 +412,8 @@ namespace UncommonSense.CBreeze.Automation
 
         protected PageControl CreatePageControl()
         {
+            // FIXME: Intelligent indentation
+
             switch (Type)
             {
                 case PageControlType.Container:
@@ -485,7 +487,7 @@ namespace UncommonSense.CBreeze.Automation
                     return fieldPageControl;
 
                 case PageControlType.Part:
-                    var partPageControl = new PartPageControl(GetPageControlID(), 2);
+                    var partPageControl = new PartPageControl(GetPageControlID(), 1);
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
 
