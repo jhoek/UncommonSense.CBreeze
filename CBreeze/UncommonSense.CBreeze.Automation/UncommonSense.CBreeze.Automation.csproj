@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AddCBreezeAction.cs" />
     <Compile Include="AddCBreezeLink.cs" />
+    <Compile Include="CompileCBreezeApplication.cs" />
     <Compile Include="TestDynamicParameter.cs" />
     <Content Include="AddCBreezeContainerPageControl.cs.txt" />
     <Compile Include="AddCBreezeFilter.cs" />
@@ -82,6 +83,10 @@
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
       <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.IO\UncommonSense.CBreeze.IO.csproj">
+      <Project>{8f590103-f4b1-456b-bd22-a159846b0687}</Project>
+      <Name>UncommonSense.CBreeze.IO</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
       <Project>{11BF778B-6524-4845-895D-CCDF90329FB2}</Project>
