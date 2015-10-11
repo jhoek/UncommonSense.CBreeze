@@ -60,12 +60,19 @@ namespace UncommonSense.CBreeze.Automation
             QuickEntry = new DynamicParameter<string>("QuickEntry");
             SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", SystemPartWithID, SystemPartWithRange);
             ProviderID = new DynamicParameter<int?>("ProviderID");
+            RowSpan = new DynamicParameter<int?>("RowSpan");
             ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
+            ShowCaption = new DynamicParameter<bool?>("ShowCaption");
             ShowFilter = new DynamicParameter<bool?>("ShowFilter");
             SourceExpr = new DynamicParameter<string>("SourceExpr", true, FieldPageControlWithID, FieldPageControlWithRange);
+            Style = new DynamicParameter<Core.Style?>("Style");
+            StyleExpr = new DynamicParameter<string>("StyleExpr");
             SubPageViewKey = new DynamicParameter<string>("SubPageViewKey");
             SubPageViewOrder = new DynamicParameter<Order?>("SubPageViewOrder");
+            Title = new DynamicParameter<bool?>("Title");
+            ValuesAllowed = new DynamicParameter<string>("ValuesAllowed");
             Visible = new DynamicParameter<string>("Visible");
+            Width = new DynamicParameter<int?>("Width");
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -360,7 +367,19 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int?> RowSpan
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> ShowAsTree
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool?> ShowCaption
         {
             get;
             set;
@@ -373,6 +392,18 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> SourceExpr
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Style?> Style
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> StyleExpr
         {
             get;
             set;
@@ -396,7 +427,25 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<bool?> Title
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> ValuesAllowed
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> Visible
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int?> Width
         {
             get;
             set;
@@ -478,8 +527,15 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.NotBlank = NotBlank.Value;
                     fieldPageControl.Properties.Numeric = Numeric.Value;
                     fieldPageControl.Properties.QuickEntry = QuickEntry.Value;
-
+                    fieldPageControl.Properties.RowSpan = RowSpan.Value;
+                    fieldPageControl.Properties.ShowCaption = ShowCaption.Value;
                     fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
+                    fieldPageControl.Properties.Style = Style.Value;
+                    fieldPageControl.Properties.StyleExpr = StyleExpr.Value;
+                    fieldPageControl.Properties.Title = Title.Value;
+                    fieldPageControl.Properties.ValuesAllowed = ValuesAllowed.Value;
+                    fieldPageControl.Properties.Visible = Visible.Value;
+                    fieldPageControl.Properties.Width = Width.Value;
 
                     if (AutoCaption)
                         fieldPageControl.AutoCaption();
@@ -590,7 +646,15 @@ namespace UncommonSense.CBreeze.Automation
                         yield return NotBlank.RuntimeDefinedParameter;
                         yield return Numeric.RuntimeDefinedParameter;
                         yield return QuickEntry.RuntimeDefinedParameter;
+                        yield return RowSpan.RuntimeDefinedParameter;
+                        yield return ShowCaption.RuntimeDefinedParameter;
                         yield return SourceExpr.RuntimeDefinedParameter;
+                        yield return Style.RuntimeDefinedParameter;
+                        yield return StyleExpr.RuntimeDefinedParameter;
+                        yield return Title.RuntimeDefinedParameter;
+                        yield return ValuesAllowed.RuntimeDefinedParameter;
+                        yield return Visible.RuntimeDefinedParameter;
+                        yield return Width.RuntimeDefinedParameter;
                         break;
 
                     case PageControlType.Part:
