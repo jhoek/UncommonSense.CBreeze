@@ -55,7 +55,6 @@
     <Compile Include="Pattern.cs" />
     <Compile Include="PrimaryKeyPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SourceCodePattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
