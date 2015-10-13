@@ -97,10 +97,10 @@ namespace UncommonSense.CBreeze.Meta
 
             if (HasSourceCode)
             {
-                var sourceCodePattern = new SourceCodePattern(Range, Table, Page);
-                sourceCodePattern.Apply();
-                SourceCodeField = sourceCodePattern.SourceCodeField;
-                SourceCodeControls.AddRange(sourceCodePattern.SourceCodeControls);
+                //var sourceCodePattern = new SourceCodePattern(Range, Table, Page);
+                //sourceCodePattern.Apply();
+                //SourceCodeField = sourceCodePattern.SourceCodeField;
+                //SourceCodeControls.AddRange(sourceCodePattern.SourceCodeControls);
             }
 
             // FIXME: other fields
