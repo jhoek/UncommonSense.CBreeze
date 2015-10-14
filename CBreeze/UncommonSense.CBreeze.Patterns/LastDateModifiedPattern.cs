@@ -30,7 +30,7 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected void AddTriggerCode()
         {
-            var codeLine = string.Format("{0} := TODAY;", LastDateModifiedField.Name.Quoted());
+            var codeLine = string.Format("{0} := TODAY;", LastDateModifiedField.QuotedName);
             Table.Properties.OnModify.CodeLines.Add(codeLine);
             Table.Properties.OnRename.CodeLines.Add(codeLine);
         }

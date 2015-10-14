@@ -34,8 +34,8 @@ namespace UncommonSense.CBreeze.Patterns
             if (HasSearchDescription)
             {
                 SearchDescriptionField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Search {1}", Prefix, Style), 50).AutoCaption());
-                DescriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", SearchDescriptionField.Name.Quoted(), DescriptionField.Name.Quoted());
-                DescriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", SearchDescriptionField.Name.Quoted(), DescriptionField.Name.Quoted());
+                DescriptionField.Properties.OnValidate.CodeLines.Add("IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '') THEN", SearchDescriptionField.QuotedName, DescriptionField.QuotedName);
+                DescriptionField.Properties.OnValidate.CodeLines.Add("  {0} := {1};", SearchDescriptionField.QuotedName, DescriptionField.QuotedName);
 
                 if (CreateKeyOnSearchDescription)
                 {
@@ -51,13 +51,13 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
 
             var descriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-            descriptionControl.Properties.SourceExpr = DescriptionField.Name.Quoted();
+            descriptionControl.Properties.SourceExpr = DescriptionField.QuotedName;
             DescriptionControls.Add(page, descriptionControl);
 
             if (HasSearchDescription)
             {
                 var searchDescriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-                searchDescriptionControl.Properties.SourceExpr = SearchDescriptionField.Name.Quoted();
+                searchDescriptionControl.Properties.SourceExpr = SearchDescriptionField.QuotedName;
                 SearchDescriptionControls.Add(page, searchDescriptionControl);
             }
         }
@@ -68,13 +68,13 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, ListPageGroupPosition);
 
             var descriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-            descriptionControl.Properties.SourceExpr = DescriptionField.Name.Quoted();
+            descriptionControl.Properties.SourceExpr = DescriptionField.QuotedName;
             DescriptionControls.Add(page, descriptionControl);
 
             if (HasSearchDescription)
             {
                 var searchDescriptionControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-                searchDescriptionControl.Properties.SourceExpr = SearchDescriptionField.Name.Quoted();
+                searchDescriptionControl.Properties.SourceExpr = SearchDescriptionField.QuotedName;
                 SearchDescriptionControls.Add(page, searchDescriptionControl);
             }
         }

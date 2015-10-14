@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Patterns
             var setupRecordVariable = onValidate.Variables.Add(new RecordVariable(1000, SetupTable.Name.MakeVariableName(), SetupTable.ID));
             var noSeriesMgtCodeunitVariable = onValidate.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
 
-            onValidate.CodeLines.Add(string.Format("IF {0} <> xRec.{0} THEN BEGIN", NoField.Name.Quoted()));
+            onValidate.CodeLines.Add(string.Format("IF {0} <> xRec.{0} THEN BEGIN", NoField.QuotedName));
             onValidate.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
             onValidate.CodeLines.Add(string.Format("  {0}.TestManual({1}.\"{2} Nos.\");", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, Table.Name));
             onValidate.CodeLines.Add("  \"No. Series\" := '';");
@@ -76,10 +76,10 @@ namespace UncommonSense.CBreeze.Patterns
             var onInsert = Table.Properties.OnInsert;
             var setupRecordVariable = onInsert.Variables.Add(new RecordVariable(1000, SetupTable.Name.MakeVariableName(), SetupTable.ID));
             var noSeriesMgtCodeunitVariable = onInsert.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
-            onInsert.CodeLines.Add(string.Format("IF {0} = '' THEN BEGIN", NoField.Name.Quoted()));
+            onInsert.CodeLines.Add(string.Format("IF {0} = '' THEN BEGIN", NoField.QuotedName));
             onInsert.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
             onInsert.CodeLines.Add(string.Format("  {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, Table.Name));
-            onInsert.CodeLines.Add(string.Format("  {0}.InitSeries({1}.\"{2} Nos.\", xRec.{3}, 0D, {4}, {3});", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, Table.Name, NoSeriesField.Name.Quoted(), NoField.Name.Quoted()));
+            onInsert.CodeLines.Add(string.Format("  {0}.InitSeries({1}.\"{2} Nos.\", xRec.{3}, 0D, {4}, {3});", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, Table.Name, NoSeriesField.QuotedName, NoField.QuotedName));
             onInsert.CodeLines.Add("END;");
         }
 
@@ -97,10 +97,10 @@ namespace UncommonSense.CBreeze.Patterns
             assistEdit.CodeLines.Add(string.Format("  {0} := Rec;", variableName));
             assistEdit.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
             assistEdit.CodeLines.Add(string.Format("  {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, Table.Name));
-            assistEdit.CodeLines.Add(string.Format("  IF {0}.SelectSeries({1}.\"{2} Nos.\", {3}.{4}, {4}) THEN BEGIN", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, Table.Name, parameter.Name, NoSeriesField.Name.Quoted()));
+            assistEdit.CodeLines.Add(string.Format("  IF {0}.SelectSeries({1}.\"{2} Nos.\", {3}.{4}, {4}) THEN BEGIN", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, Table.Name, parameter.Name, NoSeriesField.QuotedName));
             assistEdit.CodeLines.Add(string.Format("    {0}.GET;", setupRecordVariable.Name));
             assistEdit.CodeLines.Add(string.Format("    {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, Table.Name));
-            assistEdit.CodeLines.Add(string.Format("    {0}.SetSeries({1});", noSeriesMgtCodeunitVariable.Name, NoField.Name.Quoted()));
+            assistEdit.CodeLines.Add(string.Format("    {0}.SetSeries({1});", noSeriesMgtCodeunitVariable.Name, NoField.QuotedName));
             assistEdit.CodeLines.Add(string.Format("    Rec := {0};", variableName));
             assistEdit.CodeLines.Add("    EXIT(TRUE);");
             assistEdit.CodeLines.Add("  END;");
@@ -113,7 +113,7 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByCaption("General", Range, Position.FirstWithinContainer);
             var noControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.FirstWithinContainer);
 
-            noControl.Properties.SourceExpr = NoField.Name.Quoted();
+            noControl.Properties.SourceExpr = NoField.QuotedName;
             noControl.Properties.Importance = Importance.Promoted;
             noControl.Properties.OnAssistEdit.CodeLines.Add("IF AssistEdit(xRec) THEN");
             noControl.Properties.OnAssistEdit.CodeLines.Add("  CurrPage.UPDATE;");
@@ -127,7 +127,7 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
             var noControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.FirstWithinContainer);
 
-            noControl.Properties.SourceExpr = NoField.Name.Quoted();
+            noControl.Properties.SourceExpr = NoField.QuotedName;
 
             NoControls.Add(page, noControl);
         }
@@ -138,7 +138,7 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByCaption("Numbering", Range, Position.LastWithinContainer);
 
             SetupControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(SetupPage), 2), Position.LastWithinContainer);
-            SetupControl.Properties.SourceExpr = SetupField.Name.Quoted();
+            SetupControl.Properties.SourceExpr = SetupField.QuotedName;
         }
 
         public Table SetupTable

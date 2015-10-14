@@ -74,18 +74,18 @@ namespace UncommonSense.CBreeze.Patterns
             PostCodeField.Properties.OnValidate.CodeLines.Add(
                 "{0}.ValidatePostCode({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);",
                 variableName,
-                CityField.Name.Quoted(),
-                PostCodeField.Name.Quoted(),
-                CountyField.Name.Quoted(),
-                CountryRegionCodeField.Name.Quoted());
+                CityField.QuotedName,
+                PostCodeField.QuotedName,
+                CountyField.QuotedName,
+                CountryRegionCodeField.QuotedName);
 
             CityField.Properties.OnValidate.CodeLines.Add(
                 "{0}.ValidateCity({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);",
                 variableName,
-                CityField.Name.Quoted(),
-                PostCodeField.Name.Quoted(),
-                CountyField.Name.Quoted(),
-                CountryRegionCodeField.Name.Quoted());
+                CityField.QuotedName,
+                PostCodeField.QuotedName,
+                CountyField.QuotedName,
+                CountryRegionCodeField.QuotedName);
         }
 
         protected virtual void AddFormatFunction()
@@ -107,14 +107,14 @@ namespace UncommonSense.CBreeze.Patterns
                     string.Format("{0}Name", Prefix).Quoted(), 
                     string.Format("{0}Name 2", Prefix).Quoted(),
                     string.Format("{0}Contact", Prefix).Quoted(),
-                    AddressField.Name.Quoted(),
-                    Address2Field.Name.Quoted());
+                    AddressField.QuotedName,
+                    Address2Field.QuotedName);
                 FormatFunction.CodeLines.Add(
                     "    {0},{1},{2},{3});",
-                    CityField.Name.Quoted(),
-                    PostCodeField.Name.Quoted(),
-                    CountyField.Name.Quoted(),
-                    CountryRegionCodeField.Name.Quoted());
+                    CityField.QuotedName,
+                    PostCodeField.QuotedName,
+                    CountyField.QuotedName,
+                    CountryRegionCodeField.QuotedName);
             }
         }
 
@@ -129,18 +129,18 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
 
             var addressControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-            addressControl.Properties.SourceExpr = AddressField.Name.Quoted();
+            addressControl.Properties.SourceExpr = AddressField.QuotedName;
             AddressControls.Add(page, addressControl);
 
             Address2Controls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, Address2Field.Name));
 
             var postCodeControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-            postCodeControl.Properties.SourceExpr = PostCodeField.Name.Quoted();
+            postCodeControl.Properties.SourceExpr = PostCodeField.QuotedName;
             postCodeControl.Properties.Importance = Importance.Promoted;
             PostCodeControls.Add(page, postCodeControl);
 
             var cityControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-            cityControl.Properties.SourceExpr = CityField.Name.Quoted();
+            cityControl.Properties.SourceExpr = CityField.QuotedName;
             CityControls.Add(page, cityControl);
 
             CountryRegionCodeControls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, CountryRegionCodeField.Name));
@@ -152,11 +152,11 @@ namespace UncommonSense.CBreeze.Patterns
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, ListPageGroupPosition);
 
             var postCodeControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-            postCodeControl.Properties.SourceExpr = PostCodeField.Name.Quoted();
+            postCodeControl.Properties.SourceExpr = PostCodeField.QuotedName;
             PostCodeControls.Add(page, postCodeControl);
 
             var countryRegionCodeControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(page), 2), Position.LastWithinContainer);
-            countryRegionCodeControl.Properties.SourceExpr = CountryRegionCodeField.Name.Quoted();
+            countryRegionCodeControl.Properties.SourceExpr = CountryRegionCodeField.QuotedName;
             CountryRegionCodeControls.Add(page, countryRegionCodeControl);
         }
 

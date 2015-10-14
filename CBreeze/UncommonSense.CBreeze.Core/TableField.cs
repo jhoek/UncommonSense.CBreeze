@@ -36,6 +36,14 @@ namespace UncommonSense.CBreeze.Core
 			set;
 		}
 
+        public string QuotedName
+        {
+            get
+            {
+                return Name.Quoted();
+            }
+        }
+
 		public Boolean? Enabled
 		{
 			get
