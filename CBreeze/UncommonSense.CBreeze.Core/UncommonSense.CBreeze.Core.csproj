@@ -381,6 +381,7 @@
     <Compile Include="SqlJoinTypeProperty.cs" />
     <Compile Include="StandardDayTimeUnit.cs" />
     <Compile Include="StandardDayTimeUnitProperty.cs" />
+    <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="StringProperty.cs" />
     <Compile Include="Style.cs" />
     <Compile Include="StyleProperty.cs" />

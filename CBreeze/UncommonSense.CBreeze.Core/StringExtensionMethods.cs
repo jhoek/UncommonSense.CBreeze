@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace UncommonSense.CBreeze.Utils
+namespace UncommonSense.CBreeze.Core
 {
     public static class StringExtensionMethods
     {
