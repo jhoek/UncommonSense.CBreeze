@@ -21,8 +21,7 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void CreateKey()
         {
-            PrimaryKey = Table.Keys.Add();
-            PrimaryKey.Fields.Add(PrimaryKeyField.Name);
+            PrimaryKey = Table.Keys.Add(new TableKey(PrimaryKeyField.Name));
             PrimaryKey.Properties.Clustered = true;
         }
 

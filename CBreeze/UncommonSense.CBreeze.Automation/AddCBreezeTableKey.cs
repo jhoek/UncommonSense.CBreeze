@@ -84,9 +84,8 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var table in Table)
             {
-                var tableKey = table.Keys.Add();
+                var tableKey = table.Keys.Add(new TableKey(Fields));
                 tableKey.Enabled = Enabled;
-                tableKey.Fields.AddRange(Fields);
                 tableKey.Properties.Clustered = Clustered;
                 tableKey.Properties.KeyGroups = KeyGroups;
                 tableKey.Properties.MaintainSIFTIndex = MaintainSIFTIndex;

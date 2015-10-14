@@ -21,8 +21,9 @@ namespace UncommonSense.CBreeze.Core
         private FieldList fields = new FieldList();
         private TableKeyProperties properties = new TableKeyProperties();
 
-        internal TableKey()
+        public TableKey(params string[] fieldNames)
         {
+            this.fields.AddRange(fieldNames);
         }
 
         public Boolean? Enabled

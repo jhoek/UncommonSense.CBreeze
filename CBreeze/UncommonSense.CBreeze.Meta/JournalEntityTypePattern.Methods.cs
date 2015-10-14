@@ -130,16 +130,13 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateKeys()
         {
-            var templateTableKey = TemplateTable.Keys.Add();
-            templateTableKey.Fields.Add(TemplateTableNameField.Name);
+            var templateTableKey = TemplateTable.Keys.Add(new TableKey(TemplateTableNameField.Name));
             templateTableKey.Properties.Clustered = true;
 
-            var batchTableKey = BatchTable.Keys.Add();
-            batchTableKey.Fields.AddRange(BatchTableJournalTemplateNameField.Name, BatchTableNameField.Name);
+            var batchTableKey = BatchTable.Keys.Add(new TableKey(BatchTableJournalTemplateNameField.Name, BatchTableNameField.Name));
             batchTableKey.Properties.Clustered = true;
 
-            var lineTableKey = LineTable.Keys.Add();
-            lineTableKey.Fields.AddRange(LineTableJournalTemplateNameField.Name, LineTableJournalBatchNameField.Name, LineTableLineNoField.Name);
+            var lineTableKey = LineTable.Keys.Add(new TableKey(LineTableJournalTemplateNameField.Name, LineTableJournalBatchNameField.Name, LineTableLineNoField.Name));
             lineTableKey.Properties.Clustered = true;
         }
 

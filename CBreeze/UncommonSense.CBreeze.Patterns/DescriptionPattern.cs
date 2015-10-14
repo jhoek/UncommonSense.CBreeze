@@ -39,8 +39,7 @@ namespace UncommonSense.CBreeze.Patterns
 
                 if (CreateKeyOnSearchDescription)
                 {
-                    KeyOnSearchDescription = Table.Keys.Add();
-                    KeyOnSearchDescription.Fields.Add(SearchDescriptionField.Name);
+                    KeyOnSearchDescription = Table.Keys.Add(new TableKey(SearchDescriptionField.Name));
                 }
             }
         }

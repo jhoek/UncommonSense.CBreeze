@@ -49,7 +49,7 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateFields()
         {
-            var myPrimaryKey = Table.Keys.Add();
+            var myPrimaryKey = Table.Keys.Add(new TableKey());
             myPrimaryKey.Properties.Clustered = true;
 
             foreach (var subsidiaryTo in SubsidiaryTo)

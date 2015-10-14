@@ -53,8 +53,7 @@ namespace UncommonSense.CBreeze.Patterns
 
         protected override void CreateKey()
         {
-            var primaryKey = Table.Keys.Add();
-            primaryKey.Fields.Add(NoField.Name);
+            var primaryKey = Table.Keys.Add(new TableKey(NoField.Name));
             primaryKey.Properties.Clustered = true;
         }
 

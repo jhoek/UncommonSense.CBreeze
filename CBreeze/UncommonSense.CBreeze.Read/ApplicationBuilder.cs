@@ -405,9 +405,8 @@ namespace UncommonSense.CBreeze.Read
 
         public void OnBeginTableKey(bool? keyEnabled, string[] keyFields)
         {
-            currentTableKey = (currentObject as Table).Keys.Add();
+            currentTableKey = (currentObject as Table).Keys.Add(new TableKey(keyFields));
             currentTableKey.Enabled = keyEnabled;
-            currentTableKey.Fields.AddRange(keyFields);
 
             currentProperties.Push(currentTableKey.Properties);
         }
