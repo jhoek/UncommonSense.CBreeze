@@ -145,6 +145,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        #region Dynamic parameters
         protected DynamicParameter<bool?> AssistEdit
         {
             get;
@@ -450,6 +451,7 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+        #endregion
 
         protected override void ProcessRecord()
         {
