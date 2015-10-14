@@ -477,7 +477,7 @@ namespace UncommonSense.CBreeze.Automation
                     Page.Controls.Add(pageControl);
                     break;
                 default:
-                    ParentControl.Value.AddChildPageControl(pageControl, Position.Value.Value);
+                    ParentControl.Value.AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
                     break;
             }
 
