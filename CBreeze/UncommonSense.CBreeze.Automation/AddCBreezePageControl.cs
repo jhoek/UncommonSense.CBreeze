@@ -57,6 +57,8 @@ namespace UncommonSense.CBreeze.Automation
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
             PagePartID = new DynamicParameter<int?>("PagePartID", PagePartWithID, PagePartWithRange);
+            ParentControl = new DynamicParameter<PageControl>("ParentControl", true);
+            Position = new DynamicParameter<Position?>("Position");
             QuickEntry = new DynamicParameter<string>("QuickEntry");
             SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", SystemPartWithID, SystemPartWithRange);
             ProviderID = new DynamicParameter<int?>("ProviderID");
@@ -356,6 +358,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<PageControl> ParentControl
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Position?> Position
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<int?> ProviderID
         {
             get;
@@ -455,7 +469,17 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var pageControl = Page.Controls.Add(CreatePageControl());
+            var pageControl = CreatePageControl();
+
+            switch (Type)
+            {
+                case PageControlType.Container:
+                    Page.Controls.Add(pageControl);
+                    break;
+                default:
+                    ParentControl.Value.AddChildPageControl(pageControl, Position.Value.Value);
+                    break;
+            }
 
             if (PassThru)
                 WriteObject(pageControl);
@@ -463,8 +487,6 @@ namespace UncommonSense.CBreeze.Automation
 
         protected PageControl CreatePageControl()
         {
-            // FIXME: Intelligent indentation
-
             switch (Type)
             {
                 case PageControlType.Container:
@@ -479,7 +501,7 @@ namespace UncommonSense.CBreeze.Automation
                     return containerPageControl;
 
                 case PageControlType.Group:
-                    var groupPageControl = new GroupPageControl(GetPageControlID(), 1);
+                    var groupPageControl = new GroupPageControl(GetPageControlID(), ParentControl.Value.IndentationLevel + 1);
                     groupPageControl.Properties.Description = Description;
                     groupPageControl.Properties.Name = Name;
                     groupPageControl.Properties.Editable = Editable.Value;
@@ -498,7 +520,7 @@ namespace UncommonSense.CBreeze.Automation
                     return groupPageControl;
 
                 case PageControlType.Field:
-                    var fieldPageControl = new FieldPageControl(GetPageControlID(), 2);
+                    var fieldPageControl = new FieldPageControl(GetPageControlID(), ParentControl.Value.IndentationLevel + 1);
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
                     fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
@@ -545,7 +567,7 @@ namespace UncommonSense.CBreeze.Automation
                     return fieldPageControl;
 
                 case PageControlType.Part:
-                    var partPageControl = new PartPageControl(GetPageControlID(), 1);
+                    var partPageControl = new PartPageControl(GetPageControlID(), ParentControl.Value.IndentationLevel + 1);
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
 
@@ -608,6 +630,9 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Group:
+                        yield return ParentControl.RuntimeDefinedParameter;
+                        yield return Position.RuntimeDefinedParameter;
+
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
                         yield return FreezeColumnID.RuntimeDefinedParameter;
@@ -620,6 +645,9 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Field:
+                        yield return ParentControl.RuntimeDefinedParameter;
+                        yield return Position.RuntimeDefinedParameter;
+
                         yield return AssistEdit.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
@@ -660,6 +688,9 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Part:
+                        yield return ParentControl.RuntimeDefinedParameter;
+                        yield return Position.RuntimeDefinedParameter;
+
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
                         yield return ChartPartID.RuntimeDefinedParameter;
