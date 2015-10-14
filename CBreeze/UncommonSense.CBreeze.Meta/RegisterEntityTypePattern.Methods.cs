@@ -81,10 +81,10 @@ namespace UncommonSense.CBreeze.Meta
 
             if (HasCreationDate)
             {
-                var creationDatePattern = new CreationDatePattern(Range, Table, Page);
-                creationDatePattern.Apply();
-                CreationDateField = creationDatePattern.CreationDateField;
-                CreationDateControls.AddRange(creationDatePattern.CreationDateControls);
+                //var creationDatePattern = new CreationDatePattern(Range, Table, Page);
+                //creationDatePattern.Apply();
+                //CreationDateField = creationDatePattern.CreationDateField;
+                //CreationDateControls.AddRange(creationDatePattern.CreationDateControls);
             }
 
             if (HasUserID)
