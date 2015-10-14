@@ -51,7 +51,6 @@
     <Compile Include="CompileCBreezeApplication.cs" />
     <Compile Include="GetCBreezePageContentArea.cs" />
     <Compile Include="GetCBreezePageGroup.cs" />
-    <Compile Include="TestDynamicParameter.cs" />
     <Content Include="AddCBreezeContainerPageControl.cs.txt" />
     <Compile Include="AddCBreezeFilter.cs" />
     <Content Include="AddCBreezeGroupPageControl.cs.txt" />
