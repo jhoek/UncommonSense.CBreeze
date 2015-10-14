@@ -80,14 +80,14 @@ namespace UncommonSense.CBreeze.Meta
 
         protected void CreateLastDateModifiedField()
         {
-            if (HasLastDateModified)
-            {
-                var lastDateModifiedPattern = new LastDateModifiedPattern(Range, Table, CardPage, ListPage);
-                lastDateModifiedPattern.Apply();
+            //if (HasLastDateModified)
+            //{
+            //    var lastDateModifiedPattern = new LastDateModifiedPattern(Range, Table, CardPage, ListPage);
+            //    lastDateModifiedPattern.Apply();
 
-                LastDateModifiedField = lastDateModifiedPattern.LastDateModifiedField;
-                LastDateModifiedControls.AddRange(lastDateModifiedPattern.LastDateModifiedControls);
-            }
+            //    LastDateModifiedField = lastDateModifiedPattern.LastDateModifiedField;
+            //    LastDateModifiedControls.AddRange(lastDateModifiedPattern.LastDateModifiedControls);
+            //}
         }
 
         protected override void CreateDropDownFieldGroup()
