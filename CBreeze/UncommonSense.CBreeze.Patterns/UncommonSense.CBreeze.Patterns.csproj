@@ -44,7 +44,6 @@
     <Compile Include="AddPrimaryKeyFieldsPattern.cs" />
     <Compile Include="AddressBlockPattern.cs" />
     <Compile Include="CommunicationPattern.cs" />
-    <Compile Include="CreationDatePattern.cs" />
     <Compile Include="DescriptionPattern.cs" />
     <Compile Include="DescriptionStyle.cs" />
     <Compile Include="EntryNoPattern.cs" />
