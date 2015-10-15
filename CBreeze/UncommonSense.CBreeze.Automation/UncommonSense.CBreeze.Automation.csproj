@@ -68,6 +68,7 @@
     <Compile Include="ExportCBreezeApplication.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ImportCBreezeApplication.cs" />
+    <Compile Include="InvokeCBreezeObject.cs" />
     <Compile Include="NewCBreezeApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetCBreezePermission.cs" />
