@@ -44,9 +44,9 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateFields()
         {
-            var primaryKeyPattern = new PrimaryKeyPattern(Range, Table);
-            primaryKeyPattern.Apply();
-            PrimaryKeyField = primaryKeyPattern.PrimaryKeyField;
+            //var primaryKeyPattern = new PrimaryKeyPattern(Range, Table);
+            //primaryKeyPattern.Apply();
+            //PrimaryKeyField = primaryKeyPattern.PrimaryKeyField;
         }
 
         protected override void CreateControls()

@@ -45,11 +45,11 @@ namespace UncommonSense.CBreeze.Meta
 
         protected void AddEntryNo()
         {
-            var entryNoPattern = new EntryNoPattern(Range, Table, Page);
-            entryNoPattern.Apply();
+            //var entryNoPattern = new EntryNoPattern(Range, Table, Page);
+            //entryNoPattern.Apply();
 
-            EntryNoField = entryNoPattern.EntryNoField;
-            EntryNoControl = entryNoPattern.EntryNoControls.First().Value;
+            //EntryNoField = entryNoPattern.EntryNoField;
+            //EntryNoControl = entryNoPattern.EntryNoControls.First().Value;
         }
 
         protected void AddMasterEntityTypeReference()

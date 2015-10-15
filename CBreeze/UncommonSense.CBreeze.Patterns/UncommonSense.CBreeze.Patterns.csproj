@@ -46,12 +46,10 @@
     <Compile Include="CommunicationPattern.cs" />
     <Compile Include="DescriptionPattern.cs" />
     <Compile Include="DescriptionStyle.cs" />
-    <Compile Include="EntryNoPattern.cs" />
     <Compile Include="MappedResults.cs" />
     <Compile Include="NoPattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />
     <Compile Include="Pattern.cs" />
-    <Compile Include="PrimaryKeyPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
