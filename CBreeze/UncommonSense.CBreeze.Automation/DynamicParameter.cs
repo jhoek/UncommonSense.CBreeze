@@ -24,9 +24,9 @@ namespace UncommonSense.CBreeze.Automation
             var attributes = new Collection<Attribute>();
 
             if (parameterSetNames == null)
-                parameterSetNames = new string[] { "__AllParameterSets" };
+                parameterSetNames = new string[] { null };
             if (parameterSetNames.Length == 0)
-                parameterSetNames = new string[] { "__AllParameterSets" };
+                parameterSetNames = new string[] { null };
 
             foreach (var parameterSetName in parameterSetNames)
             {
