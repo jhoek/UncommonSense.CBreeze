@@ -13,18 +13,6 @@ namespace UncommonSense.CBreeze.Patterns
         {
         }
 
-        protected void AddOnInsert()
-        {
-            var onInsert = Table.Properties.OnInsert;
-            var setupRecordVariable = onInsert.Variables.Add(new RecordVariable(1000, SetupTable.Name.MakeVariableName(), SetupTable.ID));
-            var noSeriesMgtCodeunitVariable = onInsert.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
-            onInsert.CodeLines.Add(string.Format("IF {0} = '' THEN BEGIN", NoField.QuotedName));
-            onInsert.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
-            onInsert.CodeLines.Add(string.Format("  {0}.TESTFIELD(\"{1} Nos.\");", setupRecordVariable.Name, Table.Name));
-            onInsert.CodeLines.Add(string.Format("  {0}.InitSeries({1}.\"{2} Nos.\", xRec.{3}, 0D, {4}, {3});", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, Table.Name, NoSeriesField.QuotedName, NoField.QuotedName));
-            onInsert.CodeLines.Add("END;");
-        }
-
         protected void AddAssistEditFunction()
         {
             var assistEdit = Table.Code.Functions.Add(new Function(Range.GetNextFunctionID(Table), "AssistEdit"));
