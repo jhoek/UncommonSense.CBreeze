@@ -9,65 +9,8 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class NoSeriesPattern : AddPrimaryKeyFieldsPattern
     {
-        // FIXME: Should be made aware of DocumentTypeOptions for document entity types
-        // FIXME: In other words, we may create more than one setup field
-
-        public NoSeriesPattern(IEnumerable<int> range, Table table, params Page[] pages)
-            : base(range, table, pages)
+        public NoSeriesPattern(IEnumerable<int> range, Table table, params Page[] pages) : base(range, table, pages)
         {
-            NoControls = new MappedResults<Page, FieldPageControl>();
-        }
-
-        protected override void VerifyRequirements()
-        {
-            base.VerifyRequirements();
-
-            if (SetupTable == null)
-                throw new ArgumentNullException("SetupTable");
-
-            if (SetupPage == null)
-                throw new ArgumentNullException("SetupPage");
-        }
-
-        protected override void MakeChanges()
-        {
-            base.MakeChanges();
-
-            AddOnValidate();
-            AddOnInsert();
-            AddAssistEditFunction();
-            CreateSetupControls();
-        }
-
-        protected override void CreateFields()
-        {
-            NoField = Table.Fields.Add(new CodeTableField(Range.GetNextPrimaryKeyFieldNo(Table), "No.", 20).AutoCaption());
-            NoSeriesField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table, 90), "No. Series", 10).AutoCaption());
-            SetupField = SetupTable.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(SetupTable), string.Format("{0} Nos.", Table.Name), 10).AutoCaption());
-
-            NoSeriesField.Properties.Editable = false;
-            NoSeriesField.Properties.TableRelation.Add(BaseApp.TableNames.No_Series);
-
-            SetupField.Properties.TableRelation.Add(BaseApp.TableNames.No_Series);
-        }
-
-        protected override void CreateKey()
-        {
-            var primaryKey = Table.Keys.Add(new TableKey(NoField.Name));
-            primaryKey.Properties.Clustered = true;
-        }
-
-        protected void AddOnValidate()
-        {
-            var onValidate = NoField.Properties.OnValidate;
-            var setupRecordVariable = onValidate.Variables.Add(new RecordVariable(1000, SetupTable.Name.MakeVariableName(), SetupTable.ID));
-            var noSeriesMgtCodeunitVariable = onValidate.Variables.Add(new CodeunitVariable(1001, "NoSeriesMgt", 396));
-
-            onValidate.CodeLines.Add(string.Format("IF {0} <> xRec.{0} THEN BEGIN", NoField.QuotedName));
-            onValidate.CodeLines.Add(string.Format("  {0}.GET;", setupRecordVariable.Name));
-            onValidate.CodeLines.Add(string.Format("  {0}.TestManual({1}.\"{2} Nos.\");", noSeriesMgtCodeunitVariable.Name, setupRecordVariable.Name, Table.Name));
-            onValidate.CodeLines.Add("  \"No. Series\" := '';");
-            onValidate.CodeLines.Add("END;");
         }
 
         protected void AddOnInsert()
