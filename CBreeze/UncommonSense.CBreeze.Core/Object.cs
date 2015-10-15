@@ -31,6 +31,14 @@ namespace UncommonSense.CBreeze.Core
 			set;
 		}
 
+        public string VariableName
+        {
+            get
+            {
+                return Name.MakeVariableName();
+            }
+        }
+        
 		public abstract ObjectType Type
 		{
 			get;
