@@ -11,43 +11,26 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsDiagnostic.Test, "DynamicParams")]
     public class TestDynamicParams : CmdletWithDynamicParams
     {
-        public TestDynamicParams()
-        {
-            Application = new DynamicParameter<Core.Application>("Application", true);
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true);
-            Dynamic = new DynamicParameter<int>("Dynamic", "Foo");
-        }
-
-        protected DynamicParameter<Application> Application
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<IEnumerable<int>> Range
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int> Dynamic
-        {
-            get;
-            set;
-        }
+        protected DynamicParameter<Core.Application> application = new DynamicParameter<Core.Application>("Application", true);
+        protected DynamicParameter<IEnumerable<int>> range = new DynamicParameter<IEnumerable<int>>("Range", true);
+        protected DynamicParameter<ObjectType?> objectType = new DynamicParameter<ObjectType?>("Type", true);
+        protected DynamicParameter<int> dynamic = new DynamicParameter<int>("Dynamic");
 
         protected override void ProcessRecord()
         {
-            WriteObject(Dynamic.Value);
+            WriteObject(dynamic.Value);
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
             {
-                yield return Application.RuntimeDefinedParameter;
-                yield return Range.RuntimeDefinedParameter;
-                yield return Dynamic.RuntimeDefinedParameter;
+                yield return objectType.RuntimeDefinedParameter;
+                yield return application.RuntimeDefinedParameter;
+                yield return range.RuntimeDefinedParameter;
+
+                if (objectType.Value.GetValueOrDefault(ObjectType.Page) == ObjectType.Table)
+                    yield return dynamic.RuntimeDefinedParameter;
             }
         }
     }
