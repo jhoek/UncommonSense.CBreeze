@@ -44,9 +44,9 @@ namespace UncommonSense.CBreeze.Samples
             //descriptionPattern.Prefix = "Ship-to ";
             //descriptionPattern.Apply();
 
-            var communicationPattern = new CommunicationPattern(range, table);
-            communicationPattern.Prefix = "Ship-to ";
-            communicationPattern.Apply();
+            //var communicationPattern = new CommunicationPattern(range, table);
+            //communicationPattern.Prefix = "Ship-to ";
+            //communicationPattern.Apply();
 
             var addressBlockPattern = new AddressBlockPattern(range, table);
             addressBlockPattern.FormatAddressCodeunit = codeunit;
