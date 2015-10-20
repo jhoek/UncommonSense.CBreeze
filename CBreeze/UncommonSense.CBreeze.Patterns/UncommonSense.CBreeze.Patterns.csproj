@@ -43,7 +43,6 @@
     <Compile Include="AddFieldsPattern.cs" />
     <Compile Include="AddPrimaryKeyFieldsPattern.cs" />
     <Compile Include="AddressBlockPattern.cs" />
-    <Compile Include="CommunicationPattern.cs" />
     <Compile Include="MappedResults.cs" />
     <Compile Include="NoPattern.cs" />
     <Compile Include="NoSeriesPattern.cs" />
