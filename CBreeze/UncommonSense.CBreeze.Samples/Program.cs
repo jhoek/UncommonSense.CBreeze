@@ -39,10 +39,10 @@ namespace UncommonSense.CBreeze.Samples
             var codeunit = application.Codeunits.Add(new Codeunit(50000, "New Format Address"));
             var table = application.Tables.Add(new Table(range.GetNextTableID(application), "New Customer"));
 
-            var descriptionPattern = new DescriptionPattern(range, table);
-            descriptionPattern.Style = DescriptionStyle.Name;
-            descriptionPattern.Prefix = "Ship-to ";
-            descriptionPattern.Apply();
+            //var descriptionPattern = new DescriptionPattern(range, table);
+            //descriptionPattern.Style = DescriptionStyle.Name;
+            //descriptionPattern.Prefix = "Ship-to ";
+            //descriptionPattern.Apply();
 
             var communicationPattern = new CommunicationPattern(range, table);
             communicationPattern.Prefix = "Ship-to ";

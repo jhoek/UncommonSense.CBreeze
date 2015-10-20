@@ -85,14 +85,14 @@ namespace UncommonSense.CBreeze.Meta
 
         protected void AddDescription()
         {
-            var descriptionPattern = new DescriptionPattern(Range, Table, Page);
-            descriptionPattern.Style = DescriptionStyle.Description;
-            descriptionPattern.HasDescription2 = false;
-            descriptionPattern.HasSearchDescription = false;
-            descriptionPattern.Apply();
+            //var descriptionPattern = new DescriptionPattern(Range, Table, Page);
+            //descriptionPattern.Style = DescriptionStyle.Description;
+            //descriptionPattern.HasDescription2 = false;
+            //descriptionPattern.HasSearchDescription = false;
+            //descriptionPattern.Apply();
 
-            DescriptionField = descriptionPattern.DescriptionField;
-            DescriptionControl = descriptionPattern.DescriptionControls.First().Value;
+            //DescriptionField = descriptionPattern.DescriptionField;
+            //DescriptionControl = descriptionPattern.DescriptionControls.First().Value;
         }
 
         protected override void CreateDropDownFieldGroup()

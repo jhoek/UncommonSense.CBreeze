@@ -67,15 +67,15 @@ namespace UncommonSense.CBreeze.Meta
 
         protected void CreateDescriptionFields()
         {
-            var descriptionPattern = new DescriptionPattern(Range, Table, CardPage, ListPage);
-            descriptionPattern.Style = DescriptionStyle;
-            descriptionPattern.HasDescription2 = HasDescription2;
-            descriptionPattern.HasSearchDescription = HasSearchDescription;
-            descriptionPattern.Apply();
+            //var descriptionPattern = new DescriptionPattern(Range, Table, CardPage, ListPage);
+            //descriptionPattern.Style = DescriptionStyle;
+            //descriptionPattern.HasDescription2 = HasDescription2;
+            //descriptionPattern.HasSearchDescription = HasSearchDescription;
+            //descriptionPattern.Apply();
 
-            DescriptionField = descriptionPattern.DescriptionField;
-            Description2Field = descriptionPattern.Description2Field;
-            SearchDescriptionField = descriptionPattern.SearchDescriptionField;
+            //DescriptionField = descriptionPattern.DescriptionField;
+            //Description2Field = descriptionPattern.Description2Field;
+            //SearchDescriptionField = descriptionPattern.SearchDescriptionField;
         }
 
         protected void CreateLastDateModifiedField()
@@ -137,11 +137,11 @@ namespace UncommonSense.CBreeze.Meta
             set;
         }
 
-        public DescriptionStyle DescriptionStyle
-        {
-            get;
-            set;
-        }
+        //public DescriptionStyle DescriptionStyle
+        //{
+        //    get;
+        //    set;
+        //}
 
         public bool HasDescription2
         {
