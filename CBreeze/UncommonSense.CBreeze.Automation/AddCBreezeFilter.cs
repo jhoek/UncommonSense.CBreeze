@@ -53,42 +53,74 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             if (InputObject.BaseObject is CalcFormula)
             {
-                (InputObject.BaseObject as CalcFormula).TableFilter.Add(new CalcFormulaTableFilterLine(FieldName, ExtendedTableFilterType, Value));
+                (InputObject.BaseObject as CalcFormula).TableFilter.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value));
+                PassThruInputObject(InputObject.BaseObject as CalcFormula);
                 return;
             }
 
             if (InputObject.BaseObject is CalcFormulaTableFilter)
             {
-                (InputObject.BaseObject as CalcFormulaTableFilter).Add(new CalcFormulaTableFilterLine(FieldName, ExtendedTableFilterType, Value));
+                (InputObject.BaseObject as CalcFormulaTableFilter).Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value));
+                PassThruInputObject(InputObject.BaseObject as CalcFormulaTableFilter);
                 return;
             }
 
             if (InputObject.BaseObject is PartPageControl)
             {
                 (InputObject.BaseObject as PartPageControl).Properties.SubPageView.TableFilter.Add(FieldName, SimpleTableFilterType, Value);
+                PassThruInputObject(InputObject.BaseObject as PartPageControl);
                 return;
             }
 
             if (InputObject.BaseObject is TableView)
             {
                 (InputObject.BaseObject as TableView).TableFilter.Add(FieldName, SimpleTableFilterType, Value);
+                PassThruInputObject(InputObject.BaseObject as TableView);
                 return;
             }
 
             if (InputObject.BaseObject is TableFilter)
             {
                 (InputObject.BaseObject as TableFilter).Add(FieldName, SimpleTableFilterType, Value);
+                PassThruInputObject(InputObject.BaseObject as TableFilter);
+                return;
+            }
+
+            if (InputObject.BaseObject is TableRelationTableFilter)
+            {
+                (InputObject.BaseObject as TableRelationTableFilter).Add(FieldName, TableFilterType, Value);
+                PassThruInputObject(InputObject.BaseObject as TableRelationTableFilter);
+                return;
+            }
+
+            if (InputObject.BaseObject is TableRelationLine)
+            {
+                (InputObject.BaseObject as TableRelationLine).TableFilter.Add(FieldName, TableFilterType, Value);
+                PassThruInputObject(InputObject.BaseObject as TableRelationLine);
                 return;
             }
 
             throw new ArgumentOutOfRangeException("Cannot add a filter to this object.");
         }
 
-        protected TableFilterType ExtendedTableFilterType
+        protected void PassThruInputObject(object inputObject)
+        {
+            if (PassThru)
+                WriteObject(inputObject);
+        }
+
+        protected TableFilterType TableFilterType
         {
             get
             {
