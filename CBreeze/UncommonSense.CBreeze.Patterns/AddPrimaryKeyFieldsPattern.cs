@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Patterns
 {
-    public abstract class AddPrimaryKeyFieldsPattern : AddFieldsPattern
+    public abstract class AddPrimaryKeyFieldsPattern 
     {
         public AddPrimaryKeyFieldsPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)

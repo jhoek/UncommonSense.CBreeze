@@ -5,7 +5,7 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Patterns
 {
-    public class AddressBlockPattern : AddFieldsPattern
+    public class AddressBlockPattern 
     {
         public AddressBlockPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
