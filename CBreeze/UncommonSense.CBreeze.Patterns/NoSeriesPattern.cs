@@ -101,12 +101,6 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-        public MappedResults<Page, FieldPageControl> NoControls
-        {
-            get;
-            protected set;
-        }
-
         public FieldPageControl SetupControl
         {
             get;
