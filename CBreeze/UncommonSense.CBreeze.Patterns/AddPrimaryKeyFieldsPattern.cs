@@ -6,24 +6,21 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Patterns
 {
-    public abstract class AddPrimaryKeyFieldsPattern 
+    public abstract class AddPrimaryKeyFieldsPattern
     {
         public AddPrimaryKeyFieldsPattern(IEnumerable<int> range, Table table, params Page[] pages)
             : base(range, table, pages)
         {
         }
 
-        protected override void VerifyRequirements()
+        protected void VerifyRequirements()
         {
-            base.VerifyRequirements();
-
             if (Table.Keys.Any())
                 throw new ArgumentException("Table already has a primary key.");
         }
 
-        protected override void MakeChanges()
+        protected void MakeChanges()
         {
-            base.MakeChanges();
             CreateKey();
         }
 

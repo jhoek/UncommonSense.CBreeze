@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Meta
@@ -16,12 +15,12 @@ namespace UncommonSense.CBreeze.Meta
         public SubsidiaryEntityTypePattern(Application application, IEnumerable<int> range, string name, params Table[] subsidiaryTo)
             : base(application, range, name)
         {
-            SubsidiaryToFields = new MappedResults<Core.Table, TableField>();
+            //SubsidiaryToFields = new MappedResults<Core.Table, TableField>();
             DifferentiatorType = DifferentiatorType.None;
             this.subsidiaryTo.AddRange(subsidiaryTo);
         }
 
-        protected override void VerifyRequirements()
+        protected  void VerifyRequirements()
         {
             if (!SubsidiaryTo.Any())
                 throw new ArgumentOutOfRangeException("SubsidiaryTo");
@@ -62,7 +61,7 @@ namespace UncommonSense.CBreeze.Meta
                 CreateListPageControl(Page, Position.LastWithinContainer, myPrimaryKeyField.Name);
 
                 myPrimaryKey.Fields.Add(myPrimaryKeyField.Name);
-                SubsidiaryToFields.Add(subsidiaryTo, myPrimaryKeyField);     
+                //SubsidiaryToFields.Add(subsidiaryTo, myPrimaryKeyField);     
             }
 
             switch (DifferentiatorType)

@@ -5,27 +5,8 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Patterns
 {
-    public class AddressBlockPattern 
+    public class AddressBlockPattern
     {
-        protected void AddTableRelations()
-        {
-            var tableRelation = PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Const, "''");
-
-            tableRelation = PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Filter, "<>''");
-            tableRelation.TableFilter.Add("Country/Region Code", TableFilterType.Field, CountryRegionCodeField.Name);
-
-            tableRelation = CityField.Properties.TableRelation.Set("Post Code", "City");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Const, "''");
-
-            tableRelation = CityField.Properties.TableRelation.Set("Post Code", "City");
-            tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Filter, "<>''");
-            tableRelation.TableFilter.Add("Country/Region Code", TableFilterType.Field, CountryRegionCodeField.Name);
-
-            CountryRegionCodeField.Properties.TableRelation.Add("Country/Region");
-        }
-
         protected virtual void AddValidationCode()
         {
             const string variableName = "PostCode";
@@ -60,13 +41,13 @@ namespace UncommonSense.CBreeze.Patterns
                 arrayParameter.Dimensions = "8";
 
                 var recordParameter = FormatFunction.Parameters.Add(new RecordParameter(true, Range.GetNextParameterID(FormatFunction), Table.Name.MakeVariableName(), Table.ID));
-                
+
                 FormatFunction.CodeLines.Add("WITH {0} DO", recordParameter.Name);
                 FormatFunction.CodeLines.Add("  FormatAddr(");
                 FormatFunction.CodeLines.Add(
-                    "    {0},{1},{2},{3},{4},{5},", 
-                    arrayParameter.Name, 
-                    string.Format("{0}Name", Prefix).Quoted(), 
+                    "    {0},{1},{2},{3},{4},{5},",
+                    arrayParameter.Name,
+                    string.Format("{0}Name", Prefix).Quoted(),
                     string.Format("{0}Name 2", Prefix).Quoted(),
                     string.Format("{0}Contact", Prefix).Quoted(),
                     AddressField.QuotedName,
@@ -85,7 +66,7 @@ namespace UncommonSense.CBreeze.Patterns
             return string.Format("{0} {1}", Table.Name, Prefix).MakeVariableName();
         }
 
-        protected override void CreateCardPageControls(Page page)
+        protected void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption(GroupCaption, Range, CardPageGroupPosition);
@@ -108,7 +89,7 @@ namespace UncommonSense.CBreeze.Patterns
             CountryRegionCodeControls.Add(page, group.AddFieldPageControl(Range.GetNextPageControlID(page), Position.LastWithinContainer, CountryRegionCodeField.Name));
         }
 
-        protected override void CreateListPageControls(Page page)
+        protected void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, ListPageGroupPosition);

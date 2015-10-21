@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Meta
@@ -16,15 +15,15 @@ namespace UncommonSense.CBreeze.Meta
         public RegisterEntityTypePattern(Application application, IEnumerable<int> range, string name, params Table[] ledgerEntryTables)
             : base(application, range, name)
         {
-            NoControls = new MappedResults<Page, FieldPageControl>();
-            FromEntryNoFields = new MappedResults<Core.Table, IntegerTableField>();
-            FromEntryNoControls = new MappedResults<Core.Table, FieldPageControl>();
-            ToEntryNoFields = new MappedResults<Core.Table, IntegerTableField>();
-            ToEntryNoControls = new MappedResults<Core.Table, FieldPageControl>();
-            CreationDateControls = new MappedResults<Page, FieldPageControl>();
-            UserIDControls = new MappedResults<Page, FieldPageControl>();
-            SourceCodeControls = new MappedResults<Page, FieldPageControl>();
-            RoutingChoiceActions = new MappedResults<Table, PageAction>();
+            //NoControls = new MappedResults<Page, FieldPageControl>();
+            //FromEntryNoFields = new MappedResults<Core.Table, IntegerTableField>();
+            //FromEntryNoControls = new MappedResults<Core.Table, FieldPageControl>();
+            //ToEntryNoFields = new MappedResults<Core.Table, IntegerTableField>();
+            //ToEntryNoControls = new MappedResults<Core.Table, FieldPageControl>();
+            //CreationDateControls = new MappedResults<Page, FieldPageControl>();
+            //UserIDControls = new MappedResults<Page, FieldPageControl>();
+            //SourceCodeControls = new MappedResults<Page, FieldPageControl>();
+            //RoutingChoiceActions = new MappedResults<Table, PageAction>();
 
             this.ledgerEntryTables.AddRange(ledgerEntryTables);
 
@@ -65,18 +64,18 @@ namespace UncommonSense.CBreeze.Meta
                 var fromEntryNoField = Table.Fields.Add(new IntegerTableField(Range.GetNextTableFieldNo(Table), string.Format("From {0} No.", ledgerEntryTable.Name)).AutoCaption());
                 fromEntryNoField.Properties.TableRelation.Add(ledgerEntryTable.Name);
                 fromEntryNoField.Properties.TestTableRelation = false;
-                FromEntryNoFields.Add(ledgerEntryTable, fromEntryNoField);
+                //FromEntryNoFields.Add(ledgerEntryTable, fromEntryNoField);
 
                 var fromEntryNoControl = repeater.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, fromEntryNoField.Name);
-                FromEntryNoControls.Add(ledgerEntryTable, fromEntryNoControl);
+                //FromEntryNoControls.Add(ledgerEntryTable, fromEntryNoControl);
 
                 var toEntryNoField = Table.Fields.Add(new IntegerTableField(Range.GetNextTableFieldNo(Table), string.Format("To {0} No.", ledgerEntryTable.Name)).AutoCaption());
                 toEntryNoField.Properties.TableRelation.Add(ledgerEntryTable.Name);
                 toEntryNoField.Properties.TestTableRelation = false;
-                ToEntryNoFields.Add(ledgerEntryTable, toEntryNoField);
+                //ToEntryNoFields.Add(ledgerEntryTable, toEntryNoField);
 
                 var toEntryNoControl = repeater.AddFieldPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, toEntryNoField.Name);
-                ToEntryNoControls.Add(ledgerEntryTable, toEntryNoControl);
+                //ToEntryNoControls.Add(ledgerEntryTable, toEntryNoControl);
             }
 
             if (HasCreationDate)
@@ -116,7 +115,7 @@ namespace UncommonSense.CBreeze.Meta
                 var caption = ActionCaptionFromLedgerTableName(ledgerEntryTable.Name);
                 // FIXME: Image should not always be GLRegisters; there are plenty more images for registers?!
                 var routingChoiceAction = routingChoices.AddPageAction(Range.GetNextPageControlID(Page), Position.LastWithinContainer, caption, RunTime.Images.GLRegisters).Promote(true, PromotedCategory.Process);
-                RoutingChoiceActions.Add(ledgerEntryTable, routingChoiceAction);
+                //RoutingChoiceActions.Add(ledgerEntryTable, routingChoiceAction);
             }
 
             var factboxArea = Page.GetFactboxArea(Range);

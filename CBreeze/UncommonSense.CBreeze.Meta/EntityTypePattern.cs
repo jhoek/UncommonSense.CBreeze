@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Meta
 {
-    public abstract class EntityTypePattern : Pattern
+    public abstract class EntityTypePattern
     {
         // FIXME: Consider making these classes partial, and creating separate
         // .cs files for interface and implementation. Perhaps even for "input"
@@ -21,7 +20,7 @@ namespace UncommonSense.CBreeze.Meta
             Name = name;
         }
 
-        protected override void VerifyRequirements()
+        protected  void VerifyRequirements()
         {
             if (Application == null)
                 throw new ArgumentNullException("Application");
@@ -35,7 +34,7 @@ namespace UncommonSense.CBreeze.Meta
 
         // FIXME: Override in as few patterns as possible. Try and make
         // all patterns follow the same basic process
-        protected override void MakeChanges()
+        protected  void MakeChanges()
         {
             CreateObjects();
             AfterCreateObjects();

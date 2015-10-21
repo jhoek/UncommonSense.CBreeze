@@ -9,7 +9,8 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class NoSeriesPattern : AddPrimaryKeyFieldsPattern
     {
-        public NoSeriesPattern(IEnumerable<int> range, Table table, params Page[] pages) : base(range, table, pages)
+        public NoSeriesPattern(IEnumerable<int> range, Table table, params Page[] pages)
+            : base(range, table, pages)
         {
         }
 
@@ -37,7 +38,7 @@ namespace UncommonSense.CBreeze.Patterns
             assistEdit.CodeLines.Add("END;");
         }
 
-        protected override void CreateCardPageControls(Page page)
+        protected void CreateCardPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByCaption("General", Range, Position.FirstWithinContainer);
@@ -51,7 +52,7 @@ namespace UncommonSense.CBreeze.Patterns
             NoControls.Add(page, noControl);
         }
 
-        protected override void CreateListPageControls(Page page)
+        protected void CreateListPageControls(Page page)
         {
             var contentArea = page.GetContentArea(Range);
             var group = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);

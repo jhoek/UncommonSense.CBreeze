@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Meta
 {
     public partial class JournalEntityTypePattern
     {
-        protected override void VerifyRequirements()
+        protected  void VerifyRequirements()
         {
             if (MasterEntityTypeTable == null)
                 throw new ArgumentNullException("MasterEntityTypeTable");

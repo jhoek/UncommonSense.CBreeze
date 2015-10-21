@@ -6,7 +6,6 @@ using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.IO;
 using UncommonSense.CBreeze.Meta;
-using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Read;
 using UncommonSense.CBreeze.Utils;
 using UncommonSense.CBreeze.Write;
@@ -48,10 +47,10 @@ namespace UncommonSense.CBreeze.Samples
             //communicationPattern.Prefix = "Ship-to ";
             //communicationPattern.Apply();
 
-            var addressBlockPattern = new AddressBlockPattern(range, table);
-            addressBlockPattern.FormatAddressCodeunit = codeunit;
-            addressBlockPattern.Prefix = "Ship-to ";
-            addressBlockPattern.Apply();
+            //var addressBlockPattern = new AddressBlockPattern(range, table);
+            //addressBlockPattern.FormatAddressCodeunit = codeunit;
+            //addressBlockPattern.Prefix = "Ship-to ";
+            //addressBlockPattern.Apply();
 
             var formatAddrFunction = codeunit.Code.Functions.Add(new Function(range.GetNextFunctionID(codeunit), "FormatAddr"));
             formatAddrFunction.Parameters.Add(new TextParameter(true, range.GetNextParameterID(formatAddrFunction), "AddrArray", 90)).Dimensions = "8";
@@ -74,7 +73,7 @@ namespace UncommonSense.CBreeze.Samples
         static void JournalEntityType(Application application, IEnumerable<int> range)
         {
             var setupEntityType = new SetupEntityTypePattern(application, range, "Demo Setup");
-            setupEntityType.Apply();
+            //setupEntityType.Apply();
 
             var masterEntityType = new MasterEntityTypePattern(application, range, "New Item");
             masterEntityType.SetupTable = setupEntityType.Table;
@@ -83,11 +82,11 @@ namespace UncommonSense.CBreeze.Samples
             masterEntityType.HasSearchDescription = true;
             masterEntityType.HasStatisticsPage=true;
             masterEntityType.HasLastDateModified = true;
-            masterEntityType.Apply();
+            //masterEntityType.Apply();
 
             var journalEntityType = new JournalEntityTypePattern(application, range, "New Item Journal");
             journalEntityType.MasterEntityTypeTable = masterEntityType.Table;
-            journalEntityType.Apply();
+            //journalEntityType.Apply();
 
             application.Write(devClient, databaseServerName, databaseName);
             application.Compile(devClient, databaseServerName, databaseName);

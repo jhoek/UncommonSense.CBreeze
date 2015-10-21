@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Patterns;
 using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Meta
@@ -13,7 +12,7 @@ namespace UncommonSense.CBreeze.Meta
         public MasterEntityTypePattern(Application application, IEnumerable<int> range, string name)
             : base(application, range,name)
         {
-            LastDateModifiedControls = new MappedResults<Page, FieldPageControl>();
+            //LastDateModifiedControls = new MappedResults<Page, FieldPageControl>();
         }
 
         protected override void CreateObjects()
@@ -56,13 +55,13 @@ namespace UncommonSense.CBreeze.Meta
 
         protected void CreatePrimaryKeyField()
         {
-            var noSeriesPattern = new NoSeriesPattern(Range, Table, CardPage, ListPage);
-            noSeriesPattern.SetupTable = SetupTable;
-            noSeriesPattern.SetupPage = SetupPage;
-            noSeriesPattern.Apply();
+            //var noSeriesPattern = new NoSeriesPattern(Range, Table, CardPage, ListPage);
+            //noSeriesPattern.SetupTable = SetupTable;
+            //noSeriesPattern.SetupPage = SetupPage;
+            //noSeriesPattern.Apply();
 
-            NoField = noSeriesPattern.NoField;
-            NoSeriesField = noSeriesPattern.NoSeriesField;
+            //NoField = noSeriesPattern.NoField;
+            //NoSeriesField = noSeriesPattern.NoSeriesField;
         }
 
         protected void CreateDescriptionFields()
@@ -225,11 +224,6 @@ namespace UncommonSense.CBreeze.Meta
         {
             get;
             protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> LastDateModifiedControls
-        {
-            get;protected set;
         }
 
         public PageAction StatisticsAction
