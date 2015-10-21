@@ -7,46 +7,8 @@ namespace UncommonSense.CBreeze.Patterns
 {
     public class AddressBlockPattern 
     {
-        public AddressBlockPattern(IEnumerable<int> range, Table table, params Page[] pages)
-            : base(range, table, pages)
-        {
-            AddressControls = new MappedResults<Page, FieldPageControl>();
-            Address2Controls = new MappedResults<Page, FieldPageControl>();
-            PostCodeControls = new MappedResults<Page, FieldPageControl>();
-            CityControls = new MappedResults<Page, FieldPageControl>();
-            CountryRegionCodeControls = new MappedResults<Page, FieldPageControl>();
-
-            GroupCaption = "General";
-            CardPageGroupPosition = Position.LastWithinContainer;
-            ListPageGroupPosition = Position.FirstWithinContainer;
-        }
-
-        protected override void MakeChanges()
-        {
-            base.MakeChanges();
-
-            AddTableRelations();
-            AddValidationCode();
-            AddFormatFunction();
-        }
-
-        protected override void CreateFields()
-        {
-            AddressField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Address", Prefix), 50).AutoCaption());
-            Address2Field = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Address 2", Prefix), 50).AutoCaption());
-            PostCodeField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Post Code", Prefix), 20).AutoCaption());
-            CityField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}City", Prefix), 30).AutoCaption());
-            CountyField = Table.Fields.Add(new TextTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}County", Prefix), 30).AutoCaption());
-            CountryRegionCodeField = Table.Fields.Add(new CodeTableField(Range.GetNextTableFieldNo(Table), string.Format("{0}Country/Region Code", Prefix), 10).AutoCaption());
-        }
-
         protected void AddTableRelations()
         {
-            PostCodeField.Properties.TestTableRelation = false;
-            PostCodeField.Properties.ValidateTableRelation = false;
-            CityField.Properties.TestTableRelation = false;
-            CityField.Properties.ValidateTableRelation = false;
-
             var tableRelation = PostCodeField.Properties.TableRelation.Set("Post Code", "Code");
             tableRelation.Conditions.Add(CountryRegionCodeField.Name, SimpleTableFilterType.Const, "''");
 
