@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCBreezeAction.cs" />
+    <Compile Include="AddCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
