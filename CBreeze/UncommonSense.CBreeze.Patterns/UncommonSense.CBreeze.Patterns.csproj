@@ -40,12 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddFieldsPattern.cs" />
     <Compile Include="AddPrimaryKeyFieldsPattern.cs" />
     <Compile Include="AddressBlockPattern.cs" />
-    <Compile Include="MappedResults.cs" />
     <Compile Include="NoSeriesPattern.cs" />
-    <Compile Include="Pattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
