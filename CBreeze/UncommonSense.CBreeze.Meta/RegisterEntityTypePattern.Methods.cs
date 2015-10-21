@@ -52,10 +52,10 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateFields()
         {
-            var noPattern = new NoPattern(Range, Table, Page);
-            noPattern.Apply();
-            NoField = noPattern.NoField;
-            NoControls.AddRange(noPattern.NoControls);
+            //var noPattern = new NoPattern(Range, Table, Page);
+            //noPattern.Apply();
+            //NoField = noPattern.NoField;
+            //NoControls.AddRange(noPattern.NoControls);
 
             var contentArea = Page.GetContentArea(Range);
             var repeater = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
