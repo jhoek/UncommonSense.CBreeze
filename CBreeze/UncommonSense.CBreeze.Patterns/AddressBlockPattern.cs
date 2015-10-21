@@ -164,37 +164,6 @@ namespace UncommonSense.CBreeze.Patterns
             protected set;
         }
 
-
-        public MappedResults<Page, FieldPageControl> AddressControls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> Address2Controls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> PostCodeControls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> CityControls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> CountryRegionCodeControls
-        {
-            get;
-            protected set;
-        }
-
         public Function FormatFunction
         {
             get;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Patterns;
 
 namespace UncommonSense.CBreeze.Meta
 {
@@ -27,43 +26,7 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public MappedResults<Page, FieldPageControl> NoControls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Table, IntegerTableField> FromEntryNoFields
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Table, FieldPageControl> FromEntryNoControls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Table, IntegerTableField> ToEntryNoFields
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Table, FieldPageControl> ToEntryNoControls
-        {
-            get;
-            protected set;
-        }
-
         public DateTableField CreationDateField
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> CreationDateControls
         {
             get;
             protected set;
@@ -75,25 +38,7 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public MappedResults<Page, FieldPageControl> UserIDControls
-        {
-            get;
-            protected set;
-        }
-
         public CodeTableField SourceCodeField
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Page, FieldPageControl> SourceCodeControls
-        {
-            get;
-            protected set;
-        }
-
-        public MappedResults<Core.Table, PageAction> RoutingChoiceActions
         {
             get;
             protected set;

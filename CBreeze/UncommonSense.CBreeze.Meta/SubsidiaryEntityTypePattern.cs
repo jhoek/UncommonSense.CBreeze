@@ -139,12 +139,6 @@ namespace UncommonSense.CBreeze.Meta
             protected set;
         }
 
-        public MappedResults<Table, TableField> SubsidiaryToFields
-        {
-            get;
-            protected set;
-        }
-
         public IntegerTableField LineNoField
         {
             get;
