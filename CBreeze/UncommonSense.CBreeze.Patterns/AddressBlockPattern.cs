@@ -102,53 +102,5 @@ namespace UncommonSense.CBreeze.Patterns
             countryRegionCodeControl.Properties.SourceExpr = CountryRegionCodeField.QuotedName;
             CountryRegionCodeControls.Add(page, countryRegionCodeControl);
         }
-
-        public Codeunit FormatAddressCodeunit
-        {
-            get;
-            set;
-        }
-
-        public TextTableField AddressField
-        {
-            get;
-            protected set;
-        }
-
-        public TextTableField Address2Field
-        {
-            get;
-            protected set;
-        }
-
-        public CodeTableField PostCodeField
-        {
-            get;
-            protected set;
-        }
-
-        public TextTableField CityField
-        {
-            get;
-            protected set;
-        }
-
-        public TextTableField CountyField
-        {
-            get;
-            protected set;
-        }
-
-        public CodeTableField CountryRegionCodeField
-        {
-            get;
-            protected set;
-        }
-
-        public Function FormatFunction
-        {
-            get;
-            protected set;
-        }
     }
 }
