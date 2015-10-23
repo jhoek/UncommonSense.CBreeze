@@ -71,41 +71,5 @@ namespace UncommonSense.CBreeze.Patterns
             SetupControl = group.AddChildPageControl(new FieldPageControl(Range.GetNextPageControlID(SetupPage), 2), Position.LastWithinContainer);
             SetupControl.Properties.SourceExpr = SetupField.QuotedName;
         }
-
-        public Table SetupTable
-        {
-            get;
-            set;
-        }
-
-        public Page SetupPage
-        {
-            get;
-            set;
-        }
-
-        public CodeTableField NoField
-        {
-            get;
-            protected set;
-        }
-
-        public CodeTableField NoSeriesField
-        {
-            get;
-            protected set;
-        }
-
-        public CodeTableField SetupField
-        {
-            get;
-            protected set;
-        }
-
-        public FieldPageControl SetupControl
-        {
-            get;
-            protected set;
-        }
     }
 }
