@@ -301,7 +301,7 @@ namespace UncommonSense.CBreeze.Automation
             if (ID != 0)
                 return ID;
 
-            return Range.Except(inputObject.GetParameters().Select(p => p.ID)).First();
+            return Range.Except(inputObject.GetParameterIDs()).Except(inputObject.GetVariableIDs()).First();
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters

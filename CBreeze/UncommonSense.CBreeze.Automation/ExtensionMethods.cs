@@ -21,6 +21,30 @@ namespace UncommonSense.CBreeze.Automation
             throw new ApplicationException("Cannot add parameters to this object.");
         }
 
+        public static bool TryGetParameters(this PSObject inputObject, out Parameters parameters)
+        {
+            try
+            {
+                parameters = GetParameters(inputObject);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                parameters = null;
+                return false;
+            }
+        }
+
+        public static IEnumerable<int> GetParameterIDs(this PSObject inputObject)
+        {
+            Parameters parameters = null;
+
+            if (TryGetParameters(inputObject, out parameters))
+                return parameters.Select(p => p.ID);
+
+            return Enumerable.Empty<int>();
+        }
+
         public static Variables GetVariables(this PSObject inputObject)
         {
             if (inputObject.BaseObject is Table)
@@ -47,6 +71,30 @@ namespace UncommonSense.CBreeze.Automation
                 return (inputObject.BaseObject as Event).Variables;
 
             throw new ApplicationException("Cannot add variables to this object.");
+        }
+
+        public static bool TryGetVariables(this PSObject inputObject, out Variables variables)
+        {
+            try
+            {
+                variables = GetVariables(inputObject);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                variables = null;
+                return false;
+            }
+        }
+
+        public static IEnumerable<int> GetVariableIDs(this PSObject inputObject)
+        {
+            Variables variables = null;
+
+            if (TryGetVariables(inputObject, out variables))
+                return variables.Select(v => v.ID);
+
+            return Enumerable.Empty<int>();
         }
     }
 }
