@@ -17,6 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr");
             AutoFormatType = new DynamicParameter<AutoFormatType?>("AutoFormatType");
             AutoIncrement = new DynamicParameter<bool?>("AutoIncrement");
+            AutoOptionCaption = new DynamicParameter<SwitchParameter>("AutoOptionCaption");
             BlankNumbers = new DynamicParameter<BlankNumbers?>("BlankNumbers");
             BlankZero = new DynamicParameter<bool?>("BlankZero");
             CalcFormulaFieldName = new DynamicParameter<string>("CalcFormulaFieldName");
@@ -156,6 +157,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> AutoIncrement
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<SwitchParameter> AutoOptionCaption
         {
             get;
             set;
@@ -874,6 +881,9 @@ namespace UncommonSense.CBreeze.Automation
                     if (AutoCaption)
                         optionTableField.AutoCaption();
 
+                    if (AutoOptionCaption.Value)
+                        optionTableField.AutoOptionCaption();
+
                     return optionTableField;
                 #endregion
 
@@ -953,7 +963,7 @@ namespace UncommonSense.CBreeze.Automation
                     timeTableField.Properties.AltSearchField = AltSearchField.Value;
                     timeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     timeTableField.Properties.AutoFormatType = AutoFormatType.Value;
-                    timeTableField.Properties.BlankNumbers = BlankNumbers.Value;                    
+                    timeTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     timeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
                     timeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
                     timeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
@@ -1295,6 +1305,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return AutoOptionCaption.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
                         yield return CalcFormulaFieldName.RuntimeDefinedParameter;
