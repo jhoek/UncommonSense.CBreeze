@@ -55,7 +55,6 @@
     <Compile Include="RegisterEntityTypePattern.Methods.cs" />
     <Compile Include="RegisterEntityTypePattern.Outputs.cs" />
     <Compile Include="SubsidiaryEntityTypePattern.cs" />
-    <Compile Include="SupplementalEntityTypePattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
