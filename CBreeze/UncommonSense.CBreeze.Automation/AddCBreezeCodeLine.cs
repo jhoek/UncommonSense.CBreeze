@@ -10,14 +10,14 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeCodeLine")]
     public class AddCBreezeCodeLine : Cmdlet
     {
-        [Parameter(Mandatory=true,ValueFromPipeline=true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public dynamic InputObject
         {
             get;
             set;
         }
 
-        [Parameter(Position=0)]
+        [Parameter(Position = 0)]
         public string Line
         {
             get;
@@ -34,9 +34,9 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             if (ArgumentList == null)
-                InputObject.CodeLines.Add(Line);
+                InputObject.CodeLines.Add(Line ?? string.Empty);
             else
-                InputObject.CodeLines.Add(Line, ArgumentList);
+                InputObject.CodeLines.Add(Line ?? string.Empty, ArgumentList);
         }
     }
 }
