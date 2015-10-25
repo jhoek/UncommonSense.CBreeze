@@ -120,7 +120,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public SwitchParameter Modified
+        public bool Modified
         {
             get;
             set;
