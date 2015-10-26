@@ -26,7 +26,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return Value.ID != 0;
+                return Value.Type.HasValue && Value.ID.HasValue;
             }
         }
     }
