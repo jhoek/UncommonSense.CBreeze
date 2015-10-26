@@ -31,6 +31,7 @@ namespace UncommonSense.CBreeze.Automation
             RunPageOnRec = new DynamicParameter<bool?>("RunPageOnRec");
             RunPageViewKey = new DynamicParameter<string>("RunPageViewKey");
             RunPageViewOrder = new DynamicParameter<Order?>("RunPageViewOrder");
+            ShortcutKey = new DynamicParameter<string>("ShortcutKey");
             Visible = new DynamicParameter<string>("Visible");
         }
 
@@ -178,6 +179,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> ShortcutKey
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> Visible
         {
             get;
@@ -229,6 +236,8 @@ namespace UncommonSense.CBreeze.Automation
                     pageAction.Properties.RunPageOnRec = RunPageOnRec.Value;
                     pageAction.Properties.RunPageView.Key = RunPageViewKey.Value;
                     pageAction.Properties.RunPageView.Order = RunPageViewOrder.Value;
+                    pageAction.Properties.ShortCutKey = ShortcutKey.Value;
+                    pageAction.Properties.Visible = Visible.Value;
                     return pageAction;
 
                 case PageActionBaseType.PageActionSeparator:
@@ -292,6 +301,8 @@ namespace UncommonSense.CBreeze.Automation
                         yield return RunPageOnRec.RuntimeDefinedParameter;
                         yield return RunPageViewKey.RuntimeDefinedParameter;
                         yield return RunPageViewOrder.RuntimeDefinedParameter;
+                        yield return ShortcutKey.RuntimeDefinedParameter;
+                        yield return Visible.RuntimeDefinedParameter;
                         break;
 
                     case PageActionBaseType.PageActionSeparator:
