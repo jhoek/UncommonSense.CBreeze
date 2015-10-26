@@ -8,8 +8,8 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Get, "CBreezePageActionItems")]
-    public class GetCBreezePageActionItems : Cmdlet
+    [Cmdlet(VerbsCommon.Get, "CBreezePageActionContainer")]
+    public class GetCBreezePageActionContainer : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Page Page
@@ -25,9 +25,16 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(Mandatory = true)]
+        public ActionContainerType Type
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
-            WriteObject(Page.GetActionItems(Range));
+            WriteObject(Page.GetPageActionContainer(Range, Type));
         }
     }
 }
