@@ -45,7 +45,6 @@
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="PageActionExtensionMethods.cs" />
     <Compile Include="PageControlExtensionMethods.cs" />
-    <Compile Include="PageExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableRelationExtensionMethods.cs" />
   </ItemGroup>
