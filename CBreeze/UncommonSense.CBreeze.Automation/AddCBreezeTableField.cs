@@ -81,7 +81,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(Mandatory=true)]
         public TableFieldType? Type
         {
             get;
