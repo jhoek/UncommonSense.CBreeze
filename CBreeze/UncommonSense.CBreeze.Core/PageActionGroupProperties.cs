@@ -36,6 +36,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(image);
         }
 
+        // See also: http://www.uncommonsense.nl/zen/?p=29
         public ActionContainerType? ActionContainerType
         {
             get
