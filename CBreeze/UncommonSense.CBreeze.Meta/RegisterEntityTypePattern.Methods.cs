@@ -107,7 +107,7 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateControls()
         {
-            var relatedInformation = Page.GetRelatedInformation(Range);
+            var relatedInformation = Page.GetPageActionContainer(Range, ActionContainerType.RelatedInformation);
             var routingChoices = relatedInformation.GetGroupByCaption(Page, "&Register", Range, Position.FirstWithinContainer);
 
             foreach (var ledgerEntryTable in LedgerEntryTables)

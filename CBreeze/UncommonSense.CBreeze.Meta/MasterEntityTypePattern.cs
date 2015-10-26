@@ -110,7 +110,7 @@ namespace UncommonSense.CBreeze.Meta
 
         protected void AddActionsToPage(Page page)
         {
-            var relatedInfo = page.GetRelatedInformation(Range);
+            var relatedInfo = page.GetPageActionContainer(Range, ActionContainerType.RelatedInformation);
             var routingChoices = relatedInfo.GetGroupByCaption(page, Name, Range, Position.FirstWithinContainer);
 
             if (HasStatisticsPage)

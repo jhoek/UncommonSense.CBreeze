@@ -8,27 +8,10 @@ namespace UncommonSense.CBreeze.Utils
 {
     public static class PageActionExtensionMethods
     {
-        private static PageActionContainer GetRelatedInformation(this Page page)
+        public static PageActionContainer GetPageActionContainer(this Page page, IEnumerable<int> range, ActionContainerType type)
         {
-            return page.Properties.ActionList.OfType<PageActionContainer>().FirstOrDefault(c => c.Properties.ActionContainerType == ActionContainerType.RelatedInformation);
-        }
-
-        public static PageActionContainer GetRelatedInformation(this Page page, IEnumerable<int> range)
-        {
-            var result = GetRelatedInformation(page) ?? page.Properties.ActionList.Insert(0, new PageActionContainer(range.GetNextPageControlID(page), 0));
-            result.Properties.ActionContainerType = ActionContainerType.RelatedInformation;
-            return result;
-        }
-
-        private static PageActionContainer GetActionItems(this Page page)
-        {
-            return page.Properties.ActionList.OfType<PageActionContainer>().FirstOrDefault(c => c.Properties.ActionContainerType == ActionContainerType.ActionItems);
-        }
-
-        public static PageActionContainer GetActionItems(this Page page, IEnumerable<int> range)
-        {
-            var result = GetActionItems(page) ?? page.Properties.ActionList.Add(new PageActionContainer(range.GetNextPageControlID(page), 0));
-            result.Properties.ActionContainerType = ActionContainerType.ActionItems;
+            var result = page.Properties.ActionList.OfType<PageActionContainer>().FirstOrDefault(c => c.Properties.ActionContainerType == type) ?? page.Properties.ActionList.Insert(0, new PageActionContainer(range.GetNextPageControlID(page), 0));
+            result.Properties.ActionContainerType = type;
             return result;
         }
 
