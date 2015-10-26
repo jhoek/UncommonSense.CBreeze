@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var contentArea = Page.GetContentArea(Range);
+            var contentArea = Page.GetPageControlContainer(Range, ContainerType.ContentArea);
 
             switch (ParameterSetName)
             {

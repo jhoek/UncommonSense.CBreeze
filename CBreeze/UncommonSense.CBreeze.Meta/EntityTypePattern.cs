@@ -92,14 +92,14 @@ namespace UncommonSense.CBreeze.Meta
 
         protected virtual FieldPageControl CreateCardPageControl(Page page, string groupCaption, Position groupPosition, Position controlPosition, string sourceExpr)
         {
-            var contentArea = page.GetContentArea(Range);
+            var contentArea = page.GetPageControlContainer(Range, ContainerType.ContentArea);
             var group = contentArea.GetGroupByCaption(groupCaption, Range, groupPosition);
             return group.AddFieldPageControl(Range.GetNextPageControlID(page), controlPosition, sourceExpr);
         }
 
         protected virtual FieldPageControl CreateListPageControl(Page page, Position controlPosition, string sourceExpr)
         {
-            var contentArea = page.GetContentArea(Range);
+            var contentArea = page.GetPageControlContainer(Range, ContainerType.ContentArea);
             var repeater = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
             return repeater.AddFieldPageControl(Range.GetNextPageControlID(page), controlPosition, sourceExpr);
         }

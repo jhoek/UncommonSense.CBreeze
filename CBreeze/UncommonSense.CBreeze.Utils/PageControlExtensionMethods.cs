@@ -14,11 +14,17 @@ namespace UncommonSense.CBreeze.Utils
 
     public static class PageControlExtensionMethods
     {
+        public static ContainerPageControl GetPageControlContainer(this Page page, IEnumerable<int> range, ContainerType type)
+        {
+            var result = page.Controls.OfType<ContainerPageControl>().FirstOrDefault(c => c.Properties.ContainerType == type) ?? page.Controls.Insert(0, new ContainerPageControl(range.GetNextPageControlID(page), 0));
+            result.Properties.ContainerType = type;
+            return result;
+        }
+
         public static IEnumerable<PageControl> GetChildPageControls(this PageControl parent)
         {
             return parent.GetDescendantPageControls().Where(c => c.IndentationLevel == parent.IndentationLevel + 1);
         }
-
 
         public static IEnumerable<PageControl> GetDescendantPageControls(this PageControl parent)
         {

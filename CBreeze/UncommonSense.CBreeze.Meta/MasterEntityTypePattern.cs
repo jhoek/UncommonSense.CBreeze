@@ -97,7 +97,7 @@ namespace UncommonSense.CBreeze.Meta
 
         protected override void CreateControls()
         {
-            var factBoxArea = CardPage.GetFactboxArea(Range);
+            var factBoxArea = CardPage.GetPageControlContainer(Range, ContainerType.FactBoxArea);
             factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
             factBoxArea.AddSystemPartPageControl(Range.GetNextPageControlID(CardPage), Position.LastWithinContainer, SystemPartID.Notes).Hide();            
         }

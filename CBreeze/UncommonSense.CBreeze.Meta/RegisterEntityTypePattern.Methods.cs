@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Meta
             //NoField = noPattern.NoField;
             //NoControls.AddRange(noPattern.NoControls);
 
-            var contentArea = Page.GetContentArea(Range);
+            var contentArea = Page.GetPageControlContainer(Range, ContainerType.ContentArea);
             var repeater = contentArea.GetGroupByType(GroupType.Repeater, Range, Position.FirstWithinContainer);
 
             foreach (var ledgerEntryTable in LedgerEntryTables)
@@ -118,7 +118,7 @@ namespace UncommonSense.CBreeze.Meta
                 //RoutingChoiceActions.Add(ledgerEntryTable, routingChoiceAction);
             }
 
-            var factboxArea = Page.GetFactboxArea(Range);
+            var factboxArea = Page.GetPageControlContainer(Range, ContainerType.FactBoxArea);
             factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.RecordLinks).Hide();
             factboxArea.AddSystemPartPageControl(Range.GetNextPageControlID(Page), Position.LastWithinContainer, SystemPartID.Notes).Hide();
         }
