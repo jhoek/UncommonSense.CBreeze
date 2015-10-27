@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -8,8 +9,8 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Get, "CBreezePageGroup")]
-    public class GetCBreezePageGroup : PSCmdlet
+    [Cmdlet(VerbsCommon.Get, "CBreezePageControlGroup")]
+    public class GetCBreezePageControlGroup : PSCmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Page Page
