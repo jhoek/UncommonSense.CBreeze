@@ -27,6 +27,7 @@ namespace UncommonSense.CBreeze.Automation
             AutoFormatType = new DynamicParameter<Core.AutoFormatType?>("AutoFormatType");
             BlankNumbers = new DynamicParameter<Core.BlankNumbers?>("BlankNumbers");
             BlankZero = new DynamicParameter<bool?>("BlankZero");
+            Caption = new DynamicParameter<string>("Caption");
             CaptionClass = new DynamicParameter<string>("CaptionClass");
             CharAllowed = new DynamicParameter<string>("CharAllowed");
             ChartPartID = new DynamicParameter<string>("ChartPartID", ChartPartWithID, ChartPartWithRange);
@@ -173,6 +174,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> BlankZero
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> Caption
         {
             get;
             set;
@@ -491,6 +498,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 case PageControlType.Container:
                     var containerPageControl = new ContainerPageControl(GetPageControlID(), 0);
+                    containerPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     containerPageControl.Properties.Description = Description;
                     containerPageControl.Properties.Name = Name;
                     containerPageControl.Properties.ContainerType = ContainerType.Value;
@@ -502,6 +510,7 @@ namespace UncommonSense.CBreeze.Automation
 
                 case PageControlType.Group:
                     var groupPageControl = new GroupPageControl(GetPageControlID(), ParentControl.Value.IndentationLevel + 1);
+                    groupPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     groupPageControl.Properties.Description = Description;
                     groupPageControl.Properties.Name = Name;
                     groupPageControl.Properties.Editable = Editable.Value;
@@ -528,6 +537,7 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.AutoFormatType = AutoFormatType.Value;
                     fieldPageControl.Properties.BlankNumbers = BlankNumbers.Value;
                     fieldPageControl.Properties.BlankZero = BlankZero.Value;
+                    fieldPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     fieldPageControl.Properties.CaptionClass = CaptionClass.Value;
                     fieldPageControl.Properties.CharAllowed = CharAllowed.Value;
                     fieldPageControl.Properties.ClosingDates = ClosingDates.Value;
@@ -589,6 +599,7 @@ namespace UncommonSense.CBreeze.Automation
                         partPageControl.Properties.SystemPartID = SystemPartID.Value;
                     }
 
+                    partPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     partPageControl.Properties.Editable = Editable.Value;
                     partPageControl.Properties.Enabled = Enabled.Value;
                     partPageControl.Properties.ProviderID = ProviderID.Value;
@@ -630,12 +641,13 @@ namespace UncommonSense.CBreeze.Automation
                 {
                     case PageControlType.Container:
                         yield return ContainerType.RuntimeDefinedParameter;
+                        yield return Caption.RuntimeDefinedParameter;
                         break;
 
                     case PageControlType.Group:
                         yield return ParentControl.RuntimeDefinedParameter;
                         yield return Position.RuntimeDefinedParameter;
-
+                        yield return Caption.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
                         yield return FreezeColumnID.RuntimeDefinedParameter;
@@ -656,6 +668,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
+                        yield return Caption.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return CharAllowed.RuntimeDefinedParameter;
                         yield return ClosingDates.RuntimeDefinedParameter;
@@ -694,6 +707,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ParentControl.RuntimeDefinedParameter;
                         yield return Position.RuntimeDefinedParameter;
 
+                        yield return Caption.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
                         yield return ChartPartID.RuntimeDefinedParameter;

@@ -39,6 +39,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public string Caption
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
         public SwitchParameter PassThru
         {
             get;
@@ -54,6 +61,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var tableFieldGroup = Table.FieldGroups.Add(new TableFieldGroup(ID, Name));
+            tableFieldGroup.Properties.CaptionML.Set("ENU", Caption);
             tableFieldGroup.Fields.AddRange(FieldNames);
 
             if (PassThru)
