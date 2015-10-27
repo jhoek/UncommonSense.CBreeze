@@ -6,6 +6,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.IO;
 using UncommonSense.CBreeze.Read;
 
 namespace UncommonSense.CBreeze.Automation
@@ -63,53 +64,7 @@ namespace UncommonSense.CBreeze.Automation
                     WriteObject(ApplicationBuilder.FromFile(Path));
                     break;
                 case "FromDatabase":
-                    var tempFileName = System.IO.Path.ChangeExtension(System.IO.Path.GetTempFileName(), "txt");
-                    var logFileName = System.IO.Path.GetTempFileName();
-                    var resultFileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "navcommandresult.txt");
-
-                    var arguments = new Dictionary<string, string>();
-                    arguments.Add("command", "exportobjects");
-                    arguments.Add("file", tempFileName);
-                    arguments.Add("servername", ServerName);
-                    arguments.Add("database", Database);
-                    arguments.Add("logfile", logFileName);
-                    arguments.Add("filter", Filter);
-                    arguments.Add("ntauthentication", "1");
-
-                    var processStartInfo = new ProcessStartInfo();
-                    processStartInfo.FileName = DevClientPath;
-                    processStartInfo.Arguments = string.Join(", ", arguments.Where(k => !string.IsNullOrEmpty(k.Value)).Select(k => string.Format("{0}={1}", k.Key, k.Value)));
-                    processStartInfo.UseShellExecute = false;
-
-                    try
-                    {
-                        Process.Start(processStartInfo).WaitForExit();
-
-                        if (File.Exists(logFileName))
-                        {
-                            throw new ApplicationException(File.ReadAllText(logFileName));
-                        }
-
-                        WriteObject(ApplicationBuilder.FromFile(tempFileName));
-                    }
-                    finally
-                    {
-                        if (File.Exists(tempFileName))
-                        {
-                            File.Delete(tempFileName);
-                        }
-
-                        if (File.Exists(logFileName))
-                        {
-                            File.Delete(logFileName);
-                        }
-
-                        if (File.Exists(resultFileName))
-                        {
-                            File.Delete(resultFileName);
-                        }
-                    }
-
+                    WriteObject(ApplicationExporter.Export(DevClientPath, ServerName, Database, Filter));
                     break;
             }
         }
