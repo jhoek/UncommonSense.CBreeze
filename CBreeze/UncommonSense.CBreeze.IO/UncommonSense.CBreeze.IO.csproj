@@ -45,8 +45,8 @@
   <ItemGroup>
     <Compile Include="ApplicationCompiler.cs" />
     <Compile Include="ApplicationDesigner.cs" />
-    <Compile Include="ApplicationReader.cs" />
-    <Compile Include="ApplicationWriter.cs" />
+    <Compile Include="ApplicationExporter.cs" />
+    <Compile Include="ApplicationImporter.cs" />
     <Compile Include="Arguments.cs" />
     <Compile Include="DevClient.cs" />
     <Compile Include="ObjectRunner.cs" />

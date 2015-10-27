@@ -4,26 +4,27 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Read;
 using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.IO
 {
-    // Reads from Application object, imports into database
-    public static class ApplicationWriter
+    // Reads from database, imports into Application object
+    public static class ApplicationExporter
     {
-        public static void Write(this Application application, string devClient, string serverName, string database)
+        public static Application Export(string devClient, string serverName, string database, string filter)
         {
             var fileName = Path.ChangeExtension(Path.GetTempFileName(), "txt");
 
-            var arguments = new Arguments("importobjects", serverName, database);
+            var arguments = new Arguments("exportobjects", serverName, database);
             arguments.Add("file", fileName);
+            arguments.Add("filter", filter);
 
             try
             {
-                application.Write(fileName);
                 DevClient.Run(devClient, arguments);
+                return ApplicationBuilder.FromFile(fileName);
             }
             finally
             {
