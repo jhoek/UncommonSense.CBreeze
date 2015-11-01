@@ -73,6 +73,8 @@ namespace UncommonSense.CBreeze.Automation
             UseRequestPage = new DynamicParameter<bool?>("UseRequestPage", false);
             UseSystemPrinter = new DynamicParameter<bool?>("UseSystemPrinter", false);
             XmlVersionNo = new DynamicParameter<XmlVersionNo?>("XmlVersionNo", false);
+
+            PassThru = true;
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
