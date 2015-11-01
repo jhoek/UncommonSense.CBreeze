@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
             Description = new DynamicParameter<string>("Description");
             Ellipsis = new DynamicParameter<bool?>("Ellipsis");                 
             Enabled = new DynamicParameter<string>("Enabled");
-            ID = new DynamicParameter<int>("ID", true, 1, int.MaxValue, "ID");
+            ID = new DynamicParameter<int?>("ID", true, 1, int.MaxValue, "ID");
             Image = new DynamicParameter<string>("Image");
             InFooterBar = new DynamicParameter<bool?>("InFooterBar");
             IsHeader = new DynamicParameter<bool?>("IsHeader");
@@ -89,7 +89,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<int> ID
+        protected DynamicParameter<int?> ID
         {
             get;
             set;
@@ -261,8 +261,8 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetPageActionID()
         {
-            if (ID.Value != 0)
-                return ID.Value;
+            if (ID.Value.HasValue)
+                return ID.Value.Value;
 
             var range = Range.Value;
 
