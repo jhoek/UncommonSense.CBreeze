@@ -18,6 +18,7 @@ namespace UncommonSense.CBreeze.Automation
             Description = new DynamicParameter<string>("Description");
             Ellipsis = new DynamicParameter<bool?>("Ellipsis");                 
             Enabled = new DynamicParameter<string>("Enabled");
+            ID = new DynamicParameter<int>("ID", true, 1, int.MaxValue, "ID");
             Image = new DynamicParameter<string>("Image");
             InFooterBar = new DynamicParameter<bool?>("InFooterBar");
             IsHeader = new DynamicParameter<bool?>("IsHeader");
@@ -26,6 +27,7 @@ namespace UncommonSense.CBreeze.Automation
             Promoted = new DynamicParameter<bool?>("Promoted");
             PromotedCategory = new DynamicParameter<Core.PromotedCategory?>("PromotedCategory");
             PromotedIsBig = new DynamicParameter<bool?>("PromotedIsBig");
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, "Range");
             RunObjectType = new DynamicParameter<Core.RunObjectType?>("RunObjectType");
             RunObjectID = new DynamicParameter<int?>("RunObjectID");
             RunPageMode = new DynamicParameter<Core.RunPageMode?>("RunPageMode");
@@ -45,21 +47,6 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(Mandatory = true)]
         public PageActionBaseType? Type
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory=true, ParameterSetName="Range")]
-        public IEnumerable<int> Range
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
         {
             get;
             set;
@@ -97,6 +84,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> Enabled
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int> ID
         {
             get;
             set;
@@ -145,6 +138,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> PromotedIsBig
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<IEnumerable<int>> Range
         {
             get;
             set;
@@ -262,12 +261,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetPageActionID()
         {
-            if (ID != 0)
-                return ID;
+            if (ID.Value != 0)
+                return ID.Value;
 
-            var range = Range;
+            var range = Range.Value;
 
-            if (Range.Contains(Page.ID))
+            if (Range.Value.Contains(Page.ID))
                 range = 1.To(int.MaxValue);
 
             var controlIDs = Page.Controls.Select(c => c.ID);
@@ -280,6 +279,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return ID.RuntimeDefinedParameter;
+                yield return Range.RuntimeDefinedParameter;
+
                 switch (Type.Value)
                 {
                     case PageActionBaseType.PageActionContainer:
