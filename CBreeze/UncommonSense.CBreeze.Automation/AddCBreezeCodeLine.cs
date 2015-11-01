@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(Position = 1)]
         public object[] ArgumentList
         {
             get;
