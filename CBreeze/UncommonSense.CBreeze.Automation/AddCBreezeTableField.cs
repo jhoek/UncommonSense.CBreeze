@@ -881,8 +881,9 @@ namespace UncommonSense.CBreeze.Automation
                     if (AutoCaption)
                         optionTableField.AutoCaption();
 
-                    if (AutoOptionCaption.Value)
-                        optionTableField.AutoOptionCaption();
+                    if (AutoOptionCaption.Value != null)
+                        if (AutoOptionCaption.Value.IsPresent)
+                            optionTableField.AutoOptionCaption();
 
                     return optionTableField;
                 #endregion
