@@ -7,8 +7,8 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeMLValue")]
-    public class AddCBreezeMLValue : Cmdlet
+    [Cmdlet(VerbsCommon.Set, "CBreezeMLValue")]
+    public class SetCBreezeMLValue : Cmdlet
     {
         [Parameter(Mandatory=true,ValueFromPipeline=true)]
         public dynamic InputObject
