@@ -39,13 +39,13 @@ namespace UncommonSense.CBreeze.Automation
             RuntimeDefinedParameter = new RuntimeDefinedParameter(name, typeof(T), attributes);
         }
 
-        public DynamicParameter(string name, int minRange, int maxRange)
-            : this(name, false, minRange, maxRange)
+        public DynamicParameter(string name, int minRange, int maxRange, params string[] parameterSetNames)
+            : this(name, false, minRange, maxRange, parameterSetNames)
         {
         }
 
-        public DynamicParameter(string name, bool mandatory, int minRange, int maxRange)
-            : this(name, mandatory)
+        public DynamicParameter(string name, bool mandatory, int minRange, int maxRange, params string[] parameterSetNames)
+            : this(name, mandatory, parameterSetNames)
         {
             var validateRangeAttribute = new ValidateRangeAttribute(minRange, maxRange);
             RuntimeDefinedParameter.Attributes.Add(validateRangeAttribute);
