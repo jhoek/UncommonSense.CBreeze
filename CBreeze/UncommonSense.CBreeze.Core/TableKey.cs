@@ -26,6 +26,11 @@ namespace UncommonSense.CBreeze.Core
             this.fields.AddRange(fieldNames);
         }
 
+        public override string ToString()
+        {
+            return string.Join(",", Fields.Select(f => f.FieldName));    
+        }
+
         public Boolean? Enabled
         {
             get
