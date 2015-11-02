@@ -61,6 +61,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                if (RuntimeDefinedParameter.Value == null)
+                    return default(T);
+
                 return (T)RuntimeDefinedParameter.Value;
             }
         }
