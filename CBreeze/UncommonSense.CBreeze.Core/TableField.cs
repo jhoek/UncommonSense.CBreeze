@@ -27,7 +27,7 @@ namespace UncommonSense.CBreeze.Core
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2}", Type, ID, Name);
+            return string.Format("{0}@{1}:{2}", Name, ID, Type);
         }
 
 		public abstract TableFieldType Type
