@@ -17,6 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
         [ValidateRange(1, int.MaxValue)]
         public int ID
         {
@@ -24,6 +25,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
         [ValidateNotNullOrEmpty()]
         public string Name
         {
