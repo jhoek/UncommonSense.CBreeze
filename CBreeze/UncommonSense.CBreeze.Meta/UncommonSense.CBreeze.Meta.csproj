@@ -39,10 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DifferentiatorType.cs" />
-    <Compile Include="DocumentHistoryEntityTypePattern.cs" />
     <Compile Include="EntityTypePattern.cs" />
-    <Compile Include="JournalEntityTypePattern.Inputs.cs" />
     <Compile Include="JournalEntityTypePattern.Methods.cs" />
     <Compile Include="JournalEntityTypePattern.Output.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
