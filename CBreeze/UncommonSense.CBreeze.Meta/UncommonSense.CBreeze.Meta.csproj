@@ -45,7 +45,6 @@
     <Compile Include="JournalEntityTypePattern.Inputs.cs" />
     <Compile Include="JournalEntityTypePattern.Methods.cs" />
     <Compile Include="JournalEntityTypePattern.Output.cs" />
-    <Compile Include="MasterEntityTypePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubsidiaryEntityTypePattern.cs" />
   </ItemGroup>
