@@ -215,6 +215,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<AutoFormatTypeProperty>(p => p.Value = propertyValue.ToAutoFormatType()),
                 TypeSwitch.Case<BlankNumbersProperty>(p => p.Value = propertyValue.ToEnum<BlankNumbers>()),
                 TypeSwitch.Case<CalcFormulaProperty>(p => p.SetCalcFormulaProperty(propertyValue)),
+                TypeSwitch.Case<CodeunitSubTypeProperty>(p=>p.Value = propertyValue.ToEnum<CodeunitSubType>()),
                 TypeSwitch.Case<ColumnFilterProperty>(p => p.SetColumnFilterProperty(propertyValue)),
                 TypeSwitch.Case<ContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ContainerType>()),
                 TypeSwitch.Case<ControlListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
