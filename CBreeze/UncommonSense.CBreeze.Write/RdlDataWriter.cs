@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Write
             {
                 foreach (var line in rdlData.Lines)
                 {
-                    writer.InnerWriter.WriteLine(line.Text);
+                    writer.InnerWriter.WriteLine(line);
                 }
 
                 writer.InnerWriter.WriteLine("    END_OF_RDLDATA");

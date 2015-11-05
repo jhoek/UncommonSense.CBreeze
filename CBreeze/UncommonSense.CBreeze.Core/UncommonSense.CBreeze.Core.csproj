@@ -92,7 +92,6 @@
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
     <Compile Include="Code.cs" />
-    <Compile Include="CodeLine.cs" />
     <Compile Include="CodeLines.cs" />
     <Compile Include="CodeParameter.cs" />
     <Compile Include="CodeTableField.cs" />

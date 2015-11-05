@@ -12,10 +12,10 @@ namespace UncommonSense.CBreeze.Write
         {
             foreach (var codeLine in codeLines)
             {
-                if (string.IsNullOrEmpty(codeLine.Text))
+                if (string.IsNullOrEmpty(codeLine))
                     writer.InnerWriter.WriteLine();
                 else
-                    writer.WriteLine(codeLine.Text);
+                    writer.WriteLine(codeLine);
             }
         }
     }
