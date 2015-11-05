@@ -19,6 +19,7 @@ namespace UncommonSense.CBreeze.Automation
             DataCaptionExpr = new DynamicParameter<string>("DataCaptionExpr", false);
             DataCaptionFields = new DynamicParameter<string[]>("DataCaptionFields", false);
             DataPerCompany = new DynamicParameter<bool?>("DataPerCompany", false);
+            DateTime = new DynamicParameter<System.DateTime?>("DateTime");
             DefaultFieldsValidation = new DynamicParameter<bool?>("DefaultFieldsValidation", false);
             DefaultNamespace = new DynamicParameter<string>("DefaultNamespace", false);
             DelayedInsert = new DynamicParameter<bool?>("DelayedInsert", false);
@@ -42,6 +43,7 @@ namespace UncommonSense.CBreeze.Automation
             LinkedObject = new DynamicParameter<bool?>("LinkedObject", false);
             LinksAllowed = new DynamicParameter<bool?>("LinksAllowed", false);
             LookupPageID = new DynamicParameter<int?>("LookupPageID", false, 1, int.MaxValue);
+            Modified = new DynamicParameter<bool>("Modified");
             ModifyAllowed = new DynamicParameter<bool?>("ModifyAllowed", false);
             MultipleNewLines = new DynamicParameter<bool?>("MultipleNewLines", false);
             PageType = new DynamicParameter<Core.PageType?>("PageType", false);
@@ -72,6 +74,7 @@ namespace UncommonSense.CBreeze.Automation
             UseLax = new DynamicParameter<bool?>("UseLax", false);
             UseRequestPage = new DynamicParameter<bool?>("UseRequestPage", false);
             UseSystemPrinter = new DynamicParameter<bool?>("UseSystemPrinter", false);
+            VersionList = new DynamicParameter<string>("VersionList");
             XmlVersionNo = new DynamicParameter<XmlVersionNo?>("XmlVersionNo", false);
 
             PassThru = true;
@@ -109,27 +112,6 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Mandatory = true)]
         [ValidateLength(1, 30)]
         public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool Modified
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string VersionList
         {
             get;
             set;
@@ -180,6 +162,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> DataPerCompany
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<DateTime?> DateTime
         {
             get;
             set;
@@ -318,6 +306,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<int?> LookupPageID
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<bool> Modified
         {
             get;
             set;
@@ -503,6 +497,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<string> VersionList
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<XmlVersionNo?> XmlVersionNo
         {
             get;
@@ -516,9 +516,9 @@ namespace UncommonSense.CBreeze.Automation
                 case ObjectType.Table:
                     var table = Application.Tables.Add(new Table(GetObjectID(), Name));
 
-                    table.ObjectProperties.DateTime = DateTime;
-                    table.ObjectProperties.Modified = Modified;
-                    table.ObjectProperties.VersionList = VersionList;
+                    table.ObjectProperties.DateTime = DateTime.Value;
+                    table.ObjectProperties.Modified = Modified.Value;
+                    table.ObjectProperties.VersionList = VersionList.Value;
 
                     table.Properties.DataCaptionFields.AddRange(DataCaptionFields.Value ?? new string[] { });
                     table.Properties.DataPerCompany = DataPerCompany.Value;
@@ -540,9 +540,9 @@ namespace UncommonSense.CBreeze.Automation
                 case ObjectType.Page:
                     var page = Application.Pages.Add(new Page(GetObjectID(), Name));
 
-                    page.ObjectProperties.DateTime = DateTime;
-                    page.ObjectProperties.Modified = Modified;
-                    page.ObjectProperties.VersionList = VersionList;
+                    page.ObjectProperties.DateTime = DateTime.Value;
+                    page.ObjectProperties.Modified = Modified.Value;
+                    page.ObjectProperties.VersionList = VersionList.Value;
 
                     page.Properties.AutoSplitKey = AutoSplitKey.Value;
                     page.Properties.CardPageID = CardPageID.Value;
@@ -575,9 +575,9 @@ namespace UncommonSense.CBreeze.Automation
                 case ObjectType.Report:
                     var report = Application.Reports.Add(new Report(GetObjectID(), Name));
 
-                    report.ObjectProperties.DateTime = DateTime;
-                    report.ObjectProperties.Modified = Modified;
-                    report.ObjectProperties.VersionList = VersionList;
+                    report.ObjectProperties.DateTime = DateTime.Value;
+                    report.ObjectProperties.Modified = Modified.Value;
+                    report.ObjectProperties.VersionList = VersionList.Value;
 
                     report.Properties.Description = Description.Value;
                     report.Properties.EnableExternalAssemblies = EnableExternalAssemblies.Value;
@@ -603,9 +603,9 @@ namespace UncommonSense.CBreeze.Automation
                 case ObjectType.Codeunit:
                     var codeunit = Application.Codeunits.Add(new Codeunit(GetObjectID(), Name));
 
-                    codeunit.ObjectProperties.DateTime = DateTime;
-                    codeunit.ObjectProperties.Modified = Modified;
-                    codeunit.ObjectProperties.VersionList = VersionList;
+                    codeunit.ObjectProperties.DateTime = DateTime.Value;
+                    codeunit.ObjectProperties.Modified = Modified.Value;
+                    codeunit.ObjectProperties.VersionList = VersionList.Value;
 
                     codeunit.Properties.CFRONTMayUsePermissions = CFrontMayUsePermissions.Value;
                     codeunit.Properties.SingleInstance = SingleInstance.Value;
@@ -621,9 +621,9 @@ namespace UncommonSense.CBreeze.Automation
                 case ObjectType.XmlPort:
                     var xmlPort = Application.XmlPorts.Add(new XmlPort(GetObjectID(), Name));
 
-                    xmlPort.ObjectProperties.DateTime = DateTime;
-                    xmlPort.ObjectProperties.Modified = Modified;
-                    xmlPort.ObjectProperties.VersionList = VersionList;
+                    xmlPort.ObjectProperties.DateTime = DateTime.Value;
+                    xmlPort.ObjectProperties.Modified = Modified.Value;
+                    xmlPort.ObjectProperties.VersionList = VersionList.Value;
 
                     xmlPort.Properties.DefaultFieldsValidation = DefaultFieldsValidation.Value;
                     xmlPort.Properties.DefaultNamespace = DefaultNamespace.Value;
@@ -656,9 +656,9 @@ namespace UncommonSense.CBreeze.Automation
                 case ObjectType.Query:
                     var query = Application.Queries.Add(new Query(GetObjectID(), Name));
 
-                    query.ObjectProperties.DateTime = DateTime;
-                    query.ObjectProperties.Modified = Modified;
-                    query.ObjectProperties.VersionList = VersionList;
+                    query.ObjectProperties.DateTime = DateTime.Value;
+                    query.ObjectProperties.Modified = Modified.Value;
+                    query.ObjectProperties.VersionList = VersionList.Value;
 
                     query.Properties.Description = Description.Value;
                     query.Properties.ReadState = ReadState.Value;
@@ -675,9 +675,9 @@ namespace UncommonSense.CBreeze.Automation
                 case ObjectType.MenuSuite:
                     var menusuite = Application.MenuSuites.Add(new MenuSuite(GetObjectID(), Name));
 
-                    menusuite.ObjectProperties.DateTime = DateTime;
-                    menusuite.ObjectProperties.Modified = Modified;
-                    menusuite.ObjectProperties.VersionList = VersionList;
+                    menusuite.ObjectProperties.DateTime = DateTime.Value;
+                    menusuite.ObjectProperties.Modified = Modified.Value;
+                    menusuite.ObjectProperties.VersionList = VersionList.Value;
 
                     if (PassThru)
                         WriteObject(menusuite);
@@ -721,6 +721,10 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return DateTime.RuntimeDefinedParameter;
+                yield return Modified.RuntimeDefinedParameter;
+                yield return VersionList.RuntimeDefinedParameter;
+
                 switch (Type)
                 {
                     case ObjectType.Table:
