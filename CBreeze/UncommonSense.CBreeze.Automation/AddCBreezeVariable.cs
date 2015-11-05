@@ -14,12 +14,14 @@ namespace UncommonSense.CBreeze.Automation
         public AddCBreezeVariable()
         {
             Dimensions = new DynamicParameter<string>("Dimensions", false);
+            ID = new DynamicParameter<int>("ID", true, 1, int.MaxValue, "ID");
             IncludeInDataset = new DynamicParameter<bool?>("IncludeInDataset", false);
             IntegerSubType = new DynamicParameter<int>("SubType", true, 1, int.MaxValue);
             MandatoryDataLength = new DynamicParameter<int>("DataLength", true, 1, 250);
             OptionalDataLength = new DynamicParameter<int>("DataLength", false, 1, 250);
             OptionString = new DynamicParameter<string>("OptionString", false);
             QuerySecurityFiltering = new DynamicParameter<Core.QuerySecurityFiltering?>("SecurityFiltering", false);
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, "Range");
             RunOnClient = new DynamicParameter<bool?>("RunOnClient", false);
             StringSubType = new DynamicParameter<string>("SubType", true);
             RecordSecurityFiltering = new DynamicParameter<RecordSecurityFiltering?>("SecurityFiltering", false);
@@ -41,21 +43,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "Range")]
-        public IEnumerable<int> Range
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true, Position = 1)]
         public string Name
         {
@@ -71,6 +58,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> Dimensions
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<int> ID
         {
             get;
             set;
@@ -107,6 +100,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<QuerySecurityFiltering?> QuerySecurityFiltering
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<IEnumerable<int>> Range
         {
             get;
             set;
@@ -376,16 +375,19 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetVariableID(PSObject inputObject)
         {
-            if (ID != 0)
-                return ID;
+            if (ID.Value != 0)
+                return ID.Value;
 
-            return Range.Except(inputObject.GetVariableIDs()).Except(inputObject.GetParameterIDs()).First();
+            return Range.Value.Except(inputObject.GetVariableIDs()).Except(inputObject.GetParameterIDs()).First();
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
             {
+                yield return ID.RuntimeDefinedParameter;
+                yield return Range.RuntimeDefinedParameter;
+
                 switch (Type)
                 {
                     case VariableType.Automation:
