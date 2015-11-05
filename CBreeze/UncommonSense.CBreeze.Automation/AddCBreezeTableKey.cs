@@ -90,7 +90,6 @@ namespace UncommonSense.CBreeze.Automation
                 tableKey.Properties.KeyGroups = KeyGroups;
                 tableKey.Properties.MaintainSIFTIndex = MaintainSIFTIndex;
                 tableKey.Properties.MaintainSQLIndex = MaintainSQLIndex;
-                // FIXME: tableKey.Properties.SIFTLevelsToMaintain = ...
                 tableKey.Properties.SQLIndex.AddRange(SQLIndex ?? new string[] { });
                 tableKey.Properties.SumIndexFields.AddRange(SumIndexFields ?? new string[] { });
 
