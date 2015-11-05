@@ -431,11 +431,13 @@ namespace UncommonSense.CBreeze.Read
             currentTableFieldGroup = null;
         }
 
-        public void OnBeginFunction(int functionID, string functionName, bool functionLocal, string functionAttributes)
+        public void OnBeginFunction(int functionID, string functionName, bool functionLocal, string functionType, string handlerFunctions, string transactionModel)
         {
             currentFunction = currentCode.Functions.Add(new Function(functionID, functionName));
             currentFunction.Properties.Local = functionLocal;
-            // FIXME: Process functionAttributes
+            currentFunction.Properties.FunctionType = functionType.ToNullableEnum<FunctionType>();
+            currentFunction.Properties.HandlerFunctions = handlerFunctions;
+            currentFunction.Properties.TransactionModel = transactionModel.ToNullableEnum<TransactionModel>();
         }
 
         public void OnEndFunction()
