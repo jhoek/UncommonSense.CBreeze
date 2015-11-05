@@ -28,6 +28,15 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public void Set(CalcFormulaMethod method, string tableName, string fieldName, bool reverseSign = false, params CalcFormulaTableFilterLine[] tableFilter)
+        {
+            Method = method;
+            TableName = tableName;
+            FieldName = fieldName;
+            ReverseSign = reverseSign;
+            TableFilter.AddRange(tableFilter);
+        }
+
         public String FieldName
         {
             get

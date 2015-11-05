@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalcFormulaExtensionMethods.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="PageActionExtensionMethods.cs" />
     <Compile Include="PageControlExtensionMethods.cs" />
