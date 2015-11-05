@@ -23,6 +23,14 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public  TableRelationLine Set(string tableName, string fieldName = null)
+        {
+            var tableRelationLine = Add(tableName);
+            tableRelationLine.FieldName = fieldName;
+
+            return tableRelationLine;
+        }
+
         public int FindIndex(Predicate<TableRelationLine> match)
         {
             return innerList.FindIndex(match);
