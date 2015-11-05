@@ -55,6 +55,7 @@
     <Compile Include="ActionParameter.cs" />
     <Compile Include="ActionVariable.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="AutoCaptionExtensionMethods.cs" />
     <Compile Include="AutoFormatType.cs" />
     <Compile Include="AutoFormatTypeProperty.cs" />
     <Compile Include="AutomationParameter.cs" />
