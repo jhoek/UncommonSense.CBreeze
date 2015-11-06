@@ -37,6 +37,7 @@ namespace UncommonSense.CBreeze.Automation
             FileName = new DynamicParameter<string>("FileName", false);
             Format = new DynamicParameter<XmlPortFormat?>("Format", false);
             FormatEvaluate = new DynamicParameter<Core.FormatEvaluate?>("FormatEvaluate", false);
+            ID = new DynamicParameter<int>("ID", true, "ID");
             InlineSchema = new DynamicParameter<bool?>("InlineSchema", false);
             InsertAllowed = new DynamicParameter<bool?>("InsertAllowed", false);
             LinkedInTransaction = new DynamicParameter<bool?>("LinkedInTransaction", false);
@@ -54,6 +55,7 @@ namespace UncommonSense.CBreeze.Automation
             PopulateAllFields = new DynamicParameter<bool?>("PopulateAllFields", false);
             PreserveWhitespace = new DynamicParameter<bool?>("PreserveWhitespace", false);
             ProcessingOnly = new DynamicParameter<bool?>("ProcessingOnly", false);
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, 1, int.MaxValue, "Range");
             ReadState = new DynamicParameter<Core.ReadState?>("ReadState", false);
             RecordSeparator = new DynamicParameter<string>("RecordSeparator", false);
             RefreshOnActivate = new DynamicParameter<bool?>("RefreshOnActivate", false);
@@ -89,21 +91,6 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(Mandatory = true)]
         public ObjectType? Type
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "Range")]
-        public IEnumerable<int> Range
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
         {
             get;
             set;
@@ -275,6 +262,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int> ID
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> InlineSchema
         {
             get;
@@ -372,6 +365,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> ProcessingOnly
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<IEnumerable<int>> Range
         {
             get;
             set;
@@ -688,10 +687,10 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetObjectID()
         {
-            if (ID != 0)
-                return ID;
+            if (ID.Value != 0)
+                return ID.Value;
 
-            return Range.Except(GetExistingObjectIDs(Application)).First();
+            return Range.Value.Except(GetExistingObjectIDs(Application)).First();
         }
 
         protected IEnumerable<int> GetExistingObjectIDs(Application application)
@@ -721,6 +720,8 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return ID.RuntimeDefinedParameter;
+                yield return Range.RuntimeDefinedParameter;
                 yield return DateTime.RuntimeDefinedParameter;
                 yield return Modified.RuntimeDefinedParameter;
                 yield return VersionList.RuntimeDefinedParameter;
