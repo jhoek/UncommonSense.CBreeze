@@ -34,14 +34,9 @@ namespace UncommonSense.CBreeze.Utils
             return pageAction.Container.IndexOf(pageAction);
         }
 
-        private static PageActionGroup GetGroupByCaption(this PageActionContainer container, string caption)
-        {
-            return container.GetChildPageActions().OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
-        }
-
         public static PageActionGroup GetGroupByCaption(this PageActionContainer container, Page page, string caption, IEnumerable<int> range, Position position)
         {
-            var pageActionGroup = container.GetGroupByCaption(caption);
+            var pageActionGroup = container.GetChildPageActions().OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
 
             if (pageActionGroup == null)
             {
@@ -78,15 +73,6 @@ namespace UncommonSense.CBreeze.Utils
             childPageAction.Properties.CaptionML.Set("ENU", captionML);
             childPageAction.Properties.Image = image;
             return childPageAction;
-        }
-
-        public static PageAction Promote(this PageAction action, bool promotedIsBig, PromotedCategory promotedCategory)
-        {
-            action.Properties.Promoted = true;
-            action.Properties.PromotedIsBig = promotedIsBig;
-            action.Properties.PromotedCategory = promotedCategory;
-
-            return action;
         }
     }
 }
