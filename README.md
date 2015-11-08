@@ -40,4 +40,5 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
   - Upgrade|TableSynchSetup|CheckProcondition [upgrade codeunit function type]
 
 ## Ideas for future patterns
+- See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
