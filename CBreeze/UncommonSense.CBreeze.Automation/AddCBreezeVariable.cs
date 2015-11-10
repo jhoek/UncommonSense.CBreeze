@@ -26,6 +26,7 @@ namespace UncommonSense.CBreeze.Automation
             StringSubType = new DynamicParameter<string>("SubType", true);
             RecordSecurityFiltering = new DynamicParameter<RecordSecurityFiltering?>("SecurityFiltering", false);
             Temporary = new DynamicParameter<bool?>("Temporary", false);
+            Value = new DynamicParameter<string>("Value", true);
             WithEvents = new DynamicParameter<bool?>("WithEvents", false);
         }
 
@@ -130,6 +131,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<bool?> Temporary
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> Value
         {
             get;
             set;
@@ -346,7 +353,9 @@ namespace UncommonSense.CBreeze.Automation
                     return textVariable;
 
                 case VariableType.TextConstant:
-                    return new TextConstant(id, Name);
+                    var textConstant =  new TextConstant(id, Name);
+                    textConstant.Values.Set("ENU", Value.Value);
+                    return textConstant;
 
                 case VariableType.Time:
                     var timeVariable = new TimeVariable(id, Name);
@@ -460,6 +469,10 @@ namespace UncommonSense.CBreeze.Automation
                     case VariableType.Text:
                         yield return OptionalDataLength.RuntimeDefinedParameter;
                         yield return IncludeInDataset.RuntimeDefinedParameter;
+                        break;
+
+                    case VariableType.TextConstant:
+                        yield return Value.RuntimeDefinedParameter;
                         break;
 
                     case VariableType.XmlPort:
