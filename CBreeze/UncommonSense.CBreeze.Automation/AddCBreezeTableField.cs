@@ -36,6 +36,7 @@ namespace UncommonSense.CBreeze.Automation
             Enabled = new DynamicParameter<bool?>("Enabled");
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass");
+            ID = new DynamicParameter<int>("ID", true, 1, int.MaxValue, "ID");
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue");
             BooleanInitValue = new DynamicParameter<bool?>("InitValue");
             DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue");
@@ -62,6 +63,7 @@ namespace UncommonSense.CBreeze.Automation
             Numeric = new DynamicParameter<bool?>("Numeric");
             OptionString = new DynamicParameter<string>("OptionString");
             Owner = new DynamicParameter<string>("Owner");
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, "Range");
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement");
             SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
             StandardDayTimeUnit = new DynamicParameter<Core.StandardDayTimeUnit?>("StandardDayTimeUnit");
@@ -88,20 +90,20 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName = "Range")]
-        public IEnumerable<int> Range
-        {
-            get;
-            set;
-        }
+        //[Parameter(ParameterSetName = "Range")]
+        //public IEnumerable<int> Range
+        //{
+        //    get;
+        //    set;
+        //}
 
-        [Parameter(ParameterSetName = "No")]
-        [ValidateRange(1, int.MaxValue)]
-        public int No
-        {
-            get;
-            set;
-        }
+        //[Parameter(ParameterSetName = "No")]
+        //[ValidateRange(1, int.MaxValue)]
+        //public int No
+        //{
+        //    get;
+        //    set;
+        //}
 
         [Parameter(Mandatory = true, Position = 0)]
         public string Name
@@ -276,6 +278,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int> ID
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<long?> BigIntegerInitValue
         {
             get;
@@ -427,6 +435,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> Owner
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<IEnumerable<int>> Range
         {
             get;
             set;
@@ -994,12 +1008,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetTableFieldNo()
         {
-            if (No != 0)
-                return No;
+            if (ID.Value != 0)
+                return ID.Value;
 
-            var range = Range;
+            var range = Range.Value;
 
-            if (Range.Contains(Table.ID))
+            if (Range.Value.Contains(Table.ID))
             {
                 switch (PrimaryKeyFieldNoRange.IsPresent)
                 {
@@ -1019,6 +1033,8 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return Range.RuntimeDefinedParameter;
+                yield return ID.RuntimeDefinedParameter;
                 yield return Enabled.RuntimeDefinedParameter;
 
                 switch (Type)
