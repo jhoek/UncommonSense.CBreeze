@@ -13,6 +13,7 @@ namespace UncommonSense.CBreeze.Automation
     {
         public AddCBreezeObject()
         {
+            Application = new DynamicParameter<Core.Application>("Application", true, true);
             AutoSplitKey = new DynamicParameter<bool?>("AutoSplitKey", false);
             CardPageID = new DynamicParameter<string>("CardPageID", false);
             CFrontMayUsePermissions = new DynamicParameter<bool?>("CFrontMayUsePermissions", false);
@@ -82,13 +83,6 @@ namespace UncommonSense.CBreeze.Automation
             PassThru = true;
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Application Application
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true)]
         public ObjectType? Type
         {
@@ -113,6 +107,12 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Application> Application
         {
             get;
             set;
@@ -513,7 +513,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (Type)
             {
                 case ObjectType.Table:
-                    var table = Application.Tables.Add(new Table(GetObjectID(), Name));
+                    var table = Application.Value.Tables.Add(new Table(GetObjectID(), Name));
 
                     table.ObjectProperties.DateTime = DateTime.Value;
                     table.ObjectProperties.Modified = Modified.Value;
@@ -537,7 +537,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Page:
-                    var page = Application.Pages.Add(new Page(GetObjectID(), Name));
+                    var page = Application.Value.Pages.Add(new Page(GetObjectID(), Name));
 
                     page.ObjectProperties.DateTime = DateTime.Value;
                     page.ObjectProperties.Modified = Modified.Value;
@@ -572,7 +572,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Report:
-                    var report = Application.Reports.Add(new Report(GetObjectID(), Name));
+                    var report = Application.Value.Reports.Add(new Report(GetObjectID(), Name));
 
                     report.ObjectProperties.DateTime = DateTime.Value;
                     report.ObjectProperties.Modified = Modified.Value;
@@ -600,7 +600,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Codeunit:
-                    var codeunit = Application.Codeunits.Add(new Codeunit(GetObjectID(), Name));
+                    var codeunit = Application.Value.Codeunits.Add(new Codeunit(GetObjectID(), Name));
 
                     codeunit.ObjectProperties.DateTime = DateTime.Value;
                     codeunit.ObjectProperties.Modified = Modified.Value;
@@ -618,7 +618,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.XmlPort:
-                    var xmlPort = Application.XmlPorts.Add(new XmlPort(GetObjectID(), Name));
+                    var xmlPort = Application.Value.XmlPorts.Add(new XmlPort(GetObjectID(), Name));
 
                     xmlPort.ObjectProperties.DateTime = DateTime.Value;
                     xmlPort.ObjectProperties.Modified = Modified.Value;
@@ -653,7 +653,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Query:
-                    var query = Application.Queries.Add(new Query(GetObjectID(), Name));
+                    var query = Application.Value.Queries.Add(new Query(GetObjectID(), Name));
 
                     query.ObjectProperties.DateTime = DateTime.Value;
                     query.ObjectProperties.Modified = Modified.Value;
@@ -672,7 +672,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.MenuSuite:
-                    var menusuite = Application.MenuSuites.Add(new MenuSuite(GetObjectID(), Name));
+                    var menusuite = Application.Value.MenuSuites.Add(new MenuSuite(GetObjectID(), Name));
 
                     menusuite.ObjectProperties.DateTime = DateTime.Value;
                     menusuite.ObjectProperties.Modified = Modified.Value;
@@ -690,7 +690,7 @@ namespace UncommonSense.CBreeze.Automation
             if (ID.Value != 0)
                 return ID.Value;
 
-            return Range.Value.Except(GetExistingObjectIDs(Application)).First();
+            return Range.Value.Except(GetExistingObjectIDs(Application.Value)).First();
         }
 
         protected IEnumerable<int> GetExistingObjectIDs(Application application)
@@ -720,6 +720,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return Application.RuntimeDefinedParameter;
                 yield return ID.RuntimeDefinedParameter;
                 yield return Range.RuntimeDefinedParameter;
                 yield return DateTime.RuntimeDefinedParameter;
