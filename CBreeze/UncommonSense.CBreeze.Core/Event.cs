@@ -17,76 +17,57 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Event
     {
-        private Int32 sourceID;
-        private String sourceName;
-        private Int32 id;
-        private String name;
-        private CodeLines codeLines = new CodeLines();
-        private Parameters parameters = new Parameters();
-        private Variables variables = new Variables();
-
-        internal Event(Int32 sourceID, String sourceName, Int32 id, String name)
+        public Event(int sourceID, string sourceName, int id, string name)
         {
-            this.id = id;
-            this.name = name;
-            this.sourceID = sourceID;
-            this.sourceName = sourceName;
+            ID = id;
+            Name = name;
+            SourceID = sourceID;
+            SourceName = sourceName;
+            CodeLines = new CodeLines();
+            Parameters = new Parameters();
+            Variables = new Variables();
         }
 
-        public Int32 SourceID
+        public int SourceID
         {
-            get
-            {
-                return this.sourceID;
-            }
+            get;
+            protected set;
         }
 
-        public String SourceName
+        public string SourceName
         {
-            get
-            {
-                return this.sourceName;
-            }
+            get;
+            protected set;
         }
 
-        public Int32 ID
+        public int ID
         {
-            get
-            {
-                return this.id;
-            }
+            get;
+            protected set;
         }
 
-        public String Name
+        public string Name
         {
-            get
-            {
-                return this.name;
-            }
+            get;
+            protected set;
         }
 
         public CodeLines CodeLines
         {
-            get
-            {
-                return this.codeLines;
-            }
+            get;
+            protected set;
         }
 
         public Parameters Parameters
         {
-            get
-            {
-                return this.parameters;
-            }
+            get;
+            protected set;
         }
 
         public Variables Variables
         {
-            get
-            {
-                return this.variables;
-            }
+            get;
+            protected set;
         }
 
     }
