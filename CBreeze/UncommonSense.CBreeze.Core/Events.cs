@@ -11,38 +11,21 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class Events : IEnumerable<Event>
+    public class Events : Collection<Event>
     {
-        private List<Event> innerList = new List<Event>();
-
         internal Events()
         {
         }
 
-        public Event Add(Int32 sourceID, String sourceName, Int32 id, String name)
+        public new Event Add(Event item)
         {
-            Event item = new Event(sourceID, sourceName, id, name);
-            innerList.Add(item);
+            base.Add(item);
             return item;
-        }
-
-        public void RemoveAt(int index)
-        {
-            innerList.RemoveAt(index);
-        }
-
-        public IEnumerator<Event> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
         }
     }
 }

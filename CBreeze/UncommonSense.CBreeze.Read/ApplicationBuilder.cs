@@ -937,7 +937,7 @@ namespace UncommonSense.CBreeze.Read
 
         public void OnBeginEvent(int sourceID, string sourceName, int eventID, string eventName)
         {
-            currentEvent = currentCode.Events.Add(sourceID, sourceName, eventID, eventName);
+            currentEvent = currentCode.Events.Add(new Event(sourceID, sourceName, eventID, eventName));
         }
 
         public void OnEndEvent()
