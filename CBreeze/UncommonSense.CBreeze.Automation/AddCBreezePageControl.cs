@@ -46,6 +46,7 @@ namespace UncommonSense.CBreeze.Automation
             FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
             GroupType = new DynamicParameter<Core.GroupType?>("GroupType");
             HideValue = new DynamicParameter<string>("HideValue");
+            ID = new DynamicParameter<int>("ID", true, 1, int.MaxValue, ChartPartWithID, PagePartWithID, SystemPartWithID, FieldPageControlWithID);
             Importance = new DynamicParameter<Core.Importance?>("Importance");
             IndentationColumnName = new DynamicParameter<string>("IndentationColumnName");
             IndentationControls = new DynamicParameter<string[]>("IndentationControls");
@@ -63,6 +64,7 @@ namespace UncommonSense.CBreeze.Automation
             QuickEntry = new DynamicParameter<string>("QuickEntry");
             SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", SystemPartWithID, SystemPartWithRange);
             ProviderID = new DynamicParameter<int?>("ProviderID");
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, ChartPartWithRange, PagePartWithRange, SystemPartWithRange, FieldPageControlWithRange);
             RowSpan = new DynamicParameter<int?>("RowSpan");
             ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
             ShowCaption = new DynamicParameter<bool?>("ShowCaption");
@@ -94,27 +96,6 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithID)]
         [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithRange)]
         public PageControlType Type
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithRange)]
-        [Parameter(Mandatory = true, ParameterSetName = PagePartWithRange)]
-        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithRange)]
-        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithRange)]
-        public IEnumerable<int> Range
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithID)]
-        [Parameter(Mandatory = true, ParameterSetName = PagePartWithID)]
-        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithID)]
-        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithID)]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
         {
             get;
             set;
@@ -293,6 +274,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<int> ID
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<Importance?> Importance
         {
             get;
@@ -384,6 +371,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> QuickEntry
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<IEnumerable<int>> Range
         {
             get;
             set;
@@ -619,12 +612,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetPageControlID()
         {
-            if (ID != 0)
-                return ID;
+            if (ID.Value != 0)
+                return ID.Value;
 
-            var range = Range;
+            var range = Range.Value;
 
-            if (Range.Contains(Page.ID))
+            if (Range.Value.Contains(Page.ID))
                 range = 1.To(int.MaxValue);
 
             var controlIDs = Page.Controls.Select(c => c.ID);
@@ -637,6 +630,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return ID.RuntimeDefinedParameter;
+                yield return Range.RuntimeDefinedParameter;
+
                 switch (Type)
                 {
                     case PageControlType.Container:
