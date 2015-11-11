@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<ImportanceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<PermissionsProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<ActionListProperty>(p => p.Write(isLastProperty, style, writer)),
-                TypeSwitch.Case<FieldListProperty>(p => WriteSimpleProperty(p.Name, string.Join(",", p.Value.Select(f => f.FieldName)), isLastProperty, writer)),
+                TypeSwitch.Case<FieldListProperty>(p => WriteSimpleProperty(p.Name, string.Join(",", p.Value), isLastProperty, writer)),
                 TypeSwitch.Case<LinkFieldsProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<CalcFormulaProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<TableViewProperty>(p => p.Write(isLastProperty, style, writer)),

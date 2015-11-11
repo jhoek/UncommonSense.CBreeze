@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Core
 
         public override string ToString()
         {
-            return string.Join(",", Fields.Select(f => f.FieldName));    
+            return string.Join(",", Fields);    
         }
 
         public Boolean? Enabled

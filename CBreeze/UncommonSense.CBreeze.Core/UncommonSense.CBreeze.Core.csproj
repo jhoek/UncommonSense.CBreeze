@@ -173,7 +173,6 @@
     <Compile Include="FieldListProperty.cs" />
     <Compile Include="FieldPageControl.cs" />
     <Compile Include="FieldPageControlProperties.cs" />
-    <Compile Include="FieldReference.cs" />
     <Compile Include="FieldRefParameter.cs" />
     <Compile Include="FieldRefVariable.cs" />
     <Compile Include="FileParameter.cs" />

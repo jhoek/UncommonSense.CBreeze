@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Write
     {
         public static void Write(this TableFieldGroup fieldGroup, CSideWriter writer)
         {
-            var fields = string.Join(",", fieldGroup.Fields.Select(f=>f.FieldName));
+            var fields = string.Join(",", fieldGroup.Fields);
             var fieldsWidth = Math.Max(fields.Length, 40);
 
             writer.Write("{ ");

@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Write
     {
         public static void Write(this FieldList fieldList, CSideWriter writer)
         {
-            writer.Write(string.Join(",", fieldList.Select(f=>f.FieldName)).PadRight(40));
+            writer.Write(string.Join(",", fieldList).PadRight(40));
         }
     }
 }
