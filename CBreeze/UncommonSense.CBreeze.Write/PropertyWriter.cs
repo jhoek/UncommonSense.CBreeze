@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<XmlPortEncodingProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
                 TypeSwitch.Case<XmlVersionNoProperty>(p => WriteSimpleProperty("XMLVersionNo", p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
                 TypeSwitch.Case<XmlPortFormatProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
-                TypeSwitch.Case<ControlListProperty>(p => WriteSimpleProperty(p.Name, string.Join(",", p.Value.Select(c => c.ControlName)), isLastProperty, writer)),
+                TypeSwitch.Case<ControlListProperty>(p => WriteSimpleProperty(p.Name, string.Join(",", p.Value), isLastProperty, writer)),
                 TypeSwitch.Case<RunObjectLinkProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<StyleProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<PromotedCategoryProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),

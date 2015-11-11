@@ -117,7 +117,6 @@
     <Compile Include="ContainerTypeProperty.cs" />
     <Compile Include="ControlList.cs" />
     <Compile Include="ControlListProperty.cs" />
-    <Compile Include="ControlReference.cs" />
     <Compile Include="ExtendedTableFilterType.cs" />
     <Compile Include="DataItemLinkType.cs" />
     <Compile Include="DataItemLinkTypeProperty.cs" />
