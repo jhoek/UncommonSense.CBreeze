@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Core
 		{
 			get
 			{
-				return PageActionBaseType.PageAction;
+				return PageActionBaseType.Action;
 			}
 		}
 

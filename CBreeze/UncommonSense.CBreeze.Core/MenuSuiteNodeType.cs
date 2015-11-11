@@ -16,11 +16,11 @@ namespace UncommonSense.CBreeze.Core
 {
     public enum MenuSuiteNodeType
     {
-        DeltaNode,
-        GroupNode,
-        ItemNode,
-        MenuNode,
-        RootNode,
+        Delta,
+        MenuGroup,
+        MenuItem,
+        Menu,
+        Root,
     }
 
 }

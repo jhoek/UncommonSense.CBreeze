@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Core
 		{
 			get
 			{
-				return MenuSuiteNodeType.DeltaNode;
+				return MenuSuiteNodeType.Delta;
 			}
 		}
 

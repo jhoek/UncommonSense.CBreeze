@@ -209,14 +209,14 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (Type.Value)
             {
-                case PageActionBaseType.PageActionContainer:
+                case PageActionBaseType.ActionContainer:
                     var pageActionContainer = new PageActionContainer(GetPageActionID(), 0);
                     pageActionContainer.Properties.ActionContainerType = ContainerType.Value;
                     pageActionContainer.Properties.Description = Description.Value;
                     pageActionContainer.Properties.Name = Name.Value;
                     return pageActionContainer;
 
-                case PageActionBaseType.PageActionGroup:
+                case PageActionBaseType.ActionGroup:
                     var pageActionGroup = new PageActionGroup(GetPageActionID(), ParentAction.Value.IndentationLevel + 1);
                     pageActionGroup.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionGroup.Properties.Description = Description.Value;
@@ -226,7 +226,7 @@ namespace UncommonSense.CBreeze.Automation
                     pageActionGroup.Properties.Visible = Visible.Value;
                     return pageActionGroup;
 
-                case PageActionBaseType.PageAction:
+                case PageActionBaseType.Action:
                     var pageAction = new PageAction(GetPageActionID(), ParentAction.Value.IndentationLevel + 1);
                     pageAction.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageAction.Properties.Description = Description.Value;
@@ -248,7 +248,7 @@ namespace UncommonSense.CBreeze.Automation
                     pageAction.Properties.Visible = Visible.Value;
                     return pageAction;
 
-                case PageActionBaseType.PageActionSeparator:
+                case PageActionBaseType.Separator:
                     var pageActionSeparator = new PageActionSeparator(GetPageActionID(), ParentAction.Value.IndentationLevel + 1);
                     pageActionSeparator.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionSeparator.Properties.IsHeader = IsHeader.Value;
@@ -284,13 +284,13 @@ namespace UncommonSense.CBreeze.Automation
 
                 switch (Type.Value)
                 {
-                    case PageActionBaseType.PageActionContainer:
+                    case PageActionBaseType.ActionContainer:
                         yield return ContainerType.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return Name.RuntimeDefinedParameter;
                         break;
 
-                    case PageActionBaseType.PageActionGroup:
+                    case PageActionBaseType.ActionGroup:
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
@@ -300,7 +300,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Visible.RuntimeDefinedParameter;
                         break;
 
-                    case PageActionBaseType.PageAction:
+                    case PageActionBaseType.Action:
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return Ellipsis.RuntimeDefinedParameter;
@@ -322,7 +322,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Visible.RuntimeDefinedParameter;
                         break;
 
-                    case PageActionBaseType.PageActionSeparator:
+                    case PageActionBaseType.Separator:
                         yield return Caption.RuntimeDefinedParameter;
                         yield return IsHeader.RuntimeDefinedParameter;
                         yield return ParentAction.RuntimeDefinedParameter;

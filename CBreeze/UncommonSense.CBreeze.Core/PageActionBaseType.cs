@@ -16,10 +16,10 @@ namespace UncommonSense.CBreeze.Core
 {
     public enum PageActionBaseType
     {
-        PageAction,
-        PageActionContainer,
-        PageActionGroup,
-        PageActionSeparator,
+        Action,
+        ActionContainer,
+        ActionGroup,
+        Separator,
     }
 
 }
