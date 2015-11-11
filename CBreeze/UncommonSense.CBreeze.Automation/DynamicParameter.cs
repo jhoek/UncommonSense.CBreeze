@@ -20,6 +20,11 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         public DynamicParameter(string name, bool mandatory, params string[] parameterSetNames)
+            : this(name, mandatory, false, parameterSetNames)
+        {
+        }
+
+        public DynamicParameter(string name, bool mandatory, bool valueFromPipeline, params string[] parameterSetNames)
         {
             var attributes = new Collection<Attribute>();
 
@@ -32,6 +37,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var parameterAttribute = new ParameterAttribute();
                 parameterAttribute.Mandatory = mandatory;
+                parameterAttribute.ValueFromPipeline = valueFromPipeline;
                 parameterAttribute.ParameterSetName = parameterSetName;
                 attributes.Add(parameterAttribute);
             }
