@@ -17,6 +17,14 @@
 - ...
 
 ## Design Decisions
+### Supporting multiple NAV versions from the same codebase
+- Conditional compilation symbols for each NAV version;
+- If `NAV2016` is set, also set `NAV2015`; if `NAV2015` is set, also set `NAV2013R2` etc.;
+- NAV 2013 is our starting point; no conditional compilation symbol is required for NAV 2013;
+- Features introduced in e.g. NAV 2015 can test for `#if NAV2015`;
+- Features declared obsolete in e.g. NAV 2015 can test for `#if !NAV2015`
+- Features introduced in e.g. NAV 2013R2 and declared obsolete in NAV 2015 should test for `#if NAV2013R2 && !NAV2015`: in NAV 2013, `NAV2013R2` is still false, in NAV 2013R2, `NAV2013R2` is true *and* `NAV2015` is not true yet (meaning `!NAV2015` evaluates to true), and in NAV 2015, `NAV2015` is true (meaning `!NAV2015` evaluates to false).  
+
 ### Keep UncommonSense.CBreeze.Core lean and mean
 Any cleverness like auto-captioning, auto-objectproperties or even auto-assigning (U)IDs (see also below) would unnecessarily complexify UncommonSense.CBreeze.Core, and could always be implemented later as extension methods.
 ### Auto-assigned (U)IDs
