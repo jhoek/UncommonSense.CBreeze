@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Parse
 
 		public void Parse(string fileName)
 		{
-			Parse(File.ReadAllLines(fileName, Encoding.GetEncoding("ibm850")));
+			Parse(File.ReadLines(fileName, Encoding.GetEncoding("ibm850")));
 		}
 
 		public void Parse(IEnumerable<string> source)
