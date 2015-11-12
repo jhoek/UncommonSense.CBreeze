@@ -58,6 +58,7 @@ namespace UncommonSense.CBreeze.Automation
             MultiLine = new DynamicParameter<bool?>("MultiLine");
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
+            Page = new DynamicParameter<Core.Page>("Page", true, true);
             PagePartID = new DynamicParameter<int?>("PagePartID", PagePartWithID, PagePartWithRange);
             ParentControl = new DynamicParameter<PageControl>("ParentControl", true);
             Position = new DynamicParameter<Position?>("Position");
@@ -80,12 +81,12 @@ namespace UncommonSense.CBreeze.Automation
             Width = new DynamicParameter<int?>("Width");
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Page Page
-        {
-            get;
-            set;
-        }
+        //[Parameter(Mandatory = true, ValueFromPipeline = true)]
+        //public Page Page
+        //{
+        //    get;
+        //    set;
+        //}
 
         [Parameter(Mandatory = true, ParameterSetName = ChartPartWithRange)]
         [Parameter(Mandatory = true, ParameterSetName = PagePartWithRange)]
@@ -346,6 +347,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<Page> Page
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<int?> PagePartID
         {
             get;
@@ -474,7 +481,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (Type)
             {
                 case PageControlType.Container:
-                    Page.Controls.Add(pageControl);
+                    Page.Value.Controls.Add(pageControl);
                     break;
                 default:
                     ParentControl.Value.AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
@@ -617,11 +624,11 @@ namespace UncommonSense.CBreeze.Automation
 
             var range = Range.Value;
 
-            if (Range.Value.Contains(Page.ID))
+            if (Range.Value.Contains(Page.Value.ID))
                 range = 1.To(int.MaxValue);
 
-            var controlIDs = Page.Controls.Select(c => c.ID);
-            var actionIDs = Page.Properties.ActionList.Select(a => a.ID);
+            var controlIDs = Page.Value.Controls.Select(c => c.ID);
+            var actionIDs = Page.Value.Properties.ActionList.Select(a => a.ID);
 
             return range.Except(controlIDs).Except(actionIDs).First();
         }
@@ -630,6 +637,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
+                yield return Page.RuntimeDefinedParameter;
                 yield return ID.RuntimeDefinedParameter;
                 yield return Range.RuntimeDefinedParameter;
 
