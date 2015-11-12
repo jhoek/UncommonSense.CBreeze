@@ -17,12 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class XmlPortVariable : Variable
     {
-        private String dimensions;
-        private Int32 subType;
-
-        public XmlPortVariable(Int32 id, String name, Int32 subType) : base(id, name)
+        public XmlPortVariable(int id, String name, Int32 subType)
+            : base(id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override VariableType Type
@@ -33,25 +31,16 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
-        public Int32 SubType
+        public int SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
-
     }
 }

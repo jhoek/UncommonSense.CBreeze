@@ -17,11 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class AutomationParameter : Parameter
     {
-        private String subType;
-
-        public AutomationParameter(Boolean var, Int32 id, String name, String subType) : base(var, id, name)
+        public AutomationParameter(bool var, int id, string name, string subType)
+            : base(var, id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override ParameterType Type
@@ -32,12 +31,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String SubType
+        public string SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
 
     }

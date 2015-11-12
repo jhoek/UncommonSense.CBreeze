@@ -17,15 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class CalcFormula
     {
-        private String fieldName;
-        private CalcFormulaMethod? method;
-        private Boolean reverseSign;
-        private CalcFormulaTableFilter tableFilter = new CalcFormulaTableFilter();
-        private String tableName;
-
         // Ctor made public to allow CalcFormulaProperty to new up an instance
         public CalcFormula()
         {
+            TableFilter = new CalcFormulaTableFilter();
         }
 
         public void Set(CalcFormulaMethod method, string tableName, string fieldName, bool reverseSign = false, params CalcFormulaTableFilterLine[] tableFilter)
@@ -37,60 +32,34 @@ namespace UncommonSense.CBreeze.Core
             TableFilter.AddRange(tableFilter);
         }
 
-        public String FieldName
+        public string FieldName
         {
-            get
-            {
-                return this.fieldName;
-            }
-            set
-            {
-                this.fieldName = value;
-            }
+            get;
+            set;
         }
 
         public CalcFormulaMethod? Method
         {
-            get
-            {
-                return this.method;
-            }
-            set
-            {
-                this.method = value;
-            }
+            get;
+            set;
         }
 
         public Boolean ReverseSign
         {
-            get
-            {
-                return this.reverseSign;
-            }
-            set
-            {
-                this.reverseSign = value;
-            }
+            get;
+            set;
         }
 
         public CalcFormulaTableFilter TableFilter
         {
-            get
-            {
-                return this.tableFilter;
-            }
+            get;
+            protected set;
         }
 
         public String TableName
         {
-            get
-            {
-                return this.tableName;
-            }
-            set
-            {
-                this.tableName = value;
-            }
+            get;
+            set;
         }
 
     }

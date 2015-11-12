@@ -17,68 +17,57 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Application
     {
-        private Tables tables = new Tables();
-        private Pages pages = new Pages();
-        private Reports reports = new Reports();
-        private XmlPorts xmlPorts = new XmlPorts();
-        private Codeunits codeunits = new Codeunits();
-        private Queries queries = new Queries();
-        private MenuSuites menuSuites = new MenuSuites();
+        public Application()
+        {
+            Tables = new Tables();
+            Pages = new Pages();
+            Reports = new Reports();
+            XmlPorts = new XmlPorts();
+            Codeunits = new Codeunits();
+            Queries = new Queries();
+            MenuSuites = new MenuSuites();
+        }
 
         public Tables Tables
         {
-            get
-            {
-                return this.tables;
-            }
+            get;
+            protected set;
         }
 
         public Pages Pages
         {
-            get
-            {
-                return this.pages;
-            }
+            get;
+            protected set;
         }
 
         public Reports Reports
         {
-            get
-            {
-                return this.reports;
-            }
+            get;
+            protected set;
         }
 
         public XmlPorts XmlPorts
         {
-            get
-            {
-                return this.xmlPorts;
-            }
+            get;
+            protected set;
         }
 
         public Codeunits Codeunits
         {
-            get
-            {
-                return this.codeunits;
-            }
+            get;
+            protected set;
         }
 
         public Queries Queries
         {
-            get
-            {
-                return this.queries;
-            }
+            get;
+            protected set;
         }
 
         public MenuSuites MenuSuites
         {
-            get
-            {
-                return this.menuSuites;
-            }
+            get;
+            protected set;
         }
 
     }

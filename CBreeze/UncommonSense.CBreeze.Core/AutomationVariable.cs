@@ -17,13 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class AutomationVariable : Variable
     {
-        private String dimensions;
-        private String subType;
-        private Boolean? withEvents;
-
-        public AutomationVariable(Int32 id, String name, String subType) : base(id, name)
+        public AutomationVariable(int id, string name, string subType)
+            : base(id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override VariableType Type
@@ -34,37 +31,22 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
-        public String SubType
+        public string SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
 
-        public Boolean? WithEvents
+        public bool? WithEvents
         {
-            get
-            {
-                return this.withEvents;
-            }
-            set
-            {
-                this.withEvents = value;
-            }
+            get;
+            set;
         }
-
     }
 }
