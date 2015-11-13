@@ -31,9 +31,9 @@ namespace UncommonSense.CBreeze.Core
 
         internal XmlPortTextElementProperties()
         {
-            innerList.Add(dataType);
             innerList.Add(variableName);
             innerList.Add(textType);
+            innerList.Add(dataType);
             innerList.Add(minOccurs);
             innerList.Add(maxOccurs);
             innerList.Add(onAfterAssignVariable);
