@@ -25,6 +25,9 @@ namespace UncommonSense.CBreeze.Core
         private ScopedTriggerProperty onAfterAssignField = new ScopedTriggerProperty("OnAfterAssignField");
         private ScopedTriggerProperty onBeforePassField = new ScopedTriggerProperty("OnBeforePassField");
         private SourceFieldProperty sourceField = new SourceFieldProperty("SourceField");
+#if NAV2013R2
+        private NullableBooleanProperty unbound = new NullableBooleanProperty("Unbound");
+#endif
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
         internal XmlPortFieldElementProperties()
@@ -37,6 +40,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(maxOccurs);
             innerList.Add(onAfterAssignField);
             innerList.Add(onBeforePassField);
+#if NAV2013R2
+            innerList.Add(unbound);
+#endif
             innerList.Add(width);
         }
 
@@ -123,6 +129,20 @@ namespace UncommonSense.CBreeze.Core
                 return this.sourceField.Value;
             }
         }
+
+#if NAV2013R2
+        public bool? Unbound
+        {
+            get
+            {
+                return this.unbound.Value;
+            }
+            set
+            {
+                this.unbound.Value = value;
+            }
+        }
+#endif
 
         public System.Int32? Width
         {

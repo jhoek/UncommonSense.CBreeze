@@ -23,6 +23,9 @@ namespace UncommonSense.CBreeze.Core
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
         private ScopedTriggerProperty onBeforePassVariable = new ScopedTriggerProperty("OnBeforePassVariable");
         private TextTypeProperty textType = new TextTypeProperty("TextType");
+#if NAV2013R2
+        private NullableBooleanProperty unbound = new NullableBooleanProperty("Unbound");
+#endif
         private StringProperty variableName = new StringProperty("VariableName");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
@@ -35,6 +38,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(maxOccurs);
             innerList.Add(onAfterAssignVariable);
             innerList.Add(onBeforePassVariable);
+#if NAV2013R2
+            innerList.Add(unbound);
+#endif
             innerList.Add(width);
         }
 
@@ -101,6 +107,20 @@ namespace UncommonSense.CBreeze.Core
                 this.textType.Value = value;
             }
         }
+
+#if NAV2013R2
+        public bool? Unbound
+        {
+            get
+            {
+                return this.unbound.Value;
+            }
+            set
+            {
+                this.unbound.Value = value;
+            }
+        }
+#endif
 
         public System.String VariableName
         {
