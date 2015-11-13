@@ -26,6 +26,10 @@
 - Features introduced in e.g. NAV 2013R2 and declared obsolete in NAV 2015 should test for `#if NAV2013R2 && !NAV2015`: in NAV 2013, `NAV2013R2` is still false, in NAV 2013R2, `NAV2013R2` is true *and* `NAV2015` is not true yet (meaning `!NAV2015` evaluates to true), and in NAV 2015, `NAV2015` is true (meaning `!NAV2015` evaluates to false).
 Sample codebase, build script and test script here: https://gist.github.com/jhoek/18bca9bddc5d05c904c6.
 
+Between NAV 2013 and NAV 2013 R2, the KeyGroups property was removed from table keys. In other words, the NAV 2013 R2 developer UI no longer offers an option to set the KeyGroups for a table key. Importing a text file, created in an older version of NAV, that still contains key groups will not change this, but behind the scenes, the key groups are imported and stored as before. Exporting the containing table from NAV 2013 R2 results in a text file that is byte-by-byte identical with the original file.
+
+In other words: the ability to declare properties obsolete may not be as important as it first seems. The C/Breeze Core library should still expose the obsolete property, the parser should still report it, the application builder should still set it, and the writer should still write it. It seems that conditional compilation will be primarily important for *introducing*, not for removing features.
+
 ### Keep UncommonSense.CBreeze.Core lean and mean
 Any cleverness like auto-captioning, auto-objectproperties or even auto-assigning (U)IDs (see also below) would unnecessarily complexify UncommonSense.CBreeze.Core, and could always be implemented later as extension methods.
 ### Auto-assigned (U)IDs
