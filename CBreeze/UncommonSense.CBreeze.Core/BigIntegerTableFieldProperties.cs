@@ -59,6 +59,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(extendedDatatype);
             innerList.Add(width);
             innerList.Add(@volatile);
+            // AccessByPermission goes here
             innerList.Add(captionML);
             innerList.Add(minValue);
             innerList.Add(maxValue);

@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessByPermission.cs" />
+    <Compile Include="AccessByPermissionObjectType.cs" />
+    <Compile Include="AccessByPermissionProperty.cs" />
     <Compile Include="ActionContainerType.cs" />
     <Compile Include="ActionContainerTypeProperty.cs" />
     <Compile Include="ActionList.cs" />
