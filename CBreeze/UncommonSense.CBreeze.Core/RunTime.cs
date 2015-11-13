@@ -837,6 +837,27 @@ namespace UncommonSense.CBreeze.Core
             public const string TestFile = "TestFile";
             public const string TestReport = "TestReport";
             public const string Text = "Text";
+#if NAV2013R2
+            public const string TileBlue = "TileBlue";
+            public const string TileCurrency = "TileCurrency";
+            public const string TileCyan = "TileCyan";
+            public const string TileForestGreen = "TileForestGreen";
+            public const string TileGreen = "TileGreen";
+            public const string TileHelp = "TileHelp";
+            public const string TileLemon = "TileLemon";
+            public const string TileLightBlue = "TileLightBlue";
+            public const string TileNewGreen = "TileNewGreen";
+            public const string TileOrange = "TileOrange";
+            public const string TilePeople = "TilePeople";
+            public const string TilePink = "TilePink";
+            public const string TileRed = "TileRed";
+            public const string TileReport = "TileReport";
+            public const string TileSettings = "TileSettings";
+            public const string TileTeal = "TileTeal";
+            public const string TileVideo = "TileVideo";
+            public const string TileViolet = "TileViolet";
+            public const string TileYellow = "TileYellow";
+#endif
             public const string Timeline = "Timeline";
             public const string Timesheet = "Timesheet";
             public const string ToggleBreakpoint = "ToggleBreakpoint";
