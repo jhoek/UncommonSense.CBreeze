@@ -264,6 +264,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<TableReferenceProperty>(p => p.Value = propertyValue.ToTableReference()),
                 TypeSwitch.Case<TableRelationLinesProperty>(p => p.SetTableRelationProperty(propertyValue)),
                 TypeSwitch.Case<TableViewProperty>(p => p.SetTableViewProperty(propertyValue)),
+                TypeSwitch.Case<TextEncodingProperty>(p=> p.Value = propertyValue.ToEnum<TextEncoding>()),
                 TypeSwitch.Case<TextTypeProperty>(p => p.Value = propertyValue.ToEnum<TextType>()),
                 TypeSwitch.Case<TotalsMethodProperty>(p => p.Value = propertyValue.ToEnum<TotalsMethod>()),
                 TypeSwitch.Case<TransactionTypeProperty>(p => p.Value = propertyValue.ToEnum<TransactionType>()),
