@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BigIntegerTableField : TableField
     {
-        private BigIntegerTableFieldProperties properties = new BigIntegerTableFieldProperties();
-
-        public BigIntegerTableField(Int32 no, String name) : base(no, name)
+        public BigIntegerTableField(Int32 no, String name)
+            : base(no, name)
         {
+            Properties = new BigIntegerTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public BigIntegerTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

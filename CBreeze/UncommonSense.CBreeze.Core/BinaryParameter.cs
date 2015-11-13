@@ -17,11 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BinaryParameter : Parameter
     {
-        private Int32 dataLength;
-
-        public BinaryParameter(Boolean var, Int32 id, String name, Int32 dataLength = 100) : base(var, id, name)
+        public BinaryParameter(Boolean var, Int32 id, String name, Int32 dataLength = 100)
+            : base(var, id, name)
         {
-            this.dataLength = dataLength;
+            DataLength = dataLength;
         }
 
         public override ParameterType Type
@@ -34,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public Int32 DataLength
         {
-            get
-            {
-                return this.dataLength;
-            }
+            get;
+            protected set;
         }
 
     }

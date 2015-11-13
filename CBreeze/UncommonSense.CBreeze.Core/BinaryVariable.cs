@@ -17,12 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BinaryVariable : Variable
     {
-        private Int32 dataLength;
-        private String dimensions;
-
-        public BinaryVariable(Int32 id, String name, Int32 dataLength = 100) : base(id, name)
+        public BinaryVariable(int id, string name, int dataLength = 100)
+            : base(id, name)
         {
-            this.dataLength = dataLength;
+            DataLength = dataLength;
         }
 
         public override VariableType Type
@@ -33,24 +31,16 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 DataLength
+        public int DataLength
         {
-            get
-            {
-                return this.dataLength;
-            }
+            get;
+            protected set;
         }
 
-        public String Dimensions
+        public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
     }

@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BlobTableField : TableField
     {
-        private BlobTableFieldProperties properties = new BlobTableFieldProperties();
-
-        public BlobTableField(Int32 no, String name) : base(no, name)
+        public BlobTableField(Int32 no, String name)
+            : base(no, name)
         {
+            Properties = new BlobTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public BlobTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

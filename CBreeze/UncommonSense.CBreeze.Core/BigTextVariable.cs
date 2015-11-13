@@ -17,9 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BigTextVariable : Variable
     {
-        private String dimensions;
-
-        public BigTextVariable(Int32 id, String name) : base(id, name)
+        public BigTextVariable(Int32 id, String name)
+            : base(id, name)
         {
         }
 
@@ -33,14 +32,8 @@ namespace UncommonSense.CBreeze.Core
 
         public String Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
     }

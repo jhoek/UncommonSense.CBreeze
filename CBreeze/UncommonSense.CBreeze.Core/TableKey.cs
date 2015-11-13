@@ -17,46 +17,35 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableKey
     {
-        private Boolean? enabled;
-        private FieldList fields = new FieldList();
-        private TableKeyProperties properties = new TableKeyProperties();
-
         public TableKey(params string[] fieldNames)
         {
-            this.fields.AddRange(fieldNames);
+            Fields = new FieldList();
+            Properties = new TableKeyProperties();
+
+            Fields.AddRange(fieldNames);
         }
 
         public override string ToString()
         {
-            return string.Join(",", Fields);    
+            return string.Join(",", Fields);
         }
 
-        public Boolean? Enabled
+        public bool? Enabled
         {
-            get
-            {
-                return this.enabled;
-            }
-            set
-            {
-                this.enabled = value;
-            }
+            get;
+            set;
         }
 
         public FieldList Fields
         {
-            get
-            {
-                return this.fields;
-            }
+            get;
+            protected set;
         }
 
         public TableKeyProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
     }

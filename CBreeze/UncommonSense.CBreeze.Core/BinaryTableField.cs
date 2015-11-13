@@ -17,12 +17,11 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BinaryTableField : TableField
     {
-        private Int32 dataLength;
-        private BinaryTableFieldProperties properties = new BinaryTableFieldProperties();
-
-        public BinaryTableField(Int32 no, String name, Int32 dataLength = 4) : base(no, name)
+        public BinaryTableField(int no, string name, int dataLength = 4)
+            : base(no, name)
         {
-            this.dataLength = dataLength;
+            DataLength = dataLength;
+            Properties = new BinaryTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,20 +32,16 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 DataLength
+        public int DataLength
         {
-            get
-            {
-                return this.dataLength;
-            }
+            get;
+            protected set;
         }
 
         public BinaryTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties
