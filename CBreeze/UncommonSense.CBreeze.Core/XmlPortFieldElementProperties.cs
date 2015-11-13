@@ -38,11 +38,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(sourceField);
             innerList.Add(minOccurs);
             innerList.Add(maxOccurs);
-            innerList.Add(onAfterAssignField);
-            innerList.Add(onBeforePassField);
 #if NAV2013R2
             innerList.Add(unbound);
 #endif
+            innerList.Add(onAfterAssignField);
+            innerList.Add(onBeforePassField);
             innerList.Add(width);
         }
 

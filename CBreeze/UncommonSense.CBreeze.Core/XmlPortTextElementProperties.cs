@@ -36,11 +36,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataType);
             innerList.Add(minOccurs);
             innerList.Add(maxOccurs);
-            innerList.Add(onAfterAssignVariable);
-            innerList.Add(onBeforePassVariable);
 #if NAV2013R2
             innerList.Add(unbound);
 #endif
+            innerList.Add(onAfterAssignVariable);
+            innerList.Add(onBeforePassVariable);
             innerList.Add(width);
         }
 
