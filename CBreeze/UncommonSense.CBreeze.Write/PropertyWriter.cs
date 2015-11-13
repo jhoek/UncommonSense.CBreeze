@@ -571,16 +571,27 @@ namespace UncommonSense.CBreeze.Write
             foreach (var line in property.Value)
             {
                 var isLastLine = (line == property.Value.Last());
+                writer.Write("{0}={1}({2})", line.FieldName, line.Type.Value.AsString(), line.Value);
 
-                switch (isLastProperty)
+                switch (isLastLine)
                 {
                     case true:
-                        writer.Write("{0}={1}({2}) ", line.FieldName, line.Type.Value.AsString(), line.Value);
+                        if (isLastProperty)
+                        {
+                            writer.Write(" ");
+                        }
+                        else
+                        {
+                            writer.WriteLine(";");
+                        }
+
                         break;
+
                     case false:
-                        writer.WriteLine("{0}={1}({2}){3}", line.FieldName, line.Type.Value.AsString(), line.Value, isLastLine ? ";" : ",");
+                        writer.WriteLine(",");
                         break;
                 }
+
             }
 
             writer.Unindent();
