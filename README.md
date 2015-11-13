@@ -56,3 +56,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
 - Make parser faster by doing more stuff in parallel; using F#?
+
+## Known issues
+### Objects with a time and no date
+Objects with a time and no date will have 01-01-01 as their date after an import/export cycle. In order to add the object time to the non-existent object date (which are stored together in a single property of type DateTime), the date is initialised to DateTime.MinValue.Date. Separating the Date and Time object properties would probably resolve this.
