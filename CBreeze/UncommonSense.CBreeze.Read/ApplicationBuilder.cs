@@ -461,10 +461,19 @@ namespace UncommonSense.CBreeze.Read
                     variables = currentTrigger.Variables;
                     break;
                 case SectionType.Code:
-                    if (currentFunction == null)
-                        variables = currentCode.Variables;
-                    else
+                    if (currentFunction != null)
+                    {
                         variables = currentFunction.Variables;
+                    }
+                    else if (currentEvent != null)
+                    {
+                        variables = currentEvent.Variables;
+                    }
+                    else
+                    {
+                        variables = currentCode.Variables;
+                    }
+
                     break;
                 default:
                     throw new ArgumentException(string.Format("No variables expected for {0} section.", currentSectionType));
