@@ -17,6 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class XmlPortTextElementProperties : Properties
     {
+        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
@@ -27,6 +28,7 @@ namespace UncommonSense.CBreeze.Core
 
         internal XmlPortTextElementProperties()
         {
+            innerList.Add(dataType);
             innerList.Add(variableName);
             innerList.Add(textType);
             innerList.Add(minOccurs);
@@ -34,6 +36,18 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAfterAssignVariable);
             innerList.Add(onBeforePassVariable);
             innerList.Add(width);
+        }
+
+        public TableFieldType? DataType
+        {
+            get
+            {
+                return this.dataType.Value;
+            }
+            set
+            {
+                this.dataType.Value = value;
+            }
         }
 
         public MaxOccurs? MaxOccurs
