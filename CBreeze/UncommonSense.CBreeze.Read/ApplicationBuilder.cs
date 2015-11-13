@@ -166,10 +166,10 @@ namespace UncommonSense.CBreeze.Read
             switch (propertyName)
             {
                 case "Date":
-                    currentObject.ObjectProperties.DateTime = currentObject.ObjectProperties.DateTime.GetValueOrDefault(DateTime.MinValue).SetDateComponent(propertyValue);
+                    currentObject.ObjectProperties.DateTime = currentObject.ObjectProperties.DateTime.SetDateComponent(propertyValue);
                     break;
                 case "Time":
-                    currentObject.ObjectProperties.DateTime = currentObject.ObjectProperties.DateTime.GetValueOrDefault(DateTime.MinValue).SetTimeComponent(propertyValue);
+                    currentObject.ObjectProperties.DateTime = currentObject.ObjectProperties.DateTime.SetTimeComponent(propertyValue);
                     break;
                 case "Modified":
                     currentObject.ObjectProperties.Modified = propertyValue.ToBoolean();
