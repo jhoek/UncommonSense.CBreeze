@@ -112,25 +112,29 @@ namespace UncommonSense.CBreeze.Write
             var controlID = BuildControlPart(fieldPageControl.ID.ToString(), 4, ref debt);
             var controlIndentation = BuildControlPart(fieldPageControl.IndentationLevel.AsString(), 4, ref debt);
             var controlType = BuildControlPart("Field", 10, ref debt);
-            var declaration = string.Format("{{ {0};{1};{2};", controlID, controlIndentation, controlType);
-
-            writer.WriteLine(declaration);
-            //var idLength = Math.Max(fieldPageControl.ID.ToString().Length, 4);
-            //var id = fieldPageControl.ID.ToString().PadRight(idLength);
-            //var idAndIndentation = string.Format("{0};{1}", id, fieldPageControl.IndentationLevel.ToString());
-
-            //writer.WriteLine("{{ {0};Field     ;", idAndIndentation.PadRight(9));
-            writer.Indent(propertyIndentation);
-            fieldPageControl.Properties.Write(PropertiesStyle.Field, writer);
-
             var relevantProperties = fieldPageControl.Properties.Where(p => p.HasValue);
-            var lastProperty = relevantProperties.LastOrDefault();
-            if (lastProperty != null)
-                if (lastProperty is TriggerProperty)
-                    writer.Write(new string(' ', lastProperty.Name.Length + 2));
 
-            writer.WriteLine("}");
-            writer.Unindent();
+            switch (relevantProperties.Any())
+            {
+                case false:
+                    writer.WriteLine("{{ {0};{1};{2} }}", controlID, controlIndentation, controlType);
+                    break;
+                default:
+                    writer.WriteLine("{{ {0};{1};{2};", controlID, controlIndentation, controlType);
+
+                    writer.Indent(propertyIndentation);
+                    fieldPageControl.Properties.Write(PropertiesStyle.Field, writer);
+
+                    var lastProperty = relevantProperties.LastOrDefault();
+                    if (lastProperty != null)
+                        if (lastProperty is TriggerProperty)
+                            writer.Write(new string(' ', lastProperty.Name.Length + 2));
+
+                    writer.WriteLine("}");
+                    writer.Unindent();
+                    break;
+            }
+
             writer.InnerWriter.WriteLine();
         }
     }
