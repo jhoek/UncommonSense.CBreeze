@@ -19,6 +19,9 @@ namespace UncommonSense.CBreeze.Core
         MsDos,
         Utf8,
         Utf16,
+#if NAV2013R2
+        Windows
+#endif
     }
 
 }

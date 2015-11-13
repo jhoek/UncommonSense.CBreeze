@@ -18,6 +18,10 @@ namespace UncommonSense.CBreeze.Write
                     return "UTF-8";
                 case TextEncoding.Utf16:
                     return "UTF-16";
+#if NAV2013R2
+                case TextEncoding.Windows:
+                    return "WINDOWS";
+#endif
                 default:
                     throw new ArgumentOutOfRangeException("value");
             }
