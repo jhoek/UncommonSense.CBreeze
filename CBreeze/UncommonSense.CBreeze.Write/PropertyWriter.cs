@@ -356,6 +356,7 @@ namespace UncommonSense.CBreeze.Write
             {
                 var requiresQuotes = (
                     multiLanguageEntry.Value != multiLanguageEntry.Value.Trim() ||
+                    multiLanguageEntry.Value.Contains(';') || 
                     multiLanguageEntry.Value.Contains('=') ||
                     multiLanguageEntry.Value == string.Empty);
                 writer.Write("{0}={1}", multiLanguageEntry.LanguageID, requiresQuotes ? multiLanguageEntry.Value.ForceQuoted() : multiLanguageEntry.Value);
