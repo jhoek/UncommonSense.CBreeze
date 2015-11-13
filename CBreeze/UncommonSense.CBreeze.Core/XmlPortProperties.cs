@@ -56,10 +56,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(defaultNamespace);
             innerList.Add(inlineSchema);
             innerList.Add(useDefaultNamespace);
+            innerList.Add(textEncoding);
             innerList.Add(onInitXMLport);
             innerList.Add(onPreXMLport);
             innerList.Add(onPostXMLport);
-            innerList.Add(textEncoding);
             innerList.Add(format);
             innerList.Add(fieldDelimiter);
             innerList.Add(fieldSeparator);
