@@ -45,6 +45,7 @@
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="AddCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />
+    <Compile Include="AddCBreezeReportLabel.cs" />
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
