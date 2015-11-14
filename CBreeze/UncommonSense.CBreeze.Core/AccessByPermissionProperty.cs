@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return Value.ObjectType.HasValue && Value.ObjectID.HasValue
+                return Value.ObjectType.HasValue && Value.ObjectID.HasValue;
             }
         }
     }
