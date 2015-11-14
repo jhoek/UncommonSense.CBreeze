@@ -81,13 +81,6 @@ namespace UncommonSense.CBreeze.Automation
             Width = new DynamicParameter<int?>("Width");
         }
 
-        //[Parameter(Mandatory = true, ValueFromPipeline = true)]
-        //public Page Page
-        //{
-        //    get;
-        //    set;
-        //}
-
         [Parameter(Mandatory = true, ParameterSetName = ChartPartWithRange)]
         [Parameter(Mandatory = true, ParameterSetName = PagePartWithRange)]
         [Parameter(Mandatory = true, ParameterSetName = SystemPartWithRange)]
