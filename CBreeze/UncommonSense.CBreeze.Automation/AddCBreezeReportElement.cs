@@ -16,6 +16,10 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<AutoFormatType?> AutoFormatType = new DynamicParameter<AutoFormatType?>("AutoFormatType");
         protected DynamicParameter<SwitchParameter> AutoOptionCaption = new DynamicParameter<SwitchParameter>("AutoOptionCaption");
         protected DynamicParameter<string[]> CalcFields = new DynamicParameter<string[]>("CalcFields");
+        protected DynamicParameter<string> DataItemLinkReference = new DynamicParameter<string>("DataItemLinkReference");
+        protected DynamicParameter<int?> DataItemTable = new DynamicParameter<int?>("DataItemTable", true);
+        protected DynamicParameter<string> DataItemTableViewKey = new DynamicParameter<string>("DataItemTableViewKey");
+        protected DynamicParameter<Order?> DataItemTableViewOrder = new DynamicParameter<Order?>("DataItemTableViewOrder");
         protected DynamicParameter<int?> DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", 0, int.MaxValue);
         protected DynamicParameter<int?> DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", 0, int.MaxValue);
         protected DynamicParameter<string> Description = new DynamicParameter<string>("Description");
@@ -46,6 +50,10 @@ namespace UncommonSense.CBreeze.Automation
                 case ReportElementType.DataItem:
                     var dataItemReportElement = new DataItemReportElement(GetReportElementID(), ParentElement.Value.IndentationLevel + 1);
                     dataItemReportElement.Properties.CalcFields.AddRange(CalcFields.Value);
+                    dataItemReportElement.Properties.DataItemLinkReference = DataItemLinkReference.Value;
+                    dataItemReportElement.Properties.DataItemTable = DataItemTable.Value;
+                    dataItemReportElement.Properties.DataItemTableView.Key = DataItemTableViewKey.Value;
+                    dataItemReportElement.Properties.DataItemTableView.Order = DataItemTableViewOrder.Value;
                     dataItemReportElement.Properties.MaxIteration = MaxIteration.Value;
                     dataItemReportElement.Properties.PrintOnlyIfDetail = PrintOnlyIfDetail.Value;
                     dataItemReportElement.Properties.ReqFilterFields.AddRange(ReqFilterFields.Value);
@@ -108,6 +116,10 @@ namespace UncommonSense.CBreeze.Automation
                 {
                     case ReportElementType.DataItem:
                         yield return CalcFields.RuntimeDefinedParameter;
+                        yield return DataItemLinkReference.RuntimeDefinedParameter;
+                        yield return DataItemTable.RuntimeDefinedParameter;
+                        yield return DataItemTableViewKey.RuntimeDefinedParameter;
+                        yield return DataItemTableViewOrder.RuntimeDefinedParameter;
                         yield return MaxIteration.RuntimeDefinedParameter;
                         yield return PrintOnlyIfDetail.RuntimeDefinedParameter;
                         yield return ReqFilterFields.RuntimeDefinedParameter;
