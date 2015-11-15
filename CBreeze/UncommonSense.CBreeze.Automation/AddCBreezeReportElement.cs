@@ -11,11 +11,26 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeReportElement")]
     public class AddCBreezeReportElement : CmdletWithDynamicParams
     {
+        protected DynamicParameter<bool?> AutoCalcField = new DynamicParameter<bool?>("AutoCalcField");
+        protected DynamicParameter<string> AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr");
+        protected DynamicParameter<AutoFormatType?> AutoFormatType = new DynamicParameter<AutoFormatType?>("AutoFormatType");
+        protected DynamicParameter<SwitchParameter> AutoOptionCaption = new DynamicParameter<SwitchParameter>("AutoOptionCaption");
+        protected DynamicParameter<string[]> CalcFields = new DynamicParameter<string[]>("CalcFields");
+        protected DynamicParameter<int?> DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", 0, int.MaxValue);
+        protected DynamicParameter<int?> DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", 0, int.MaxValue);
+        protected DynamicParameter<string> Description = new DynamicParameter<string>("Description");
         protected DynamicParameter<int> ID = new DynamicParameter<int>("ID", true, "ID");
+        protected DynamicParameter<bool?> IncludeCaption = new DynamicParameter<bool?>("IncludeCaption");
+        protected DynamicParameter<int?> MaxIteration = new DynamicParameter<int?>("MaxIteration", 0, int.MaxValue);
+        protected DynamicParameter<string> OptionString = new DynamicParameter<string>("OptionString");
+        protected DynamicParameter<bool?> PrintOnlyIfDetail = new DynamicParameter<bool?>("PrintOnlyIfDetail");
         protected DynamicParameter<ReportElement> ParentElement = new DynamicParameter<ReportElement>("ParentElement", true);
         protected DynamicParameter<SwitchParameter> PassThru = new DynamicParameter<SwitchParameter>("PassThru");
         protected DynamicParameter<IEnumerable<int>> Range = new DynamicParameter<IEnumerable<int>>("Range", true, "Range");
         protected DynamicParameter<Report> Report = new DynamicParameter<Report>("Report", true, true);
+        protected DynamicParameter<string[]> ReqFilterFields = new DynamicParameter<string[]>("ReqFilterFields");
+        protected DynamicParameter<string> ReqFilterHeading = new DynamicParameter<string>("ReqFilterHeader");
+        protected DynamicParameter<string> SourceExpr = new DynamicParameter<string>("SourceExpr", true);
 
         [Parameter(Mandatory = true)]
         public ReportElementType Type
@@ -29,12 +44,33 @@ namespace UncommonSense.CBreeze.Automation
             switch (Type)
             {
                 case ReportElementType.DataItem:
-                    var element = new DataItemReportElement(GetReportElementID(), ParentElement.Value.IndentationLevel + 1);
-                    return element;
+                    var dataItemReportElement = new DataItemReportElement(GetReportElementID(), ParentElement.Value.IndentationLevel + 1);
+                    dataItemReportElement.Properties.CalcFields.AddRange(CalcFields.Value);
+                    dataItemReportElement.Properties.MaxIteration = MaxIteration.Value;
+                    dataItemReportElement.Properties.PrintOnlyIfDetail = PrintOnlyIfDetail.Value;
+                    dataItemReportElement.Properties.ReqFilterFields.AddRange(ReqFilterFields.Value);
+                    dataItemReportElement.Properties.ReqFilterHeadingML.Set("ENU", ReqFilterHeading.Value);
+                    return dataItemReportElement;
 
                 case ReportElementType.Column:
-                    var element = new ColumnReportElement(GetReportElementID());
-                    return element;
+                    var columnReportElement = new ColumnReportElement(GetReportElementID(), ParentElement.Value.IndentationLevel + 1);
+                    columnReportElement.Properties.AutoCalcField = AutoCalcField.Value;
+                    columnReportElement.Properties.AutoFormatExpr = AutoFormatExpr.Value;
+                    columnReportElement.Properties.AutoFormatType = AutoFormatType.Value;
+                    columnReportElement.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast.Value;
+                    columnReportElement.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost.Value;
+                    columnReportElement.Properties.Description = Description.Value;
+                    columnReportElement.Properties.IncludeCaption = IncludeCaption.Value;
+                    columnReportElement.Properties.OptionString = OptionString.Value;
+                    columnReportElement.Properties.SourceExpr = SourceExpr.Value;
+
+                    if (AutoOptionCaption.Value)
+                        columnReportElement.Properties.OptionCaptionML.Set("ENU", columnReportElement.Properties.OptionString);
+
+                    return columnReportElement;
+
+                default:
+                    throw new ArgumentOutOfRangeException("Type");
             }
         }
 
@@ -67,6 +103,30 @@ namespace UncommonSense.CBreeze.Automation
                 yield return PassThru.RuntimeDefinedParameter;
                 yield return Range.RuntimeDefinedParameter;
                 yield return Report.RuntimeDefinedParameter;
+
+                switch (Type)
+                {
+                    case ReportElementType.DataItem:
+                        yield return CalcFields.RuntimeDefinedParameter;
+                        yield return MaxIteration.RuntimeDefinedParameter;
+                        yield return PrintOnlyIfDetail.RuntimeDefinedParameter;
+                        yield return ReqFilterFields.RuntimeDefinedParameter;
+                        yield return ReqFilterHeading.RuntimeDefinedParameter;
+                        break;
+
+                    case ReportElementType.Column:
+                        yield return AutoCalcField.RuntimeDefinedParameter;
+                        yield return AutoFormatExpr.RuntimeDefinedParameter;
+                        yield return AutoFormatType.RuntimeDefinedParameter;
+                        yield return AutoOptionCaption.RuntimeDefinedParameter;
+                        yield return DecimalPlacesAtLeast.RuntimeDefinedParameter;
+                        yield return DecimalPlacesAtMost.RuntimeDefinedParameter;
+                        yield return Description.RuntimeDefinedParameter;
+                        yield return IncludeCaption.RuntimeDefinedParameter;
+                        yield return OptionString.RuntimeDefinedParameter;
+                        yield return SourceExpr.RuntimeDefinedParameter;
+                        break;
+                }
             }
         }
     }
