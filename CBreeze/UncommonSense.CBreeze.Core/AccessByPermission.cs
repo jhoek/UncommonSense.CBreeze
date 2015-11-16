@@ -15,6 +15,24 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder(5);
+
+            if (Read)
+                stringBuilder.Append('R');
+            if (Insert)
+                stringBuilder.Append('I');
+            if (Modify)
+                stringBuilder.Append('M');
+            if (Delete)
+                stringBuilder.Append('D');
+            if (Execute)
+                stringBuilder.Append('X');
+
+            return stringBuilder.ToString();
+        }
+
         public int? ObjectID
         {
             get;
