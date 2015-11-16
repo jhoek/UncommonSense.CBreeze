@@ -34,6 +34,9 @@ namespace UncommonSense.CBreeze.Core
         private TableViewProperty subPageView = new TableViewProperty("SubPageView");
         private SystemPartIDProperty systemPartID = new SystemPartIDProperty("SystemPartID");
         private MultiLanguageProperty toolTipML = new MultiLanguageProperty("ToolTipML");
+#if NAV2015
+        private UpdatePropagationProperty updatePropagation = new UpdatePropagationProperty("UpdatePropagation");
+#endif
         private StringProperty visible = new StringProperty("Visible");
 
         internal PartPageControlProperties()
@@ -56,6 +59,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(systemPartID);
             innerList.Add(chartPartID);
             innerList.Add(showFilter);
+#if NAV2015
+            innerList.Add(updatePropagation);
+#endif
         }
 
 #if NAV2015
@@ -217,6 +223,18 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return this.toolTipML.Value;
+            }
+        }
+
+        public UpdatePropagation? UpdatePropagation
+        {
+            get
+            {
+                return updatePropagation.Value;
+            }
+            set
+            {
+                updatePropagation.Value = value;
             }
         }
 
