@@ -311,6 +311,8 @@
     <Compile Include="Permission.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="PermissionsProperty.cs" />
+    <Compile Include="PreviewMode.cs" />
+    <Compile Include="PreviewModeProperty.cs" />
     <Compile Include="PromotedCategory.cs" />
     <Compile Include="PromotedCategoryProperty.cs" />
     <Compile Include="Properties.cs" />

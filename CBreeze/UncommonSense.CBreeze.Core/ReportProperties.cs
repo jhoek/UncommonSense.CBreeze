@@ -32,6 +32,9 @@ namespace UncommonSense.CBreeze.Core
         private PaperSourceProperty paperSourceFirstPage = new PaperSourceProperty("PaperSourceFirstPage");
         private PaperSourceProperty paperSourceLastPage = new PaperSourceProperty("PaperSourceLastPage");
         private PermissionsProperty permissions = new PermissionsProperty("Permissions");
+#if NAV2015
+        private PreviewModeProperty previewMode = new PreviewModeProperty("PreviewMode");
+#endif
         private NullableBooleanProperty processingOnly = new NullableBooleanProperty("ProcessingOnly");
         private NullableBooleanProperty showPrintStatus = new NullableBooleanProperty("ShowPrintStatus");
         private TransactionTypeProperty transactionType = new TransactionTypeProperty("TransactionType");
@@ -56,6 +59,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(paperSourceDefaultPage);
             innerList.Add(paperSourceFirstPage);
             innerList.Add(paperSourceLastPage);
+            innerList.Add(previewMode);
             innerList.Add(defaultLayout);
             innerList.Add(useRequestPage);
         }
@@ -198,7 +202,21 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ProcessingOnly
+#if NAV2015
+        public PreviewMode? PreviewMode
+        {
+            get
+            {
+                return this.previewMode.Value;
+            }
+            set
+            {
+                this.previewMode.Value = value;
+            }
+        }
+#endif
+
+        public System.Boolean? ProcessingOnly
         {
             get
             {
