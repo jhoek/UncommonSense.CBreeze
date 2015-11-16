@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class FieldPageControlProperties : Properties
     {
+#if NAV2015
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private NullableBooleanProperty assistEdit = new NullableBooleanProperty("AssistEdit");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -70,6 +73,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(name);
             innerList.Add(extendedDatatype);
             innerList.Add(width);
+#if NAV2015
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(lookup);
             innerList.Add(drillDown);
             innerList.Add(assistEdit);
@@ -115,6 +121,16 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(showCaption);
             innerList.Add(quickEntry);
         }
+
+#if NAV2015
+        public AccessByPermission AccessByPermission
+        {
+            get
+            {
+                return this.accessByPermission.Value;
+            }
+        }
+#endif
 
         public System.Boolean? AssistEdit
         {
