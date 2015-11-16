@@ -40,6 +40,9 @@ namespace UncommonSense.CBreeze.Core
         private TransactionTypeProperty transactionType = new TransactionTypeProperty("TransactionType");
         private NullableBooleanProperty useRequestPage = new NullableBooleanProperty("UseRequestPage");
         private NullableBooleanProperty useSystemPrinter = new NullableBooleanProperty("UseSystemPrinter");
+#if NAV2015
+        private StringProperty wordMergeDataItem = new StringProperty("WordMergeDataItem");
+#endif
 
         internal ReportProperties()
         {
@@ -59,8 +62,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(paperSourceDefaultPage);
             innerList.Add(paperSourceFirstPage);
             innerList.Add(paperSourceLastPage);
+#if NAV2015
             innerList.Add(previewMode);
             innerList.Add(defaultLayout);
+            innerList.Add(wordMergeDataItem);
+#endif
             innerList.Add(useRequestPage);
         }
 
@@ -273,6 +279,18 @@ namespace UncommonSense.CBreeze.Core
             set
             {
                 this.useSystemPrinter.Value = value;
+            }
+        }
+
+        public string WordMergeDataItem
+        {
+            get
+            {
+                return this.wordMergeDataItem.Value;
+            }
+            set
+            {
+                this.wordMergeDataItem.Value = value;
             }
         }
     }
