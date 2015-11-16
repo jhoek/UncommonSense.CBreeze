@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class PartPageControlProperties : Properties
     {
+#if NAV2015
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty chartPartID = new StringProperty("ChartPartID");
         private StringProperty description = new StringProperty("Description");
@@ -36,6 +39,9 @@ namespace UncommonSense.CBreeze.Core
         internal PartPageControlProperties()
         {
             innerList.Add(name);
+#if NAV2015
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(captionML);
             innerList.Add(toolTipML);
             innerList.Add(description);
@@ -51,6 +57,16 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(chartPartID);
             innerList.Add(showFilter);
         }
+
+#if NAV2015
+        public AccessByPermission AccessByPermission
+        {
+            get
+            {
+                return this.accessByPermission.Value;
+            }
+        }
+#endif
 
         public MultiLanguageValue CaptionML
         {
