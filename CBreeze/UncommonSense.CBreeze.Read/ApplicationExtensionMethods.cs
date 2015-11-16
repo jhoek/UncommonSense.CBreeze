@@ -40,6 +40,32 @@ namespace UncommonSense.CBreeze.Read
             property.Value.AtMost = atMost;
         }
 
+#if NAV2015
+        internal static void SetAccessByPermission(this AccessByPermissionProperty property, string propertyValue)
+        {
+            var match = Patterns.AccessByPermission.Match(propertyValue);
+
+            property.Value.ObjectType = null;
+            property.Value.ObjectID = null;
+            property.Value.Read = false;
+            property.Value.Insert = false;
+            property.Value.Modify = false;
+            property.Value.Delete = false;
+            property.Value.Execute = false;
+
+            if (match.Success)
+            {
+                property.Value.ObjectType = match.Groups[1].Value.ToEnum<AccessByPermissionObjectType>();
+                property.Value.ObjectID = match.Groups[2].Value.ToInteger();
+                property.Value.Read = match.Groups[3].Value.Contains('R');
+                property.Value.Insert = match.Groups[3].Value.Contains('I');
+                property.Value.Modify = match.Groups[3].Value.Contains('M');
+                property.Value.Delete = match.Groups[3].Value.Contains('D');
+                property.Value.Execute = match.Groups[3].Value.Contains('X');
+            }
+        }
+#endif
+
         internal static void SetLinkFieldsProperty(this LinkFieldsProperty property, string propertyValue)
         {
             do

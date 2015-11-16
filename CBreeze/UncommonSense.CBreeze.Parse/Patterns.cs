@@ -24,6 +24,8 @@ namespace UncommonSense.CBreeze.Parse
         public static readonly Regex PropertySignature = new Regex(@"^(\w[^=]+)=(.*)$", RegexOptions.Compiled);
         public static readonly Regex TriggerSignature = new Regex(@"^((Import::|Export::)?On[^=]+)=(.*)$", RegexOptions.Compiled);
         public static readonly Regex DecimalPlaces = new Regex(@"^(\d*):(\d*)$", RegexOptions.Compiled);
+        public static readonly Regex AccessByPermission = new Regex(@"^(TableData|Table|Report|Codeunit|XmlPort|Page|Query|System)\s(\d+)=([RIMDX]*)$", RegexOptions.Compiled);
+
         // Code
         public static readonly Regex Variables = new Regex(@"^VAR$", RegexOptions.Compiled);
         public static readonly Regex Variable = new Regex(@"^\s*([^@]+)@(\d+)\s:\s(.*);$", RegexOptions.Compiled);

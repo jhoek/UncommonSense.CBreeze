@@ -220,6 +220,9 @@ namespace UncommonSense.CBreeze.Read
 
             TypeSwitch.Do(
                 property,
+#if NAV2015
+                TypeSwitch.Case<AccessByPermissionProperty>(p=>p.SetAccessByPermission(propertyValue)),
+#endif
                 TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
                 TypeSwitch.Case<AutoFormatTypeProperty>(p => p.Value = propertyValue.ToAutoFormatType()),
                 TypeSwitch.Case<BlankNumbersProperty>(p => p.Value = propertyValue.ToEnum<BlankNumbers>()),
