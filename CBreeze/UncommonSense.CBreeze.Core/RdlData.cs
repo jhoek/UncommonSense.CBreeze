@@ -17,19 +17,15 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RdlData
     {
-        private CodeLines lines = new CodeLines();
-
         internal RdlData()
         {
+            Lines = new CodeLines();
         }
 
         public CodeLines Lines
         {
-            get
-            {
-                return this.lines;
-            }
+            get;
+            protected set;
         }
-
     }
 }
