@@ -14,9 +14,11 @@ namespace UncommonSense.CBreeze.Demo
 		{
             var compareToolFileName = @"c:\Program Files\Araxis\Araxis Merge\compare.exe";
 
-			var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-			var inputFileName = Path.Combine(desktopFolderName, "nl2015.txt");
-			var outputFileName = Path.Combine(desktopFolderName, "nl2015.output.txt");
+            var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //var inputFileName = Path.Combine(desktopFolderName, "codeunits.txt");
+            //var outputFileName = Path.Combine(desktopFolderName, "codeunits.output.txt");
+            var inputFileName = Path.Combine(desktopFolderName, "w12015.txt");
+            var outputFileName = Path.Combine(desktopFolderName, "w12015.output.txt");
 
             var readerStopWatch = new Stopwatch();
             readerStopWatch.Start();
