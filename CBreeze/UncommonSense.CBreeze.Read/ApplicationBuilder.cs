@@ -23,6 +23,9 @@ namespace UncommonSense.CBreeze.Read
         private ReportLabels currentReportLabels;
         private ReportRequestPage currentReportRequestPage;
         private RdlData currentRdlData;
+#if NAV2015
+        private WordLayout currentWordLayout;
+#endif
         private MenuSuiteNodes currentMenuSuiteNodes;
         private Code currentCode;
         private Trigger currentTrigger;
@@ -96,6 +99,9 @@ namespace UncommonSense.CBreeze.Read
                     currentReportRequestPage = newReport.RequestPage;
                     currentCode = newReport.Code;
                     currentRdlData = newReport.RdlData;
+#if NAV2015
+                    currentWordLayout = newReport.WordLayout;
+#endif
                     currentObject = newReport;
                     break;
                 case ObjectType.Codeunit:
@@ -148,6 +154,9 @@ namespace UncommonSense.CBreeze.Read
             currentXmlPortRequestPage = null;
             currentCode = null;
             currentRdlData = null;
+#if NAV2015
+            currentWordLayout = null;
+#endif
             currentMenuSuiteNodes = null;
         }
 
@@ -687,6 +696,11 @@ namespace UncommonSense.CBreeze.Read
                 case SectionType.RdlData:
                     codeLines = currentRdlData.Lines;
                     break;
+#if NAV2015
+                case SectionType.WordLayout:
+                    codeLines = currentWordLayout.Lines;
+                    break;
+#endif
                 default:
                     throw new ArgumentException(string.Format("No code lines expected for section {0}.", currentSectionType));
             }
