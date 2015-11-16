@@ -29,6 +29,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty printOnlyIfDetail = new NullableBooleanProperty("PrintOnlyIfDetail");
         private FieldListProperty reqFilterFields = new FieldListProperty("ReqFilterFields");
         private MultiLanguageProperty reqFilterHeadingML = new MultiLanguageProperty("ReqFilterHeadingML");
+#if NAV2015
+        private NullableBooleanProperty temporary = new NullableBooleanProperty("Temporary");
+#endif
 
         internal DataItemReportElementProperties()
         {
@@ -44,6 +47,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(calcFields);
             innerList.Add(dataItemLinkReference);
             innerList.Add(dataItemLink);
+#if NAV2015
+            innerList.Add(temporary);
+#endif
         }
 
         public FieldList CalcFields
@@ -155,6 +161,18 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return this.reqFilterHeadingML.Value;
+            }
+        }
+
+        public bool? Temporary
+        {
+            get
+            {
+                return this.temporary.Value;
+            }
+            set
+            {
+                this.temporary.Value = value;
             }
         }
     }
