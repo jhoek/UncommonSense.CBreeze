@@ -19,6 +19,7 @@ namespace UncommonSense.CBreeze.Write
 
             TypeSwitch.Do(
                 property,
+                TypeSwitch.Case<AccessByPermissionProperty>(p=> WriteSimpleProperty(p.Name, string.Format("{0} {1}={2}", p.Value.ObjectType, p.Value.ObjectID, p.Value.ToString()), isLastProperty, writer)),
                 TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
                 TypeSwitch.Case<PaperSourceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
