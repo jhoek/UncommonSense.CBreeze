@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class MenuSuiteItemNodeProperties : Properties
     {
+#if NAV2015
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty deleted = new NullableBooleanProperty("Deleted");
         private MenuItemDepartmentCategoryProperty departmentCategory = new MenuItemDepartmentCategoryProperty("DepartmentCategory");
@@ -31,6 +34,9 @@ namespace UncommonSense.CBreeze.Core
         internal MenuSuiteItemNodeProperties()
         {
             innerList.Add(name);
+#if NAV2015
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(captionML);
             innerList.Add(memberOfMenu);
             innerList.Add(runObjectType);
@@ -41,6 +47,16 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(deleted);
             innerList.Add(departmentCategory);
         }
+
+#if NAV2015
+        public AccessByPermission AccessByPermission
+        {
+            get
+            {
+                return this.accessByPermission.Value;
+            }
+        }
+#endif
 
         public MultiLanguageValue CaptionML
         {
