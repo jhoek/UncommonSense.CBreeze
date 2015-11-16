@@ -58,6 +58,9 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty quickEntry = new StringProperty("QuickEntry");
         private NullableIntegerProperty rowSpan = new NullableIntegerProperty("RowSpan");
         private NullableBooleanProperty showCaption = new NullableBooleanProperty("ShowCaption");
+#if NAV2015
+        private StringProperty showMandatory = new StringProperty("ShowMandatory");
+#endif
         private StringProperty sourceExpr = new StringProperty("SourceExpr");
         private StyleProperty style = new StyleProperty("Style");
         private StringProperty styleExpr = new StringProperty("StyleExpr");
@@ -118,6 +121,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onDrillDown);
             innerList.Add(onAssistEdit);
             innerList.Add(onControlAddIn);
+#if NAV2015
+            innerList.Add(showMandatory);
+#endif
             innerList.Add(showCaption);
             innerList.Add(quickEntry);
         }
@@ -555,6 +561,20 @@ namespace UncommonSense.CBreeze.Core
                 this.showCaption.Value = value;
             }
         }
+
+#if NAV2015
+        public string ShowMandatory
+        {
+            get
+            {
+                return this.showMandatory.Value;
+            }
+            set
+            {
+                this.showMandatory.Value = value;
+            }
+        }
+#endif
 
         public System.String SourceExpr
         {
