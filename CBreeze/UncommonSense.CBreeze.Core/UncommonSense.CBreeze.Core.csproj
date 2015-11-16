@@ -287,6 +287,8 @@
     <Compile Include="PageActionGroup.cs" />
     <Compile Include="PageActionGroupProperties.cs" />
     <Compile Include="PageActionProperties.cs" />
+    <Compile Include="PageActionScope.cs" />
+    <Compile Include="PageActionScopeProperty.cs" />
     <Compile Include="PageActionSeparator.cs" />
     <Compile Include="PageActionSeparatorProperties.cs" />
     <Compile Include="PageControl.cs" />

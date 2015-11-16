@@ -36,6 +36,9 @@ namespace UncommonSense.CBreeze.Core
         private RunPageModeProperty runPageMode = new RunPageModeProperty("RunPageMode");
         private NullableBooleanProperty runPageOnRec = new NullableBooleanProperty("RunPageOnRec");
         private TableViewProperty runPageView = new TableViewProperty("RunPageView");
+#if NAV2015
+        private PageActionScopeProperty scope = new PageActionScopeProperty("Scope");
+#endif
         private StringProperty shortCutKey = new StringProperty("ShortCutKey");
         private MultiLanguageProperty toolTipML = new MultiLanguageProperty("ToolTipML");
         private StringProperty visible = new StringProperty("Visible");
@@ -63,6 +66,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(image);
             innerList.Add(promotedCategory);
             innerList.Add(runPageMode);
+#if NAV2015
+            innerList.Add(scope);
+#endif
             innerList.Add(onAction);
         }
 
@@ -245,6 +251,20 @@ namespace UncommonSense.CBreeze.Core
                 return this.runPageView.Value;
             }
         }
+
+#if NAV2015
+        public PageActionScope? Scope
+        {
+            get
+            {
+                return this.scope.Value;
+            }
+            set
+            {
+                this.scope.Value = value;
+            }
+        }
+#endif
 
       public System.String ShortCutKey
         {
