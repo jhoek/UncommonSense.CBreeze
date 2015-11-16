@@ -18,6 +18,9 @@ namespace UncommonSense.CBreeze.Core
     public class ReportProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
+#if NAV2015
+        private DefaultLayoutProperty defaultLayout = new DefaultLayoutProperty("DefaultLayout");
+#endif
         private StringProperty description = new StringProperty("Description");
         private NullableBooleanProperty enableExternalAssemblies = new NullableBooleanProperty("EnableExternalAssemblies");
         private NullableBooleanProperty enableExternalImages = new NullableBooleanProperty("EnableExternalImages");
@@ -53,6 +56,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(paperSourceDefaultPage);
             innerList.Add(paperSourceFirstPage);
             innerList.Add(paperSourceLastPage);
+            innerList.Add(defaultLayout);
             innerList.Add(useRequestPage);
         }
 
@@ -64,7 +68,21 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+#if NAV2015
+        public DefaultLayout? DefaultLayout
+        {
+            get
+            {
+                return this.defaultLayout.Value;
+            }
+            set
+            {
+                this.defaultLayout.Value = value;
+            }
+        }
+#endif 
+
+        public System.String Description
         {
             get
             {
