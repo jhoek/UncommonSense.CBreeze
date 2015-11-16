@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class PageActionProperties : Properties
     {
+#if NAV2015
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
         private NullableBooleanProperty ellipsis = new NullableBooleanProperty("Ellipsis");
@@ -40,6 +43,9 @@ namespace UncommonSense.CBreeze.Core
         internal PageActionProperties()
         {
             innerList.Add(name);
+#if NAV2015
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(shortCutKey);
             innerList.Add(ellipsis);
             innerList.Add(captionML);
@@ -58,6 +64,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(promotedCategory);
             innerList.Add(runPageMode);
             innerList.Add(onAction);
+        }
+
+        public AccessByPermission AccessByPermission
+        {
+            get
+            {
+                return this.accessByPermission.Value;
+            }
         }
 
         public MultiLanguageValue CaptionML
