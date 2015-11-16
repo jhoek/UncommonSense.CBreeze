@@ -59,10 +59,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(testTableRelation);
             innerList.Add(extendedDatatype);
             innerList.Add(width);
-            innerList.Add(captionML);
 #if NAV2015
             innerList.Add(accessByPermission);
 #endif
+            innerList.Add(captionML);
             innerList.Add(decimalPlaces);
             innerList.Add(minValue);
             innerList.Add(maxValue);
