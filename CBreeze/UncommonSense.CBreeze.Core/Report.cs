@@ -22,6 +22,9 @@ namespace UncommonSense.CBreeze.Core
         private ReportLabels labels = new ReportLabels();
         private ReportProperties properties = new ReportProperties();
         private RdlData rdlData = new RdlData();
+#if NAV2015
+        private WordLayout wordLayout = new WordLayout();
+#endif
         private ReportRequestPage requestPage = new ReportRequestPage();
 
         public Report(Int32 id, String name) : base(id, name)
@@ -75,6 +78,16 @@ namespace UncommonSense.CBreeze.Core
                 return this.rdlData;
             }
         }
+
+#if NAV2015
+        public WordLayout WordLayout
+        {
+            get
+            {
+                return this.wordLayout;
+            }
+        }
+#endif
 
         public ReportRequestPage RequestPage
         {

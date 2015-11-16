@@ -454,6 +454,7 @@
     <Compile Include="VariableType.cs" />
     <Compile Include="VariantParameter.cs" />
     <Compile Include="VariantVariable.cs" />
+    <Compile Include="WordLayout.cs" />
     <Compile Include="XmlPort.cs" />
     <Compile Include="XmlPortEncoding.cs" />
     <Compile Include="XmlPortEncodingProperty.cs" />
