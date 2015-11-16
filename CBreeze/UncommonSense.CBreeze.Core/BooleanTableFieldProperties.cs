@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class BooleanTableFieldProperties : Properties
     {
+#if NAV2015
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private StringProperty altSearchField = new StringProperty("AltSearchField");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -53,6 +56,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(validateTableRelation);
             innerList.Add(testTableRelation);
             innerList.Add(extendedDatatype);
+#if NAV2015
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(captionML);
             innerList.Add(minValue);
             innerList.Add(maxValue);
@@ -67,6 +73,16 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
         }
+
+#if NAV2015
+        public AccessByPermission AccessByPermission
+        {
+            get
+            {
+                return accessByPermission.Value;
+            }
+        }
+#endif
 
       public System.String AltSearchField
         {

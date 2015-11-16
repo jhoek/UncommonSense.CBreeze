@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class DateTableFieldProperties : Properties
     {
+#if NAV2015
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private StringProperty altSearchField = new StringProperty("AltSearchField");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -53,6 +56,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(validateTableRelation);
             innerList.Add(testTableRelation);
             innerList.Add(extendedDatatype);
+#if NAV2015
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(captionML);
             innerList.Add(minValue);
             innerList.Add(maxValue);
@@ -68,7 +74,17 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionClass);
         }
 
-      public System.String AltSearchField
+#if NAV2015
+        public AccessByPermission AccessByPermission
+        {
+            get
+            {
+                return accessByPermission.Value;
+            }
+        }
+#endif
+
+        public System.String AltSearchField
         {
             get
             {
@@ -80,7 +96,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String AutoFormatExpr
+        public System.String AutoFormatExpr
         {
             get
             {
@@ -124,7 +140,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String CaptionClass
+        public System.String CaptionClass
         {
             get
             {
@@ -144,7 +160,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ClosingDates
+        public System.Boolean? ClosingDates
         {
             get
             {
@@ -156,7 +172,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+        public System.String Description
         {
             get
             {
@@ -168,7 +184,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Editable
+        public System.Boolean? Editable
         {
             get
             {
@@ -204,7 +220,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.DateTime? InitValue
+        public System.DateTime? InitValue
         {
             get
             {
@@ -216,7 +232,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.DateTime? MaxValue
+        public System.DateTime? MaxValue
         {
             get
             {
@@ -228,7 +244,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.DateTime? MinValue
+        public System.DateTime? MinValue
         {
             get
             {
@@ -240,7 +256,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? NotBlank
+        public System.Boolean? NotBlank
         {
             get
             {
@@ -268,7 +284,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? SignDisplacement
+        public System.Int32? SignDisplacement
         {
             get
             {
@@ -288,7 +304,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? TestTableRelation
+        public System.Boolean? TestTableRelation
         {
             get
             {
@@ -300,7 +316,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ValidateTableRelation
+        public System.Boolean? ValidateTableRelation
         {
             get
             {
@@ -312,7 +328,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String ValuesAllowed
+        public System.String ValuesAllowed
         {
             get
             {

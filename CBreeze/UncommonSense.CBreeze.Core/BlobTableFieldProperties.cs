@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class BlobTableFieldProperties : Properties
     {
+#if NAV2015
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty compressed = new NullableBooleanProperty("Compressed");
         private StringProperty description = new StringProperty("Description");
@@ -32,11 +35,24 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onLookup);
             innerList.Add(compressed);
             innerList.Add(@volatile);
+#if NAV2015
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(captionML);
             innerList.Add(description);
             innerList.Add(owner);
             innerList.Add(subType);
         }
+
+#if NAV2015
+        public AccessByPermission AccessByPermission
+        {
+            get
+            {
+                return accessByPermission.Value;
+            }
+        }
+#endif
 
         public MultiLanguageValue CaptionML
         {
