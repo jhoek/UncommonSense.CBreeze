@@ -11,12 +11,12 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuiteNode")]
     public class AddCBreezeMenuSuiteNode : CmdletWithDynamicParams
     {
-        protected DynamicParameter<string> caption = new DynamicParameter<string>("Caption");
+        protected DynamicParameter<string> caption = new DynamicParameter<string>("Caption", true);
         protected DynamicParameter<bool?> deleted = new DynamicParameter<bool?>("Deleted");
-        protected DynamicParameter<MenuItemDepartmentCategory?> departmentCategory = new DynamicParameter<MenuItemDepartmentCategory?>("DepartmentCategory");
+        protected DynamicParameter<MenuItemDepartmentCategory?> departmentCategory = new DynamicParameter<MenuItemDepartmentCategory?>("DepartmentCategory", true);
         protected DynamicParameter<bool?> enabled = new DynamicParameter<bool?>("Enabled");
         protected DynamicParameter<Guid?> firstChild = new DynamicParameter<Guid?>("FirstChild");
-        protected DynamicParameter<int?> image = new DynamicParameter<int?>("Image");
+        protected DynamicParameter<int?> image = new DynamicParameter<int?>("Image", 0, 15);
         protected DynamicParameter<MenuSuiteNode> insertAfterNode = new DynamicParameter<MenuSuiteNode>("InsertAfterNode");
         protected DynamicParameter<bool?> isDepartmentPage = new DynamicParameter<bool?>("IsDepartmentPage");
         protected DynamicParameter<bool?> isShortcut = new DynamicParameter<bool?>("IsShortcut");
@@ -26,8 +26,8 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<Guid?> nextNodeID = new DynamicParameter<Guid?>("NextNodeID");
         protected DynamicParameter<Guid?> parentNodeID = new DynamicParameter<Guid?>("ParentNodeID");
         protected DynamicParameter<SwitchParameter> passthru = new DynamicParameter<SwitchParameter>("PassThru");
-        protected DynamicParameter<MenuItemRunObjectType?> runObjectType = new DynamicParameter<MenuItemRunObjectType?>("RunObjectType");
-        protected DynamicParameter<int?> runObjectID = new DynamicParameter<int?>("RunObjectID");
+        protected DynamicParameter<MenuItemRunObjectType?> runObjectType = new DynamicParameter<MenuItemRunObjectType?>("RunObjectType", true);
+        protected DynamicParameter<int?> runObjectID = new DynamicParameter<int?>("RunObjectID", true, 1, int.MaxValue);
         protected DynamicParameter<bool?> visible = new DynamicParameter<bool?>("Visible");
 
         [Parameter(Mandatory=true)]
