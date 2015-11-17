@@ -4,7 +4,7 @@
     public enum PreviewMode
     {
         Normal,
-        PrintLayOut
+        PrintLayout
     }
 #endif
 }
