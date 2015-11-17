@@ -74,15 +74,15 @@ namespace UncommonSense.CBreeze.Automation
                 case MenuSuiteNodeType.Menu:
                     var menuNode = new MenuNode(guid);
                     menuNode.Properties.CaptionML.Set("ENU", caption.Value);
-                    menuNode.Properties.Enabled = enabled.Value;
+                    menuNode.Properties.Enabled = enabled.Value ?? true;
                     menuNode.Properties.FirstChild = firstChild.Value;
                     menuNode.Properties.Image = image.Value;
-                    menuNode.Properties.IsShortcut = isShortcut.Value;
-                    menuNode.Properties.MemberOfMenu = memberOfMenu.Value;
-                    menuNode.Properties.Name = name.Value;
-                    menuNode.Properties.NextNodeID = nextNodeID.Value;
-                    menuNode.Properties.ParentNodeID = parentNodeID.Value;
-                    menuNode.Properties.Visible = visible.Value;
+                    menuNode.Properties.IsShortcut = isShortcut.Value ?? false;
+                    menuNode.Properties.MemberOfMenu = memberOfMenu.Value ?? menuNode.ID;
+                    menuNode.Properties.Name = name.Value ?? caption.Value;
+                    menuNode.Properties.NextNodeID = nextNodeID.Value ?? Guid.Empty;
+                    menuNode.Properties.ParentNodeID = parentNodeID.Value ?? Guid.Empty;
+                    menuNode.Properties.Visible = visible.Value ?? true;
                     return menuNode;
 
                 case MenuSuiteNodeType.MenuGroup:
@@ -94,7 +94,7 @@ namespace UncommonSense.CBreeze.Automation
                     groupNode.Properties.Name = name.Value;
                     groupNode.Properties.NextNodeID = nextNodeID.Value;
                     groupNode.Properties.ParentNodeID = parentNodeID.Value;
-                    groupNode.Properties.Visible = visible.Value;
+                    groupNode.Properties.Visible = visible.Value??true;
                     return groupNode;
 
                 case MenuSuiteNodeType.MenuItem:
