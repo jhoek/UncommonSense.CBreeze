@@ -18,6 +18,9 @@ namespace UncommonSense.CBreeze.Write
 			report.Labels.Write(writer);
 			report.Code.Write(writer);
             report.RdlData.Write(writer);
+#if NAV2015
+            report.WordLayout.Write(writer);
+#endif
             writer.EndSection();
 			writer.InnerWriter.WriteLine();
         }
