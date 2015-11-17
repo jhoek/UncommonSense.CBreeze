@@ -39,32 +39,40 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var node = 
-                (insertAfterNode.Value == null) ? 
-                menuSuite.Value.Nodes.Add(CreateNode()) : 
-                menuSuite.Value.Nodes.Insert(insertAfterNode.Value.Index() + 1, CreateNode());
+            var guid = Guid.NewGuid();
+
+            if (!menuSuite.Value.Nodes.Any())
+            {
+                var deltaNode = menuSuite.Value.Nodes.Add(new DeltaNode(Guid.NewGuid()));
+                deltaNode.Properties.NextNodeID = guid;
+            }
+
+            var node =
+                (insertAfterNode.Value == null) ?
+                menuSuite.Value.Nodes.Add(CreateNode(guid)) :
+                menuSuite.Value.Nodes.Insert(insertAfterNode.Value.Index() + 1, CreateNode(guid));
 
             if (passthru.Value)
                 WriteObject(node);
         }
 
-        protected MenuSuiteNode CreateNode()
+        protected MenuSuiteNode CreateNode(Guid guid)
         {
             switch (Type)
             {
                 case MenuSuiteNodeType.Root:
-                    var rootNode = new RootNode(Guid.NewGuid());
+                    var rootNode = new RootNode(guid);
                     rootNode.Properties.FirstChild = firstChild.Value;
                     return rootNode;
 
                 case MenuSuiteNodeType.Delta:
-                    var deltaNode = new DeltaNode(Guid.NewGuid());
+                    var deltaNode = new DeltaNode(guid);
                     deltaNode.Properties.Deleted = deleted.Value;
                     deltaNode.Properties.NextNodeID = nextNodeID.Value;
                     return deltaNode;
 
                 case MenuSuiteNodeType.Menu:
-                    var menuNode = new MenuNode(Guid.NewGuid());
+                    var menuNode = new MenuNode(guid);
                     menuNode.Properties.CaptionML.Set("ENU", caption.Value);
                     menuNode.Properties.Enabled = enabled.Value;
                     menuNode.Properties.FirstChild = firstChild.Value;
@@ -78,7 +86,7 @@ namespace UncommonSense.CBreeze.Automation
                     return menuNode;
 
                 case MenuSuiteNodeType.MenuGroup:
-                    var groupNode = new GroupNode(Guid.NewGuid());
+                    var groupNode = new GroupNode(guid);
                     groupNode.Properties.CaptionML.Set("ENU", caption.Value);
                     groupNode.Properties.FirstChild = firstChild.Value;
                     groupNode.Properties.IsDepartmentPage = isDepartmentPage.Value;
@@ -90,7 +98,7 @@ namespace UncommonSense.CBreeze.Automation
                     return groupNode;
 
                 case MenuSuiteNodeType.MenuItem:
-                    var itemNode = new ItemNode(Guid.NewGuid());
+                    var itemNode = new ItemNode(guid);
                     itemNode.Properties.CaptionML.Set("ENU", caption.Value);
                     itemNode.Properties.Deleted = deleted.Value;
                     itemNode.Properties.DepartmentCategory = departmentCategory.Value;
