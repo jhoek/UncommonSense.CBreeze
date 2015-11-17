@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDManagementExtensionMethods.cs" />
+    <Compile Include="MenuSuiteNodeExtensionMethods.cs" />
     <Compile Include="PageActionExtensionMethods.cs" />
     <Compile Include="PageControlExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
