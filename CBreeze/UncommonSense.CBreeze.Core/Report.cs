@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Report : Object
     {
-        private Code codes = new Code();
+        private Code code = new Code();
         private ReportElements elements = new ReportElements();
         private ReportLabels labels = new ReportLabels();
         private ReportProperties properties = new ReportProperties();
@@ -43,7 +43,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.codes;
+                return this.code;
             }
         }
 
