@@ -49,8 +49,8 @@ namespace UncommonSense.CBreeze.Core
         internal OptionTableFieldProperties()
         {
             innerList.Add(fieldClass);
-            innerList.Add(calcFormula);
             innerList.Add(initValue);
+            innerList.Add(calcFormula);
             innerList.Add(tableRelation);
             innerList.Add(altSearchField);
             innerList.Add(onValidate);
