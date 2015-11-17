@@ -72,6 +72,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAction);
         }
 
+#if NAV2015
         public AccessByPermission AccessByPermission
         {
             get
@@ -79,6 +80,7 @@ namespace UncommonSense.CBreeze.Core
                 return this.accessByPermission.Value;
             }
         }
+#endif
 
         public MultiLanguageValue CaptionML
         {

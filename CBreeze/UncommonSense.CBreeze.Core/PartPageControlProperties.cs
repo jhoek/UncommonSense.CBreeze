@@ -226,6 +226,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2015
         public UpdatePropagation? UpdatePropagation
         {
             get
@@ -237,6 +238,7 @@ namespace UncommonSense.CBreeze.Core
                 updatePropagation.Value = value;
             }
         }
+#endif
 
       public System.String Visible
         {

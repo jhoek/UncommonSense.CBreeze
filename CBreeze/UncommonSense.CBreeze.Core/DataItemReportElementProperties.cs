@@ -164,6 +164,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2015
         public bool? Temporary
         {
             get
@@ -175,5 +176,6 @@ namespace UncommonSense.CBreeze.Core
                 this.temporary.Value = value;
             }
         }
+#endif
     }
 }

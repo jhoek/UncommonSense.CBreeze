@@ -282,6 +282,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2015
         public string WordMergeDataItem
         {
             get
@@ -293,5 +294,6 @@ namespace UncommonSense.CBreeze.Core
                 this.wordMergeDataItem.Value = value;
             }
         }
+#endif
     }
 }
