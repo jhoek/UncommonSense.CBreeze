@@ -222,6 +222,10 @@ namespace UncommonSense.CBreeze.Read
                 property,
 #if NAV2015
                 TypeSwitch.Case<AccessByPermissionProperty>(p=>p.SetAccessByPermission(propertyValue)),
+                TypeSwitch.Case<PreviewModeProperty>(p=>p.Value = propertyValue.ToEnum<PreviewMode>()),
+                TypeSwitch.Case<PageActionScopeProperty>(p=>p.Value = propertyValue.ToEnum<PageActionScope>()),
+                TypeSwitch.Case<UpdatePropagationProperty>(p=>p.Value = propertyValue.ToEnum<UpdatePropagation>()),
+                TypeSwitch.Case<DefaultLayoutProperty>(p=> p.Value = propertyValue.ToEnum<DefaultLayout>()),
 #endif
                 TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
                 TypeSwitch.Case<AutoFormatTypeProperty>(p => p.Value = propertyValue.ToAutoFormatType()),
