@@ -27,6 +27,12 @@ namespace UncommonSense.CBreeze.Core
 			get;
 		}
 
+        public MenuSuiteNodes Container
+        {
+            get;
+            internal set;
+        }
+
 		public abstract string GetName();
 
 		public abstract Properties AllProperties
