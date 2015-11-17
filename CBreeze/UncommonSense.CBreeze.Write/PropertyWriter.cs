@@ -352,7 +352,8 @@ namespace UncommonSense.CBreeze.Write
         {
             var requiresBrackets = (
                 property.Value.Count() > 1 ||
-                property.Value.Any(e => e.Value.Contains('{')));
+                property.Value.Any(e => e.Value.Contains('{') ||
+                property.Value.Any(f => f.Value.Contains(';'))));
 
             writer.Write("{0}=", property.Name);
             if (requiresBrackets)
