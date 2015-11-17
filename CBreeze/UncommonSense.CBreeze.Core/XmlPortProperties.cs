@@ -53,10 +53,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(xmlVersionNo);
             innerList.Add(formatEvaluate);
             innerList.Add(preserveWhiteSpace);
+            innerList.Add(textEncoding);
             innerList.Add(defaultNamespace);
             innerList.Add(inlineSchema);
             innerList.Add(useDefaultNamespace);
-            innerList.Add(textEncoding);
             innerList.Add(onInitXMLport);
             innerList.Add(onPreXMLport);
             innerList.Add(onPostXMLport);
