@@ -261,6 +261,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<OptionStringProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<PageReferenceProperty>(p => p.Value = propertyValue.ToPageReference()),
                 TypeSwitch.Case<PageTypeProperty>(p => p.Value = propertyValue.ToEnum<PageType>()),
+                TypeSwitch.Case<PaperSourceProperty>(p=>p.Value = propertyValue.ToEnum<PaperSource>()),
                 TypeSwitch.Case<PartTypeProperty>(p => p.Value = propertyValue.ToEnum<PartType>()),
                 TypeSwitch.Case<PermissionsProperty>(p => p.SetPermissionProperty(propertyValue)),
                 TypeSwitch.Case<PromotedCategoryProperty>(p => p.Value = propertyValue.ToEnum<PromotedCategory>()),
