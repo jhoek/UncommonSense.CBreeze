@@ -65,6 +65,12 @@ namespace UncommonSense.CBreeze.Parse
                 return false;
             }
 
+            if (lines.Count() < lineNo)
+            {
+                match = null;
+                return false;
+            }
+
             var line = lines[lineNo];
             match = regex.Match(line);
 
