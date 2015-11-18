@@ -33,31 +33,31 @@ namespace UncommonSense.CBreeze.Parse
         }
 
         [DebuggerStepThrough()]
-        internal static bool FirstLineTryMatch(this Lines lines, Regex regex)
+        internal static bool FirstLineTryMatch(this Lines lines, Regex regex, bool consume = true)
         {
             Match match;
-            return FirstLineTryMatch(lines, regex, out match);
+            return FirstLineTryMatch(lines, regex, out match, consume);
         }
 
         [DebuggerStepThrough()]
-        internal static bool FirstLineTryMatch(this Lines lines, Regex regex, out Match match)
+        internal static bool FirstLineTryMatch(this Lines lines, Regex regex, out Match match, bool consume = true)
         {
-            return LineTryMatch(lines, 0, regex, out match);
+            return LineTryMatch(lines, 0, regex, out match, consume);
         }
 
-        internal static bool LastLineTryMatch(this Lines lines, Regex regex)
+        internal static bool LastLineTryMatch(this Lines lines, Regex regex, bool consume = true)
         {
             Match match;
-            return LastLineTryMatch(lines, regex, out match);
+            return LastLineTryMatch(lines, regex, out match, consume);
         }
 
-        internal static bool LastLineTryMatch(this Lines lines, Regex regex, out Match match)
+        internal static bool LastLineTryMatch(this Lines lines, Regex regex, out Match match, bool consume = true)
         {
-            return LineTryMatch(lines, lines.Count() - 1, regex, out match);
+            return LineTryMatch(lines, lines.Count() - 1, regex, out match, consume);
         }
 
         [DebuggerStepThrough()]
-        internal static bool LineTryMatch(this Lines lines, int lineNo, Regex regex, out Match match)
+        internal static bool LineTryMatch(this Lines lines, int lineNo, Regex regex, out Match match, bool consume)
         {
             if (!lines.Any())
             {
@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Parse
             var line = lines[lineNo];
             match = regex.Match(line);
 
-            if (match.Success)
+            if (match.Success && consume)
             {
                 lines.Consume(lineNo, match.Index, match.Length);
             }
