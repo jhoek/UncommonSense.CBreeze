@@ -14,9 +14,12 @@ namespace UncommonSense.CBreeze.Parse
 
             lines.FirstLineMustMatch(Patterns.Variables);
 
-            while (!lines.FirstLineTryMatch(Patterns.BlankLine))
+            while (true)
             {
-                ParseVariable(lines);
+                if (!lines.FirstLineTryMatch(Patterns.BlankLine))
+                    if (!ParseVariable(lines))
+                        if (!ParseMultiLineTextConstant(lines))
+                            break;
             }
         }
     }

@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Parse
 {
     public partial class Parser
     {
-        internal void ParseVariable(Lines lines)
+        internal bool ParseVariable(Lines lines)
         {
-            var match = lines.FirstLineMustMatch(Patterns.Variable);
+            Match match = null;
+
+            if (!lines.FirstLineTryMatch(Patterns.Variable, out match))
+                return false;
+
             var variableName = match.Groups[1].Value;
             var variableID = match.Groups[2].Value.ToInteger();
             var variableType = match.Groups[3].Value;
@@ -26,6 +31,8 @@ namespace UncommonSense.CBreeze.Parse
             var variableOptionString = ParseOptionString(ref variableType);
 
             Listener.OnVariable(variableID, variableName, variableType.ToEnum<VariableType>(), variableSubType, variableLength, variableOptionString, variableConstValue, variableTemporary, variableDimensions, variableRunOnClient, variableWithEvents, variableSecurityFiltering, variableInDataSet);
+
+            return true;
         }
 
         internal bool ParseRunOnClient(ref string variableType)
