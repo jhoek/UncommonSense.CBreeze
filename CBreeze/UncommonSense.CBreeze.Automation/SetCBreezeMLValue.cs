@@ -10,14 +10,20 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Set, "CBreezeMLValue")]
     public class SetCBreezeMLValue : Cmdlet
     {
+        public SetCBreezeMLValue()
+        {
+            Property = "CaptionML";
+        }
+
         [Parameter(Mandatory=true,ValueFromPipeline=true)]
-        public dynamic InputObject
+        public PSObject InputObject
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Position = 0)]
+        [ValidateNotNullOrEmpty()]
         [ValidateSet("CaptionML", "OptionCaptionML", "ReqFilterHeadingML", "ToolTipML", "InstructionalTextML", "PromotedActionCategoriesML")] 
         public string Property
         {
@@ -48,7 +54,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            InputObject.Properties[Property].Value.Set(LanguageName, Value);
+            if (InputObject.BaseObject is TextConstant)
+                (InputObject.BaseObject as TextConstant).Values.Set(LanguageName, Value);
+            else if (InputObject.BaseObject is IHasProperties)
+                (InputObject.BaseObject as IHasProperties).AllProperties.ByName<MultiLanguageProperty>(Property).Value.Set(LanguageName, Value);
+            else
+                throw new ArgumentOutOfRangeException("Cannot add a multi-language value to this object.");
 
             if (PassThru)
                 WriteObject(InputObject);
