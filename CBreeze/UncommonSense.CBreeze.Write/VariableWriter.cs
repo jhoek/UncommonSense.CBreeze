@@ -91,5 +91,18 @@ namespace UncommonSense.CBreeze.Write
 
             writer.WriteLine(stringBuilder.ToString());
         }
+
+        private static void WriteTextConstant(TextConstant textConstant)
+        {
+            // FIXME
+            //if (textConstant.Values.Any(v => v.Value.Length >= 1012))
+            //{
+            //    WriteMultiLineTextConstant(textConstant);
+            //}
+            //else
+            //{
+            //    WriteSingleLineTextConstant(
+            //}
+        }
     }
 }
