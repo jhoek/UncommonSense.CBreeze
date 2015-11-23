@@ -45,8 +45,6 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - Support for NAV 2015 and 2016
   - Upgrade [codeunit type]
   - Upgrade|TableSynchSetup|CheckProcondition [upgrade codeunit function type]
-
-## Ideas for future patterns, improvements
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
 - Make parser faster by doing more stuff in parallel; using F#?
