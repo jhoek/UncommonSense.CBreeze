@@ -10,8 +10,6 @@ namespace UncommonSense.CBreeze.Write
 {
     public static class PropertyWriter
     {
-        private static CultureInfo[] cultures;
-
         public static void Write(this Property property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
         {
             if (style == PropertiesStyle.Object)
@@ -360,14 +358,9 @@ namespace UncommonSense.CBreeze.Write
                 writer.Write("[");
             writer.Indent(writer.Column);
 
-            foreach (var multiLanguageEntry in property.Value.OrderBy(e => GetLCIDFromLanguageCode(e.LanguageID)))
+            foreach (var multiLanguageEntry in property.Value.OrderBy(e => e.LanguageID.GetLCIDFromLanguageCode()))
             {
-                var requiresQuotes = (
-                    multiLanguageEntry.Value != multiLanguageEntry.Value.Trim() ||
-                    multiLanguageEntry.Value.Contains(';') || 
-                    multiLanguageEntry.Value.Contains('=') ||
-                    multiLanguageEntry.Value == string.Empty);
-                writer.Write("{0}={1}", multiLanguageEntry.LanguageID, requiresQuotes ? multiLanguageEntry.Value.ForceQuoted() : multiLanguageEntry.Value);
+                writer.Write("{0}={1}", multiLanguageEntry.LanguageID, multiLanguageEntry.QuotedValue);
                 writer.WriteLineIf(multiLanguageEntry != property.Value.Last(), ";");
             }
 
@@ -703,17 +696,6 @@ namespace UncommonSense.CBreeze.Write
             }
 
             writer.Unindent();
-        }
-
-        private static int GetLCIDFromLanguageCode(string languageCode)
-        {
-            if (languageCode == "@@@")
-                return 0;
-
-            if (cultures == null)
-                cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
-
-            return cultures.FirstOrDefault(c => c.ThreeLetterWindowsLanguageName == languageCode).LCID;
         }
     }
 }

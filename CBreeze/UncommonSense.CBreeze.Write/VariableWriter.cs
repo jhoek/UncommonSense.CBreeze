@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Utils;
 using System.Globalization;
 
 namespace UncommonSense.CBreeze.Write
@@ -47,7 +48,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<RecordRefVariable>(p => DoWrite(p.Name, p.ID, "RecordRef", p.Dimensions, false, false, false, false, p.SecurityFiltering.HasValue ? p.SecurityFiltering.Value.ToString() : null, writer)),
                 TypeSwitch.Case<ReportVariable>(p => DoWrite(p.Name, p.ID, string.Format("Report {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TestPageVariable>(p => DoWrite(p.Name, p.ID, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),
-                TypeSwitch.Case<TextConstant>(p => DoWrite(p.Name, p.ID, string.Format("TextConst '{0}'", string.Join(";", p.Values.Select(v => string.Format("{0}={1}", v.LanguageID, v.Value.TextConstantValue(v.LanguageID == "@@@", p.Values.Count()))))), "", writer)),
+                TypeSwitch.Case<TextConstant>(p => WriteTextConstant(p, writer)),
                 TypeSwitch.Case<TextVariable>(p => DoWrite(p.Name, p.ID, p.DataLength.HasValue ? string.Format("Text[{0}]", p.DataLength) : "Text", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<TimeVariable>(p => DoWrite(p.Name, p.ID, "Time", p.Dimensions, writer)),
                 TypeSwitch.Case<TransactionTypeVariable>(p => DoWrite(p.Name, p.ID, "TransactionType", p.Dimensions, writer)),
@@ -92,17 +93,51 @@ namespace UncommonSense.CBreeze.Write
             writer.WriteLine(stringBuilder.ToString());
         }
 
-        private static void WriteTextConstant(TextConstant textConstant)
+        private static void WriteTextConstant(TextConstant textConstant, CSideWriter writer)
         {
-            // FIXME
-            //if (textConstant.Values.Any(v => v.Value.Length >= 1012))
-            //{
-            //    WriteMultiLineTextConstant(textConstant);
-            //}
-            //else
-            //{
-            //    WriteSingleLineTextConstant(
-            //}
+            if (IsMultiLineTextConstant(textConstant))
+            {
+                WriteMultiLineTextConstant(textConstant, writer);
+            }
+            else
+            {
+                WriteSingleLineTextConstant(textConstant, writer);
+            }
+        }
+
+        private static bool IsMultiLineTextConstant(TextConstant textConstant)
+        {
+            return textConstant.Values.Sum(v => v.QuotedValue.Length) >= 1002; 
+        }
+
+        private static void WriteSingleLineTextConstant(TextConstant textConstant, CSideWriter writer)
+        {
+            DoWrite(
+                textConstant.Name,
+                textConstant.ID,
+                string.Format(
+                    "TextConst '{0}'",
+                    string.Join(
+                        ";",
+                        textConstant.Values.OrderBy(t => t.LanguageID.GetLCIDFromLanguageCode()).Select(v => string.Format("{0}={1}", v.LanguageID, v.Value.TextConstantValue(v.LanguageID == "@@@", textConstant.Values.Count()))))),
+                "", writer);
+        }
+
+        private static void WriteMultiLineTextConstant(TextConstant textConstant, CSideWriter writer)
+        {
+            var sortedValues = textConstant.Values.OrderBy(v => v.LanguageID.GetLCIDFromLanguageCode());
+
+            writer.InnerWriter.WriteLine();
+            writer.WriteLine("{0}@{1} : TextConst", textConstant.Name, textConstant.ID);
+            writer.Indent();
+
+            foreach (var value in sortedValues)
+            {
+                var isLastValue = (value.LanguageID == sortedValues.Last().LanguageID);
+                writer.WriteLine("'{0}={1}'{2}", value.LanguageID, value.QuotedValue, isLastValue ? ";" : ",");
+            }
+
+            writer.Unindent();
         }
     }
 }

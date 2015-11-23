@@ -35,5 +35,24 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
+        public string QuotedValue
+        {
+            get
+            {
+                return RequiresQuotes ? Value.ForceQuoted() : Value;
+            }
+        }
+
+        public bool RequiresQuotes
+        {
+            get
+            {
+                return 
+                    Value != Value.Trim() ||
+                    Value.Contains(';') ||
+                    Value.Contains('=') ||    
+                    Value == string.Empty;
+            }
+        }
     }
 }
