@@ -42,14 +42,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - positional arguments for Automation namespace
 - Pester tests for PowerShell functions
 - Repair FIXME's
-- Support for NAV 2013R2, 2015 and 2016:
-  - AccessByPermission, EvalForAccessByPermission
-  - DefaultLayOut, WordMergeDataItem [report]
-  - Temporary [dataitem]
-  - UpdatePropagation
-  - Scope
-  - Image
-  - ShowMandatory
+- Support for NAV 2015 and 2016
   - Upgrade [codeunit type]
   - Upgrade|TableSynchSetup|CheckProcondition [upgrade codeunit function type]
 
