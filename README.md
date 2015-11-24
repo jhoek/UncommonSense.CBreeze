@@ -14,8 +14,8 @@
 
 ## Design Goals
 - Intuitive object model for anybody familiar with C/SIDE;
-- Version-specific experience (e.g. available properties) for each supported NAV version;
-- ...
+- Separate assemblies for each supported NAV version, at least for UncommonSense.CBreeze.Core and UncommonSense.CBreeze.Automation;
+- Keep namespaces the same for all supported NAV versions, so that PowerShell scripts can run against any version (Good idea?!).
 
 ## Design Decisions
 ### Supporting multiple NAV versions from the same codebase
