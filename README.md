@@ -14,6 +14,7 @@
 
 ## Design Goals
 - Intuitive object model for anybody familiar with C/SIDE;
+- Version-specific experience (e.g. available properties) for each supported NAV version;
 - ...
 
 ## Design Decisions
