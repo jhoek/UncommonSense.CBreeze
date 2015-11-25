@@ -5,9 +5,19 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public interface IHasPageControls
+    public interface IPage
     {
         PageControls Controls
+        {
+            get;
+        }
+
+        ActionList Actions
+        {
+            get;
+        }
+
+        int ObjectID
         {
             get;
         }

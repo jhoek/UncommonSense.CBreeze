@@ -17,8 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class PageControls : IntegerKeyedAndNamedContainer<PageControl>
     {
-        internal PageControls()
+        internal PageControls(IPage page)
         {
+            Page = page;
         }
 
         protected override void InsertItem(int index, PageControl item)
@@ -38,10 +39,10 @@ namespace UncommonSense.CBreeze.Core
             TestNameUnique(item);
         }
 
-        public Page Page
+        public IPage Page
         {
             get;
-            internal set;
+            protected set;
         }
     }
 }

@@ -15,16 +15,14 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Page : Object, IHasCode, IHasPageControls
+    public partial class Page : Object, IHasCode, IPage
     {
         public Page(Int32 id, String name)
             : base(id, name)
         {
             Properties = new PageProperties();
-            Controls = new PageControls();
+            Controls = new PageControls(this);
             Code = new Code();
-
-            Controls.Page = this;
         }
 
         public override ObjectType Type
@@ -58,6 +56,23 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return Properties;
+            }
+        }
+
+
+        public ActionList Actions
+        {
+            get
+            {
+                return Properties.ActionList;
+            }
+        }
+
+        public int ObjectID
+        {
+            get
+            {
+                return ID;
             }
         }
     }

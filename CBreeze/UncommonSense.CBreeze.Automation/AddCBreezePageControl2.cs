@@ -654,7 +654,7 @@ namespace UncommonSense.CBreeze.Automation
         protected int GetObjectID()
         {
             if (InputObject.BaseObject is PageControls)
-                return (InputObject.BaseObject as PageControls).Page.ID;
+                return (InputObject.BaseObject as PageControls).Page.ObjectID;
             else if (InputObject.BaseObject is Page)
                 return (InputObject.BaseObject as Page).ID;
             else if (InputObject.BaseObject is ReportRequestPage)
@@ -662,9 +662,9 @@ namespace UncommonSense.CBreeze.Automation
             else if (InputObject.BaseObject is XmlPortRequestPage)
                 return (InputObject.BaseObject as XmlPortRequestPage).XmlPort.ID;
             else if (InputObject.BaseObject is ContainerPageControl)
-                return (InputObject.BaseObject as ContainerPageControl).Container.Page.ID;
+                return (InputObject.BaseObject as ContainerPageControl).Container.Page.ObjectID;
             else if (InputObject.BaseObject is GroupPageControl)
-                return (InputObject.BaseObject as GroupPageControl).Container.Page.ID;
+                return (InputObject.BaseObject as GroupPageControl).Container.Page.ObjectID;
             else
                 throw new ArgumentOutOfRangeException("Don't know how to determine object ID for this InputObject.");
         }
@@ -690,7 +690,7 @@ namespace UncommonSense.CBreeze.Automation
         protected IEnumerable<int> GetActionIDs()
         {
             if (InputObject.BaseObject is PageControls)
-                return (InputObject.BaseObject as PageControls).Page.Properties.ActionList.Select(a=>a.ID);
+                return (InputObject.BaseObject as PageControls).Page.Actions.Select(a=>a.ID);
             else if (InputObject.BaseObject is Page)
                 return (InputObject.BaseObject as Page).Properties.ActionList.Select(a => a.ID);
             else if (InputObject.BaseObject is ReportRequestPage)
@@ -698,9 +698,9 @@ namespace UncommonSense.CBreeze.Automation
             else if (InputObject.BaseObject is XmlPortRequestPage)
                 return (InputObject.BaseObject as XmlPortRequestPage).Properties.ActionList.Select(a => a.ID);
             else if (InputObject.BaseObject is ContainerPageControl)
-                return (InputObject.BaseObject as ContainerPageControl).Container.Page.Properties.ActionList.Select(a => a.ID);
+                return (InputObject.BaseObject as ContainerPageControl).Container.Page.Actions.Select(a => a.ID);
             else if (InputObject.BaseObject is GroupPageControl)
-                return (InputObject.BaseObject as GroupPageControl).Container.Page.Properties.ActionList.Select(a => a.ID);
+                return (InputObject.BaseObject as GroupPageControl).Container.Page.Actions.Select(a => a.ID);
             else
                 throw new ArgumentOutOfRangeException("Don't know how to determine used action IDs for this InputObject.");
         }

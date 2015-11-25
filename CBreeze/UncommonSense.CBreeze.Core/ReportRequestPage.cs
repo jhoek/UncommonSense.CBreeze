@@ -15,36 +15,49 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ReportRequestPage : IHasPageControls
+    public partial class ReportRequestPage : IPage
     {
-        private PageControls controls = new PageControls();
-        private ReportRequestPageProperties properties = new ReportRequestPageProperties();
-
         internal ReportRequestPage(Report report)
         {
             Report = report;
+
+            Properties = new ReportRequestPageProperties();
+            Controls = new PageControls(this);
         }
 
         public PageControls Controls
         {
-            get
-            {
-                return this.controls;
-            }
+            get;
+            protected set;
         }
 
         public ReportRequestPageProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public Report Report
         {
             get;
             protected set;
+        }
+
+
+        public ActionList Actions
+        {
+            get
+            {
+                return Properties.ActionList;
+            }
+        }
+
+        public int ObjectID
+        {
+            get
+            {
+                return Report.ID;
+            }
         }
     }
 }

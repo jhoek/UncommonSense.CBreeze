@@ -15,13 +15,13 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class XmlPortRequestPage : IHasPageControls
+    public partial class XmlPortRequestPage : IPage
     {
         internal XmlPortRequestPage(XmlPort xmlPort)
         {
             XmlPort = xmlPort;
             Properties = new XmlPortRequestPageProperties();
-            Controls = new PageControls();
+            Controls = new PageControls(this);
         }
 
         public PageControls Controls
@@ -40,6 +40,23 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             protected set;
+        }
+
+
+        public ActionList Actions
+        {
+            get
+            {
+                return Properties.ActionList;
+            }
+        }
+
+        public int ObjectID
+        {
+            get
+            {
+                return XmlPort.ID;
+            }
         }
     }
 }

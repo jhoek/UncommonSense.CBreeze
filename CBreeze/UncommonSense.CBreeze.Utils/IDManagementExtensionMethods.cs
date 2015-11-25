@@ -61,13 +61,13 @@ namespace UncommonSense.CBreeze.Utils
             return Enumerable.Range(1, 10).Except(table.Fields.Select(f => f.ID)).First();
         }
 
-        public static int GetNextPageControlID(this IEnumerable<int> range, Page page)
+        public static int GetNextPageControlID(this IEnumerable<int> range, IPage page)
         {
-            if (range.Contains(page.ID))
+            if (range.Contains(page.ObjectID))
                 range = 1.To(int.MaxValue);
 
             var pageControlIDs = page.Controls.Select(c => c.ID);
-            var pageActionIDs = page.Properties.ActionList.Select(a => a.ID);
+            var pageActionIDs = page.Actions.Select(a => a.ID);
 
             return range.Except(pageControlIDs).Except(pageActionIDs).First();
         }
