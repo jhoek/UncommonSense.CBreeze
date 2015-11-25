@@ -79,7 +79,7 @@ namespace UncommonSense.CBreeze.Utils
             if (range.Contains(hasCode.ID))
                 range = 1.To(int.MaxValue);
 
-            return range.Except(hasCode.GetCode().Functions.Select(f => f.ID)).First();
+            return range.Except(hasCode.Code.Functions.Select(f => f.ID)).First();
         }
 
         public static int GetNextVariableID<T>(this IEnumerable<int> range, T hasCode) where T : Object, IHasCode
@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Utils
             if (range.Contains(hasCode.ID))
                 range = 1000.To(int.MaxValue);
 
-            return range.Except(hasCode.GetCode().Variables.Select(v => v.ID)).First();
+            return range.Except(hasCode.Code.Variables.Select(v => v.ID)).First();
         }
 
         public static int GetNextVariableID(this IEnumerable<int> range, Trigger trigger)

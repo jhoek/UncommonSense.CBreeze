@@ -56,10 +56,5 @@ namespace UncommonSense.CBreeze.Core
                 return Properties;
             }
         }
-
-        public Code GetCode()
-        {
-            return Code;
-        }
     }
 }

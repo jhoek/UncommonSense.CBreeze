@@ -7,6 +7,9 @@ namespace UncommonSense.CBreeze.Core
 {
     public interface IHasCode
     {
-        Code GetCode();
+        Code Code
+        {
+            get;
+        }
     }
 }
