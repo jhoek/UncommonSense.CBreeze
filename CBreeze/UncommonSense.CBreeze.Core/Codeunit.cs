@@ -17,12 +17,11 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Codeunit : Object, IHasCode
     {
-        private CodeunitProperties properties = new CodeunitProperties();
-        private Code code = new Code();
-
         public Codeunit(Int32 id, String name)
             : base(id, name)
         {
+            Properties = new CodeunitProperties();
+            Code = new Code();
         }
 
         public override ObjectType Type
@@ -35,18 +34,13 @@ namespace UncommonSense.CBreeze.Core
 
         public CodeunitProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;protected set;
         }
 
         public Code Code
         {
-            get
-            {
-                return this.code;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

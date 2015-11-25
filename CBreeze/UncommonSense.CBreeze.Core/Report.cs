@@ -15,20 +15,20 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Report : Object
+    public partial class Report : Object, IHasCode
     {
-        private Code code = new Code();
-        private ReportElements elements = new ReportElements();
-        private ReportLabels labels = new ReportLabels();
-        private ReportProperties properties = new ReportProperties();
-        private RdlData rdlData = new RdlData();
-#if NAV2015
-        private WordLayout wordLayout = new WordLayout();
-#endif
-        private ReportRequestPage requestPage = new ReportRequestPage();
-
-        public Report(Int32 id, String name) : base(id, name)
+        public Report(Int32 id, String name)
+            : base(id, name)
         {
+            Properties = new ReportProperties();
+            Elements = new ReportElements();
+            RequestPage = new ReportRequestPage(this);
+            Labels = new ReportLabels();
+            Code = new Code();
+            RdlData = new RdlData();
+#if NAV2015
+            WordLayout = new WordLayout();
+#endif
         }
 
         public override ObjectType Type
@@ -39,63 +39,49 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
+        public ReportProperties Properties
         {
-            get
-            {
-                return this.code;
-            }
+            get;
+            protected set;
         }
 
         public ReportElements Elements
         {
-            get
-            {
-                return this.elements;
-            }
+            get;
+            protected set;
+        }
+
+        public ReportRequestPage RequestPage
+        {
+            get;
+            protected set;
         }
 
         public ReportLabels Labels
         {
-            get
-            {
-                return this.labels;
-            }
+            get;
+            protected set;
         }
 
-        public ReportProperties Properties
+        public Code Code
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public RdlData RdlData
         {
-            get
-            {
-                return this.rdlData;
-            }
+            get;
+            protected set;
         }
 
 #if NAV2015
         public WordLayout WordLayout
         {
-            get
-            {
-                return this.wordLayout;
-            }
+            get;
+            protected set;
         }
 #endif
-
-        public ReportRequestPage RequestPage
-        {
-            get
-            {
-                return this.requestPage;
-            }
-        }
 
         public override Properties AllProperties
         {

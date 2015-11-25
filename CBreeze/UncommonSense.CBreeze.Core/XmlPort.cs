@@ -15,16 +15,15 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class XmlPort : Object
+    public partial class XmlPort : Object, IHasCode
     {
-        private Code code = new Code();
-        private XmlPortNodes nodes = new XmlPortNodes();
-        private XmlPortProperties properties = new XmlPortProperties();
-        private XmlPortRequestPage requestPage = new XmlPortRequestPage();
-
         public XmlPort(Int32 id, String name)
             : base(id, name)
         {
+            Properties = new XmlPortProperties();
+            Nodes = new XmlPortNodes();
+            RequestPage = new XmlPortRequestPage();
+            Code = new Code();
         }
 
         public override ObjectType Type
@@ -35,36 +34,28 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
+        public XmlPortProperties Properties
         {
-            get
-            {
-                return this.code;
-            }
+            get;
+            protected set;
         }
 
         public XmlPortNodes Nodes
         {
-            get
-            {
-                return this.nodes;
-            }
-        }
-
-        public XmlPortProperties Properties
-        {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public XmlPortRequestPage RequestPage
         {
-            get
-            {
-                return this.requestPage;
-            }
+            get;
+            protected set;
+        }
+
+        public Code Code
+        {
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

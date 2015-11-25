@@ -17,15 +17,14 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Table : Object, IHasCode
     {
-        private TableFields fields = new TableFields();
-        private TableProperties properties = new TableProperties();
-        private TableFieldGroups fieldGroups = new TableFieldGroups();
-        private TableKeys keys = new TableKeys();
-        private Code code = new Code();
-
         public Table(Int32 id, String name)
             : base(id, name)
         {
+            Properties = new TableProperties();
+            Fields = new TableFields();
+            Keys = new TableKeys();
+            FieldGroups = new TableFieldGroups();
+            Code = new Code();
         }
 
         public override ObjectType Type
@@ -36,44 +35,34 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableFields Fields
-        {
-            get
-            {
-                return this.fields;
-            }
-        }
-
         public TableProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
-        public TableFieldGroups FieldGroups
+        public TableFields Fields
         {
-            get
-            {
-                return this.fieldGroups;
-            }
+            get;
+            protected set;
         }
 
         public TableKeys Keys
         {
-            get
-            {
-                return this.keys;
-            }
+            get;
+            protected set;
+        }
+
+        public TableFieldGroups FieldGroups
+        {
+            get;
+            protected set;
         }
 
         public Code Code
         {
-            get
-            {
-                return this.code;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

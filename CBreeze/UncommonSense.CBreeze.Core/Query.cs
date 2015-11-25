@@ -15,14 +15,14 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Query : Object
+    public partial class Query : Object, IHasCode
     {
-        private Code code = new Code();
-        private QueryElements elements = new QueryElements();
-        private QueryProperties properties = new QueryProperties();
-
-        public Query(Int32 id, String name) : base(id, name)
+        public Query(Int32 id, String name)
+            : base(id, name)
         {
+            Properties = new QueryProperties();
+            Elements = new QueryElements();
+            Code = new Code();
         }
 
         public override ObjectType Type
@@ -33,28 +33,22 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
+        public QueryProperties Properties
         {
-            get
-            {
-                return this.code;
-            }
+            get;
+            protected set;
         }
 
         public QueryElements Elements
         {
-            get
-            {
-                return this.elements;
-            }
+            get;
+            protected set;
         }
 
-        public QueryProperties Properties
+        public Code Code
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

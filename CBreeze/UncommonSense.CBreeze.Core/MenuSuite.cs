@@ -17,11 +17,11 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class MenuSuite : Object
     {
-        private MenuSuiteProperties properties = new MenuSuiteProperties();
-        private MenuSuiteNodes nodes = new MenuSuiteNodes();
-
-        public MenuSuite(Int32 id, String name) : base(id, name)
+        public MenuSuite(Int32 id, String name)
+            : base(id, name)
         {
+            Properties = new MenuSuiteProperties();
+            Nodes = new MenuSuiteNodes();
         }
 
         public override ObjectType Type
@@ -34,18 +34,14 @@ namespace UncommonSense.CBreeze.Core
 
         public MenuSuiteProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public MenuSuiteNodes Nodes
         {
-            get
-            {
-                return this.nodes;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties
