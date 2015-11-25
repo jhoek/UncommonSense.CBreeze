@@ -77,7 +77,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter()]
         public PageControlType Type
         {
             get;
