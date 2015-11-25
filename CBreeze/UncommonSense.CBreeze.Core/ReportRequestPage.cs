@@ -20,8 +20,9 @@ namespace UncommonSense.CBreeze.Core
         private PageControls controls = new PageControls();
         private ReportRequestPageProperties properties = new ReportRequestPageProperties();
 
-        internal ReportRequestPage()
+        internal ReportRequestPage(Report report)
         {
+            Report = report;
         }
 
         public PageControls Controls
@@ -40,5 +41,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public Report Report
+        {
+            get;
+            protected set;
+        }
     }
 }
