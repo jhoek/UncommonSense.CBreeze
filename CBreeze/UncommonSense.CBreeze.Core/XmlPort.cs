@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
         {
             Properties = new XmlPortProperties();
             Nodes = new XmlPortNodes();
-            RequestPage = new XmlPortRequestPage();
+            RequestPage = new XmlPortRequestPage(this);
             Code = new Code();
         }
 

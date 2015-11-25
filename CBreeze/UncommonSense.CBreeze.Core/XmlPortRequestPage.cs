@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class XmlPortRequestPage : IHasPageControls
     {
-
-        internal XmlPortRequestPage()
+        internal XmlPortRequestPage(XmlPort xmlPort)
         {
+            XmlPort = xmlPort;
             Properties = new XmlPortRequestPageProperties();
             Controls = new PageControls();
         }
@@ -36,5 +36,10 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public XmlPort XmlPort
+        {
+            get;
+            protected set;
+        }
     }
 }
