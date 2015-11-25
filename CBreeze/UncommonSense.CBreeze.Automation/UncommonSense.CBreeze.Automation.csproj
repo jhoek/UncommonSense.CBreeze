@@ -52,6 +52,7 @@
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
+    <Compile Include="AddCBreezePageControl2.cs" />
     <Compile Include="GetCBreezePageActionContainer.cs" />
     <Compile Include="GetCBreezePageActionGroup.cs" />
     <Compile Include="GetCBreezePageControlContainer.cs" />
