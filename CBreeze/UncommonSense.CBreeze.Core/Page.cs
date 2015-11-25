@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Page : Object, IHasCode
+    public partial class Page : Object, IHasCode, IHasPageControls
     {
         public Page(Int32 id, String name)
             : base(id, name)

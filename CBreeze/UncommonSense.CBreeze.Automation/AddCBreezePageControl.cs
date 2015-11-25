@@ -58,7 +58,7 @@ namespace UncommonSense.CBreeze.Automation
             MultiLine = new DynamicParameter<bool?>("MultiLine");
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
-            Page = new DynamicParameter<Core.Page>("Page", true, true);
+            Page = new DynamicParameter<IHasPageControls>("Page", true, true);
             PagePartID = new DynamicParameter<int?>("PagePartID", PagePartWithID, PagePartWithRange);
             ParentControl = new DynamicParameter<PageControl>("ParentControl", true);
             Position = new DynamicParameter<Position?>("Position");
@@ -340,7 +340,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<Page> Page
+        protected DynamicParameter<IHasPageControls> Page
         {
             get;
             set;

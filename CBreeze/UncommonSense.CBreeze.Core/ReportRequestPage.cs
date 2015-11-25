@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ReportRequestPage 
+    public partial class ReportRequestPage : IHasPageControls
     {
         private PageControls controls = new PageControls();
         private ReportRequestPageProperties properties = new ReportRequestPageProperties();

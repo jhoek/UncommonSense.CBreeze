@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class XmlPortRequestPage
+    public partial class XmlPortRequestPage : IHasPageControls
     {
         private PageControls controls = new PageControls();
         private XmlPortRequestPageProperties properties = new XmlPortRequestPageProperties();
