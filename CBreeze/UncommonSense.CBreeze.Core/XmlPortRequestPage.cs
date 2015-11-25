@@ -17,27 +17,23 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class XmlPortRequestPage : IHasPageControls
     {
-        private PageControls controls = new PageControls();
-        private XmlPortRequestPageProperties properties = new XmlPortRequestPageProperties();
 
         internal XmlPortRequestPage()
         {
+            Properties = new XmlPortRequestPageProperties();
+            Controls = new PageControls();
         }
 
         public PageControls Controls
         {
-            get
-            {
-                return this.controls;
-            }
+            get;
+            protected set;
         }
 
         public XmlPortRequestPageProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
     }
