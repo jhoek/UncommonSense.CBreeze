@@ -6,9 +6,6 @@ using System.Text;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Utils;
 
-// FIXME: Test with int[] as ID
-// FIXME: Test with Page *and* PageControls as InputObject
-
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezePageControl2")]
