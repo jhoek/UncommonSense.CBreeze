@@ -29,14 +29,14 @@ namespace UncommonSense.CBreeze.Automation
             ClosingDates = new DynamicParameter<bool?>("ClosingDates");
             Compressed = new DynamicParameter<bool?>("Compressed");
             DateFormula = new DynamicParameter<bool?>("DateFormula");
-            DataLength = new DynamicParameter<int?>("DataLength", 1, 250);
+            DataLength = new DynamicParameter<int?>("DataLength", minRange: 1, maxRange: 250);
             DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast");
             DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost");
             Editable = new DynamicParameter<bool?>("Editable");
             Enabled = new DynamicParameter<bool?>("Enabled");
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass");
-            ID = new DynamicParameter<int>("ID", true, 1, int.MaxValue, "ID");
+            ID = new DynamicParameter<int>("ID", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] { "ID" });
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue");
             BooleanInitValue = new DynamicParameter<bool?>("InitValue");
             DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue");
@@ -63,7 +63,7 @@ namespace UncommonSense.CBreeze.Automation
             Numeric = new DynamicParameter<bool?>("Numeric");
             OptionString = new DynamicParameter<string>("OptionString");
             Owner = new DynamicParameter<string>("Owner");
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true, "Range");
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement");
             SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
             StandardDayTimeUnit = new DynamicParameter<Core.StandardDayTimeUnit?>("StandardDayTimeUnit");
@@ -83,7 +83,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true)]
+        [Parameter(Mandatory = true)]
         public TableFieldType? Type
         {
             get;

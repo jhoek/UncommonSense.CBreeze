@@ -12,9 +12,9 @@ namespace UncommonSense.CBreeze.Automation
     {
         public AddCBreezeParameter()
         {
-            OptionalDataLength = new DynamicParameter<int>("DataLength", false, 1, int.MaxValue);
-            MandatoryDataLength = new DynamicParameter<int>("DataLength", true, 1, int.MaxValue);
-            IntegerSubType = new DynamicParameter<int>("SubType", true, 1, int.MaxValue);
+            OptionalDataLength = new DynamicParameter<int>("DataLength", false, minRange: 1, maxRange:int.MaxValue);
+            MandatoryDataLength = new DynamicParameter<int>("DataLength", true, minRange: 1, maxRange: int.MaxValue);
+            IntegerSubType = new DynamicParameter<int>("SubType", true, minRange: 1, maxRange: int.MaxValue);
             OptionString = new DynamicParameter<string>("OptionString", false);
             QuerySecurityFiltering = new DynamicParameter<Core.QuerySecurityFiltering?>("SecurityFiltering", false);
             RecordSecurityFiltering = new DynamicParameter<Core.RecordSecurityFiltering?>("SecurityFiltering", false);

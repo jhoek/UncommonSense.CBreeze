@@ -16,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<MenuItemDepartmentCategory?> departmentCategory = new DynamicParameter<MenuItemDepartmentCategory?>("DepartmentCategory", true);
         protected DynamicParameter<bool?> enabled = new DynamicParameter<bool?>("Enabled");
         protected DynamicParameter<Guid?> firstChild = new DynamicParameter<Guid?>("FirstChild");
-        protected DynamicParameter<int?> image = new DynamicParameter<int?>("Image", 0, 15);
+        protected DynamicParameter<int?> image = new DynamicParameter<int?>("Image", minRange: 0, maxRange: 15);
         protected DynamicParameter<MenuSuiteNode> insertAfterNode = new DynamicParameter<MenuSuiteNode>("InsertAfterNode");
         protected DynamicParameter<bool?> isDepartmentPage = new DynamicParameter<bool?>("IsDepartmentPage");
         protected DynamicParameter<bool?> isShortcut = new DynamicParameter<bool?>("IsShortcut");
@@ -27,7 +27,7 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<Guid?> parentNodeID = new DynamicParameter<Guid?>("ParentNodeID");
         protected DynamicParameter<SwitchParameter> passthru = new DynamicParameter<SwitchParameter>("PassThru");
         protected DynamicParameter<MenuItemRunObjectType?> runObjectType = new DynamicParameter<MenuItemRunObjectType?>("RunObjectType", true);
-        protected DynamicParameter<int?> runObjectID = new DynamicParameter<int?>("RunObjectID", true, 1, int.MaxValue);
+        protected DynamicParameter<int?> runObjectID = new DynamicParameter<int?>("RunObjectID", true, minRange: 1, maxRange: int.MaxValue);
         protected DynamicParameter<bool?> visible = new DynamicParameter<bool?>("Visible");
 
         [Parameter(Mandatory = true)]
@@ -94,7 +94,7 @@ namespace UncommonSense.CBreeze.Automation
                     groupNode.Properties.Name = name.Value;
                     groupNode.Properties.NextNodeID = nextNodeID.Value;
                     groupNode.Properties.ParentNodeID = parentNodeID.Value;
-                    groupNode.Properties.Visible = visible.Value??true;
+                    groupNode.Properties.Visible = visible.Value ?? true;
                     return groupNode;
 
                 case MenuSuiteNodeType.MenuItem:

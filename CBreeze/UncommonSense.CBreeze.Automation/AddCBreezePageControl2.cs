@@ -21,21 +21,21 @@ namespace UncommonSense.CBreeze.Automation
             Caption = new DynamicParameter<string>("Caption");
             CaptionClass = new DynamicParameter<string>("CaptionClass");
             CharAllowed = new DynamicParameter<string>("CharAllowed");
-            ChartPartID = new DynamicParameter<string>("ChartPartID", "ChartPart");
+            ChartPartID = new DynamicParameter<string>("ChartPartID", parameterSetNames: new string[] { "ChartPart" });
             ClosingDates = new DynamicParameter<bool?>("ClosingDates");
             ColumnSpan = new DynamicParameter<int?>("ColumnSpan");
-            ContainerType = new DynamicParameter<ContainerType?>("ContainerType");
+            ContainerType = new DynamicParameter<ContainerType?>("ContainerType", defaultValue: Core.ContainerType.ContentArea);
             ControlAddIn = new DynamicParameter<string>("ControlAddIn");
             DateFormula = new DynamicParameter<bool?>("DateFormula");
-            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", 0, int.MaxValue);
-            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", 0, int.MaxValue);
+            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", minRange: 0, maxRange: int.MaxValue);
+            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", minRange: 0, maxRange: int.MaxValue);
             DrillDown = new DynamicParameter<bool?>("DrillDown");
             DrillDownPageID = new DynamicParameter<string>("DrillDownPageID");
             Editable = new DynamicParameter<string>("Editable");
             Enabled = new DynamicParameter<string>("Enabled");
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
-            GroupType = new DynamicParameter<Core.GroupType?>("GroupType");
+            GroupType = new DynamicParameter<Core.GroupType?>("GroupType", defaultValue: Core.GroupType.Group);
             HideValue = new DynamicParameter<string>("HideValue");
             Importance = new DynamicParameter<Core.Importance?>("Importance");
             IndentationColumnName = new DynamicParameter<string>("IndentationColumnName");
@@ -48,10 +48,10 @@ namespace UncommonSense.CBreeze.Automation
             MultiLine = new DynamicParameter<bool?>("MultiLine");
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
-            PagePartID = new DynamicParameter<int?>("PagePartID", "PagePart");
+            PagePartID = new DynamicParameter<int?>("PagePartID", parameterSetNames: new string[] { "PagePart" });
             Position = new DynamicParameter<Position?>("Position");
             QuickEntry = new DynamicParameter<string>("QuickEntry");
-            SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", "SystemPart");
+            SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", parameterSetNames: new string[] { "SystemPart" });
             ProviderID = new DynamicParameter<int?>("ProviderID");
             RowSpan = new DynamicParameter<int?>("RowSpan");
             ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
@@ -66,6 +66,8 @@ namespace UncommonSense.CBreeze.Automation
             ValuesAllowed = new DynamicParameter<string>("ValuesAllowed");
             Visible = new DynamicParameter<string>("Visible");
             Width = new DynamicParameter<int?>("Width");
+
+            Type = PageControlType.Field;
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -75,7 +77,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true)]
+        [Parameter(Mandatory = true)]
         public PageControlType Type
         {
             get;
@@ -83,6 +85,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true)]
+        [Alias("Range")]
         public PSObject ID
         {
             get;
@@ -444,7 +447,7 @@ namespace UncommonSense.CBreeze.Automation
             if (InputObject.BaseObject is ContainerPageControl)
             {
                 (InputObject.BaseObject as ContainerPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
-            } 
+            }
             else if (InputObject.BaseObject is GroupPageControl)
             {
                 (InputObject.BaseObject as GroupPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
@@ -690,7 +693,7 @@ namespace UncommonSense.CBreeze.Automation
         protected IEnumerable<int> GetActionIDs()
         {
             if (InputObject.BaseObject is PageControls)
-                return (InputObject.BaseObject as PageControls).Page.Actions.Select(a=>a.ID);
+                return (InputObject.BaseObject as PageControls).Page.Actions.Select(a => a.ID);
             else if (InputObject.BaseObject is Page)
                 return (InputObject.BaseObject as Page).Properties.ActionList.Select(a => a.ID);
             else if (InputObject.BaseObject is ReportRequestPage)
@@ -719,7 +722,7 @@ namespace UncommonSense.CBreeze.Automation
                 return (InputObject.BaseObject as ContainerPageControl).IndentationLevel.GetValueOrDefault(0) + 1;
             else if (InputObject.BaseObject is GroupPageControl)
                 return (InputObject.BaseObject as GroupPageControl).IndentationLevel.GetValueOrDefault(0) + 1;
-            else 
+            else
                 throw new ArgumentOutOfRangeException("Cannot determine indentation.");
         }
 

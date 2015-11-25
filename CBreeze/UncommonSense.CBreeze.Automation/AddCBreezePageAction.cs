@@ -16,9 +16,9 @@ namespace UncommonSense.CBreeze.Automation
             Caption = new DynamicParameter<string>("Caption");
             ContainerType = new DynamicParameter<ActionContainerType?>("ContainerType");
             Description = new DynamicParameter<string>("Description");
-            Ellipsis = new DynamicParameter<bool?>("Ellipsis");                 
+            Ellipsis = new DynamicParameter<bool?>("Ellipsis");
             Enabled = new DynamicParameter<string>("Enabled");
-            ID = new DynamicParameter<int?>("ID", true, 1, int.MaxValue, "ID");
+            ID = new DynamicParameter<int?>("ID", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] {"ID"});
             Image = new DynamicParameter<string>("Image");
             InFooterBar = new DynamicParameter<bool?>("InFooterBar");
             IsHeader = new DynamicParameter<bool?>("IsHeader");
@@ -27,7 +27,7 @@ namespace UncommonSense.CBreeze.Automation
             Promoted = new DynamicParameter<bool?>("Promoted");
             PromotedCategory = new DynamicParameter<Core.PromotedCategory?>("PromotedCategory");
             PromotedIsBig = new DynamicParameter<bool?>("PromotedIsBig");
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true, "Range");
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
             RunObjectType = new DynamicParameter<Core.RunObjectType?>("RunObjectType");
             RunObjectID = new DynamicParameter<int?>("RunObjectID");
             RunPageMode = new DynamicParameter<Core.RunPageMode?>("RunPageMode");

@@ -14,14 +14,14 @@ namespace UncommonSense.CBreeze.Automation
         public AddCBreezeVariable()
         {
             Dimensions = new DynamicParameter<string>("Dimensions", false);
-            ID = new DynamicParameter<int>("ID", true, 1, int.MaxValue, "ID");
+            ID = new DynamicParameter<int>("ID", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] { "ID" });
             IncludeInDataset = new DynamicParameter<bool?>("IncludeInDataset", false);
-            IntegerSubType = new DynamicParameter<int>("SubType", true, 1, int.MaxValue);
-            MandatoryDataLength = new DynamicParameter<int>("DataLength", true, 1, 250);
-            OptionalDataLength = new DynamicParameter<int>("DataLength", false, 1, 250);
+            IntegerSubType = new DynamicParameter<int>("SubType", true, minRange: 1, maxRange: int.MaxValue);
+            MandatoryDataLength = new DynamicParameter<int>("DataLength", true, minRange: 1, maxRange: 250);
+            OptionalDataLength = new DynamicParameter<int>("DataLength", false, minRange: 1, maxRange: 250);
             OptionString = new DynamicParameter<string>("OptionString", false);
             QuerySecurityFiltering = new DynamicParameter<Core.QuerySecurityFiltering?>("SecurityFiltering", false);
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true, "Range");
+            Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
             RunOnClient = new DynamicParameter<bool?>("RunOnClient", false);
             StringSubType = new DynamicParameter<string>("SubType", true);
             RecordSecurityFiltering = new DynamicParameter<RecordSecurityFiltering?>("SecurityFiltering", false);
@@ -215,14 +215,14 @@ namespace UncommonSense.CBreeze.Automation
 
                 case VariableType.Codeunit:
                     var codeunitVariable = new CodeunitVariable(id, Name, IntegerSubType.Value);
-                    codeunitVariable.Dimensions = Dimensions.Value  ;
+                    codeunitVariable.Dimensions = Dimensions.Value;
                     return codeunitVariable;
-                
+
                 case VariableType.Date:
                     var dateVariable = new DateVariable(id, Name);
                     dateVariable.Dimensions = Dimensions.Value;
                     return dateVariable;
-               
+
                 case VariableType.DateFormula:
                     var dateFormulaVariable = new DateFormulaVariable(id, Name);
                     dateFormulaVariable.Dimensions = Dimensions.Value;
@@ -353,7 +353,7 @@ namespace UncommonSense.CBreeze.Automation
                     return textVariable;
 
                 case VariableType.TextConstant:
-                    var textConstant =  new TextConstant(id, Name);
+                    var textConstant = new TextConstant(id, Name);
                     textConstant.Values.Set("ENU", Value.Value);
                     return textConstant;
 
@@ -430,7 +430,7 @@ namespace UncommonSense.CBreeze.Automation
                     case VariableType.Integer:
                         yield return IncludeInDataset.RuntimeDefinedParameter;
                         break;
-                    
+
                     case VariableType.Ocx:
                         yield return StringSubType.RuntimeDefinedParameter;
                         break;
@@ -442,7 +442,7 @@ namespace UncommonSense.CBreeze.Automation
                     case VariableType.Page:
                         yield return IntegerSubType.RuntimeDefinedParameter;
                         break;
-                    
+
                     case VariableType.Query:
                         yield return IntegerSubType.RuntimeDefinedParameter;
                         yield return QuerySecurityFiltering.RuntimeDefinedParameter;

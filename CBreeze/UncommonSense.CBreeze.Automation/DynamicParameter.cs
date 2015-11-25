@@ -9,22 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     public class DynamicParameter<T>
     {
-        public DynamicParameter(string name)
-            : this(name, false, null)
-        {
-        }
-
-        public DynamicParameter(string name, params string[] parameterSetNames)
-            : this(name, false, parameterSetNames)
-        {
-        }
-
-        public DynamicParameter(string name, bool mandatory, params string[] parameterSetNames)
-            : this(name, mandatory, false, parameterSetNames)
-        {
-        }
-
-        public DynamicParameter(string name, bool mandatory, bool valueFromPipeline, params string[] parameterSetNames)
+        public DynamicParameter(string name, bool mandatory = false, bool valueFromPipeline = false, T defaultValue = default(T), int? minRange = null, int? maxRange = null, string[] parameterSetNames = null)
         {
             var attributes = new Collection<Attribute>();
 
@@ -42,19 +27,14 @@ namespace UncommonSense.CBreeze.Automation
                 attributes.Add(parameterAttribute);
             }
 
+            if (minRange.HasValue && maxRange.HasValue)
+            {
+                var validateRangeAttribute = new ValidateRangeAttribute(minRange.Value, maxRange.Value);
+                attributes.Add(validateRangeAttribute);
+            }
+
             RuntimeDefinedParameter = new RuntimeDefinedParameter(name, typeof(T), attributes);
-        }
-
-        public DynamicParameter(string name, int minRange, int maxRange, params string[] parameterSetNames)
-            : this(name, false, minRange, maxRange, parameterSetNames)
-        {
-        }
-
-        public DynamicParameter(string name, bool mandatory, int minRange, int maxRange, params string[] parameterSetNames)
-            : this(name, mandatory, parameterSetNames)
-        {
-            var validateRangeAttribute = new ValidateRangeAttribute(minRange, maxRange);
-            RuntimeDefinedParameter.Attributes.Add(validateRangeAttribute);
+            RuntimeDefinedParameter.Value = defaultValue;
         }
 
         public RuntimeDefinedParameter RuntimeDefinedParameter
