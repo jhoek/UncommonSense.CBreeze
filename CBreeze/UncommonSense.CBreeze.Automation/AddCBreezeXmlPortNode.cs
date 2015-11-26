@@ -188,6 +188,7 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(ParameterSetName = TableAttribute)]
         [Parameter(ParameterSetName = FieldAttribute)]
+        [Parameter(ParameterSetName=TextAttribute)]
         public Occurrence? Occurrence
         {
             get;
@@ -252,6 +253,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TextElement)]
+        [Parameter(ParameterSetName = TextAttribute)]
         public TextType? TextType
         {
             get;
@@ -271,6 +273,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = TableAttribute)]
         [Parameter(ParameterSetName = TextElement)]
+        [Parameter(ParameterSetName = TextAttribute)]
         public string VariableName
         {
             get;
@@ -282,6 +285,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = FieldElement)]
         [Parameter(ParameterSetName = FieldAttribute)]
         [Parameter(ParameterSetName = TextElement)]
+        [Parameter(ParameterSetName = TextAttribute)]
         public int? Width
         {
             get;
@@ -480,6 +484,11 @@ namespace UncommonSense.CBreeze.Automation
         protected XmlPortTextAttribute CreateTextAttributeNode()
         {
             var node = new XmlPortTextAttribute(ID ?? Guid.NewGuid(), Name, GetIndentationLevel());
+
+            node.Properties.Occurrence = Occurrence;
+            node.Properties.TextType = TextType;
+            node.Properties.VariableName = VariableName;
+            node.Properties.Width = Width;
 
             return node;
         }
