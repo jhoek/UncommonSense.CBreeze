@@ -11,6 +11,13 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeXmlPortNode")]
     public class AddCBreezeXmlPortNode : Cmdlet
     {
+        private const string TableElement = "TableElement";
+        private const string FieldElement = "FieldElement";
+        private const string TextElement = "TextElement";
+        private const string TableAttribute = "TableAttribute";
+        private const string FieldAttribute = "FieldAttribute";
+        private const string TextAttribute = "TextAttribute";
+
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {
@@ -18,22 +25,48 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true)]
-        [ValidateSet("Element", "Attribute")]
-        public string NodeType
+        [Parameter(Mandatory = true, ParameterSetName = TableElement)]
+        [Parameter(Mandatory = true, ParameterSetName = FieldElement)]
+        [Parameter(Mandatory = true, ParameterSetName = TextElement)]
+        public SwitchParameter Element
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true)]
-        [ValidateSet("Table", "Field", "Text")]
-        public string SourceType
+        [Parameter(Mandatory = true, ParameterSetName = TableAttribute)]
+        [Parameter(Mandatory = true, ParameterSetName = FieldAttribute)]
+        [Parameter(Mandatory = true, ParameterSetName = TextAttribute)]
+        public SwitchParameter Attribute
         {
             get;
             set;
         }
-        
+
+        [Parameter(Mandatory = true, ParameterSetName = TableElement)]
+        [Parameter(Mandatory = true, ParameterSetName = TableAttribute)]
+        public SwitchParameter Table
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = FieldElement)]
+        [Parameter(Mandatory = true, ParameterSetName = FieldAttribute)]
+        public SwitchParameter Field
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = TextElement)]
+        [Parameter(Mandatory = true, ParameterSetName = TextAttribute)]
+        public SwitchParameter Text
+        {
+            get;
+            set;
+        }
+
         [Parameter()]
         public Guid? ID
         {
@@ -62,14 +95,165 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
+        public bool? AutoReplace
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
+        public bool? AutoSave
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
+        public bool? AutoUpdate
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
+        public string[] CalcFields
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
+        public string LinkTable
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
+        public bool? LinkTableForceInsert
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        public MaxOccurs? MaxOccurs
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        public MinOccurs? MinOccurs
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableAttribute)]
+        public Occurrence? Occurrence
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
+        public string[] ReqFilterFields
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = TableElement)]
+        [ValidateRange(1, int.MaxValue)]
+        public int? SourceTable
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        public string SourceTableViewKey
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        public Order? SourceTableViewOrder
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        public bool? Temporary
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        public string VariableName
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = TableElement)]
+        public int? Width
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
-            var xmlPortNode = CreateXmlPortNode();
+            var node = CreateXmlPortNode();
 
-
+            if (InputObject.BaseObject is XmlPort)
+            {
+                switch (Position.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                {
+                    case Utils.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as XmlPort).Nodes.Insert(0, node);
+                        break;
+                    case Utils.Position.LastWithinContainer:
+                        (InputObject.BaseObject as XmlPort).Nodes.Add(node);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is XmlPortNodes)
+            {
+                switch (Position.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                {
+                    case Utils.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as XmlPortNodes).Insert(0, node);
+                        break;
+                    case Utils.Position.LastWithinContainer:
+                        (InputObject.BaseObject as XmlPortNodes).Add(node);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is XmlPortNode)
+            {
+                (InputObject.BaseObject as XmlPortNode).AddChildNode(node, Position.GetValueOrDefault(Utils.Position.LastWithinContainer));
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+            }
 
             if (PassThru)
-                WriteObject(xmlPortNode);
+                WriteObject(node);
         }
 
         protected XmlPortNode CreateXmlPortNode()
@@ -90,55 +274,58 @@ namespace UncommonSense.CBreeze.Automation
                     return CreateTextAttributeNode();
                 default:
                     throw new ArgumentOutOfRangeException("Don't know how to create this node.");
-            }   
+            }
         }
 
         protected XmlPortNodeType GetNodeType()
         {
-            switch (NodeType)
+            if (Element.IsPresent)
             {
-                case "Element":
-                    return GetElementNodeType();
-                case "Attribute":
-                    return GetAttributeNodeType();
-                default:
-                    throw new ArgumentOutOfRangeException("Unknown node type.");
-            }
-        }
-
-        protected XmlPortNodeType GetElementNodeType()
-        {
-            switch (SourceType)
-            {
-                case "Table":
+                if (Table.IsPresent)
                     return XmlPortNodeType.XmlPortTableElement;
-                case "Field":
+                if (Field.IsPresent)
                     return XmlPortNodeType.XmlPortFieldElement;
-                case "Text":
+                if (Text.IsPresent)
                     return XmlPortNodeType.XmlPortTextElement;
-                default:
-                    throw new ArgumentOutOfRangeException("Unknown source type.");
-            }
-        }
 
-        protected XmlPortNodeType GetAttributeNodeType()
-        {
-            switch (SourceType)
-            {
-                case "Table":
-                    return XmlPortNodeType.XmlPortTableAttribute;
-                case "Field":
-                    return XmlPortNodeType.XmlPortFieldAttribute;
-                case "Text":
-                    return XmlPortNodeType.XmlPortTextAttribute;
-                default:
-                    throw new ArgumentOutOfRangeException("Unknown source type.");
+                throw new ArgumentOutOfRangeException("Unknown source type.");
             }
+
+            if (Attribute.IsPresent)
+            {
+                if (Table.IsPresent)
+                    return XmlPortNodeType.XmlPortTableAttribute;
+                if (Field.IsPresent)
+                    return XmlPortNodeType.XmlPortFieldAttribute;
+                if (Text.IsPresent)
+                    return XmlPortNodeType.XmlPortTextAttribute;
+
+                throw new ArgumentOutOfRangeException("Unknown source type.");
+            }
+
+            throw new ArgumentOutOfRangeException("Unknown node type.");
         }
 
         protected XmlPortTableElement CreateTableElementNode()
         {
             var node = new XmlPortTableElement(ID ?? Guid.NewGuid(), Name, GetIndentationLevel());
+
+            node.Properties.AutoReplace = AutoReplace;
+            node.Properties.AutoSave = AutoSave;
+            node.Properties.AutoUpdate = AutoUpdate;
+            node.Properties.CalcFields.AddRange(CalcFields ?? new string[] { });
+            // FIXME: node.Properties.LinkFields
+            node.Properties.LinkTable = LinkTable;
+            node.Properties.LinkTableForceInsert = LinkTableForceInsert;
+            node.Properties.MaxOccurs = MaxOccurs;
+            node.Properties.MinOccurs = MinOccurs;
+            node.Properties.ReqFilterFields.AddRange(ReqFilterFields ?? new string[] { });
+            node.Properties.SourceTable = SourceTable;
+            node.Properties.SourceTableView.Key = SourceTableViewKey;
+            node.Properties.SourceTableView.Order = SourceTableViewOrder;
+            node.Properties.Temporary = Temporary;
+            node.Properties.VariableName = VariableName;
+            node.Properties.Width = Width;
 
             return node;
         }
@@ -160,6 +347,16 @@ namespace UncommonSense.CBreeze.Automation
         protected XmlPortTableAttribute CreateTableAttributeNode()
         {
             var node = new XmlPortTableAttribute(ID ?? Guid.NewGuid(), Name, GetIndentationLevel());
+
+            node.Properties.AutoReplace = AutoReplace;
+            node.Properties.AutoSave = AutoSave;
+            node.Properties.AutoUpdate = AutoUpdate;
+            node.Properties.CalcFields.AddRange(CalcFields ?? new string[] { });
+            // FIXME: node.Properties.LinkFields
+            node.Properties.LinkTable = LinkTable;
+            node.Properties.LinkTableForceInsert = LinkTableForceInsert;
+            node.Properties.Occurrence = Occurrence;
+            node.Properties.ReqFilterFields.AddRange(ReqFilterFields ?? new string[] { });
 
             return node;
         }
