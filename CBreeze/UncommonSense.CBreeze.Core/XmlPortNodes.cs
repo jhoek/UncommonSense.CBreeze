@@ -20,5 +20,17 @@ namespace UncommonSense.CBreeze.Core
         internal XmlPortNodes()
         {
         }
+
+        protected override void InsertItem(int index, XmlPortNode item)
+        {
+            base.InsertItem(index, item);
+            item.Container = this;
+        }
+
+        protected override void RemoveItem(int index)
+        {
+            this[index].Container = null;
+            base.RemoveItem(index);
+        }
     }
 }

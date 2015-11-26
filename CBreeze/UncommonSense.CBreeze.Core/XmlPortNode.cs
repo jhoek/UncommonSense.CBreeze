@@ -40,6 +40,12 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public XmlPortNodes Container
+        {
+            get;
+            internal set;
+        }
+
         public Int32? IndentationLevel
         {
             get
