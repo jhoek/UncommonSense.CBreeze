@@ -21,28 +21,14 @@ namespace UncommonSense.CBreeze.Automation
             throw new ApplicationException("Cannot add parameters to this object.");
         }
 
-        public static bool TryGetParameters(this PSObject inputObject, out Parameters parameters)
-        {
-            try
-            {
-                parameters = GetParameters(inputObject);
-                return true;
-            }
-            catch (ApplicationException)
-            {
-                parameters = null;
-                return false;
-            }
-        }
-
         public static IEnumerable<int> GetParameterIDs(this PSObject inputObject)
         {
-            Parameters parameters = null;
-
-            if (TryGetParameters(inputObject, out parameters))
-                return parameters.Select(p => p.ID);
-
-            return Enumerable.Empty<int>();
+            if (inputObject.BaseObject is Parameters)
+                return (inputObject.BaseObject as Parameters).Select(p => p.ID);
+            else if (inputObject.BaseObject is IHasParameters)
+                return (inputObject.BaseObject as IHasParameters).Parameters.Select(p => p.ID);
+            else
+                return Enumerable.Empty<int>();
         }
 
         public static Variables GetVariables(this PSObject inputObject)
