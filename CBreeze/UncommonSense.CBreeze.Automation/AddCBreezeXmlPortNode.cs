@@ -173,6 +173,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, ParameterSetName = TableElement)]
+        [Parameter(Mandatory = true, ParameterSetName = TableAttribute)]
         [ValidateRange(1, int.MaxValue)]
         public int? SourceTable
         {
@@ -181,6 +182,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
         public string SourceTableViewKey
         {
             get;
@@ -188,6 +190,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
         public Order? SourceTableViewOrder
         {
             get;
@@ -195,6 +198,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName=TableAttribute)]
         public bool? Temporary
         {
             get;
@@ -202,6 +206,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
         public string VariableName
         {
             get;
@@ -209,6 +214,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = TableAttribute)]
         public int? Width
         {
             get;
@@ -357,6 +363,12 @@ namespace UncommonSense.CBreeze.Automation
             node.Properties.LinkTableForceInsert = LinkTableForceInsert;
             node.Properties.Occurrence = Occurrence;
             node.Properties.ReqFilterFields.AddRange(ReqFilterFields ?? new string[] { });
+            node.Properties.SourceTable = SourceTable;
+            node.Properties.SourceTableView.Key = SourceTableViewKey;
+            node.Properties.SourceTableView.Order = SourceTableViewOrder;
+            node.Properties.Temporary = Temporary;
+            node.Properties.VariableName = VariableName;
+            node.Properties.Width = Width;
 
             return node;
         }
