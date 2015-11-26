@@ -95,6 +95,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = FieldAttribute)]
+        public bool? AutoCalcField
+        {
+            get;
+            set;
+        }
+
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = TableAttribute)]
         public bool? AutoReplace
@@ -122,6 +130,22 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = TableAttribute)]
         public string[] CalcFields
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = FieldAttribute)]
+        public TableFieldType? DataType
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = FieldAttribute)]
+        public bool? FieldValidate
         {
             get;
             set;
@@ -158,6 +182,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableAttribute)]
+        [Parameter(ParameterSetName = FieldAttribute)]
         public Occurrence? Occurrence
         {
             get;
@@ -167,6 +192,22 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = TableAttribute)]
         public string[] ReqFilterFields
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = FieldAttribute)]
+        public string SourceFieldName
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = FieldAttribute)]
+        public string SourceFieldTableVariableName
         {
             get;
             set;
@@ -198,12 +239,21 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
-        [Parameter(ParameterSetName=TableAttribute)]
+        [Parameter(ParameterSetName = TableAttribute)]
         public bool? Temporary
         {
             get;
             set;
         }
+
+#if NAV2013R2
+        [Parameter(ParameterSetName = FieldElement)]
+        public bool? Unbound
+        {
+            get;
+            set;
+        }
+#endif
 
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = TableAttribute)]
@@ -215,6 +265,8 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = TableAttribute)]
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = FieldAttribute)]
         public int? Width
         {
             get;
@@ -340,6 +392,18 @@ namespace UncommonSense.CBreeze.Automation
         {
             var node = new XmlPortFieldElement(ID ?? Guid.NewGuid(), Name, GetIndentationLevel());
 
+            node.Properties.AutoCalcField = AutoCalcField;
+            node.Properties.DataType = DataType;
+            node.Properties.FieldValidate = FieldValidate;
+            node.Properties.MaxOccurs = MaxOccurs;
+            node.Properties.MinOccurs = MinOccurs;
+            node.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
+            node.Properties.SourceField.FieldName = SourceFieldName;
+#if NAV2013R2
+            node.Properties.Unbound = Unbound;
+            node.Properties.Width = Width;
+#endif
+
             return node;
         }
 
@@ -377,6 +441,14 @@ namespace UncommonSense.CBreeze.Automation
         {
             var node = new XmlPortFieldAttribute(ID ?? Guid.NewGuid(), Name, GetIndentationLevel());
 
+            node.Properties.AutoCalcField = AutoCalcField;
+            node.Properties.DataType = DataType;
+            node.Properties.FieldValidate = FieldValidate;
+            node.Properties.Occurrence = Occurrence;
+            node.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
+            node.Properties.SourceField.FieldName = SourceFieldName;
+            node.Properties.Width = Width;
+
             return node;
         }
 
@@ -387,12 +459,12 @@ namespace UncommonSense.CBreeze.Automation
             return node;
         }
 
-        protected int GetIndentationLevel()
+        protected int? GetIndentationLevel()
         {
             if (InputObject.BaseObject is XmlPort)
-                return 0;
+                return null;
             else if (InputObject.BaseObject is XmlPortNodes)
-                return 0;
+                return null;
             else if (InputObject.BaseObject is XmlPortNode)
                 return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1;
             else
