@@ -520,7 +520,7 @@ namespace UncommonSense.CBreeze.Automation
                     containerPageControl.Properties.Name = Name;
                     containerPageControl.Properties.ContainerType = ContainerType.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         containerPageControl.AutoCaption();
 
                     return containerPageControl;
@@ -540,7 +540,7 @@ namespace UncommonSense.CBreeze.Automation
                     groupPageControl.Properties.ShowAsTree = ShowAsTree.Value;
                     groupPageControl.Properties.Visible = Visible.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         groupPageControl.AutoCaption();
 
                     return groupPageControl;
@@ -588,7 +588,7 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.Visible = Visible.Value;
                     fieldPageControl.Properties.Width = Width.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         fieldPageControl.AutoCaption();
 
                     return fieldPageControl;
@@ -625,7 +625,7 @@ namespace UncommonSense.CBreeze.Automation
                     partPageControl.Properties.SubPageView.Order = SubPageViewOrder.Value;
                     partPageControl.Properties.Visible = Visible.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         partPageControl.AutoCaption();
 
                     return partPageControl;
