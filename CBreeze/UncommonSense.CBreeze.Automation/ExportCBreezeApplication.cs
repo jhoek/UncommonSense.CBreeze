@@ -78,6 +78,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(ParameterSetName = "ToDatabase")]
+        public SwitchParameter AutoCompile
+        {
+            get;
+            set;
+        }
+
         protected override void ProcessRecord()
         {
             switch (ParameterSetName)
@@ -93,6 +100,9 @@ namespace UncommonSense.CBreeze.Automation
                     break;
                 case "ToDatabase":
                     ApplicationImporter.Import(Application, DevClientPath, ServerName, Database);
+
+                    if (AutoCompile)
+                        ApplicationCompiler.Compile(Application, DevClientPath, ServerName, Database);
                     break;
             }
         }
