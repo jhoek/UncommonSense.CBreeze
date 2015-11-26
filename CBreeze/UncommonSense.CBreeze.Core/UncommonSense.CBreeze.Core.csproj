@@ -206,6 +206,7 @@
     <Compile Include="GuidVariable.cs" />
     <Compile Include="IHasCode.cs" />
     <Compile Include="IHasOptionString.cs" />
+    <Compile Include="IHasParameters.cs" />
     <Compile Include="IPage.cs" />
     <Compile Include="IHasProperties.cs" />
     <Compile Include="Importance.cs" />
