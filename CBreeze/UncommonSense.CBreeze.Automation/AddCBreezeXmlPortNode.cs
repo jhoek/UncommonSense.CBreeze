@@ -137,6 +137,7 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(ParameterSetName = FieldElement)]
         [Parameter(ParameterSetName = FieldAttribute)]
+        [Parameter(ParameterSetName=TextElement)]
         public TableFieldType? DataType
         {
             get;
@@ -168,6 +169,8 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = TextElement)]
         public MaxOccurs? MaxOccurs
         {
             get;
@@ -175,6 +178,8 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = TextElement)]
         public MinOccurs? MinOccurs
         {
             get;
@@ -246,8 +251,16 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(ParameterSetName = TextElement)]
+        public TextType? TextType
+        {
+            get;
+            set;
+        }
+
 #if NAV2013R2
         [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = TextElement)]
         public bool? Unbound
         {
             get;
@@ -257,6 +270,7 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = TableAttribute)]
+        [Parameter(ParameterSetName = TextElement)]
         public string VariableName
         {
             get;
@@ -267,6 +281,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = TableAttribute)]
         [Parameter(ParameterSetName = FieldElement)]
         [Parameter(ParameterSetName = FieldAttribute)]
+        [Parameter(ParameterSetName = TextElement)]
         public int? Width
         {
             get;
@@ -410,6 +425,16 @@ namespace UncommonSense.CBreeze.Automation
         protected XmlPortTextElement CreateTextElementNode()
         {
             var node = new XmlPortTextElement(ID ?? Guid.NewGuid(), Name, GetIndentationLevel());
+
+            node.Properties.DataType = DataType;
+            node.Properties.MaxOccurs = MaxOccurs;
+            node.Properties.MinOccurs = MinOccurs;
+            node.Properties.TextType = TextType;
+#if NAV2013R2
+            node.Properties.Unbound = Unbound;
+#endif
+            node.Properties.VariableName = VariableName;
+            node.Properties.Width = Width;
 
             return node;
         }
