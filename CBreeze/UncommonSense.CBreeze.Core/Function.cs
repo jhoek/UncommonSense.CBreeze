@@ -14,74 +14,61 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	{
-		private String name;
-		private CodeLines codeLines = new CodeLines();
-		private Parameters parameters = new Parameters();
-		private FunctionProperties properties = new FunctionProperties();
-		private FunctionReturnValue returnValue = new FunctionReturnValue();
-		private Variables variables = new Variables();
     [Serializable]
     public partial class Function : KeyedItem<int>, IHasName, IHasParameters
+    {
+        private Variables variables = new Variables();
 
-		public Function(Int32 id, String name)
-		{
-			ID = id;
-			this.name = name;
-		}
+        public Function(Int32 id, String name)
+        {
+            ID = id;
+            Name = name;
+            CodeLines = new CodeLines();
+            Parameters = new Parameters();
+            Properties = new FunctionProperties();
+            ReturnValue = new FunctionReturnValue();
+            Variables = new Variables();
+        }
 
-		public String Name
-		{
-			get
-			{
-				return this.name;
-			}
-		}
+        public String Name
+        {
+            get;
+            protected set;
+        }
 
-		public CodeLines CodeLines
-		{
-			get
-			{
-				return this.codeLines;
-			}
-		}
+        public CodeLines CodeLines
+        {
+            get;
+            protected set;
+        }
 
-		public Parameters Parameters
-		{
-			get
-			{
-				return this.parameters;
-			}
-		}
+        public Parameters Parameters
+        {
+            get;
+            protected set;
+        }
 
-		public FunctionProperties Properties
-		{
-			get
-			{
-				return this.properties;
-			}
-		}
+        public FunctionProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public FunctionReturnValue ReturnValue
-		{
-			get
-			{
-				return this.returnValue;
-			}
-		}
+        public FunctionReturnValue ReturnValue
+        {
+            get;
+            protected set;
+        }
 
-		public Variables Variables
-		{
-			get
-			{
-				return this.variables;
-			}
-		}
+        public Variables Variables
+        {
+            get;
+            protected set;
+        }
 
-
-		public  string GetName()
-		{
-			return Name;
-		}
-	}
+        public string GetName()
+        {
+            return Name;
+        }
+    }
 }
