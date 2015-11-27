@@ -41,6 +41,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public QueryElements Container
+        {
+            get;
+            internal set;
+        }
 
         public string GetName()
         {

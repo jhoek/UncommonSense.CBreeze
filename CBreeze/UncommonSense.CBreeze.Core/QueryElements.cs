@@ -21,6 +21,17 @@ namespace UncommonSense.CBreeze.Core
         {
             Query = query;
         }
+
+        protected override void InsertItem(int index, QueryElement item)
+        {
+            base.InsertItem(index, item);
+            item.Container = this;
+        }
+
+        protected override void RemoveItem(int index)
+        {
+            this[index].Container = null;
+            base.RemoveItem(index);
         }
 
         public override void ValidateName(QueryElement item)
