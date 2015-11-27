@@ -17,9 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OutStreamVariable : Variable
     {
-        private String dimensions;
-
-        public OutStreamVariable(Int32 id, String name) : base(id, name)
+        public OutStreamVariable(Int32 id, String name)
+            : base(id, name)
         {
         }
 
@@ -33,15 +32,8 @@ namespace UncommonSense.CBreeze.Core
 
         public String Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
-
     }
 }
