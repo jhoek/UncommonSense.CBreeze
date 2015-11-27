@@ -17,13 +17,21 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class QueryElements : IntegerKeyedAndNamedContainer<QueryElement>
     {
-        internal QueryElements()
+        internal QueryElements(Query query)
         {
+            Query = query;
+        }
         }
 
         public override void ValidateName(QueryElement item)
         {
             TestNameUnique(item);
+        }
+
+        public Query Query
+        {
+            get;
+            protected set;
         }
     }
 }

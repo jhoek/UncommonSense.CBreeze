@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
             : base(id, name)
         {
             Properties = new QueryProperties();
-            Elements = new QueryElements();
+            Elements = new QueryElements(this);
             Code = new Code();
         }
 
