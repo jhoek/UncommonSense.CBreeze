@@ -640,8 +640,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 return (int)ID.BaseObject;
             }
-
-            if (ID.BaseObject is IEnumerable<int>)
+            else if (ID.BaseObject is IEnumerable<int>)
             {
                 var range = ID.BaseObject as IEnumerable<int>;
 
