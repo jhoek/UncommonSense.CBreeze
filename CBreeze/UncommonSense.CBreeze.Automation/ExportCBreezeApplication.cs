@@ -16,6 +16,7 @@ namespace UncommonSense.CBreeze.Automation
     {
         public ExportCBreezeApplication()
         {
+            // FIXME: #if etc.
             DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
             ServerName = ".";
             ImportAction = "Skip";
