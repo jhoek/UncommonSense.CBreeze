@@ -49,6 +49,7 @@
     <Compile Include="ObjectRunner.cs" />
     <Compile Include="PageMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangeExtensionMethods.cs" />
     <Compile Include="RoleTailoredClient.cs" />
     <Compile Include="StringBuilderExtensionMethods.cs" />
   </ItemGroup>
