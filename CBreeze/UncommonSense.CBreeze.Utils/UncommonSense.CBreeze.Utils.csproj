@@ -45,6 +45,7 @@
     <Compile Include="PageActionExtensionMethods.cs" />
     <Compile Include="PageControlExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryElementExtensionMethods.cs" />
     <Compile Include="XmlPortNodeExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
