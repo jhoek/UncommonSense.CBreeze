@@ -53,8 +53,22 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName=ColumnParameterSet)]
-        [Parameter(ParameterSetName=FilterParameterSet)]
+        [Parameter()]
+        public Position? Position
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = DataItemParameterSet)]
+        public int DataItemTable
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = ColumnParameterSet)]
+        [Parameter(ParameterSetName = FilterParameterSet)]
         public string DataSource
         {
             get;
@@ -75,6 +89,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
         public SwitchParameter PassThru
         {
             get;
@@ -85,7 +100,29 @@ namespace UncommonSense.CBreeze.Automation
         {
             var element = CreateElement();
 
-            // FIXME: add new element
+            if (DataItem)
+            {
+                if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
+                {
+                    (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).AddChildNode(element, Position.GetValueOrDefault(Utils.Position.LastWithinContainer));
+                }
+                else 
+                {
+                    switch (Position.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                    {
+                        case Utils.Position.FirstWithinContainer:
+                            GetQuery().Elements.Insert(0, element);
+                            break;
+                        case Utils.Position.LastWithinContainer:
+                            GetQuery().Elements.Add(element);
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                InputObjectForColumnsOrFilters.Value.AddChildNode(element, Position.GetValueOrDefault(Utils.Position.LastWithinContainer));
+            }
 
             if (PassThru)
                 WriteObject(element);
@@ -97,6 +134,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var dataItem = new DataItemQueryElement(GetElementID(), Name, GetIndentationLevel());
 
+                dataItem.Properties.DataItemTable = DataItemTable;
                 dataItem.Properties.Description = Description;
                 dataItem.Properties.SQLJoinType = SqlJoinType;
 
@@ -158,7 +196,7 @@ namespace UncommonSense.CBreeze.Automation
                 else
                     throw new ArgumentOutOfRangeException("Cannot determine query object for this InputObject.");
             }
-            else 
+            else
             {
                 return InputObjectForColumnsOrFilters.Value.Container.Query;
             }
@@ -169,14 +207,14 @@ namespace UncommonSense.CBreeze.Automation
             return GetQuery().Elements.Select(e => e.ID);
         }
 
-        protected int GetIndentationLevel()
+        protected int? GetIndentationLevel()
         {
             if (DataItem)
             {
                 if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
                     return (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).IndentationLevel.GetValueOrDefault(0) + 1;
                 else
-                    return 0;
+                    return null;
             }
             else
             {
