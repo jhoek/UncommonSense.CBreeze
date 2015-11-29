@@ -17,30 +17,22 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class QueryOrderByLine
     {
-        private String column;
-        private QueryOrderByDirection? direction;
-
-        internal QueryOrderByLine(String column, QueryOrderByDirection direction)
+        internal QueryOrderByLine(string column, QueryOrderByDirection direction)
         {
-            this.column = column;
-            this.direction = direction;
+            Column = column;
+            Direction = direction;
         }
 
-        public String Column
+        public string Column
         {
-            get
-            {
-                return this.column;
-            }
+            get;
+            protected set;
         }
 
-        public QueryOrderByDirection? Direction
+        public QueryOrderByDirection Direction
         {
-            get
-            {
-                return this.direction;
-            }
+            get;
+            protected set;
         }
-
     }
 }
