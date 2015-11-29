@@ -171,7 +171,17 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetIndentationLevel()
         {
-            return 0; // FIXME
+            if (DataItem)
+            {
+                if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
+                    return (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).IndentationLevel.GetValueOrDefault(0) + 1;
+                else
+                    return 0;
+            }
+            else
+            {
+                return InputObjectForColumnsOrFilters.Value.IndentationLevel.GetValueOrDefault(0) + 1;
+            }
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
