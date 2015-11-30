@@ -17,40 +17,29 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ColumnFilterLine
     {
-        private String column;
-        private SimpleTableFilterType? type;
-        private String value;
-
-        internal ColumnFilterLine(String column, SimpleTableFilterType type, String value)
+        public ColumnFilterLine(string column, SimpleTableFilterType type, string value)
         {
-            this.column = column;
-            this.type = type;
-            this.value = value;
+            Column = column;
+            Type = type;
+            Value = value;
         }
 
-        public String Column
+        public string Column
         {
-            get
-            {
-                return this.column;
-            }
+            get;
+            protected set;
         }
 
-        public SimpleTableFilterType? Type
+        public SimpleTableFilterType Type
         {
-            get
-            {
-                return this.type;
-            }
+            get;
+            protected set;
         }
 
-        public String Value
+        public string Value
         {
-            get
-            {
-                return this.value;
-            }
+            get;
+            protected set;
         }
-
     }
 }
