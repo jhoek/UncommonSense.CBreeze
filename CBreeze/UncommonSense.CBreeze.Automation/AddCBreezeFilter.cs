@@ -4,11 +4,14 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
     // FIXME: For filter types that do no support Field, hide it by making
     // the Const, Filter and Field dynamic and dependent on InputObject
+
+    // FIXME: Make constants for parameter set names
 
     [Cmdlet(VerbsCommon.Add, "CBreezeFilter", DefaultParameterSetName = "Const")]
     public class AddCBreezeFilter : Cmdlet
@@ -65,62 +68,28 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            if (InputObject.BaseObject is CalcFormula)
-            {
-                (InputObject.BaseObject as CalcFormula).TableFilter.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value));
-                PassThruInputObject(InputObject.BaseObject as CalcFormula);
-                return;
-            }
+            TypeSwitch.Do(
+                InputObject.BaseObject,
+                TypeSwitch.Case<CalcFormula>(i => i.TableFilter.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value))),
+                TypeSwitch.Case<CalcFormulaTableFilter>(i=> i.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value))),
+                TypeSwitch.Case<PartPageControl>(i=>i.Properties.SubPageView.TableFilter.Add(FieldName, SimpleTableFilterType,Value)),
+                TypeSwitch.Case<TableView>(i=> i.TableFilter.Add(FieldName, SimpleTableFilterType, Value)),
+                TypeSwitch.Case<TableFilter>(i=>i.Add(FieldName, SimpleTableFilterType, Value)),
+                TypeSwitch.Case<TableRelationTableFilter>(i=>i.Add(FieldName, TableFilterType, Value)),
+                TypeSwitch.Case<TableRelationLine>(i=>i.TableFilter.Add(FieldName, TableFilterType, Value)),
+                TypeSwitch.Case<DataItemQueryElement>(i=>i.Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<DataItemQueryElementTableFilter>(i=>i.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<ColumnQueryElement>(i=> i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType,Value))),
+                TypeSwitch.Case<ColumnFilter>(i=>i.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<FilterQueryElement>(i=>i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Default(() => InvalidInputObject())
+                );
 
-            if (InputObject.BaseObject is CalcFormulaTableFilter)
-            {
-                (InputObject.BaseObject as CalcFormulaTableFilter).Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value));
-                PassThruInputObject(InputObject.BaseObject as CalcFormulaTableFilter);
-                return;
-            }
+            PassThruInputObject(InputObject);
+        }
 
-            if (InputObject.BaseObject is PartPageControl)
-            {
-                (InputObject.BaseObject as PartPageControl).Properties.SubPageView.TableFilter.Add(FieldName, SimpleTableFilterType, Value);
-                PassThruInputObject(InputObject.BaseObject as PartPageControl);
-                return;
-            }
-
-            if (InputObject.BaseObject is TableView)
-            {
-                (InputObject.BaseObject as TableView).TableFilter.Add(FieldName, SimpleTableFilterType, Value);
-                PassThruInputObject(InputObject.BaseObject as TableView);
-                return;
-            }
-
-            if (InputObject.BaseObject is TableFilter)
-            {
-                (InputObject.BaseObject as TableFilter).Add(FieldName, SimpleTableFilterType, Value);
-                PassThruInputObject(InputObject.BaseObject as TableFilter);
-                return;
-            }
-
-            if (InputObject.BaseObject is TableRelationTableFilter)
-            {
-                (InputObject.BaseObject as TableRelationTableFilter).Add(FieldName, TableFilterType, Value);
-                PassThruInputObject(InputObject.BaseObject as TableRelationTableFilter);
-                return;
-            }
-
-            if (InputObject.BaseObject is TableRelationLine)
-            {
-                (InputObject.BaseObject as TableRelationLine).TableFilter.Add(FieldName, TableFilterType, Value);
-                PassThruInputObject(InputObject.BaseObject as TableRelationLine);
-                return;
-            }
-
-            if (InputObject.BaseObject is DataItemQueryElement)
-            {
-                (InputObject.BaseObject as DataItemQueryElement).Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value));
-                PassThruInputObject(InputObject.BaseObject as DataItemQueryElement);
-                return;
-            }
-
+        protected void InvalidInputObject()
+        {
             throw new ArgumentOutOfRangeException("Cannot add a filter to this object.");
         }
 
