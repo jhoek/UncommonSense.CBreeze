@@ -12,7 +12,9 @@ namespace UncommonSense.CBreeze.Utils
         {
             var elements = parent.Container;
 
-            return elements.Skip(parent.Index() + 1).TakeWhile(e => e.IndentationLevel > parent.IndentationLevel);
+            return elements
+                .Skip(parent.Index() + 1)
+                .TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > parent.IndentationLevel.GetValueOrDefault(0));
         }
 
         public static int Index(this QueryElement element)
