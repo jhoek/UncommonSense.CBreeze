@@ -111,6 +111,13 @@ namespace UncommonSense.CBreeze.Automation
                 return;
             }
 
+            if (InputObject.BaseObject is DataItemQueryElement)
+            {
+                (InputObject.BaseObject as DataItemQueryElement).Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value));
+                PassThruInputObject(InputObject.BaseObject as DataItemQueryElement);
+                return;
+            }
+
             throw new ArgumentOutOfRangeException("Cannot add a filter to this object.");
         }
 
