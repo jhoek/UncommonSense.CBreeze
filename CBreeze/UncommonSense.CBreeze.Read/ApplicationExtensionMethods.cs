@@ -355,7 +355,7 @@ namespace UncommonSense.CBreeze.Read
                 var fieldName = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
                 var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<SimpleTableFilterType>();
                 var value = GetCalcFormulaFilterValue(ref propertyValue);
-                property.Value.Add(fieldName, type, value);
+                property.Value.Add(new DataItemQueryElementTableFilterLine(fieldName, type, value));
             }
             while (Parsing.TryMatch(ref propertyValue, @"^,\s?"));
         }
