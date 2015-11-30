@@ -49,6 +49,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public string ReferenceDataItem
         {
             get;
             set;
