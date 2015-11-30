@@ -327,7 +327,7 @@ namespace UncommonSense.CBreeze.Read
                 var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<SimpleTableFilterType>();
                 var value = Parsing.MustMatch(ref propertyValue, @"^\(([^\)]*)\)").Groups[1].Value;
 
-                property.Value.Add(column, type, value);
+                property.Value.Add(new ColumnFilterLine(column, type, value));
             }
         }
 
