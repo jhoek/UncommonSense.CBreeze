@@ -12,11 +12,13 @@ namespace UncommonSense.CBreeze.Automation
     public class AddCBreezeQueryElement : CmdletWithDynamicParams
     {
         private const string DataItemParameterSet = "DataItem";
-        private const string ColumnParameterSet = "Column";
+        private const string ColumnParameterSetNoMethod = "ColumnWithNoMethod";
+        private const string ColumnParameterSetDateMethod = "ColumnWithDateMethod";
+        private const string ColumnParameterSetTotalsMethod = "ColumnWithTotalsMethod";
         private const string FilterParameterSet = "Filter";
 
         protected DynamicParameter<PSObject> InputObjectForDataItems = new DynamicParameter<PSObject>("InputObject", true, true, parameterSetNames: new string[] { DataItemParameterSet });
-        protected DynamicParameter<DataItemQueryElement> InputObjectForColumnsOrFilters = new DynamicParameter<DataItemQueryElement>("InputObject", true, true, parameterSetNames: new string[] { ColumnParameterSet, FilterParameterSet });
+        protected DynamicParameter<DataItemQueryElement> InputObjectForColumnsOrFilters = new DynamicParameter<DataItemQueryElement>("InputObject", true, true, parameterSetNames: new string[] { ColumnParameterSetNoMethod, ColumnParameterSetDateMethod, ColumnParameterSetTotalsMethod, FilterParameterSet });
 
         [Parameter(Mandatory = true, ParameterSetName = DataItemParameterSet)]
         public SwitchParameter DataItem
@@ -25,7 +27,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSet)]
+        [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSetNoMethod)]
+        [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSetDateMethod)]
+        [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSetTotalsMethod)]
         public SwitchParameter Column
         {
             get;
@@ -67,9 +71,18 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName = ColumnParameterSet)]
+        [Parameter(ParameterSetName = ColumnParameterSetNoMethod)]
+        [Parameter(ParameterSetName = ColumnParameterSetDateMethod)]
+        [Parameter(ParameterSetName = ColumnParameterSetTotalsMethod)]
         [Parameter(ParameterSetName = FilterParameterSet)]
         public string DataSource
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSetDateMethod)]
+        public DateMethod? DateMethod
         {
             get;
             set;
@@ -82,8 +95,15 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(ParameterSetName=DataItemParameterSet)]
         public SqlJoinType? SqlJoinType
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSetTotalsMethod)]
+        public TotalsMethod? TotalsMethod
         {
             get;
             set;
@@ -106,7 +126,7 @@ namespace UncommonSense.CBreeze.Automation
                 {
                     (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).AddChildNode(element, Position.GetValueOrDefault(Utils.Position.LastWithinContainer));
                 }
-                else 
+                else
                 {
                     switch (Position.GetValueOrDefault(Utils.Position.LastWithinContainer))
                     {
@@ -146,6 +166,17 @@ namespace UncommonSense.CBreeze.Automation
 
                 column.Properties.DataSource = DataSource;
                 column.Properties.Description = Description;
+
+                if (DateMethod.HasValue)
+                {
+                    column.Properties.MethodType = MethodType.Date;
+                    column.Properties.DateMethod = DateMethod.Value;
+                }
+                else if (TotalsMethod.HasValue)
+                {
+                    column.Properties.MethodType = MethodType.Totals;
+                    column.Properties.TotalsMethod = TotalsMethod.Value;
+                }
 
                 return column;
             }
