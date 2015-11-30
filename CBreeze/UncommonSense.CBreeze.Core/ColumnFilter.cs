@@ -14,6 +14,8 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
+    // FIXME: Consider basing any class that contains FindIndex method with a Collection<T>
+
     [Serializable]
     public class ColumnFilter : IEnumerable<ColumnFilterLine>
     {
