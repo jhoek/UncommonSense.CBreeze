@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -80,23 +81,46 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var runObjectLinkLine = RunObjectLink.Add(new RunObjectLinkLine(FieldName, Type, Value));
-            runObjectLinkLine.OnlyMaxLimit = OnlyMaxLimit;
-            runObjectLinkLine.ValueIsFilter = ValueIsFilter;
+            TypeSwitch.Do(
+                InputObject.BaseObject,
+                TypeSwitch.Case<RunObjectLink>(i => i.Add(new RunObjectLinkLine(FieldName, TableFilterType, Value)
+                {
+                    OnlyMaxLimit = OnlyMaxLimit,
+                    ValueIsFilter = ValueIsFilter
+                })),
+                TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageLink.Add(new RunObjectLinkLine(FieldName, TableFilterType, Value)
+                {
+                    OnlyMaxLimit = OnlyMaxLimit,
+                    ValueIsFilter = ValueIsFilter
+                })),
+                TypeSwitch.Case<PartPageControlProperties>(i => i.SubPageLink.Add(new RunObjectLinkLine(FieldName, TableFilterType, Value)
+                {
+                    OnlyMaxLimit = OnlyMaxLimit,
+                    ValueIsFilter = ValueIsFilter
+                })),
+                TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemLink.Add(FieldName, ReferenceDataItem, Value)),
+                TypeSwitch.Case<QueryDataItemLink>(i => i.Add(FieldName, ReferenceDataItem, Value)),
+                TypeSwitch.Default(() => InvalidInputObject())
+            );
         }
 
-        protected RunObjectLink RunObjectLink
+        protected void InvalidInputObject()
+        {
+            throw new ApplicationException("Cannot add links to this object.");
+        }
+
+        protected TableFilterType TableFilterType
         {
             get
             {
-                if (InputObject.BaseObject is RunObjectLink)
-                    return (InputObject.BaseObject as RunObjectLink);
-                if (InputObject.BaseObject is PartPageControl)
-                    return (InputObject.BaseObject as PartPageControl).Properties.SubPageLink;
-                if (InputObject.BaseObject is PartPageControlProperties)
-                    return (InputObject.BaseObject as PartPageControlProperties).SubPageLink;
+                if (Const.IsPresent)
+                    return Core.TableFilterType.Const;
+                if (Filter.IsPresent)
+                    return Core.TableFilterType.Filter;
+                if (Field.IsPresent)
+                    return Core.TableFilterType.Field;
 
-                throw new ApplicationException("Cannot add links to this object.");
+                throw new ArgumentOutOfRangeException("ExtendedTableFilterType");
             }
         }
     }
