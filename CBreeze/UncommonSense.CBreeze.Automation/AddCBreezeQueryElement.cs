@@ -64,6 +64,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(ParameterSetName = DataItemParameterSet)]
+        public DataItemLinkType? DataItemLinkType
+        {
+            get;
+            set;
+        }
+
         [Parameter(Mandatory = true, ParameterSetName = DataItemParameterSet)]
         public int DataItemTable
         {
@@ -163,6 +170,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var dataItem = new DataItemQueryElement(GetElementID(), Name, GetIndentationLevel());
 
+                dataItem.Properties.DataItemLinkType = DataItemLinkType;
                 dataItem.Properties.DataItemTable = DataItemTable;
                 dataItem.Properties.Description = Description;
                 dataItem.Properties.SQLJoinType = SqlJoinType;
