@@ -17,66 +17,41 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RunObjectLinkLine
     {
-        private String fieldName;
-        private Boolean? onlyMaxLimit;
-        private TableFilterType? type;
-        private String value;
-        private Boolean? valueIsFilter;
-
         public RunObjectLinkLine(String fieldName, TableFilterType type, String value)
         {
-            this.fieldName = fieldName;
-            this.type = type;
-            this.value = value;
+            FieldName = fieldName;
+            Type = type;
+            Value = value;
         }
 
-        public String FieldName
+        public string FieldName
         {
-            get
-            {
-                return this.fieldName;
-            }
+            get;
+            protected set;
         }
 
-        public Boolean? OnlyMaxLimit
+        public bool? OnlyMaxLimit
         {
-            get
-            {
-                return this.onlyMaxLimit;
-            }
-            set
-            {
-                this.onlyMaxLimit = value;
-            }
+            get;
+            set;
         }
 
         public TableFilterType? Type
         {
-            get
-            {
-                return this.type;
-            }
+            get;
+            protected set;
         }
 
         public String Value
         {
-            get
-            {
-                return this.value;
-            }
+            get;
+            protected set;
         }
 
         public Boolean? ValueIsFilter
         {
-            get
-            {
-                return this.valueIsFilter;
-            }
-            set
-            {
-                this.valueIsFilter = value;
-            }
+            get;
+            set;
         }
-
     }
 }
