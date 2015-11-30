@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Core
         private String value;
         private Boolean? valueIsFilter;
 
-        internal RunObjectLinkLine(String fieldName, TableFilterType type, String value)
+        public RunObjectLinkLine(String fieldName, TableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;
