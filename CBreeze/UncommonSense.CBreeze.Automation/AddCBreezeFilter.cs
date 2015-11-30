@@ -8,14 +8,13 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    // FIXME: For filter types that do no support Field, hide it by making
-    // the Const, Filter and Field dynamic and dependent on InputObject
-
-    // FIXME: Make constants for parameter set names
-
-    [Cmdlet(VerbsCommon.Add, "CBreezeFilter", DefaultParameterSetName = "Const")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeFilter", DefaultParameterSetName = ConstParameterSetName)]
     public class AddCBreezeFilter : Cmdlet
     {
+        private const string ConstParameterSetName = "Const";
+        private const string FilterParameterSetName = "Filter";
+        private const string FieldParameterSetName = "Field";
+
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {
@@ -30,21 +29,21 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Const")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ConstParameterSetName)]
         public SwitchParameter Const
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Filter")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FilterParameterSetName)]
         public SwitchParameter Filter
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Field")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FieldParameterSetName)]
         public SwitchParameter Field
         {
             get;
@@ -71,17 +70,17 @@ namespace UncommonSense.CBreeze.Automation
             TypeSwitch.Do(
                 InputObject.BaseObject,
                 TypeSwitch.Case<CalcFormula>(i => i.TableFilter.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value))),
-                TypeSwitch.Case<CalcFormulaTableFilter>(i=> i.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value))),
-                TypeSwitch.Case<PartPageControl>(i=>i.Properties.SubPageView.TableFilter.Add(FieldName, SimpleTableFilterType,Value)),
-                TypeSwitch.Case<TableView>(i=> i.TableFilter.Add(FieldName, SimpleTableFilterType, Value)),
-                TypeSwitch.Case<TableFilter>(i=>i.Add(FieldName, SimpleTableFilterType, Value)),
-                TypeSwitch.Case<TableRelationTableFilter>(i=>i.Add(FieldName, TableFilterType, Value)),
-                TypeSwitch.Case<TableRelationLine>(i=>i.TableFilter.Add(FieldName, TableFilterType, Value)),
-                TypeSwitch.Case<DataItemQueryElement>(i=>i.Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<DataItemQueryElementTableFilter>(i=>i.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<ColumnQueryElement>(i=> i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType,Value))),
-                TypeSwitch.Case<ColumnFilter>(i=>i.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<FilterQueryElement>(i=>i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<CalcFormulaTableFilter>(i => i.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value))),
+                TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageView.TableFilter.Add(FieldName, SimpleTableFilterType, Value)),
+                TypeSwitch.Case<TableView>(i => i.TableFilter.Add(FieldName, SimpleTableFilterType, Value)),
+                TypeSwitch.Case<TableFilter>(i => i.Add(FieldName, SimpleTableFilterType, Value)),
+                TypeSwitch.Case<TableRelationTableFilter>(i => i.Add(FieldName, TableFilterType, Value)),
+                TypeSwitch.Case<TableRelationLine>(i => i.TableFilter.Add(FieldName, TableFilterType, Value)),
+                TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<DataItemQueryElementTableFilter>(i => i.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<ColumnQueryElement>(i => i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<ColumnFilter>(i => i.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<FilterQueryElement>(i => i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
                 TypeSwitch.Default(() => InvalidInputObject())
                 );
 
