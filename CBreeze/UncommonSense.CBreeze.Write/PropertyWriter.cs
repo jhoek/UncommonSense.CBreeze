@@ -606,7 +606,7 @@ namespace UncommonSense.CBreeze.Write
             foreach (var line in property.Value)
             {
                 var isLastLine = (line == property.Value.Last());
-                writer.WriteLine("{0}={1}({2}){3}", line.Column, line.Type.Value.AsString(), line.Value, isLastLine ? ";" : ",");
+                writer.WriteLine("{0}={1}({2}){3}", line.Column, line.Type.AsString(), line.Value, isLastLine ? ";" : ",");
             }
 
             writer.Unindent();
