@@ -28,8 +28,27 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
-        public TableFilterType Type
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ConstParameterSetName)]
+        public SwitchParameter Const
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FilterParameterSetName)]
+        public SwitchParameter Filter
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FieldParameterSetName)]
+        public SwitchParameter Field
+        {
+            get;
+            set;
+        }
+
         {
             get;
             set;
