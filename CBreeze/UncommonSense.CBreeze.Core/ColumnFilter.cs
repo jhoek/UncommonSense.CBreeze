@@ -11,78 +11,27 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
     // FIXME: Consider basing any class that contains FindIndex method with a Collection<T>
 
     [Serializable]
-    public class ColumnFilter : IEnumerable<ColumnFilterLine>
+    public class ColumnFilter : Collection<ColumnFilterLine>
     {
-        private List<ColumnFilterLine> innerList = new List<ColumnFilterLine>();
-
-        // Ctor made public to allow ColumnFilterProperty to new up a new instance
-        public ColumnFilter()
+        public new ColumnFilterLine Add(ColumnFilterLine value)
         {
+            this.InsertItem(Count, value);
+            return value;
         }
 
-        public int FindIndex(Predicate<ColumnFilterLine> match)
+        public void AddRange(IEnumerable<ColumnFilterLine> values)
         {
-            return innerList.FindIndex(match);
-        }
-
-        public int FindIndex(int startIndex, Predicate<ColumnFilterLine> match)
-        {
-            return innerList.FindIndex(startIndex, match);
-        }
-
-        public int FindIndex(int startIndex, int count,Predicate<ColumnFilterLine> match)
-        {
-            return innerList.FindIndex(startIndex, count, match);
-        }
-
-        public int FindLastIndex(Predicate<ColumnFilterLine> match)
-        {
-            return innerList.FindLastIndex(match);
-        }
-
-        public int FindLastIndex(int startIndex, Predicate<ColumnFilterLine> match)
-        {
-            return innerList.FindLastIndex(startIndex, match);
-        }
-
-        public int FindLastIndex(int startIndex, int count, Predicate<ColumnFilterLine> match)
-        {
-            return innerList.FindLastIndex(startIndex, count, match);
-        }
-
-        public ColumnFilterLine Add(String column, SimpleTableFilterType type, String value)
-        {
-            ColumnFilterLine item = new ColumnFilterLine(column, type, value);
-            innerList.Add(item);
-            return item;
-        }
-
-        public ColumnFilterLine Insert(int index, String column, SimpleTableFilterType type, String value)
-        {
-            ColumnFilterLine item = new ColumnFilterLine(column, type, value);
-            innerList.Insert(index, item);
-            return item;
-        }
-
-        public void RemoveAt(int index)
-        {
-            innerList.RemoveAt(index);
-        }
-
-        public IEnumerator<ColumnFilterLine> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return innerList.GetEnumerator();
+            foreach (var value in values)
+            {
+                this.Add(value);
+            }
         }
     }
 }
