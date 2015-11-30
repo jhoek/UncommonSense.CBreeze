@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private SimpleTableFilterType? type;
         private String value;
 
-        internal DataItemQueryElementTableFilterLine(String fieldName, SimpleTableFilterType type, String value)
+        public DataItemQueryElementTableFilterLine(String fieldName, SimpleTableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;
