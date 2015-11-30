@@ -115,7 +115,7 @@ namespace UncommonSense.CBreeze.Read
                 Parsing.MustMatch(ref propertyValue, @"^\(");
                 var value = Parsing.MatchUntilUnnested(ref propertyValue, ')', '(');
 
-                property.Value.Add(fieldName, type, value);
+                property.Value.Add(new RunObjectLinkLine(fieldName, type, value));
 
                 Parsing.TryMatch(ref propertyValue, @"^,\s?");
             }
