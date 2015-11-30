@@ -10,6 +10,10 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeLink")]
     public class AddCBreezeLink : Cmdlet
     {
+        private const string ConstParameterSetName = "Const";
+        private const string FilterParameterSetName = "Filter";
+        private const string FieldParameterSetName = "Field";
+
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {
