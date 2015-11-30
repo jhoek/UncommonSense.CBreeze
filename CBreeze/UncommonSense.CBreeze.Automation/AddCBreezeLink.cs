@@ -55,7 +55,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var runObjectLinkLine = RunObjectLink.Add(FieldName, Type, Value);
+            var runObjectLinkLine = RunObjectLink.Add(new RunObjectLinkLine(FieldName, Type, Value));
             runObjectLinkLine.OnlyMaxLimit = OnlyMaxLimit;
             runObjectLinkLine.ValueIsFilter = ValueIsFilter;
         }
