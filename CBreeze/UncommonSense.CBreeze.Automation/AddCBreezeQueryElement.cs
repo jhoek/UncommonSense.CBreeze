@@ -95,6 +95,15 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(ParameterSetName = ColumnParameterSetNoMethod)]
+        [Parameter(ParameterSetName = ColumnParameterSetDateMethod)]
+        [Parameter(ParameterSetName = ColumnParameterSetTotalsMethod)]
+        public bool? ReverseSign
+        {
+            get;
+            set;
+        }
+
         [Parameter(ParameterSetName=DataItemParameterSet)]
         public SqlJoinType? SqlJoinType
         {
@@ -166,6 +175,7 @@ namespace UncommonSense.CBreeze.Automation
 
                 column.Properties.DataSource = DataSource;
                 column.Properties.Description = Description;
+                column.Properties.ReverseSign = ReverseSign;
 
                 if (DateMethod.HasValue)
                 {
