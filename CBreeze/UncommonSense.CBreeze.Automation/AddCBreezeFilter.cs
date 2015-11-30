@@ -7,6 +7,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
+    // FIXME: For filter types that do no support Field, hide it by making
+    // the Const, Filter and Field dynamic and dependent on InputObject
+
     [Cmdlet(VerbsCommon.Add, "CBreezeFilter", DefaultParameterSetName = "Const")]
     public class AddCBreezeFilter : Cmdlet
     {
