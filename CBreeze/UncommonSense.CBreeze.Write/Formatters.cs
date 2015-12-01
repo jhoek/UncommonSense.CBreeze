@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Write
                 var isFirstLine = (i == 0);
                 var isLastLine = (i == value.Count() - 1);
                 var tableFilterLine = value.ElementAt(i);
-                var line = string.Format("{0}={1}({2})", tableFilterLine.FieldName, tableFilterLine.Type.Value.AsString(), tableFilterLine.Value);
+                var line = string.Format("{0}={1}({2})", tableFilterLine.FieldName, tableFilterLine.Type.AsString(), tableFilterLine.Value);
 
                 if (isFirstLine)
                     line = string.Format("WHERE({0}", line);
