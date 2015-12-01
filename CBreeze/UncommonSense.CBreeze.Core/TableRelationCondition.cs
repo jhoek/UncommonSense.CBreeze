@@ -17,11 +17,12 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableRelationCondition
     {
+        // FIXME: Get rid of backing fields
         private String fieldName;
         private SimpleTableFilterType? type;
         private String value;
 
-        internal TableRelationCondition(String fieldName, SimpleTableFilterType type, String value)
+        public TableRelationCondition(String fieldName, SimpleTableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;

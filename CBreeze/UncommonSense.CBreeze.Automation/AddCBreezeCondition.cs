@@ -55,7 +55,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            InputObject.Conditions.Add(FieldName, SimpleTableFilterType, Value);
+            InputObject.Conditions.Add(new TableRelationCondition(FieldName, SimpleTableFilterType, Value));
 
             if (PassThru)
                 WriteObject(InputObject);

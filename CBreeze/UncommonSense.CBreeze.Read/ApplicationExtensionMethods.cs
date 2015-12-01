@@ -209,7 +209,7 @@ namespace UncommonSense.CBreeze.Read
 
                 foreach (var condition in conditions)
                 {
-                    tableRelationLine.Conditions.Add(condition.FieldName, condition.Type.ToEnum<SimpleTableFilterType>(), condition.Value);
+                    tableRelationLine.Conditions.Add(new TableRelationCondition(condition.FieldName, condition.Type.ToEnum<SimpleTableFilterType>(), condition.Value));
                 }
 
                 foreach (var filter in filters)
