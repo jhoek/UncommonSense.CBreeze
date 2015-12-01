@@ -17,7 +17,15 @@ namespace UncommonSense.CBreeze.Automation
     {
         public ImportCBreezeApplication()
         {
+#if NAV2016
+            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\90\RoleTailored Client\finsql.exe";
+#elif NAV2015
+            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\80\RoleTailored Client\finsql.exe";
+#elif NAV2013R2
+            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\71\RoleTailored Client\finsql.exe";
+#else
             DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
+#endif
             ServerName = ".";
         }
 
