@@ -17,12 +17,11 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class CodeTableField : TableField
     {
-        private CodeTableFieldProperties properties = new CodeTableFieldProperties();
-        private int dataLength;
-
-        public CodeTableField(int no, string name, int dataLength = 10) : base(no, name)
+        public CodeTableField(int no, string name, int dataLength = 10)
+            : base(no, name)
         {
-            this.dataLength = dataLength;
+            DataLength = dataLength;
+            Properties = new CodeTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -35,18 +34,14 @@ namespace UncommonSense.CBreeze.Core
 
         public CodeTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public int DataLength
         {
-            get
-            {
-                return this.dataLength;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

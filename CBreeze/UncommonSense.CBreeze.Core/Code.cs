@@ -17,46 +17,36 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Code
     {
-        private Documentation documentation = new Documentation();
-        private Events events = new Events();
-        private Functions functions = new Functions();
-        private Variables variables = new Variables();
-
         internal Code()
         {
+            Documentation = new Documentation();
+            Events = new Events();
+            Functions = new Functions();
+            Variables = new Variables();
         }
 
         public Documentation Documentation
         {
-            get
-            {
-                return this.documentation;
-            }
+            get;
+            protected set;
         }
 
         public Events Events
         {
-            get
-            {
-                return this.events;
-            }
+            get;
+            protected set;
         }
 
         public Functions Functions
         {
-            get
-            {
-                return this.functions;
-            }
+            get;
+            protected set;
         }
 
         public Variables Variables
         {
-            get
-            {
-                return this.variables;
-            }
+            get;
+            protected set;
         }
-
     }
 }

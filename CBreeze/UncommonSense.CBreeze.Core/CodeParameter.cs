@@ -17,11 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class CodeParameter : Parameter
     {
-        private int? dataLength;
-
-        public CodeParameter(bool var, int id, string name, int? dataLength = null) : base(var, id, name)
+        public CodeParameter(bool var, int id, string name, int? dataLength = null)
+            : base(var, id, name)
         {
-            this.dataLength = dataLength;
+            DataLength = dataLength;
         }
 
         public override ParameterType Type
@@ -34,11 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public int? DataLength
         {
-            get
-            {
-                return this.dataLength;
-            }
+            get;
+            protected set;
         }
-
     }
 }
