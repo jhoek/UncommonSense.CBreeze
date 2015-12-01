@@ -15,19 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class TableRelationLinesProperty : ReferenceProperty<TableRelationLines>
+    public class TableRelation : Collection<TableRelationLine>
     {
-        internal TableRelationLinesProperty(string name)
-            : base(name)
-        {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.Any();
-            }
-        }
     }
 }

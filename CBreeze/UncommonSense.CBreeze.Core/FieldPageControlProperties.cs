@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty sourceExpr = new StringProperty("SourceExpr");
         private StyleProperty style = new StyleProperty("Style");
         private StringProperty styleExpr = new StringProperty("StyleExpr");
-        private TableRelationLinesProperty tableRelation = new TableRelationLinesProperty("TableRelation");
+        private TableRelationProperty tableRelation = new TableRelationProperty("TableRelation");
         private NullableBooleanProperty title = new NullableBooleanProperty("Title");
         private MultiLanguageProperty toolTipML = new MultiLanguageProperty("ToolTipML");
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
@@ -612,7 +612,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableRelationLines TableRelation
+        public TableRelation TableRelation
         {
             get
             {

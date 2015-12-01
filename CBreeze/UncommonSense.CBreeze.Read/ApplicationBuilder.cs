@@ -279,7 +279,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<BlobSubTypeProperty>(p => p.Value = propertyValue.ToEnum<BlobSubType>()),
                 TypeSwitch.Case<TableFieldTypeProperty>(p => p.Value = propertyValue.ToEnum<TableFieldType>()),
                 TypeSwitch.Case<TableReferenceProperty>(p => p.Value = propertyValue.ToTableReference()),
-                TypeSwitch.Case<TableRelationLinesProperty>(p => p.SetTableRelationProperty(propertyValue)),
+                TypeSwitch.Case<TableRelationProperty>(p => p.SetTableRelationProperty(propertyValue)),
                 TypeSwitch.Case<TableViewProperty>(p => p.SetTableViewProperty(propertyValue)),
                 TypeSwitch.Case<TextEncodingProperty>(p => p.Value = propertyValue.ToEnum<TextEncoding>()),
                 TypeSwitch.Case<TextTypeProperty>(p => p.Value = propertyValue.ToEnum<TextType>()),

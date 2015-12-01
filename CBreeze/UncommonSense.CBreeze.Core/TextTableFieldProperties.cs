@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty numeric = new NullableBooleanProperty("Numeric");
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
-        private TableRelationLinesProperty tableRelation = new TableRelationLinesProperty("TableRelation");
+        private TableRelationProperty tableRelation = new TableRelationProperty("TableRelation");
         private NullableBooleanProperty testTableRelation = new NullableBooleanProperty("TestTableRelation");
         private NullableBooleanProperty title = new NullableBooleanProperty("Title");
         private NullableBooleanProperty validateTableRelation = new NullableBooleanProperty("ValidateTableRelation");
@@ -272,7 +272,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableRelationLines TableRelation
+        public TableRelation TableRelation
         {
             get
             {

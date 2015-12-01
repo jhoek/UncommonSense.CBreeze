@@ -195,7 +195,7 @@ namespace UncommonSense.CBreeze.Read
             property.Value.FieldName = fieldName;
         }
 
-        internal static void SetTableRelationProperty(this TableRelationLinesProperty property, string propertyValue)
+        internal static void SetTableRelationProperty(this TableRelationProperty property, string propertyValue)
         {
             while (propertyValue.Length > 0)
             {

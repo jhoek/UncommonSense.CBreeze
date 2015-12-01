@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Core
         private MultiLanguageProperty optionCaptionML = new MultiLanguageProperty("OptionCaptionML");
         private OptionStringProperty optionString = new OptionStringProperty("OptionString");
         private NullableIntegerProperty signDisplacement = new NullableIntegerProperty("SignDisplacement");
-        private TableRelationLinesProperty tableRelation = new TableRelationLinesProperty("TableRelation");
+        private TableRelationProperty tableRelation = new TableRelationProperty("TableRelation");
         private NullableBooleanProperty testTableRelation = new NullableBooleanProperty("TestTableRelation");
         private NullableBooleanProperty validateTableRelation = new NullableBooleanProperty("ValidateTableRelation");
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
@@ -320,7 +320,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableRelationLines TableRelation
+        public TableRelation TableRelation
         {
             get
             {

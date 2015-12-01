@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private SqlDataTypeProperty sQLDataType = new SqlDataTypeProperty("SQLDataType");
-        private TableRelationLinesProperty tableRelation = new TableRelationLinesProperty("TableRelation");
+        private TableRelationProperty tableRelation = new TableRelationProperty("TableRelation");
         private NullableBooleanProperty testTableRelation = new NullableBooleanProperty("TestTableRelation");
         private NullableBooleanProperty validateTableRelation = new NullableBooleanProperty("ValidateTableRelation");
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
@@ -284,7 +284,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableRelationLines TableRelation
+        public TableRelation TableRelation
         {
             get
             {

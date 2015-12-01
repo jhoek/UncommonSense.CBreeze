@@ -418,8 +418,8 @@
     <Compile Include="TableRelationCondition.cs" />
     <Compile Include="TableRelationConditions.cs" />
     <Compile Include="TableRelationLine.cs" />
-    <Compile Include="TableRelationLines.cs" />
-    <Compile Include="TableRelationLinesProperty.cs" />
+    <Compile Include="TableRelation.cs" />
+    <Compile Include="TableRelationProperty.cs" />
     <Compile Include="TableRelationTableFilter.cs" />
     <Compile Include="TableRelationTableFilterLine.cs" />
     <Compile Include="Tables.cs" />
