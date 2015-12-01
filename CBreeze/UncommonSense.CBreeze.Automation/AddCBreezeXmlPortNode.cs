@@ -298,31 +298,31 @@ namespace UncommonSense.CBreeze.Automation
 
             if (InputObject.BaseObject is XmlPort)
             {
-                switch (Position.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                switch (Position.GetValueOrDefault(Core.Position.LastWithinContainer))
                 {
-                    case Utils.Position.FirstWithinContainer:
+                    case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as XmlPort).Nodes.Insert(0, node);
                         break;
-                    case Utils.Position.LastWithinContainer:
+                    case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as XmlPort).Nodes.Add(node);
                         break;
                 }
             }
             else if (InputObject.BaseObject is XmlPortNodes)
             {
-                switch (Position.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                switch (Position.GetValueOrDefault(Core.Position.LastWithinContainer))
                 {
-                    case Utils.Position.FirstWithinContainer:
+                    case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as XmlPortNodes).Insert(0, node);
                         break;
-                    case Utils.Position.LastWithinContainer:
+                    case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as XmlPortNodes).Add(node);
                         break;
                 }
             }
             else if (InputObject.BaseObject is XmlPortNode)
             {
-                (InputObject.BaseObject as XmlPortNode).AddChildNode(node, Position.GetValueOrDefault(Utils.Position.LastWithinContainer));
+                (InputObject.BaseObject as XmlPortNode).AddChildNode(node, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
             }
             else
             {

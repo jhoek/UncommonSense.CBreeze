@@ -41,6 +41,14 @@ namespace UncommonSense.CBreeze.Core
             internal set;
         }
 
+        public int Index
+        {
+            get
+            {
+                return Container.IndexOf(this);
+            }
+        }
+
         public int? IndentationLevel
         {
             get;
@@ -50,6 +58,31 @@ namespace UncommonSense.CBreeze.Core
         public abstract Properties AllProperties
         {
             get;
+        }
+
+        public IEnumerable<XmlPortNode> GetDescendantNodes
+        {
+            get
+            {
+                return Container.Skip(Index + 1).TakeWhile(n => n.IndentationLevel > IndentationLevel);
+            }
+        }
+
+        public  T AddChildNode<T>(T child, Position position) where T : XmlPortNode
+        {
+            switch (position)
+            {
+                case Position.FirstWithinContainer:
+                    Container.Insert(Index + 1, child);
+                    break;
+                case Position.LastWithinContainer:
+                    var childNodes = GetDescendantNodes;
+                    var lastINdex = childNodes.Any() ? childNodes.Last().Index : Index;
+                    Container.Insert(lastINdex + 1, child);
+                    break;
+            }
+
+            return child;
         }
     }
 }
