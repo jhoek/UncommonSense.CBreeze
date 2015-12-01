@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private TableFilterType? type;
         private String value;
 
-        internal TableRelationTableFilterLine(String fieldName, TableFilterType type, String value)
+        public TableRelationTableFilterLine(String fieldName, TableFilterType type, String value)
         {
             this.fieldName = fieldName;
             this.type = type;

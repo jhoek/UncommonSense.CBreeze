@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Automation
                 TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageView.TableFilter.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
                 TypeSwitch.Case<TableView>(i => i.TableFilter.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
                 TypeSwitch.Case<TableFilter>(i => i.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<TableRelationTableFilter>(i => i.Add(FieldName, TableFilterType, Value)),
+                TypeSwitch.Case<TableRelationTableFilter>(i => i.Add(new TableRelationTableFilterLine(FieldName, TableFilterType, Value))),
                 TypeSwitch.Case<TableRelationLine>(i => i.TableFilter.Add(FieldName, TableFilterType, Value)),
                 TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
                 TypeSwitch.Case<DataItemQueryElementTableFilter>(i => i.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),

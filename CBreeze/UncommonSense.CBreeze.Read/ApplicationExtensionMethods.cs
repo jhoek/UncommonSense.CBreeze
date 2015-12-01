@@ -214,7 +214,7 @@ namespace UncommonSense.CBreeze.Read
 
                 foreach (var filter in filters)
                 {
-                    tableRelationLine.TableFilter.Add(filter.FieldName, filter.Type.ToEnum<TableFilterType>(), filter.Value);
+                    tableRelationLine.TableFilter.Add(new TableRelationTableFilterLine(filter.FieldName, filter.Type.ToEnum<TableFilterType>(), filter.Value));
                 }
 
                 Parsing.TryMatch(ref propertyValue, @"^\sELSE\s");
