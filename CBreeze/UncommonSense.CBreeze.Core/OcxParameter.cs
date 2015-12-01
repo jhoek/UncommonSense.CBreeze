@@ -17,11 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OcxParameter : Parameter
     {
-        private string subType;
-
-        public OcxParameter(bool var, int id, string name, string subType) : base(var, id, name)
+        public OcxParameter(bool var, int id, string name, string subType)
+            : base(var, id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override ParameterType Type
@@ -34,11 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public string SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
-
     }
 }

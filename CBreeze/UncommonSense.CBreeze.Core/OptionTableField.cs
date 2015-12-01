@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OptionTableField : TableField, IHasOptionString
     {
-        private OptionTableFieldProperties properties = new OptionTableFieldProperties();
-
-        public OptionTableField(int no, string name) : base(no, name)
+        public OptionTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new OptionTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public OptionTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

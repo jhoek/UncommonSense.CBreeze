@@ -17,9 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OptionParameter : Parameter, IHasOptionString
     {
-        private string optionString;
-
-        public OptionParameter(bool var, int id, string name) : base(var, id, name)
+        public OptionParameter(bool var, int id, string name)
+            : base(var, id, name)
         {
         }
 
@@ -33,16 +32,9 @@ namespace UncommonSense.CBreeze.Core
 
         public string OptionString
         {
-            get
-            {
-                return this.optionString;
-            }
-            set
-            {
-                this.optionString = value;
-            }
+            get;
+            set;
         }
-
 
         public string GetOptionString()
         {
