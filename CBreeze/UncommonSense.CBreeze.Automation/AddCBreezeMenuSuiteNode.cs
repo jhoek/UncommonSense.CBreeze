@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Automation
             var node =
                 (insertAfterNode.Value == null) ?
                 menuSuite.Value.Nodes.Add(CreateNode(guid)) :
-                menuSuite.Value.Nodes.Insert(insertAfterNode.Value.Index() + 1, CreateNode(guid));
+                menuSuite.Value.Nodes.Insert(insertAfterNode.Value.Index + 1, CreateNode(guid));
 
             if (passthru.Value)
                 WriteObject(node);

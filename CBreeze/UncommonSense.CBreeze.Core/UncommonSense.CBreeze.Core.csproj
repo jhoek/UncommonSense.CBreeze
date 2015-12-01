@@ -94,6 +94,7 @@
     <Compile Include="CalcFormulaTableFilterLine.cs" />
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Code.cs" />
     <Compile Include="CodeLines.cs" />
     <Compile Include="CodeParameter.cs" />
