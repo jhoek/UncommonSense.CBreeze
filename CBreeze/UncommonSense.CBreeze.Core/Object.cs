@@ -14,22 +14,21 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract partial class Object : KeyedItem<int>, IHasName, IHasProperties
-	{
-		private ObjectProperties objectProperties = new ObjectProperties();
+    [Serializable]
+    public abstract partial class Object : KeyedItem<int>, IHasName, IHasProperties
+    {
+        internal Object(int id, string name)
+        {
+            ID = id;
+            Name = name;
+            ObjectProperties = new ObjectProperties();
+        }
 
-		internal Object(int id, string name)
-		{
-			ID = id;
-			Name = name;
-		}
-
-		public string Name
-		{
-			get;
-			set;
-		}
+        public string Name
+        {
+            get;
+            set;
+        }
 
         public string VariableName
         {
@@ -38,33 +37,31 @@ namespace UncommonSense.CBreeze.Core
                 return Name.MakeVariableName();
             }
         }
-        
-		public abstract ObjectType Type
-		{
-			get;
-		}
 
-		public ObjectProperties ObjectProperties
-		{
-			get
-			{
-				return this.objectProperties;
-			}
-		}
+        public abstract ObjectType Type
+        {
+            get;
+        }
+
+        public ObjectProperties ObjectProperties
+        {
+            get;
+            protected set;
+        }
 
         public override string ToString()
         {
             return string.Format("{0} {1} {2}", Type, ID, Name);
         }
 
-		public  string GetName()
-		{
-			return Name;
-		}
+        public string GetName()
+        {
+            return Name;
+        }
 
-		public abstract Properties AllProperties
-		{
-			get;
-		}
-	}
+        public abstract Properties AllProperties
+        {
+            get;
+        }
+    }
 }

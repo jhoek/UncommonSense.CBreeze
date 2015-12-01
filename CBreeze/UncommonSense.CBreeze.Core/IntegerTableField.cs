@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class IntegerTableField : TableField
     {
-        private IntegerTableFieldProperties properties = new IntegerTableFieldProperties();
-
-        public IntegerTableField(int no, string name) : base(no, name)
+        public IntegerTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new IntegerTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public IntegerTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

@@ -17,37 +17,21 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ObjectReference
     {
-        private int? id;
-        private RunObjectType? type;
-
         // Made public to allow ObjectReferenceProperty to new up an instance
         public ObjectReference()
         {
         }
 
-        public int? ID
-        {
-            get
-            {
-                return this.id;
-            }
-            set
-            {
-                this.id = value;
-            }
-        }
-
         public RunObjectType? Type
         {
-            get
-            {
-                return this.type;
-            }
-            set
-            {
-                this.type = value;
-            }
+            get;
+            set;
         }
 
+        public int? ID
+        {
+            get;
+            set;
+        }
     }
 }

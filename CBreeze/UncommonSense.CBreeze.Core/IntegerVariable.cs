@@ -17,10 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class IntegerVariable : Variable
     {
-        private string dimensions;
-        private bool? includeInDataset;
-
-        public IntegerVariable(int id, string name) : base(id, name)
+        public IntegerVariable(int id, string name)
+            : base(id, name)
         {
         }
 
@@ -34,27 +32,14 @@ namespace UncommonSense.CBreeze.Core
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
         public bool? IncludeInDataset
         {
-            get
-            {
-                return this.includeInDataset;
-            }
-            set
-            {
-                this.includeInDataset = value;
-            }
+            get;
+            set;
         }
-
     }
 }

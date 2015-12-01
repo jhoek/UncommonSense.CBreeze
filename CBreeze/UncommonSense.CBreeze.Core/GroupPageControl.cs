@@ -14,43 +14,40 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public partial class GroupPageControl : PageControl
-	{
-		private GroupPageControlProperties properties = new GroupPageControlProperties();
+    [Serializable]
+    public partial class GroupPageControl : PageControl
+    {
+        public GroupPageControl(int id, int? indentationLevel)
+            : base(id, indentationLevel)
+        {
+            Properties = new GroupPageControlProperties();
+        }
 
-		public GroupPageControl(int id, int? indentationLevel)
-			: base(id, indentationLevel)
-		{
-		}
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Group;
+            }
+        }
 
-		public override PageControlType Type
-		{
-			get
-			{
-				return PageControlType.Group;
-			}
-		}
+        public GroupPageControlProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public GroupPageControlProperties Properties
-		{
-			get
-			{
-				return this.properties;
-			}
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
-
-		public override  string GetName()
-		{
-			return Properties.Name;
-		}
-	}
+        public override string GetName()
+        {
+            return Properties.Name;
+        }
+    }
 }

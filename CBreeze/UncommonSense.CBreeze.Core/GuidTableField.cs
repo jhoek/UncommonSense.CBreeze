@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class GuidTableField : TableField
     {
-        private GuidTableFieldProperties properties = new GuidTableFieldProperties();
-
-        public GuidTableField(int no, string name) : base(no, name)
+        public GuidTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new GuidTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public GuidTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties
