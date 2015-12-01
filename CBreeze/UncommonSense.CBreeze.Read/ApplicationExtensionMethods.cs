@@ -144,7 +144,7 @@ namespace UncommonSense.CBreeze.Read
             {
                 var column = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
                 var direction = Parsing.MustMatch(ref propertyValue, @"(Ascending|Descending),?\s?").Groups[1].Value.ToEnum<QueryOrderByDirection>();
-                property.Value.Add(column, direction);
+                property.Value.Add(new QueryOrderByLine(column, direction));
             }
         }
 

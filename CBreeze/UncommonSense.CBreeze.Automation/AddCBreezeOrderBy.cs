@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            InputObject.Properties.OrderBy.Add(Column, Direction);
+            InputObject.Properties.OrderBy.Add(new QueryOrderByLine(Column, Direction));
         }
     }
 }

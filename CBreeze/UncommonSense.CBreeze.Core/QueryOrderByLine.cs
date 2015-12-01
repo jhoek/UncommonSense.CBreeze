@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class QueryOrderByLine
     {
-        internal QueryOrderByLine(string column, QueryOrderByDirection direction)
+        public QueryOrderByLine(string column, QueryOrderByDirection direction)
         {
             Column = column;
             Direction = direction;
