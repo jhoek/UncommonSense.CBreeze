@@ -15,23 +15,10 @@ namespace UncommonSense.CBreeze.Utils
             return result;
         }
 
-        public static IEnumerable<PageActionBase> GetDescendantPageActions(this PageActionBase parent)
-        {
-            var actions = parent.Container;
-
-            return actions.
-                Skip(parent.Index + 1).
-                TakeWhile(a => a.IndentationLevel > parent.IndentationLevel);
-        }
-
-        public static IEnumerable<PageActionBase> GetChildPageActions(this PageActionBase parent)
-        {
-            return parent.GetDescendantPageActions().Where(a => a.IndentationLevel == parent.IndentationLevel + 1);
-        }
 
         public static PageActionGroup GetGroupByCaption(this PageActionContainer container, Page page, string caption, IEnumerable<int> range, Position position)
         {
-            var pageActionGroup = container.GetChildPageActions().OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
+            var pageActionGroup = container.ChildPageActions.OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
 
             if (pageActionGroup == null)
             {
@@ -53,7 +40,7 @@ namespace UncommonSense.CBreeze.Utils
                     controls.Insert(parent.Index + 1, child);
                     break;
                 case Position.LastWithinContainer:
-                    var childControls = parent.GetDescendantPageActions();
+                    var childControls = parent.DescendantPageActions;
                     var lastIndex = childControls.Any() ? childControls.Last().Index : parent.Index;
                     controls.Insert(lastIndex + 1, child);
                     break;

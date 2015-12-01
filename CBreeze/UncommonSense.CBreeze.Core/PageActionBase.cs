@@ -62,5 +62,21 @@ namespace UncommonSense.CBreeze.Core
                 return Container.IndexOf(this);
             }
         }
+
+        public IEnumerable<PageActionBase> DescendantPageActions
+        {
+            get
+            {
+                return Container.Skip(Index + 1).TakeWhile(a => a.IndentationLevel > IndentationLevel);
+            }
+        }
+
+        public IEnumerable<PageActionBase> ChildPageActions
+        {
+            get
+            {
+                return DescendantPageActions.Where(a => a.IndentationLevel == IndentationLevel + 1);
+            }
+        }
     }
 }
