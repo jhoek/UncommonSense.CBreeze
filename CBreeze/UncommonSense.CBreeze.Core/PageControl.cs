@@ -46,5 +46,13 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
         }
+
+        public int Index
+        {
+            get
+            {
+                return Container.IndexOf(this);
+            }
+        }
     }
 }

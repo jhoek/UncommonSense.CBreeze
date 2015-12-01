@@ -26,13 +26,8 @@ namespace UncommonSense.CBreeze.Utils
             var controls = parent.Container;
 
             return controls.
-                Skip(parent.Index() + 1).
+                Skip(parent.Index + 1).
                 TakeWhile(c => c.IndentationLevel > parent.IndentationLevel);
-        }
-
-        public static int Index(this PageControl pageControl)
-        {
-            return pageControl.Container.IndexOf(pageControl);
         }
 
         public static T AddChildPageControl<T>(this PageControl parent, T child, Position position) where T : PageControl
@@ -42,11 +37,11 @@ namespace UncommonSense.CBreeze.Utils
             switch (position)
             {
                 case Position.FirstWithinContainer:
-                    controls.Insert(parent.Index() + 1, child);
+                    controls.Insert(parent.Index + 1, child);
                     break;
                 case Position.LastWithinContainer:
                     var childControls = parent.GetDescendantPageControls();
-                    var lastIndex = childControls.Any() ? childControls.Last().Index() : parent.Index();
+                    var lastIndex = childControls.Any() ? childControls.Last().Index : parent.Index;
                     controls.Insert(lastIndex + 1, child);
                     break;
             }
