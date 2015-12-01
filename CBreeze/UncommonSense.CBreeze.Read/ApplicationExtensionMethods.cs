@@ -204,7 +204,7 @@ namespace UncommonSense.CBreeze.Read
                 var fieldName = GetTableRelationFieldName(ref propertyValue);
                 var filters = GetTableRelationFilters(ref propertyValue);
 
-                var tableRelationLine = property.Value.Add(tableName);
+                var tableRelationLine = property.Value.Add(new TableRelationLine(tableName));
                 tableRelationLine.FieldName = fieldName;
 
                 foreach (var condition in conditions)

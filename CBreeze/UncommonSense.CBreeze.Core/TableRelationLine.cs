@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
         private TableRelationTableFilter tableFilter = new TableRelationTableFilter();
         private String tableName;
 
-        internal TableRelationLine(String tableName)
+        public TableRelationLine(String tableName)
         {
             this.tableName = tableName;
         }
