@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public abstract partial class ReportElement : KeyedItem<int>, IHasName, IHasProperties
 	{
-		private Int32? indentationLevel;
+		private int? indentationLevel;
 		private String name;
 
-		public ReportElement(Int32 id, Int32? indentationLevel)
+		public ReportElement(int id, int? indentationLevel)
 		{
 			ID = id;
 			this.indentationLevel = indentationLevel;
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
 			get;
 		}
 
-		public Int32? IndentationLevel
+		public int? IndentationLevel
 		{
 			get
 			{

@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OptionVariable : Variable, IHasOptionString
     {
-        public OptionVariable(Int32 id, String name)
+        public OptionVariable(int id, String name)
             : base(id, name)
         {
         }

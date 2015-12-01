@@ -90,7 +90,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? DrillDownPageID
+      public System.int? DrillDownPageID
         {
             get
             {
@@ -126,7 +126,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? LookupPageID
+      public System.int? LookupPageID
         {
             get
             {

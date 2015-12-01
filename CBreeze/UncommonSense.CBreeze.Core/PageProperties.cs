@@ -432,7 +432,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? SourceTable
+      public System.int? SourceTable
         {
             get
             {

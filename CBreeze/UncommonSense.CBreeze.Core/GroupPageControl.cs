@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
 	{
 		private GroupPageControlProperties properties = new GroupPageControlProperties();
 
-		public GroupPageControl(Int32 id, Int32? indentationLevel)
+		public GroupPageControl(int id, int? indentationLevel)
 			: base(id, indentationLevel)
 		{
 		}

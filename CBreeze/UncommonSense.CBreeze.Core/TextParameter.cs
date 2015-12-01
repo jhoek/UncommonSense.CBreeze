@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TextParameter : Parameter
     {
-        private Int32? dataLength;
+        private int? dataLength;
 
-        public TextParameter(Boolean var, Int32 id, String name, Int32? dataLength = null) : base(var, id, name)
+        public TextParameter(Boolean var, int id, String name, int? dataLength = null) : base(var, id, name)
         {
             this.dataLength = dataLength;
         }
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32? DataLength
+        public int? DataLength
         {
             get
             {

@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
 	{
 		private PageActionProperties properties = new PageActionProperties();
 
-		public PageAction(Int32 id, Int32? indentationLevel)
+		public PageAction(int id, int? indentationLevel)
 			: base(id, indentationLevel)
 		{
 		}

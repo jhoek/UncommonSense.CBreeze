@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        public KeyRefVariable(Int32 id, String name) : base(id, name)
+        public KeyRefVariable(int id, String name) : base(id, name)
         {
         }
 

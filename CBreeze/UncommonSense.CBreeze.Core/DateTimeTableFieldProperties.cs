@@ -272,7 +272,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Int32? SignDisplacement
+        public System.int? SignDisplacement
         {
             get
             {

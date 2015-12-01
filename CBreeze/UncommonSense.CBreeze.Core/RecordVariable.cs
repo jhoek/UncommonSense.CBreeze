@@ -19,10 +19,10 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
         private RecordSecurityFiltering? securityFiltering;
-        private Int32 subType;
+        private int subType;
         private Boolean? temporary;
 
-        public RecordVariable(Int32 id, String name, Int32 subType) : base(id, name)
+        public RecordVariable(int id, String name, int subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -59,7 +59,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 SubType
+        public int SubType
         {
             get
             {

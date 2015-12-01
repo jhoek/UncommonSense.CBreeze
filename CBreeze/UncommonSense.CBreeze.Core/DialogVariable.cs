@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        public DialogVariable(Int32 id, String name) : base(id, name)
+        public DialogVariable(int id, String name) : base(id, name)
         {
         }
 

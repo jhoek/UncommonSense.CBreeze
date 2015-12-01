@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        public CharVariable(Int32 id, String name) : base(id, name)
+        public CharVariable(int id, String name) : base(id, name)
         {
         }
 

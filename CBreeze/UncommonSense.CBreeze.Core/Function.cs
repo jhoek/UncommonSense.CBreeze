@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private Variables variables = new Variables();
 
-        public Function(Int32 id, String name)
+        public Function(int id, String name)
         {
             ID = id;
             Name = name;

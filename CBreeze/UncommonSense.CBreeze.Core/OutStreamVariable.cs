@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OutStreamVariable : Variable
     {
-        public OutStreamVariable(Int32 id, String name)
+        public OutStreamVariable(int id, String name)
             : base(id, name)
         {
         }

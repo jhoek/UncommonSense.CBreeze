@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Codeunit : Object, IHasCode
     {
-        public Codeunit(Int32 id, String name)
+        public Codeunit(int id, String name)
             : base(id, name)
         {
             Properties = new CodeunitProperties();

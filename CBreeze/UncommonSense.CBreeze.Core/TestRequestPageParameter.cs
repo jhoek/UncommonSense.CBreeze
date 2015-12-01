@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TestRequestPageParameter : Parameter
     {
-        private Int32 subType;
+        private int subType;
 
-        public TestRequestPageParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
+        public TestRequestPageParameter(Boolean var, int id, String name, int subType) : base(var, id, name)
         {
             this.subType = subType;
         }
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 SubType
+        public int SubType
         {
             get
             {

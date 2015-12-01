@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class XmlPort : Object, IHasCode
     {
-        public XmlPort(Int32 id, String name)
+        public XmlPort(int id, String name)
             : base(id, name)
         {
             Properties = new XmlPortProperties();

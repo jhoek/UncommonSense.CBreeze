@@ -240,7 +240,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? SourceTable
+      public System.int? SourceTable
         {
             get
             {
@@ -284,7 +284,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? Width
+      public System.int? Width
         {
             get
             {

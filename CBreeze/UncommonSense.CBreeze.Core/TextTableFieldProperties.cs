@@ -328,7 +328,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Int32? Width
+        public System.int? Width
         {
             get
             {

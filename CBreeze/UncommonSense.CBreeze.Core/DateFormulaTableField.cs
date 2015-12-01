@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private DateFormulaTableFieldProperties properties = new DateFormulaTableFieldProperties();
 
-        public DateFormulaTableField(Int32 no, String name) : base(no, name)
+        public DateFormulaTableField(int no, String name) : base(no, name)
         {
         }
 

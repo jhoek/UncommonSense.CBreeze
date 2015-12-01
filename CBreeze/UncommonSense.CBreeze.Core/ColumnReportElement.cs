@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private ColumnReportElementProperties properties = new ColumnReportElementProperties();
 
-        public ColumnReportElement(Int32 id, Int32? indentationLevel) : base(id, indentationLevel)
+        public ColumnReportElement(int id, int? indentationLevel) : base(id, indentationLevel)
         {
         }
 

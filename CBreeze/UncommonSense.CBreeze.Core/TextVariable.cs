@@ -17,11 +17,11 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TextVariable : Variable
     {
-        private Int32? dataLength;
+        private int? dataLength;
         private String dimensions;
         private Boolean? includeInDataset;
 
-        public TextVariable(Int32 id, String name, Int32? dataLength = null) : base(id, name)
+        public TextVariable(int id, String name, int? dataLength = null) : base(id, name)
         {
             this.dataLength = dataLength;
         }
@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32? DataLength
+        public int? DataLength
         {
             get
             {

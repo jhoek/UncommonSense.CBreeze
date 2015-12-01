@@ -18,9 +18,9 @@ namespace UncommonSense.CBreeze.Core
     public partial class CodeunitVariable : Variable
     {
         private String dimensions;
-        private Int32 subType;
+        private int subType;
 
-        public CodeunitVariable(Int32 id, String name, Int32 subType) : base(id, name)
+        public CodeunitVariable(int id, String name, int subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 SubType
+        public int SubType
         {
             get
             {

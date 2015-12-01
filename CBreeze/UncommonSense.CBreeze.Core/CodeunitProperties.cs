@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Int32? TableNo
+        public System.int? TableNo
         {
             get
             {

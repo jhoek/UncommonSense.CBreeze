@@ -138,7 +138,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? RunObjectID
+      public System.int? RunObjectID
         {
             get
             {

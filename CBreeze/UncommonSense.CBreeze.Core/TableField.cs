@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
 	{
 		private Boolean? enabled;
 
-		internal TableField(Int32 id, String name)
+		internal TableField(int id, String name)
 		{
 			ID = id;
 			Name = name;

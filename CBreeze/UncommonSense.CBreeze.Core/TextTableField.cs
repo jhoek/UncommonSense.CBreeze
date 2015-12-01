@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TextTableField : TableField
     {
-        private Int32 dataLength;
+        private int dataLength;
         private TextTableFieldProperties properties = new TextTableFieldProperties();
 
-        public TextTableField(Int32 no, String name, Int32 dataLength = 30) : base(no, name)
+        public TextTableField(int no, String name, int dataLength = 30) : base(no, name)
         {
             this.dataLength = dataLength;
         }
@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 DataLength
+        public int DataLength
         {
             get
             {

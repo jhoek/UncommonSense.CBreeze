@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TimeParameter : Parameter
     {
-        public TimeParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public TimeParameter(Boolean var, int id, String name) : base(var, id, name)
         {
         }
 

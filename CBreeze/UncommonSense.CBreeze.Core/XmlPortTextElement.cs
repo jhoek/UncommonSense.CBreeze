@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class XmlPortTextElement : XmlPortNode
     {
-        public XmlPortTextElement(Guid id, String nodeName, Int32? indentationLevel)
+        public XmlPortTextElement(Guid id, String nodeName, int? indentationLevel)
             : base(id, nodeName, indentationLevel)
         {
             Properties = new XmlPortTextElementProperties();

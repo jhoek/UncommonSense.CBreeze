@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BigTextVariable : Variable
     {
-        public BigTextVariable(Int32 id, String name)
+        public BigTextVariable(int id, String name)
             : base(id, name)
         {
         }

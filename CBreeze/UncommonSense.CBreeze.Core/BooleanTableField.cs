@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private BooleanTableFieldProperties properties = new BooleanTableFieldProperties();
 
-        public BooleanTableField(Int32 no, String name) : base(no, name)
+        public BooleanTableField(int no, String name) : base(no, name)
         {
         }
 

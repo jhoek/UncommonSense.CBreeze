@@ -18,9 +18,9 @@ namespace UncommonSense.CBreeze.Core
     public abstract partial class XmlPortNode : KeyedItem<Guid>, IHasProperties
     {
         private String nodeName;
-        private Int32? indentationLevel;
+        private int? indentationLevel;
 
-        internal XmlPortNode(Guid id, String nodeName, Int32? indentationLevel)
+        internal XmlPortNode(Guid id, String nodeName, int? indentationLevel)
         {
             ID = id;
             this.indentationLevel = indentationLevel;
@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Core
             internal set;
         }
 
-        public Int32? IndentationLevel
+        public int? IndentationLevel
         {
             get
             {

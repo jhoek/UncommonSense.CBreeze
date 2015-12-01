@@ -17,14 +17,14 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class Permissions : IEnumerable<Permission>
     {
-        private Dictionary<Int32,Permission> innerList = new Dictionary<Int32,Permission>();
+        private Dictionary<int,Permission> innerList = new Dictionary<int,Permission>();
 
         // Ctor made public to allow PermissionProperty to new up an instance
         public Permissions()
         {
         }
 
-        public void Set(Int32 tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
+        public void Set(int tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
         {
             Unset(tableID);
             innerList.Add(tableID, new Permission(tableID, readPermission, insertPermission, modifyPermission, deletePermission));
@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Clear();
         }
 
-        public bool Unset(Int32 tableID)
+        public bool Unset(int tableID)
         {
             return innerList.Remove(tableID);
         }

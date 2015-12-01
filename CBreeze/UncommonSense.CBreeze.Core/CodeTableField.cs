@@ -18,9 +18,9 @@ namespace UncommonSense.CBreeze.Core
     public partial class CodeTableField : TableField
     {
         private CodeTableFieldProperties properties = new CodeTableFieldProperties();
-        private Int32 dataLength;
+        private int dataLength;
 
-        public CodeTableField(Int32 no, String name, Int32 dataLength = 10) : base(no, name)
+        public CodeTableField(int no, String name, int dataLength = 10) : base(no, name)
         {
             this.dataLength = dataLength;
         }
@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 DataLength
+        public int DataLength
         {
             get
             {

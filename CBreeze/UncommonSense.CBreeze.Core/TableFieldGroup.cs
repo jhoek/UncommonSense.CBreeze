@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
 		private FieldList fields = new FieldList();
 		private TableFieldGroupProperties properties = new TableFieldGroupProperties();
 
-		public TableFieldGroup(Int32 id, String name)
+		public TableFieldGroup(int id, String name)
 		{
 			ID = id;
 			this.name = name;

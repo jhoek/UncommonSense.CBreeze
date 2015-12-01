@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BlobTableField : TableField
     {
-        public BlobTableField(Int32 no, String name)
+        public BlobTableField(int no, String name)
             : base(no, name)
         {
             Properties = new BlobTableFieldProperties();

@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Page : Object, IHasCode, IPage
     {
-        public Page(Int32 id, String name)
+        public Page(int id, String name)
             : base(id, name)
         {
             Properties = new PageProperties();

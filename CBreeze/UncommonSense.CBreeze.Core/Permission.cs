@@ -17,13 +17,13 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Permission
     {
-        private Int32 tableID;
+        private int tableID;
         private Boolean readPermission;
         private Boolean insertPermission;
         private Boolean modifyPermission;
         private Boolean deletePermission;
 
-        internal Permission(Int32 tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
+        internal Permission(int tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
         {
             this.deletePermission = deletePermission;
             this.insertPermission = insertPermission;
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
             this.tableID = tableID;
         }
 
-        public Int32 TableID
+        public int TableID
         {
             get
             {

@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
 		private String dimensions;
 		private String name;
 
-		internal Parameter(Boolean var, Int32 id, String name)
+		internal Parameter(Boolean var, int id, String name)
 		{
 			ID = id;
 			this.name = name;

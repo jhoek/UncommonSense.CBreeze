@@ -142,7 +142,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? PagePartID
+      public System.int? PagePartID
         {
             get
             {
@@ -166,7 +166,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? ProviderID
+      public System.int? ProviderID
         {
             get
             {

@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public abstract partial class Variable : KeyedItem<int>, IHasName
 	{
-		internal Variable(Int32 id, String name)
+		internal Variable(int id, String name)
 		{
 			ID = id;
 			Name = name;

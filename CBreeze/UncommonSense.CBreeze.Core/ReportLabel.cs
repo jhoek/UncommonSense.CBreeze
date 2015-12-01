@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
 		private String name;
 		private ReportLabelProperties properties = new ReportLabelProperties();
 
-		public ReportLabel(Int32 id, String name)
+		public ReportLabel(int id, String name)
 		{
 			ID = id;
 			this.name = name;

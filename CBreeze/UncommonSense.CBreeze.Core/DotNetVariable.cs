@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
         private String subType;
         private Boolean? withEvents;
 
-        public DotNetVariable(Int32 id, String name, String subType) : base(id, name)
+        public DotNetVariable(int id, String name, String subType) : base(id, name)
         {
             this.subType = subType;
         }

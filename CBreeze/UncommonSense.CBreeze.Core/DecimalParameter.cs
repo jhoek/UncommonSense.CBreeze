@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DecimalParameter : Parameter
     {
-        public DecimalParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public DecimalParameter(Boolean var, int id, String name) : base(var, id, name)
         {
         }
 

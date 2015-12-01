@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String dimensions;
         private RecordSecurityFiltering? securityFiltering;
 
-        public RecordRefVariable(Int32 id, String name) : base(id, name)
+        public RecordRefVariable(int id, String name) : base(id, name)
         {
         }
 

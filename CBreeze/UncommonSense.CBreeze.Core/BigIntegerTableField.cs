@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BigIntegerTableField : TableField
     {
-        public BigIntegerTableField(Int32 no, String name)
+        public BigIntegerTableField(int no, String name)
             : base(no, name)
         {
             Properties = new BigIntegerTableFieldProperties();

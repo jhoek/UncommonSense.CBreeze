@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        public DateTimeVariable(Int32 id, String name) : base(id, name)
+        public DateTimeVariable(int id, String name) : base(id, name)
         {
         }
 

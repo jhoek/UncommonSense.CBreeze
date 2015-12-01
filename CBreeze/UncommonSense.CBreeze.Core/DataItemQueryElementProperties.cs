@@ -54,7 +54,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int32? DataItemTable
+      public System.int? DataItemTable
         {
             get
             {

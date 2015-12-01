@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public abstract partial class PageControl : KeyedItem<int>, IHasName, IHasProperties
 	{
-		private Int32? indentationLevel;
+		private int? indentationLevel;
 
-		internal PageControl(Int32 id, Int32? indentationLevel)
+		internal PageControl(int id, int? indentationLevel)
 		{
 			ID = id;
 			this.indentationLevel = indentationLevel;
@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Core
 			get;
 		}
 
-		public Int32? IndentationLevel
+		public int? IndentationLevel
 		{
 			get
 			{

@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String dimensions;
         private String name;
         private FunctionReturnValueType? type;
-        private Int32? dataLength;
+        private int? dataLength;
 
         internal FunctionReturnValue()
         {
@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32? DataLength
+        public int? DataLength
         {
             get
             {

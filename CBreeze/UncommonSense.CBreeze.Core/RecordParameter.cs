@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
     public partial class RecordParameter : Parameter
     {
         private RecordSecurityFiltering? securityFiltering;
-        private Int32 subType;
+        private int subType;
         private Boolean? temporary;
 
-        public RecordParameter(Boolean var, Int32 id, String name, Int32 subType) : base(var, id, name)
+        public RecordParameter(Boolean var, int id, String name, int subType) : base(var, id, name)
         {
             this.subType = subType;
         }
@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 SubType
+        public int SubType
         {
             get
             {

@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DialogParameter : Parameter
     {
-        public DialogParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public DialogParameter(Boolean var, int id, String name) : base(var, id, name)
         {
         }
 

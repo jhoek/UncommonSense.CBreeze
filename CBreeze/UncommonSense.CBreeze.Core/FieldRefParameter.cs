@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class FieldRefParameter : Parameter
     {
-        public FieldRefParameter(Boolean var, Int32 id, String name) : base(var, id, name)
+        public FieldRefParameter(Boolean var, int id, String name) : base(var, id, name)
         {
         }
 

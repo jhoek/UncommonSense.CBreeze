@@ -19,9 +19,9 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
         private QuerySecurityFiltering? securityFiltering;
-        private Int32 subType;
+        private int subType;
 
-        public QueryVariable(Int32 id, String name, Int32 subType) : base(id, name)
+        public QueryVariable(int id, String name, int subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -58,7 +58,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Int32 SubType
+        public int SubType
         {
             get
             {

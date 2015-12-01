@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private TimeTableFieldProperties properties = new TimeTableFieldProperties();
 
-        public TimeTableField(Int32 no, String name) : base(no, name)
+        public TimeTableField(int no, String name) : base(no, name)
         {
         }
 

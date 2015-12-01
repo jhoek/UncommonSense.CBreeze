@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Table : Object, IHasCode
     {
-        public Table(Int32 id, String name)
+        public Table(int id, String name)
             : base(id, name)
         {
             Properties = new TableProperties();

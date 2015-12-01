@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private String dimensions;
 
-        public RecordIDVariable(Int32 id, String name) : base(id, name)
+        public RecordIDVariable(int id, String name) : base(id, name)
         {
         }
 
