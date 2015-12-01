@@ -107,6 +107,7 @@
     <Compile Include="CodeunitSubTypeProperty.cs" />
     <Compile Include="CodeunitVariable.cs" />
     <Compile Include="CodeVariable.cs" />
+    <Compile Include="Collection.cs" />
     <Compile Include="ColumnFilter.cs" />
     <Compile Include="ColumnFilterLine.cs" />
     <Compile Include="ColumnFilterProperty.cs" />
