@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DataItemQueryElement : QueryElement
     {
-        private DataItemQueryElementProperties properties = new DataItemQueryElementProperties();
-
-        public DataItemQueryElement(int id, string name, int? indentationLevel) : base(id, name, indentationLevel)
+        public DataItemQueryElement(int id, string name, int? indentationLevel)
+            : base(id, name, indentationLevel)
         {
+            Properties = new DataItemQueryElementProperties();
         }
 
         public override QueryElementType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public DataItemQueryElementProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

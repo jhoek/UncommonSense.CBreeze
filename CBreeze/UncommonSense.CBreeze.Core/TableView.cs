@@ -17,45 +17,27 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableView
     {
-        private string key;
-        private Order? order;
-        private TableFilter tableFilter = new TableFilter();
-
         public TableView()
         {
+            TableFilter = new TableFilter();
         }
 
         public string Key
         {
-            get
-            {
-                return this.key;
-            }
-            set
-            {
-                this.key = value;
-            }
+            get;
+            set;
         }
 
         public Order? Order
         {
-            get
-            {
-                return this.order;
-            }
-            set
-            {
-                this.order = value;
-            }
+            get;
+            set;
         }
 
         public TableFilter TableFilter
         {
-            get
-            {
-                return this.tableFilter;
-            }
+            get;
+            protected set;
         }
-
     }
 }

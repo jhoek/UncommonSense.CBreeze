@@ -17,28 +17,22 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Trigger
     {
-        private CodeLines codeLines = new CodeLines();
-        private Variables variables = new Variables();
-
         public Trigger()
         {
+            CodeLines = new CodeLines();
+            Variables = new Variables();
         }
 
         public CodeLines CodeLines
         {
-            get
-            {
-                return this.codeLines;
-            }
+            get;
+            protected set;
         }
 
         public Variables Variables
         {
-            get
-            {
-                return this.variables;
-            }
+            get;
+            protected set;
         }
-
     }
 }

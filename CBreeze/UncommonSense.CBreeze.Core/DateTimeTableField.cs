@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DateTimeTableField : TableField
     {
-        private DateTimeTableFieldProperties properties = new DateTimeTableFieldProperties();
-
-        public DateTimeTableField(int no, string name) : base(no, name)
+        public DateTimeTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new DateTimeTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public DateTimeTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

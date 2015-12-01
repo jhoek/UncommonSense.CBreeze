@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ColumnQueryElement : QueryElement
     {
-        private ColumnQueryElementProperties properties = new ColumnQueryElementProperties();
-
-        public ColumnQueryElement(int id, string name, int? indentationLevel) : base(id, name, indentationLevel)
+        public ColumnQueryElement(int id, string name, int? indentationLevel)
+            : base(id, name, indentationLevel)
         {
+            Properties = new ColumnQueryElementProperties();
         }
 
         public override QueryElementType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public ColumnQueryElementProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

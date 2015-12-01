@@ -17,9 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DecimalPlaces
     {
-        private int? atLeast;
-        private int? atMost;
-
         // Made ctor public so that DecimalPlacesProperty can new up a new instance
         public DecimalPlaces()
         {
@@ -27,27 +24,14 @@ namespace UncommonSense.CBreeze.Core
 
         public int? AtLeast
         {
-            get
-            {
-                return this.atLeast;
-            }
-            set
-            {
-                this.atLeast = value;
-            }
+            get;
+            set;
         }
 
         public int? AtMost
         {
-            get
-            {
-                return this.atMost;
-            }
-            set
-            {
-                this.atMost = value;
-            }
+            get;
+            set;
         }
-
     }
 }

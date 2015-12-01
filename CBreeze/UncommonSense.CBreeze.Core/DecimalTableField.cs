@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DecimalTableField : TableField
     {
-        private DecimalTableFieldProperties properties = new DecimalTableFieldProperties();
-
-        public DecimalTableField(int no, string name) : base(no, name)
+        public DecimalTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new DecimalTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public DecimalTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

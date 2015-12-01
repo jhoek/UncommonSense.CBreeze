@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DataItemReportElement : ReportElement
     {
-        private DataItemReportElementProperties properties = new DataItemReportElementProperties();
-
-        public DataItemReportElement(int id, int? indentationLevel) : base(id, indentationLevel)
+        public DataItemReportElement(int id, int? indentationLevel)
+            : base(id, indentationLevel)
         {
+            Properties = new DataItemReportElementProperties();
         }
 
         public override ReportElementType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public DataItemReportElementProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

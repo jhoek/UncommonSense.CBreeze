@@ -17,13 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class CodeVariable : Variable
     {
-        private int? dataLength;
-        private string dimensions;
-        private bool? includeInDataset;
-
-        public CodeVariable(int id, string name, int? dataLength = null) : base(id, name)
+        public CodeVariable(int id, string name, int? dataLength = null)
+            : base(id, name)
         {
-            this.dataLength = dataLength;
+            DataLength = dataLength;
         }
 
         public override VariableType Type
@@ -36,35 +33,20 @@ namespace UncommonSense.CBreeze.Core
 
         public int? DataLength
         {
-            get
-            {
-                return this.dataLength;
-            }
+            get;
+            protected set;
         }
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
         public bool? IncludeInDataset
         {
-            get
-            {
-                return this.includeInDataset;
-            }
-            set
-            {
-                this.includeInDataset = value;
-            }
+            get;
+            set;
         }
-
     }
 }

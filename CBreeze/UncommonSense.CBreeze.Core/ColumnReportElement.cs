@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ColumnReportElement : ReportElement, IHasOptionString
     {
-        private ColumnReportElementProperties properties = new ColumnReportElementProperties();
-
-        public ColumnReportElement(int id, int? indentationLevel) : base(id, indentationLevel)
+        public ColumnReportElement(int id, int? indentationLevel)
+            : base(id, indentationLevel)
         {
+            Properties = new ColumnReportElementProperties();
         }
 
         public override ReportElementType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public ColumnReportElementProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties
