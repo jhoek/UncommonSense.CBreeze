@@ -446,56 +446,56 @@ namespace UncommonSense.CBreeze.Automation
 
             if (InputObject.BaseObject is ContainerPageControl)
             {
-                (InputObject.BaseObject as ContainerPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
+                (InputObject.BaseObject as ContainerPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer));
             }
             else if (InputObject.BaseObject is GroupPageControl)
             {
-                (InputObject.BaseObject as GroupPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
+                (InputObject.BaseObject as GroupPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer));
             }
             else if (InputObject.BaseObject is PageControls)
             {
-                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
                 {
-                    case Utils.Position.FirstWithinContainer:
+                    case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as PageControls).Insert(0, pageControl);
                         break;
-                    case Utils.Position.LastWithinContainer:
+                    case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as PageControls).Add(pageControl);
                         break;
                 }
             }
             else if (InputObject.BaseObject is Page)
             {
-                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
                 {
-                    case Utils.Position.FirstWithinContainer:
+                    case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as Page).Controls.Insert(0, pageControl);
                         break;
-                    case Utils.Position.LastWithinContainer:
+                    case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as Page).Controls.Add(pageControl);
                         break;
                 }
             }
             else if (InputObject.BaseObject is ReportRequestPage)
             {
-                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
                 {
-                    case Utils.Position.FirstWithinContainer:
+                    case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as ReportRequestPage).Controls.Insert(0, pageControl);
                         break;
-                    case Utils.Position.LastWithinContainer:
+                    case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as ReportRequestPage).Controls.Add(pageControl);
                         break;
                 }
             }
             else if (InputObject.BaseObject is XmlPortRequestPage)
             {
-                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
                 {
-                    case Utils.Position.FirstWithinContainer:
+                    case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as XmlPortRequestPage).Controls.Insert(0, pageControl);
                         break;
-                    case Utils.Position.LastWithinContainer:
+                    case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as XmlPortRequestPage).Controls.Add(pageControl);
                         break;
                 }

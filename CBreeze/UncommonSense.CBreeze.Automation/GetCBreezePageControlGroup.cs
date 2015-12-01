@@ -54,10 +54,10 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "ByGroupType":
-                    WriteObject(contentArea.GetGroupByType(GroupType, Range, Position ?? UncommonSense.CBreeze.Utils.Position.FirstWithinContainer));
+                    WriteObject(contentArea.GetGroupByType(GroupType, Range, Position ?? UncommonSense.CBreeze.Core.Position.FirstWithinContainer));
                     break;
                 case "ByGroupCaption":
-                    WriteObject(contentArea.GetGroupByCaption(GroupCaption, Range, Position ?? UncommonSense.CBreeze.Utils.Position.LastWithinContainer));
+                    WriteObject(contentArea.GetGroupByCaption(GroupCaption, Range, Position ?? UncommonSense.CBreeze.Core.Position.LastWithinContainer));
                     break;
             }
         }

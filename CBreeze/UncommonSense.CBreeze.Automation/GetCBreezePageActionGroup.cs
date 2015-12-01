@@ -49,7 +49,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var container = Page.GetPageActionContainer(Range, ContainerType);
-            WriteObject(container.GetGroupByCaption(Page, Caption, Range, Position ?? UncommonSense.CBreeze.Utils.Position.LastWithinContainer));
+            WriteObject(container.GetGroupByCaption(Page, Caption, Range, Position ?? Core.Position.LastWithinContainer));
         }
     }
 }

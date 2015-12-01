@@ -6,11 +6,6 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Utils
 {
-    public enum Position
-    {
-        FirstWithinContainer,
-        LastWithinContainer
-    }
 
     public static class PageControlExtensionMethods
     {
