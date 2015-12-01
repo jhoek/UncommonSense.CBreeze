@@ -26,7 +26,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return VariableType.Boolean;
+                return VariableType.bool;
             }
         }
 

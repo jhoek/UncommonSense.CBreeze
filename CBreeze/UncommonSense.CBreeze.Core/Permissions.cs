@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public void Set(int tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
+        public void Set(int tableID, bool readPermission, bool insertPermission, bool modifyPermission, bool deletePermission)
         {
             Unset(tableID);
             innerList.Add(tableID, new Permission(tableID, readPermission, insertPermission, modifyPermission, deletePermission));

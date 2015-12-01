@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onRun);
         }
 
-        public System.Boolean? CFRONTMayUsePermissions
+        public System.bool? CFRONTMayUsePermissions
         {
             get
             {
@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? SingleInstance
+        public System.bool? SingleInstance
         {
             get
             {

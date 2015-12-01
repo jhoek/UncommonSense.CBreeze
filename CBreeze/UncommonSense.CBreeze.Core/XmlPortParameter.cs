@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private int subType;
 
-        public XmlPortParameter(Boolean var, int id, string name, int subType) : base(var, id, name)
+        public XmlPortParameter(bool var, int id, string name, int subType) : base(var, id, name)
         {
             this.subType = subType;
         }

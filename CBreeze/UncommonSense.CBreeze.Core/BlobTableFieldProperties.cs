@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Compressed
+      public System.bool? Compressed
         {
             get
             {
@@ -126,7 +126,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Volatile
+      public System.bool? Volatile
         {
             get
             {

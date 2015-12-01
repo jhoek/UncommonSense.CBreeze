@@ -78,7 +78,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? DefaultFieldsValidation
+      public System.bool? DefaultFieldsValidation
         {
             get
             {
@@ -186,7 +186,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? InlineSchema
+      public System.bool? InlineSchema
         {
             get
             {
@@ -230,7 +230,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? PreserveWhiteSpace
+      public System.bool? PreserveWhiteSpace
         {
             get
             {
@@ -290,7 +290,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? UseDefaultNamespace
+      public System.bool? UseDefaultNamespace
         {
             get
             {
@@ -302,7 +302,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? UseLax
+      public System.bool? UseLax
         {
             get
             {
@@ -314,7 +314,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? UseRequestPage
+      public System.bool? UseRequestPage
         {
             get
             {

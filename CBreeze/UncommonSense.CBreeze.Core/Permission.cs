@@ -18,12 +18,12 @@ namespace UncommonSense.CBreeze.Core
     public partial class Permission
     {
         private int tableID;
-        private Boolean readPermission;
-        private Boolean insertPermission;
-        private Boolean modifyPermission;
-        private Boolean deletePermission;
+        private bool readPermission;
+        private bool insertPermission;
+        private bool modifyPermission;
+        private bool deletePermission;
 
-        internal Permission(int tableID, Boolean readPermission, Boolean insertPermission, Boolean modifyPermission, Boolean deletePermission)
+        internal Permission(int tableID, bool readPermission, bool insertPermission, bool modifyPermission, bool deletePermission)
         {
             this.deletePermission = deletePermission;
             this.insertPermission = insertPermission;
@@ -40,7 +40,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean ReadPermission
+        public bool ReadPermission
         {
             get
             {
@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean InsertPermission
+        public bool InsertPermission
         {
             get
             {
@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean ModifyPermission
+        public bool ModifyPermission
         {
             get
             {
@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean DeletePermission
+        public bool DeletePermission
         {
             get
             {

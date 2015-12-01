@@ -96,7 +96,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? AutoSplitKey
+      public System.bool? AutoSplitKey
         {
             get
             {
@@ -148,7 +148,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? DeleteAllowed
+      public System.bool? DeleteAllowed
         {
             get
             {
@@ -172,7 +172,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Editable
+      public System.bool? Editable
         {
             get
             {
@@ -184,7 +184,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? InsertAllowed
+      public System.bool? InsertAllowed
         {
             get
             {
@@ -204,7 +204,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? LinksAllowed
+      public System.bool? LinksAllowed
         {
             get
             {
@@ -216,7 +216,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ModifyAllowed
+      public System.bool? ModifyAllowed
         {
             get
             {
@@ -228,7 +228,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? MultipleNewLines
+      public System.bool? MultipleNewLines
         {
             get
             {
@@ -344,7 +344,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? PopulateAllFields
+      public System.bool? PopulateAllFields
         {
             get
             {
@@ -356,7 +356,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? SaveValues
+      public System.bool? SaveValues
         {
             get
             {
@@ -368,7 +368,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ShowFilter
+      public System.bool? ShowFilter
         {
             get
             {
@@ -392,7 +392,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? SourceTableTemporary
+      public System.bool? SourceTableTemporary
         {
             get
             {

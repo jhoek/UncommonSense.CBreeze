@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class VariantParameter : Parameter
     {
-        public VariantParameter(Boolean var, int id, string name) : base(var, id, name)
+        public VariantParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 

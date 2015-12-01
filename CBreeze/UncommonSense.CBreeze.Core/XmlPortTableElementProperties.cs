@@ -68,7 +68,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
-      public System.Boolean? AutoReplace
+      public System.bool? AutoReplace
         {
             get
             {
@@ -80,7 +80,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? AutoSave
+      public System.bool? AutoSave
         {
             get
             {
@@ -92,7 +92,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? AutoUpdate
+      public System.bool? AutoUpdate
         {
             get
             {
@@ -132,7 +132,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? LinkTableForceInsert
+      public System.bool? LinkTableForceInsert
         {
             get
             {
@@ -260,7 +260,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Temporary
+      public System.bool? Temporary
         {
             get
             {
