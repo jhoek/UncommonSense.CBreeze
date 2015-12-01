@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class XmlPortTableAttribute : XmlPortNode
     {
-        private XmlPortTableAttributeProperties properties = new XmlPortTableAttributeProperties();
-
-        public XmlPortTableAttribute(Guid id, string nodeName, int? indentationLevel) : base(id, nodeName, indentationLevel)
+        public XmlPortTableAttribute(Guid id, string nodeName, int? indentationLevel)
+            : base(id, nodeName, indentationLevel)
         {
+            Properties = new XmlPortTableAttributeProperties();
         }
 
         public override XmlPortNodeType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public XmlPortTableAttributeProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

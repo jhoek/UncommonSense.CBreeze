@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TextConstant : Variable
     {
-        private MultiLanguageValue values = new MultiLanguageValue();
-
-        public TextConstant(int id, string name) : base(id, name)
+        public TextConstant(int id, string name)
+            : base(id, name)
         {
+            Values = new MultiLanguageValue();
         }
 
         public override VariableType Type
@@ -33,11 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public MultiLanguageValue Values
         {
-            get
-            {
-                return this.values;
-            }
+            get;
+            protected set;
         }
-
     }
 }
