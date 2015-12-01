@@ -17,30 +17,22 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class LinkField
     {
-        private Int32 field;
-        private Int32 referenceField;
-
-        internal LinkField(Int32 field, Int32 referenceField)
+        public LinkField(int field, int referenceField)
         {
-            this.field = field;
-            this.referenceField = referenceField;
+            Field = field;
+            ReferenceField = referenceField;
         }
 
-        public Int32 Field
+        public int Field
         {
-            get
-            {
-                return this.field;
-            }
+            get;
+            protected set;
         }
 
-        public Int32 ReferenceField
+        public int ReferenceField
         {
-            get
-            {
-                return this.referenceField;
-            }
+            get;
+            protected set;
         }
-
     }
 }

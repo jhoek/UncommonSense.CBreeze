@@ -72,7 +72,7 @@ namespace UncommonSense.CBreeze.Read
             {
                 var fieldNo = Parsing.MustMatch(ref propertyValue, @"^Field(\d+)=FIELD\(").Groups[1].Value.ToInteger();
                 var referenceFieldNo = Parsing.MustMatch(ref propertyValue, @"^Field(\d+)\)").Groups[1].Value.ToInteger();
-                property.Value.Add(fieldNo, referenceFieldNo);
+                property.Value.Add(new LinkField(fieldNo, referenceFieldNo));
             }
             while (Parsing.TryMatch(ref propertyValue, @"^,\s?"));
         }
