@@ -17,66 +17,41 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class CalcFormulaTableFilterLine
     {
-        private string fieldName;
-        private bool onlyMaxLimit;
-        private TableFilterType? type;
-        private string value;
-        private bool valueIsFilter;
-
         public CalcFormulaTableFilterLine(string fieldName, TableFilterType type, string value)
         {
-            this.fieldName = fieldName;
-            this.type = type;
-            this.value = value;
+            FieldName = fieldName;
+            Type = type;
+            Value = value;
         }
 
         public string FieldName
         {
-            get
-            {
-                return this.fieldName;
-            }
+            get;
+            protected set;
         }
 
         public bool OnlyMaxLimit
         {
-            get
-            {
-                return this.onlyMaxLimit;
-            }
-            set
-            {
-                this.onlyMaxLimit = value;
-            }
+            get;
+            set;
         }
 
-        public TableFilterType? Type
+        public TableFilterType Type
         {
-            get
-            {
-                return this.type;
-            }
+            get;
+            protected set;
         }
 
         public string Value
         {
-            get
-            {
-                return this.value;
-            }
+            get;
+            protected set;
         }
 
         public bool ValueIsFilter
         {
-            get
-            {
-                return this.valueIsFilter;
-            }
-            set
-            {
-                this.valueIsFilter = value;
-            }
+            get;
+            set;
         }
-
     }
 }

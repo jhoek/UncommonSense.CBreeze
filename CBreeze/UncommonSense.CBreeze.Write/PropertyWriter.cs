@@ -232,7 +232,7 @@ namespace UncommonSense.CBreeze.Write
                     if (tableFilterLine.OnlyMaxLimit)
                         value = string.Format("UPPERLIMIT({0})", value);
 
-                    writer.Write("{0}={1}({2})", tableFilterLine.FieldName, tableFilterLine.Type.Value.AsString(), value);
+                    writer.Write("{0}={1}({2})", tableFilterLine.FieldName, tableFilterLine.Type.AsString(), value);
                     if (tableFilterLine != property.Value.TableFilter.Last())
                         writer.WriteLine(",");
                 }
