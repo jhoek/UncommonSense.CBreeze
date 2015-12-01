@@ -475,7 +475,7 @@ namespace UncommonSense.CBreeze.Read
 
             foreach (var tableRelationFilterLine in GetTableRelationFilters(ref propertyValue))
             {
-                tableFilter.Add(tableRelationFilterLine.FieldName, tableRelationFilterLine.Type.ToEnum<SimpleTableFilterType>(), tableRelationFilterLine.Value);
+                tableFilter.Add(new TableFilterLine(tableRelationFilterLine.FieldName, tableRelationFilterLine.Type.ToEnum<SimpleTableFilterType>(), tableRelationFilterLine.Value));
             }
         }
 
