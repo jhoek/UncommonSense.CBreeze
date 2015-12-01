@@ -441,9 +441,9 @@ namespace UncommonSense.CBreeze.Write
                         indentations++;
                     }
 
-                    foreach (var tableFilterLine in tableRelationLine.TableFilter.Where(f => f.Type.HasValue))
+                    foreach (var tableFilterLine in tableRelationLine.TableFilter)
                     {
-                        writer.Write("{0}={1}({2})", tableFilterLine.FieldName, tableFilterLine.Type.Value.AsString(), tableFilterLine.Value);
+                        writer.Write("{0}={1}({2})", tableFilterLine.FieldName, tableFilterLine.Type.AsString(), tableFilterLine.Value);
 
                         switch (tableFilterLine == tableRelationLine.TableFilter.Last())
                         {
