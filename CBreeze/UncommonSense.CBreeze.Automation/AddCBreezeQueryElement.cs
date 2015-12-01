@@ -140,16 +140,16 @@ namespace UncommonSense.CBreeze.Automation
             {
                 if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
                 {
-                    (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).AddChildNode(element, Position.GetValueOrDefault(Utils.Position.LastWithinContainer));
+                    (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).AddChildNode(element, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                 }
                 else
                 {
-                    switch (Position.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                    switch (Position.GetValueOrDefault(Core.Position.LastWithinContainer))
                     {
-                        case Utils.Position.FirstWithinContainer:
+                        case Core.Position.FirstWithinContainer:
                             GetQuery().Elements.Insert(0, element);
                             break;
-                        case Utils.Position.LastWithinContainer:
+                        case Core.Position.LastWithinContainer:
                             GetQuery().Elements.Add(element);
                             break;
                     }
@@ -157,7 +157,7 @@ namespace UncommonSense.CBreeze.Automation
             }
             else
             {
-                InputObjectForColumnsOrFilters.Value.AddChildNode(element, Position.GetValueOrDefault(Utils.Position.LastWithinContainer));
+                InputObjectForColumnsOrFilters.Value.AddChildNode(element, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
             }
 
             if (PassThru)
