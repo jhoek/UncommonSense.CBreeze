@@ -15,23 +15,8 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-    // FIXME: Consider basing any class that contains FindIndex method with a Collection<T>
-
     [Serializable]
     public class ColumnFilter : Collection<ColumnFilterLine>
     {
-        public new ColumnFilterLine Add(ColumnFilterLine value)
-        {
-            this.InsertItem(Count, value);
-            return value;
-        }
-
-        public void AddRange(IEnumerable<ColumnFilterLine> values)
-        {
-            foreach (var value in values)
-            {
-                this.Add(value);
-            }
-        }
     }
 }
