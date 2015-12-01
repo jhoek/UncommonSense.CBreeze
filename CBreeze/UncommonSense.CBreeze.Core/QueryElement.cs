@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public abstract partial class QueryElement : KeyedItem<int>, IHasName, IHasProperties
     {
-        public QueryElement(int id, String name, int? indentationLevel)
+        public QueryElement(int id, string name, int? indentationLevel)
         {
             ID = id;
             IndentationLevel = indentationLevel;
@@ -29,7 +29,7 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public String Name
+        public string Name
         {
             get;
             protected set;

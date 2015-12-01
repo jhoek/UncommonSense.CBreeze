@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class XmlPortVariable : Variable
     {
-        public XmlPortVariable(int id, String name, int subType)
+        public XmlPortVariable(int id, string name, int subType)
             : base(id, name)
         {
             SubType = subType;

@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+      public string Description
         {
             get
             {
@@ -84,7 +84,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String TableIDExpr
+      public string TableIDExpr
         {
             get
             {

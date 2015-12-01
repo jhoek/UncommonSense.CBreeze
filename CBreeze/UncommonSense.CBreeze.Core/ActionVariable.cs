@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ActionVariable : Variable
     {
-        public ActionVariable(int id, String name)
+        public ActionVariable(int id, string name)
             : base(id, name)
         {
         }

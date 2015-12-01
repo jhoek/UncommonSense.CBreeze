@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OptionVariable : Variable, IHasOptionString
     {
-        public OptionVariable(int id, String name)
+        public OptionVariable(int id, string name)
             : base(id, name)
         {
         }
@@ -30,13 +30,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get;
             set;
         }
 
-        public String OptionString
+        public string OptionString
         {
             get;
             set;

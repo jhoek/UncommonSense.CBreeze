@@ -18,11 +18,11 @@ namespace UncommonSense.CBreeze.Core
     public partial class TableRelationLine
     {
         private TableRelationConditions conditions = new TableRelationConditions();
-        private String fieldName;
+        private string fieldName;
         private TableRelationTableFilter tableFilter = new TableRelationTableFilter();
-        private String tableName;
+        private string tableName;
 
-        public TableRelationLine(String tableName)
+        public TableRelationLine(string tableName)
         {
             this.tableName = tableName;
         }
@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String FieldName
+        public string FieldName
         {
             get
             {
@@ -55,7 +55,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String TableName
+        public string TableName
         {
             get
             {

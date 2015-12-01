@@ -57,7 +57,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+      public string Description
         {
             get
             {
@@ -69,7 +69,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Enabled
+      public string Enabled
         {
             get
             {
@@ -81,7 +81,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Image
+      public string Image
         {
             get
             {
@@ -93,7 +93,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Name
+      public string Name
         {
             get
             {
@@ -105,7 +105,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Visible
+      public string Visible
         {
             get
             {

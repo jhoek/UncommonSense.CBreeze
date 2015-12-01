@@ -17,12 +17,12 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DotNetVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
         private Boolean? runOnClient;
-        private String subType;
+        private string subType;
         private Boolean? withEvents;
 
-        public DotNetVariable(int id, String name, String subType) : base(id, name)
+        public DotNetVariable(int id, string name, string subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {
@@ -59,7 +59,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String SubType
+        public string SubType
         {
             get
             {

@@ -17,16 +17,16 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class SIFTLevelComponent
     {
-        private String fieldName;
-        private String aspect;
+        private string fieldName;
+        private string aspect;
 
-        public SIFTLevelComponent(String fieldName, String aspect)
+        public SIFTLevelComponent(string fieldName, string aspect)
         {
             this.aspect = aspect;
             this.fieldName = fieldName;
         }
 
-        public String FieldName
+        public string FieldName
         {
             get
             {
@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Aspect
+        public string Aspect
         {
             get
             {

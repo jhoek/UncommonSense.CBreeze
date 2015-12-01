@@ -122,7 +122,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-        public System.String VariableName
+        public string VariableName
         {
             get
             {

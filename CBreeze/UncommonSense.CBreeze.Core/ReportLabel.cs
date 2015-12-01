@@ -17,16 +17,16 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public partial class ReportLabel : KeyedItem<int>, IHasName
 	{
-		private String name;
+		private string name;
 		private ReportLabelProperties properties = new ReportLabelProperties();
 
-		public ReportLabel(int id, String name)
+		public ReportLabel(int id, string name)
 		{
 			ID = id;
 			this.name = name;
 		}
 
-		public String Name
+		public string Name
 		{
 			get
 			{

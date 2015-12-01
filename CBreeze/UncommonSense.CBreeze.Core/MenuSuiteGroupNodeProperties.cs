@@ -82,7 +82,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Name
+      public string Name
         {
             get
             {

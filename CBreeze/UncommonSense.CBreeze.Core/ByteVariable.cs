@@ -17,9 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ByteVariable : Variable
     {
-        private String dimensions;
-
-        public ByteVariable(int id, String name) : base(id, name)
+        public ByteVariable(int id, string name)
+            : base(id, name)
         {
         }
 
@@ -31,17 +30,10 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
-
     }
 }

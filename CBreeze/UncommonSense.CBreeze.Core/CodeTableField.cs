@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private CodeTableFieldProperties properties = new CodeTableFieldProperties();
         private int dataLength;
 
-        public CodeTableField(int no, String name, int dataLength = 10) : base(no, name)
+        public CodeTableField(int no, string name, int dataLength = 10) : base(no, name)
         {
             this.dataLength = dataLength;
         }

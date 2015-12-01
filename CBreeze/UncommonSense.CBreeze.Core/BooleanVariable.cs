@@ -17,10 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BooleanVariable : Variable
     {
-        private String dimensions;
-        private Boolean? includeInDataset;
-
-        public BooleanVariable(int id, String name) : base(id, name)
+        public BooleanVariable(int id, string name)
+            : base(id, name)
         {
         }
 
@@ -32,28 +30,16 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
-        public Boolean? IncludeInDataset
+        public bool? IncludeInDataset
         {
-            get
-            {
-                return this.includeInDataset;
-            }
-            set
-            {
-                this.includeInDataset = value;
-            }
+            get;
+            set;
         }
 
     }

@@ -17,12 +17,12 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
         private RecordSecurityFiltering? securityFiltering;
         private int subType;
         private Boolean? temporary;
 
-        public RecordVariable(int id, String name, int subType) : base(id, name)
+        public RecordVariable(int id, string name, int subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

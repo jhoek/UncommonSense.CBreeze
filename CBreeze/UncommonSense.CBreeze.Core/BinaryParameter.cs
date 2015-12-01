@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BinaryParameter : Parameter
     {
-        public BinaryParameter(Boolean var, int id, String name, int dataLength = 100)
+        public BinaryParameter(Boolean var, int id, string name, int dataLength = 100)
             : base(var, id, name)
         {
             DataLength = dataLength;

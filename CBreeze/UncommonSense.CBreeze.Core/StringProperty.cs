@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class StringProperty : Property
     {
-        private System.String value = null;
+        private string value = null;
 
         internal StringProperty(string name) : base(name)
         {
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Value
+        public string Value
         {
             get
             {

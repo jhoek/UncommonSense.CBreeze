@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Core
 	public abstract partial class ReportElement : KeyedItem<int>, IHasName, IHasProperties
 	{
 		private int? indentationLevel;
-		private String name;
+		private string name;
 
 		public ReportElement(int id, int? indentationLevel)
 		{
@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.Core
 			}
 		}
 
-		public String Name
+		public string Name
 		{
 			get
 			{

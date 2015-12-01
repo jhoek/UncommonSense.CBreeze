@@ -17,16 +17,16 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ReportDataItemLinkLine
     {
-        private String fieldName;
-        private String referenceFieldName;
+        private string fieldName;
+        private string referenceFieldName;
 
-        public ReportDataItemLinkLine(String fieldName, String referenceFieldName)
+        public ReportDataItemLinkLine(string fieldName, string referenceFieldName)
         {
             this.fieldName = fieldName;
             this.referenceFieldName = referenceFieldName;
         }
 
-        public String FieldName
+        public string FieldName
         {
             get
             {
@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String ReferenceFieldName
+        public string ReferenceFieldName
         {
             get
             {

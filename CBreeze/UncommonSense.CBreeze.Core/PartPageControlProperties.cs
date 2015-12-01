@@ -82,7 +82,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String ChartPartID
+      public string ChartPartID
         {
             get
             {
@@ -94,7 +94,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+      public string Description
         {
             get
             {
@@ -106,7 +106,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Editable
+      public string Editable
         {
             get
             {
@@ -118,7 +118,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Enabled
+      public string Enabled
         {
             get
             {
@@ -130,7 +130,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Name
+      public string Name
         {
             get
             {
@@ -240,7 +240,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-      public System.String Visible
+      public string Visible
         {
             get
             {

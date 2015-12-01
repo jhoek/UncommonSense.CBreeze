@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordIDVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
 
-        public RecordIDVariable(int id, String name) : base(id, name)
+        public RecordIDVariable(int id, string name) : base(id, name)
         {
         }
 
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

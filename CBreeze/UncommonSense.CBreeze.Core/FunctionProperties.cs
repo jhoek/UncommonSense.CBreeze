@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String HandlerFunctions
+      public string HandlerFunctions
         {
             get
             {

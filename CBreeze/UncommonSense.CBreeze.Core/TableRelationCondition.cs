@@ -18,18 +18,18 @@ namespace UncommonSense.CBreeze.Core
     public partial class TableRelationCondition
     {
         // FIXME: Get rid of backing fields
-        private String fieldName;
+        private string fieldName;
         private SimpleTableFilterType? type;
-        private String value;
+        private string value;
 
-        public TableRelationCondition(String fieldName, SimpleTableFilterType type, String value)
+        public TableRelationCondition(string fieldName, SimpleTableFilterType type, string value)
         {
             this.fieldName = fieldName;
             this.type = type;
             this.value = value;
         }
 
-        public String FieldName
+        public string FieldName
         {
             get
             {
@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Value
+        public string Value
         {
             get
             {

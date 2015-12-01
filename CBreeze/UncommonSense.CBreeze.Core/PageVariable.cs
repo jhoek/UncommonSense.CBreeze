@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class PageVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
         private int subType;
 
-        public PageVariable(int id, String name, int subType) : base(id, name)
+        public PageVariable(int id, string name, int subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

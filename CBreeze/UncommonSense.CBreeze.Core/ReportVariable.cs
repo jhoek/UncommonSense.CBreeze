@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ReportVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
         private int subType;
 
-        public ReportVariable(int id, String name, int subType) : base(id, name)
+        public ReportVariable(int id, string name, int subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

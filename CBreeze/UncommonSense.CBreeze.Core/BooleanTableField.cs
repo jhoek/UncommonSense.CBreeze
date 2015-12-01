@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BooleanTableField : TableField
     {
-        private BooleanTableFieldProperties properties = new BooleanTableFieldProperties();
-
-        public BooleanTableField(int no, String name) : base(no, name)
+        public BooleanTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new BooleanTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public BooleanTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

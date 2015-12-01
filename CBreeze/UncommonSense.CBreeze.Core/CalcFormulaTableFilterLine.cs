@@ -17,20 +17,20 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class CalcFormulaTableFilterLine
     {
-        private String fieldName;
+        private string fieldName;
         private Boolean onlyMaxLimit;
         private TableFilterType? type;
-        private String value;
+        private string value;
         private Boolean valueIsFilter;
 
-        public CalcFormulaTableFilterLine(String fieldName, TableFilterType type, String value)
+        public CalcFormulaTableFilterLine(string fieldName, TableFilterType type, string value)
         {
             this.fieldName = fieldName;
             this.type = type;
             this.value = value;
         }
 
-        public String FieldName
+        public string FieldName
         {
             get
             {
@@ -58,7 +58,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Value
+        public string Value
         {
             get
             {

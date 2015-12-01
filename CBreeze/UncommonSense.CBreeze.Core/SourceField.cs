@@ -17,12 +17,12 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class SourceField
     {
-        public String FieldName
+        public string FieldName
         {
             get;set;
         }
 
-        public String TableVariableName
+        public string TableVariableName
         {
             get;set;
         }

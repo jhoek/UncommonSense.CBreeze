@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
     public partial class CodeVariable : Variable
     {
         private int? dataLength;
-        private String dimensions;
+        private string dimensions;
         private Boolean? includeInDataset;
 
-        public CodeVariable(int id, String name, int? dataLength = null) : base(id, name)
+        public CodeVariable(int id, string name, int? dataLength = null) : base(id, name)
         {
             this.dataLength = dataLength;
         }
@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

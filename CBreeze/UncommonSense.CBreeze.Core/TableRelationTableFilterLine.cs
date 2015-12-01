@@ -17,18 +17,18 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableRelationTableFilterLine
     {
-        private String fieldName;
+        private string fieldName;
         private TableFilterType? type;
-        private String value;
+        private string value;
 
-        public TableRelationTableFilterLine(String fieldName, TableFilterType type, String value)
+        public TableRelationTableFilterLine(string fieldName, TableFilterType type, string value)
         {
             this.fieldName = fieldName;
             this.type = type;
             this.value = value;
         }
 
-        public String FieldName
+        public string FieldName
         {
             get
             {
@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Value
+        public string Value
         {
             get
             {

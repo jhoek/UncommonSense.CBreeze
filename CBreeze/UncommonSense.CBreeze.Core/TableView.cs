@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableView
     {
-        private String key;
+        private string key;
         private Order? order;
         private TableFilter tableFilter = new TableFilter();
 
@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public String Key
+        public string Key
         {
             get
             {

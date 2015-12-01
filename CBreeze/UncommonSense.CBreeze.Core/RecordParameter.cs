@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private int subType;
         private Boolean? temporary;
 
-        public RecordParameter(Boolean var, int id, String name, int subType) : base(var, id, name)
+        public RecordParameter(Boolean var, int id, string name, int subType) : base(var, id, name)
         {
             this.subType = subType;
         }

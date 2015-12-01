@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private int? dataLength;
 
-        public CodeParameter(Boolean var, int id, String name, int? dataLength = null) : base(var, id, name)
+        public CodeParameter(Boolean var, int id, string name, int? dataLength = null) : base(var, id, name)
         {
             this.dataLength = dataLength;
         }

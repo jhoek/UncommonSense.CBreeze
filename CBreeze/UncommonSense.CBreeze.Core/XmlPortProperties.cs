@@ -90,7 +90,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String DefaultNamespace
+      public string DefaultNamespace
         {
             get
             {
@@ -126,7 +126,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String FieldDelimiter
+      public string FieldDelimiter
         {
             get
             {
@@ -138,7 +138,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String FieldSeparator
+      public string FieldSeparator
         {
             get
             {
@@ -150,7 +150,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String FileName
+      public string FileName
         {
             get
             {
@@ -242,7 +242,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String RecordSeparator
+      public string RecordSeparator
         {
             get
             {
@@ -254,7 +254,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String TableSeparator
+      public string TableSeparator
         {
             get
             {

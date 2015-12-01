@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-        public System.String AltSearchField
+        public string AltSearchField
         {
             get
             {
@@ -100,7 +100,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String AutoFormatExpr
+        public string AutoFormatExpr
         {
             get
             {
@@ -156,7 +156,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String CaptionClass
+        public string CaptionClass
         {
             get
             {
@@ -184,7 +184,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Description
+        public string Description
         {
             get
             {
@@ -340,7 +340,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String ValuesAllowed
+        public string ValuesAllowed
         {
             get
             {

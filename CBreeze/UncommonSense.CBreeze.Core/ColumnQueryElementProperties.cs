@@ -54,7 +54,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String DataSource
+      public string DataSource
         {
             get
             {
@@ -78,7 +78,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+      public string Description
         {
             get
             {

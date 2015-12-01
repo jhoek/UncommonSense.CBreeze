@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private OptionTableFieldProperties properties = new OptionTableFieldProperties();
 
-        public OptionTableField(int no, String name) : base(no, name)
+        public OptionTableField(int no, string name) : base(no, name)
         {
         }
 

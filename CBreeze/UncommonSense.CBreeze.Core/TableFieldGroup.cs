@@ -17,17 +17,17 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public partial class TableFieldGroup : KeyedItem<int>, IHasName
 	{
-		private String name;
+		private string name;
 		private FieldList fields = new FieldList();
 		private TableFieldGroupProperties properties = new TableFieldGroupProperties();
 
-		public TableFieldGroup(int id, String name)
+		public TableFieldGroup(int id, string name)
 		{
 			ID = id;
 			this.name = name;
 		}
 
-		public String Name
+		public string Name
 		{
 			get
 			{

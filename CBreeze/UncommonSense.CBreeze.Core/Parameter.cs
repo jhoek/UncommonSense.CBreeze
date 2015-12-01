@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
 	public abstract partial class Parameter : KeyedItem<int>, IHasName
 	{
 		private Boolean var;
-		private String dimensions;
-		private String name;
+		private string dimensions;
+		private string name;
 
-		internal Parameter(Boolean var, int id, String name)
+		internal Parameter(Boolean var, int id, string name)
 		{
 			ID = id;
 			this.name = name;
@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Core
 			}
 		}
 
-		public String Dimensions
+		public string Dimensions
 		{
 			get
 			{
@@ -53,7 +53,7 @@ namespace UncommonSense.CBreeze.Core
 			}
 		}
 
-		public String Name
+		public string Name
 		{
 			get
 			{

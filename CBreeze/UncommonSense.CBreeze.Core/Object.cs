@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
 	{
 		private ObjectProperties objectProperties = new ObjectProperties();
 
-		internal Object(int id, String name)
+		internal Object(int id, string name)
 		{
 			ID = id;
 			Name = name;

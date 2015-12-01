@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TimeVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
 
-        public TimeVariable(int id, String name) : base(id, name)
+        public TimeVariable(int id, string name) : base(id, name)
         {
         }
 
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

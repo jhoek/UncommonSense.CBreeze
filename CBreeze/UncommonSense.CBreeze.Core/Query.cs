@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Query : Object, IHasCode
     {
-        public Query(int id, String name)
+        public Query(int id, string name)
             : base(id, name)
         {
             Properties = new QueryProperties();

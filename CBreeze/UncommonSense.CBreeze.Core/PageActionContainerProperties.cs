@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+      public string Description
         {
             get
             {
@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Name
+      public string Name
         {
             get
             {

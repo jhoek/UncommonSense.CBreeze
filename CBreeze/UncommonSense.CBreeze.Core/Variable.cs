@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public abstract partial class Variable : KeyedItem<int>, IHasName
 	{
-		internal Variable(int id, String name)
+		internal Variable(int id, string name)
 		{
 			ID = id;
 			Name = name;
@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Core
 			get;
 		}
 
-		public String Name
+		public string Name
 		{
 			get;
 			protected set;

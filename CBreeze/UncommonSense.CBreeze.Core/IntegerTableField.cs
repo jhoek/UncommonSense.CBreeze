@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private IntegerTableFieldProperties properties = new IntegerTableFieldProperties();
 
-        public IntegerTableField(int no, String name) : base(no, name)
+        public IntegerTableField(int no, string name) : base(no, name)
         {
         }
 

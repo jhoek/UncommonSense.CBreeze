@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class InStreamVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
 
-        public InStreamVariable(int id, String name) : base(id, name)
+        public InStreamVariable(int id, string name) : base(id, name)
         {
         }
 
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

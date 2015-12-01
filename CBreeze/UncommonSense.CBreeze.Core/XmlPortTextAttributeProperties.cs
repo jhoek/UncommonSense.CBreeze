@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String VariableName
+      public string VariableName
         {
             get
             {

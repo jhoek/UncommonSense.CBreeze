@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private int subType;
 
-        public PageParameter(Boolean var, int id, String name, int subType) : base(var, id, name)
+        public PageParameter(Boolean var, int id, string name, int subType) : base(var, id, name)
         {
             this.subType = subType;
         }

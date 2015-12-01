@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private int dataLength;
         private TextTableFieldProperties properties = new TextTableFieldProperties();
 
-        public TextTableField(int no, String name, int dataLength = 30) : base(no, name)
+        public TextTableField(int no, string name, int dataLength = 30) : base(no, name)
         {
             this.dataLength = dataLength;
         }

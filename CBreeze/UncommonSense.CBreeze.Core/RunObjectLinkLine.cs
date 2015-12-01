@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RunObjectLinkLine
     {
-        public RunObjectLinkLine(String fieldName, TableFilterType type, String value)
+        public RunObjectLinkLine(string fieldName, TableFilterType type, string value)
         {
             FieldName = fieldName;
             Type = type;
@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public String Value
+        public string Value
         {
             get;
             protected set;

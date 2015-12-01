@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String VersionList
+      public string VersionList
         {
             get
             {

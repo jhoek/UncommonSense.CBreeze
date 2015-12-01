@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordIDParameter : Parameter
     {
-        public RecordIDParameter(Boolean var, int id, String name) : base(var, id, name)
+        public RecordIDParameter(Boolean var, int id, string name) : base(var, id, name)
         {
         }
 

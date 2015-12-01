@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private QuerySecurityFiltering? securityFiltering;
         private int subType;
 
-        public QueryParameter(Boolean var, int id, String name, int subType) : base(var, id, name)
+        public QueryParameter(Boolean var, int id, string name, int subType) : base(var, id, name)
         {
             this.subType = subType;
         }

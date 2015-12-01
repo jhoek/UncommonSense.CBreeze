@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class FileVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
 
-        public FileVariable(int id, String name) : base(id, name)
+        public FileVariable(int id, string name) : base(id, name)
         {
         }
 
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

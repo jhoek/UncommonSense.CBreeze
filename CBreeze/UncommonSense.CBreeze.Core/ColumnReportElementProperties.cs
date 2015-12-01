@@ -52,7 +52,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String AutoFormatExpr
+        public string AutoFormatExpr
         {
             get
             {
@@ -84,7 +84,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Description
+        public string Description
         {
             get
             {
@@ -116,7 +116,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String OptionString
+        public string OptionString
         {
             get
             {
@@ -128,7 +128,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String SourceExpr
+        public string SourceExpr
         {
             get
             {

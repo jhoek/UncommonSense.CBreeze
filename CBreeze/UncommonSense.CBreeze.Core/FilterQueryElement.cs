@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private FilterQueryElementProperties properties = new FilterQueryElementProperties();
 
-        public FilterQueryElement(int id, String name, int? indentationLevel) : base(id, name, indentationLevel)
+        public FilterQueryElement(int id, string name, int? indentationLevel) : base(id, name, indentationLevel)
         {
         }
 

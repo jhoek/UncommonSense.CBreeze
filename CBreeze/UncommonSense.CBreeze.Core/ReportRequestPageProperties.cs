@@ -116,7 +116,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String CardPageID
+      public string CardPageID
         {
             get
             {
@@ -128,7 +128,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String DataCaptionExpr
+      public string DataCaptionExpr
         {
             get
             {
@@ -160,7 +160,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+      public string Description
         {
             get
             {

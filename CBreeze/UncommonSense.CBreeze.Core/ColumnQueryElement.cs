@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private ColumnQueryElementProperties properties = new ColumnQueryElementProperties();
 
-        public ColumnQueryElement(int id, String name, int? indentationLevel) : base(id, name, indentationLevel)
+        public ColumnQueryElement(int id, string name, int? indentationLevel) : base(id, name, indentationLevel)
         {
         }
 

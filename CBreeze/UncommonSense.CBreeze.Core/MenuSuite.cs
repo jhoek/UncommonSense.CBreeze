@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class MenuSuite : Object
     {
-        public MenuSuite(int id, String name)
+        public MenuSuite(int id, string name)
             : base(id, name)
         {
             Properties = new MenuSuiteProperties();

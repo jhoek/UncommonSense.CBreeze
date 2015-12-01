@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class MultiLanguageValue : IEnumerable<MultiLanguageEntry>
     {
-        private Dictionary<String, MultiLanguageEntry> innerList = new Dictionary<String, MultiLanguageEntry>();
+        private Dictionary<string, MultiLanguageEntry> innerList = new Dictionary<string, MultiLanguageEntry>();
 
         // Made ctor public to allow MultiLanguageProperty to new up an instance
         public MultiLanguageValue()
@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public void Set(String languageID, String value)
+        public void Set(string languageID, string value)
         {
             if (value == null)
             {
@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Clear();
         }
 
-        public bool Unset(String languageID)
+        public bool Unset(string languageID)
         {
             return innerList.Remove(languageID);
         }

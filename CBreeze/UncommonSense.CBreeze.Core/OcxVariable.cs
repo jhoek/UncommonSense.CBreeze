@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OcxVariable : Variable
     {
-        private String dimensions;
-        private String subType;
+        private string dimensions;
+        private string subType;
 
-        public OcxVariable(int id, String name, String subType) : base(id, name)
+        public OcxVariable(int id, string name, string subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {
@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String SubType
+        public string SubType
         {
             get
             {

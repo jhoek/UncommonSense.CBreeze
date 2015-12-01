@@ -17,8 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class FunctionReturnValue
     {
-        private String dimensions;
-        private String name;
+        private string dimensions;
+        private string name;
         private FunctionReturnValueType? type;
         private int? dataLength;
 
@@ -26,7 +26,7 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {
@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Name
+        public string Name
         {
             get
             {

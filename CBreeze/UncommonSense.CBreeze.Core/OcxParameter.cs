@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class OcxParameter : Parameter
     {
-        private String subType;
+        private string subType;
 
-        public OcxParameter(Boolean var, int id, String name, String subType) : base(var, id, name)
+        public OcxParameter(Boolean var, int id, string name, string subType) : base(var, id, name)
         {
             this.subType = subType;
         }
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String SubType
+        public string SubType
         {
             get
             {

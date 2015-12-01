@@ -68,7 +68,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String DataItemLinkReference
+      public string DataItemLinkReference
         {
             get
             {

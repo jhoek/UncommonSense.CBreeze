@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
 	{
 		private Boolean? enabled;
 
-		internal TableField(int id, String name)
+		internal TableField(int id, string name)
 		{
 			ID = id;
 			Name = name;
@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Core
 			get;
 		}
 
-		public String Name
+		public string Name
 		{
 			get;
 			set;

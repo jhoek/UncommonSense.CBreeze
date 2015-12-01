@@ -17,11 +17,11 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class QueryVariable : Variable
     {
-        private String dimensions;
+        private string dimensions;
         private QuerySecurityFiltering? securityFiltering;
         private int subType;
 
-        public QueryVariable(int id, String name, int subType) : base(id, name)
+        public QueryVariable(int id, string name, int subType) : base(id, name)
         {
             this.subType = subType;
         }
@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public String Dimensions
+        public string Dimensions
         {
             get
             {

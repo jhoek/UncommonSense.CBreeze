@@ -150,7 +150,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String AutoFormatExpr
+        public string AutoFormatExpr
         {
             get
             {
@@ -198,7 +198,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String CaptionClass
+        public string CaptionClass
         {
             get
             {
@@ -218,7 +218,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String CharAllowed
+        public string CharAllowed
         {
             get
             {
@@ -254,7 +254,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String ControlAddIn
+        public string ControlAddIn
         {
             get
             {
@@ -286,7 +286,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Description
+        public string Description
         {
             get
             {
@@ -310,7 +310,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String DrillDownPageID
+        public string DrillDownPageID
         {
             get
             {
@@ -322,7 +322,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Editable
+        public string Editable
         {
             get
             {
@@ -334,7 +334,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Enabled
+        public string Enabled
         {
             get
             {
@@ -358,7 +358,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String HideValue
+        public string HideValue
         {
             get
             {
@@ -394,7 +394,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String LookupPageID
+        public string LookupPageID
         {
             get
             {
@@ -442,7 +442,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Name
+        public string Name
         {
             get
             {
@@ -526,7 +526,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String QuickEntry
+        public string QuickEntry
         {
             get
             {
@@ -576,7 +576,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-        public System.String SourceExpr
+        public string SourceExpr
         {
             get
             {
@@ -600,7 +600,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String StyleExpr
+        public string StyleExpr
         {
             get
             {
@@ -640,7 +640,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String ValuesAllowed
+        public string ValuesAllowed
         {
             get
             {
@@ -652,7 +652,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String Visible
+        public string Visible
         {
             get
             {

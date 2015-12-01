@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public String TableName
+        public string TableName
         {
             get;
             set;

@@ -49,7 +49,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.String KeyGroups
+        public string KeyGroups
         {
             get
             {

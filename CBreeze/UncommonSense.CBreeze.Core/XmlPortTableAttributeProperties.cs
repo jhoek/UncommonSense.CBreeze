@@ -118,7 +118,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String LinkTable
+      public string LinkTable
         {
             get
             {
@@ -258,7 +258,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String VariableName
+      public string VariableName
         {
             get
             {

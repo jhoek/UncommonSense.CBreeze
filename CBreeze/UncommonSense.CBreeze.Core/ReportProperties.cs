@@ -92,7 +92,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif 
 
-        public System.String Description
+        public string Description
         {
             get
             {

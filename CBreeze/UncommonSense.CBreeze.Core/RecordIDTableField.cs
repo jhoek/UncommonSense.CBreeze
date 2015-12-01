@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private RecordIDTableFieldProperties properties = new RecordIDTableFieldProperties();
 
-        public RecordIDTableField(int no, String name) : base(no, name)
+        public RecordIDTableField(int no, string name) : base(no, name)
         {
         }
 

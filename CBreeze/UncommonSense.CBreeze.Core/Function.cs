@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private Variables variables = new Variables();
 
-        public Function(int id, String name)
+        public Function(int id, string name)
         {
             ID = id;
             Name = name;
@@ -30,7 +30,7 @@ namespace UncommonSense.CBreeze.Core
             Variables = new Variables();
         }
 
-        public String Name
+        public string Name
         {
             get;
             protected set;

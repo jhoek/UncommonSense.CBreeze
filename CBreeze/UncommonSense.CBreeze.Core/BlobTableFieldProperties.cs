@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Description
+      public string Description
         {
             get
             {
@@ -102,7 +102,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.String Owner
+      public string Owner
         {
             get
             {
