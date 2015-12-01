@@ -78,5 +78,22 @@ namespace UncommonSense.CBreeze.Core
                 return DescendantPageActions.Where(a => a.IndentationLevel == IndentationLevel + 1);
             }
         }
+
+        public T AddChildPageAction<T>(T child, Position position) where T : PageActionBase
+        {
+            switch (position)
+            {
+                case Position.FirstWithinContainer:
+                    Container.Insert(Index + 1, child);
+                    break;
+                case Position.LastWithinContainer:
+                    var descendantPageActions = DescendantPageActions;
+                    var lastIndex = descendantPageActions.Any() ? descendantPageActions.Last().Index : Index;
+                    Container.Insert(lastIndex + 1, child);
+                    break;
+            }
+
+            return child;
+        }
     }
 }

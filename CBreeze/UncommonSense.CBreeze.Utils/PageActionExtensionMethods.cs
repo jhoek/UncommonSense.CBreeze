@@ -15,7 +15,6 @@ namespace UncommonSense.CBreeze.Utils
             return result;
         }
 
-
         public static PageActionGroup GetGroupByCaption(this PageActionContainer container, Page page, string caption, IEnumerable<int> range, Position position)
         {
             var pageActionGroup = container.ChildPageActions.OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
@@ -30,23 +29,5 @@ namespace UncommonSense.CBreeze.Utils
             return pageActionGroup;
         }
 
-        public static T AddChildPageAction<T>(this PageActionBase parent, T child, Position position) where T : PageActionBase
-        {
-            var controls = parent.Container;
-
-            switch (position)
-            {
-                case Position.FirstWithinContainer:
-                    controls.Insert(parent.Index + 1, child);
-                    break;
-                case Position.LastWithinContainer:
-                    var childControls = parent.DescendantPageActions;
-                    var lastIndex = childControls.Any() ? childControls.Last().Index : parent.Index;
-                    controls.Insert(lastIndex + 1, child);
-                    break;
-            }
-
-            return child;
-        }
     }
 }
