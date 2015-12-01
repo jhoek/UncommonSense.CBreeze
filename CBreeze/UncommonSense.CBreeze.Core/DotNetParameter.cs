@@ -17,13 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DotNetParameter : Parameter
     {
-        private bool? runOnClient;
-        private string subType;
-        private bool? suppressDispose;
-
-        public DotNetParameter(bool var, int id, string name, string subType) : base(var, id, name)
+        public DotNetParameter(bool var, int id, string name, string subType)
+            : base(var, id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override ParameterType Type
@@ -36,35 +33,20 @@ namespace UncommonSense.CBreeze.Core
 
         public bool? RunOnClient
         {
-            get
-            {
-                return this.runOnClient;
-            }
-            set
-            {
-                this.runOnClient = value;
-            }
+            get;
+            set;
         }
 
         public string SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
 
         public bool? SuppressDispose
         {
-            get
-            {
-                return this.suppressDispose;
-            }
-            set
-            {
-                this.suppressDispose = value;
-            }
+            get;
+            set;
         }
-
     }
 }

@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DurationTableField : TableField
     {
-        private DurationTableFieldProperties properties = new DurationTableFieldProperties();
-
-        public DurationTableField(int no, string name) : base(no, name)
+        public DurationTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new DurationTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public DurationTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

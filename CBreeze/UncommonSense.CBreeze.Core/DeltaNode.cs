@@ -14,43 +14,40 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public partial class DeltaNode : MenuSuiteNode
-	{
-		private MenuSuiteDeltaNodeProperties properties = new MenuSuiteDeltaNodeProperties();
+    [Serializable]
+    public partial class DeltaNode : MenuSuiteNode
+    {
+        public DeltaNode(Guid id)
+            : base(id)
+        {
+            Properties = new MenuSuiteDeltaNodeProperties();
+        }
 
-		public DeltaNode(Guid id)
-			: base(id)
-		{
-		}
+        public override MenuSuiteNodeType Type
+        {
+            get
+            {
+                return MenuSuiteNodeType.Delta;
+            }
+        }
 
-		public override MenuSuiteNodeType Type
-		{
-			get
-			{
-				return MenuSuiteNodeType.Delta;
-			}
-		}
+        public MenuSuiteDeltaNodeProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public MenuSuiteDeltaNodeProperties Properties
-		{
-			get
-			{
-				return this.properties;
-			}
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
-
-		public override string GetName()
-		{
-			return null;
-		}
-	}
+        public override string GetName()
+        {
+            return null;
+        }
+    }
 }

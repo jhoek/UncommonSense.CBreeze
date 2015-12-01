@@ -17,9 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DialogVariable : Variable
     {
-        private string dimensions;
-
-        public DialogVariable(int id, string name) : base(id, name)
+        public DialogVariable(int id, string name)
+            : base(id, name)
         {
         }
 
@@ -33,15 +32,8 @@ namespace UncommonSense.CBreeze.Core
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
-
     }
 }

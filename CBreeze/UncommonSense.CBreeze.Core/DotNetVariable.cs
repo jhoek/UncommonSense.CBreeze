@@ -17,14 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DotNetVariable : Variable
     {
-        private string dimensions;
-        private bool? runOnClient;
-        private string subType;
-        private bool? withEvents;
-
-        public DotNetVariable(int id, string name, string subType) : base(id, name)
+        public DotNetVariable(int id, string name, string subType)
+            : base(id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override VariableType Type
@@ -37,47 +33,26 @@ namespace UncommonSense.CBreeze.Core
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
         public bool? RunOnClient
         {
-            get
-            {
-                return this.runOnClient;
-            }
-            set
-            {
-                this.runOnClient = value;
-            }
+            get;
+            set;
         }
 
         public string SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
 
         public bool? WithEvents
         {
-            get
-            {
-                return this.withEvents;
-            }
-            set
-            {
-                this.withEvents = value;
-            }
+            get;
+            set;
         }
-
     }
 }

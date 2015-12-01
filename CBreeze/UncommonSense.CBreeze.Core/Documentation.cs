@@ -17,19 +17,15 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Documentation
     {
-        private CodeLines lines = new CodeLines();
-
         internal Documentation()
         {
+            Lines = new CodeLines();
         }
 
         public CodeLines Lines
         {
-            get
-            {
-                return this.lines;
-            }
+            get;
+            protected set;
         }
-
     }
 }
