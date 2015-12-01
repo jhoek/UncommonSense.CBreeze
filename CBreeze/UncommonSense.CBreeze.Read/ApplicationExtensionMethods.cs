@@ -155,7 +155,7 @@ namespace UncommonSense.CBreeze.Read
                 var fieldName = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=FIELD\(").Groups[1].Value;
                 var referenceFieldName = Parsing.MatchUntilUnnested(ref propertyValue, ')', '(');
                 //var referenceFieldName = Parsing.MustMatch(ref propertyValue, @"^([^)]+)\)").Groups[1].Value;
-                property.Value.Add(fieldName, referenceFieldName);
+                property.Value.Add(new ReportDataItemLinkLine(fieldName, referenceFieldName));
             }
             while (Parsing.TryMatch(ref propertyValue, @"^,\s?"));
         }

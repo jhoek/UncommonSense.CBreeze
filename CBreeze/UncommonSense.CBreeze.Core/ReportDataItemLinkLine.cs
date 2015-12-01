@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String fieldName;
         private String referenceFieldName;
 
-        internal ReportDataItemLinkLine(String fieldName, String referenceFieldName)
+        public ReportDataItemLinkLine(String fieldName, String referenceFieldName)
         {
             this.fieldName = fieldName;
             this.referenceFieldName = referenceFieldName;
