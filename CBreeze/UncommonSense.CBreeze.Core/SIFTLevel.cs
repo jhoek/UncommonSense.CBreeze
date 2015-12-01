@@ -17,19 +17,15 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class SIFTLevel
     {
-        private SIFTLevelComponents components = new SIFTLevelComponents();
-
-        internal SIFTLevel()
+        public SIFTLevel()
         {
+            Components = new SIFTLevelComponents();
         }
 
         public SIFTLevelComponents Components
         {
-            get
-            {
-                return this.components;
-            }
+            get;
+            protected set;
         }
-
     }
 }

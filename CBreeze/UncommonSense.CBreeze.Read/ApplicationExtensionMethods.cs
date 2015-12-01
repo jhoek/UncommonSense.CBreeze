@@ -168,7 +168,7 @@ namespace UncommonSense.CBreeze.Read
             {
                 var siftLevelLine = Parsing.MustMatch(ref propertyValue, @"^\{(.*?)\}").Groups[1].Value;
                 var fields = siftLevelLine.Split(",".ToCharArray());
-                var siftLevel = property.Value.Add();
+                var siftLevel = property.Value.Add(new SIFTLevel());
 
                 foreach (var field in fields)
                 {
