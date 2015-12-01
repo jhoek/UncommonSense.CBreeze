@@ -8,18 +8,9 @@ using UncommonSense.CBreeze.Utils;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezePageControl", DefaultParameterSetName = FieldPageControlWithRange)]
+    [Cmdlet(VerbsCommon.Add, "CBreezePageControl")]
     public class AddCBreezePageControl : CmdletWithDynamicParams
     {
-        private const string ChartPartWithID = "ChartPartWithID";
-        private const string ChartPartWithRange = "ChartPartWithRange";
-        private const string PagePartWithID = "PagePartWithID";
-        private const string PagePartWithRange = "PagePartWithRange";
-        private const string SystemPartWithID = "SystemPartWithID";
-        private const string SystemPartWithRange = "SystemPartWithRange";
-        private const string FieldPageControlWithID = "FieldPageControlWithID";
-        private const string FieldPageControlWithRange = "FieldPageControlWithRange";
-
         public AddCBreezePageControl()
         {
             AssistEdit = new DynamicParameter<bool?>("AssistEdit");
@@ -30,10 +21,10 @@ namespace UncommonSense.CBreeze.Automation
             Caption = new DynamicParameter<string>("Caption");
             CaptionClass = new DynamicParameter<string>("CaptionClass");
             CharAllowed = new DynamicParameter<string>("CharAllowed");
-            ChartPartID = new DynamicParameter<string>("ChartPartID", parameterSetNames: new string[] { ChartPartWithID, ChartPartWithRange });
+            ChartPartID = new DynamicParameter<string>("ChartPartID", parameterSetNames: new string[] { "ChartPart" });
             ClosingDates = new DynamicParameter<bool?>("ClosingDates");
             ColumnSpan = new DynamicParameter<int?>("ColumnSpan");
-            ContainerType = new DynamicParameter<ContainerType?>("ContainerType");
+            ContainerType = new DynamicParameter<ContainerType?>("ContainerType", defaultValue: Core.ContainerType.ContentArea);
             ControlAddIn = new DynamicParameter<string>("ControlAddIn");
             DateFormula = new DynamicParameter<bool?>("DateFormula");
             DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", minRange: 0, maxRange: int.MaxValue);
@@ -44,9 +35,8 @@ namespace UncommonSense.CBreeze.Automation
             Enabled = new DynamicParameter<string>("Enabled");
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
-            GroupType = new DynamicParameter<Core.GroupType?>("GroupType");
+            GroupType = new DynamicParameter<Core.GroupType?>("GroupType", defaultValue: Core.GroupType.Group);
             HideValue = new DynamicParameter<string>("HideValue");
-            ID = new DynamicParameter<int>("ID", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] { ChartPartWithID, PagePartWithID, SystemPartWithID, FieldPageControlWithID });
             Importance = new DynamicParameter<Core.Importance?>("Importance");
             IndentationColumnName = new DynamicParameter<string>("IndentationColumnName");
             IndentationControls = new DynamicParameter<string[]>("IndentationControls");
@@ -58,19 +48,16 @@ namespace UncommonSense.CBreeze.Automation
             MultiLine = new DynamicParameter<bool?>("MultiLine");
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
-            Page = new DynamicParameter<Page>("Page", true, true);
-            PagePartID = new DynamicParameter<int?>("PagePartID", parameterSetNames: new string[] { PagePartWithID, PagePartWithRange });
-            ParentControl = new DynamicParameter<PageControl>("ParentControl", true);
+            PagePartID = new DynamicParameter<int?>("PagePartID", parameterSetNames: new string[] { "PagePart" });
             Position = new DynamicParameter<Position?>("Position");
             QuickEntry = new DynamicParameter<string>("QuickEntry");
-            SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", parameterSetNames: new string[] { SystemPartWithID, SystemPartWithRange });
+            SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", parameterSetNames: new string[] { "SystemPart" });
             ProviderID = new DynamicParameter<int?>("ProviderID");
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { ChartPartWithRange, PagePartWithRange, SystemPartWithRange, FieldPageControlWithRange });
             RowSpan = new DynamicParameter<int?>("RowSpan");
             ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
             ShowCaption = new DynamicParameter<bool?>("ShowCaption");
             ShowFilter = new DynamicParameter<bool?>("ShowFilter");
-            SourceExpr = new DynamicParameter<string>("SourceExpr", true, parameterSetNames: new string[] { FieldPageControlWithID, FieldPageControlWithRange });
+            SourceExpr = new DynamicParameter<string>("SourceExpr", true);
             Style = new DynamicParameter<Core.Style?>("Style");
             StyleExpr = new DynamicParameter<string>("StyleExpr");
             SubPageViewKey = new DynamicParameter<string>("SubPageViewKey");
@@ -79,17 +66,27 @@ namespace UncommonSense.CBreeze.Automation
             ValuesAllowed = new DynamicParameter<string>("ValuesAllowed");
             Visible = new DynamicParameter<string>("Visible");
             Width = new DynamicParameter<int?>("Width");
+
+            Type = PageControlType.Field;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithRange)]
-        [Parameter(Mandatory = true, ParameterSetName = PagePartWithRange)]
-        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithRange)]
-        [Parameter(Mandatory = true, ParameterSetName = ChartPartWithID)]
-        [Parameter(Mandatory = true, ParameterSetName = PagePartWithID)]
-        [Parameter(Mandatory = true, ParameterSetName = SystemPartWithID)]
-        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithID)]
-        [Parameter(Mandatory = true, ParameterSetName = FieldPageControlWithRange)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public PSObject InputObject
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
         public PageControlType Type
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true)]
+        [Alias("Range")]
+        public PSObject ID
         {
             get;
             set;
@@ -268,12 +265,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<int> ID
-        {
-            get;
-            set;
-        }
-
         protected DynamicParameter<Importance?> Importance
         {
             get;
@@ -340,19 +331,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<Page> Page
-        {
-            get;
-            set;
-        }
-
         protected DynamicParameter<int?> PagePartID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<PageControl> ParentControl
         {
             get;
             set;
@@ -371,12 +350,6 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> QuickEntry
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<IEnumerable<int>> Range
         {
             get;
             set;
@@ -471,14 +444,65 @@ namespace UncommonSense.CBreeze.Automation
         {
             var pageControl = CreatePageControl();
 
-            switch (Type)
+            if (InputObject.BaseObject is ContainerPageControl)
             {
-                case PageControlType.Container:
-                    Page.Value.Controls.Add(pageControl);
-                    break;
-                default:
-                    ParentControl.Value.AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
-                    break;
+                (InputObject.BaseObject as ContainerPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
+            }
+            else if (InputObject.BaseObject is GroupPageControl)
+            {
+                (InputObject.BaseObject as GroupPageControl).AddChildPageControl(pageControl, Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer));
+            }
+            else if (InputObject.BaseObject is PageControls)
+            {
+                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                {
+                    case Utils.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as PageControls).Insert(0, pageControl);
+                        break;
+                    case Utils.Position.LastWithinContainer:
+                        (InputObject.BaseObject as PageControls).Add(pageControl);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is Page)
+            {
+                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                {
+                    case Utils.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as Page).Controls.Insert(0, pageControl);
+                        break;
+                    case Utils.Position.LastWithinContainer:
+                        (InputObject.BaseObject as Page).Controls.Add(pageControl);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is ReportRequestPage)
+            {
+                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                {
+                    case Utils.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as ReportRequestPage).Controls.Insert(0, pageControl);
+                        break;
+                    case Utils.Position.LastWithinContainer:
+                        (InputObject.BaseObject as ReportRequestPage).Controls.Add(pageControl);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is XmlPortRequestPage)
+            {
+                switch (Position.Value.GetValueOrDefault(Utils.Position.LastWithinContainer))
+                {
+                    case Utils.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as XmlPortRequestPage).Controls.Insert(0, pageControl);
+                        break;
+                    case Utils.Position.LastWithinContainer:
+                        (InputObject.BaseObject as XmlPortRequestPage).Controls.Add(pageControl);
+                        break;
+                }
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Don't know how to add a page control to an InputObject of this type.");
             }
 
             if (PassThru)
@@ -496,13 +520,13 @@ namespace UncommonSense.CBreeze.Automation
                     containerPageControl.Properties.Name = Name;
                     containerPageControl.Properties.ContainerType = ContainerType.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         containerPageControl.AutoCaption();
 
                     return containerPageControl;
 
                 case PageControlType.Group:
-                    var groupPageControl = new GroupPageControl(GetPageControlID(), ParentControl.Value.IndentationLevel + 1);
+                    var groupPageControl = new GroupPageControl(GetPageControlID(), GetIndentationLevel());
                     groupPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     groupPageControl.Properties.Description = Description;
                     groupPageControl.Properties.Name = Name;
@@ -516,13 +540,13 @@ namespace UncommonSense.CBreeze.Automation
                     groupPageControl.Properties.ShowAsTree = ShowAsTree.Value;
                     groupPageControl.Properties.Visible = Visible.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         groupPageControl.AutoCaption();
 
                     return groupPageControl;
 
                 case PageControlType.Field:
-                    var fieldPageControl = new FieldPageControl(GetPageControlID(), ParentControl.Value.IndentationLevel + 1);
+                    var fieldPageControl = new FieldPageControl(GetPageControlID(), GetIndentationLevel());
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
                     fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
@@ -564,13 +588,13 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.Visible = Visible.Value;
                     fieldPageControl.Properties.Width = Width.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         fieldPageControl.AutoCaption();
 
                     return fieldPageControl;
 
                 case PageControlType.Part:
-                    var partPageControl = new PartPageControl(GetPageControlID(), ParentControl.Value.IndentationLevel + 1);
+                    var partPageControl = new PartPageControl(GetPageControlID(), GetIndentationLevel());
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
 
@@ -601,7 +625,7 @@ namespace UncommonSense.CBreeze.Automation
                     partPageControl.Properties.SubPageView.Order = SubPageViewOrder.Value;
                     partPageControl.Properties.Visible = Visible.Value;
 
-                    if (AutoCaption)
+                    if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
                         partPageControl.AutoCaption();
 
                     return partPageControl;
@@ -612,28 +636,99 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetPageControlID()
         {
-            if (ID.Value != 0)
-                return ID.Value;
+            if (ID.BaseObject is int)
+            {
+                return (int)ID.BaseObject;
+            }
+            else if (ID.BaseObject is IEnumerable<int>)
+            {
+                var range = ID.BaseObject as IEnumerable<int>;
 
-            var range = Range.Value;
+                if (range.Contains(GetObjectID()))
+                    range = 1.To(int.MaxValue);
 
-            if (Range.Value.Contains(Page.Value.ID))
-                range = 1.To(int.MaxValue);
+                return range.Except(GetControlIDs()).Except(GetActionIDs()).First();
+            }
 
-            var controlIDs = Page.Value.Controls.Select(c => c.ID);
-            var actionIDs = Page.Value.Properties.ActionList.Select(a => a.ID);
+            throw new ArgumentOutOfRangeException("Cannot determine ID.");
+        }
 
-            return range.Except(controlIDs).Except(actionIDs).First();
+        protected int GetObjectID()
+        {
+            if (InputObject.BaseObject is PageControls)
+                return (InputObject.BaseObject as PageControls).Page.ObjectID;
+            else if (InputObject.BaseObject is Page)
+                return (InputObject.BaseObject as Page).ID;
+            else if (InputObject.BaseObject is ReportRequestPage)
+                return (InputObject.BaseObject as ReportRequestPage).Report.ID;
+            else if (InputObject.BaseObject is XmlPortRequestPage)
+                return (InputObject.BaseObject as XmlPortRequestPage).XmlPort.ID;
+            else if (InputObject.BaseObject is ContainerPageControl)
+                return (InputObject.BaseObject as ContainerPageControl).Container.Page.ObjectID;
+            else if (InputObject.BaseObject is GroupPageControl)
+                return (InputObject.BaseObject as GroupPageControl).Container.Page.ObjectID;
+            else
+                throw new ArgumentOutOfRangeException("Don't know how to determine object ID for this InputObject.");
+        }
+
+        protected IEnumerable<int> GetControlIDs()
+        {
+            if (InputObject.BaseObject is PageControls)
+                return (InputObject.BaseObject as PageControls).Select(c => c.ID);
+            else if (InputObject.BaseObject is Page)
+                return (InputObject.BaseObject as Page).Controls.Select(c => c.ID);
+            else if (InputObject.BaseObject is ReportRequestPage)
+                return (InputObject.BaseObject as ReportRequestPage).Controls.Select(c => c.ID);
+            else if (InputObject.BaseObject is XmlPortRequestPage)
+                return (InputObject.BaseObject as XmlPortRequestPage).Controls.Select(c => c.ID);
+            else if (InputObject.BaseObject is ContainerPageControl)
+                return (InputObject.BaseObject as ContainerPageControl).Container.Select(c => c.ID);
+            else if (InputObject.BaseObject is GroupPageControl)
+                return (InputObject.BaseObject as GroupPageControl).Container.Select(c => c.ID);
+            else
+                throw new ArgumentOutOfRangeException("Don't know how to determine used control IDs for this InputObject.");
+        }
+
+        protected IEnumerable<int> GetActionIDs()
+        {
+            if (InputObject.BaseObject is PageControls)
+                return (InputObject.BaseObject as PageControls).Page.Actions.Select(a => a.ID);
+            else if (InputObject.BaseObject is Page)
+                return (InputObject.BaseObject as Page).Properties.ActionList.Select(a => a.ID);
+            else if (InputObject.BaseObject is ReportRequestPage)
+                return (InputObject.BaseObject as ReportRequestPage).Properties.ActionList.Select(a => a.ID);
+            else if (InputObject.BaseObject is XmlPortRequestPage)
+                return (InputObject.BaseObject as XmlPortRequestPage).Properties.ActionList.Select(a => a.ID);
+            else if (InputObject.BaseObject is ContainerPageControl)
+                return (InputObject.BaseObject as ContainerPageControl).Container.Page.Actions.Select(a => a.ID);
+            else if (InputObject.BaseObject is GroupPageControl)
+                return (InputObject.BaseObject as GroupPageControl).Container.Page.Actions.Select(a => a.ID);
+            else
+                throw new ArgumentOutOfRangeException("Don't know how to determine used action IDs for this InputObject.");
+        }
+
+        protected int GetIndentationLevel()
+        {
+            if (InputObject.BaseObject is PageControls)
+                return 0;
+            else if (InputObject.BaseObject is Page)
+                return 0;
+            else if (InputObject.BaseObject is XmlPortRequestPage)
+                return 0;
+            else if (InputObject.BaseObject is ReportRequestPage)
+                return 0;
+            else if (InputObject.BaseObject is ContainerPageControl)
+                return (InputObject.BaseObject as ContainerPageControl).IndentationLevel.GetValueOrDefault(0) + 1;
+            else if (InputObject.BaseObject is GroupPageControl)
+                return (InputObject.BaseObject as GroupPageControl).IndentationLevel.GetValueOrDefault(0) + 1;
+            else
+                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
             {
-                yield return Page.RuntimeDefinedParameter;
-                yield return ID.RuntimeDefinedParameter;
-                yield return Range.RuntimeDefinedParameter;
-
                 switch (Type)
                 {
                     case PageControlType.Container:
@@ -642,7 +737,6 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Group:
-                        yield return ParentControl.RuntimeDefinedParameter;
                         yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
@@ -657,9 +751,7 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Field:
-                        yield return ParentControl.RuntimeDefinedParameter;
                         yield return Position.RuntimeDefinedParameter;
-
                         yield return AssistEdit.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
@@ -701,9 +793,7 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Part:
-                        yield return ParentControl.RuntimeDefinedParameter;
                         yield return Position.RuntimeDefinedParameter;
-
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
