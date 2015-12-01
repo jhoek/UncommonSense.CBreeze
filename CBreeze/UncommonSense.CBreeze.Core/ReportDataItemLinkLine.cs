@@ -17,30 +17,22 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ReportDataItemLinkLine
     {
-        private string fieldName;
-        private string referenceFieldName;
-
         public ReportDataItemLinkLine(string fieldName, string referenceFieldName)
         {
-            this.fieldName = fieldName;
-            this.referenceFieldName = referenceFieldName;
+            FieldName = fieldName;
+            ReferenceFieldName = referenceFieldName;
         }
 
         public string FieldName
         {
-            get
-            {
-                return this.fieldName;
-            }
+            get;
+            protected set;
         }
 
         public string ReferenceFieldName
         {
-            get
-            {
-                return this.referenceFieldName;
-            }
+            get;
+            protected set;
         }
-
     }
 }

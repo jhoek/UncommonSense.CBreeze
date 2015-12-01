@@ -14,51 +14,40 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract partial class ReportElement : KeyedItem<int>, IHasName, IHasProperties
-	{
-		private int? indentationLevel;
-		private string name;
+    [Serializable]
+    public abstract partial class ReportElement : KeyedItem<int>, IHasName, IHasProperties
+    {
+        public ReportElement(int id, int? indentationLevel)
+        {
+            ID = id;
+            IndentationLevel = indentationLevel;
+        }
 
-		public ReportElement(int id, int? indentationLevel)
-		{
-			ID = id;
-			this.indentationLevel = indentationLevel;
-		}
+        public abstract ReportElementType Type
+        {
+            get;
+        }
 
-		public abstract ReportElementType Type
-		{
-			get;
-		}
+        public int? IndentationLevel
+        {
+            get;
+            protected set;
+        }
 
-		public int? IndentationLevel
-		{
-			get
-			{
-				return this.indentationLevel;
-			}
-		}
+        public string Name
+        {
+            get;
+            set;
+        }
 
-		public string Name
-		{
-			get
-			{
-				return this.name;
-			}
-			set
-			{
-				this.name = value;
-			}
-		}
+        public abstract Properties AllProperties
+        {
+            get;
+        }
 
-		public abstract Properties AllProperties
-		{
-			get;
-		}
-
-		public  string GetName()
-		{
-			return Name;
-		}
-	}
+        public string GetName()
+        {
+            return Name;
+        }
+    }
 }

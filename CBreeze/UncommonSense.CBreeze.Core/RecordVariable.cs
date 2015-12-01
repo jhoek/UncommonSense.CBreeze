@@ -17,14 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordVariable : Variable
     {
-        private string dimensions;
-        private RecordSecurityFiltering? securityFiltering;
-        private int subType;
-        private bool? temporary;
-
-        public RecordVariable(int id, string name, int subType) : base(id, name)
+        public RecordVariable(int id, string name, int subType)
+            : base(id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override VariableType Type
@@ -37,47 +33,26 @@ namespace UncommonSense.CBreeze.Core
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
         public RecordSecurityFiltering? SecurityFiltering
         {
-            get
-            {
-                return this.securityFiltering;
-            }
-            set
-            {
-                this.securityFiltering = value;
-            }
+            get;
+            set;
         }
 
         public int SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
 
         public bool? Temporary
         {
-            get
-            {
-                return this.temporary;
-            }
-            set
-            {
-                this.temporary = value;
-            }
+            get;
+            set;
         }
-
     }
 }

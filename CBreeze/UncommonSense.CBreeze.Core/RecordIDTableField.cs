@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordIDTableField : TableField
     {
-        private RecordIDTableFieldProperties properties = new RecordIDTableFieldProperties();
-
-        public RecordIDTableField(int no, string name) : base(no, name)
+        public RecordIDTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new RecordIDTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public RecordIDTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

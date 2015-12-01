@@ -17,9 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordRefParameter : Parameter
     {
-        private RecordSecurityFiltering? securityFiltering;
-
-        public RecordRefParameter(bool var, int id, string name) : base(var, id, name)
+        public RecordRefParameter(bool var, int id, string name)
+            : base(var, id, name)
         {
         }
 
@@ -33,15 +32,8 @@ namespace UncommonSense.CBreeze.Core
 
         public RecordSecurityFiltering? SecurityFiltering
         {
-            get
-            {
-                return this.securityFiltering;
-            }
-            set
-            {
-                this.securityFiltering = value;
-            }
+            get;
+            set;
         }
-
     }
 }

@@ -17,10 +17,8 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RecordRefVariable : Variable
     {
-        private string dimensions;
-        private RecordSecurityFiltering? securityFiltering;
-
-        public RecordRefVariable(int id, string name) : base(id, name)
+        public RecordRefVariable(int id, string name)
+            : base(id, name)
         {
         }
 
@@ -34,27 +32,14 @@ namespace UncommonSense.CBreeze.Core
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
         public RecordSecurityFiltering? SecurityFiltering
         {
-            get
-            {
-                return this.securityFiltering;
-            }
-            set
-            {
-                this.securityFiltering = value;
-            }
+            get;
+            set;
         }
-
     }
 }

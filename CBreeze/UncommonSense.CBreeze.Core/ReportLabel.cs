@@ -14,38 +14,31 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public partial class ReportLabel : KeyedItem<int>, IHasName
-	{
-		private string name;
-		private ReportLabelProperties properties = new ReportLabelProperties();
+    [Serializable]
+    public partial class ReportLabel : KeyedItem<int>, IHasName
+    {
+        public ReportLabel(int id, string name)
+        {
+            ID = id;
+            Name = name;
+            Properties = new ReportLabelProperties();
+        }
 
-		public ReportLabel(int id, string name)
-		{
-			ID = id;
-			this.name = name;
-		}
+        public string Name
+        {
+            get;
+            protected set;
+        }
 
-		public string Name
-		{
-			get
-			{
-				return this.name;
-			}
-		}
+        public ReportLabelProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public ReportLabelProperties Properties
-		{
-			get
-			{
-				return this.properties;
-			}
-		}
-
-
-		public  string GetName()
-		{
-			return Name;
-		}
-	}
+        public string GetName()
+        {
+            return Name;
+        }
+    }
 }
