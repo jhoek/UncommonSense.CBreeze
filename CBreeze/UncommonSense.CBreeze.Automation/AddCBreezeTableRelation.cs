@@ -4,20 +4,21 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeTableRelation")]
-    public class AddCBreezeTableRelation : Cmdlet 
+    public class AddCBreezeTableRelation : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public dynamic InputObject
+        public PSObject InputObject
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory=true)]
+        [Parameter(Mandatory = true)]
         public string TableName
         {
             get;
@@ -40,8 +41,25 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var tableRelationLine = InputObject.Properties.TableRelation.Add(TableName);
+            var tableRelationLine = new TableRelationLine(TableName);
             tableRelationLine.FieldName = FieldName;
+
+            if (InputObject.BaseObject is TableField)
+            {
+                var tableField = (InputObject.BaseObject as TableField);
+                var tableRelationProperty = (tableField.AllProperties["TableRelation"] as TableRelationProperty);
+
+                tableRelationProperty.Value.Add(tableRelationLine);
+            }
+            else if (InputObject.BaseObject is FieldPageControl)
+            {
+                var fieldPageControl = (InputObject.BaseObject as FieldPageControl);
+                fieldPageControl.Properties.TableRelation.Add(tableRelationLine);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Don't know how to add a table relation to this InputObject.");
+            }
 
             if (PassThru)
                 WriteObject(tableRelationLine);
