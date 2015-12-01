@@ -17,40 +17,29 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class QueryDataItemLinkLine
     {
-        private string field;
-        private string referenceTable;
-        private string referenceField;
-
         public QueryDataItemLinkLine(string field, string referenceTable, string referenceField)
         {
-            this.field = field;
-            this.referenceField = referenceField;
-            this.referenceTable = referenceTable;
+            Field = field;
+            ReferenceTable = referenceTable;
+            ReferenceField = referenceField;
         }
 
         public string Field
         {
-            get
-            {
-                return this.field;
-            }
+            get;
+            protected set;
         }
 
         public string ReferenceTable
         {
-            get
-            {
-                return this.referenceTable;
-            }
+            get;
+            protected set;
         }
 
         public string ReferenceField
         {
-            get
-            {
-                return this.referenceField;
-            }
+            get;
+            protected set;
         }
-
     }
 }

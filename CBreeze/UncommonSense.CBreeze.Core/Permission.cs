@@ -17,60 +17,43 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Permission
     {
-        private int tableID;
-        private bool readPermission;
-        private bool insertPermission;
-        private bool modifyPermission;
-        private bool deletePermission;
-
         internal Permission(int tableID, bool readPermission, bool insertPermission, bool modifyPermission, bool deletePermission)
         {
-            this.deletePermission = deletePermission;
-            this.insertPermission = insertPermission;
-            this.modifyPermission = modifyPermission;
-            this.readPermission = readPermission;
-            this.tableID = tableID;
+            TableID = tableID;
+            ReadPermission = readPermission;
+            InsertPermission = insertPermission;
+            ModifyPermission = modifyPermission;
+            DeletePermission = deletePermission;
         }
 
         public int TableID
         {
-            get
-            {
-                return this.tableID;
-            }
+            get;
+            protected set;
         }
 
         public bool ReadPermission
         {
-            get
-            {
-                return this.readPermission;
-            }
+            get;
+            protected set;
         }
 
         public bool InsertPermission
         {
-            get
-            {
-                return this.insertPermission;
-            }
+            get;
+            protected set;
         }
 
         public bool ModifyPermission
         {
-            get
-            {
-                return this.modifyPermission;
-            }
+            get;
+            protected set;
         }
 
         public bool DeletePermission
         {
-            get
-            {
-                return this.deletePermission;
-            }
+            get;
+            protected set;
         }
-
     }
 }

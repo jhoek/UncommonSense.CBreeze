@@ -17,12 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class QueryParameter : Parameter
     {
-        private QuerySecurityFiltering? securityFiltering;
-        private int subType;
-
-        public QueryParameter(bool var, int id, string name, int subType) : base(var, id, name)
+        public QueryParameter(bool var, int id, string name, int subType)
+            : base(var, id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override ParameterType Type
@@ -35,23 +33,14 @@ namespace UncommonSense.CBreeze.Core
 
         public QuerySecurityFiltering? SecurityFiltering
         {
-            get
-            {
-                return this.securityFiltering;
-            }
-            set
-            {
-                this.securityFiltering = value;
-            }
+            get;
+            set;
         }
 
         public int SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
-
     }
 }

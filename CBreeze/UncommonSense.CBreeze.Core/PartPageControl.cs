@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class PartPageControl : PageControl
     {
-        private PartPageControlProperties properties = new PartPageControlProperties();
-
-        public PartPageControl(int id, int? indentationLevel) : base(id, indentationLevel)
+        public PartPageControl(int id, int? indentationLevel)
+            : base(id, indentationLevel)
         {
+            Properties = new PartPageControlProperties();
         }
 
         public override PageControlType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public PartPageControlProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override string GetName()

@@ -17,12 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class PageVariable : Variable
     {
-        private string dimensions;
-        private int subType;
-
-        public PageVariable(int id, string name, int subType) : base(id, name)
+        public PageVariable(int id, string name, int subType)
+            : base(id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override VariableType Type
@@ -35,23 +33,14 @@ namespace UncommonSense.CBreeze.Core
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
         public int SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
-
     }
 }

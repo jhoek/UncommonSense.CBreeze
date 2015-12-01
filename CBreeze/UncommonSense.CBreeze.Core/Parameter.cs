@@ -14,57 +14,42 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract partial class Parameter : KeyedItem<int>, IHasName
-	{
-		private bool var;
-		private string dimensions;
-		private string name;
+    [Serializable]
+    public abstract partial class Parameter : KeyedItem<int>, IHasName
+    {
+        internal Parameter(bool var, int id, string name)
+        {
+            ID = id;
+            Name = name;
+            Var = var;
+        }
 
-		internal Parameter(bool var, int id, string name)
-		{
-			ID = id;
-			this.name = name;
-			this.var = var;
-		}
+        public abstract ParameterType Type
+        {
+            get;
+        }
 
-		public abstract ParameterType Type
-		{
-			get;
-		}
+        public bool Var
+        {
+            get;
+            protected set;
+        }
 
-		public bool Var
-		{
-			get
-			{
-				return this.var;
-			}
-		}
+        public string Dimensions
+        {
+            get;
+            set;
+        }
 
-		public string Dimensions
-		{
-			get
-			{
-				return this.dimensions;
-			}
-			set
-			{
-				this.dimensions = value;
-			}
-		}
+        public string Name
+        {
+            get;
+            protected set;
+        }
 
-		public string Name
-		{
-			get
-			{
-				return this.name;
-			}
-		}
-
-
-		public string GetName()
-		{
-			return Name;
-		}
-	}
+        public string GetName()
+        {
+            return Name;
+        }
+    }
 }
