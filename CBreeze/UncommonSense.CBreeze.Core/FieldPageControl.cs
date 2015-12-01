@@ -14,43 +14,40 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public partial class FieldPageControl : PageControl
-	{
-		private FieldPageControlProperties properties = new FieldPageControlProperties();
+    [Serializable]
+    public partial class FieldPageControl : PageControl
+    {
+        public FieldPageControl(int id, int? indentationLevel)
+            : base(id, indentationLevel)
+        {
+            Properties = new FieldPageControlProperties();
+        }
 
-		public FieldPageControl(int id, int? indentationLevel)
-			: base(id, indentationLevel)
-		{
-		}
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Field;
+            }
+        }
 
-		public override PageControlType Type
-		{
-			get
-			{
-				return PageControlType.Field;
-			}
-		}
+        public FieldPageControlProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public FieldPageControlProperties Properties
-		{
-			get
-			{
-				return this.properties;
-			}
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
-
-		public  override string GetName()
-		{
-			return Properties.Name;
-		}
-	}
+        public override string GetName()
+        {
+            return Properties.Name;
+        }
+    }
 }

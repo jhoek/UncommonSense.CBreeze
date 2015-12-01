@@ -17,8 +17,6 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class Function : KeyedItem<int>, IHasName, IHasParameters
     {
-        private Variables variables = new Variables();
-
         public Function(int id, string name)
         {
             ID = id;

@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class FilterQueryElement : QueryElement
     {
-        private FilterQueryElementProperties properties = new FilterQueryElementProperties();
-
-        public FilterQueryElement(int id, string name, int? indentationLevel) : base(id, name, indentationLevel)
+        public FilterQueryElement(int id, string name, int? indentationLevel)
+            : base(id, name, indentationLevel)
         {
+            Properties = new FilterQueryElementProperties();
         }
 
         public override QueryElementType Type
@@ -41,10 +41,8 @@ namespace UncommonSense.CBreeze.Core
 
         public FilterQueryElementProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
     }
 }

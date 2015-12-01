@@ -17,62 +17,32 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class FunctionReturnValue
     {
-        private string dimensions;
-        private string name;
-        private FunctionReturnValueType? type;
-        private int? dataLength;
-
         internal FunctionReturnValue()
         {
         }
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
 
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                this.name = value;
-            }
+            get;
+            set;
         }
 
         public FunctionReturnValueType? Type
         {
-            get
-            {
-                return this.type;
-            }
-            set
-            {
-                this.type = value;
-            }
+            get;
+            set;
         }
 
         public int? DataLength
         {
-            get
-            {
-                return this.dataLength;
-            }
-            set
-            {
-                this.dataLength = value;
-            }
+            get;
+            set;
         }
-
     }
 }

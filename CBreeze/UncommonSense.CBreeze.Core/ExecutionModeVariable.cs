@@ -17,15 +17,14 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ExecutionModeVariable : Variable
     {
-        private string dimensions;
-
-        public ExecutionModeVariable(int id, string name) : base(id, name)
+        public ExecutionModeVariable(int id, string name)
+            : base(id, name)
         {
         }
 
         public override VariableType Type
         {
-            get
+            get 
             {
                 return VariableType.ExecutionMode;
             }
@@ -33,15 +32,8 @@ namespace UncommonSense.CBreeze.Core
 
         public string Dimensions
         {
-            get
-            {
-                return this.dimensions;
-            }
-            set
-            {
-                this.dimensions = value;
-            }
+            get;
+            set;
         }
-
     }
 }
