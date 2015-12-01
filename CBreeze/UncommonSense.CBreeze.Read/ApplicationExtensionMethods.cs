@@ -177,7 +177,7 @@ namespace UncommonSense.CBreeze.Read
                     var fieldName = match.Groups[1].Value;
                     var aspect = match.Groups[3].Value;
 
-                    siftLevel.Components.Add(fieldName, aspect);
+                    siftLevel.Components.Add(new SIFTLevelComponent(fieldName, aspect));
                 }
 
                 Parsing.TryMatch(ref propertyValue, @"^,\s?");

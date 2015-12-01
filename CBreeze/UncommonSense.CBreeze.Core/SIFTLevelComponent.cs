@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private String fieldName;
         private String aspect;
 
-        internal SIFTLevelComponent(String fieldName, String aspect)
+        public SIFTLevelComponent(String fieldName, String aspect)
         {
             this.aspect = aspect;
             this.fieldName = fieldName;
