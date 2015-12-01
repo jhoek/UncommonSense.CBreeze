@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
         private String referenceTable;
         private String referenceField;
 
-        internal QueryDataItemLinkLine(String field, String referenceTable, String referenceField)
+        public QueryDataItemLinkLine(String field, String referenceTable, String referenceField)
         {
             this.field = field;
             this.referenceField = referenceField;

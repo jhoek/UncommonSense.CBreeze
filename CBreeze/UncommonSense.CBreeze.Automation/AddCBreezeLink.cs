@@ -98,8 +98,8 @@ namespace UncommonSense.CBreeze.Automation
                     OnlyMaxLimit = OnlyMaxLimit,
                     ValueIsFilter = ValueIsFilter
                 })),
-                TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemLink.Add(FieldName, ReferenceDataItem, Value)),
-                TypeSwitch.Case<QueryDataItemLink>(i => i.Add(FieldName, ReferenceDataItem, Value)),
+                TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemLink.Add(new QueryDataItemLinkLine(FieldName, ReferenceDataItem, Value))),
+                TypeSwitch.Case<QueryDataItemLink>(i => i.Add(new QueryDataItemLinkLine(FieldName, ReferenceDataItem, Value))),
                 TypeSwitch.Default(() => InvalidInputObject())
             );
         }

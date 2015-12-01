@@ -342,7 +342,7 @@ namespace UncommonSense.CBreeze.Read
                 var referenceTable = Parsing.MustMatch(ref propertyValue, @"^([^\.]+).").Groups[1].Value;
                 var referenceField = Parsing.MustMatch(ref propertyValue, @"^([^,]+),?\s?").Groups[1].Value;
 
-                property.Value.Add(field, referenceTable, referenceField);
+                property.Value.Add(new QueryDataItemLinkLine(field, referenceTable, referenceField));
             }
         }
 
