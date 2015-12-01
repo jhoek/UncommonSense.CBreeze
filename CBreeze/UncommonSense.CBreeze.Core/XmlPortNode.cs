@@ -60,7 +60,7 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public IEnumerable<XmlPortNode> GetDescendantNodes
+        public IEnumerable<XmlPortNode> DescendantNodes
         {
             get
             {
@@ -76,7 +76,7 @@ namespace UncommonSense.CBreeze.Core
                     Container.Insert(Index + 1, child);
                     break;
                 case Position.LastWithinContainer:
-                    var childNodes = GetDescendantNodes;
+                    var childNodes = DescendantNodes;
                     var lastINdex = childNodes.Any() ? childNodes.Last().Index : Index;
                     Container.Insert(lastINdex + 1, child);
                     break;

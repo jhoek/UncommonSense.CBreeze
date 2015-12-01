@@ -65,7 +65,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public IEnumerable<QueryElement> GetDescendantElements
+        public IEnumerable<QueryElement> DescendantElements
         {
             get
             {
@@ -81,7 +81,7 @@ namespace UncommonSense.CBreeze.Core
                     Container.Insert(Index + 1, child);
                     break;
                 case Position.LastWithinContainer:
-                    var descendantElements = GetDescendantElements;
+                    var descendantElements = DescendantElements;
                     var lastIndex = descendantElements.Any() ? descendantElements.Last().Index : Index;
                     Container.Insert(lastIndex + 1, child);
                     break;
