@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableFilterTableField : TableField
     {
-        private TableFilterTableFieldProperties properties = new TableFilterTableFieldProperties();
-
-        public TableFilterTableField(int no, string name) : base(no, name)
+        public TableFilterTableField(int no, string name)
+            : base(no, name)
         {
+            Properties = new TableFilterTableFieldProperties();
         }
 
         public override TableFieldType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public TableFilterTableFieldProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override Properties AllProperties

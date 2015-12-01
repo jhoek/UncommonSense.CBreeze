@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class StringProperty : Property
     {
-        private string value = null;
-
-        internal StringProperty(string name) : base(name)
+        internal StringProperty(string name)
+            : base(name)
         {
+            Value = null;
         }
 
         public override bool HasValue
@@ -33,14 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public string Value
         {
-            get
-            {
-                return this.value;
-            }
-            set
-            {
-                this.value = value;
-            }
+            get;
+            set;
         }
     }
 

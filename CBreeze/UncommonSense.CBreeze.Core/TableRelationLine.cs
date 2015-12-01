@@ -17,51 +17,35 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableRelationLine
     {
-        private TableRelationConditions conditions = new TableRelationConditions();
-        private string fieldName;
-        private TableRelationTableFilter tableFilter = new TableRelationTableFilter();
-        private string tableName;
-
         public TableRelationLine(string tableName)
         {
-            this.tableName = tableName;
-        }
-
-        public TableRelationConditions Conditions
-        {
-            get
-            {
-                return this.conditions;
-            }
-        }
-
-        public string FieldName
-        {
-            get
-            {
-                return this.fieldName;
-            }
-            set
-            {
-                this.fieldName = value;
-            }
-        }
-
-        public TableRelationTableFilter TableFilter
-        {
-            get
-            {
-                return this.tableFilter;
-            }
+            TableName = tableName;
+            Conditions = new TableRelationConditions();
+            TableFilter = new TableRelationTableFilter();
         }
 
         public string TableName
         {
-            get
-            {
-                return this.tableName;
-            }
+            get;
+            protected set;
         }
 
+        public string FieldName
+        {
+            get;
+            set;
+        }
+
+        public TableRelationConditions Conditions
+        {
+            get;
+            protected set;
+        }
+
+        public TableRelationTableFilter TableFilter
+        {
+            get;
+            protected set;
+        }
     }
 }

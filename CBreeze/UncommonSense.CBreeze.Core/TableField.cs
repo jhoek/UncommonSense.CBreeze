@@ -14,32 +14,30 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract partial class TableField : KeyedItem<int>, IHasName, IHasProperties
-	{
-		private bool? enabled;
-
-		internal TableField(int id, string name)
-		{
-			ID = id;
-			Name = name;
-		}
+    [Serializable]
+    public abstract partial class TableField : KeyedItem<int>, IHasName, IHasProperties
+    {
+        internal TableField(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
 
         public override string ToString()
         {
             return string.Format("{0}@{1}:{2}", Name, ID, Type);
         }
 
-		public abstract TableFieldType Type
-		{
-			get;
-		}
+        public abstract TableFieldType Type
+        {
+            get;
+        }
 
-		public string Name
-		{
-			get;
-			set;
-		}
+        public string Name
+        {
+            get;
+            set;
+        }
 
         public string QuotedName
         {
@@ -49,27 +47,20 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-		public bool? Enabled
-		{
-			get
-			{
-				return this.enabled;
-			}
-			set
-			{
-				this.enabled = value;
-			}
-		}
+        public bool? Enabled
+        {
+            get;
+            set;
+        }
 
+        public string GetName()
+        {
+            return Name;
+        }
 
-		public string GetName()
-		{
-			return Name;
-		}
-
-		public abstract Properties AllProperties
-		{
-			get;
-		}
-	}
+        public abstract Properties AllProperties
+        {
+            get;
+        }
+    }
 }

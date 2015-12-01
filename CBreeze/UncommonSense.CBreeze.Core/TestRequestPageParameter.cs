@@ -17,11 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TestRequestPageParameter : Parameter
     {
-        private int subType;
-
-        public TestRequestPageParameter(bool var, int id, string name, int subType) : base(var, id, name)
+        public TestRequestPageParameter(bool var, int id, string name, int subType)
+            : base(var, id, name)
         {
-            this.subType = subType;
+            SubType = subType;
         }
 
         public override ParameterType Type
@@ -34,11 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public int SubType
         {
-            get
-            {
-                return this.subType;
-            }
+            get;
+            protected set;
         }
-
     }
 }

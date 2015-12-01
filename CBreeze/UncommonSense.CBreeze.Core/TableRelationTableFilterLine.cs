@@ -17,40 +17,29 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class TableRelationTableFilterLine
     {
-        private string fieldName;
-        private TableFilterType? type;
-        private string value;
-
         public TableRelationTableFilterLine(string fieldName, TableFilterType type, string value)
         {
-            this.fieldName = fieldName;
-            this.type = type;
-            this.value = value;
+            FieldName = fieldName;
+            Type = type;
+            Value = value;
         }
 
         public string FieldName
         {
-            get
-            {
-                return this.fieldName;
-            }
+            get;
+            protected set;
         }
 
-        public TableFilterType? Type
+        public TableFilterType Type
         {
-            get
-            {
-                return this.type;
-            }
+            get;
+            protected set;
         }
 
         public string Value
         {
-            get
-            {
-                return this.value;
-            }
+            get;
+            protected set;
         }
-
     }
 }

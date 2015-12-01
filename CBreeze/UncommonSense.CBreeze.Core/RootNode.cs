@@ -17,10 +17,10 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class RootNode : MenuSuiteNode
     {
-        private MenuSuiteRootNodeProperties properties = new MenuSuiteRootNodeProperties();
-
-        public RootNode(Guid id) : base(id)
+        public RootNode(Guid id)
+            : base(id)
         {
+            Properties = new MenuSuiteRootNodeProperties();
         }
 
         public override MenuSuiteNodeType Type
@@ -33,10 +33,8 @@ namespace UncommonSense.CBreeze.Core
 
         public MenuSuiteRootNodeProperties Properties
         {
-            get
-            {
-                return this.properties;
-            }
+            get;
+            protected set;
         }
 
         public override string GetName()

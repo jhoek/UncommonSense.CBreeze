@@ -17,30 +17,22 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class SIFTLevelComponent
     {
-        private string fieldName;
-        private string aspect;
-
         public SIFTLevelComponent(string fieldName, string aspect)
         {
-            this.aspect = aspect;
-            this.fieldName = fieldName;
+            Aspect = aspect;
+            FieldName = fieldName;
         }
 
         public string FieldName
         {
-            get
-            {
-                return this.fieldName;
-            }
+            get;
+            protected set;
         }
 
         public string Aspect
         {
-            get
-            {
-                return this.aspect;
-            }
+            get;
+            protected set;
         }
-
     }
 }
