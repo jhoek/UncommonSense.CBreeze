@@ -102,7 +102,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Ellipsis
+      public bool? Ellipsis
         {
             get
             {
@@ -138,7 +138,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? InFooterBar
+      public bool? InFooterBar
         {
             get
             {
@@ -170,7 +170,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Promoted
+      public bool? Promoted
         {
             get
             {
@@ -194,7 +194,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? PromotedIsBig
+      public bool? PromotedIsBig
         {
             get
             {
@@ -234,7 +234,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? RunPageOnRec
+      public bool? RunPageOnRec
         {
             get
             {

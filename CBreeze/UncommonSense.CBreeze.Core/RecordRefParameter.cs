@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private RecordSecurityFiltering? securityFiltering;
 
-        public RecordRefParameter(Boolean var, int id, string name) : base(var, id, name)
+        public RecordRefParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 

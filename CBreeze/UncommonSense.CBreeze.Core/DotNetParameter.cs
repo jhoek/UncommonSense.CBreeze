@@ -17,11 +17,11 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DotNetParameter : Parameter
     {
-        private Boolean? runOnClient;
+        private bool? runOnClient;
         private string subType;
-        private Boolean? suppressDispose;
+        private bool? suppressDispose;
 
-        public DotNetParameter(Boolean var, int id, string name, string subType) : base(var, id, name)
+        public DotNetParameter(bool var, int id, string name, string subType) : base(var, id, name)
         {
             this.subType = subType;
         }
@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean? RunOnClient
+        public bool? RunOnClient
         {
             get
             {
@@ -54,7 +54,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean? SuppressDispose
+        public bool? SuppressDispose
         {
             get
             {

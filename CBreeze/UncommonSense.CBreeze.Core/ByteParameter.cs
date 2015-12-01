@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class ByteParameter : Parameter
     {
-        public ByteParameter(Boolean var, int id, string name) : base(var, id, name)
+        public ByteParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 

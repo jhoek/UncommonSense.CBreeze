@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private string dimensions;
         private RecordSecurityFiltering? securityFiltering;
         private int subType;
-        private Boolean? temporary;
+        private bool? temporary;
 
         public RecordVariable(int id, string name, int subType) : base(id, name)
         {
@@ -67,7 +67,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean? Temporary
+        public bool? Temporary
         {
             get
             {

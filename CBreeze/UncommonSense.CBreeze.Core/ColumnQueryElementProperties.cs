@@ -102,7 +102,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ReverseSign
+      public bool? ReverseSign
         {
             get
             {

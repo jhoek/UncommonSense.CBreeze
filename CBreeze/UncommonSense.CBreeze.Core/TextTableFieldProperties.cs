@@ -160,7 +160,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? DateFormula
+        public bool? DateFormula
         {
             get
             {
@@ -184,7 +184,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? Editable
+        public bool? Editable
         {
             get
             {
@@ -232,7 +232,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? NotBlank
+        public bool? NotBlank
         {
             get
             {
@@ -244,7 +244,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? Numeric
+        public bool? Numeric
         {
             get
             {
@@ -280,7 +280,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? TestTableRelation
+        public bool? TestTableRelation
         {
             get
             {
@@ -292,7 +292,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? Title
+        public bool? Title
         {
             get
             {
@@ -304,7 +304,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? ValidateTableRelation
+        public bool? ValidateTableRelation
         {
             get
             {

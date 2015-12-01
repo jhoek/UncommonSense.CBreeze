@@ -58,7 +58,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? IsDepartmentPage
+      public bool? IsDepartmentPage
         {
             get
             {
@@ -118,7 +118,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Visible
+      public bool? Visible
         {
             get
             {

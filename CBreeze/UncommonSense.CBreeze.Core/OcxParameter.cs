@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private string subType;
 
-        public OcxParameter(Boolean var, int id, string name, string subType) : base(var, id, name)
+        public OcxParameter(bool var, int id, string name, string subType) : base(var, id, name)
         {
             this.subType = subType;
         }

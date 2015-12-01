@@ -18,9 +18,9 @@ namespace UncommonSense.CBreeze.Core
     public partial class DotNetVariable : Variable
     {
         private string dimensions;
-        private Boolean? runOnClient;
+        private bool? runOnClient;
         private string subType;
-        private Boolean? withEvents;
+        private bool? withEvents;
 
         public DotNetVariable(int id, string name, string subType) : base(id, name)
         {
@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean? RunOnClient
+        public bool? RunOnClient
         {
             get
             {
@@ -67,7 +67,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean? WithEvents
+        public bool? WithEvents
         {
             get
             {

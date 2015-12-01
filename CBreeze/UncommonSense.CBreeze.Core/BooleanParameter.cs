@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class BooleanParameter : Parameter
     {
-        public BooleanParameter(Boolean var, int id, string name) : base(var, id, name)
+        public BooleanParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 
@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return ParameterType.Boolean;
+                return ParameterType.bool;
             }
         }
 

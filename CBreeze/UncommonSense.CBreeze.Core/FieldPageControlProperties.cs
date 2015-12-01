@@ -138,7 +138,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-        public System.Boolean? AssistEdit
+        public bool? AssistEdit
         {
             get
             {
@@ -186,7 +186,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? BlankZero
+        public bool? BlankZero
         {
             get
             {
@@ -230,7 +230,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? ClosingDates
+        public bool? ClosingDates
         {
             get
             {
@@ -266,7 +266,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? DateFormula
+        public bool? DateFormula
         {
             get
             {
@@ -298,7 +298,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? DrillDown
+        public bool? DrillDown
         {
             get
             {
@@ -382,7 +382,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? Lookup
+        public bool? Lookup
         {
             get
             {
@@ -430,7 +430,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? MultiLine
+        public bool? MultiLine
         {
             get
             {
@@ -454,7 +454,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? NotBlank
+        public bool? NotBlank
         {
             get
             {
@@ -466,7 +466,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? Numeric
+        public bool? Numeric
         {
             get
             {
@@ -550,7 +550,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? ShowCaption
+        public bool? ShowCaption
         {
             get
             {
@@ -620,7 +620,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? Title
+        public bool? Title
         {
             get
             {

@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public Boolean? ValueIsFilter
+        public bool? ValueIsFilter
         {
             get;
             set;

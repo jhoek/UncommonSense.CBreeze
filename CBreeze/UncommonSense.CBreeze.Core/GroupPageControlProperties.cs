@@ -178,7 +178,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ShowAsTree
+      public bool? ShowAsTree
         {
             get
             {

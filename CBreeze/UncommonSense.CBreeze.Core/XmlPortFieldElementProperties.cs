@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
-        public System.bool? AutoCalcField
+        public bool? AutoCalcField
         {
             get
             {
@@ -70,7 +70,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? FieldValidate
+        public bool? FieldValidate
         {
             get
             {

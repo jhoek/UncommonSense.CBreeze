@@ -136,7 +136,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? PrintOnlyIfDetail
+      public bool? PrintOnlyIfDetail
         {
             get
             {

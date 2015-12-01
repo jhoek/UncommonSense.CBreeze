@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean Modified
+      public bool Modified
         {
             get
             {

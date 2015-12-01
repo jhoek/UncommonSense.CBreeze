@@ -104,7 +104,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? EnableExternalAssemblies
+        public bool? EnableExternalAssemblies
         {
             get
             {
@@ -116,7 +116,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? EnableExternalImages
+        public bool? EnableExternalImages
         {
             get
             {
@@ -128,7 +128,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? EnableHyperlinks
+        public bool? EnableHyperlinks
         {
             get
             {
@@ -222,7 +222,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-        public System.Boolean? ProcessingOnly
+        public bool? ProcessingOnly
         {
             get
             {
@@ -234,7 +234,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? ShowPrintStatus
+        public bool? ShowPrintStatus
         {
             get
             {
@@ -258,7 +258,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? UseRequestPage
+        public bool? UseRequestPage
         {
             get
             {
@@ -270,7 +270,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? UseSystemPrinter
+        public bool? UseSystemPrinter
         {
             get
             {

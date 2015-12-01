@@ -40,7 +40,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
         }
 
-        public System.Boolean? AutoCalcField
+        public bool? AutoCalcField
         {
             get
             {
@@ -96,7 +96,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? IncludeCaption
+        public bool? IncludeCaption
         {
             get
             {

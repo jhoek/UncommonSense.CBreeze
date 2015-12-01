@@ -19,9 +19,9 @@ namespace UncommonSense.CBreeze.Core
     {
         private RecordSecurityFiltering? securityFiltering;
         private int subType;
-        private Boolean? temporary;
+        private bool? temporary;
 
-        public RecordParameter(Boolean var, int id, string name, int subType) : base(var, id, name)
+        public RecordParameter(bool var, int id, string name, int subType) : base(var, id, name)
         {
             this.subType = subType;
         }
@@ -54,7 +54,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean? Temporary
+        public bool? Temporary
         {
             get
             {

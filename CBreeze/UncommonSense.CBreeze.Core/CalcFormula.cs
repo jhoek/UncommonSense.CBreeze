@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
-        public Boolean ReverseSign
+        public bool ReverseSign
         {
             get;
             set;

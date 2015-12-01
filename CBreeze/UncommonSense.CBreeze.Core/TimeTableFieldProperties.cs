@@ -170,7 +170,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? Editable
+        public bool? Editable
         {
             get
             {
@@ -242,7 +242,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? NotBlank
+        public bool? NotBlank
         {
             get
             {
@@ -290,7 +290,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? TestTableRelation
+        public bool? TestTableRelation
         {
             get
             {
@@ -302,7 +302,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.bool? ValidateTableRelation
+        public bool? ValidateTableRelation
         {
             get
             {

@@ -104,7 +104,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? AutoSplitKey
+      public bool? AutoSplitKey
         {
             get
             {
@@ -156,7 +156,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? DelayedInsert
+      public bool? DelayedInsert
         {
             get
             {
@@ -168,7 +168,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? DeleteAllowed
+      public bool? DeleteAllowed
         {
             get
             {
@@ -192,7 +192,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Editable
+      public bool? Editable
         {
             get
             {
@@ -204,7 +204,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? InsertAllowed
+      public bool? InsertAllowed
         {
             get
             {
@@ -224,7 +224,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? LinksAllowed
+      public bool? LinksAllowed
         {
             get
             {
@@ -236,7 +236,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ModifyAllowed
+      public bool? ModifyAllowed
         {
             get
             {
@@ -248,7 +248,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? MultipleNewLines
+      public bool? MultipleNewLines
         {
             get
             {
@@ -376,7 +376,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? PopulateAllFields
+      public bool? PopulateAllFields
         {
             get
             {
@@ -396,7 +396,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? RefreshOnActivate
+      public bool? RefreshOnActivate
         {
             get
             {
@@ -408,7 +408,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? SaveValues
+      public bool? SaveValues
         {
             get
             {
@@ -420,7 +420,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? ShowFilter
+      public bool? ShowFilter
         {
             get
             {
@@ -444,7 +444,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? SourceTableTemporary
+      public bool? SourceTableTemporary
         {
             get
             {

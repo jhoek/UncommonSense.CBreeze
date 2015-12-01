@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
     {
         private string optionString;
 
-        public OptionParameter(Boolean var, int id, string name) : base(var, id, name)
+        public OptionParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 

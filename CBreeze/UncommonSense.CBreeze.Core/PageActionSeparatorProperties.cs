@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? IsHeader
+      public bool? IsHeader
         {
             get
             {

@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public abstract partial class TableField : KeyedItem<int>, IHasName, IHasProperties
 	{
-		private Boolean? enabled;
+		private bool? enabled;
 
 		internal TableField(int id, string name)
 		{
@@ -49,7 +49,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-		public Boolean? Enabled
+		public bool? Enabled
 		{
 			get
 			{

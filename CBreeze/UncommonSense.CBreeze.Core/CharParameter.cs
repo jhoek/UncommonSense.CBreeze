@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class CharParameter : Parameter
     {
-        public CharParameter(Boolean var, int id, string name) : base(var, id, name)
+        public CharParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 

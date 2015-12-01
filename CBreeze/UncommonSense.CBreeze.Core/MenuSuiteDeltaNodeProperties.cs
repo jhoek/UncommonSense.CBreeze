@@ -26,7 +26,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(nextNodeID);
         }
 
-        public System.bool? Deleted
+        public bool? Deleted
         {
             get
             {

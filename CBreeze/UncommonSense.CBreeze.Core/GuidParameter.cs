@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class GuidParameter : Parameter
     {
-        public GuidParameter(Boolean var, int id, string name) : base(var, id, name)
+        public GuidParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 

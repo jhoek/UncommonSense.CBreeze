@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Core
     public partial class IntegerVariable : Variable
     {
         private string dimensions;
-        private Boolean? includeInDataset;
+        private bool? includeInDataset;
 
         public IntegerVariable(int id, string name) : base(id, name)
         {
@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean? IncludeInDataset
+        public bool? IncludeInDataset
         {
             get
             {

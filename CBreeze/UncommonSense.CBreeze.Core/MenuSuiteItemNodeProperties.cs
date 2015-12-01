@@ -66,7 +66,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Deleted
+      public bool? Deleted
         {
             get
             {
@@ -162,7 +162,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Visible
+      public bool? Visible
         {
             get
             {

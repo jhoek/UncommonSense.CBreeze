@@ -66,7 +66,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? DataPerCompany
+      public bool? DataPerCompany
         {
             get
             {
@@ -102,7 +102,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? LinkedInTransaction
+      public bool? LinkedInTransaction
         {
             get
             {
@@ -114,7 +114,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? LinkedObject
+      public bool? LinkedObject
         {
             get
             {
@@ -170,7 +170,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? PasteIsValid
+      public bool? PasteIsValid
         {
             get
             {

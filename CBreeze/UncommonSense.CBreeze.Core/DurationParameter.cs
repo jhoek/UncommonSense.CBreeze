@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public partial class DurationParameter : Parameter
     {
-        public DurationParameter(Boolean var, int id, string name) : base(var, id, name)
+        public DurationParameter(bool var, int id, string name) : base(var, id, name)
         {
         }
 

@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Core
     public partial class CalcFormulaTableFilterLine
     {
         private string fieldName;
-        private Boolean onlyMaxLimit;
+        private bool onlyMaxLimit;
         private TableFilterType? type;
         private string value;
-        private Boolean valueIsFilter;
+        private bool valueIsFilter;
 
         public CalcFormulaTableFilterLine(string fieldName, TableFilterType type, string value)
         {
@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean OnlyMaxLimit
+        public bool OnlyMaxLimit
         {
             get
             {
@@ -66,7 +66,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Boolean ValueIsFilter
+        public bool ValueIsFilter
         {
             get
             {

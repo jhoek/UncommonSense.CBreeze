@@ -17,11 +17,11 @@ namespace UncommonSense.CBreeze.Core
 	[Serializable]
 	public abstract partial class Parameter : KeyedItem<int>, IHasName
 	{
-		private Boolean var;
+		private bool var;
 		private string dimensions;
 		private string name;
 
-		internal Parameter(Boolean var, int id, string name)
+		internal Parameter(bool var, int id, string name)
 		{
 			ID = id;
 			this.name = name;
@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Core
 			get;
 		}
 
-		public Boolean Var
+		public bool Var
 		{
 			get
 			{

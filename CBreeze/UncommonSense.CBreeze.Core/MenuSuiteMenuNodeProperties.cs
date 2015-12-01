@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Enabled
+      public bool? Enabled
         {
             get
             {
@@ -86,7 +86,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? IsShortcut
+      public bool? IsShortcut
         {
             get
             {
@@ -146,7 +146,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Boolean? Visible
+      public bool? Visible
         {
             get
             {

@@ -96,7 +96,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? AutoSplitKey
+      public bool? AutoSplitKey
         {
             get
             {
@@ -148,7 +148,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? DeleteAllowed
+      public bool? DeleteAllowed
         {
             get
             {
@@ -172,7 +172,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? Editable
+      public bool? Editable
         {
             get
             {
@@ -184,7 +184,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? InsertAllowed
+      public bool? InsertAllowed
         {
             get
             {
@@ -204,7 +204,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? LinksAllowed
+      public bool? LinksAllowed
         {
             get
             {
@@ -216,7 +216,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? ModifyAllowed
+      public bool? ModifyAllowed
         {
             get
             {
@@ -228,7 +228,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? MultipleNewLines
+      public bool? MultipleNewLines
         {
             get
             {
@@ -344,7 +344,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? PopulateAllFields
+      public bool? PopulateAllFields
         {
             get
             {
@@ -356,7 +356,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? SaveValues
+      public bool? SaveValues
         {
             get
             {
@@ -368,7 +368,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? ShowFilter
+      public bool? ShowFilter
         {
             get
             {
@@ -392,7 +392,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.bool? SourceTableTemporary
+      public bool? SourceTableTemporary
         {
             get
             {

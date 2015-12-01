@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(clustered);
         }
 
-        public System.Boolean? Clustered
+        public bool? Clustered
         {
             get
             {
@@ -61,7 +61,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? MaintainSIFTIndex
+        public bool? MaintainSIFTIndex
         {
             get
             {
@@ -73,7 +73,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.Boolean? MaintainSQLIndex
+        public bool? MaintainSQLIndex
         {
             get
             {
