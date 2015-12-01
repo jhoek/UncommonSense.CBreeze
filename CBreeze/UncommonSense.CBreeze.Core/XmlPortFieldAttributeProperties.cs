@@ -110,7 +110,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? Width
+      public int? Width
         {
             get
             {

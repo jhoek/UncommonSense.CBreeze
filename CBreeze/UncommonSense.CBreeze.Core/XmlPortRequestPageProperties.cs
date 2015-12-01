@@ -380,7 +380,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? SourceTable
+      public int? SourceTable
         {
             get
             {

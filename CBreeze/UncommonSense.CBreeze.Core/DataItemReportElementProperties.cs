@@ -80,7 +80,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? DataItemTable
+      public int? DataItemTable
         {
             get
             {
@@ -100,7 +100,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? MaxIteration
+      public int? MaxIteration
         {
             get
             {

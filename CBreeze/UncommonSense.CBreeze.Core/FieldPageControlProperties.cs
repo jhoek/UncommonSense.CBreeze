@@ -242,7 +242,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.int? ColumnSpan
+        public int? ColumnSpan
         {
             get
             {
@@ -538,7 +538,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.int? RowSpan
+        public int? RowSpan
         {
             get
             {
@@ -664,7 +664,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.int? Width
+        public int? Width
         {
             get
             {

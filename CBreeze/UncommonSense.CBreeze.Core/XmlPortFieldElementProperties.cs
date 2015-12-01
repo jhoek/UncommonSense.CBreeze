@@ -144,7 +144,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-        public System.int? Width
+        public int? Width
         {
             get
             {

@@ -92,7 +92,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? TopNumberOfRows
+      public int? TopNumberOfRows
         {
             get
             {

@@ -238,7 +238,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int64? InitValue
+      public long? InitValue
         {
             get
             {
@@ -250,7 +250,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int64? MaxValue
+      public long? MaxValue
         {
             get
             {
@@ -262,7 +262,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Int64? MinValue
+      public long? MinValue
         {
             get
             {
@@ -302,7 +302,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? SignDisplacement
+      public int? SignDisplacement
         {
             get
             {
@@ -370,7 +370,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? Width
+      public int? Width
         {
             get
             {

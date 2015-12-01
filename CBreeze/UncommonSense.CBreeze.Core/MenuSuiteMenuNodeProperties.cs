@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.int? Image
+      public int? Image
         {
             get
             {

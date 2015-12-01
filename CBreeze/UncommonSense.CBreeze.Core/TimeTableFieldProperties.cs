@@ -270,7 +270,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public System.int? SignDisplacement
+        public int? SignDisplacement
         {
             get
             {
