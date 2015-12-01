@@ -11,29 +11,11 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
     public class CalcFormulaTableFilter : Collection<CalcFormulaTableFilterLine>
     {
-        internal CalcFormulaTableFilter()
-        {
-        }
-
-        new public CalcFormulaTableFilterLine Add(CalcFormulaTableFilterLine value)
-        {
-            InsertItem(Count, value);
-            return value;
-        }
-
-        public void AddRange(IEnumerable<CalcFormulaTableFilterLine> values)
-        {
-            foreach (var value in values)
-            {
-                this.Add(value);
-            }
-        }
     }
 }
