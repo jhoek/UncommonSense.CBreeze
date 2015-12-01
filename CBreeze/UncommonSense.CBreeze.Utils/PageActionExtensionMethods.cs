@@ -66,13 +66,5 @@ namespace UncommonSense.CBreeze.Utils
 
             return child;
         }
-
-        public static PageAction AddPageAction(this PageActionBase parent, int id, Position position, string captionML, string image)
-        {
-            var childPageAction = AddChildPageAction(parent, new PageAction(id, parent.IndentationLevel + 1), position);
-            childPageAction.Properties.CaptionML.Set("ENU", captionML);
-            childPageAction.Properties.Image = image;
-            return childPageAction;
-        }
     }
 }
