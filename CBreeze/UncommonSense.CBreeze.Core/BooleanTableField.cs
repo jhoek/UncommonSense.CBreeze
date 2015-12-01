@@ -27,7 +27,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return TableFieldType.bool;
+                return TableFieldType.Boolean;
             }
         }
 

@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return ParameterType.bool;
+                return ParameterType.Boolean;
             }
         }
 
