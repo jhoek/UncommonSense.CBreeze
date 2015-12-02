@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 
-namespace UncommonSense.CBreeze.Utils
+namespace UncommonSense.CBreeze.Core
 {
     public static class IDManagementExtensionMethods
     {

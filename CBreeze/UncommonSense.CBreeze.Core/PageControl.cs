@@ -54,5 +54,38 @@ namespace UncommonSense.CBreeze.Core
                 return Container.IndexOf(this);
             }
         }
+
+        public IEnumerable<PageControl> DescendantPageControls
+        {
+            get
+            {
+                return Container.Skip(Index + 1).TakeWhile(c => c.IndentationLevel > IndentationLevel);
+            }
+        }
+
+        public IEnumerable<PageControl> ChildPageControls
+        {
+            get
+            {
+                return DescendantPageControls.Where(c => c.IndentationLevel == IndentationLevel + 1);
+            }
+        }
+
+        public T AddChildPageControl<T>(T child, Position position) where T : PageControl
+        {
+            switch (position)
+            {
+                case Position.FirstWithinContainer:
+                    Container.Insert(Index + 1, child);
+                    break;
+                case Position.LastWithinContainer:
+                    var descendantPageControls = DescendantPageControls;
+                    var lastIndex = descendantPageControls.Any() ? descendantPageControls.Last().Index : Index;
+                    Container.Insert(lastIndex + 1, child);
+                    break;
+            }
+
+            return child;
+        }
     }
 }

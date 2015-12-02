@@ -49,5 +49,33 @@ namespace UncommonSense.CBreeze.Core
         {
             return Properties.Name;
         }
+
+        public GroupPageControl GetGroupByCaption(string caption, IEnumerable<int> range, Position position)
+        {
+            var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
+
+            if (groupPageControl == null)
+            {
+                groupPageControl = new GroupPageControl(range.GetNextPageControlID(Container.Page), 1);
+                groupPageControl.Properties.CaptionML.Set("ENU", caption);
+                this.AddChildPageControl(groupPageControl, position);
+            }
+
+            return groupPageControl;
+        }
+
+        public  GroupPageControl GetGroupByType(GroupType type, IEnumerable<int> range, Position position)
+        {
+            var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(g => g.Properties.GroupType == type);
+
+            if (groupPageControl == null)
+            {
+                groupPageControl = new GroupPageControl(range.GetNextPageControlID(Container.Page), 1);
+                groupPageControl.Properties.GroupType = type;
+                AddChildPageControl(groupPageControl, position);
+            }
+
+            return groupPageControl;
+        }
     }
 }
