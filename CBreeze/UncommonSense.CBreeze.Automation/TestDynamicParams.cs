@@ -11,26 +11,35 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsDiagnostic.Test, "DynamicParams")]
     public class TestDynamicParams : CmdletWithDynamicParams
     {
-        protected DynamicParameter<Core.Application> application = new DynamicParameter<Core.Application>("Application", true);
-        protected DynamicParameter<IEnumerable<int>> range = new DynamicParameter<IEnumerable<int>>("Range", true);
-        protected DynamicParameter<ObjectType?> objectType = new DynamicParameter<ObjectType?>("Type", true);
-        protected DynamicParameter<int> dynamic = new DynamicParameter<int>("Dynamic");
+        protected DynamicParameter<string> @string = new DynamicParameter<string>("String");
+        protected DynamicParameter<string> @int = new DynamicParameter<string>("Int");
+
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public PSObject InputObject
+        {
+            get;
+            set;
+        }
 
         protected override void ProcessRecord()
         {
-            WriteObject(dynamic.Value);
+            Console.WriteLine(InputObject.BaseObject.GetType().Name);
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
             {
-                yield return objectType.RuntimeDefinedParameter;
-                yield return application.RuntimeDefinedParameter;
-                yield return range.RuntimeDefinedParameter;
-
-                if (objectType.Value.GetValueOrDefault(ObjectType.Page) == ObjectType.Table)
-                    yield return dynamic.RuntimeDefinedParameter;
+                if (InputObject.BaseObject is int)
+                {
+                    Console.WriteLine("InputObject is an int.");
+                    yield return @int.RuntimeDefinedParameter;
+                }
+                if (InputObject.BaseObject is string)
+                {
+                    Console.WriteLine("InputObject is a string.");
+                    yield return @string.RuntimeDefinedParameter;
+                }
             }
         }
     }
