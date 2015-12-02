@@ -17,6 +17,5 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class ReportDataItemLink : Collection<ReportDataItemLinkLine>
     {
-        // FIXME: Can we eliminate the "empty" collection classes?
     }
 }
