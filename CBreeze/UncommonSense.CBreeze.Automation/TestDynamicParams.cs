@@ -9,10 +9,10 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsDiagnostic.Test, "DynamicParams")]
-    public class TestDynamicParams : CmdletWithDynamicParams
+    public class TestDynamicParams : Cmdlet, IDynamicParameters
     {
-        protected DynamicParameter<string> @string = new DynamicParameter<string>("String");
-        protected DynamicParameter<string> @int = new DynamicParameter<string>("Int");
+        //protected DynamicParameter<string> @string = new DynamicParameter<string>("String");
+        //protected DynamicParameter<string> @int = new DynamicParameter<string>("Int");
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
@@ -23,24 +23,51 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
+            Console.WriteLine("03.12.15 10:30");
             Console.WriteLine(InputObject.BaseObject.GetType().Name);
         }
 
-        public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
+        //public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
+        //{
+        //    get
+        //    {
+        //        if (InputObject.BaseObject is int)
+        //        {
+        //            Console.WriteLine("InputObject is an int.");
+        //            yield return @int.RuntimeDefinedParameter;
+        //        }
+        //        if (InputObject.BaseObject is string)
+        //        {
+        //            Console.WriteLine("InputObject is a string.");
+        //            yield return @string.RuntimeDefinedParameter;
+        //        }
+        //    }
+        //}
+
+        public object GetDynamicParameters()
         {
-            get
+            var dynamicParameters = new RuntimeDefinedParameterDictionary();
+
+            if (InputObject != null)
             {
-                if (InputObject.BaseObject is int)
+                var parameterAttribute = new ParameterAttribute();
+                var attributes = new System.Collections.ObjectModel.Collection<Attribute>() { parameterAttribute };
+
+                int dummy;
+
+                if (int.TryParse(InputObject.BaseObject.ToString(), out dummy))
                 {
-                    Console.WriteLine("InputObject is an int.");
-                    yield return @int.RuntimeDefinedParameter;
+                    var @int = new RuntimeDefinedParameter("Int", typeof(string), attributes);
+                    dynamicParameters.Add("Int", @int);
                 }
-                if (InputObject.BaseObject is string)
+                else
                 {
-                    Console.WriteLine("InputObject is a string.");
-                    yield return @string.RuntimeDefinedParameter;
+                    var @string = new RuntimeDefinedParameter("String", typeof(string), attributes);
+                    dynamicParameters.Add("String", @string);
                 }
             }
+
+            return dynamicParameters;
         }
     }
 }
