@@ -43,6 +43,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true)]
+        [Alias("Range")]
         public PSObject ID
         {
             get;
@@ -167,7 +168,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             if (DataItem)
             {
-                var dataItem = new DataItemQueryElement(GetElementID(), Name, GetIndentationLevel());
+                var dataItem = new DataItemQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
 
                 dataItem.Properties.DataItemLinkType = DataItemLinkType;
                 dataItem.Properties.DataItemTable = DataItemTable;
@@ -178,7 +179,7 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (Column)
             {
-                var column = new ColumnQueryElement(GetElementID(), Name, GetIndentationLevel());
+                var column = new ColumnQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
 
                 column.Properties.DataSource = DataSource;
                 column.Properties.Description = Description;
@@ -199,7 +200,7 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (Filter)
             {
-                var filter = new FilterQueryElement(GetElementID(), Name, GetIndentationLevel());
+                var filter = new FilterQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
 
                 filter.Properties.DataSource = DataSource;
                 filter.Properties.Description = Description;
@@ -210,25 +211,6 @@ namespace UncommonSense.CBreeze.Automation
             {
                 throw new ArgumentOutOfRangeException("Don't know how to create an element of this type.");
             }
-        }
-
-        protected int GetElementID()
-        {
-            if (ID.BaseObject is int)
-            {
-                return (int)ID.BaseObject;
-            }
-            else if (ID.BaseObject is IEnumerable<int>)
-            {
-                var range = ID.BaseObject as IEnumerable<int>;
-
-                if (range.Contains(GetQuery().ID))
-                    range = 1.To(int.MaxValue);
-
-                return range.Except(GetElementIDs()).First();
-            }
-
-            throw new ArgumentOutOfRangeException("Cannot determine ID.");
         }
 
         protected Query GetQuery()
