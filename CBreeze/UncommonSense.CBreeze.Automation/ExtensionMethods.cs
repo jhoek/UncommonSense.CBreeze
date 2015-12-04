@@ -9,6 +9,27 @@ namespace UncommonSense.CBreeze.Automation
 {
     public static class ExtensionMethods
     {
+        public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, int objectID = 0)
+        {
+            if (id.BaseObject is int)
+            {
+                return (int)id.BaseObject;
+            }
+
+            if (id.BaseObject is IEnumerable<int>)
+            {
+                var range = id.BaseObject as IEnumerable<int>;
+
+                if (objectID != 0)
+                    if (range.Contains(objectID))
+                        range = 1.To(int.MaxValue);
+
+                return range.Except(idsInUse ?? Enumerable.Empty<int>()).First();
+            }
+
+            throw new ArgumentOutOfRangeException("Cannot determine ID.");
+        }
+
         public static Parameters GetParameters(this PSObject inputObject)
         {
             if (inputObject.BaseObject is Parameters)
