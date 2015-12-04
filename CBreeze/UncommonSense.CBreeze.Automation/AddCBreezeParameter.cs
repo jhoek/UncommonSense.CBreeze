@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -45,9 +46,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
+        [Parameter(Mandatory = true)]
+        [Alias("Range")]
+        public PSObject ID
         {
             get;
             set;
@@ -295,10 +296,20 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetParameterID(PSObject inputObject)
         {
-            if (ID != 0)
-                return ID;
+            return ID.GetID(inputObject.GetParameterIDs().Union(inputObject.GetVariableIDs()), GetContainingID());
+        }
 
-            return Range.Except(inputObject.GetParameterIDs()).Except(inputObject.GetVariableIDs()).First();
+        protected int GetContainingID()
+        {
+            var result = 0;
+
+            TypeSwitch.Do(
+                InputObject.BaseObject,
+                TypeSwitch.Case<Parameters>(i => result = i.Container.ID),
+                TypeSwitch.Case<IHasParameters>(i=>result = i.ID)
+                );
+
+            return result;
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
