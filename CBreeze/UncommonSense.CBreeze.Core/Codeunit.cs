@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
             : base(id, name)
         {
             Properties = new CodeunitProperties();
-            Code = new Code();
+            Code = new Code(this);
         }
 
         public override ObjectType Type

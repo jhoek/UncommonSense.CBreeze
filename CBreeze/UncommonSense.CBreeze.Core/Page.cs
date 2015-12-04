@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
         {
             Properties = new PageProperties();
             Controls = new PageControls(this);
-            Code = new Code();
+            Code = new Code(this);
         }
 
         public override ObjectType Type

@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
             Fields = new TableFields();
             Keys = new TableKeys();
             FieldGroups = new TableFieldGroups();
-            Code = new Code();
+            Code = new Code(this);
         }
 
         public override ObjectType Type

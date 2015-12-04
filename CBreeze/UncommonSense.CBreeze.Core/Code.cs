@@ -15,14 +15,21 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Code
+    public partial class Code : IHasVariables
     {
-        internal Code()
+        internal Code(Object @object)
         {
-            Documentation = new Documentation();
-            Events = new Events();
-            Functions = new Functions();
-            Variables = new Variables();
+            Object = @object;
+            Documentation = new Documentation(this);
+            Events = new Events(this);
+            Functions = new Functions(this);
+            Variables = new Variables(this);
+        }
+
+        public Object Object
+        {
+            get;
+            protected set;
         }
 
         public Documentation Documentation

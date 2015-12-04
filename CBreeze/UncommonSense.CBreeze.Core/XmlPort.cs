@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Core
             Properties = new XmlPortProperties();
             Nodes = new XmlPortNodes();
             RequestPage = new XmlPortRequestPage(this);
-            Code = new Code();
+            Code = new Code(this);
         }
 
         public override ObjectType Type

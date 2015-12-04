@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
             Elements = new ReportElements();
             RequestPage = new ReportRequestPage(this);
             Labels = new ReportLabels();
-            Code = new Code();
+            Code = new Code(this);
             RdlData = new RdlData();
 #if NAV2015
             WordLayout = new WordLayout();
