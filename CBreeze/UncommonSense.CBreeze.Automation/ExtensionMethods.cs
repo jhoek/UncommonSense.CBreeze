@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     public static class ExtensionMethods
     {
-        public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, int containingID = 0)
+        public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, int containingID = 0, IEnumerable<int> alternativeRange = null)
         {
             if (id.BaseObject is int)
             {
@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Automation
                 // or e.g. a function ID (in case of parameters). 
                 if (containingID != 0)
                     if (range.Contains(containingID))
-                        range = 1.To(int.MaxValue);
+                        range = (alternativeRange ?? 1.To(int.MaxValue));
 
                 return range.Except(idsInUse ?? Enumerable.Empty<int>()).First();
             }
