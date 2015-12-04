@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             Description = new DynamicParameter<string>("Description");
             Ellipsis = new DynamicParameter<bool?>("Ellipsis");
             Enabled = new DynamicParameter<string>("Enabled");
-            ID = new DynamicParameter<int?>("ID", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] {"ID"});
+            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] {"Range"});
             Image = new DynamicParameter<string>("Image");
             InFooterBar = new DynamicParameter<bool?>("InFooterBar");
             IsHeader = new DynamicParameter<bool?>("IsHeader");
@@ -26,7 +26,7 @@ namespace UncommonSense.CBreeze.Automation
             Promoted = new DynamicParameter<bool?>("Promoted");
             PromotedCategory = new DynamicParameter<Core.PromotedCategory?>("PromotedCategory");
             PromotedIsBig = new DynamicParameter<bool?>("PromotedIsBig");
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
+            //Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
             RunObjectType = new DynamicParameter<Core.RunObjectType?>("RunObjectType");
             RunObjectID = new DynamicParameter<int?>("RunObjectID");
             RunPageMode = new DynamicParameter<Core.RunPageMode?>("RunPageMode");
@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<int?> ID
+        protected DynamicParameter<PSObject> ID
         {
             get;
             set;
@@ -142,11 +142,11 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<IEnumerable<int>> Range
-        {
-            get;
-            set;
-        }
+        //protected DynamicParameter<IEnumerable<int>> Range
+        //{
+        //    get;
+        //    set;
+        //}
 
         protected DynamicParameter<RunObjectType?> RunObjectType
         {
@@ -204,19 +204,29 @@ namespace UncommonSense.CBreeze.Automation
                 WriteObject(pageAction);
         }
 
+        protected IEnumerable<int> IDsInUse
+        {
+            get
+            {
+                return Page.Actions.Select(a => a.ID).Union(Page.Controls.Select(c => c.ID));
+            }
+        }
+
         protected PageActionBase CreatePageAction()
         {
+            var id = ID.Value.GetID(IDsInUse, Page.ID);
+
             switch (Type.Value)
             {
                 case PageActionBaseType.ActionContainer:
-                    var pageActionContainer = new PageActionContainer(GetPageActionID(), 0);
+                    var pageActionContainer = new PageActionContainer(id, 0);
                     pageActionContainer.Properties.ActionContainerType = ContainerType.Value;
                     pageActionContainer.Properties.Description = Description.Value;
                     pageActionContainer.Properties.Name = Name.Value;
                     return pageActionContainer;
 
                 case PageActionBaseType.ActionGroup:
-                    var pageActionGroup = new PageActionGroup(GetPageActionID(), ParentAction.Value.IndentationLevel + 1);
+                    var pageActionGroup = new PageActionGroup(id, ParentAction.Value.IndentationLevel + 1);
                     pageActionGroup.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionGroup.Properties.Description = Description.Value;
                     pageActionGroup.Properties.Enabled = Enabled.Value;
@@ -226,7 +236,7 @@ namespace UncommonSense.CBreeze.Automation
                     return pageActionGroup;
 
                 case PageActionBaseType.Action:
-                    var pageAction = new PageAction(GetPageActionID(), ParentAction.Value.IndentationLevel + 1);
+                    var pageAction = new PageAction(id, ParentAction.Value.IndentationLevel + 1);
                     pageAction.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageAction.Properties.Description = Description.Value;
                     pageAction.Properties.Ellipsis = Ellipsis.Value;
@@ -248,7 +258,7 @@ namespace UncommonSense.CBreeze.Automation
                     return pageAction;
 
                 case PageActionBaseType.Separator:
-                    var pageActionSeparator = new PageActionSeparator(GetPageActionID(), ParentAction.Value.IndentationLevel + 1);
+                    var pageActionSeparator = new PageActionSeparator(id, ParentAction.Value.IndentationLevel + 1);
                     pageActionSeparator.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionSeparator.Properties.IsHeader = IsHeader.Value;
                     return pageActionSeparator;
@@ -258,28 +268,28 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected int GetPageActionID()
-        {
-            if (ID.Value.HasValue)
-                return ID.Value.Value;
+        //protected int GetPageActionID()
+        //{
+        //    if (ID.Value.HasValue)
+        //        return ID.Value.Value;
 
-            var range = Range.Value;
+        //    var range = Range.Value;
 
-            if (Range.Value.Contains(Page.ID))
-                range = 1.To(int.MaxValue);
+        //    if (Range.Value.Contains(Page.ID))
+        //        range = 1.To(int.MaxValue);
 
-            var controlIDs = Page.Controls.Select(c => c.ID);
-            var actionIDs = Page.Properties.ActionList.Select(a => a.ID);
+        //    var controlIDs = Page.Controls.Select(c => c.ID);
+        //    var actionIDs = Page.Properties.ActionList.Select(a => a.ID);
 
-            return range.Except(controlIDs).Except(actionIDs).First();
-        }
+        //    return range.Except(controlIDs).Except(actionIDs).First();
+        //}
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
             {
                 yield return ID.RuntimeDefinedParameter;
-                yield return Range.RuntimeDefinedParameter;
+                //yield return Range.RuntimeDefinedParameter;
 
                 switch (Type.Value)
                 {
