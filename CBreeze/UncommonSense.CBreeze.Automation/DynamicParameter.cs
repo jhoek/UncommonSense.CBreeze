@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     public class DynamicParameter<T>
     {
-        public DynamicParameter(string name, bool mandatory = false, bool valueFromPipeline = false, int position = 0, T defaultValue = default(T), int? minRange = null, int? maxRange = null, string[] parameterSetNames = null)
+        public DynamicParameter(string name, bool mandatory = false, bool valueFromPipeline = false, int position = 0, T defaultValue = default(T), int? minRange = null, int? maxRange = null, string[] parameterSetNames = null, string[] aliases = null)
         {
             var attributes = new Collection<Attribute>();
 
@@ -26,6 +26,12 @@ namespace UncommonSense.CBreeze.Automation
                 parameterAttribute.Position = position;
                 parameterAttribute.ParameterSetName = parameterSetName;
                 attributes.Add(parameterAttribute);
+            }
+
+            if (aliases != null)
+            {
+                var aliasAttribute = new AliasAttribute(aliases);
+                attributes.Add(aliasAttribute);
             }
 
             if (minRange.HasValue && maxRange.HasValue)
