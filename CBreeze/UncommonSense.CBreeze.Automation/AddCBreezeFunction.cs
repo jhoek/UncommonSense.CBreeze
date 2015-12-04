@@ -17,16 +17,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "Range")]
-        public IEnumerable<int> Range
+        [Parameter(Mandatory = true)]
+        [Alias("Range")]
+        public PSObject ID
         {
             get;
             set;
@@ -130,12 +123,8 @@ namespace UncommonSense.CBreeze.Automation
             function.ReturnValue.DataLength = ReturnValueDataLength;
             function.ReturnValue.Dimensions = ReturnValueDimensions;
 
-        private int GetFunctionID(PSObject inputObject)
-        {
-            if (ID != 0)
-                return ID;
-
-            return Range.Except(GetFunctions(inputObject).Select(f => f.ID)).First();
+            if (PassThru)
+                WriteObject(function);
         }
 
         private Functions GetFunctions(PSObject inputObject)
