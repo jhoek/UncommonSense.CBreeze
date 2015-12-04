@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Automation
     {
         public AddCBreezeParameter()
         {
-            OptionalDataLength = new DynamicParameter<int>("DataLength", false, minRange: 1, maxRange:int.MaxValue);
+            OptionalDataLength = new DynamicParameter<int>("DataLength", false, minRange: 1, maxRange: int.MaxValue);
             MandatoryDataLength = new DynamicParameter<int>("DataLength", true, minRange: 1, maxRange: int.MaxValue);
             IntegerSubType = new DynamicParameter<int>("SubType", true, minRange: 1, maxRange: int.MaxValue);
             OptionString = new DynamicParameter<string>("OptionString", false);
