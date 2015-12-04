@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject[] InputObject
+        public PSObject InputObject
         {
             get;
             set;
@@ -150,13 +150,10 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            foreach (var inputObject in InputObject)
-            {
-                var variable = inputObject.GetVariables().Add(CreateVariable(inputObject));
+            var variable = InputObject.GetVariables().Add(CreateVariable(InputObject));
 
-                if (PassThru)
-                    WriteObject(variable);
-            }
+            if (PassThru)
+                WriteObject(variable);
         }
 
         protected Variable CreateVariable(PSObject inputObject)

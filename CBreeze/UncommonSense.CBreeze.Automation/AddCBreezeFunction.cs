@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Automation
     public class AddCBreezeFunction : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject[] InputObject
+        public PSObject InputObject
         {
             get;
             set;
@@ -118,24 +118,17 @@ namespace UncommonSense.CBreeze.Automation
                 }
             }
 
-            foreach (var inputObject in InputObject)
-            {
-                var function = GetFunctions(inputObject).Add(new Function(GetFunctionID(inputObject), Name));
-                function.Properties.Local = Local;
-                function.Properties.FunctionType = FunctionType;
-                function.Properties.HandlerFunctions = HandlerFunctions;
-                function.Properties.TransactionModel = TransactionModel;
+            var functions = GetFunctions(InputObject);
+            var function = functions.Add(new Function(ID.GetID(functions.Select(f => f.ID), functions.Code.Object.ID), Name));
+            function.Properties.Local = Local;
+            function.Properties.FunctionType = FunctionType;
+            function.Properties.HandlerFunctions = HandlerFunctions;
+            function.Properties.TransactionModel = TransactionModel;
 
-                function.ReturnValue.Name = ReturnValueName;
-                function.ReturnValue.Type = ReturnValueType;
-                function.ReturnValue.DataLength = ReturnValueDataLength;
-                function.ReturnValue.Dimensions = ReturnValueDimensions;
-
-                if (PassThru)
-                    WriteObject(function);
-            }
-        }
-
+            function.ReturnValue.Name = ReturnValueName;
+            function.ReturnValue.Type = ReturnValueType;
+            function.ReturnValue.DataLength = ReturnValueDataLength;
+            function.ReturnValue.Dimensions = ReturnValueDimensions;
 
         private int GetFunctionID(PSObject inputObject)
         {
