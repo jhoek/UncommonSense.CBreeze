@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Event : IHasParameters
+    public partial class Event : IHasParameters, IHasVariables
     {
         public Event(int sourceID, string sourceName, int id, string name)
         {
@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Core
             SourceName = sourceName;
             CodeLines = new CodeLines();
             Parameters = new Parameters();
-            Variables = new Variables();
+            Variables = new Variables(this);
         }
 
         public int SourceID

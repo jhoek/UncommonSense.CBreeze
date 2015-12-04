@@ -95,6 +95,7 @@
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
+    <Compile Include="IHasVariables.cs" />
     <Compile Include="IPageExtensionMethods.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Code.cs" />

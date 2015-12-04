@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Function : KeyedItem<int>, IHasName, IHasParameters
+    public partial class Function : KeyedItem<int>, IHasName, IHasParameters, IHasVariables
     {
         public Function(int id, string name)
         {
@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Core
             Parameters = new Parameters();
             Properties = new FunctionProperties();
             ReturnValue = new FunctionReturnValue();
-            Variables = new Variables();
+            Variables = new Variables(this);
         }
 
         public string Name

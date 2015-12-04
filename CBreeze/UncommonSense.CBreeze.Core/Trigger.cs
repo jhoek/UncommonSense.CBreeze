@@ -15,12 +15,12 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Trigger
+    public partial class Trigger : IHasVariables
     {
         public Trigger()
         {
             CodeLines = new CodeLines();
-            Variables = new Variables();
+            Variables = new Variables(this);
         }
 
         public CodeLines CodeLines
