@@ -62,7 +62,6 @@ namespace UncommonSense.CBreeze.Automation
             Numeric = new DynamicParameter<bool?>("Numeric");
             OptionString = new DynamicParameter<string>("OptionString");
             Owner = new DynamicParameter<string>("Owner");
-            //Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement");
             SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
             StandardDayTimeUnit = new DynamicParameter<Core.StandardDayTimeUnit?>("StandardDayTimeUnit");
@@ -88,21 +87,6 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-
-        //[Parameter(ParameterSetName = "Range")]
-        //public IEnumerable<int> Range
-        //{
-        //    get;
-        //    set;
-        //}
-
-        //[Parameter(ParameterSetName = "No")]
-        //[ValidateRange(1, int.MaxValue)]
-        //public int No
-        //{
-        //    get;
-        //    set;
-        //}
 
         [Parameter(Mandatory = true, Position = 0)]
         public string Name
@@ -438,12 +422,6 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-
-        //protected DynamicParameter<IEnumerable<int>> Range
-        //{
-        //    get;
-        //    set;
-        //}
 
         protected DynamicParameter<int?> SignDisplacement
         {
@@ -1014,7 +992,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                //yield return Range.RuntimeDefinedParameter;
                 yield return ID.RuntimeDefinedParameter;
                 yield return Enabled.RuntimeDefinedParameter;
 

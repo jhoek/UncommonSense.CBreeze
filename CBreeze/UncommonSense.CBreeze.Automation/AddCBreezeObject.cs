@@ -368,12 +368,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<IEnumerable<int>> Range
-        {
-            get;
-            set;
-        }
-
         protected DynamicParameter<ReadState?> ReadState
         {
             get;
@@ -712,7 +706,6 @@ namespace UncommonSense.CBreeze.Automation
             {
                 yield return Application.RuntimeDefinedParameter;
                 yield return ID.RuntimeDefinedParameter;
-                //yield return Range.RuntimeDefinedParameter;
                 yield return DateTime.RuntimeDefinedParameter;
                 yield return Modified.RuntimeDefinedParameter;
                 yield return VersionList.RuntimeDefinedParameter;

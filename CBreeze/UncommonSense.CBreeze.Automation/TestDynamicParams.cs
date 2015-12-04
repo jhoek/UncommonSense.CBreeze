@@ -11,9 +11,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsDiagnostic.Test, "DynamicParams")]
     public class TestDynamicParams : Cmdlet, IDynamicParameters
     {
-        //protected DynamicParameter<string> @string = new DynamicParameter<string>("String");
-        //protected DynamicParameter<string> @int = new DynamicParameter<string>("Int");
-
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {
@@ -26,23 +23,6 @@ namespace UncommonSense.CBreeze.Automation
             Console.WriteLine("03.12.15 10:30");
             Console.WriteLine(InputObject.BaseObject.GetType().Name);
         }
-
-        //public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
-        //{
-        //    get
-        //    {
-        //        if (InputObject.BaseObject is int)
-        //        {
-        //            Console.WriteLine("InputObject is an int.");
-        //            yield return @int.RuntimeDefinedParameter;
-        //        }
-        //        if (InputObject.BaseObject is string)
-        //        {
-        //            Console.WriteLine("InputObject is a string.");
-        //            yield return @string.RuntimeDefinedParameter;
-        //        }
-        //    }
-        //}
 
         public object GetDynamicParameters()
         {

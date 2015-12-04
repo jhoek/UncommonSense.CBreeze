@@ -26,7 +26,6 @@ namespace UncommonSense.CBreeze.Automation
             Promoted = new DynamicParameter<bool?>("Promoted");
             PromotedCategory = new DynamicParameter<Core.PromotedCategory?>("PromotedCategory");
             PromotedIsBig = new DynamicParameter<bool?>("PromotedIsBig");
-            //Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
             RunObjectType = new DynamicParameter<Core.RunObjectType?>("RunObjectType");
             RunObjectID = new DynamicParameter<int?>("RunObjectID");
             RunPageMode = new DynamicParameter<Core.RunPageMode?>("RunPageMode");
@@ -141,12 +140,6 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-
-        //protected DynamicParameter<IEnumerable<int>> Range
-        //{
-        //    get;
-        //    set;
-        //}
 
         protected DynamicParameter<RunObjectType?> RunObjectType
         {
@@ -268,28 +261,11 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        //protected int GetPageActionID()
-        //{
-        //    if (ID.Value.HasValue)
-        //        return ID.Value.Value;
-
-        //    var range = Range.Value;
-
-        //    if (Range.Value.Contains(Page.ID))
-        //        range = 1.To(int.MaxValue);
-
-        //    var controlIDs = Page.Controls.Select(c => c.ID);
-        //    var actionIDs = Page.Properties.ActionList.Select(a => a.ID);
-
-        //    return range.Except(controlIDs).Except(actionIDs).First();
-        //}
-
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
             {
                 yield return ID.RuntimeDefinedParameter;
-                //yield return Range.RuntimeDefinedParameter;
 
                 switch (Type.Value)
                 {

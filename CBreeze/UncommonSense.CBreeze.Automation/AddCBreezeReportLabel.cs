@@ -25,13 +25,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        //[Parameter(Mandatory = true, ParameterSetName = "Range")]
-        //public IEnumerable<int> Range
-        //{
-        //    get;
-        //    set;
-        //}
-
         [Parameter(Mandatory = true)]
         public string Name
         {

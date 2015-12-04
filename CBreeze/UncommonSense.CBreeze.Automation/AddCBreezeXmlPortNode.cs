@@ -390,7 +390,6 @@ namespace UncommonSense.CBreeze.Automation
             node.Properties.AutoSave = AutoSave;
             node.Properties.AutoUpdate = AutoUpdate;
             node.Properties.CalcFields.AddRange(CalcFields ?? new string[] { });
-            // FIXME: node.Properties.LinkFields
             node.Properties.LinkTable = LinkTable;
             node.Properties.LinkTableForceInsert = LinkTableForceInsert;
             node.Properties.MaxOccurs = MaxOccurs;
@@ -450,7 +449,6 @@ namespace UncommonSense.CBreeze.Automation
             node.Properties.AutoSave = AutoSave;
             node.Properties.AutoUpdate = AutoUpdate;
             node.Properties.CalcFields.AddRange(CalcFields ?? new string[] { });
-            // FIXME: node.Properties.LinkFields
             node.Properties.LinkTable = LinkTable;
             node.Properties.LinkTableForceInsert = LinkTableForceInsert;
             node.Properties.Occurrence = Occurrence;
