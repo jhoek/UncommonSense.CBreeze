@@ -17,8 +17,15 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class Functions : IntegerKeyedAndNamedContainer<Function>
     {
-        internal Functions()
+        internal Functions(Code code)
         {
+            Code = code;
+        }
+
+        public Code Code
+        {
+            get;
+            protected set;
         }
 
         public override void ValidateName(Function item)
