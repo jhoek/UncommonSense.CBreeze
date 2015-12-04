@@ -18,8 +18,15 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class Events : Collection<Event>
     {
-        internal Events()
+        internal Events(Code code)
         {
+            Code = code;
+        }
+
+        public Code Code
+        {
+            get;
+            protected set;
         }
 
         public new Event Add(Event item)
