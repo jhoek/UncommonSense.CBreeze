@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Automation
             FileName = new DynamicParameter<string>("FileName", false);
             Format = new DynamicParameter<XmlPortFormat?>("Format", false);
             FormatEvaluate = new DynamicParameter<Core.FormatEvaluate?>("FormatEvaluate", false);
-            ID = new DynamicParameter<int>("ID", true, parameterSetNames: new string[] { "ID" });
+            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] { "Range" }); 
             InlineSchema = new DynamicParameter<bool?>("InlineSchema", false);
             InsertAllowed = new DynamicParameter<bool?>("InsertAllowed", false);
             LinkedInTransaction = new DynamicParameter<bool?>("LinkedInTransaction", false);
@@ -55,7 +55,6 @@ namespace UncommonSense.CBreeze.Automation
             PopulateAllFields = new DynamicParameter<bool?>("PopulateAllFields", false);
             PreserveWhitespace = new DynamicParameter<bool?>("PreserveWhitespace", false);
             ProcessingOnly = new DynamicParameter<bool?>("ProcessingOnly", false);
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] { "Range" });
             ReadState = new DynamicParameter<Core.ReadState?>("ReadState", false);
             RecordSeparator = new DynamicParameter<string>("RecordSeparator", false);
             RefreshOnActivate = new DynamicParameter<bool?>("RefreshOnActivate", false);
@@ -63,14 +62,14 @@ namespace UncommonSense.CBreeze.Automation
             ShowFilter = new DynamicParameter<bool?>("ShowFilter", false);
             ShowPrintStatus = new DynamicParameter<bool?>("ShowPrintStatus", false);
             SingleInstance = new DynamicParameter<bool?>("SingleInstance", false);
-            SourceTable = new DynamicParameter<int?>("SourceTable", false, minRange:1, maxRange:int.MaxValue);
+            SourceTable = new DynamicParameter<int?>("SourceTable", false, minRange: 1, maxRange: int.MaxValue);
             SourceTableTemporary = new DynamicParameter<bool?>("SourceTableTemporary", false);
             SubType = new DynamicParameter<CodeunitSubType?>("SubType", false);
-            TableNo = new DynamicParameter<int?>("TableNo", false, minRange:1, maxRange:int.MaxValue);
+            TableNo = new DynamicParameter<int?>("TableNo", false, minRange: 1, maxRange: int.MaxValue);
             TableSeparator = new DynamicParameter<string>("TableSeparator", false);
             TestIsolation = new DynamicParameter<TestIsolation?>("TestIsolation", false);
             TextEncoding = new DynamicParameter<Core.TextEncoding?>("TextEncoding", false);
-            TopNoOfRows = new DynamicParameter<int?>("TopNoOfRows", false, minRange:0, maxRange:int.MaxValue);
+            TopNoOfRows = new DynamicParameter<int?>("TopNoOfRows", false, minRange: 0, maxRange: int.MaxValue);
             TransactionType = new DynamicParameter<TransactionType?>("TransactionType", false);
             UseDefaultNamespace = new DynamicParameter<bool?>("UseDefaultNamespace", false);
             UseLax = new DynamicParameter<bool?>("UseLax", false);
@@ -261,7 +260,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<int> ID
+        protected DynamicParameter<PSObject> ID
         {
             get;
             set;
@@ -512,7 +511,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (Type)
             {
                 case ObjectType.Table:
-                    var table = Application.Value.Tables.Add(new Table(GetObjectID(), Name));
+                    var table = Application.Value.Tables.Add(new Table(ID.Value.GetID(GetExistingObjectIDs(Application.Value), 0), Name));
 
                     table.ObjectProperties.DateTime = DateTime.Value;
                     table.ObjectProperties.Modified = Modified.Value;
@@ -536,7 +535,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Page:
-                    var page = Application.Value.Pages.Add(new Page(GetObjectID(), Name));
+                    var page = Application.Value.Pages.Add(new Page(ID.Value.GetID(GetExistingObjectIDs(Application.Value), 0), Name));
 
                     page.ObjectProperties.DateTime = DateTime.Value;
                     page.ObjectProperties.Modified = Modified.Value;
@@ -571,7 +570,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Report:
-                    var report = Application.Value.Reports.Add(new Report(GetObjectID(), Name));
+                    var report = Application.Value.Reports.Add(new Report(ID.Value.GetID(GetExistingObjectIDs(Application.Value), 0), Name));
 
                     report.ObjectProperties.DateTime = DateTime.Value;
                     report.ObjectProperties.Modified = Modified.Value;
@@ -599,7 +598,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Codeunit:
-                    var codeunit = Application.Value.Codeunits.Add(new Codeunit(GetObjectID(), Name));
+                    var codeunit = Application.Value.Codeunits.Add(new Codeunit(ID.Value.GetID(GetExistingObjectIDs(Application.Value), 0), Name));
 
                     codeunit.ObjectProperties.DateTime = DateTime.Value;
                     codeunit.ObjectProperties.Modified = Modified.Value;
@@ -617,7 +616,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.XmlPort:
-                    var xmlPort = Application.Value.XmlPorts.Add(new XmlPort(GetObjectID(), Name));
+                    var xmlPort = Application.Value.XmlPorts.Add(new XmlPort(ID.Value.GetID(GetExistingObjectIDs(Application.Value), 0), Name));
 
                     xmlPort.ObjectProperties.DateTime = DateTime.Value;
                     xmlPort.ObjectProperties.Modified = Modified.Value;
@@ -652,7 +651,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.Query:
-                    var query = Application.Value.Queries.Add(new Query(GetObjectID(), Name));
+                    var query = Application.Value.Queries.Add(new Query(ID.Value.GetID(GetExistingObjectIDs(Application.Value), 0), Name));
 
                     query.ObjectProperties.DateTime = DateTime.Value;
                     query.ObjectProperties.Modified = Modified.Value;
@@ -671,7 +670,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case ObjectType.MenuSuite:
-                    var menusuite = Application.Value.MenuSuites.Add(new MenuSuite(GetObjectID(), Name));
+                    var menusuite = Application.Value.MenuSuites.Add(new MenuSuite(ID.Value.GetID(GetExistingObjectIDs(Application.Value), 0), Name));
 
                     menusuite.ObjectProperties.DateTime = DateTime.Value;
                     menusuite.ObjectProperties.Modified = Modified.Value;
@@ -682,14 +681,6 @@ namespace UncommonSense.CBreeze.Automation
 
                     break;
             }
-        }
-
-        protected int GetObjectID()
-        {
-            if (ID.Value != 0)
-                return ID.Value;
-
-            return Range.Value.Except(GetExistingObjectIDs(Application.Value)).First();
         }
 
         protected IEnumerable<int> GetExistingObjectIDs(Application application)
@@ -721,7 +712,7 @@ namespace UncommonSense.CBreeze.Automation
             {
                 yield return Application.RuntimeDefinedParameter;
                 yield return ID.RuntimeDefinedParameter;
-                yield return Range.RuntimeDefinedParameter;
+                //yield return Range.RuntimeDefinedParameter;
                 yield return DateTime.RuntimeDefinedParameter;
                 yield return Modified.RuntimeDefinedParameter;
                 yield return VersionList.RuntimeDefinedParameter;
