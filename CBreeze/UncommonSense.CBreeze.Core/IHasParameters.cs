@@ -7,6 +7,11 @@ namespace UncommonSense.CBreeze.Core
 {
     public interface IHasParameters
     {
+        int ID
+        {
+            get;
+        }
+
         Parameters Parameters
         {
             get;
