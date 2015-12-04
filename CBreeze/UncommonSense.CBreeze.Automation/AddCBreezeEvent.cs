@@ -17,16 +17,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
+        [Parameter(Mandatory = true)]
         [ValidateRange(1, int.MaxValue)]
         public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "Range")]
-        public IEnumerable<int> Range
         {
             get;
             set;
@@ -62,18 +55,10 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var @event = GetEvents(InputObject).Add(new Event(SourceID, SourceName, GetEventID(InputObject), Name));
+            var @event = GetEvents(InputObject).Add(new Event(SourceID, SourceName, ID, Name));
             
             if (PassThru)
                 WriteObject(@event);
-        }
-
-        protected int GetEventID(PSObject inputObject)
-        {
-            if (ID != 0)
-                return ID;
-
-            return Range.Except(GetEvents(inputObject).Select(e => e.ID)).First();
         }
 
         protected Events GetEvents(PSObject inputObject)
