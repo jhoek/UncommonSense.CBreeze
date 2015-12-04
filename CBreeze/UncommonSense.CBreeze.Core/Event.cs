@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
             SourceID = sourceID;
             SourceName = sourceName;
             CodeLines = new CodeLines();
-            Parameters = new Parameters();
+            Parameters = new Parameters(this);
             Variables = new Variables(this);
         }
 

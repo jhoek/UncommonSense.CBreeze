@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
             ID = id;
             Name = name;
             CodeLines = new CodeLines();
-            Parameters = new Parameters();
+            Parameters = new Parameters(this);
             Properties = new FunctionProperties();
             ReturnValue = new FunctionReturnValue();
             Variables = new Variables(this);

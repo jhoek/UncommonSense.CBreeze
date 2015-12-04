@@ -17,8 +17,15 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class Parameters : IntegerKeyedAndNamedContainer<Parameter>
     {
-        internal Parameters()
+        internal Parameters(IHasParameters container)
         {
+            Container = container;
+        }
+
+        public IHasParameters Container
+        {
+            get;
+            protected set;
         }
 
         public override void ValidateName(Parameter item)
