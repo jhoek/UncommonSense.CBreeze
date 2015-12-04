@@ -17,19 +17,20 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
-        public int ID
+        [Parameter(Mandatory = true)]
+        [Alias("Range")]
+        public PSObject ID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "Range")]
-        public IEnumerable<int> Range
-        {
-            get;
-            set;
-        }
+        //[Parameter(Mandatory = true, ParameterSetName = "Range")]
+        //public IEnumerable<int> Range
+        //{
+        //    get;
+        //    set;
+        //}
 
         [Parameter(Mandatory = true)]
         public string Name
@@ -54,10 +55,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetReportLabelID()
         {
-            if (ID != 0)
-                return ID;
-
-            return Range.Except(Report.Labels.Select(l => l.ID)).First();
+            return ID.GetID(Report.Labels.Select(l => l.ID), Report.ID);
         }
 
         protected override void ProcessRecord()

@@ -35,7 +35,7 @@ namespace UncommonSense.CBreeze.Automation
             Enabled = new DynamicParameter<bool?>("Enabled");
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass");
-            ID = new DynamicParameter<int>("ID", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] { "ID" });
+            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] { "Range" });
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue");
             BooleanInitValue = new DynamicParameter<bool?>("InitValue");
             DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue");
@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Automation
             Numeric = new DynamicParameter<bool?>("Numeric");
             OptionString = new DynamicParameter<string>("OptionString");
             Owner = new DynamicParameter<string>("Owner");
-            Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
+            //Range = new DynamicParameter<IEnumerable<int>>("Range", true, parameterSetNames: new string[] { "Range" });
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement");
             SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
             StandardDayTimeUnit = new DynamicParameter<Core.StandardDayTimeUnit?>("StandardDayTimeUnit");
@@ -277,7 +277,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<int> ID
+        protected DynamicParameter<PSObject> ID
         {
             get;
             set;
@@ -439,11 +439,11 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<IEnumerable<int>> Range
-        {
-            get;
-            set;
-        }
+        //protected DynamicParameter<IEnumerable<int>> Range
+        //{
+        //    get;
+        //    set;
+        //}
 
         protected DynamicParameter<int?> SignDisplacement
         {
@@ -1007,32 +1007,14 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetTableFieldNo()
         {
-            if (ID.Value != 0)
-                return ID.Value;
-
-            var range = Range.Value;
-
-            if (Range.Value.Contains(Table.ID))
-            {
-                switch (PrimaryKeyFieldNoRange.IsPresent)
-                {
-                    case true:
-                        range = 1.To(int.MaxValue);
-                        break;
-                    case false:
-                        range = 10.To(int.MaxValue);
-                        break;
-                }
-            }
-
-            return range.Except(Table.Fields.Select(f => f.ID)).First();
+            return ID.Value.GetID(Table.Fields.Select(f => f.ID), Table.ID, PrimaryKeyFieldNoRange ? 1.To(int.MaxValue) : 10.To(int.MaxValue));
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
             {
-                yield return Range.RuntimeDefinedParameter;
+                //yield return Range.RuntimeDefinedParameter;
                 yield return ID.RuntimeDefinedParameter;
                 yield return Enabled.RuntimeDefinedParameter;
 
