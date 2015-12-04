@@ -18,18 +18,5 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class RunObjectLink : Collection<RunObjectLinkLine>
     {
-        public new RunObjectLinkLine Add(RunObjectLinkLine value)
-        {
-            InsertItem(Count, value);
-            return value;
-        }
-
-        public void AddRange(IEnumerable<RunObjectLinkLine> values)
-        {
-            foreach (var value in values)
-            {
-                Add(value);
-            }
-        }
     }
 }

@@ -18,18 +18,5 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class DataItemQueryElementTableFilter : Collection<DataItemQueryElementTableFilterLine>
     {
-        new public DataItemQueryElementTableFilterLine Add(DataItemQueryElementTableFilterLine value)
-        {
-            this.InsertItem(Count, value);
-            return value;
-        }
-
-        public void AddRange(IEnumerable<DataItemQueryElementTableFilterLine> values)
-        {
-            foreach (var value in values)
-            {
-                this.Add(value);
-            }
-        }
     }
 }
