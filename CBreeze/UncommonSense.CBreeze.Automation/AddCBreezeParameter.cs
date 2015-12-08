@@ -290,6 +290,19 @@ namespace UncommonSense.CBreeze.Automation
         protected int GetParameterID(PSObject inputObject)
         {
             return ID.GetID(inputObject.GetParameterIDs().Union(inputObject.GetVariableIDs()), GetContainingID());
+        protected int GetObjectID()
+        {
+            var iHasParameters = 
+                InputObject.BaseObject is Parameters ? 
+                (InputObject.BaseObject as Parameters).Container : 
+                (InputObject.BaseObject as IHasParameters);
+
+            if (iHasParameters is Function)
+                return (iHasParameters as Function).Container.Code.Object.ID;
+            if (iHasParameters is Event)
+                return (iHasParameters as Event).Container.Code.Object.ID;
+
+            return 0;
         }
 
         protected int GetContainingID()
