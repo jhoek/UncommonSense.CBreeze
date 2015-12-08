@@ -985,7 +985,10 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetTableFieldNo()
         {
-            return ID.Value.GetID(Table.Fields.Select(f => f.ID), Table.ID, PrimaryKeyFieldNoRange ? 1.To(int.MaxValue) : 10.To(int.MaxValue));
+            return ID.Value.GetID(
+                idsInUse: Table.Fields.Select(f => f.ID),
+                containingID: Table.ID,
+                alternativeRange: PrimaryKeyFieldNoRange ? 1.To(int.MaxValue) : 10.To(int.MaxValue));
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
