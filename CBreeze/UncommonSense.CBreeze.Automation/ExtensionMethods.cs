@@ -32,6 +32,26 @@ namespace UncommonSense.CBreeze.Automation
             throw new ArgumentOutOfRangeException("Cannot determine ID.");
         }
 
+        public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, bool useAlternativeRange = false, IEnumerable<int> alternativeRange = null)
+        {
+            if (id.BaseObject is int)
+            {
+                return (int)id.BaseObject;
+            }
+
+            if (id.BaseObject is IEnumerable<int>)
+            {
+                var range = id.BaseObject as IEnumerable<int>;
+
+                if (useAlternativeRange)
+                    range = (alternativeRange ?? 1.To(int.MaxValue));
+
+                return range.Except(idsInUse ?? Enumerable.Empty<int>()).First();
+            }
+
+            throw new ArgumentOutOfRangeException("Cannot determine ID.");
+        }
+
         public static Parameters GetParameters(this PSObject inputObject)
         {
             if (inputObject.BaseObject is Parameters)
