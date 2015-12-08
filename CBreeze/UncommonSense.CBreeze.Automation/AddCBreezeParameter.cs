@@ -289,7 +289,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetParameterID(PSObject inputObject)
         {
-            return ID.GetID(inputObject.GetParameterIDs().Union(inputObject.GetVariableIDs()), GetContainingID());
+            return ID.GetID(
+                idsInUse: inputObject.GetParameterIDs().Union(inputObject.GetVariableIDs()),
+                containingID: GetContainingID(),
+                objectID: GetObjectID());
+        }
+
         protected int GetObjectID()
         {
             var iHasParameters = 
