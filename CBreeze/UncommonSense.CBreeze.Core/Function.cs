@@ -34,6 +34,12 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public Functions Container
+        {
+            get;
+            internal set;
+        }
+
         public CodeLines CodeLines
         {
             get;

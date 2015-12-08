@@ -28,6 +28,18 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        protected override void InsertItem(int index, Function item)
+        {
+            base.InsertItem(index, item);
+            item.Container = this;
+        }
+
+        protected override void RemoveItem(int index)
+        {
+            this[index].Container = null;
+            base.RemoveItem(index);
+        }
+
         public override void ValidateName(Function item)
         {
             TestNameNotNullOrEmpty(item);

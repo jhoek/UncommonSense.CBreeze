@@ -52,6 +52,12 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public Events Container
+        {
+            get;
+            internal set;
+        }
+
         public CodeLines CodeLines
         {
             get;

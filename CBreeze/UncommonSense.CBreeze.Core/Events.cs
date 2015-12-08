@@ -29,6 +29,18 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        protected override void InsertItem(int index, Event item)
+        {
+            base.InsertItem(index, item);
+            item.Container = this;
+        }
+
+        protected override void RemoveItem(int index)
+        {
+            this[index].Container = null;
+            base.RemoveItem(index);
+        }
+
         public new Event Add(Event item)
         {
             base.Add(item);
