@@ -71,6 +71,14 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public PageControl ParentPageControl
+        {
+            get
+            {
+                return Container.Where(c => c.IndentationLevel == IndentationLevel - 1).Where(c => c.Index < Index).Last();
+            }
+        }
+
         public T AddChildPageControl<T>(T child, Position position) where T : PageControl
         {
             switch (position)
