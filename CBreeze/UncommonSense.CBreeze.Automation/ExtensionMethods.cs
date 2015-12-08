@@ -25,6 +25,7 @@ namespace UncommonSense.CBreeze.Automation
                 // or e.g. a function ID (in case of parameters). In multi-layered scenario's,
                 // such as function parameters, the containingID contains the function ID, 
                 // and the objectID contains the object ID.
+                // See also this gist: https://gist.github.com/jhoek/8988ffb441e4162c8b5e
 
                 if (containingID != 0)
                 {
