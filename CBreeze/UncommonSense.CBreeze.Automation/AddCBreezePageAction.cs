@@ -32,6 +32,9 @@ namespace UncommonSense.CBreeze.Automation
             RunPageOnRec = new DynamicParameter<bool?>("RunPageOnRec");
             RunPageViewKey = new DynamicParameter<string>("RunPageViewKey");
             RunPageViewOrder = new DynamicParameter<Order?>("RunPageViewOrder");
+#if NAV2015
+            Scope = new DynamicParameter<PageActionScope?>("Scope");
+#endif
             ShortcutKey = new DynamicParameter<string>("ShortcutKey");
             Visible = new DynamicParameter<string>("Visible");
         }
@@ -177,6 +180,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2015
+        protected DynamicParameter<PageActionScope?> Scope
+        {
+            get;
+            set;
+        }
+#endif
+
         protected DynamicParameter<string> ShortcutKey
         {
             get;
@@ -246,6 +257,9 @@ namespace UncommonSense.CBreeze.Automation
                     pageAction.Properties.RunPageOnRec = RunPageOnRec.Value;
                     pageAction.Properties.RunPageView.Key = RunPageViewKey.Value;
                     pageAction.Properties.RunPageView.Order = RunPageViewOrder.Value;
+#if NAV2015
+                    pageAction.Properties.Scope = Scope.Value;
+#endif
                     pageAction.Properties.ShortCutKey = ShortcutKey.Value;
                     pageAction.Properties.Visible = Visible.Value;
                     return pageAction;
@@ -303,6 +317,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return RunPageOnRec.RuntimeDefinedParameter;
                         yield return RunPageViewKey.RuntimeDefinedParameter;
                         yield return RunPageViewOrder.RuntimeDefinedParameter;
+#if NAV2015
+                        yield return Scope.RuntimeDefinedParameter;
+#endif
                         yield return ShortcutKey.RuntimeDefinedParameter;
                         yield return Visible.RuntimeDefinedParameter;
                         break;
