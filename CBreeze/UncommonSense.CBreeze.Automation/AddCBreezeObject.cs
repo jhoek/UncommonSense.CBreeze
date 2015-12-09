@@ -82,6 +82,9 @@ namespace UncommonSense.CBreeze.Automation
             UseRequestPage = new DynamicParameter<bool?>("UseRequestPage", false);
             UseSystemPrinter = new DynamicParameter<bool?>("UseSystemPrinter", false);
             VersionList = new DynamicParameter<string>("VersionList");
+#if NAV2015
+            WordMergeDataItem = new DynamicParameter<string>("WordMergeDataItem");
+#endif
             XmlVersionNo = new DynamicParameter<XmlVersionNo?>("XmlVersionNo", false);
 
             PassThru = true;
@@ -516,6 +519,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2015
+        protected DynamicParameter<string> WordMergeDataItem
+        {
+            get;
+            set;
+        }
+#endif
+
         protected DynamicParameter<XmlVersionNo?> XmlVersionNo
         {
             get;
@@ -610,6 +621,9 @@ namespace UncommonSense.CBreeze.Automation
                     report.Properties.TransactionType = TransactionType.Value;
                     report.Properties.UseRequestPage = UseRequestPage.Value;
                     report.Properties.UseSystemPrinter = UseSystemPrinter.Value;
+#if NAV2015
+                    report.Properties.WordMergeDataItem = WordMergeDataItem.Value;
+#endif
 
                     if (AutoCaption)
                         report.AutoCaption();
@@ -792,6 +806,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return TransactionType.RuntimeDefinedParameter;
                         yield return UseRequestPage.RuntimeDefinedParameter;
                         yield return UseSystemPrinter.RuntimeDefinedParameter;
+#if NAV2015
+                        yield return WordMergeDataItem.RuntimeDefinedParameter;
+#endif
                         break;
 
                     case ObjectType.Codeunit:
