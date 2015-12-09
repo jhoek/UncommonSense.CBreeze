@@ -418,8 +418,8 @@ namespace UncommonSense.CBreeze.Automation
             node.Properties.SourceField.FieldName = SourceFieldName;
 #if NAV2013R2
             node.Properties.Unbound = Unbound;
-            node.Properties.Width = Width;
 #endif
+            node.Properties.Width = Width;
 
             return node;
         }
