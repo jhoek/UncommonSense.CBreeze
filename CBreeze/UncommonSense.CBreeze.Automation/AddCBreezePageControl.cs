@@ -56,6 +56,9 @@ namespace UncommonSense.CBreeze.Automation
             ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
             ShowCaption = new DynamicParameter<bool?>("ShowCaption");
             ShowFilter = new DynamicParameter<bool?>("ShowFilter");
+#if NAV2015
+            ShowMandatory = new DynamicParameter<string>("ShowMandatory");
+#endif
             SourceExpr = new DynamicParameter<string>("SourceExpr", true);
             Style = new DynamicParameter<Core.Style?>("Style");
             StyleExpr = new DynamicParameter<string>("StyleExpr");
@@ -378,6 +381,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2015
+        protected DynamicParameter<string> ShowMandatory
+        {
+            get;
+            set;
+        }
+#endif
+
         protected DynamicParameter<string> SourceExpr
         {
             get;
@@ -579,6 +590,9 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.QuickEntry = QuickEntry.Value;
                     fieldPageControl.Properties.RowSpan = RowSpan.Value;
                     fieldPageControl.Properties.ShowCaption = ShowCaption.Value;
+#if NAV2015
+                    fieldPageControl.Properties.ShowMandatory = ShowMandatory.Value;
+#endif
                     fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
                     fieldPageControl.Properties.Style = Style.Value;
                     fieldPageControl.Properties.StyleExpr = StyleExpr.Value;
@@ -782,6 +796,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return QuickEntry.RuntimeDefinedParameter;
                         yield return RowSpan.RuntimeDefinedParameter;
                         yield return ShowCaption.RuntimeDefinedParameter;
+#if NAV2015
+                        yield return ShowMandatory.RuntimeDefinedParameter;
+#endif
                         yield return SourceExpr.RuntimeDefinedParameter;
                         yield return Style.RuntimeDefinedParameter;
                         yield return StyleExpr.RuntimeDefinedParameter;
