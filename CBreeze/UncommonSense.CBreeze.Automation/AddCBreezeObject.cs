@@ -40,7 +40,7 @@ namespace UncommonSense.CBreeze.Automation
             FileName = new DynamicParameter<string>("FileName", false);
             Format = new DynamicParameter<XmlPortFormat?>("Format", false);
             FormatEvaluate = new DynamicParameter<Core.FormatEvaluate?>("FormatEvaluate", false);
-            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] { "Range" }); 
+            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] { "Range" });
             InlineSchema = new DynamicParameter<bool?>("InlineSchema", false);
             InsertAllowed = new DynamicParameter<bool?>("InsertAllowed", false);
             LinkedInTransaction = new DynamicParameter<bool?>("LinkedInTransaction", false);
