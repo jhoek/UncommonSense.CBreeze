@@ -64,6 +64,7 @@
     <Compile Include="AddCBreezeFilter.cs" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
+    <Compile Include="SetCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="AddCBreezeObject.cs" />
     <Compile Include="AddCBreezeParameter.cs" />
