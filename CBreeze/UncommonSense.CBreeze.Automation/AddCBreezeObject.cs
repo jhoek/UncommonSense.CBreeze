@@ -57,6 +57,9 @@ namespace UncommonSense.CBreeze.Automation
             PasteIsValid = new DynamicParameter<bool?>("PasteIsValid", false);
             PopulateAllFields = new DynamicParameter<bool?>("PopulateAllFields", false);
             PreserveWhitespace = new DynamicParameter<bool?>("PreserveWhitespace", false);
+#if NAV2015
+            PreviewMode = new DynamicParameter<PreviewMode?>("PreviewMode");
+#endif
             ProcessingOnly = new DynamicParameter<bool?>("ProcessingOnly", false);
             ReadState = new DynamicParameter<Core.ReadState?>("ReadState", false);
             RecordSeparator = new DynamicParameter<string>("RecordSeparator", false);
@@ -373,6 +376,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2015
+        protected DynamicParameter<PreviewMode?> PreviewMode
+        {
+            get;
+            set;
+        }
+#endif
+
         protected DynamicParameter<bool?> ProcessingOnly
         {
             get;
@@ -591,6 +602,9 @@ namespace UncommonSense.CBreeze.Automation
                     report.Properties.PaperSourceDefaultPage = PaperSourceDefaultPage.Value;
                     report.Properties.PaperSourceFirstPage = PaperSourceFirstPage.Value;
                     report.Properties.PaperSourceLastPage = PaperSourceLastPage.Value;
+#if NAV2015
+                    report.Properties.PreviewMode = PreviewMode.Value;
+#endif
                     report.Properties.ProcessingOnly = ProcessingOnly.Value;
                     report.Properties.ShowPrintStatus = ShowPrintStatus.Value;
                     report.Properties.TransactionType = TransactionType.Value;
@@ -770,6 +784,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return PaperSourceDefaultPage.RuntimeDefinedParameter;
                         yield return PaperSourceFirstPage.RuntimeDefinedParameter;
                         yield return PaperSourceLastPage.RuntimeDefinedParameter;
+#if NAV2015
+                        yield return PreviewMode.RuntimeDefinedParameter;
+#endif
                         yield return ProcessingOnly.RuntimeDefinedParameter;
                         yield return ShowPrintStatus.RuntimeDefinedParameter;
                         yield return TransactionType.RuntimeDefinedParameter;
