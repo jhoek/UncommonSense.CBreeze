@@ -34,6 +34,9 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<string[]> ReqFilterFields = new DynamicParameter<string[]>("ReqFilterFields");
         protected DynamicParameter<string> ReqFilterHeading = new DynamicParameter<string>("ReqFilterHeader");
         protected DynamicParameter<string> SourceExpr = new DynamicParameter<string>("SourceExpr", true);
+#if NAV2015
+        protected DynamicParameter<bool?> Temporary = new DynamicParameter<bool?>("Temporary");
+#endif
 
         [Parameter(Mandatory = true)]
         public ReportElementType Type
@@ -57,6 +60,9 @@ namespace UncommonSense.CBreeze.Automation
                     dataItemReportElement.Properties.PrintOnlyIfDetail = PrintOnlyIfDetail.Value;
                     dataItemReportElement.Properties.ReqFilterFields.AddRange(ReqFilterFields.Value);
                     dataItemReportElement.Properties.ReqFilterHeadingML.Set("ENU", ReqFilterHeading.Value);
+#if NAV2015
+                    dataItemReportElement.Properties.Temporary = Temporary.Value;
+#endif
                     return dataItemReportElement;
 
                 case ReportElementType.Column:
@@ -123,6 +129,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return PrintOnlyIfDetail.RuntimeDefinedParameter;
                         yield return ReqFilterFields.RuntimeDefinedParameter;
                         yield return ReqFilterHeading.RuntimeDefinedParameter;
+#if NAV2015
+                        yield return Temporary.RuntimeDefinedParameter;
+#endif
                         break;
 
                     case ReportElementType.Column:
