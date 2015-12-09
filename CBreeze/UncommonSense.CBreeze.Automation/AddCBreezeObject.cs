@@ -21,6 +21,9 @@ namespace UncommonSense.CBreeze.Automation
             DataPerCompany = new DynamicParameter<bool?>("DataPerCompany", false);
             DateTime = new DynamicParameter<System.DateTime?>("DateTime");
             DefaultFieldsValidation = new DynamicParameter<bool?>("DefaultFieldsValidation", false);
+#if NAV2015
+            DefaultLayout = new DynamicParameter<DefaultLayout?>("DefaultLayout");
+#endif
             DefaultNamespace = new DynamicParameter<string>("DefaultNamespace", false);
             DelayedInsert = new DynamicParameter<bool?>("DelayedInsert", false);
             DeleteAllowed = new DynamicParameter<bool?>("DeleteAllowed", false);
@@ -163,6 +166,14 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
+#if NAV2015
+        protected DynamicParameter<DefaultLayout?> DefaultLayout
+        {
+            get;
+            set;
+        }
+#endif
 
         protected DynamicParameter<string> DefaultNamespace
         {
@@ -570,6 +581,9 @@ namespace UncommonSense.CBreeze.Automation
                     report.ObjectProperties.Modified = Modified.Value;
                     report.ObjectProperties.VersionList = VersionList.Value;
 
+#if NAV2015
+                    report.Properties.DefaultLayout = DefaultLayout.Value;
+#endif
                     report.Properties.Description = Description.Value;
                     report.Properties.EnableExternalAssemblies = EnableExternalAssemblies.Value;
                     report.Properties.EnableExternalImages = EnableExternalImages.Value;
@@ -746,6 +760,9 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case ObjectType.Report:
+#if NAV2015
+                        yield return DefaultLayout.RuntimeDefinedParameter;
+#endif
                         yield return Description.RuntimeDefinedParameter;
                         yield return EnableExternalAssemblies.RuntimeDefinedParameter;
                         yield return EnableExternalImages.RuntimeDefinedParameter;
