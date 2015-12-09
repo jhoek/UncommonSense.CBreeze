@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             Description = new DynamicParameter<string>("Description");
             Ellipsis = new DynamicParameter<bool?>("Ellipsis");
             Enabled = new DynamicParameter<string>("Enabled");
-            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] {"Range"});
+            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] { "Range" });
             Image = new DynamicParameter<string>("Image");
             InFooterBar = new DynamicParameter<bool?>("InFooterBar");
             IsHeader = new DynamicParameter<bool?>("IsHeader");
