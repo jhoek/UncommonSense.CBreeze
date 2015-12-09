@@ -65,6 +65,9 @@ namespace UncommonSense.CBreeze.Automation
             SubPageViewKey = new DynamicParameter<string>("SubPageViewKey");
             SubPageViewOrder = new DynamicParameter<Order?>("SubPageViewOrder");
             Title = new DynamicParameter<bool?>("Title");
+#if NAV2015
+            UpdatePropagation = new DynamicParameter<UpdatePropagation?>("UpdatePropagation");
+#endif
             ValuesAllowed = new DynamicParameter<string>("ValuesAllowed");
             Visible = new DynamicParameter<string>("Visible");
             Width = new DynamicParameter<int?>("Width");
@@ -431,6 +434,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2015
+        protected DynamicParameter<UpdatePropagation?> UpdatePropagation
+        {
+            get;
+            set;
+        }
+#endif
+
         protected DynamicParameter<string> ValuesAllowed
         {
             get;
@@ -636,6 +647,9 @@ namespace UncommonSense.CBreeze.Automation
                     partPageControl.Properties.ShowFilter = ShowFilter.Value;
                     partPageControl.Properties.SubPageView.Key = SubPageViewKey.Value;
                     partPageControl.Properties.SubPageView.Order = SubPageViewOrder.Value;
+#if NAV2015
+                    partPageControl.Properties.UpdatePropagation = UpdatePropagation.Value;
+#endif
                     partPageControl.Properties.Visible = Visible.Value;
 
                     if (AutoCaption && string.IsNullOrEmpty(Caption.Value))
@@ -820,6 +834,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return SubPageViewKey.RuntimeDefinedParameter;
                         yield return SubPageViewOrder.RuntimeDefinedParameter;
                         yield return SystemPartID.RuntimeDefinedParameter;
+#if NAV2015
+                        yield return UpdatePropagation.RuntimeDefinedParameter;
+#endif
                         yield return Visible.RuntimeDefinedParameter;
                         break;
                 }
