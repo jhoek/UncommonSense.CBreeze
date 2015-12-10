@@ -43,11 +43,6 @@ function New-ModuleFolder
         [string]$Version
     )
 
-    #FIXME Should set:
-    # - RootModule
-    # - GUID
-    # - Author
-    # - RequiredAssemblies
 }
 
 Clear-Host
