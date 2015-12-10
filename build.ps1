@@ -2,9 +2,11 @@
 {
     Param
     (
+        [Parameter(Mandatory)]
         [ValidateSet('Core','Parse','Read','Write','Automation', 'IO')]
         [string]$Assembly,
 
+        [Parameter(Mandatory)]
         [ValidateSet('2013', '2013R2', '2015', '2016')]
         [string]$Version,
 
