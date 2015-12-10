@@ -42,6 +42,12 @@ function New-ModuleFolder
         [ValidateSet('2013','2013R2','2015','2016')]
         [string]$Version
     )
+
+    #FIXME Should set:
+    # - RootModule
+    # - GUID
+    # - Author
+    # - RequiredAssemblies
 }
 
 Clear-Host
