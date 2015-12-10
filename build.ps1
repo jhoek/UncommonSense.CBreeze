@@ -67,6 +67,7 @@ function New-ModuleFolder
 }
 
 Clear-Host
+
 Invoke-Build -Assembly Core -Version 2013
 Invoke-Build -Assembly Core -Version 2013R2 -Constant NAV2013R2
 Invoke-Build -Assembly Core -Version 2015 -Constant NAV2013R2,NAV2015
