@@ -67,7 +67,6 @@ function New-ModuleFolder
 }
 
 Clear-Host
-<#
 Invoke-Build -Assembly Core -Version 2013
 Invoke-Build -Assembly Core -Version 2013R2 -Constant NAV2013R2
 Invoke-Build -Assembly Core -Version 2015 -Constant NAV2013R2,NAV2015
@@ -97,7 +96,6 @@ Invoke-Build -Assembly Automation -Version 2013 -Reference Core,Write,IO,Read,Pa
 Invoke-Build -Assembly Automation -Version 2013R2 -Constant NAV2013R2 -Reference Core,Write,IO,Read,Parse -ExternalReference (SystemManagementAutomation)
 Invoke-Build -Assembly Automation -Version 2015 -Constant NAV2013R2,NAV2015 -Reference Core,Write,IO,Read,Parse -ExternalReference (SystemManagementAutomation)
 Invoke-Build -Assembly Automation -Version 2016 -Constant NAV2013R2,NAV2015,NAV2016 -Reference Core,Write,IO,Read,Parse -ExternalReference (SystemManagementAutomation)
-#>
 
 New-ModuleFolder -Version 2013 
 New-ModuleFolder -Version 2013R2
