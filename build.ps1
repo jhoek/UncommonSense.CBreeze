@@ -30,8 +30,22 @@
     & C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe /nologo /out:$Out /target:library $References $ExternalReferences $Constants *.cs .\Properties\AssemblyInfo.cs 
 }
 
-Clear-Host
+function New-ModuleFolder
+{
+    Param
+    (
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript( { Test-Path $_ } )]
+        [string]$BaseFolder = "$Home\Desktop",
 
+        [Parameter(Mandatory)]
+        [ValidateSet('2013','2013R2','2015','2016')]
+        [string]$Version
+    )
+}
+
+Clear-Host
+<#
 Invoke-Build -Assembly Core -Version 2013
 Invoke-Build -Assembly Core -Version 2013R2 -Constant NAV2013R2
 Invoke-Build -Assembly Core -Version 2015 -Constant NAV2013R2,NAV2015
@@ -61,6 +75,12 @@ Invoke-Build -Assembly Automation -Version 2013 -Reference Core,Write,IO,Read,Pa
 Invoke-Build -Assembly Automation -Version 2013R2 -Constant NAV2013R2 -Reference Core,Write,IO,Read,Parse -ExternalReference (SystemManagementAutomation)
 Invoke-Build -Assembly Automation -Version 2015 -Constant NAV2013R2,NAV2015 -Reference Core,Write,IO,Read,Parse -ExternalReference (SystemManagementAutomation)
 Invoke-Build -Assembly Automation -Version 2016 -Constant NAV2013R2,NAV2015,NAV2016 -Reference Core,Write,IO,Read,Parse -ExternalReference (SystemManagementAutomation)
+#>
+
+New-ModuleFolder -Version 2013 
+New-ModuleFolder -Version 2013R2
+New-ModuleFolder -Version 2015
+New-ModuleFolder -Version 2016
 
 function SystemManagementAutomation()
 {
