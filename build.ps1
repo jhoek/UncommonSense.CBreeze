@@ -43,6 +43,27 @@ function New-ModuleFolder
         [string]$Version
     )
 
+    Write-Host "Creating module folder $Version" -ForegroundColor DarkYellow
+
+    $ModuleFolderName = Join-Path $BaseFolder "UncommonSense.CBreeze.$Version.Automation"
+    Remove-Item -Path $ModuleFolderName -Recurse -Force -ErrorAction SilentlyContinue 
+    Start-Sleep -Milliseconds 100
+    New-Item -Path $ModuleFolderName -ItemType Directory | Out-Null 
+
+    $ManifestFileName = Join-Path $ModuleFolderName "UncommonSense.CBreeze.Automation.psd1"
+    New-ModuleManifest `
+        -Path $ManifestFileName `
+        -RootModule "UncommonSense.CBreeze.$Version.Automation.dll" `
+        -Guid 999a0b81-d816-4d68-8337-f70c1096f30e `
+        -Author 'Jan Hoek' `
+        -CompanyName 'UncommonSense' `
+        -Copyright 'Copyright (c) 2015 Jan Hoek. All rights reserved.' `
+        -RequiredAssemblies "UncommonSense.CBreeze.$Version.Core.dll", "UncommonSense.CBreeze.$Version.IO.dll", "UncommonSense.CBreeze.$Version.Write.dll"
+
+    'Core', 'IO', 'Write' | ForEach-Object { 
+        Copy-Item `
+            -Path "C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.$_\bin\Debug\UncommonSense.CBreeze.$Version.$_.dll" `
+            -Destination $ModuleFolderName }
 }
 
 Clear-Host
