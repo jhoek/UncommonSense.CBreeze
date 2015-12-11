@@ -965,5 +965,33 @@ namespace UncommonSense.CBreeze.Core
             public const string Zones = "Zones";
 
         }
+
+#if NAV2015
+        public static class CueIcons
+        {
+            public const string Stack = "Stack";
+            public const string Calculator = "Calculator";
+            public const string Calendar = "Calendar";
+            public const string Camera = "Camera";
+            public const string Cash = "Cash";
+            public const string Chart = "Chart";
+            public const string Checklist = "Checklist";
+            public const string Diagnostic = "Diagnostic";
+            public const string Document = "Document";
+            public const string Folder = "Folder";
+            public const string Funnel = "Funnel";
+            public const string Heart = "Heart";
+            public const string Key = "Key";
+            public const string Library = "Library";
+            public const string Message = "Message";
+            public const string People = "People";
+            public const string Person = "Person";
+            public const string Receipt = "Receipt";
+            public const string Settings = "Settings";
+            public const string Star = "Star";
+            public const string Time = "Time";
+            public const string None = "None";
+        }
+#endif
     }
 }
