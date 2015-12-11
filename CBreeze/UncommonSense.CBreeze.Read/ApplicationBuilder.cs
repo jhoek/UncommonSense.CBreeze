@@ -454,7 +454,7 @@ namespace UncommonSense.CBreeze.Read
         {
             currentFunction = currentCode.Functions.Add(new Function(functionID, functionName));
             currentFunction.Properties.Local = functionLocal;
-            currentFunction.Properties.FunctionType = functionType.ToNullableEnum<FunctionType>();
+            currentFunction.Properties.TestFunctionType = functionType.ToNullableEnum<TestFunctionType>();
             currentFunction.Properties.HandlerFunctions = handlerFunctions;
             currentFunction.Properties.TransactionModel = transactionModel.ToNullableEnum<TransactionModel>();
         }

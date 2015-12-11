@@ -14,17 +14,12 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public enum FunctionType
+    [Serializable]
+    public class TestFunctionTypeProperty : NullableValueProperty<TestFunctionType>
     {
-        Normal,
-        Test,
-        MessageHandler,
-        ConfirmHandler,
-        StrMenuHandler,
-        PageHandler,
-        ModalPageHandler,
-        ReportHandler,
-        RequestPageHandler,
+        internal TestFunctionTypeProperty(string name)
+            : base(name)
+        {
+        }
     }
-
 }

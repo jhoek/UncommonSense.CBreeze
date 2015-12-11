@@ -17,28 +17,28 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class FunctionProperties : Properties
     {
-        private FunctionTypeProperty functionType = new FunctionTypeProperty("FunctionType");
+        private TestFunctionTypeProperty testFunctionType = new TestFunctionTypeProperty("FunctionType");
         private StringProperty handlerFunctions = new StringProperty("HandlerFunctions");
         private NullableBooleanProperty local = new NullableBooleanProperty("Local");
         private TransactionModelProperty transactionModel = new TransactionModelProperty("TransactionModel");
 
         internal FunctionProperties()
         {
-            innerList.Add(functionType);
+            innerList.Add(testFunctionType);
             innerList.Add(handlerFunctions);
             innerList.Add(local);
             innerList.Add(transactionModel);
         }
 
-        public FunctionType? FunctionType
+        public TestFunctionType? TestFunctionType
         {
             get
             {
-                return this.functionType.Value;
+                return this.testFunctionType.Value;
             }
             set
             {
-                this.functionType.Value = value;
+                this.testFunctionType.Value = value;
             }
         }
 

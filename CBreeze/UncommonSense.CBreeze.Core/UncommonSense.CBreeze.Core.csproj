@@ -195,8 +195,8 @@
     <Compile Include="FunctionReturnValue.cs" />
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="Functions.cs" />
-    <Compile Include="FunctionType.cs" />
-    <Compile Include="FunctionTypeProperty.cs" />
+    <Compile Include="TestFunctionType.cs" />
+    <Compile Include="TestFunctionTypeProperty.cs" />
     <Compile Include="GroupNode.cs" />
     <Compile Include="GroupPageControl.cs" />
     <Compile Include="GroupPageControlLayout.cs" />

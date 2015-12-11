@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.InnerWriter.WriteLine();
 
-            writer.WriteLineIf(function.Properties.FunctionType.HasValue, "[{0}]", function.Properties.FunctionType);
+            writer.WriteLineIf(function.Properties.TestFunctionType.HasValue, "[{0}]", function.Properties.TestFunctionType);
             writer.WriteLineIf(function.Properties.HandlerFunctions != null, "[HandlerFunctions({0})]", function.Properties.HandlerFunctions);
             writer.WriteLineIf(function.Properties.TransactionModel.HasValue, "[TransactionModel({0})]", function.Properties.TransactionModel);
 

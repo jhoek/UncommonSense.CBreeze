@@ -69,7 +69,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public FunctionType? FunctionType
+        public TestFunctionType? TestFunctionType
         {
             get;
             set;
@@ -114,7 +114,7 @@ namespace UncommonSense.CBreeze.Automation
             var functions = GetFunctions(InputObject);
             var function = functions.Add(new Function(ID.GetID(functions.Select(f => f.ID), functions.Code.Object.ID), Name));
             function.Properties.Local = Local;
-            function.Properties.FunctionType = FunctionType;
+            function.Properties.TestFunctionType = TestFunctionType;
             function.Properties.HandlerFunctions = HandlerFunctions;
             function.Properties.TransactionModel = TransactionModel;
 
