@@ -55,7 +55,7 @@ function New-ModuleFolder
     Start-Sleep -Milliseconds 100
     New-Item -Path $ModuleFolderName -ItemType Directory | Out-Null 
 
-    $ManifestFileName = Join-Path $ModuleFolderName "UncommonSense.CBreeze.Automation.psd1"
+    $ManifestFileName = Join-Path $ModuleFolderName "UncommonSense.CBreeze.$Version.Automation.psd1"
     New-ModuleManifest `
         -Path $ManifestFileName `
         -RootModule "UncommonSense.CBreeze.$Version.Automation.dll" `
