@@ -40,6 +40,9 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty enabled = new StringProperty("Enabled");
         private ExtendedDataTypeProperty extendedDatatype = new ExtendedDataTypeProperty("ExtendedDatatype");
         private StringProperty hideValue = new StringProperty("HideValue");
+#if NAV2015
+        private StringProperty image = new StringProperty("Image");
+#endif
         private ImportanceProperty importance = new ImportanceProperty("Importance");
         private NullableBooleanProperty lookup = new NullableBooleanProperty("Lookup");
         private StringProperty lookupPageID = new StringProperty("LookupPageID");
@@ -122,6 +125,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAssistEdit);
             innerList.Add(onControlAddIn);
 #if NAV2015
+            innerList.Add(image);
             innerList.Add(showMandatory);
 #endif
             innerList.Add(showCaption);
@@ -369,6 +373,20 @@ namespace UncommonSense.CBreeze.Core
                 this.hideValue.Value = value;
             }
         }
+
+#if NAV2015
+        public string Image
+        {
+            get
+            {
+                return this.image.Value;
+            }
+            set
+            {
+                this.image.Value = value;
+            }
+        }
+#endif
 
         public Importance? Importance
         {
