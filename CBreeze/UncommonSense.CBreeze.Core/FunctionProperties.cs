@@ -54,7 +54,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Local
+        public bool? Local
         {
             get
             {
