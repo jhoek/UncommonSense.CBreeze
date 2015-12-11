@@ -1,4 +1,9 @@
-﻿function Invoke-Build
+﻿function SystemManagementAutomation()
+{
+    "C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\packages\System.Management.Automation.6.1.7601.17515\lib\net40\System.Management.Automation.dll"
+}
+
+function Invoke-Build
 {
     Param
     (
@@ -102,8 +107,3 @@ New-ModuleFolder -Version 2013
 New-ModuleFolder -Version 2013R2
 New-ModuleFolder -Version 2015
 New-ModuleFolder -Version 2016
-
-function SystemManagementAutomation()
-{
-    "C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\packages\System.Management.Automation.6.1.7601.17515\lib\net40\System.Management.Automation.dll"
-}
