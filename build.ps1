@@ -65,7 +65,7 @@ function New-ModuleFolder
         -Copyright 'Copyright (c) 2015 Jan Hoek. All rights reserved.' `
         -RequiredAssemblies "UncommonSense.CBreeze.$Version.Core.dll", "UncommonSense.CBreeze.$Version.IO.dll", "UncommonSense.CBreeze.$Version.Write.dll"
 
-    'Core', 'IO', 'Write' | ForEach-Object { 
+    'Core', 'IO', 'Write', 'Automation' | ForEach-Object { 
         Copy-Item `
             -Path "C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.$_\bin\Debug\UncommonSense.CBreeze.$Version.$_.dll" `
             -Destination $ModuleFolderName }
