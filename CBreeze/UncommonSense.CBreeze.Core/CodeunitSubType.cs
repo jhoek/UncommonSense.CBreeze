@@ -19,6 +19,9 @@ namespace UncommonSense.CBreeze.Core
         Normal,
         Test,
         TestRunner,
+#if NAV2015
+        Upgrade,
+#endif
     }
 
 }
