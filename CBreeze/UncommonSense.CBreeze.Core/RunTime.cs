@@ -599,6 +599,9 @@ namespace UncommonSense.CBreeze.Core
             public const string PostingEntries = "PostingEntries";
             public const string PostInventoryToGL = "PostInventoryToGL";
             public const string PostInventoryToGLTest = "PostInventoryToGLTest";
+#if NAV2015
+            public const string PostMail = "PostMail";
+#endif
             public const string PostOrder = "PostOrder";
             public const string PostponedInteractions = "PostponedInteractions";
             public const string PostPrint = "PostPrint";
