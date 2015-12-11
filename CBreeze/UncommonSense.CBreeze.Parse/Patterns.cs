@@ -40,7 +40,11 @@ namespace UncommonSense.CBreeze.Parse
         public static readonly Regex VariableWithLength = new Regex(@"^(\w+)\[(\d+)\]$", RegexOptions.Compiled);
         public static readonly Regex ParameterSuppressDispose = new Regex(@"^(.*)\sSUPPRESSDISPOSE$", RegexOptions.Compiled);
         public static readonly Regex TextConst = new Regex(@"^TextConst\s+'(.*)'$", RegexOptions.Compiled);
+#if NAV2015
+        public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler|Upgrade|TableSyncSetup|CheckPrecondition)\]$", RegexOptions.Compiled);
+#else
         public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler)\]$", RegexOptions.Compiled);
+#endif
         public static readonly Regex HandlerFunctionsAttribute = new Regex(@"^\[HandlerFunctions\(([^)]*)\)]$", RegexOptions.Compiled);
         public static readonly Regex TransactionModelAttribute = new Regex(@"^\[TransactionModel\(([^)]*)\)]$", RegexOptions.Compiled);
         public static readonly Regex ProcedureAttribute = new Regex(@"^\[([^]]+)\]$", RegexOptions.Compiled);

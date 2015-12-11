@@ -18,6 +18,9 @@ namespace UncommonSense.CBreeze.Core
     public class FunctionProperties : Properties
     {
         private TestFunctionTypeProperty testFunctionType = new TestFunctionTypeProperty("FunctionType");
+#if NAV2015
+        private UpgradeFunctionTypeProperty upgradeFunctionType = new UpgradeFunctionTypeProperty("FunctionType");
+#endif
         private StringProperty handlerFunctions = new StringProperty("HandlerFunctions");
         private NullableBooleanProperty local = new NullableBooleanProperty("Local");
         private TransactionModelProperty transactionModel = new TransactionModelProperty("TransactionModel");
@@ -25,6 +28,9 @@ namespace UncommonSense.CBreeze.Core
         internal FunctionProperties()
         {
             innerList.Add(testFunctionType);
+#if NAV2015
+            innerList.Add(upgradeFunctionType);
+#endif
             innerList.Add(handlerFunctions);
             innerList.Add(local);
             innerList.Add(transactionModel);
@@ -42,7 +48,21 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string HandlerFunctions
+#if NAV2015
+        public UpgradeFunctionType? UpgradeFunctionType
+        {
+            get
+            {
+                return this.upgradeFunctionType.Value;
+            }
+            set
+            {
+                this.upgradeFunctionType.Value = value;
+            }
+        }
+#endif
+
+        public string HandlerFunctions
         {
             get
             {

@@ -459,6 +459,8 @@
     <Compile Include="TriggerProperty.cs" />
     <Compile Include="UpdatePropagation.cs" />
     <Compile Include="UpdatePropagationProperty.cs" />
+    <Compile Include="UpgradeFunctionType.cs" />
+    <Compile Include="UpgradeFunctionTypeProperty.cs" />
     <Compile Include="ValueProperty.cs" />
     <Compile Include="Variable.cs" />
     <Compile Include="Variables.cs" />

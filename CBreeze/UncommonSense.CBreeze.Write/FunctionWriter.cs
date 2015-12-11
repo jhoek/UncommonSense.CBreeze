@@ -12,6 +12,9 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.InnerWriter.WriteLine();
 
+#if NAV2015
+            writer.WriteLineIf(function.Properties.UpgradeFunctionType.HasValue, "[{0}]", function.Properties.UpgradeFunctionType);
+#endif
             writer.WriteLineIf(function.Properties.TestFunctionType.HasValue, "[{0}]", function.Properties.TestFunctionType);
             writer.WriteLineIf(function.Properties.HandlerFunctions != null, "[HandlerFunctions({0})]", function.Properties.HandlerFunctions);
             writer.WriteLineIf(function.Properties.TransactionModel.HasValue, "[TransactionModel({0})]", function.Properties.TransactionModel);

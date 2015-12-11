@@ -454,6 +454,12 @@ namespace UncommonSense.CBreeze.Read
         {
             currentFunction = currentCode.Functions.Add(new Function(functionID, functionName));
             currentFunction.Properties.Local = functionLocal;
+
+#if NAV2015
+            if (functionType.IsValidEnumValue<UpgradeFunctionType>())
+                currentFunction.Properties.UpgradeFunctionType = functionType.ToNullableEnum<UpgradeFunctionType>();
+            else
+#endif
             currentFunction.Properties.TestFunctionType = functionType.ToNullableEnum<TestFunctionType>();
             currentFunction.Properties.HandlerFunctions = handlerFunctions;
             currentFunction.Properties.TransactionModel = transactionModel.ToNullableEnum<TransactionModel>();

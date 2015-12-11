@@ -89,6 +89,15 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2015
+        [Parameter(ParameterSetName = "Upgrade")]
+        public UpgradeFunctionType? UpgradeFunctionType
+        {
+            get;
+            set;
+        }
+#endif
+
         [Parameter()]
         public SwitchParameter PassThru
         {
@@ -117,6 +126,9 @@ namespace UncommonSense.CBreeze.Automation
             function.Properties.TestFunctionType = TestFunctionType;
             function.Properties.HandlerFunctions = HandlerFunctions;
             function.Properties.TransactionModel = TransactionModel;
+#if NAV2015
+            function.Properties.UpgradeFunctionType = UpgradeFunctionType;
+#endif
 
             function.ReturnValue.Name = ReturnValueName;
             function.ReturnValue.Type = ReturnValueType;
