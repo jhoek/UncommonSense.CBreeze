@@ -47,9 +47,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - Pester tests for PowerShell functions
 - Repair FIXME's
 - Implement Add-CBreezeStatisticsPage (FlowFilters, FlowFields, page action). When calling Add-CBreezeMasterEntityType, it's too soon to create the statistics page, because we don't have any FlowFields/FlowFilters yet.
-- Support for NAV 2015 and 2016
-  - Upgrade [codeunit type]
-  - Upgrade|TableSynchSetup|CheckProcondition [upgrade codeunit function type]
+- Support for NAV 2016
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
 - Make parser faster by doing more stuff in parallel; using F#?
