@@ -30,6 +30,19 @@ namespace UncommonSense.CBreeze.Read
             return text.ToEnum<T>(ignoreCase, normalize);
         }
 
+        public static bool IsValidEnumValue<T>(this string text, bool ignoreCase = true, bool normalize = true) where T : struct
+        {
+            try
+            {
+                var enumValue = text.ToEnum<T>(ignoreCase, normalize);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+
         public static AutoFormatType ToAutoFormatType(this string text)
         {
             return (AutoFormatType)text.ToInteger();
