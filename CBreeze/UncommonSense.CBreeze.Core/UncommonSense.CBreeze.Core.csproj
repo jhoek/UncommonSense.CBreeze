@@ -191,7 +191,6 @@
     <Compile Include="FormatEvaluate.cs" />
     <Compile Include="FormatEvaluateProperty.cs" />
     <Compile Include="Function.cs" />
-    <Compile Include="FunctionProperties.cs" />
     <Compile Include="FunctionReturnValue.cs" />
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="Functions.cs" />

@@ -43,7 +43,6 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - PowerShell pattern for Journal entity types
 - positional arguments for Automation namespace
 - aliases for Automation namespace
-- Merge FunctionProperties into Function
 - Pester tests for PowerShell functions
 - Repair FIXME's
 - Implement Add-CBreezeStatisticsPage (FlowFilters, FlowFields, page action). When calling Add-CBreezeMasterEntityType, it's too soon to create the statistics page, because we don't have any FlowFields/FlowFilters yet.

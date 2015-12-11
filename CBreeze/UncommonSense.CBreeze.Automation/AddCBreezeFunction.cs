@@ -122,12 +122,12 @@ namespace UncommonSense.CBreeze.Automation
 
             var functions = GetFunctions(InputObject);
             var function = functions.Add(new Function(ID.GetID(functions.Select(f => f.ID), functions.Code.Object.ID), Name));
-            function.Properties.Local = Local;
-            function.Properties.TestFunctionType = TestFunctionType;
-            function.Properties.HandlerFunctions = HandlerFunctions;
-            function.Properties.TransactionModel = TransactionModel;
+            function.Local = Local;
+            function.TestFunctionType = TestFunctionType;
+            function.HandlerFunctions = HandlerFunctions;
+            function.TransactionModel = TransactionModel;
 #if NAV2015
-            function.Properties.UpgradeFunctionType = UpgradeFunctionType;
+            function.UpgradeFunctionType = UpgradeFunctionType;
 #endif
 
             function.ReturnValue.Name = ReturnValueName;

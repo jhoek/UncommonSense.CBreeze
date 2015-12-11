@@ -23,7 +23,6 @@ namespace UncommonSense.CBreeze.Core
             Name = name;
             CodeLines = new CodeLines();
             Parameters = new Parameters(this);
-            Properties = new FunctionProperties();
             ReturnValue = new FunctionReturnValue();
             Variables = new Variables(this);
         }
@@ -33,6 +32,38 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public bool? Local
+        {
+            get;
+            set;
+        }
+
+        public TransactionModel? TransactionModel
+        {
+            get;
+            set;
+        }
+
+        public string HandlerFunctions
+        {
+            get;
+            set;
+        }
+
+        public TestFunctionType? TestFunctionType
+        {
+            get;
+            set;
+        }
+
+#if NAV2015
+        public UpgradeFunctionType? UpgradeFunctionType
+        {
+            get;
+            set;
+        }
+#endif
 
         public Functions Container
         {
@@ -47,12 +78,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public Parameters Parameters
-        {
-            get;
-            protected set;
-        }
-
-        public FunctionProperties Properties
         {
             get;
             protected set;

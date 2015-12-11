@@ -13,13 +13,13 @@ namespace UncommonSense.CBreeze.Write
             writer.InnerWriter.WriteLine();
 
 #if NAV2015
-            writer.WriteLineIf(function.Properties.UpgradeFunctionType.HasValue, "[{0}]", function.Properties.UpgradeFunctionType);
+            writer.WriteLineIf(function.UpgradeFunctionType.HasValue, "[{0}]", function.UpgradeFunctionType);
 #endif
-            writer.WriteLineIf(function.Properties.TestFunctionType.HasValue, "[{0}]", function.Properties.TestFunctionType);
-            writer.WriteLineIf(function.Properties.HandlerFunctions != null, "[HandlerFunctions({0})]", function.Properties.HandlerFunctions);
-            writer.WriteLineIf(function.Properties.TransactionModel.HasValue, "[TransactionModel({0})]", function.Properties.TransactionModel);
+            writer.WriteLineIf(function.TestFunctionType.HasValue, "[{0}]", function.TestFunctionType);
+            writer.WriteLineIf(function.HandlerFunctions != null, "[HandlerFunctions({0})]", function.HandlerFunctions);
+            writer.WriteLineIf(function.TransactionModel.HasValue, "[TransactionModel({0})]", function.TransactionModel);
 
-            writer.Write("{2}PROCEDURE {0}@{1}(", function.Name, function.ID, function.Properties.Local.GetValueOrDefault(false) ? "LOCAL " : "");
+            writer.Write("{2}PROCEDURE {0}@{1}(", function.Name, function.ID, function.Local.GetValueOrDefault(false) ? "LOCAL " : "");
             FunctionParametersWriter.Write(function.Parameters, writer);
             writer.Write(")");
             FunctionReturnValueWriter.Write(function.ReturnValue, writer);
