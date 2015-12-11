@@ -36,6 +36,9 @@ namespace UncommonSense.CBreeze.Automation
             FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
             GroupType = new DynamicParameter<Core.GroupType?>("GroupType", defaultValue: Core.GroupType.Group);
             HideValue = new DynamicParameter<string>("HideValue");
+#if NAV2015
+            Image = new DynamicParameter<string>("Image");
+#endif
             Importance = new DynamicParameter<Core.Importance?>("Importance");
             IndentationColumnName = new DynamicParameter<string>("IndentationColumnName");
             IndentationControls = new DynamicParameter<string[]>("IndentationControls");
@@ -269,6 +272,14 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
+#if NAV2015
+        protected DynamicParameter<string> Image
+        {
+            get;
+            set;
+        }
+#endif
 
         protected DynamicParameter<Importance?> Importance
         {
@@ -590,6 +601,9 @@ namespace UncommonSense.CBreeze.Automation
                     fieldPageControl.Properties.Enabled = Enabled.Value;
                     fieldPageControl.Properties.ExtendedDatatype = ExtendedDataType.Value;
                     fieldPageControl.Properties.HideValue = HideValue.Value;
+#if NAV2015
+                    fieldPageControl.Properties.Image = Image.Value;
+#endif
                     fieldPageControl.Properties.Importance = Importance.Value;
                     fieldPageControl.Properties.Lookup = Lookup.Value;
                     fieldPageControl.Properties.LookupPageID = LookupPageID.Value;
@@ -799,6 +813,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Enabled.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
                         yield return HideValue.RuntimeDefinedParameter;
+#if NAV2015
+                        yield return Image.RuntimeDefinedParameter;
+#endif
                         yield return Importance.RuntimeDefinedParameter;
                         yield return Lookup.RuntimeDefinedParameter;
                         yield return LookupPageID.RuntimeDefinedParameter;
