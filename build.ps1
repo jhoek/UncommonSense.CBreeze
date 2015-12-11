@@ -41,7 +41,7 @@ function New-ModuleFolder
     (
         [ValidateNotNullOrEmpty()]
         [ValidateScript( { Test-Path $_ } )]
-        [string]$BaseFolder = "$Home\Desktop",
+        [string]$BaseFolder = "C:\Users\jhoek\Documents\WindowsPowerShell\Modules", # "$Home\Desktop",
 
         [Parameter(Mandatory)]
         [ValidateSet('2013','2013R2','2015','2016')]
