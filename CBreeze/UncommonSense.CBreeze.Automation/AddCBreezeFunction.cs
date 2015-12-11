@@ -68,21 +68,21 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(ParameterSetName="Test")]
         public TestFunctionType? TestFunctionType
         {
             get;
             set;
         }
 
-        [Parameter()]
+        [Parameter(ParameterSetName = "Test")]
         public string HandlerFunctions
         {
             get;
             set;
         }
 
-        [Parameter()]
+        [Parameter(ParameterSetName = "Test")]
         public TransactionModel? TransactionModel
         {
             get;
