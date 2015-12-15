@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Automation
         public AddCBreezeVariable()
         {
             Dimensions = new DynamicParameter<string>("Dimensions", false);
-            ID = new DynamicParameter<int>("ID", true, minRange: 1, maxRange: int.MaxValue, parameterSetNames: new string[] { "ID" });
+            ID = new DynamicParameter<PSObject>("ID", true, parameterSetNames: new string[] { "ID" }, aliases: new string[] { "Range" });
             IncludeInDataset = new DynamicParameter<bool?>("IncludeInDataset", false);
             IntegerSubType = new DynamicParameter<int>("SubType", true, minRange: 1, maxRange: int.MaxValue);
             MandatoryDataLength = new DynamicParameter<int>("DataLength", true, minRange: 1, maxRange: 250);
@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<int> ID
+        protected DynamicParameter<PSObject> ID
         {
             get;
             set;
@@ -392,7 +392,6 @@ namespace UncommonSense.CBreeze.Automation
             get
             {
                 yield return ID.RuntimeDefinedParameter;
-                yield return Range.RuntimeDefinedParameter;
 
                 switch (Type)
                 {
