@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 2)]
         [ValidateRange(1, int.MaxValue)]
         public int ID
         {
@@ -25,21 +25,21 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 3)]
         public string Name
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public int SourceID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1)]
         public string SourceName
         {
             get;
