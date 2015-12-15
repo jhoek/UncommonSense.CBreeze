@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTableField", DefaultParameterSetName = "Range")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeTableField")]
     public class AddCBreezeTableField : CmdletWithDynamicParams
     {
         public AddCBreezeTableField()
