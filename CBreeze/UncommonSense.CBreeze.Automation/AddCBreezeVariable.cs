@@ -381,10 +381,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetVariableID(PSObject inputObject)
         {
-            if (ID.Value != 0)
-                return ID.Value;
-
-            return Range.Value.Except(inputObject.GetVariableIDs()).Except(inputObject.GetParameterIDs()).First();
+            return ID.Value.GetID(inputObject.GetVariableIDs().Union(inputObject.GetParameterIDs()));
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
