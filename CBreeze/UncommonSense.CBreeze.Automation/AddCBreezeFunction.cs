@@ -68,7 +68,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName="Test")]
+        [Parameter(ParameterSetName = "Test")]
         public TestFunctionType? TestFunctionType
         {
             get;
