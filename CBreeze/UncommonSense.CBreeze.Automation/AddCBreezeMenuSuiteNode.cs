@@ -29,7 +29,7 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<int?> runObjectID = new DynamicParameter<int?>("RunObjectID", true, minRange: 1, maxRange: int.MaxValue);
         protected DynamicParameter<bool?> visible = new DynamicParameter<bool?>("Visible");
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public MenuSuiteNodeType Type
         {
             get;
