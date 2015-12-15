@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Automation
             ServerName = ".";
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)]
         public Application Application
         {
             get;

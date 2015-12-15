@@ -29,28 +29,28 @@ namespace UncommonSense.CBreeze.Automation
             ImportAction = "Skip";
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)]
         public Application Application
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ToPath", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "ToPath", Position = 1)]
         public string Path
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ToTextWriter")]
+        [Parameter(Mandatory = true, ParameterSetName = "ToTextWriter", Position = 1)]
         public TextWriter TextWriter
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ToStream")]
+        [Parameter(Mandatory = true, ParameterSetName = "ToStream", Position = 1)]
         public Stream Stream
         {
             get;

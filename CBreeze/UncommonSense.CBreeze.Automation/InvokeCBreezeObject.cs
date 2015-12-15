@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Automation
             CompanyName = "CRONUS International Ltd.";
         }
 
-        [Parameter(Mandatory = true,ValueFromPipeline=true)]
+        [Parameter(Mandatory = true,ValueFromPipeline=true, Position=0)]
         public UncommonSense.CBreeze.Core.Object Object
         {
             get;
