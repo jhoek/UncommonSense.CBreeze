@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(Position = 0)]
         [ValidateRange(1, int.MaxValue)]
         public int ID
         {
@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(Position = 1)]
         [ValidateNotNullOrEmpty()]
         public string Name
         {
@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 2)]
         public string[] FieldNames
         {
             get;
