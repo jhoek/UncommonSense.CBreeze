@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true,Position=0)]
         [Alias("Range")]
         public PSObject ID
         {
@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(Position=1)]
         public string Name
         {
             get;
