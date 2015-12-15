@@ -39,7 +39,6 @@ Any cleverness like auto-captioning, auto-objectproperties or even auto-assignin
 If type AB and AC derive from type A, type A should have an abstract read-only property of an enum type that has B and C as its values. AB and AC should implement the abstract property and return the correct enum value.
 
 ## Roadmap
-- positional arguments for Automation namespace
 - aliases for Automation namespace
 - Pester tests for PowerShell functions
 - Repair FIXME's
