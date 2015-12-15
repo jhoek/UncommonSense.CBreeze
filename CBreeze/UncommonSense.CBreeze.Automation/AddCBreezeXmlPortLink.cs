@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true)]
+        [Parameter(Mandatory = true, Position = 0)]
         [ValidateRange(1, int.MaxValue)]
         public int Field
         {
@@ -26,7 +26,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1)]
         [ValidateRange(1, int.MaxValue)]
         public int ReferenceField
         {
