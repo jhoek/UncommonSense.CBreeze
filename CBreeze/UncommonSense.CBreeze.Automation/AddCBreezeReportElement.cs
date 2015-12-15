@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<bool?> Temporary = new DynamicParameter<bool?>("Temporary");
 #endif
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public ReportElementType Type
         {
             get;
