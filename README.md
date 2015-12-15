@@ -39,8 +39,6 @@ Any cleverness like auto-captioning, auto-objectproperties or even auto-assignin
 If type AB and AC derive from type A, type A should have an abstract read-only property of an enum type that has B and C as its values. AB and AC should implement the abstract property and return the correct enum value.
 
 ## Roadmap
-- ID and Range handled by the same parameter
-- PowerShell pattern for Journal entity types
 - positional arguments for Automation namespace
 - aliases for Automation namespace
 - Pester tests for PowerShell functions
@@ -49,6 +47,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - Support for NAV 2016
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
+- PowerShell pattern for Journal entity types
 - Make parser faster by doing more stuff in parallel; using F#?
 
 ## Known issues
