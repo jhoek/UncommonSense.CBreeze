@@ -17,14 +17,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public string Column
         {
             get;
             set;
         }
 
-        [Parameter()]
+        [Parameter(Position = 1)]
         public QueryOrderByDirection Direction
         {
             get;
