@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeOrderBy")]
     public class AddCBreezeOrderBy : Cmdlet
     {
-        [Parameter(Mandatory=true, ValueFromPipeline=true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Query InputObject
         {
             get;
