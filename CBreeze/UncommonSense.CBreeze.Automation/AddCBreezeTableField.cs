@@ -35,7 +35,6 @@ namespace UncommonSense.CBreeze.Automation
             Enabled = new DynamicParameter<bool?>("Enabled");
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass");
-            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] { "Range" });
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue");
             BooleanInitValue = new DynamicParameter<bool?>("InitValue");
             DateTimeInitValue = new DynamicParameter<DateTime?>("InitValue");
@@ -81,14 +80,21 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position=2)]
         public TableFieldType? Type
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory=true, Position=0)]
+        [Alias("Range")]
+        public PSObject ID
+        {
+            get;set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1)]
         public string Name
         {
             get;
@@ -256,12 +262,6 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<FieldClass?> FieldClass
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<PSObject> ID
         {
             get;
             set;
@@ -985,7 +985,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetTableFieldNo()
         {
-            return ID.Value.GetID(
+            return ID.GetID(
                 idsInUse: Table.Fields.Select(f => f.ID),
                 containingID: Table.ID,
                 alternativeRange: PrimaryKeyFieldNoRange ? 1.To(int.MaxValue) : 10.To(int.MaxValue));
@@ -995,7 +995,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                yield return ID.RuntimeDefinedParameter;
                 yield return Enabled.RuntimeDefinedParameter;
 
                 switch (Type)
