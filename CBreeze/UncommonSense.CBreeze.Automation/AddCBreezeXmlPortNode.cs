@@ -136,7 +136,7 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(ParameterSetName = FieldElement)]
         [Parameter(ParameterSetName = FieldAttribute)]
-        [Parameter(ParameterSetName=TextElement)]
+        [Parameter(ParameterSetName = TextElement)]
         public TableFieldType? DataType
         {
             get;
@@ -187,7 +187,7 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(ParameterSetName = TableAttribute)]
         [Parameter(ParameterSetName = FieldAttribute)]
-        [Parameter(ParameterSetName=TextAttribute)]
+        [Parameter(ParameterSetName = TextAttribute)]
         public Occurrence? Occurrence
         {
             get;
