@@ -1,2 +1,0 @@
-﻿- InputObject must be an array
-- ID and Range must each be mandatory in their own parameter set
