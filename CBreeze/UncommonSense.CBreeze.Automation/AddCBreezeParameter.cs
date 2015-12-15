@@ -297,9 +297,9 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetObjectID()
         {
-            var iHasParameters = 
-                InputObject.BaseObject is Parameters ? 
-                (InputObject.BaseObject as Parameters).Container : 
+            var iHasParameters =
+                InputObject.BaseObject is Parameters ?
+                (InputObject.BaseObject as Parameters).Container :
                 (InputObject.BaseObject as IHasParameters);
 
             if (iHasParameters is Function)
@@ -317,7 +317,7 @@ namespace UncommonSense.CBreeze.Automation
             TypeSwitch.Do(
                 InputObject.BaseObject,
                 TypeSwitch.Case<Parameters>(i => result = i.Container.ID),
-                TypeSwitch.Case<IHasParameters>(i=>result = i.ID)
+                TypeSwitch.Case<IHasParameters>(i => result = i.ID)
                 );
 
             return result;
