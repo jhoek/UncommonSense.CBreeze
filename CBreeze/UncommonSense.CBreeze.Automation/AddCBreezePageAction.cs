@@ -17,7 +17,6 @@ namespace UncommonSense.CBreeze.Automation
             Description = new DynamicParameter<string>("Description");
             Ellipsis = new DynamicParameter<bool?>("Ellipsis");
             Enabled = new DynamicParameter<string>("Enabled");
-            ID = new DynamicParameter<PSObject>("ID", true, aliases: new string[] { "Range" });
             Image = new DynamicParameter<string>("Image");
             InFooterBar = new DynamicParameter<bool?>("InFooterBar");
             IsHeader = new DynamicParameter<bool?>("IsHeader");
@@ -46,8 +45,16 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public PageActionBaseType? Type
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1)]
+        [Alias("Range")]
+        public PSObject ID
         {
             get;
             set;
@@ -85,12 +92,6 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> Enabled
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<PSObject> ID
         {
             get;
             set;
@@ -218,7 +219,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected PageActionBase CreatePageAction()
         {
-            var id = ID.Value.GetID(IDsInUse, Page.ID);
+            var id = ID.GetID(IDsInUse, Page.ID);
 
             switch (Type.Value)
             {
@@ -279,8 +280,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                yield return ID.RuntimeDefinedParameter;
-
                 switch (Type.Value)
                 {
                     case PageActionBaseType.ActionContainer:
