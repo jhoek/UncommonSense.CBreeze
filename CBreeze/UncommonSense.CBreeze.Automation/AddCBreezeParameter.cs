@@ -292,7 +292,8 @@ namespace UncommonSense.CBreeze.Automation
             return ID.GetID(
                 idsInUse: inputObject.GetParameterIDs().Union(inputObject.GetVariableIDs()),
                 containingID: GetContainingID(),
-                objectID: GetObjectID());
+                objectID: GetObjectID(),
+                alternativeRange: 1000.To(int.MaxValue));
         }
 
         protected int GetObjectID()
