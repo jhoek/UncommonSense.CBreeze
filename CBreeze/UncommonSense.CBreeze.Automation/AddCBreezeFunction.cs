@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeFunction")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeFunction", DefaultParameterSetName="Test")]
     public class AddCBreezeFunction : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
