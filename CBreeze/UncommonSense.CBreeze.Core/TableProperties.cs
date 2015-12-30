@@ -31,6 +31,9 @@ namespace UncommonSense.CBreeze.Core
         private TriggerProperty onRename = new TriggerProperty("OnRename");
         private NullableBooleanProperty pasteIsValid = new NullableBooleanProperty("PasteIsValid");
         private PermissionsProperty permissions = new PermissionsProperty("Permissions");
+#if NAV2016
+        private TableTypeProperty tableType = new TableTypeProperty("TableType");
+#endif
 
         internal TableProperties()
         {

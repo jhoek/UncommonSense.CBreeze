@@ -194,6 +194,8 @@
     <Compile Include="FunctionReturnValue.cs" />
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="Functions.cs" />
+    <Compile Include="TableType.cs" />
+    <Compile Include="TableTypeProperty.cs" />
     <Compile Include="TestFunctionType.cs" />
     <Compile Include="TestFunctionTypeProperty.cs" />
     <Compile Include="GroupNode.cs" />
