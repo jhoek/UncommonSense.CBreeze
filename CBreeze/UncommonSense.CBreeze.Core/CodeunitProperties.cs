@@ -17,7 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class CodeunitProperties : Properties
     {
+#if !NAV2016
         private NullableBooleanProperty cFRONTMayUsePermissions = new NullableBooleanProperty("CFRONTMayUsePermissions");
+#endif
         private TriggerProperty onRun = new TriggerProperty("OnRun");
         private PermissionsProperty permissions = new PermissionsProperty("Permissions");
         private NullableBooleanProperty singleInstance = new NullableBooleanProperty("SingleInstance");
@@ -29,13 +31,16 @@ namespace UncommonSense.CBreeze.Core
         {
             innerList.Add(tableNo);
             innerList.Add(permissions);
+#if !NAV2016
             innerList.Add(cFRONTMayUsePermissions);
+#endif
             innerList.Add(singleInstance);
             innerList.Add(subtype);
             innerList.Add(testIsolation);
             innerList.Add(onRun);
         }
 
+#if !NAV2016
         public bool? CFRONTMayUsePermissions
         {
             get
@@ -47,6 +52,7 @@ namespace UncommonSense.CBreeze.Core
                 this.cFRONTMayUsePermissions.Value = value;
             }
         }
+#endif
 
         public Trigger OnRun
         {

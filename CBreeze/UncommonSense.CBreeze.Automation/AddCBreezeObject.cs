@@ -15,7 +15,9 @@ namespace UncommonSense.CBreeze.Automation
             Application = new DynamicParameter<Core.Application>("Application", true, true);
             AutoSplitKey = new DynamicParameter<bool?>("AutoSplitKey", false);
             CardPageID = new DynamicParameter<string>("CardPageID", false);
+#if !NAV2016
             CFrontMayUsePermissions = new DynamicParameter<bool?>("CFrontMayUsePermissions", false);
+#endif
             DataCaptionExpr = new DynamicParameter<string>("DataCaptionExpr", false);
             DataCaptionFields = new DynamicParameter<string[]>("DataCaptionFields", false);
             DataPerCompany = new DynamicParameter<bool?>("DataPerCompany", false);
@@ -144,11 +146,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if !NAV2016
         protected DynamicParameter<bool?> CFrontMayUsePermissions
         {
             get;
             set;
         }
+#endif
 
         protected DynamicParameter<string> DataCaptionExpr
         {
@@ -641,7 +645,9 @@ namespace UncommonSense.CBreeze.Automation
                     codeunit.ObjectProperties.Modified = Modified.Value;
                     codeunit.ObjectProperties.VersionList = VersionList.Value;
 
+#if !NAV2016
                     codeunit.Properties.CFRONTMayUsePermissions = CFrontMayUsePermissions.Value;
+#endif
                     codeunit.Properties.SingleInstance = SingleInstance.Value;
                     codeunit.Properties.Subtype = SubType.Value;
                     codeunit.Properties.TableNo = TableNo.Value;
@@ -812,7 +818,9 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case ObjectType.Codeunit:
+#if !NAV2016
                         yield return CFrontMayUsePermissions.RuntimeDefinedParameter;
+#endif
                         yield return SingleInstance.RuntimeDefinedParameter;
                         yield return SubType.RuntimeDefinedParameter;
                         yield return TableNo.RuntimeDefinedParameter;
