@@ -200,6 +200,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2016
         public TableType? TableType
         {
             get
@@ -235,5 +236,7 @@ namespace UncommonSense.CBreeze.Core
                 this.externalSchema.Value = value;
             }
         }
+#endif
+
     }
 }
