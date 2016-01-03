@@ -65,6 +65,14 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
+#if NAV2016
+        public EventType? EventType
+        {
+            get;
+            set;
+        }
+#endif
+
         public Functions Container
         {
             get;
