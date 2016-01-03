@@ -227,6 +227,10 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<UpdatePropagationProperty>(p=>p.Value = propertyValue.ToEnum<UpdatePropagation>()),
                 TypeSwitch.Case<DefaultLayoutProperty>(p=> p.Value = propertyValue.ToEnum<DefaultLayout>()),
 #endif
+                
+#if NAV2016
+                TypeSwitch.Case<TableTypeProperty>(p=>p.Value = propertyValue.ToEnum<TableType>()),
+#endif
                 TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
                 TypeSwitch.Case<AutoFormatTypeProperty>(p => p.Value = propertyValue.ToAutoFormatType()),
                 TypeSwitch.Case<BlankNumbersProperty>(p => p.Value = propertyValue.ToEnum<BlankNumbers>()),

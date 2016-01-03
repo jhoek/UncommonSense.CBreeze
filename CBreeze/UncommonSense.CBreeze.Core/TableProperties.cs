@@ -33,6 +33,8 @@ namespace UncommonSense.CBreeze.Core
         private PermissionsProperty permissions = new PermissionsProperty("Permissions");
 #if NAV2016
         private TableTypeProperty tableType = new TableTypeProperty("TableType");
+        private StringProperty externalName = new StringProperty("ExternalName");
+        private StringProperty externalSchema = new StringProperty("ExternalSchema");
 #endif
 
         internal TableProperties()
@@ -51,6 +53,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(drillDownPageID);
             innerList.Add(linkedInTransaction);
             innerList.Add(linkedObject);
+#if NAV2016
+            innerList.Add(tableType);
+            innerList.Add(externalName);
+            innerList.Add(externalSchema);
+#endif
         }
 
         public MultiLanguageValue CaptionML
@@ -190,6 +197,42 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return this.permissions.Value;
+            }
+        }
+
+        public TableType? TableType
+        {
+            get
+            {
+                return this.tableType.Value;
+            }
+            set
+            {
+                this.tableType.Value = value;
+            }
+        }
+
+        public string ExternalName
+        {
+            get
+            {
+                return this.externalName.Value;
+            }
+            set
+            {
+                this.externalName.Value = value;
+            }
+        }
+
+        public string ExternalSchema
+        {
+            get
+            {
+                return this.externalSchema.Value;
+            }
+            set
+            {
+                this.externalSchema.Value = value;
             }
         }
     }

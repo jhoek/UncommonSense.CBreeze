@@ -37,6 +37,10 @@ namespace UncommonSense.CBreeze.Automation
             EnableExternalImages = new DynamicParameter<bool?>("EnableExternalImages", false);
             EnableHyperlinks = new DynamicParameter<bool?>("EnableHyperlinks", false);
             Encoding = new DynamicParameter<XmlPortEncoding?>("Encoding", false);
+#if NAV2016
+            ExternalName = new DynamicParameter<string>("ExternalName");
+            ExternalSchema = new DynamicParameter<string>("ExternalSchema");
+#endif
             FieldDelimiter = new DynamicParameter<string>("FieldDelimiter", false);
             FieldSeparator = new DynamicParameter<string>("FieldSeparator", false);
             FileName = new DynamicParameter<string>("FileName", false);
@@ -74,6 +78,9 @@ namespace UncommonSense.CBreeze.Automation
             SubType = new DynamicParameter<CodeunitSubType?>("SubType", false);
             TableNo = new DynamicParameter<int?>("TableNo", false, minRange: 1, maxRange: int.MaxValue);
             TableSeparator = new DynamicParameter<string>("TableSeparator", false);
+#if NAV2016
+            TableType = new DynamicParameter<TableType?>("TableType");
+#endif
             TestIsolation = new DynamicParameter<TestIsolation?>("TestIsolation", false);
             TextEncoding = new DynamicParameter<Core.TextEncoding?>("TextEncoding", false);
             TopNoOfRows = new DynamicParameter<int?>("TopNoOfRows", false, minRange: 0, maxRange: int.MaxValue);
@@ -257,6 +264,20 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
+#if NAV2016
+        protected DynamicParameter<string> ExternalName
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> ExternalSchema
+        {
+            get;
+            set;
+        }
+#endif
 
         protected DynamicParameter<string> FieldDelimiter
         {
@@ -470,6 +491,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2016
+        protected DynamicParameter<TableType?> TableType
+        {
+            get;
+            set;
+        }
+#endif
+
         protected DynamicParameter<TestIsolation?> TestIsolation
         {
             get;
@@ -553,10 +582,17 @@ namespace UncommonSense.CBreeze.Automation
                     table.Properties.DataPerCompany = DataPerCompany.Value;
                     table.Properties.Description = Description.Value;
                     table.Properties.DrillDownPageID = DrillDownPageID.Value;
+#if NAV2016
+                    table.Properties.ExternalName = ExternalName.Value;
+                    table.Properties.ExternalSchema = ExternalSchema.Value;
+#endif
                     table.Properties.LinkedInTransaction = LinkedInTransaction.Value;
                     table.Properties.LinkedObject = LinkedObject.Value;
                     table.Properties.LookupPageID = LookupPageID.Value;
                     table.Properties.PasteIsValid = PasteIsValid.Value;
+#if NAV2016
+                    table.Properties.TableType = TableType.Value;
+#endif
 
                     if (AutoCaption)
                         table.AutoCaption();
@@ -765,10 +801,17 @@ namespace UncommonSense.CBreeze.Automation
                         yield return DataPerCompany.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return DrillDownPageID.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+                        yield return ExternalSchema.RuntimeDefinedParameter;
+#endif
                         yield return LinkedInTransaction.RuntimeDefinedParameter;
                         yield return LinkedObject.RuntimeDefinedParameter;
                         yield return LookupPageID.RuntimeDefinedParameter;
                         yield return PasteIsValid.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return TableType.RuntimeDefinedParameter;
+#endif
                         break;
 
                     case ObjectType.Page:

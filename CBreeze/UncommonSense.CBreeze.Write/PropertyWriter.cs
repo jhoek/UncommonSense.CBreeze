@@ -23,7 +23,10 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<UpdatePropagationProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<DefaultLayoutProperty>(p=> WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
- TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Write(isLastProperty, style, writer)),
+#if NAV2016
+                TypeSwitch.Case<TableTypeProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+#endif
+                TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
                 TypeSwitch.Case<PaperSourceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<DataItemLinkTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
