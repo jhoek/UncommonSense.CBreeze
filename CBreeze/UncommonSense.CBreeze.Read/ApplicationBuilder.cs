@@ -893,6 +893,12 @@ namespace UncommonSense.CBreeze.Read
                     var fileParameter = parameters.Add(new FileParameter(parameterVar, parameterID, parameterName));
                     fileParameter.Dimensions = parameterDimensions;
                     break;
+#if NAV2016
+                case ParameterType.FilterPageBuilder:
+                    var filterPageBuilderParameter = parameters.Add(new FilterPageBuilderParameter(parameterVar, parameterID, parameterName));
+                    filterPageBuilderParameter.Dimensions = parameterDimensions;
+                    break;
+#endif
                 case ParameterType.Guid:
                     var guidParameter = parameters.Add(new GuidParameter(parameterVar, parameterID, parameterName));
                     guidParameter.Dimensions = parameterDimensions;

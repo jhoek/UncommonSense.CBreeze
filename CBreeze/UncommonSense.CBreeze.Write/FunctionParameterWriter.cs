@@ -32,6 +32,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<ExecutionModeParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "ExecutionMode", p.Dimensions, writer)),
                 TypeSwitch.Case<FieldRefParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "FieldRef", p.Dimensions, writer)),
                 TypeSwitch.Case<FileParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "File", p.Dimensions, writer)),
+#if NAV2016
+                TypeSwitch.Case<FilterPageBuilderParameter>(p=>DoWrite(p.Var, p.Name, p.ID, false, "FilterPageBuilder", p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<GuidParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "GUID", p.Dimensions, writer)),
                 TypeSwitch.Case<InStreamParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "InStream", p.Dimensions, writer)),
                 TypeSwitch.Case<IntegerParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "Integer", p.Dimensions, writer)),
