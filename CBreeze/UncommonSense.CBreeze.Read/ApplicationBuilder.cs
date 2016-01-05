@@ -469,6 +469,7 @@ namespace UncommonSense.CBreeze.Read
         {
             switch (name)
             {
+#if NAV2016
                 case "Business":
                     currentFunction.Event = EventPublisherSubscriber.Publisher;
                     currentFunction.EventType = EventType.Business;
@@ -489,6 +490,7 @@ namespace UncommonSense.CBreeze.Read
                     currentFunction.OnMissingLicense = values[4].ToNullableEnum<MissingAction>();
                     currentFunction.OnMissingPermission = values[5].ToNullableEnum<MissingAction>();
                     break;
+#endif
                 case "TransactionModel":
                     currentFunction.TransactionModel = values[0].ToNullableEnum<TransactionModel>();
                     break;
@@ -496,38 +498,35 @@ namespace UncommonSense.CBreeze.Read
                     currentFunction.HandlerFunctions = values[0];
                     break;
                 case "Normal":
-                switch((currentObject as Codeunit).Properties.Subtype)
-                {
-                    case CodeunitSubType.Test:
-                        currentFunction.TestFunctionType = TestFunctionType.Normal;
-                        break;
-                    case CodeunitSubType.Upgrade:
-                        currentFunction.UpgradeFunctionType = UpgradeFunctionType.Normal;
-                        break;
-                }
-break;
-                
-                
-                
+                    switch ((currentObject as Codeunit).Properties.Subtype)
+                    {
+                        case CodeunitSubType.Test:
+                            currentFunction.TestFunctionType = TestFunctionType.Normal;
+                            break;
+#if NAV2015
+                        case CodeunitSubType.Upgrade:
+                            currentFunction.UpgradeFunctionType = UpgradeFunctionType.Normal;
+                            break;
+#endif
+                    }
+                    break;
                 case "Test":
-/*        Test,
-        MessageHandler,
-        ConfirmHandler,
-        StrMenuHandler,
-        PageHandler,
-        ModalPageHandler,
-        ReportHandler,
-        RequestPageHandler,*/
+                case "MessageHandler":
+                case "ConfirmHandler":
+                case "StrMenuHandler":
+                case "PageHandler":
+                case "ModalPageHandler":
+                case "ReportHandler":
+                case "RequestPageHandler":
                     currentFunction.TestFunctionType = name.ToNullableEnum<TestFunctionType>();
                     break;
+#if NAV2015
                 case "Upgrade":
+                case "TableSyncSetup":
+                case "CheckPrecondition":
                     currentFunction.UpgradeFunctionType = name.ToNullableEnum<UpgradeFunctionType>();
                     break;
-                    /*
-        Upgrade,
-        TableSyncSetup,
-        CheckPrecondition
-*/
+#endif
             }
         }
 

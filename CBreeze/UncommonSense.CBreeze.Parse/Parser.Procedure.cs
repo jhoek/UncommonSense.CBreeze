@@ -18,9 +18,11 @@ namespace UncommonSense.CBreeze.Parse
             Match transactionModelMatch = null;
             Match procedureSignatureMatch = null;
 
+#if NAV2016
             if (!lines.FirstLineTryMatch(Patterns.BusinessEventPublisherAttribute, out businessEventPublisherMatch))
                 if (!lines.FirstLineTryMatch(Patterns.IntegrationEventPublisherAttribute, out integrationEventPublisherMatch))
                     if (!lines.FirstLineTryMatch(Patterns.EventSubscriberAttribute, out eventSubscriberMatch))
+#endif
                         lines.FirstLineTryMatch(Patterns.FunctionTypeAttribute, out functionTypeMatch);
 
             lines.FirstLineTryMatch(Patterns.HandlerFunctionsAttribute, out handlerFunctionsMatch);
