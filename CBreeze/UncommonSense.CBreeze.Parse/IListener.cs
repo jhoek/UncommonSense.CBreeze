@@ -53,7 +53,7 @@ namespace UncommonSense.CBreeze.Parse
 
         void OnBeginRequestPage();
         void OnEndRequestPage();
-        
+
         void OnBeginReportLabel(int labelID, string labelName);
         void OnEndReportLabel();
 
@@ -62,8 +62,10 @@ namespace UncommonSense.CBreeze.Parse
         void OnEndMenuSuiteNode();
 
         // Code
-        void OnBeginFunction(int functionID, string functionName, bool functionLocal, string functionType, string handlerFunctions, string transactionModel);
+        void OnBeginFunction(int functionID, string functionName, bool functionLocal);
         void OnEndFunction();
+
+        void OnFunctionAttribute(string name, params string[] values);
 
         void OnBeginEvent(int sourceID, string sourceName, int eventID, string eventName);
         void OnEndEvent();

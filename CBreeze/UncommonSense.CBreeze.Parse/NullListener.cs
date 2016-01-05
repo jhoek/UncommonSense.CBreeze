@@ -29,11 +29,15 @@ namespace UncommonSense.CBreeze.Parse
         }
 
 
-        public void OnBeginFunction(int functionID, string functionName, bool functionLocal, string functionType, string handlerFunctions, string transactionModel)
+        public void OnBeginFunction(int functionID, string functionName, bool functionLocal)
         {
         }
 
         public void OnEndFunction()
+        {
+        }
+
+        public void OnFunctionAttribute(string name, params string[] values)
         {
         }
 

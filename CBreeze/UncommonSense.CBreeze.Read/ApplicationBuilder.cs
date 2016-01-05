@@ -221,17 +221,17 @@ namespace UncommonSense.CBreeze.Read
             TypeSwitch.Do(
                 property,
 #if NAV2015
-                TypeSwitch.Case<AccessByPermissionProperty>(p=>p.SetAccessByPermission(propertyValue)),
-                TypeSwitch.Case<PreviewModeProperty>(p=>p.Value = propertyValue.ToEnum<PreviewMode>()),
-                TypeSwitch.Case<PageActionScopeProperty>(p=>p.Value = propertyValue.ToEnum<PageActionScope>()),
-                TypeSwitch.Case<UpdatePropagationProperty>(p=>p.Value = propertyValue.ToEnum<UpdatePropagation>()),
-                TypeSwitch.Case<DefaultLayoutProperty>(p=> p.Value = propertyValue.ToEnum<DefaultLayout>()),
+ TypeSwitch.Case<AccessByPermissionProperty>(p => p.SetAccessByPermission(propertyValue)),
+                TypeSwitch.Case<PreviewModeProperty>(p => p.Value = propertyValue.ToEnum<PreviewMode>()),
+                TypeSwitch.Case<PageActionScopeProperty>(p => p.Value = propertyValue.ToEnum<PageActionScope>()),
+                TypeSwitch.Case<UpdatePropagationProperty>(p => p.Value = propertyValue.ToEnum<UpdatePropagation>()),
+                TypeSwitch.Case<DefaultLayoutProperty>(p => p.Value = propertyValue.ToEnum<DefaultLayout>()),
 #endif
-                
+
 #if NAV2016
-                TypeSwitch.Case<TableTypeProperty>(p=>p.Value = propertyValue.ToEnum<TableType>()),
+ TypeSwitch.Case<TableTypeProperty>(p => p.Value = propertyValue.ToEnum<TableType>()),
 #endif
-                TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
+ TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
                 TypeSwitch.Case<AutoFormatTypeProperty>(p => p.Value = propertyValue.ToAutoFormatType()),
                 TypeSwitch.Case<BlankNumbersProperty>(p => p.Value = propertyValue.ToEnum<BlankNumbers>()),
                 TypeSwitch.Case<CalcFormulaProperty>(p => p.SetCalcFormulaProperty(propertyValue)),
@@ -265,7 +265,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<OptionStringProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<PageReferenceProperty>(p => p.Value = propertyValue.ToPageReference()),
                 TypeSwitch.Case<PageTypeProperty>(p => p.Value = propertyValue.ToEnum<PageType>()),
-                TypeSwitch.Case<PaperSourceProperty>(p=>p.Value = propertyValue.ToEnum<PaperSource>()),
+                TypeSwitch.Case<PaperSourceProperty>(p => p.Value = propertyValue.ToEnum<PaperSource>()),
                 TypeSwitch.Case<PartTypeProperty>(p => p.Value = propertyValue.ToEnum<PartType>()),
                 TypeSwitch.Case<PermissionsProperty>(p => p.SetPermissionProperty(propertyValue)),
                 TypeSwitch.Case<PromotedCategoryProperty>(p => p.Value = propertyValue.ToEnum<PromotedCategory>()),
@@ -454,24 +454,81 @@ namespace UncommonSense.CBreeze.Read
             currentTableFieldGroup = null;
         }
 
-        public void OnBeginFunction(int functionID, string functionName, bool functionLocal, string functionType, string handlerFunctions, string transactionModel)
+        public void OnBeginFunction(int functionID, string functionName, bool functionLocal)
         {
             currentFunction = currentCode.Functions.Add(new Function(functionID, functionName));
             currentFunction.Local = functionLocal;
-
-#if NAV2015
-            if (functionType.IsValidEnumValue<UpgradeFunctionType>())
-                currentFunction.UpgradeFunctionType = functionType.ToNullableEnum<UpgradeFunctionType>();
-            else
-#endif
-            currentFunction.TestFunctionType = functionType.ToNullableEnum<TestFunctionType>();
-            currentFunction.HandlerFunctions = handlerFunctions;
-            currentFunction.TransactionModel = transactionModel.ToNullableEnum<TransactionModel>();
         }
 
         public void OnEndFunction()
         {
             currentFunction = null;
+        }
+
+        public void OnFunctionAttribute(string name, params string[] values)
+        {
+            switch (name)
+            {
+                case "Business":
+                    currentFunction.Event = EventPublisherSubscriber.Publisher;
+                    currentFunction.EventType = EventType.Business;
+                    currentFunction.IncludeSender = values[0].ToNullableBoolean();
+                    break;
+                case "Integration":
+                    currentFunction.Event = EventPublisherSubscriber.Publisher;
+                    currentFunction.EventType = EventType.Integration;
+                    currentFunction.IncludeSender = values[0].ToNullableBoolean();
+                    currentFunction.GlobalVarAccess = values[1].ToNullableBoolean();
+                    break;
+                case "EventSubscriber":
+                    currentFunction.Event = EventPublisherSubscriber.Subscriber;
+                    currentFunction.EventPublisherObject.Type = values[0].ToNullableEnum<ObjectType>();
+                    currentFunction.EventPublisherObject.ID = values[1].ToNullableInteger();
+                    currentFunction.EventFunction = values[2];
+                    currentFunction.eventPublisherElement = values[3];
+                    currentFunction.OnMissingLicense = values[4].ToNullableEnum<MissingAction>();
+                    currentFunction.OnMissingPermission = values[5].ToNullableEnum<MissingAction>();
+                    break;
+                case "TransactionModel":
+                    currentFunction.TransactionModel = values[0].ToNullableEnum<TransactionModel>();
+                    break;
+                case "HandlerFunctions":
+                    currentFunction.HandlerFunctions = values[0];
+                    break;
+                case "Normal":
+                switch((currentObject as Codeunit).Properties.Subtype)
+                {
+                    case CodeunitSubType.Test:
+                        currentFunction.TestFunctionType = TestFunctionType.Normal;
+                        break;
+                    case CodeunitSubType.Upgrade:
+                        currentFunction.UpgradeFunctionType = UpgradeFunctionType.Normal;
+                        break;
+                }
+break;
+                
+                
+                
+                case "Test":
+/*        Test,
+        MessageHandler,
+        ConfirmHandler,
+        StrMenuHandler,
+        PageHandler,
+        ModalPageHandler,
+        ReportHandler,
+        RequestPageHandler,*/
+                    currentFunction.TestFunctionType = name.ToNullableEnum<TestFunctionType>();
+                    break;
+                case "Upgrade":
+                    currentFunction.UpgradeFunctionType = name.ToNullableEnum<UpgradeFunctionType>();
+                    break;
+                    /*
+        Upgrade,
+        TableSyncSetup,
+        CheckPrecondition
+*/
+            }
         }
 
         public void OnVariable(int variableID, string variableName, VariableType variableType, string variableSubType, int? variableLength, string variableOptionString, string variableConstValue, bool variableTemporary, string variableDimensions, bool variableRunOnClient, bool variableWithEvents, string variableSecurityFiltering, bool variableInDataSet)
