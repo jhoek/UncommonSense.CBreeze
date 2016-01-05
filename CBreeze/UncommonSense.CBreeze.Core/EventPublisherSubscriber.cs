@@ -6,10 +6,11 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-    public enum EventType
+    public enum EventPublisherSubscriber
     {
-        Business,
-        Integration
+        No,
+        Publisher,
+        Subscriber
     }
 #endif
 }

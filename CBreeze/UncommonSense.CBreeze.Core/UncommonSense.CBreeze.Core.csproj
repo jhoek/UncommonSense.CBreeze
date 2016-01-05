@@ -94,10 +94,13 @@
     <Compile Include="CalcFormulaTableFilterLine.cs" />
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
+    <Compile Include="EventPublisherSubscriber.cs" />
     <Compile Include="EventType.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="IHasVariables.cs" />
     <Compile Include="IPageExtensionMethods.cs" />
+    <Compile Include="MissingAction.cs" />
+    <Compile Include="ObjectReference.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Code.cs" />
     <Compile Include="CodeLines.cs" />
