@@ -96,6 +96,8 @@
     <Compile Include="CharVariable.cs" />
     <Compile Include="EventPublisherSubscriber.cs" />
     <Compile Include="EventType.cs" />
+    <Compile Include="FilterPageBuilderParameter.cs" />
+    <Compile Include="FilterPageBuilderVariable.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="IHasVariables.cs" />
     <Compile Include="IPageExtensionMethods.cs" />

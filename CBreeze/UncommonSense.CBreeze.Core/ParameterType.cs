@@ -36,6 +36,9 @@ namespace UncommonSense.CBreeze.Core
         ExecutionMode,
         FieldRef,
         File,
+#if NAV2016
+        FilterPageBuilder,
+#endif
         Guid,
         InStream,
         Integer,

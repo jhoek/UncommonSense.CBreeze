@@ -654,6 +654,12 @@ namespace UncommonSense.CBreeze.Read
                     var fileVariable = variables.Add(new FileVariable(variableID, variableName));
                     fileVariable.Dimensions = variableDimensions;
                     break;
+#if NAV2016
+                case VariableType.FilterPageBuilder:
+                    var filterPageBuilderVariable = variables.Add(new FilterPageBuilderVariable(variableID, variableName));
+                    filterPageBuilderVariable.Dimensions = variableDimensions;
+                    break;
+#endif
                 case VariableType.Guid:
                     var guidVariable = variables.Add(new GuidVariable(variableID, variableName));
                     guidVariable.Dimensions = variableDimensions;
