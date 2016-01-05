@@ -12,6 +12,7 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.InnerWriter.WriteLine();
 #if NAV2016
+            writer.WriteLineIf(function.TryFunction.GetValueOrDefault(false), "[TryFunction]");
             WriteEventingAttributes(function, writer);
 #endif
 #if NAV2015
