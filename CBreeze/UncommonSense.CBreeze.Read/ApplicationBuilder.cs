@@ -470,6 +470,9 @@ namespace UncommonSense.CBreeze.Read
             switch (name)
             {
 #if NAV2016
+                case "TryFunction":
+                    currentFunction.TryFunction = true;
+                    break;
                 case "Business":
                     currentFunction.Event = EventPublisherSubscriber.Publisher;
                     currentFunction.EventType = EventType.Business;

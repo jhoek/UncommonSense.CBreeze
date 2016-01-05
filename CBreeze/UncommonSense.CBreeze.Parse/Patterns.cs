@@ -45,7 +45,9 @@ namespace UncommonSense.CBreeze.Parse
         public static readonly Regex IntegrationEventPublisherAttribute = new Regex(@"^\[Integration(\((FALSE|TRUE|DEFAULT)(,(FALSE|TRUE|DEFAULT))?\))?\]$", RegexOptions.Compiled);
         public static readonly Regex EventSubscriberAttribute = new Regex(@"^\[EventSubscriber\((\w+),(\d+),(\w+)(,([\w\s\""]+))?(,(Skip|Error|DEFAULT))?(,(Skip|Error))?\)\]$", RegexOptions.Compiled); 
 #endif
-#if NAV2015
+#if NAV2016
+        public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler|Upgrade|TableSyncSetup|CheckPrecondition|TryFunction)\]$", RegexOptions.Compiled);
+#elif NAV2015
         public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler|Upgrade|TableSyncSetup|CheckPrecondition)\]$", RegexOptions.Compiled);
 #else
         public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler)\]$", RegexOptions.Compiled);

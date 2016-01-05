@@ -70,6 +70,12 @@ namespace UncommonSense.CBreeze.Core
 #endif
 
 #if NAV2016
+        public bool? TryFunction
+        {
+            get;
+            set;
+        }
+
         public EventPublisherSubscriber? Event
         {
             get;
