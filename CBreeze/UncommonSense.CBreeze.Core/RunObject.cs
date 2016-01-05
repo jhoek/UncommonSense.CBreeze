@@ -15,19 +15,23 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public class ObjectReferenceProperty : ReferenceProperty<ObjectReference>
+    public partial class RunObject
     {
-        internal ObjectReferenceProperty(string name)
-            : base(name)
+        // Made public to allow RunObjectProperty to new up an instance
+        public RunObject()
         {
         }
 
-        public override bool HasValue
+        public RunObjectType? Type
         {
-            get
-            {
-                return Value.Type.HasValue && Value.ID.HasValue;
-            }
+            get;
+            set;
+        }
+
+        public int? ID
+        {
+            get;
+            set;
         }
     }
 }

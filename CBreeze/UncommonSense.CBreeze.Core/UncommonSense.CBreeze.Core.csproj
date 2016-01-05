@@ -272,8 +272,8 @@
     <Compile Include="Object.cs" />
     <Compile Include="ObjectProperties.cs" />
     <Compile Include="ObjectProperty.cs" />
-    <Compile Include="ObjectReference.cs" />
-    <Compile Include="ObjectReferenceProperty.cs" />
+    <Compile Include="RunObject.cs" />
+    <Compile Include="RunObjectProperty.cs" />
     <Compile Include="ObjectType.cs" />
     <Compile Include="Occurrence.cs" />
     <Compile Include="OccurrenceProperty.cs" />
