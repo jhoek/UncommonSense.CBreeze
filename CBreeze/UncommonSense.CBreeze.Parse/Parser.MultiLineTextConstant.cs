@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Parse
                 var languageCode = match.Groups[1].Value;
                 var languageValue = match.Groups[2].Value;
 
-                stringBuilder.AppendFormat("{0}={1}", languageCode, languageValue);
+                stringBuilder.AppendFormat("{0}={1};", languageCode, languageValue);
             }
 
             Listener.OnVariable(variableID, variableName, VariableType.TextConstant, "", null, null, stringBuilder.ToString(), false, null, false, false, null, false);
