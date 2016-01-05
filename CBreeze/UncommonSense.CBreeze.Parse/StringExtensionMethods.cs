@@ -54,12 +54,16 @@ namespace UncommonSense.CBreeze.Parse
 
 		internal static bool? ToNullableBoolean(this string text)
 		{
-			switch (text.Trim())
+			switch (text.Trim().ToLowerInvariant())
 			{
-				case "Yes":
+				case "yes":
 					return true;
-				case "No":
+                case "true":
+                    return true;
+				case "no":
 					return false;
+                case "false":
+                    return false;
 				default:
 					return null;
 			}

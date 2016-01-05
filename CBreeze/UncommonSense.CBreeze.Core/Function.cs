@@ -25,6 +25,10 @@ namespace UncommonSense.CBreeze.Core
             Parameters = new Parameters(this);
             ReturnValue = new FunctionReturnValue();
             Variables = new Variables(this);
+
+#if NAV2016
+            EventPublisherObject = new ObjectReference();
+#endif
         }
 
         public string Name
@@ -66,7 +70,55 @@ namespace UncommonSense.CBreeze.Core
 #endif
 
 #if NAV2016
-        public EventType? EventType
+        public EventPublisherSubscriber? Event
+        {
+            get;
+            set;
+        }
+
+        public EventType EventType
+        {
+            get;
+            set;
+        }
+
+        public bool? IncludeSender
+        {
+            get;
+            set;
+        }
+
+        public bool? GlobalVarAccess
+        {
+            get;
+            set;
+        }
+
+        public ObjectReference EventPublisherObject
+        {
+            get;
+            protected set;
+        }
+
+        public string EventFunction
+        {
+            get;
+            set;
+        }
+
+        public string eventPublisherElement
+        {
+            get;
+            set;
+        }
+
+        public MissingAction? OnMissingLicense
+        {
+            get;
+            set;
+        }
+
+        public MissingAction? OnMissingPermission
         {
             get;
             set;

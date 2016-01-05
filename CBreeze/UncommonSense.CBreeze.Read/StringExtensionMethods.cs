@@ -24,6 +24,12 @@ namespace UncommonSense.CBreeze.Read
 
         public static Nullable<T> ToNullableEnum<T>(this string text, bool ignoreCase = true, bool normalize = true) where T : struct
         {
+#if NAV2016
+            // Handle eventing attributes
+            if (text == "DEFAULT")
+                return null;
+#endif
+
             if (string.IsNullOrWhiteSpace(text))
                 return null;
 
@@ -73,11 +79,15 @@ namespace UncommonSense.CBreeze.Read
 
         public static bool? ToNullableBoolean(this string text)
         {
-            switch (text.Trim())
+            switch (text.Trim().ToLowerInvariant())
             {
-                case "Yes":
+                case "yes":
                     return true;
-                case "No":
+                case "no":
+                    return false;
+                case "true":
+                    return true;
+                case "false":
                     return false;
                 default:
                     return null;

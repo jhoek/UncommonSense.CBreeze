@@ -10,36 +10,66 @@ namespace UncommonSense.CBreeze.Parse
     {
         internal bool ParseProcedure(Lines lines)
         {
-            Match match;
-            string functionType = null;
-            string handlerFunctions = null;
-            string transactionModel = null;
+            Match businessEventPublisherMatch = null;
+            Match integrationEventPublisherMatch =null;
+            Match eventSubscriberMatch=null;
+            Match functionTypeMatch = null;
+            Match handlerFunctionsMatch =null;
+            Match transactionModelMatch = null;
+            Match procedureSignatureMatch = null;
 
-            if (lines.FirstLineTryMatch(Patterns.FunctionTypeAttribute, out match))
-            {
-                functionType = match.Groups[1].Value;
-            }
+            if (!lines.FirstLineTryMatch(Patterns.BusinessEventPublisherAttribute, out businessEventPublisherMatch))
+                if (!lines.FirstLineTryMatch(Patterns.IntegrationEventPublisherAttribute, out integrationEventPublisherMatch))
+                    if (!lines.FirstLineTryMatch(Patterns.EventSubscriberAttribute, out eventSubscriberMatch))
+                        lines.FirstLineTryMatch(Patterns.FunctionTypeAttribute, out functionTypeMatch);
 
-            if (lines.FirstLineTryMatch(Patterns.HandlerFunctionsAttribute, out match))
-            {
-                handlerFunctions = match.Groups[1].Value;
-            }
+            lines.FirstLineTryMatch(Patterns.HandlerFunctionsAttribute, out handlerFunctionsMatch);
+            lines.FirstLineTryMatch(Patterns.TransactionModelAttribute, out transactionModelMatch);
 
-            if (lines.FirstLineTryMatch(Patterns.TransactionModelAttribute, out match))
-            {
-                transactionModel = match.Groups[1].Value;
-            }
-
-            if (!lines.FirstLineTryMatch(Patterns.ProcedureSignature, out match))
+            if (!lines.FirstLineTryMatch(Patterns.ProcedureSignature, out procedureSignatureMatch))
             {
                 return false;
             }
 
-            var procedureLocal = match.Groups[1].Value == "LOCAL ";
-            var procedureName = match.Groups[2].Value;
-            var procedureID = match.Groups[3].Value.ToInteger();
+            var procedureLocal = procedureSignatureMatch.Groups[1].Value == "LOCAL ";
+            var procedureName = procedureSignatureMatch.Groups[2].Value;
+            var procedureID = procedureSignatureMatch.Groups[3].Value.ToInteger();
 
-            Listener.OnBeginFunction(procedureID, procedureName, procedureLocal, functionType, handlerFunctions, transactionModel);
+            Listener.OnBeginFunction(procedureID, procedureName, procedureLocal); // , functionType, handlerFunctions, transactionModel, eventType, includeSender, globalVarAccess);
+
+            if (businessEventPublisherMatch.Success)
+            {
+                Listener.OnFunctionAttribute("Business", businessEventPublisherMatch.Groups[2].Value);
+            }
+            else if (integrationEventPublisherMatch.Success)
+            {
+                Listener.OnFunctionAttribute("Integration", integrationEventPublisherMatch.Groups[2].Value, integrationEventPublisherMatch.Groups[4].Value);
+            }
+            else if (eventSubscriberMatch.Success)
+            {
+                Listener.OnFunctionAttribute(
+                    "EventSubscriber",
+                    eventSubscriberMatch.Groups[1].Value,
+                    eventSubscriberMatch.Groups[2].Value,
+                    eventSubscriberMatch.Groups[3].Value,
+                    eventSubscriberMatch.Groups[5].Value,
+                    eventSubscriberMatch.Groups[7].Value,
+                    eventSubscriberMatch.Groups[9].Value);
+            }
+            else if (functionTypeMatch.Success)
+            {
+                Listener.OnFunctionAttribute(functionTypeMatch.Groups[1].Value);
+            }
+
+            if (handlerFunctionsMatch.Success)
+            {
+                Listener.OnFunctionAttribute("HandlerFunctions", handlerFunctionsMatch.Groups[1].Value);
+            }
+
+            if (transactionModelMatch.Success)
+            {
+                Listener.OnFunctionAttribute("TransactionModel", transactionModelMatch.Groups[1].Value);
+            }
 
             ParseParameters(lines);
             ParseReturnValue(lines);
