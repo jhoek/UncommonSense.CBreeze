@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Parse
             var procedureName = procedureSignatureMatch.Groups[2].Value;
             var procedureID = procedureSignatureMatch.Groups[3].Value.ToInteger();
 
-            Listener.OnBeginFunction(procedureID, procedureName, procedureLocal); // , functionType, handlerFunctions, transactionModel, eventType, includeSender, globalVarAccess);
+            Listener.OnBeginFunction(procedureID, procedureName, procedureLocal); 
 
             if (businessEventPublisherMatch.Success)
             {
