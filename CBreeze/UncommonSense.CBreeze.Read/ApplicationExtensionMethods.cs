@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Read
 {
     internal static class ApplicationExtensionMethods
     {
-        internal static void SetObjectReferenceProperty(this ObjectReferenceProperty property, string propertyValue)
+        internal static void SetObjectReferenceProperty(this RunObjectProperty property, string propertyValue)
         {
             if (string.IsNullOrWhiteSpace(propertyValue))
                 return;

@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty promoted = new NullableBooleanProperty("Promoted");
         private PromotedCategoryProperty promotedCategory = new PromotedCategoryProperty("PromotedCategory");
         private NullableBooleanProperty promotedIsBig = new NullableBooleanProperty("PromotedIsBig");
-        private ObjectReferenceProperty runObject = new ObjectReferenceProperty("RunObject");
+        private RunObjectProperty runObject = new RunObjectProperty("RunObject");
         private RunObjectLinkProperty runPageLink = new RunObjectLinkProperty("RunPageLink");
         private RunPageModeProperty runPageMode = new RunPageModeProperty("RunPageMode");
         private NullableBooleanProperty runPageOnRec = new NullableBooleanProperty("RunPageOnRec");
@@ -206,7 +206,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public ObjectReference RunObject
+        public RunObject RunObject
         {
             get
             {

@@ -260,7 +260,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<MinOccursProperty>(p => p.Value = propertyValue.ToEnum<MinOccurs>()),
                 TypeSwitch.Case<MultiLanguageProperty>(p => p.Value.SetMultiLanguageValue(propertyValue)),
                 TypeSwitch.Case<ObjectProperty>(p => p.Value = propertyValue),
-                TypeSwitch.Case<ObjectReferenceProperty>(p => p.SetObjectReferenceProperty(propertyValue)),
+                TypeSwitch.Case<RunObjectProperty>(p => p.SetObjectReferenceProperty(propertyValue)),
                 TypeSwitch.Case<OccurrenceProperty>(p => p.Value = propertyValue.ToEnum<Occurrence>()),
                 TypeSwitch.Case<OptionStringProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<PageReferenceProperty>(p => p.Value = propertyValue.ToPageReference()),

@@ -90,7 +90,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<TableRelationProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<TableReferenceProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<PageReferenceProperty>(p => p.Write(isLastProperty, style, writer)),
-                TypeSwitch.Case<ObjectReferenceProperty>(p => p.Write(isLastProperty, style, writer)),
+                TypeSwitch.Case<RunObjectProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<QueryOrderByLinesProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<DataItemQueryElementTableFilterProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<SIFTLevelsProperty>(p => p.Write(isLastProperty, style, writer)),
@@ -510,7 +510,7 @@ namespace UncommonSense.CBreeze.Write
             }
         }
 
-        public static void Write(this ObjectReferenceProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
+        public static void Write(this RunObjectProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
         {
             switch (isLastProperty)
             {
