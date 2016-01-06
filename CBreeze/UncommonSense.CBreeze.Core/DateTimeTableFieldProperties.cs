@@ -30,6 +30,9 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty description = new StringProperty("Description");
         private NullableBooleanProperty editable = new NullableBooleanProperty("Editable");
         private ExtendedDataTypeProperty extendedDatatype = new ExtendedDataTypeProperty("ExtendedDatatype");
+#if NAV2016
+        private StringProperty externalName = new StringProperty("ExternalName");
+#endif
         private FieldClassProperty fieldClass = new FieldClassProperty("FieldClass");
         private NullableDateTimeProperty initValue = new NullableDateTimeProperty("InitValue");
         private NullableDateTimeProperty maxValue = new NullableDateTimeProperty("MaxValue");
@@ -59,6 +62,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(@volatile);
 #if NAV2015
             innerList.Add(accessByPermission);
+#endif
+#if NAV2016
+            innerList.Add(externalName);
 #endif
             innerList.Add(captionML);
             innerList.Add(minValue);
@@ -195,6 +201,20 @@ namespace UncommonSense.CBreeze.Core
                 this.extendedDatatype.Value = value;
             }
         }
+
+#if NAV2016
+        public string ExternalName
+        {
+            get
+            {
+                return this.externalName.Value;
+            }
+            set
+            {
+                this.externalName.Value = value;
+            }
+        }
+#endif
 
         public FieldClass? FieldClass
         {
