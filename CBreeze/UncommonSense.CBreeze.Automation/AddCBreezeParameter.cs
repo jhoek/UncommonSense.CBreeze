@@ -270,6 +270,11 @@ namespace UncommonSense.CBreeze.Automation
                 case ParameterType.Text:
                     return new TextParameter(Var, id, Name, OptionalDataLength.Value);
 
+#if NAV2016
+                case ParameterType.TextEncoding:
+                    return new TextEncodingParameter(Var, id, Name);
+#endif
+
                 case ParameterType.Time:
                     return new TimeParameter(Var, id, Name);
 
