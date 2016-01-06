@@ -63,6 +63,9 @@ namespace UncommonSense.CBreeze.Automation
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
             OptionString = new DynamicParameter<string>("OptionString");
+#if NAV2016
+            OptionOrdinalValues = new DynamicParameter<string>("OptionOrdinalValues");
+#endif
             Owner = new DynamicParameter<string>("Owner");
             SignDisplacement = new DynamicParameter<int?>("SignDisplacement");
             SqlDataType = new DynamicParameter<Core.SqlDataType?>("SqlDataType");
@@ -423,6 +426,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> OptionString
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<string> OptionOrdinalValues
         {
             get;
             set;
@@ -908,6 +917,9 @@ namespace UncommonSense.CBreeze.Automation
                     optionTableField.Properties.MinValue = TextualMinValue.Value;
                     optionTableField.Properties.NotBlank = NotBlank.Value;
                     optionTableField.Properties.OptionString = OptionString.Value;
+#if NAV2016
+                    optionTableField.Properties.OptionOrdinalValue = OptionOrdinalValues.Value;
+#endif
                     optionTableField.Properties.SignDisplacement = SignDisplacement.Value;
                     optionTableField.Properties.TestTableRelation = TestTableRelation.Value;
                     optionTableField.Properties.ValidateTableRelation = ValidateTableRelation.Value;
@@ -1384,6 +1396,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return TextualMaxValue.RuntimeDefinedParameter;
                         yield return NotBlank.RuntimeDefinedParameter;
                         yield return OptionString.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return OptionOrdinalValues.RuntimeDefinedParameter;
+#endif
                         yield return SignDisplacement.RuntimeDefinedParameter;
                         yield return TestTableRelation.RuntimeDefinedParameter;
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
