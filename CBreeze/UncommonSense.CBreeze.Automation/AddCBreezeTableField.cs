@@ -34,6 +34,9 @@ namespace UncommonSense.CBreeze.Automation
             Editable = new DynamicParameter<bool?>("Editable");
             Enabled = new DynamicParameter<bool?>("Enabled");
             ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
+#if NAV2016
+            ExternalName = new DynamicParameter<string>("ExternalName");
+#endif
             FieldClass = new DynamicParameter<FieldClass?>("FieldClass");
             BigIntegerInitValue = new DynamicParameter<long?>("InitValue");
             BooleanInitValue = new DynamicParameter<bool?>("InitValue");
@@ -260,6 +263,14 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
+#if NAV2016
+        protected DynamicParameter<string> ExternalName
+        {
+            get;
+            set;
+        }
+#endif
 
         protected DynamicParameter<FieldClass?> FieldClass
         {
@@ -513,6 +524,9 @@ namespace UncommonSense.CBreeze.Automation
                     bigIntegerTableField.Properties.Description = Description;
                     bigIntegerTableField.Properties.Editable = Editable.Value;
                     bigIntegerTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    bigIntegerTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     bigIntegerTableField.Properties.FieldClass = FieldClass.Value;
                     bigIntegerTableField.Properties.InitValue = BigIntegerInitValue.Value;
                     bigIntegerTableField.Properties.MaxValue = BigIntegerMaxValue.Value;
@@ -573,6 +587,9 @@ namespace UncommonSense.CBreeze.Automation
                     booleanTableField.Properties.Description = Description;
                     booleanTableField.Properties.Editable = Editable.Value;
                     booleanTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    booleanTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     booleanTableField.Properties.FieldClass = FieldClass.Value;
                     booleanTableField.Properties.InitValue = BooleanInitValue.Value;
                     booleanTableField.Properties.MaxValue = BooleanMaxValue.Value;
@@ -605,6 +622,9 @@ namespace UncommonSense.CBreeze.Automation
                     codeTableField.Properties.Description = Description;
                     codeTableField.Properties.Editable = Editable.Value;
                     codeTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    codeTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     codeTableField.Properties.FieldClass = FieldClass.Value;
                     codeTableField.Properties.InitValue = TextualInitValue.Value;
                     codeTableField.Properties.NotBlank = NotBlank.Value;
@@ -637,6 +657,9 @@ namespace UncommonSense.CBreeze.Automation
                     dateTableField.Properties.Description = Description;
                     dateTableField.Properties.Editable = Editable.Value;
                     dateTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    dateTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     dateTableField.Properties.FieldClass = FieldClass.Value;
                     dateTableField.Properties.InitValue = DateTimeInitValue.Value;
                     dateTableField.Properties.MaxValue = DateTimeMaxValue.Value;
@@ -667,6 +690,9 @@ namespace UncommonSense.CBreeze.Automation
                     dateFormulaTableField.Properties.Description = Description;
                     dateFormulaTableField.Properties.Editable = Editable.Value;
                     dateFormulaTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    dateFormulaTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     dateFormulaTableField.Properties.FieldClass = FieldClass.Value;
                     dateFormulaTableField.Properties.InitValue = TextualInitValue.Value;
                     dateFormulaTableField.Properties.NotBlank = NotBlank.Value;
@@ -695,6 +721,9 @@ namespace UncommonSense.CBreeze.Automation
                     dateTimeTableField.Properties.Description = Description;
                     dateTimeTableField.Properties.Editable = Editable.Value;
                     dateTimeTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    dateTimeTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     dateTimeTableField.Properties.FieldClass = FieldClass.Value;
                     dateTimeTableField.Properties.InitValue = DateTimeInitValue.Value;
                     dateTimeTableField.Properties.MinValue = DateTimeMinValue.Value;
@@ -730,6 +759,9 @@ namespace UncommonSense.CBreeze.Automation
                     decimalTableField.Properties.Description = Description;
                     decimalTableField.Properties.Editable = Editable.Value;
                     decimalTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    decimalTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     decimalTableField.Properties.FieldClass = FieldClass.Value;
                     decimalTableField.Properties.InitValue = DecimalInitValue.Value;
                     decimalTableField.Properties.MinValue = DecimalMinValue.Value;
@@ -763,6 +795,9 @@ namespace UncommonSense.CBreeze.Automation
                     durationTableField.Properties.Description = Description;
                     durationTableField.Properties.Editable = Editable.Value;
                     durationTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    durationTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     durationTableField.Properties.FieldClass = FieldClass.Value;
                     durationTableField.Properties.InitValue = TimeSpanInitValue.Value;
                     durationTableField.Properties.MinValue = TimeSpanMinValue.Value;
@@ -794,6 +829,9 @@ namespace UncommonSense.CBreeze.Automation
                     guidTableField.Properties.Description = Description;
                     guidTableField.Properties.Editable = Editable.Value;
                     guidTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    guidTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     guidTableField.Properties.FieldClass = FieldClass.Value;
                     guidTableField.Properties.InitValue = GuidInitValue.Value;
                     guidTableField.Properties.NotBlank = NotBlank.Value;
@@ -824,6 +862,9 @@ namespace UncommonSense.CBreeze.Automation
                     integerTableField.Properties.Description = Description;
                     integerTableField.Properties.Editable = Editable.Value;
                     integerTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    integerTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     integerTableField.Properties.FieldClass = FieldClass.Value;
                     integerTableField.Properties.InitValue = IntegerInitValue.Value;
                     integerTableField.Properties.MaxValue = IntegerMaxValue.Value;
@@ -858,6 +899,9 @@ namespace UncommonSense.CBreeze.Automation
                     optionTableField.Properties.Description = Description;
                     optionTableField.Properties.Editable = Editable.Value;
                     optionTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    optionTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     optionTableField.Properties.FieldClass = FieldClass.Value;
                     optionTableField.Properties.InitValue = TextualInitValue.Value;
                     optionTableField.Properties.MaxValue = TextualMaxValue.Value;
@@ -893,6 +937,9 @@ namespace UncommonSense.CBreeze.Automation
                     recordIDTableField.Properties.Description = Description;
                     recordIDTableField.Properties.Editable = Editable.Value;
                     recordIDTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    recordIDTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     recordIDTableField.Properties.FieldClass = FieldClass.Value;
                     recordIDTableField.Properties.InitValue = TextualInitValue.Value;
                     recordIDTableField.Properties.NotBlank = NotBlank.Value;
@@ -934,6 +981,9 @@ namespace UncommonSense.CBreeze.Automation
                     textTableField.Properties.Description = Description;
                     textTableField.Properties.Editable = Editable.Value;
                     textTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    textTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     textTableField.Properties.FieldClass = FieldClass.Value;
                     textTableField.Properties.InitValue = TextualInitValue.Value;
                     textTableField.Properties.NotBlank = NotBlank.Value;
@@ -964,6 +1014,9 @@ namespace UncommonSense.CBreeze.Automation
                     timeTableField.Properties.Description = Description;
                     timeTableField.Properties.Editable = Editable.Value;
                     timeTableField.Properties.ExtendedDatatype = ExtendedDataType.Value;
+#if NAV2016
+                    timeTableField.Properties.ExternalName = ExternalName.Value;
+#endif
                     timeTableField.Properties.FieldClass = FieldClass.Value;
                     timeTableField.Properties.InitValue = TimeSpanInitValue.Value;
                     timeTableField.Properties.NotBlank = NotBlank.Value;
@@ -1014,6 +1067,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return BigIntegerInitValue.RuntimeDefinedParameter;
                         yield return BigIntegerMaxValue.RuntimeDefinedParameter;
@@ -1058,6 +1114,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return BooleanInitValue.RuntimeDefinedParameter;
                         yield return BooleanMaxValue.RuntimeDefinedParameter;
@@ -1084,6 +1143,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return DataLength.RuntimeDefinedParameter;
                         yield return DateFormula.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return Editable.RuntimeDefinedParameter;
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return TextualInitValue.RuntimeDefinedParameter;
@@ -1111,6 +1173,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ClosingDates.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return DateTimeInitValue.RuntimeDefinedParameter;
                         yield return DateTimeMaxValue.RuntimeDefinedParameter;
@@ -1135,6 +1200,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return TextualInitValue.RuntimeDefinedParameter;
                         yield return NotBlank.RuntimeDefinedParameter;
@@ -1157,6 +1225,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return DateTimeInitValue.RuntimeDefinedParameter;
                         yield return DateTimeMaxValue.RuntimeDefinedParameter;
@@ -1190,6 +1261,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return DecimalInitValue.RuntimeDefinedParameter;
                         yield return DecimalMaxValue.RuntimeDefinedParameter;
                         yield return DecimalMinValue.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return NotBlank.RuntimeDefinedParameter;
                         yield return SignDisplacement.RuntimeDefinedParameter;
                         yield return TestTableRelation.RuntimeDefinedParameter;
@@ -1213,6 +1287,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return TimeSpanInitValue.RuntimeDefinedParameter;
                         yield return TimeSpanMaxValue.RuntimeDefinedParameter;
@@ -1239,6 +1316,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return GuidInitValue.RuntimeDefinedParameter;
                         yield return NotBlank.RuntimeDefinedParameter;
@@ -1263,6 +1343,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return IntegerInitValue.RuntimeDefinedParameter;
                         yield return IntegerMinValue.RuntimeDefinedParameter;
@@ -1292,6 +1375,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return TextualInitValue.RuntimeDefinedParameter;
                         yield return TextualMinValue.RuntimeDefinedParameter;
@@ -1317,6 +1403,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return TextualInitValue.RuntimeDefinedParameter;
                         yield return NotBlank.RuntimeDefinedParameter;
@@ -1347,6 +1436,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return DateFormula.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return TextualInitValue.RuntimeDefinedParameter;
                         yield return NotBlank.RuntimeDefinedParameter;
@@ -1370,6 +1462,9 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
+#if NAV2016
+                        yield return ExternalName.RuntimeDefinedParameter;
+#endif
                         yield return FieldClass.RuntimeDefinedParameter;
                         yield return TimeSpanInitValue.RuntimeDefinedParameter;
                         yield return TimeSpanMaxValue.RuntimeDefinedParameter;
