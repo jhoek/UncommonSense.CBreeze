@@ -176,6 +176,13 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
+        [Parameter()]
+        public bool? TryFunction
+        {
+            get;
+            set;
+        }
 #endif
 
         [Parameter()]
@@ -233,6 +240,8 @@ namespace UncommonSense.CBreeze.Automation
                 function.EventType = EventType.Business;
                 function.IncludeSender = IncludeSender;
             }
+
+            function.TryFunction = TryFunction;
 #endif
             function.ReturnValue.Name = ReturnValueName;
             function.ReturnValue.Type = ReturnValueType;
