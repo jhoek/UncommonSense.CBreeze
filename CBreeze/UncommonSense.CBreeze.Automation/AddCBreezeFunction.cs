@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeFunction", DefaultParameterSetName="Test")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeFunction", DefaultParameterSetName = "Test")]
     public class AddCBreezeFunction : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -98,6 +98,86 @@ namespace UncommonSense.CBreeze.Automation
         }
 #endif
 
+#if NAV2016
+        [Parameter(Mandatory = true, ParameterSetName = "EventSubscriber")]
+        public SwitchParameter EventSubscriber
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "BusinessEvent")]
+        public SwitchParameter BusinessEvent
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "IntegrationEvent")]
+        public SwitchParameter IntegrationEvent
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "BusinessEvent")]
+        [Parameter(ParameterSetName = "IntegrationEvent")]
+        public bool? IncludeSender
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "IntegrationEvent")]
+        public bool? GlobalVarAccess
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "EventSubscriber")]
+        public ObjectType EventPublisherObjectType
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "EventSubscriber")]
+        public int EventPublisherObjectID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "EventSubscriber")]
+        public string EventPublisherElement
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = "EventSubscriber")]
+        public string EventFunction
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "EventSubscriber")]
+        public MissingAction? OnMissingLicense
+        {
+            get;
+            set;
+        }
+
+        [Parameter(ParameterSetName = "EventSubscriber")]
+        public MissingAction? OnMissingPermission
+        {
+            get;
+            set;
+        }
+#endif
+
         [Parameter()]
         public SwitchParameter PassThru
         {
@@ -129,7 +209,31 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
             function.UpgradeFunctionType = UpgradeFunctionType;
 #endif
-
+#if NAV2016
+            if (EventSubscriber)
+            {
+                function.Event = EventPublisherSubscriber.Subscriber;
+                function.EventPublisherObject.Type = EventPublisherObjectType;
+                function.EventPublisherObject.ID = EventPublisherObjectID;
+                function.EventPublisherElement = EventPublisherElement;
+                function.EventFunction = EventFunction;
+                function.OnMissingLicense = OnMissingLicense;
+                function.OnMissingPermission = OnMissingPermission;
+            }
+            else if (IntegrationEvent)
+            {
+                function.Event = EventPublisherSubscriber.Publisher;
+                function.EventType = EventType.Integration;
+                function.IncludeSender = IncludeSender;
+                function.GlobalVarAccess = GlobalVarAccess;
+            }
+            else if (BusinessEvent)
+            {
+                function.Event = EventPublisherSubscriber.Publisher;
+                function.EventType = EventType.Business;
+                function.IncludeSender = IncludeSender;
+            }
+#endif
             function.ReturnValue.Name = ReturnValueName;
             function.ReturnValue.Type = ReturnValueType;
             function.ReturnValue.DataLength = ReturnValueDataLength;
