@@ -103,6 +103,7 @@
     <Compile Include="IPageExtensionMethods.cs" />
     <Compile Include="MissingAction.cs" />
     <Compile Include="ObjectReference.cs" />
+    <Compile Include="OptionOrdinalValuesProperty.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Code.cs" />
     <Compile Include="CodeLines.cs" />

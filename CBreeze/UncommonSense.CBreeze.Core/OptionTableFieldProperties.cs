@@ -42,6 +42,9 @@ namespace UncommonSense.CBreeze.Core
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private MultiLanguageProperty optionCaptionML = new MultiLanguageProperty("OptionCaptionML");
+#if NAV2016
+        private OptionOrdinalValuesProperty optionOrdinalValues = new OptionOrdinalValuesProperty("OptionOrdinalValues");
+#endif
         private OptionStringProperty optionString = new OptionStringProperty("OptionString");
         private NullableIntegerProperty signDisplacement = new NullableIntegerProperty("SignDisplacement");
         private TableRelationProperty tableRelation = new TableRelationProperty("TableRelation");
@@ -66,6 +69,7 @@ namespace UncommonSense.CBreeze.Core
 #endif
 #if NAV2016
             innerList.Add(externalName);
+            innerList.Add(optionOrdinalValues);
 #endif
             innerList.Add(captionML);
             innerList.Add(optionCaptionML);
@@ -316,7 +320,19 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string OptionString
+        public string OptionOrdinalValue
+        {
+            get
+            {
+                return this.optionOrdinalValues.Value;
+            }
+            set
+            {
+                this.optionOrdinalValues.Value = value;
+            }
+        }
+
+        public string OptionString
         {
             get
             {
