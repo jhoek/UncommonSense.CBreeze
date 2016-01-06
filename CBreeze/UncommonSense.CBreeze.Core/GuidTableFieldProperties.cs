@@ -30,7 +30,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty editable = new NullableBooleanProperty("Editable");
         private ExtendedDataTypeProperty extendedDatatype = new ExtendedDataTypeProperty("ExtendedDatatype");
 #if NAV2016
+        private ExternalAccessProperty externalAccess = new ExternalAccessProperty("ExternalAccess");
         private StringProperty externalName = new StringProperty("ExternalName");
+        private StringProperty externalType = new StringProperty("ExternalType");
 #endif
         private FieldClassProperty fieldClass = new FieldClassProperty("FieldClass");
         private NullableGuidProperty initValue = new NullableGuidProperty("InitValue");
@@ -59,6 +61,8 @@ namespace UncommonSense.CBreeze.Core
 #endif
 #if NAV2016
             innerList.Add(externalName);
+            innerList.Add(externalType);
+            innerList.Add(externalAccess);
 #endif
             innerList.Add(captionML);
             innerList.Add(notBlank);
@@ -181,6 +185,18 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
+        public ExternalAccess? ExternalAccess
+        {
+            get
+            {
+                return this.externalAccess.Value;
+            }
+            set
+            {
+                this.externalAccess.Value = value;
+            }
+        }
+
         public string ExternalName
         {
             get
@@ -190,6 +206,18 @@ namespace UncommonSense.CBreeze.Core
             set
             {
                 this.externalName.Value = value;
+            }
+        }
+
+        public string ExternalType
+        {
+            get
+            {
+                return this.externalType.Value;
+            }
+            set
+            {
+                this.externalType.Value = value;
             }
         }
 #endif

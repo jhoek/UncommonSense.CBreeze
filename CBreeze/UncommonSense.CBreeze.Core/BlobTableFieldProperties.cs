@@ -23,6 +23,11 @@ namespace UncommonSense.CBreeze.Core
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty compressed = new NullableBooleanProperty("Compressed");
         private StringProperty description = new StringProperty("Description");
+#if NAV2016
+        private ExternalAccessProperty externalAccess = new ExternalAccessProperty("ExternalAccess");
+        private StringProperty externalName = new StringProperty("ExternalName");
+        private StringProperty externalType = new StringProperty("ExternalType");
+#endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private StringProperty owner = new StringProperty("Owner");
@@ -37,6 +42,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(@volatile);
 #if NAV2015
             innerList.Add(accessByPermission);
+#endif
+#if NAV2016
+            innerList.Add(externalName);
+            innerList.Add(externalType);
+            innerList.Add(externalAccess);
 #endif
             innerList.Add(captionML);
             innerList.Add(description);
@@ -85,6 +95,44 @@ namespace UncommonSense.CBreeze.Core
                 this.description.Value = value;
             }
         }
+
+#if NAV2016
+      public ExternalAccess? ExternalAccess
+      {
+          get
+          {
+              return this.externalAccess.Value;
+          }
+          set
+          {
+              this.externalAccess.Value = value;
+          }
+      }
+
+      public string ExternalName
+      {
+          get
+          {
+              return this.externalName.Value;
+          }
+          set
+          {
+              this.externalName.Value = value;
+          }
+      }
+
+      public string ExternalType
+      {
+          get
+          {
+              return this.externalType.Value;
+          }
+          set
+          {
+              this.externalType.Value = value;
+          }
+      }
+#endif
 
         public Trigger OnLookup
         {
