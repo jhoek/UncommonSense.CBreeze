@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public string Value
+        public virtual string Value
         {
             get;
             set;
