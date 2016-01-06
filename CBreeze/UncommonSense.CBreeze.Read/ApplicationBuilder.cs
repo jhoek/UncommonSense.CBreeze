@@ -489,7 +489,7 @@ namespace UncommonSense.CBreeze.Read
                     currentFunction.EventPublisherObject.Type = values[0].ToNullableEnum<ObjectType>();
                     currentFunction.EventPublisherObject.ID = values[1].ToNullableInteger();
                     currentFunction.EventFunction = values[2];
-                    currentFunction.eventPublisherElement = values[3];
+                    currentFunction.EventPublisherElement = values[3];
                     currentFunction.OnMissingLicense = values[4].ToNullableEnum<MissingAction>();
                     currentFunction.OnMissingPermission = values[5].ToNullableEnum<MissingAction>();
                     break;

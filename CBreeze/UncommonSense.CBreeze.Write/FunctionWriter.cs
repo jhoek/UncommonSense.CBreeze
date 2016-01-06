@@ -82,7 +82,7 @@ namespace UncommonSense.CBreeze.Write
                     ",{0},{1}",
                     function.OnMissingLicense.HasValue? function.OnMissingLicense.ToString() : "DEFAULT",
                     function.OnMissingPermission.HasValue ? function.OnMissingPermission.ToString() : "DEFAULT");
-            var eventPublisherElement = string.IsNullOrEmpty(function.eventPublisherElement) ? ",\"\"" : string.Format(",{0}", function.eventPublisherElement);
+            var eventPublisherElement = string.IsNullOrEmpty(function.EventPublisherElement) ? ",\"\"" : string.Format(",{0}", function.EventPublisherElement);
 
             // Handle exceptional cases
             parameters = parameters == ",DEFAULT,DEFAULT" ? "" : parameters;

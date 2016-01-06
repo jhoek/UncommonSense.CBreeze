@@ -112,7 +112,7 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
-        public string eventPublisherElement
+        public string EventPublisherElement
         {
             get;
             set;
