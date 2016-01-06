@@ -443,6 +443,7 @@
     <Compile Include="TestRequestPageParameter.cs" />
     <Compile Include="TextConstant.cs" />
     <Compile Include="TextEncoding.cs" />
+    <Compile Include="TextEncodingParameter.cs" />
     <Compile Include="TextEncodingProperty.cs" />
     <Compile Include="TextParameter.cs" />
     <Compile Include="TextTableField.cs" />

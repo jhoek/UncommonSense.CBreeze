@@ -967,6 +967,12 @@ namespace UncommonSense.CBreeze.Read
                     var textParameter = parameters.Add(new TextParameter(parameterVar, parameterID, parameterName, parameterLength));
                     textParameter.Dimensions = parameterDimensions;
                     break;
+#if NAV2016
+                case ParameterType.TextEncoding:
+                    var textEncodingParameter = parameters.Add(new TextEncodingParameter(parameterVar, parameterID, parameterName));
+                    textEncodingParameter.Dimensions = parameterDimensions;
+                    break;
+#endif
                 case ParameterType.Time:
                     var timeParameter = parameters.Add(new TimeParameter(parameterVar, parameterID, parameterName));
                     timeParameter.Dimensions = parameterDimensions;
