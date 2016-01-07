@@ -48,6 +48,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<RecordIDParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "RecordID", p.Dimensions, writer)),
                 TypeSwitch.Case<RecordRefParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("RecordRef{0}", p.SecurityFiltering.HasValue ? string.Format(" SECURITYFILTERING({0})", p.SecurityFiltering.GetValueOrDefault(), "") : ""), p.Dimensions, writer)),
                 TypeSwitch.Case<ReportParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("Report {0}", p.SubType), p.Dimensions, writer)),
+#if NAV2016
+                TypeSwitch.Case<TableConnectionTypeParameter>(p=>DoWrite(p.Var, p.Name, p.ID, false, "TableConnectionType", p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<TestPageParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TestRequestPageParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("TestRequestPage {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TextParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("Text{0}", p.DataLength.HasValue ? string.Format("[{0}]", p.DataLength.Value) : string.Empty), p.Dimensions, writer)),

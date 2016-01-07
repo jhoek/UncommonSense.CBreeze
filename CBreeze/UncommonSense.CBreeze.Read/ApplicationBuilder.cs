@@ -961,6 +961,12 @@ namespace UncommonSense.CBreeze.Read
                     var reportParameter = parameters.Add(new ReportParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     reportParameter.Dimensions = parameterDimensions;
                     break;
+#if NAV2016
+                case ParameterType.TableConnectionType:
+                    var tableConnectionTypeParameter = parameters.Add(new TableConnectionTypeParameter(parameterVar, parameterID, parameterName));
+                    tableConnectionTypeParameter.Dimensions = parameterDimensions;
+                    break;
+#endif
                 case ParameterType.TestPage:
                     var testPageParameter = parameters.Add(new TestPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
                     testPageParameter.Dimensions = parameterDimensions;

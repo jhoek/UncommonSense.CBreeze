@@ -261,6 +261,11 @@ namespace UncommonSense.CBreeze.Automation
                 case ParameterType.Report:
                     return new ReportParameter(Var, id, Name, IntegerSubType.Value);
 
+#if NAV2016
+                case ParameterType.TableConnectionType:
+                    return new TableConnectionTypeParameter(Var, id, Name);
+#endif
+
                 case ParameterType.TestPage:
                     return new TestPageParameter(Var, id, Name, IntegerSubType.Value);
 
