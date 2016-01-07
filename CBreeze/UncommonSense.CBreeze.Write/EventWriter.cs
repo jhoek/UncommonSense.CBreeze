@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Write
             writer.InnerWriter.WriteLine();
 
             writer.Write("EVENT {0}@{1}::{2}@{3}(", @event.SourceName, @event.SourceID, @event.Name, @event.ID);
-            FunctionParametersWriter.Write(@event.Parameters, writer);
+            @event.Parameters.Write(writer);
             writer.WriteLine(");");
             @event.Variables.Write(writer);
             writer.WriteLine("BEGIN");

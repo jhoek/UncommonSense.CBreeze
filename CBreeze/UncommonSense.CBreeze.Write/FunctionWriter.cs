@@ -23,9 +23,9 @@ namespace UncommonSense.CBreeze.Write
             writer.WriteLineIf(function.TransactionModel.HasValue, "[TransactionModel({0})]", function.TransactionModel);
 
             writer.Write("{2}PROCEDURE {0}@{1}(", function.Name, function.ID, function.Local.GetValueOrDefault(false) ? "LOCAL " : "");
-            FunctionParametersWriter.Write(function.Parameters, writer);
+            function.Parameters.Write(writer);
             writer.Write(")");
-            FunctionReturnValueWriter.Write(function.ReturnValue, writer);
+            function.ReturnValue.Write(writer);
             writer.WriteLine(";");
             function.Variables.Write(writer);
             writer.WriteLine("BEGIN");
