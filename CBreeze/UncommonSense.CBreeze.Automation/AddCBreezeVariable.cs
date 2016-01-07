@@ -342,6 +342,13 @@ namespace UncommonSense.CBreeze.Automation
                     textVariable.IncludeInDataset = IncludeInDataset.Value;
                     return textVariable;
 
+#if NAV2016
+                case VariableType.TextEncoding:
+                    var textEncodingVariable = new TextEncodingVariable(id, Name);
+                    textEncodingVariable.Dimensions = Dimensions.Value;
+                    return textEncodingVariable;
+#endif
+
                 case VariableType.TextConstant:
                     var textConstant = new TextConstant(id, Name);
                     textConstant.Values.Set("ENU", Value.Value);
