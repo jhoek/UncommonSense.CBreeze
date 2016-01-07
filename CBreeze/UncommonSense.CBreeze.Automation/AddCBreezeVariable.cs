@@ -332,6 +332,11 @@ namespace UncommonSense.CBreeze.Automation
                     return reportVariable;
 
 #if NAV2016
+                case VariableType.ReportFormat:
+                    var reportFormatVariable = new ReportFormatVariable(id, Name);
+                    reportFormatVariable.Dimensions = Dimensions.Value;
+                    return reportFormatVariable;
+
                 case VariableType.TableConnectionType:
                     var tableConnectionTypeVariable = new TableConnectionTypeVariable(id, Name);
                     tableConnectionTypeVariable.Dimensions = Dimensions.Value;
