@@ -49,6 +49,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<RecordRefParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("RecordRef{0}", p.SecurityFiltering.HasValue ? string.Format(" SECURITYFILTERING({0})", p.SecurityFiltering.GetValueOrDefault(), "") : ""), p.Dimensions, writer)),
                 TypeSwitch.Case<ReportParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("Report {0}", p.SubType), p.Dimensions, writer)),
 #if NAV2016
+                TypeSwitch.Case<ReportFormatParameter>(p=>DoWrite(p.Var, p.Name, p.ID, false, "ReportFormat", p.Dimensions, writer)),
                 TypeSwitch.Case<TableConnectionTypeParameter>(p=>DoWrite(p.Var, p.Name, p.ID, false, "TableConnectionType", p.Dimensions, writer)),
 #endif
                 TypeSwitch.Case<TestPageParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),

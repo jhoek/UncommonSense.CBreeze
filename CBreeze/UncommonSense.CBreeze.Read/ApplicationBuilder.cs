@@ -972,6 +972,10 @@ namespace UncommonSense.CBreeze.Read
                     reportParameter.Dimensions = parameterDimensions;
                     break;
 #if NAV2016
+                case ParameterType.ReportFormat:
+                    var reportFormatParameter = parameters.Add(new ReportFormatParameter(parameterVar, parameterID, parameterName));
+                    reportFormatParameter.Dimensions = parameterDimensions;
+                    break;
                 case ParameterType.TableConnectionType:
                     var tableConnectionTypeParameter = parameters.Add(new TableConnectionTypeParameter(parameterVar, parameterID, parameterName));
                     tableConnectionTypeParameter.Dimensions = parameterDimensions;

@@ -203,6 +203,7 @@
     <Compile Include="FunctionReturnValue.cs" />
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="Functions.cs" />
+    <Compile Include="ReportFormatParameter.cs" />
     <Compile Include="ReportFormatVariable.cs" />
     <Compile Include="TableConnectionTypeParameter.cs" />
     <Compile Include="TableConnectionTypeVariable.cs" />
