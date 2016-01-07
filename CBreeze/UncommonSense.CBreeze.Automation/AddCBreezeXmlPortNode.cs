@@ -137,6 +137,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = FieldElement)]
         [Parameter(ParameterSetName = FieldAttribute)]
         [Parameter(ParameterSetName = TextElement)]
+#if NAV2016
+        [Parameter(ParameterSetName=TextAttribute)]
+#endif
         public TableFieldType? DataType
         {
             get;
@@ -481,6 +484,10 @@ namespace UncommonSense.CBreeze.Automation
         protected XmlPortTextAttribute CreateTextAttributeNode()
         {
             var node = new XmlPortTextAttribute(ID ?? Guid.NewGuid(), Name, GetIndentationLevel());
+
+#if NAV2016
+            node.Properties.DataType = DataType;
+#endif
 
             node.Properties.Occurrence = Occurrence;
             node.Properties.TextType = TextType;

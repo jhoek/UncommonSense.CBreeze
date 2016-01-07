@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class XmlPortTextAttributeProperties : Properties
     {
+#if NAV2016
+        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
+#endif
         private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence");
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
         private ScopedTriggerProperty onBeforePassVariable = new ScopedTriggerProperty("OnBeforePassVariable");
@@ -28,11 +31,28 @@ namespace UncommonSense.CBreeze.Core
         {
             innerList.Add(variableName);
             innerList.Add(textType);
+#if NAV2016
+            innerList.Add(dataType);
+#endif
             innerList.Add(occurrence);
             innerList.Add(onAfterAssignVariable);
             innerList.Add(onBeforePassVariable);
             innerList.Add(width);
         }
+
+#if NAV2016
+        public TableFieldType? DataType
+        {
+            get
+            {
+                return this.dataType.Value;
+            }
+            set
+            {
+                this.dataType.Value = value;
+            }
+        }
+#endif
 
         public Occurrence? Occurrence
         {
