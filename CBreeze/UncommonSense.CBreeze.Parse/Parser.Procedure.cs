@@ -10,6 +10,7 @@ namespace UncommonSense.CBreeze.Parse
     {
         internal bool ParseProcedure(Lines lines)
         {
+            Match tryFunctionMatch = null;
             Match businessEventPublisherMatch = null;
             Match integrationEventPublisherMatch =null;
             Match eventSubscriberMatch=null;
@@ -19,6 +20,8 @@ namespace UncommonSense.CBreeze.Parse
             Match procedureSignatureMatch = null;
 
 #if NAV2016
+            lines.FirstLineTryMatch(Patterns.TryFunctionAttribute, out tryFunctionMatch);
+
             if (!lines.FirstLineTryMatch(Patterns.BusinessEventPublisherAttribute, out businessEventPublisherMatch))
                 if (!lines.FirstLineTryMatch(Patterns.IntegrationEventPublisherAttribute, out integrationEventPublisherMatch))
                     if (!lines.FirstLineTryMatch(Patterns.EventSubscriberAttribute, out eventSubscriberMatch))
@@ -62,6 +65,13 @@ namespace UncommonSense.CBreeze.Parse
             {
                 Listener.OnFunctionAttribute(functionTypeMatch.Groups[1].Value);
             }
+
+#if NAV2016
+            if (tryFunctionMatch.Success)
+            {
+                Listener.OnFunctionAttribute("TryFunction");
+            }
+#endif
 
             if (handlerFunctionsMatch.Success)
             {
