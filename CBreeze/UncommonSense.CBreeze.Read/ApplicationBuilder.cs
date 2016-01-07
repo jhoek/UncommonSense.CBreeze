@@ -246,7 +246,10 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<DecimalPlacesProperty>(p => p.SetDecimalPlacesProperty(propertyValue)),
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => p.Value = propertyValue.ToEnum<MenuItemDepartmentCategory>()),
                 TypeSwitch.Case<DirectionProperty>(p => p.Value = propertyValue.ToEnum<Direction>()),
-                TypeSwitch.Case<ExtendedDataTypeProperty>(p => p.Value = propertyValue.ToEnum<ExtendedDataType>()),
+#if NAV2016
+ TypeSwitch.Case<EventSubscriberInstanceProperty>(p => p.Value = propertyValue.ToEnum<EventSubscriberInstance>()),
+#endif
+ TypeSwitch.Case<ExtendedDataTypeProperty>(p => p.Value = propertyValue.ToEnum<ExtendedDataType>()),
                 TypeSwitch.Case<FieldClassProperty>(p => p.Value = propertyValue.ToEnum<FieldClass>()),
                 TypeSwitch.Case<FieldListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
                 TypeSwitch.Case<FormatEvaluateProperty>(p => p.Value = propertyValue.ToFormatEvaluate()),

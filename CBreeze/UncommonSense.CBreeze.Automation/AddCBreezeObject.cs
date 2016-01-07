@@ -38,6 +38,7 @@ namespace UncommonSense.CBreeze.Automation
             EnableHyperlinks = new DynamicParameter<bool?>("EnableHyperlinks", false);
             Encoding = new DynamicParameter<XmlPortEncoding?>("Encoding", false);
 #if NAV2016
+            EventSubscriberInstance = new DynamicParameter<EventSubscriberInstance?>("EventSubscriberInstance");
             ExternalName = new DynamicParameter<string>("ExternalName");
             ExternalSchema = new DynamicParameter<string>("ExternalSchema");
 #endif
@@ -266,6 +267,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2016
+        protected DynamicParameter<EventSubscriberInstance?> EventSubscriberInstance
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<string> ExternalName
         {
             get;
@@ -684,6 +691,9 @@ namespace UncommonSense.CBreeze.Automation
 #if !NAV2016
                     codeunit.Properties.CFRONTMayUsePermissions = CFrontMayUsePermissions.Value;
 #endif
+#if NAV2016
+                    codeunit.Properties.EventSubscriberInstance = EventSubscriberInstance.Value;
+#endif
                     codeunit.Properties.SingleInstance = SingleInstance.Value;
                     codeunit.Properties.Subtype = SubType.Value;
                     codeunit.Properties.TableNo = TableNo.Value;
@@ -863,6 +873,9 @@ namespace UncommonSense.CBreeze.Automation
                     case ObjectType.Codeunit:
 #if !NAV2016
                         yield return CFrontMayUsePermissions.RuntimeDefinedParameter;
+#endif
+#if NAV2016
+                        yield return EventSubscriberInstance.RuntimeDefinedParameter;
 #endif
                         yield return SingleInstance.RuntimeDefinedParameter;
                         yield return SubType.RuntimeDefinedParameter;

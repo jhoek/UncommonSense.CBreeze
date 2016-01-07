@@ -25,6 +25,7 @@ namespace UncommonSense.CBreeze.Write
 #endif
 #if NAV2016
                 TypeSwitch.Case<TableTypeProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<EventSubscriberInstanceProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
                 TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),

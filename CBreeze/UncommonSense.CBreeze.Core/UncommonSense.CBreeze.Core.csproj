@@ -95,6 +95,8 @@
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
     <Compile Include="EventPublisherSubscriber.cs" />
+    <Compile Include="EventSubscriberInstance.cs" />
+    <Compile Include="EventSubscriberInstanceProperty.cs" />
     <Compile Include="EventType.cs" />
     <Compile Include="ExternalAccess.cs" />
     <Compile Include="ExternalAccessProperty.cs" />

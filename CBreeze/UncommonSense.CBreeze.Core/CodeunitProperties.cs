@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class CodeunitProperties : Properties
     {
+#if NAV2016
+        private EventSubscriberInstanceProperty eventSubscriberInstance = new EventSubscriberInstanceProperty("EventSubscriberInstance");
+#endif
 #if !NAV2016
         private NullableBooleanProperty cFRONTMayUsePermissions = new NullableBooleanProperty("CFRONTMayUsePermissions");
 #endif
@@ -35,10 +38,27 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(cFRONTMayUsePermissions);
 #endif
             innerList.Add(singleInstance);
+#if NAV2016
+            innerList.Add(eventSubscriberInstance);
+#endif
             innerList.Add(subtype);
             innerList.Add(testIsolation);
             innerList.Add(onRun);
         }
+
+#if NAV2016
+        public EventSubscriberInstance? EventSubscriberInstance
+        {
+            get
+            {
+                return this.eventSubscriberInstance.Value;
+            }
+            set
+            {
+                this.eventSubscriberInstance.Value = value;
+            }
+        }
+#endif
 
 #if !NAV2016
         public bool? CFRONTMayUsePermissions
