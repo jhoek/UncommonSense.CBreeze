@@ -5,6 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
+#if NAV2016
     [Serializable]
     public class TextEncodingParameter : Parameter
     {
@@ -21,4 +22,5 @@ namespace UncommonSense.CBreeze.Core
             }
         }
     }
+#endif
 }

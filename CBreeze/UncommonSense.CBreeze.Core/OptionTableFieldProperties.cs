@@ -348,6 +348,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2016
         public string OptionOrdinalValue
         {
             get
@@ -359,6 +360,7 @@ namespace UncommonSense.CBreeze.Core
                 this.optionOrdinalValues.Value = value;
             }
         }
+#endif
 
         public string OptionString
         {
