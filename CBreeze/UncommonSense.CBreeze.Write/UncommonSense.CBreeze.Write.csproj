@@ -80,9 +80,9 @@
     <Compile Include="ReportWriter.cs" />
     <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="TableFieldGroupWriter.cs" />
-    <Compile Include="FunctionParametersWriter.cs" />
-    <Compile Include="FunctionParameterWriter.cs" />
-    <Compile Include="FunctionReturnValueWriter.cs" />
+    <Compile Include="ParametersWriter.cs" />
+    <Compile Include="ParameterWriter.cs" />
+    <Compile Include="ReturnValueWriter.cs" />
     <Compile Include="FunctionsWriter.cs" />
     <Compile Include="IndentationLevels.cs" />
     <Compile Include="MenuSuiteWriter.cs" />
