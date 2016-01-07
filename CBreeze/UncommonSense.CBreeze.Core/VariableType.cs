@@ -55,6 +55,9 @@ namespace UncommonSense.CBreeze.Core
         TestPage,
         TextConstant,
         Text,
+#if NAV2016
+        TextEncoding,
+#endif
         Time,
         TransactionType,
         Variant,

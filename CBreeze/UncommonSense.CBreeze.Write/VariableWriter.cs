@@ -51,6 +51,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<ReportVariable>(p => DoWrite(p.Name, p.ID, string.Format("Report {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TestPageVariable>(p => DoWrite(p.Name, p.ID, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TextConstant>(p => WriteTextConstant(p, writer)),
+#if NAV2016
+                TypeSwitch.Case<TextEncodingVariable>(p=>DoWrite(p.Name, p.ID, "TextEncoding", p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<TextVariable>(p => DoWrite(p.Name, p.ID, p.DataLength.HasValue ? string.Format("Text[{0}]", p.DataLength) : "Text", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<TimeVariable>(p => DoWrite(p.Name, p.ID, "Time", p.Dimensions, writer)),
                 TypeSwitch.Case<TransactionTypeVariable>(p => DoWrite(p.Name, p.ID, "TransactionType", p.Dimensions, writer)),

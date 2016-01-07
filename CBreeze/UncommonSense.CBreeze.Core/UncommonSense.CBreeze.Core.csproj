@@ -448,6 +448,7 @@
     <Compile Include="TextEncoding.cs" />
     <Compile Include="TextEncodingParameter.cs" />
     <Compile Include="TextEncodingProperty.cs" />
+    <Compile Include="TextEncodingVariable.cs" />
     <Compile Include="TextParameter.cs" />
     <Compile Include="TextTableField.cs" />
     <Compile Include="TextTableFieldProperties.cs" />

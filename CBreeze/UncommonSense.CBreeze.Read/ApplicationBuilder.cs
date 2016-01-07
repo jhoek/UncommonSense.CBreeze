@@ -731,6 +731,12 @@ namespace UncommonSense.CBreeze.Read
                     var textConstant = variables.Add(new TextConstant(variableID, variableName));
                     textConstant.Values.SetMultiLanguageValue(variableConstValue);
                     break;
+#if NAV2016
+                case VariableType.TextEncoding:
+                    var textEncodingVariable = variables.Add(new TextEncodingVariable(variableID, variableName));
+                    textEncodingVariable.Dimensions = variableDimensions;
+                    break;
+#endif
                 case VariableType.Time:
                     var timeVariable = variables.Add(new TimeVariable(variableID, variableName));
                     timeVariable.Dimensions = variableDimensions;
