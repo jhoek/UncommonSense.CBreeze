@@ -718,6 +718,12 @@ namespace UncommonSense.CBreeze.Read
                     var reportVariable = variables.Add(new ReportVariable(variableID, variableName, variableSubType.ToInteger()));
                     reportVariable.Dimensions = variableDimensions;
                     break;
+#if NAV2016
+                case VariableType.TableConnectionType:
+                    var tableConnectionTypeVariable = variables.Add(new TableConnectionTypeVariable(variableID, variableName));
+                    tableConnectionTypeVariable.Dimensions = variableDimensions;
+                    break;
+#endif
                 case VariableType.TestPage:
                     var testPageVariable = variables.Add(new TestPageVariable(variableID, variableName, variableSubType.ToInteger()));
                     testPageVariable.Dimensions = variableDimensions;

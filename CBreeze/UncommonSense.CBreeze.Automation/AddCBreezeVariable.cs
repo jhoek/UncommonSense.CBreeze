@@ -331,6 +331,13 @@ namespace UncommonSense.CBreeze.Automation
                     reportVariable.Dimensions = Dimensions.Value;
                     return reportVariable;
 
+#if NAV2016
+                case VariableType.TableConnectionType:
+                    var tableConnectionTypeVariable = new TableConnectionTypeVariable(id, Name);
+                    tableConnectionTypeVariable.Dimensions = Dimensions.Value;
+                    return tableConnectionTypeVariable;
+#endif
+
                 case VariableType.TestPage:
                     var testPageVariable = new TestPageVariable(id, Name, IntegerSubType.Value);
                     testPageVariable.Dimensions = Dimensions.Value;

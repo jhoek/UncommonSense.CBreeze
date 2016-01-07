@@ -52,6 +52,9 @@ namespace UncommonSense.CBreeze.Core
         RecordRef,
         Record,
         Report,
+#if NAV2016
+        TableConnectionType,
+#endif
         TestPage,
         TextConstant,
         Text,

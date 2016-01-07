@@ -204,6 +204,7 @@
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="TableConnectionTypeParameter.cs" />
+    <Compile Include="TableConnectionTypeVariable.cs" />
     <Compile Include="TableType.cs" />
     <Compile Include="TableTypeProperty.cs" />
     <Compile Include="TestFunctionType.cs" />

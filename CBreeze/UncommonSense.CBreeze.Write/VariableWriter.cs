@@ -49,6 +49,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<RecordIDVariable>(p => DoWrite(p.Name, p.ID, "RecordID", p.Dimensions, writer)),
                 TypeSwitch.Case<RecordRefVariable>(p => DoWrite(p.Name, p.ID, "RecordRef", p.Dimensions, false, false, false, false, p.SecurityFiltering.HasValue ? p.SecurityFiltering.Value.ToString() : null, writer)),
                 TypeSwitch.Case<ReportVariable>(p => DoWrite(p.Name, p.ID, string.Format("Report {0}", p.SubType), p.Dimensions, writer)),
+#if NAV2016
+                TypeSwitch.Case<TableConnectionTypeVariable>(p=>DoWrite(p.Name, p.ID, "TableConnectionType", p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<TestPageVariable>(p => DoWrite(p.Name, p.ID, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TextConstant>(p => WriteTextConstant(p, writer)),
 #if NAV2016
