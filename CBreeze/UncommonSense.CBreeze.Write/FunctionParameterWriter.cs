@@ -53,6 +53,9 @@ namespace UncommonSense.CBreeze.Write
 #endif
                 TypeSwitch.Case<TestPageParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TestRequestPageParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("TestRequestPage {0}", p.SubType), p.Dimensions, writer)),
+#if NAV2016
+                TypeSwitch.Case<TextEncodingParameter>(p=>DoWrite(p.Var, p.Name, p.ID, false, "TextEncoding", p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<TextParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, string.Format("Text{0}", p.DataLength.HasValue ? string.Format("[{0}]", p.DataLength.Value) : string.Empty), p.Dimensions, writer)),
                 TypeSwitch.Case<TimeParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "Time", p.Dimensions, writer)),
                 TypeSwitch.Case<TransactionTypeParameter>(p => DoWrite(p.Var, p.Name, p.ID, false, "TransactionType", p.Dimensions, writer)),
