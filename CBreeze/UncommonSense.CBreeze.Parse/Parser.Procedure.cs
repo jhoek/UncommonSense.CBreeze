@@ -10,10 +10,12 @@ namespace UncommonSense.CBreeze.Parse
     {
         internal bool ParseProcedure(Lines lines)
         {
+#if NAV2016
             Match tryFunctionMatch = null;
             Match businessEventPublisherMatch = null;
             Match integrationEventPublisherMatch =null;
             Match eventSubscriberMatch=null;
+#endif
             Match functionTypeMatch = null;
             Match handlerFunctionsMatch =null;
             Match transactionModelMatch = null;
