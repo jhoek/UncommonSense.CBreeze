@@ -28,6 +28,9 @@ namespace UncommonSense.CBreeze.Core
         private XmlPortFormatProperty format = new XmlPortFormatProperty("Format");
         private FormatEvaluateProperty formatEvaluate = new FormatEvaluateProperty("FormatEvaluate");
         private NullableBooleanProperty inlineSchema = new NullableBooleanProperty("InlineSchema");
+#if NAV2016
+        private XmlPortNamespacesProperty namespaces = new XmlPortNamespacesProperty("Namespaces");
+#endif
         private TriggerProperty onInitXMLport = new TriggerProperty("OnInitXMLport");
         private TriggerProperty onPostXMLport = new TriggerProperty("OnPostXMLport");
         private TriggerProperty onPreXMLport = new TriggerProperty("OnPreXMLport");
@@ -53,6 +56,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(xmlVersionNo);
             innerList.Add(formatEvaluate);
             innerList.Add(preserveWhiteSpace);
+#if NAV2016
+            innerList.Add(namespaces);
+#endif
             innerList.Add(textEncoding);
             innerList.Add(defaultNamespace);
             innerList.Add(inlineSchema);
@@ -78,7 +84,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? DefaultFieldsValidation
+        public bool? DefaultFieldsValidation
         {
             get
             {
@@ -90,7 +96,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string DefaultNamespace
+        public string DefaultNamespace
         {
             get
             {
@@ -126,7 +132,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string FieldDelimiter
+        public string FieldDelimiter
         {
             get
             {
@@ -138,7 +144,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string FieldSeparator
+        public string FieldSeparator
         {
             get
             {
@@ -150,7 +156,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string FileName
+        public string FileName
         {
             get
             {
@@ -186,7 +192,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? InlineSchema
+        public bool? InlineSchema
         {
             get
             {
@@ -197,6 +203,16 @@ namespace UncommonSense.CBreeze.Core
                 this.inlineSchema.Value = value;
             }
         }
+
+#if NAV2016
+        public XmlPortNamespaces Namespaces
+        {
+            get
+            {
+                return this.namespaces.Value;
+            }
+        }
+#endif
 
         public Trigger OnInitXMLport
         {
@@ -230,7 +246,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? PreserveWhiteSpace
+        public bool? PreserveWhiteSpace
         {
             get
             {
@@ -242,7 +258,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string RecordSeparator
+        public string RecordSeparator
         {
             get
             {
@@ -254,7 +270,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string TableSeparator
+        public string TableSeparator
         {
             get
             {
@@ -290,7 +306,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? UseDefaultNamespace
+        public bool? UseDefaultNamespace
         {
             get
             {
@@ -302,7 +318,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? UseLax
+        public bool? UseLax
         {
             get
             {
@@ -314,7 +330,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? UseRequestPage
+        public bool? UseRequestPage
         {
             get
             {

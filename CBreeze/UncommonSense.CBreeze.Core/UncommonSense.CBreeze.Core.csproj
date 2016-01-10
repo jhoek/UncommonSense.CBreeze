@@ -106,6 +106,7 @@
     <Compile Include="IHasVariables.cs" />
     <Compile Include="IPageExtensionMethods.cs" />
     <Compile Include="MissingAction.cs" />
+    <Compile Include="XmlPortNamespace.cs" />
     <Compile Include="ObjectReference.cs" />
     <Compile Include="OptionOrdinalValuesProperty.cs" />
     <Compile Include="Position.cs" />
@@ -495,6 +496,8 @@
     <Compile Include="XmlPortFieldElementProperties.cs" />
     <Compile Include="XmlPortFormat.cs" />
     <Compile Include="XmlPortFormatProperty.cs" />
+    <Compile Include="XmlPortNamespaces.cs" />
+    <Compile Include="XmlPortNamespacesProperty.cs" />
     <Compile Include="XmlPortNode.cs" />
     <Compile Include="XmlPortNodes.cs" />
     <Compile Include="XmlPortNodeType.cs" />
