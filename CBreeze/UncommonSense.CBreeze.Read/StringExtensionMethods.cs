@@ -120,6 +120,14 @@ namespace UncommonSense.CBreeze.Read
             return int.Parse(text);
         }
 
+        public static TimeSpan? ToNullableTime(this string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return null;
+
+            return TimeSpan.Parse(text);
+        }
+
         public static int? ToPageReference(this string text)
         {
             if (string.IsNullOrWhiteSpace(text))
