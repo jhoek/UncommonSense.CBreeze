@@ -85,11 +85,11 @@ namespace UncommonSense.CBreeze.Write
 
             stringBuilder.Append(type);
 
-            if (runOnClient)
-                stringBuilder.Append(" RUNONCLIENT");
-
             if (withEvents)
                 stringBuilder.Append(" WITHEVENTS");
+
+            if (runOnClient)
+                stringBuilder.Append(" RUNONCLIENT");
 
             if (includeInDataset)
                 stringBuilder.Append(" INDATASET");
