@@ -24,6 +24,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<DefaultLayoutProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
 #if NAV2016
+                TypeSwitch.Case<ExternalAccessProperty>(p=> WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
  TypeSwitch.Case<TableTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<EventSubscriberInstanceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<XmlPortNamespacesProperty>(p => p.Write(isLastProperty, style, writer)),
