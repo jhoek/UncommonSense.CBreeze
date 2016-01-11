@@ -247,6 +247,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => p.Value = propertyValue.ToEnum<MenuItemDepartmentCategory>()),
                 TypeSwitch.Case<DirectionProperty>(p => p.Value = propertyValue.ToEnum<Direction>()),
 #if NAV2016
+                TypeSwitch.Case<ExternalAccessProperty>(p=>p.Value = propertyValue.ToEnum<ExternalAccess>()),
  TypeSwitch.Case<EventSubscriberInstanceProperty>(p => p.Value = propertyValue.ToEnum<EventSubscriberInstance>()),
 #endif
  TypeSwitch.Case<ExtendedDataTypeProperty>(p => p.Value = propertyValue.ToEnum<ExtendedDataType>()),
