@@ -582,7 +582,7 @@ namespace UncommonSense.CBreeze.Automation
                 #endregion
 
                 #region Blob
-                case TableFieldType.Blob:
+                case TableFieldType.BLOB:
                     var blobTableField = new BlobTableField(GetTableFieldNo(), Name);
                     blobTableField.Properties.Compressed = Compressed.Value;
                     blobTableField.Properties.Description = Description;
@@ -1153,7 +1153,7 @@ namespace UncommonSense.CBreeze.Automation
                     #endregion
 
                     #region Blob
-                    case TableFieldType.Blob:
+                    case TableFieldType.BLOB:
                         yield return Compressed.RuntimeDefinedParameter;
 #if NAV2016
                         yield return ExternalAccess.RuntimeDefinedParameter;

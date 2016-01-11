@@ -350,7 +350,7 @@ namespace UncommonSense.CBreeze.Read
                     currentProperties.Push(binaryTableField.Properties);
                     currentTableField = binaryTableField;
                     break;
-                case TableFieldType.Blob:
+                case TableFieldType.BLOB:
                     var blobTableField = fields.Add(new BlobTableField(fieldNo, fieldName));
                     currentProperties.Push(blobTableField.Properties);
                     currentTableField = blobTableField;

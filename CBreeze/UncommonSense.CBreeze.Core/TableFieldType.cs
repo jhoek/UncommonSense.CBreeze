@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Core
     {
         BigInteger,
         Binary,
-        Blob,
+        BLOB,
         Boolean,
         Code,
         DateFormula,
