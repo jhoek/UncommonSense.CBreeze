@@ -19,6 +19,9 @@ namespace UncommonSense.CBreeze.Core
     {
         private ActionContainerTypeProperty actionContainerType = new ActionContainerTypeProperty("ActionContainerType");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
+#if NAV2016
+        private MultiLanguageProperty tooltipML = new MultiLanguageProperty("ToolTipML");
+#endif
         private StringProperty description = new StringProperty("Description");
         private StringProperty name = new StringProperty("Name");
 
@@ -26,6 +29,9 @@ namespace UncommonSense.CBreeze.Core
         {
             innerList.Add(name);
             innerList.Add(captionML);
+#if NAV2016
+            innerList.Add(tooltipML);
+#endif
             innerList.Add(description);
             innerList.Add(actionContainerType);
         }
@@ -50,7 +56,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -62,7 +68,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Name
+        public string Name
         {
             get
             {
@@ -73,5 +79,15 @@ namespace UncommonSense.CBreeze.Core
                 this.name.Value = value;
             }
         }
+
+#if NAV2016
+        public MultiLanguageValue ToolTipML
+        {
+            get
+            {
+                return this.tooltipML.Value;
+            }
+        }
+#endif
     }
 }

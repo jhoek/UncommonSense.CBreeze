@@ -23,12 +23,18 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty enabled = new StringProperty("Enabled");
         private StringProperty image = new StringProperty("Image");
         private StringProperty name = new StringProperty("Name");
+#if NAV2016
+        private MultiLanguageProperty toolTipML = new MultiLanguageProperty("ToolTipML");
+#endif
         private StringProperty visible = new StringProperty("Visible");
 
         internal PageActionGroupProperties()
         {
             innerList.Add(name);
             innerList.Add(captionML);
+#if NAV2016
+            innerList.Add(toolTipML);
+#endif
             innerList.Add(description);
             innerList.Add(visible);
             innerList.Add(enabled);
@@ -57,7 +63,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -69,7 +75,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Enabled
+        public string Enabled
         {
             get
             {
@@ -81,7 +87,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Image
+        public string Image
         {
             get
             {
@@ -93,7 +99,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Name
+        public string Name
         {
             get
             {
@@ -105,7 +111,17 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Visible
+#if NAV2016
+        public MultiLanguageValue ToolTipML
+        {
+            get
+            {
+                return this.toolTipML.Value;
+            }
+        }
+#endif
+
+        public string Visible
         {
             get
             {
