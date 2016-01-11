@@ -17,17 +17,18 @@ namespace UncommonSense.CBreeze.Write
             TypeSwitch.Do(
                 property,
 #if NAV2015
-                TypeSwitch.Case<AccessByPermissionProperty>(p => WriteSimpleProperty(p.Name, string.Format("{0} {1}={2}", p.Value.ObjectType, p.Value.ObjectID, p.Value.ToString()), isLastProperty, writer)),
+ TypeSwitch.Case<AccessByPermissionProperty>(p => WriteSimpleProperty(p.Name, string.Format("{0} {1}={2}", p.Value.ObjectType, p.Value.ObjectID, p.Value.ToString()), isLastProperty, writer)),
                 TypeSwitch.Case<PreviewModeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<PageActionScopeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
-                TypeSwitch.Case<UpdatePropagationProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
-                TypeSwitch.Case<DefaultLayoutProperty>(p=> WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<UpdatePropagationProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<DefaultLayoutProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
 #if NAV2016
-                TypeSwitch.Case<TableTypeProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
-                TypeSwitch.Case<EventSubscriberInstanceProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+ TypeSwitch.Case<TableTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<EventSubscriberInstanceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<XmlPortNamespacesProperty>(p => p.Write(isLastProperty, style, writer)),
 #endif
-                TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Write(isLastProperty, style, writer)),
+ TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
                 TypeSwitch.Case<PaperSourceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<DataItemLinkTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
@@ -348,6 +349,42 @@ namespace UncommonSense.CBreeze.Write
                     break;
             }
         }
+
+#if NAV2016
+        public static void Write(this XmlPortNamespacesProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
+        {
+            var requiresBrackets = (property.Value.Count() > 1); // ?
+
+            writer.Write("{0}=", property.Name);
+            if (requiresBrackets)
+                writer.Write("[");
+
+            writer.Indent(writer.Column);
+
+            foreach (var xmlPortNamespace in property.Value)
+            {
+                writer.Write("{0}={1}", xmlPortNamespace.Prefix, xmlPortNamespace.Namespace);
+                writer.WriteLineIf(xmlPortNamespace != property.Value.Last(), ";");
+            }
+
+            writer.Unindent();
+            if (requiresBrackets)
+                writer.Write("]");
+
+            switch (style)
+            {
+                case PropertiesStyle.Object:
+                    writer.WriteLine(";");
+                    break;
+                case PropertiesStyle.Field:
+                    if (!isLastProperty)
+                        writer.WriteLine(";");
+                    else
+                        writer.Write(" ");
+                    break;
+            }
+        }
+#endif
 
         public static void Write(this MultiLanguageProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
         {

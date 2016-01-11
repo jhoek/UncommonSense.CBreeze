@@ -262,6 +262,9 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Value = propertyValue.ToEnum<MenuItemRunObjectType>()),
                 TypeSwitch.Case<MinOccursProperty>(p => p.Value = propertyValue.ToEnum<MinOccurs>()),
                 TypeSwitch.Case<MultiLanguageProperty>(p => p.Value.SetMultiLanguageValue(propertyValue)),
+#if NAV2016
+                TypeSwitch.Case<XmlPortNamespacesProperty>(p=>p.Value.SetNamespacesValue(propertyValue)),
+#endif
                 TypeSwitch.Case<ObjectProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<RunObjectProperty>(p => p.SetObjectReferenceProperty(propertyValue)),
                 TypeSwitch.Case<OccurrenceProperty>(p => p.Value = propertyValue.ToEnum<Occurrence>()),

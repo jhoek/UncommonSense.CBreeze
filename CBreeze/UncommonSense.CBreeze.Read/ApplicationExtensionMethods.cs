@@ -91,6 +91,21 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
+#if NAV2016
+        internal static void SetNamespacesValue(this XmlPortNamespaces namespaces, string value)
+        {
+            value = RemoveSurroundingSquareBrackets(value);
+
+            while (value.Length > 0)
+            {
+                var match = Parsing.MustMatch(ref value, @"^([^=]*)=([^;]*);?");
+                var prefix = match.Groups[1].Value;
+                var @namespace = match.Groups[2].Value;
+                namespaces.Set(prefix, @namespace);
+            }
+        }
+#endif
+
         internal static string GetLanguageValue(ref string value)
         {
             switch (value.StartsWith("\""))

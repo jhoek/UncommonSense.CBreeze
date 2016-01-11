@@ -80,6 +80,7 @@
     <Compile Include="NewCBreezeApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetCBreezePermission.cs" />
+    <Compile Include="SetCBreezeXmlPortNamespace.cs" />
     <Compile Include="TestDynamicParams.cs" />
   </ItemGroup>
   <ItemGroup>
