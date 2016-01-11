@@ -313,6 +313,11 @@ namespace UncommonSense.CBreeze.Read
         {
             // CalcFormula=-Sum("Detailed Vendor Ledg. Entry".Amount WHERE (Vendor No.=FIELD(Vendor Filter), Initial Entry Global Dim. 1=FIELD(Global Dimension 1 Filter), Initial Entry Global Dim. 2=FIELD(Global Dimension 2 Filter), Initial Entry Due Date=FIELD(Date Filter), Posting Date=FIELD(UPPERLIMIT(Date Filter)), Currency Code=FIELD(Code)));
 
+            // Remove closing bracket at the end of the property value, or
+            // "Lookup(Table.Field)" in table 5329 will fail.
+            if (propertyValue.EndsWith(")"))
+                propertyValue = propertyValue.Substring(0, propertyValue.Length -1);
+
             var reverseSign = GetCalcFormulaReverseSign(ref propertyValue);
             var method = GetCalcFormulaMethodText(ref  propertyValue).ToEnum<CalcFormulaMethod>();
             var tableName = GetCalcFormulaTableName(ref propertyValue);
