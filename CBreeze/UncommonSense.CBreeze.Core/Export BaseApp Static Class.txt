@@ -50,7 +50,7 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
       CodeunitIDsClass.Static := TRUE;
 
       AllObj.SETFILTER("Object ID", '<%1|>%2', 50000, 59999);
-
+	  AllObj.SetFilter("Version List", '<>*NL*');
       AllObj.SETRANGE("Object Type", AllObj."Object Type"::Table);
 
       IF AllObj.FINDSET THEN
