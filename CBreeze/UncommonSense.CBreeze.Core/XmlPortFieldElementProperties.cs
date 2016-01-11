@@ -22,6 +22,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty fieldValidate = new NullableBooleanProperty("FieldValidate");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
+#if NAV2016
+        private StringProperty namespacePrefix = new StringProperty("NamespacePrefix");
+#endif
         private ScopedTriggerProperty onAfterAssignField = new ScopedTriggerProperty("OnAfterAssignField");
         private ScopedTriggerProperty onBeforePassField = new ScopedTriggerProperty("OnBeforePassField");
         private SourceFieldProperty sourceField = new SourceFieldProperty("SourceField");
@@ -36,6 +39,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(fieldValidate);
             innerList.Add(autoCalcField);
             innerList.Add(sourceField);
+#if NAV2016
+            innerList.Add(namespacePrefix);
+#endif
             innerList.Add(minOccurs);
             innerList.Add(maxOccurs);
 #if NAV2013R2
@@ -105,6 +111,20 @@ namespace UncommonSense.CBreeze.Core
                 this.minOccurs.Value = value;
             }
         }
+
+#if NAV2016
+        public string NamespacePrefix
+        {
+            get
+            {
+                return this.namespacePrefix.Value;
+            }
+            set
+            {
+                this.namespacePrefix.Value = value;
+            }
+        }
+#endif
 
         public Trigger OnAfterAssignField
         {

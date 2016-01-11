@@ -188,6 +188,17 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+#if NAV2016
+        [Parameter(ParameterSetName = TableElement)]
+        [Parameter(ParameterSetName = FieldElement)]
+        [Parameter(ParameterSetName = TextElement)]
+        public string NamespacePrefix
+        {
+            get;
+            set;
+        }
+#endif
+
         [Parameter(ParameterSetName = TableAttribute)]
         [Parameter(ParameterSetName = FieldAttribute)]
         [Parameter(ParameterSetName = TextAttribute)]
@@ -397,6 +408,9 @@ namespace UncommonSense.CBreeze.Automation
             node.Properties.LinkTableForceInsert = LinkTableForceInsert;
             node.Properties.MaxOccurs = MaxOccurs;
             node.Properties.MinOccurs = MinOccurs;
+#if NAV2016
+            node.Properties.NamespacePrefix = NamespacePrefix;
+#endif
             node.Properties.ReqFilterFields.AddRange(ReqFilterFields ?? new string[] { });
             node.Properties.SourceTable = SourceTable;
             node.Properties.SourceTableView.Key = SourceTableViewKey;
@@ -417,6 +431,9 @@ namespace UncommonSense.CBreeze.Automation
             node.Properties.FieldValidate = FieldValidate;
             node.Properties.MaxOccurs = MaxOccurs;
             node.Properties.MinOccurs = MinOccurs;
+#if NAV2016
+            node.Properties.NamespacePrefix = NamespacePrefix;
+#endif
             node.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
             node.Properties.SourceField.FieldName = SourceFieldName;
 #if NAV2013R2
@@ -434,6 +451,9 @@ namespace UncommonSense.CBreeze.Automation
             node.Properties.DataType = DataType;
             node.Properties.MaxOccurs = MaxOccurs;
             node.Properties.MinOccurs = MinOccurs;
+#if NAV2016
+            node.Properties.NamespacePrefix = NamespacePrefix;
+#endif
             node.Properties.TextType = TextType;
 #if NAV2013R2
             node.Properties.Unbound = Unbound;

@@ -20,6 +20,9 @@ namespace UncommonSense.CBreeze.Core
         private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
+#if NAV2016
+        private StringProperty namespacePrefix = new StringProperty("NamespacePrefix");
+#endif
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
         private ScopedTriggerProperty onBeforePassVariable = new ScopedTriggerProperty("OnBeforePassVariable");
         private TextTypeProperty textType = new TextTypeProperty("TextType");
@@ -34,6 +37,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(variableName);
             innerList.Add(textType);
             innerList.Add(dataType);
+#if NAV2016
+            innerList.Add(namespacePrefix); // FIXME
+#endif
             innerList.Add(minOccurs);
             innerList.Add(maxOccurs);
 #if NAV2013R2
@@ -79,6 +85,20 @@ namespace UncommonSense.CBreeze.Core
                 this.minOccurs.Value = value;
             }
         }
+
+#if NAV2016
+        public string NamespacePrefix
+        {
+            get
+            {
+                return this.namespacePrefix.Value;
+            }
+            set
+            {
+                this.namespacePrefix.Value = value;
+            }
+        }
+#endif
 
         public Trigger OnAfterAssignVariable
         {

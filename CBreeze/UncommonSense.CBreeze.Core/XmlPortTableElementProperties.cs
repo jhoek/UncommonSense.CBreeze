@@ -26,6 +26,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty linkTableForceInsert = new NullableBooleanProperty("LinkTableForceInsert");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
+#if NAV2016
+        private StringProperty namespacePrefix = new StringProperty("NamespacePrefix");
+#endif
         private ScopedTriggerProperty onAfterGetRecord = new ScopedTriggerProperty("OnAfterGetRecord");
         private ScopedTriggerProperty onAfterInitRecord = new ScopedTriggerProperty("OnAfterInitRecord");
         private ScopedTriggerProperty onAfterInsertRecord = new ScopedTriggerProperty("OnAfterInsertRecord");
@@ -56,6 +59,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoSave);
             innerList.Add(autoUpdate);
             innerList.Add(autoReplace);
+#if NAV2016
+            innerList.Add(namespacePrefix);
+#endif
             innerList.Add(minOccurs);
             innerList.Add(maxOccurs);
             innerList.Add(onAfterInitRecord);
@@ -167,6 +173,20 @@ namespace UncommonSense.CBreeze.Core
                 this.minOccurs.Value = value;
             }
         }
+
+#if NAV2016
+        public string NamespacePrefix
+        {
+            get
+            {
+                return this.namespacePrefix.Value;
+            }
+            set
+            {
+                this.namespacePrefix.Value = value;
+            }
+        }
+#endif
 
         public Trigger OnAfterGetRecord
         {
