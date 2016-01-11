@@ -42,6 +42,13 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataPerCompany);
             innerList.Add(permissions);
             innerList.Add(dataCaptionFields);
+            innerList.Add(linkedInTransaction);
+            innerList.Add(linkedObject);
+#if NAV2016
+            innerList.Add(tableType);
+            innerList.Add(externalName);
+            innerList.Add(externalSchema);
+#endif
             innerList.Add(onInsert);
             innerList.Add(onModify);
             innerList.Add(onDelete);
@@ -51,14 +58,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(pasteIsValid);
             innerList.Add(lookupPageID);
             innerList.Add(drillDownPageID);
-            innerList.Add(linkedInTransaction);
-            innerList.Add(linkedObject);
-#if NAV2016
-            innerList.Add(tableType);
-            innerList.Add(externalName);
-            innerList.Add(externalSchema);
-#endif
-        }
+       }
 
         public MultiLanguageValue CaptionML
         {
