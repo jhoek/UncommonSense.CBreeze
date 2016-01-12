@@ -397,7 +397,7 @@
     <Compile Include="RunObjectType.cs" />
     <Compile Include="RunPageMode.cs" />
     <Compile Include="RunPageModeProperty.cs" />
-    <Compile Include="RunTime.cs" />
+    <Compile Include="RunTime.2015.cs" />
     <Compile Include="ScopedTriggerProperty.cs" />
     <Compile Include="SemiColonSeparatedStringProperty.cs" />
     <Compile Include="SIFTLevel.cs" />
