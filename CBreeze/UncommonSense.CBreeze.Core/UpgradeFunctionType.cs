@@ -9,9 +9,16 @@ namespace UncommonSense.CBreeze.Core
     public enum UpgradeFunctionType
     {
         Normal,
+#if NAV2016
+        UpgradePerCompany,
+#else
         Upgrade,
+#endif
         TableSyncSetup,
-        CheckPrecondition
+        CheckPrecondition,
+#if NAV2016
+        UpgradePerDatabase,
+#endif
     }
 #endif
 }

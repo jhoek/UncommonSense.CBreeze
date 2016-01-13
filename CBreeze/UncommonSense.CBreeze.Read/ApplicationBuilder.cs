@@ -543,9 +543,15 @@ namespace UncommonSense.CBreeze.Read
                 case "Upgrade":
                 case "TableSyncSetup":
                 case "CheckPrecondition":
+#if NAV2016
+                case "UpgradePerCompany":
+                case "UpgradePerDatabase":
+#endif
                     currentFunction.UpgradeFunctionType = name.ToNullableEnum<UpgradeFunctionType>();
                     break;
 #endif
+                default:
+                    throw new ArgumentOutOfRangeException(string.Format("Unknown function type {0}.", name));
             }
         }
 
