@@ -2,8 +2,8 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
 {
   OBJECT-PROPERTIES
   {
-    Date=22-09-15;
-    Time=17:47:42;
+    Date=11-01-16;
+    Time=20:21:35;
     Modified=Yes;
     Version List=;
   }
@@ -50,7 +50,6 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
       CodeunitIDsClass.Static := TRUE;
 
       AllObj.SETFILTER("Object ID", '<%1|>%2', 50000, 59999);
-	  AllObj.SetFilter("Version List", '<>*NL*');
       AllObj.SETRANGE("Object Type", AllObj."Object Type"::Table);
 
       IF AllObj.FINDSET THEN
@@ -87,7 +86,7 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
       Namespace.Types.Add(BaseAppClass);
       CompilationUnit.Namespaces.Add(Namespace);
 
-      CompilationUnit.WriteTo('C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\BaseApp.cs');
+      CompilationUnit.WriteTo('C:\Users\jhoek\Desktop\BaseApp.cs');
     END;
 
     PROCEDURE NormalizeName@1000000005(ObjectName@1000000000 : Text[30]) NormalizedName : Text[30];
