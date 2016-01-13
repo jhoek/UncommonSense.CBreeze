@@ -13,11 +13,11 @@ namespace UncommonSense.CBreeze.Parse
 #if NAV2016
             Match tryFunctionMatch = null;
             Match businessEventPublisherMatch = null;
-            Match integrationEventPublisherMatch =null;
-            Match eventSubscriberMatch=null;
+            Match integrationEventPublisherMatch = null;
+            Match eventSubscriberMatch = null;
 #endif
             Match functionTypeMatch = null;
-            Match handlerFunctionsMatch =null;
+            Match handlerFunctionsMatch = null;
             Match transactionModelMatch = null;
             Match procedureSignatureMatch = null;
 
@@ -42,8 +42,9 @@ namespace UncommonSense.CBreeze.Parse
             var procedureName = procedureSignatureMatch.Groups[2].Value;
             var procedureID = procedureSignatureMatch.Groups[3].Value.ToInteger();
 
-            Listener.OnBeginFunction(procedureID, procedureName, procedureLocal); 
+            Listener.OnBeginFunction(procedureID, procedureName, procedureLocal);
 
+#if NAV2016
             if (businessEventPublisherMatch.Success)
             {
                 Listener.OnFunctionAttribute("Business", businessEventPublisherMatch.Groups[2].Value);
@@ -63,10 +64,12 @@ namespace UncommonSense.CBreeze.Parse
                     eventSubscriberMatch.Groups[7].Value,
                     eventSubscriberMatch.Groups[9].Value);
             }
-            else if (functionTypeMatch.Success)
-            {
-                Listener.OnFunctionAttribute(functionTypeMatch.Groups[1].Value);
-            }
+            else
+#endif
+                if (functionTypeMatch.Success)
+                {
+                    Listener.OnFunctionAttribute(functionTypeMatch.Groups[1].Value);
+                }
 
 #if NAV2016
             if (tryFunctionMatch.Success)
