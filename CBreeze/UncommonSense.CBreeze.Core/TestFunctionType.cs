@@ -25,6 +25,10 @@ namespace UncommonSense.CBreeze.Core
         ModalPageHandler,
         ReportHandler,
         RequestPageHandler,
+#if NAV2016
+        FilterPageHandler,
+        HyperlinkHandler
+#endif
     }
 
 }
