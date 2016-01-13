@@ -44,7 +44,6 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - Make classes non-partial?
 - Remove "generated code" comments
 - Implement Add-CBreezeStatisticsPage (FlowFilters, FlowFields, page action). When calling Add-CBreezeMasterEntityType, it's too soon to create the statistics page, because we don't have any FlowFields/FlowFilters yet.
-- Support for NAV 2016
 - Automation: make dynamic parameters protected fields instead of properties; combine declaration with initialization
 - Eliminate types derived from e.g. NullableValueProperty; use NullableValueProperty<T> directly
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
