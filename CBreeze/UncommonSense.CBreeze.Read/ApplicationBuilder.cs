@@ -305,6 +305,12 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<NullableGuidProperty>(p => p.Value = propertyValue.ToNullableGuid()),
                 TypeSwitch.Case<NullableBigIntegerProperty>(p => p.Value = propertyValue.ToNullableBigInteger()),
                 TypeSwitch.Case<NullableIntegerProperty>(p => p.Value = propertyValue.ToNullableInteger()),
+            TypeSwitch.Default(() => UnknownPropertyType()));
+        }
+
+        private void UnknownPropertyType()
+        {
+            throw new ArgumentOutOfRangeException("Unknown property type.");
         }
 
         public void OnBeginTrigger(string triggerName)
