@@ -47,6 +47,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableIntegerProperty signDisplacement = new NullableIntegerProperty("SignDisplacement");
         private TableRelationProperty tableRelation = new TableRelationProperty("TableRelation");
         private NullableBooleanProperty testTableRelation = new NullableBooleanProperty("TestTableRelation");
+#if NAV2016
+        private NullableBooleanProperty sqlTimeStamp = new NullableBooleanProperty("SQL Timestamp");
+#endif
         private NullableBooleanProperty validateTableRelation = new NullableBooleanProperty("ValidateTableRelation");
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
         private NullableBooleanProperty @volatile = new NullableBooleanProperty("Volatile");
@@ -64,6 +67,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(validateTableRelation);
             innerList.Add(testTableRelation);
             innerList.Add(autoIncrement);
+#if NAV2016
+            innerList.Add(sqlTimeStamp);
+#endif
             innerList.Add(extendedDatatype);
             innerList.Add(width);
             innerList.Add(@volatile);
@@ -100,7 +106,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-      public string AltSearchField
+        public string AltSearchField
         {
             get
             {
@@ -112,7 +118,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string AutoFormatExpr
+        public string AutoFormatExpr
         {
             get
             {
@@ -136,7 +142,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? AutoIncrement
+        public bool? AutoIncrement
         {
             get
             {
@@ -160,7 +166,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? BlankZero
+        public bool? BlankZero
         {
             get
             {
@@ -180,7 +186,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string CaptionClass
+        public string CaptionClass
         {
             get
             {
@@ -200,7 +206,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -212,7 +218,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Editable
+        public bool? Editable
         {
             get
             {
@@ -286,7 +292,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public long? InitValue
+        public long? InitValue
         {
             get
             {
@@ -298,7 +304,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public long? MaxValue
+        public long? MaxValue
         {
             get
             {
@@ -310,7 +316,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public long? MinValue
+        public long? MinValue
         {
             get
             {
@@ -322,7 +328,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? NotBlank
+        public bool? NotBlank
         {
             get
             {
@@ -350,7 +356,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? SignDisplacement
+        public int? SignDisplacement
         {
             get
             {
@@ -362,6 +368,20 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2016
+        public bool? SqlTimestamp
+        {
+            get
+            {
+                return this.sqlTimeStamp.Value;
+            }
+            set
+            {
+                this.sqlTimeStamp.Value = value;
+            }
+        }
+#endif
+
         public TableRelation TableRelation
         {
             get
@@ -370,7 +390,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? TestTableRelation
+        public bool? TestTableRelation
         {
             get
             {
@@ -382,7 +402,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? ValidateTableRelation
+        public bool? ValidateTableRelation
         {
             get
             {
@@ -394,7 +414,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string ValuesAllowed
+        public string ValuesAllowed
         {
             get
             {
@@ -406,7 +426,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Volatile
+        public bool? Volatile
         {
             get
             {
@@ -418,7 +438,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? Width
+        public int? Width
         {
             get
             {
