@@ -112,6 +112,14 @@ namespace UncommonSense.CBreeze.Read
             return new Guid(text);
         }
 
+        public static long? ToNullableBigInteger(this string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return null;
+
+            return long.Parse(text);
+        }
+
         public static int? ToNullableInteger(this string text)
         {
             if (string.IsNullOrWhiteSpace(text))

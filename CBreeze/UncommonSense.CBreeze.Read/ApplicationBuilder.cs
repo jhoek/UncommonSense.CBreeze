@@ -247,7 +247,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => p.Value = propertyValue.ToEnum<MenuItemDepartmentCategory>()),
                 TypeSwitch.Case<DirectionProperty>(p => p.Value = propertyValue.ToEnum<Direction>()),
 #if NAV2016
-                TypeSwitch.Case<ExternalAccessProperty>(p=>p.Value = propertyValue.ToEnum<ExternalAccess>()),
+ TypeSwitch.Case<ExternalAccessProperty>(p => p.Value = propertyValue.ToEnum<ExternalAccess>()),
  TypeSwitch.Case<EventSubscriberInstanceProperty>(p => p.Value = propertyValue.ToEnum<EventSubscriberInstance>()),
 #endif
  TypeSwitch.Case<ExtendedDataTypeProperty>(p => p.Value = propertyValue.ToEnum<ExtendedDataType>()),
@@ -264,9 +264,9 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<MinOccursProperty>(p => p.Value = propertyValue.ToEnum<MinOccurs>()),
                 TypeSwitch.Case<MultiLanguageProperty>(p => p.Value.SetMultiLanguageValue(propertyValue)),
 #if NAV2016
-                TypeSwitch.Case<XmlPortNamespacesProperty>(p=>p.Value.SetNamespacesValue(propertyValue)),
+ TypeSwitch.Case<XmlPortNamespacesProperty>(p => p.Value.SetNamespacesValue(propertyValue)),
 #endif
-                TypeSwitch.Case<ObjectProperty>(p => p.Value = propertyValue),
+ TypeSwitch.Case<ObjectProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<RunObjectProperty>(p => p.SetObjectReferenceProperty(propertyValue)),
                 TypeSwitch.Case<OccurrenceProperty>(p => p.Value = propertyValue.ToEnum<Occurrence>()),
                 TypeSwitch.Case<OptionStringProperty>(p => p.Value = propertyValue),
@@ -292,18 +292,19 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<TableReferenceProperty>(p => p.Value = propertyValue.ToTableReference()),
                 TypeSwitch.Case<TableRelationProperty>(p => p.SetTableRelationProperty(propertyValue)),
                 TypeSwitch.Case<TableViewProperty>(p => p.SetTableViewProperty(propertyValue)),
-                TypeSwitch.Case<TestIsolationProperty>(p=>p.Value = propertyValue.ToEnum<TestIsolation>()),
+                TypeSwitch.Case<TestIsolationProperty>(p => p.Value = propertyValue.ToEnum<TestIsolation>()),
                 TypeSwitch.Case<TextEncodingProperty>(p => p.Value = propertyValue.ToEnum<TextEncoding>()),
                 TypeSwitch.Case<TextTypeProperty>(p => p.Value = propertyValue.ToEnum<TextType>()),
                 TypeSwitch.Case<TotalsMethodProperty>(p => p.Value = propertyValue.ToEnum<TotalsMethod>()),
                 TypeSwitch.Case<TransactionTypeProperty>(p => p.Value = propertyValue.ToEnum<TransactionType>()),
                 TypeSwitch.Case<XmlPortEncodingProperty>(p => p.Value = propertyValue.ToEnum<XmlPortEncoding>()),
                 TypeSwitch.Case<XmlPortFormatProperty>(p => p.Value = propertyValue.ToEnum<XmlPortFormat>()),
-                TypeSwitch.Case<NullableTimeProperty>(p=>p.Value = propertyValue.ToNullableTime()),
+                TypeSwitch.Case<NullableTimeProperty>(p => p.Value = propertyValue.ToNullableTime()),
                 TypeSwitch.Case<NullableBooleanProperty>(p => p.Value = propertyValue.ToNullableBoolean()),
                 TypeSwitch.Case<NullableDecimalProperty>(p => p.Value = propertyValue.ToNullableDecimal()),
                 TypeSwitch.Case<NullableGuidProperty>(p => p.Value = propertyValue.ToNullableGuid()),
-                TypeSwitch.Case<NullableIntegerProperty>(p => p.Value = propertyValue.ToNullableInteger()));
+                TypeSwitch.Case<NullableBigIntegerProperty>(p => p.Value = propertyValue.ToNullableBigInteger()),
+                TypeSwitch.Case<NullableIntegerProperty>(p => p.Value = propertyValue.ToNullableInteger()),
         }
 
         public void OnBeginTrigger(string triggerName)
