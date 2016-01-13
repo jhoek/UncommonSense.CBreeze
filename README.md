@@ -49,7 +49,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
 - PowerShell pattern for Journal entity types
-- Make parser faster by doing more stuff in parallel; using F#?
+- Make parser faster by doing more stuff in parallel; using F#? Or relying on model.dll for parsing and writing?
 
 ## Known issues
 ### Objects with a time and no date
