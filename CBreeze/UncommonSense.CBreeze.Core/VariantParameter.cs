@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class VariantParameter : Parameter
+    public class VariantParameter : Parameter
     {
         public VariantParameter(bool var, int id, string name) : base(var, id, name)
         {

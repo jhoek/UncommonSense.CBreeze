@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class TimeParameter : Parameter
+    public class TimeParameter : Parameter
     {
         public TimeParameter(bool var, int id, string name) : base(var, id, name)
         {

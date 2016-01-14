@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class TableRelationCondition
+    public class TableRelationCondition
     {
         public TableRelationCondition(string fieldName, SimpleTableFilterType type, string value)
         {

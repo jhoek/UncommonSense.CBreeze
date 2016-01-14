@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
 	[Serializable]
-	public partial class GroupNode : MenuSuiteNode
+	public class GroupNode : MenuSuiteNode
 	{
 		public GroupNode(Guid id)
 			: base(id)

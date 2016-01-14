@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class DialogVariable : Variable
+    public class DialogVariable : Variable
     {
         public DialogVariable(int id, string name)
             : base(id, name)

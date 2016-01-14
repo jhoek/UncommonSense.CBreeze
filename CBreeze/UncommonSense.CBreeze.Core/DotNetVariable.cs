@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class DotNetVariable : Variable
+    public class DotNetVariable : Variable
     {
         public DotNetVariable(int id, string name, string subType)
             : base(id, name)

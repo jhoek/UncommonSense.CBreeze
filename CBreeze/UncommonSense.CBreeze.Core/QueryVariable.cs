@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class QueryVariable : Variable
+    public class QueryVariable : Variable
     {
         public QueryVariable(int id, string name, int subType)
             : base(id, name)

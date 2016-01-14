@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Page : Object, IHasCode, IPage
+    public class Page : Object, IHasCode, IPage
     {
         public Page(int id, string name)
             : base(id, name)

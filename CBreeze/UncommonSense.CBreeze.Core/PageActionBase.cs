@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Core
 	// PageActionSeparator and PageAction.
 
 	[Serializable]
-	public abstract partial class PageActionBase : KeyedItem<int>, IHasName, IHasProperties
+	public abstract class PageActionBase : KeyedItem<int>, IHasName, IHasProperties
 	{
 		internal PageActionBase(int id, int? indentationLevel)
 		{

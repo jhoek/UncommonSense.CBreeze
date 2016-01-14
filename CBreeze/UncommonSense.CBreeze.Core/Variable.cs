@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
 	[Serializable]
-	public abstract partial class Variable : KeyedItem<int>, IHasName
+	public abstract class Variable : KeyedItem<int>, IHasName
 	{
 		internal Variable(int id, string name)
 		{

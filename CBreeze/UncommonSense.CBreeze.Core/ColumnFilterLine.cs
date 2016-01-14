@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ColumnFilterLine
+    public class ColumnFilterLine
     {
         public ColumnFilterLine(string column, SimpleTableFilterType type, string value)
         {

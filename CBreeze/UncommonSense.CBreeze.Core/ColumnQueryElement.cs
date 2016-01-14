@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ColumnQueryElement : QueryElement
+    public class ColumnQueryElement : QueryElement
     {
         public ColumnQueryElement(int id, string name, int? indentationLevel)
             : base(id, name, indentationLevel)

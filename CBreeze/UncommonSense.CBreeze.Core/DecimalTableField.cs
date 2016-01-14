@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class DecimalTableField : TableField
+    public class DecimalTableField : TableField
     {
         public DecimalTableField(int no, string name)
             : base(no, name)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class CalcFormula
+    public class CalcFormula
     {
         // Ctor made public to allow CalcFormulaProperty to new up an instance
         public CalcFormula()

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class RunObjectLinkLine
+    public class RunObjectLinkLine
     {
         public RunObjectLinkLine(string fieldName, TableFilterType type, string value)
         {

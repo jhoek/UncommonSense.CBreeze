@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class CodeTableField : TableField
+    public class CodeTableField : TableField
     {
         public CodeTableField(int no, string name, int dataLength = 10)
             : base(no, name)

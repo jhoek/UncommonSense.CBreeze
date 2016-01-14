@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public abstract partial class XmlPortNode : KeyedItem<Guid>, IHasProperties
+    public abstract class XmlPortNode : KeyedItem<Guid>, IHasProperties
     {
         internal XmlPortNode(Guid id, string nodeName, int? indentationLevel)
         {

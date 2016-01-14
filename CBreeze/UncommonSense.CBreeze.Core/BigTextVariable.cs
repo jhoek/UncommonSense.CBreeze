@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class BigTextVariable : Variable
+    public class BigTextVariable : Variable
     {
         public BigTextVariable(int id, string name)
             : base(id, name)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class GuidParameter : Parameter
+    public class GuidParameter : Parameter
     {
         public GuidParameter(bool var, int id, string name) : base(var, id, name)
         {

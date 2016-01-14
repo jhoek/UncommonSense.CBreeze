@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class CharVariable : Variable
+    public class CharVariable : Variable
     {
         public CharVariable(int id, string name)
             : base(id, name)

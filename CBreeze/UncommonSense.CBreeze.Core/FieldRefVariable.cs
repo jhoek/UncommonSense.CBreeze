@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class FieldRefVariable : Variable
+    public class FieldRefVariable : Variable
     {
         public FieldRefVariable(int id, string name)
             : base(id, name)

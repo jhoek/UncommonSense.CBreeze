@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class QueryDataItemLinkLine
+    public class QueryDataItemLinkLine
     {
         public QueryDataItemLinkLine(string field, string referenceTable, string referenceField)
         {

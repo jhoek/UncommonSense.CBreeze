@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class RunObject
+    public class RunObject
     {
         // Made public to allow RunObjectProperty to new up an instance
         public RunObject()

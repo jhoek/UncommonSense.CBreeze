@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class InStreamVariable : Variable
+    public class InStreamVariable : Variable
     {
         public InStreamVariable(int id, string name)
             : base(id, name)

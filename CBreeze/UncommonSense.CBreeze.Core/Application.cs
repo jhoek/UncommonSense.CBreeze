@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
 	[Serializable]
-	public partial class Application
+	public class Application
 	{
 		public Application()
 		{

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
 	[Serializable]
-	public abstract partial class Parameter : KeyedItem<int>, IHasName
+	public abstract class Parameter : KeyedItem<int>, IHasName
 	{
 		internal Parameter(bool var, int id, string name)
 		{

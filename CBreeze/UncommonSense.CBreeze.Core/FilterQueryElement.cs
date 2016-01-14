@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class FilterQueryElement : QueryElement
+    public class FilterQueryElement : QueryElement
     {
         public FilterQueryElement(int id, string name, int? indentationLevel)
             : base(id, name, indentationLevel)
