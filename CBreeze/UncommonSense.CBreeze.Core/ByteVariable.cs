@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ByteVariable : Variable
+    public class ByteVariable : Variable
     {
         public ByteVariable(int id, string name)
             : base(id, name)

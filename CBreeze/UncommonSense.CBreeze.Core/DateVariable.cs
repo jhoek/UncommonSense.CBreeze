@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class DateVariable : Variable
+    public class DateVariable : Variable
     {
         public DateVariable(int id, string name)
             : base(id, name)

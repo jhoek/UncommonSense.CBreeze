@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class MenuSuite : Object
+    public class MenuSuite : Object
     {
         public MenuSuite(int id, string name)
             : base(id, name)

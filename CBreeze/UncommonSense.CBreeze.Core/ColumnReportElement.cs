@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class ColumnReportElement : ReportElement, IHasOptionString
+    public class ColumnReportElement : ReportElement, IHasOptionString
     {
         public ColumnReportElement(int id, int? indentationLevel)
             : base(id, indentationLevel)

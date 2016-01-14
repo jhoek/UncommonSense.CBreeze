@@ -7,7 +7,7 @@ namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
     [Serializable]
-    public partial class TableConnectionTypeVariable : Variable
+    public class TableConnectionTypeVariable : Variable
     {
         public TableConnectionTypeVariable(int id, string name)
             : base(id, name)

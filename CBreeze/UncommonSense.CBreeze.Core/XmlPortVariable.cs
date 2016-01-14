@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class XmlPortVariable : Variable
+    public class XmlPortVariable : Variable
     {
         public XmlPortVariable(int id, string name, int subType)
             : base(id, name)

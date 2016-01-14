@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class OptionParameter : Parameter, IHasOptionString
+    public class OptionParameter : Parameter, IHasOptionString
     {
         public OptionParameter(bool var, int id, string name)
             : base(var, id, name)

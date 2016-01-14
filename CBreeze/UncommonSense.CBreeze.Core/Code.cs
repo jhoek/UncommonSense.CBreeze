@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Code : IHasVariables
+    public class Code : IHasVariables
     {
         internal Code(Object @object)
         {

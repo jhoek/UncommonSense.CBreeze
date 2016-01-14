@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class TextConstant : Variable
+    public class TextConstant : Variable
     {
         public TextConstant(int id, string name)
             : base(id, name)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class PageParameter : Parameter
+    public class PageParameter : Parameter
     {
         public PageParameter(bool var, int id, string name, int subType)
             : base(var, id, name)

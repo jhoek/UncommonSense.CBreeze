@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class MultiLanguageEntry
+    public class MultiLanguageEntry
     {
         internal MultiLanguageEntry(string languageID, string value)
         {

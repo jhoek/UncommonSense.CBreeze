@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class AutomationParameter : Parameter
+    public class AutomationParameter : Parameter
     {
         public AutomationParameter(bool var, int id, string name, string subType)
             : base(var, id, name)

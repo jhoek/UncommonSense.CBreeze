@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class TransactionTypeParameter : Parameter
+    public class TransactionTypeParameter : Parameter
     {
         public TransactionTypeParameter(bool var, int id, string name) : base(var, id, name)
         {

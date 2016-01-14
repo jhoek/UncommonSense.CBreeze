@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class DecimalParameter : Parameter
+    public class DecimalParameter : Parameter
     {
         public DecimalParameter(bool var, int id, string name) : base(var, id, name)
         {

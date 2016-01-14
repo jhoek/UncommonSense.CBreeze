@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class DateFormulaParameter : Parameter
+    public class DateFormulaParameter : Parameter
     {
         public DateFormulaParameter(bool var, int id, string name) : base(var, id, name)
         {

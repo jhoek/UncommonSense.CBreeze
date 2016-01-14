@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
 	[Serializable]
-	public partial class PageActionGroup : PageActionBase
+	public class PageActionGroup : PageActionBase
 	{
 		public PageActionGroup(int id, int? indentationLevel)
 			: base(id, indentationLevel)

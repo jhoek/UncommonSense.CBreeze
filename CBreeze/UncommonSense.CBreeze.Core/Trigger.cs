@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class Trigger : IHasVariables
+    public class Trigger : IHasVariables
     {
         public Trigger()
         {

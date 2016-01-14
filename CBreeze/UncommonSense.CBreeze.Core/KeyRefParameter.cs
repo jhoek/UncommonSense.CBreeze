@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UncommonSense.CBreeze.Core
 {
     [Serializable]
-    public partial class KeyRefParameter : Parameter
+    public class KeyRefParameter : Parameter
     {
         public KeyRefParameter(bool var, int id, string name) : base(var, id, name)
         {
