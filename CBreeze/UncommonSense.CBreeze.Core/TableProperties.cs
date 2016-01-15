@@ -30,25 +30,25 @@ namespace UncommonSense.CBreeze.Core
 
         internal TableProperties()
         {
-            innerList.Add(dataPerCompany);
-            innerList.Add(permissions);
-            innerList.Add(dataCaptionFields);
-            innerList.Add(linkedInTransaction);
-            innerList.Add(linkedObject);
+            innerList.Add(dataPerCompany); // 4935
+            innerList.Add(permissions); // 4947
+            innerList.Add(dataCaptionFields); // 21105
+            innerList.Add(linkedInTransaction); // 4984
+            innerList.Add(linkedObject); // 4983
 #if NAV2016
-            innerList.Add(tableType);
-            innerList.Add(externalName);
+            innerList.Add(tableType); // 5044
+            innerList.Add(externalName); // 5045
             innerList.Add(externalSchema);
 #endif
             innerList.Add(onInsert);
             innerList.Add(onModify);
             innerList.Add(onDelete);
             innerList.Add(onRename);
-            innerList.Add(captionML);
-            innerList.Add(description);
-            innerList.Add(pasteIsValid);
-            innerList.Add(lookupPageID);
-            innerList.Add(drillDownPageID);
+            innerList.Add(captionML); // 8629
+            innerList.Add(description); // 15386
+            innerList.Add(pasteIsValid); // 15423
+            innerList.Add(lookupPageID); // 55116
+            innerList.Add(drillDownPageID); // 55117
        }
 
         public MultiLanguageValue CaptionML

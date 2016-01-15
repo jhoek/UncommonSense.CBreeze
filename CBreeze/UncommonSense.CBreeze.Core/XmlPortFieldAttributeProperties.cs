@@ -8,14 +8,14 @@ namespace UncommonSense.CBreeze.Core
     [Serializable]
     public class XmlPortFieldAttributeProperties : Properties   
     {
-        private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField");
-        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
-        private NullableBooleanProperty fieldValidate = new NullableBooleanProperty("FieldValidate");
-        private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence");
-        private ScopedTriggerProperty onAfterAssignField = new ScopedTriggerProperty("OnAfterAssignField");
+        private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField"); // 21057
+        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType"); // 0
+        private NullableBooleanProperty fieldValidate = new NullableBooleanProperty("FieldValidate"); // 54079
+        private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence"); // 54096
+        private ScopedTriggerProperty onAfterAssignField = new ScopedTriggerProperty("OnAfterAssignField"); 
         private ScopedTriggerProperty onBeforePassField = new ScopedTriggerProperty("OnBeforePassField");
-        private SourceFieldProperty sourceField = new SourceFieldProperty("SourceField");
-        private NullableIntegerProperty width = new NullableIntegerProperty("Width");
+        private SourceFieldProperty sourceField = new SourceFieldProperty("SourceField"); // 54081
+        private NullableIntegerProperty width = new NullableIntegerProperty("Width"); // 5010
 
         internal XmlPortFieldAttributeProperties()
         {
