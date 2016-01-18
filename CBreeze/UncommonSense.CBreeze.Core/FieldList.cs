@@ -6,8 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class FieldList : Collection<string>
+        public class FieldList : Collection<string>
     {
         // Made ctor public so that FieldListProperty can new up an instance
         public FieldList()

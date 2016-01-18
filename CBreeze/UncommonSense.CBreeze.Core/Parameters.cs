@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Parameters : IntegerKeyedAndNamedContainer<Parameter>
+        public class Parameters : IntegerKeyedAndNamedContainer<Parameter>
     {
         internal Parameters(IHasParameters container)
         {

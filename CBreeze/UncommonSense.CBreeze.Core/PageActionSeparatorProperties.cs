@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PageActionSeparatorProperties : Properties
+        public class PageActionSeparatorProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty isHeader = new NullableBooleanProperty("IsHeader");

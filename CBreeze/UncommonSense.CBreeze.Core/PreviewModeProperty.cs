@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2015
-    [Serializable]
-    public class PreviewModeProperty : NullableValueProperty<PreviewMode>
+        public class PreviewModeProperty : NullableValueProperty<PreviewMode>
     {
         internal PreviewModeProperty(string name)
             : base(name)

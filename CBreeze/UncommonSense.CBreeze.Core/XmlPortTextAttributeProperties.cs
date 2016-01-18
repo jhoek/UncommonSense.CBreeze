@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPortTextAttributeProperties : Properties
+        public class XmlPortTextAttributeProperties : Properties
     {
 #if NAV2016
         private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");

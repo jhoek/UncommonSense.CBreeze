@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MenuItemDepartmentCategoryProperty : NullableValueProperty<MenuItemDepartmentCategory>
+        public class MenuItemDepartmentCategoryProperty : NullableValueProperty<MenuItemDepartmentCategory>
     {
         internal MenuItemDepartmentCategoryProperty(string name)
             : base(name)

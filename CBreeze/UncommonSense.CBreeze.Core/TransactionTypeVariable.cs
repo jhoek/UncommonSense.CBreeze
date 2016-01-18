@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TransactionTypeVariable : Variable
+        public class TransactionTypeVariable : Variable
     {
         public TransactionTypeVariable(int id, string name)
             : base(id, name)

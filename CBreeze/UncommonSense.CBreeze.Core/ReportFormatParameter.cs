@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-    [Serializable]
-    public class ReportFormatParameter : Parameter
+        public class ReportFormatParameter : Parameter
     {
         public ReportFormatParameter(bool var, int id, string name)
             : base(var, id, name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPortRequestPage : IPage
+        public class XmlPortRequestPage : IPage
     {
         internal XmlPortRequestPage(XmlPort xmlPort)
         {

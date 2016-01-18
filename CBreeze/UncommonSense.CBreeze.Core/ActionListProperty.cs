@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public class ActionListProperty : ReferenceProperty<ActionList>
+		public class ActionListProperty : ReferenceProperty<ActionList>
 	{
 		internal ActionListProperty(string name)
 			: base(name)

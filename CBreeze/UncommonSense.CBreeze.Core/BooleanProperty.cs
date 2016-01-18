@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BooleanProperty : ValueProperty<bool>
+        public class BooleanProperty : ValueProperty<bool>
     {
         internal BooleanProperty(string name) : base(name)
         {

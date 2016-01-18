@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPortRequestPageProperties : Properties
+        public class XmlPortRequestPageProperties : Properties
     {
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");

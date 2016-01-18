@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPortTextElement : XmlPortNode
+        public class XmlPortTextElement : XmlPortNode
     {
         public XmlPortTextElement(Guid id, string nodeName, int? indentationLevel)
             : base(id, nodeName, indentationLevel)

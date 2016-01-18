@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MenuSuiteProperties : Properties
+        public class MenuSuiteProperties : Properties
     {
         internal MenuSuiteProperties()
         {

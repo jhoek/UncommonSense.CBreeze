@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class FormatEvaluateProperty : NullableValueProperty<FormatEvaluate>
+        public class FormatEvaluateProperty : NullableValueProperty<FormatEvaluate>
     {
         internal FormatEvaluateProperty(string name)
             : base(name)

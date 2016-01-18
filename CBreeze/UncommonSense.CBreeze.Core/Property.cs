@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public abstract class Property
+        public abstract class Property
     {
         internal Property(string name)
         {

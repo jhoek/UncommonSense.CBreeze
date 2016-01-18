@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PermissionsProperty : ReferenceProperty<Permissions>
+        public class PermissionsProperty : ReferenceProperty<Permissions>
     {
         internal PermissionsProperty(string name)
             : base(name)

@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-    [Serializable]
-    public class TextEncodingVariable : Variable
+        public class TextEncodingVariable : Variable
     {
         public TextEncodingVariable(int id, string name) : base(id, name)
         {

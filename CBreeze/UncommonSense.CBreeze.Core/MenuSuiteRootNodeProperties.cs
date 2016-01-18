@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MenuSuiteRootNodeProperties : Properties
+        public class MenuSuiteRootNodeProperties : Properties
     {
         private NullableGuidProperty firstChild = new NullableGuidProperty("FirstChild");
 

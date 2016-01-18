@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract class QueryElement : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class QueryElement : KeyedItem<int>, IHasName, IHasProperties
 	{
 		public QueryElement(int id, string name, int? indentationLevel)
 		{

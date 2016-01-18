@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class OutStreamParameter : Parameter
+        public class OutStreamParameter : Parameter
     {
         public OutStreamParameter(bool var, int id, string name) : base(var, id, name)
         {

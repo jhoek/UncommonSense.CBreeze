@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ExecutionModeVariable : Variable
+        public class ExecutionModeVariable : Variable
     {
         public ExecutionModeVariable(int id, string name)
             : base(id, name)

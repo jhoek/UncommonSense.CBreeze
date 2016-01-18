@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract class PageControl : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class PageControl : KeyedItem<int>, IHasName, IHasProperties
 	{
 		internal PageControl(int id, int? indentationLevel)
 		{

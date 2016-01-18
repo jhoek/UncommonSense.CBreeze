@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MinOccursProperty : NullableValueProperty<MinOccurs>
+        public class MinOccursProperty : NullableValueProperty<MinOccurs>
     {
         internal MinOccursProperty(string name)
             : base(name)

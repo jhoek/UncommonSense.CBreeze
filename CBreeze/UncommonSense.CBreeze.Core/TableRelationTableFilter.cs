@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TableRelationTableFilter : Collection<TableRelationTableFilterLine>
+        public class TableRelationTableFilter : Collection<TableRelationTableFilterLine>
     {
     }
 }

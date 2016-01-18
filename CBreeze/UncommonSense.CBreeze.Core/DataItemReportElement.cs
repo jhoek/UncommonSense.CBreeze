@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DataItemReportElement : ReportElement
+        public class DataItemReportElement : ReportElement
     {
         public DataItemReportElement(int id, int? indentationLevel)
             : base(id, indentationLevel)

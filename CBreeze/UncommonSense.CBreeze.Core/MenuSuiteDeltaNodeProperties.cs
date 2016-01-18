@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MenuSuiteDeltaNodeProperties : Properties
+        public class MenuSuiteDeltaNodeProperties : Properties
     {
         private NullableBooleanProperty deleted = new NullableBooleanProperty("Deleted");
         private NullableGuidProperty nextNodeID = new NullableGuidProperty("NextNodeID");

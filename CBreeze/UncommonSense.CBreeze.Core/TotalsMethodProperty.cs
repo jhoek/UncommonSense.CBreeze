@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TotalsMethodProperty : NullableValueProperty<TotalsMethod>
+        public class TotalsMethodProperty : NullableValueProperty<TotalsMethod>
     {
         internal TotalsMethodProperty(string name)
             : base(name)

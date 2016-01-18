@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ReportRequestPage : IPage
+        public class ReportRequestPage : IPage
     {
         internal ReportRequestPage(Report report)
         {

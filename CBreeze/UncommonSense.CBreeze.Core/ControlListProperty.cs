@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ControlListProperty : ReferenceProperty<ControlList>
+        public class ControlListProperty : ReferenceProperty<ControlList>
     {
         internal ControlListProperty(string name)
             : base(name)

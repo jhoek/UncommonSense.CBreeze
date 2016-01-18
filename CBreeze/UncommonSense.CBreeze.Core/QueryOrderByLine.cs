@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class QueryOrderByLine
+        public class QueryOrderByLine
     {
         public QueryOrderByLine(string column, QueryOrderByDirection direction)
         {

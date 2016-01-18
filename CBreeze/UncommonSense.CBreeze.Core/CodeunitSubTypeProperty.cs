@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class CodeunitSubTypeProperty : NullableValueProperty<CodeunitSubType>
+        public class CodeunitSubTypeProperty : NullableValueProperty<CodeunitSubType>
     {
         internal CodeunitSubTypeProperty(string name)
             : base(name)

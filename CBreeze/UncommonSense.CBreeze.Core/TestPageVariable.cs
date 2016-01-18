@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TestPageVariable : Variable
+        public class TestPageVariable : Variable
     {
         public TestPageVariable(int id, string name, int subType)
             : base(id, name)

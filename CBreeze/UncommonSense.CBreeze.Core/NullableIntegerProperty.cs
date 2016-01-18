@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class NullableIntegerProperty : NullableValueProperty<int>
+        public class NullableIntegerProperty : NullableValueProperty<int>
     {
         internal NullableIntegerProperty(string name)
             : base(name)

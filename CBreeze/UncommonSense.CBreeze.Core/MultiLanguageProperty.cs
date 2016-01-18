@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MultiLanguageProperty : ReferenceProperty<MultiLanguageValue>
+        public class MultiLanguageProperty : ReferenceProperty<MultiLanguageValue>
     {
         internal MultiLanguageProperty(string name)
             : base(name)

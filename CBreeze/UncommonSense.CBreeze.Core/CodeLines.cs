@@ -6,8 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class CodeLines : Collection<string>
+        public class CodeLines : Collection<string>
     {
         internal CodeLines()
         {

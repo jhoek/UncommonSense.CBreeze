@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TableViewProperty : ReferenceProperty<TableView>
+        public class TableViewProperty : ReferenceProperty<TableView>
     {
         internal TableViewProperty(string name)
             : base(name)

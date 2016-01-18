@@ -6,8 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ControlList : Collection<string>
+        public class ControlList : Collection<string>
     {
         // Ctor made public to allow ControlListProperty to new up an instance
         public ControlList()

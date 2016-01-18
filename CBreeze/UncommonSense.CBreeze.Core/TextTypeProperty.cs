@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TextTypeProperty : NullableValueProperty<TextType>
+        public class TextTypeProperty : NullableValueProperty<TextType>
     {
         internal TextTypeProperty(string name)
             : base(name)

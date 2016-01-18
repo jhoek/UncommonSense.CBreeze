@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ReportDataItemLinkLine
+        public class ReportDataItemLinkLine
     {
         public ReportDataItemLinkLine(string fieldName, string referenceFieldName)
         {

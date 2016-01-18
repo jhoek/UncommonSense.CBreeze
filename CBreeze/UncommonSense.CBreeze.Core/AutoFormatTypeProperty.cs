@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class AutoFormatTypeProperty : NullableValueProperty<AutoFormatType>
+        public class AutoFormatTypeProperty : NullableValueProperty<AutoFormatType>
     {
         internal AutoFormatTypeProperty(string name)
             : base(name)

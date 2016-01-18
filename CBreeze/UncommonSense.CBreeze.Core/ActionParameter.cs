@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ActionParameter : Parameter
+        public class ActionParameter : Parameter
     {
         public ActionParameter(bool var, int id, string name) : base(var, id, name)
         {

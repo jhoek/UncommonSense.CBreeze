@@ -6,8 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class RunObjectLink : Collection<RunObjectLinkLine>
+        public class RunObjectLink : Collection<RunObjectLinkLine>
     {
     }
 }

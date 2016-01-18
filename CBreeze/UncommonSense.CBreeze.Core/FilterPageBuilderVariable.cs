@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-    [Serializable]
-    public class FilterPageBuilderVariable : Variable
+        public class FilterPageBuilderVariable : Variable
     {
         public FilterPageBuilderVariable(int id, string name)
             : base(id, name)

@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2015
-    [Serializable]
-    public class PageActionScopeProperty : NullableValueProperty<PageActionScope>
+        public class PageActionScopeProperty : NullableValueProperty<PageActionScope>
     {
         internal PageActionScopeProperty(string name)
             : base(name)

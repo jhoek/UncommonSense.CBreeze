@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class SemiColonSeparatedStringProperty : StringProperty
+        public class SemiColonSeparatedStringProperty : StringProperty
     {
         internal SemiColonSeparatedStringProperty(string name)
             : base(name)

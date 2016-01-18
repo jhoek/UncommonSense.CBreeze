@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class CalcFormulaTableFilterLine
+        public class CalcFormulaTableFilterLine
     {
         public CalcFormulaTableFilterLine(string fieldName, TableFilterType type, string value)
         {

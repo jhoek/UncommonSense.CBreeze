@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public class TableFieldGroup : KeyedItem<int>, IHasName
+		public class TableFieldGroup : KeyedItem<int>, IHasName
 	{
 		public TableFieldGroup(int id, string name)
 		{

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BigIntegerVariable : Variable
+        public class BigIntegerVariable : Variable
     {
         public BigIntegerVariable(int id, string name)
             : base(id, name)

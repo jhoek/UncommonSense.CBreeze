@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PageProperties : Properties
+        public class PageProperties : Properties
     {
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");

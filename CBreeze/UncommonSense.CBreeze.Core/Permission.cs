@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Permission
+        public class Permission
     {
         internal Permission(int tableID, bool readPermission, bool insertPermission, bool modifyPermission, bool deletePermission)
         {

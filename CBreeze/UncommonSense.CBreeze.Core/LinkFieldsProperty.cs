@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class LinkFieldsProperty : ReferenceProperty<LinkFields>
+        public class LinkFieldsProperty : ReferenceProperty<LinkFields>
     {
         internal LinkFieldsProperty(string name)
             : base(name)

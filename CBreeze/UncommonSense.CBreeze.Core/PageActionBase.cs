@@ -13,8 +13,7 @@ namespace UncommonSense.CBreeze.Core
 	// PageActionBase, and the derived classes PageActionContainer, PageActionGroup
 	// PageActionSeparator and PageAction.
 
-	[Serializable]
-	public abstract class PageActionBase : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class PageActionBase : KeyedItem<int>, IHasName, IHasProperties
 	{
 		internal PageActionBase(int id, int? indentationLevel)
 		{

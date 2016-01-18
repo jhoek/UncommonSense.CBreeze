@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BinaryTableField : TableField
+        public class BinaryTableField : TableField
     {
         public BinaryTableField(int no, string name, int dataLength = 4)
             : base(no, name)

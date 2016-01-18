@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BinaryParameter : Parameter
+        public class BinaryParameter : Parameter
     {
         public BinaryParameter(bool var, int id, string name, int dataLength = 100)
             : base(var, id, name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DirectionProperty : NullableValueProperty<Direction>
+        public class DirectionProperty : NullableValueProperty<Direction>
     {
         internal DirectionProperty(string name)
             : base(name)

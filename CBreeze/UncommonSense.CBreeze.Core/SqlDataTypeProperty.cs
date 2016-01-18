@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class SqlDataTypeProperty : NullableValueProperty<SqlDataType>
+        public class SqlDataTypeProperty : NullableValueProperty<SqlDataType>
     {
         internal SqlDataTypeProperty(string name)
             : base(name)

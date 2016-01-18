@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public class ReportLabel : KeyedItem<int>, IHasName
+		public class ReportLabel : KeyedItem<int>, IHasName
 	{
 		public ReportLabel(int id, string name)
 		{

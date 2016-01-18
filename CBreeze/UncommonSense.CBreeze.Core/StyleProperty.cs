@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class StyleProperty : NullableValueProperty<Style>
+        public class StyleProperty : NullableValueProperty<Style>
     {
         internal StyleProperty(string name)
             : base(name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class OccurrenceProperty : NullableValueProperty<Occurrence>
+        public class OccurrenceProperty : NullableValueProperty<Occurrence>
     {
         internal OccurrenceProperty(string name)
             : base(name)

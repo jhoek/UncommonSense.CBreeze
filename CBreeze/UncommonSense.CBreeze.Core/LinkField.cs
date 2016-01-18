@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class LinkField
+        public class LinkField
     {
         public LinkField(int field, int referenceField)
         {

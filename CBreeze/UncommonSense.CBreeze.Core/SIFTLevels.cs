@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class SIFTLevels : Collection<SIFTLevel>
+        public class SIFTLevels : Collection<SIFTLevel>
     {
     }
 }

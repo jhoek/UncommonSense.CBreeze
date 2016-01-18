@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class OptionStringProperty : StringProperty
+        public class OptionStringProperty : StringProperty
     {
         internal OptionStringProperty(string name)
             : base(name)

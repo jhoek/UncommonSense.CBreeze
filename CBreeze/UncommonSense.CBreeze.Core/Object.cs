@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract class Object : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class Object : KeyedItem<int>, IHasName, IHasProperties
 	{
 		internal Object(int id, string name)
 		{

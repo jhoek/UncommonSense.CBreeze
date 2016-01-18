@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-    [Serializable]
-    public class TableConnectionTypeParameter : Parameter
+        public class TableConnectionTypeParameter : Parameter
     {
         public TableConnectionTypeParameter(bool var, int id, string name)
             : base(var, id, name)

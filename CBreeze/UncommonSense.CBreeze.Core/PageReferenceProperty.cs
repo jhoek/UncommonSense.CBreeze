@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PageReferenceProperty : NullableIntegerProperty
+        public class PageReferenceProperty : NullableIntegerProperty
     {
         internal PageReferenceProperty(string name)
             : base(name)

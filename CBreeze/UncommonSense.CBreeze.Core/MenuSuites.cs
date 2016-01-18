@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MenuSuites : IntegerKeyedAndNamedContainer<MenuSuite>
+        public class MenuSuites : IntegerKeyedAndNamedContainer<MenuSuite>
     {
         internal MenuSuites()
         {

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DataItemQueryElementTableFilterLine
+        public class DataItemQueryElementTableFilterLine
     {
         public DataItemQueryElementTableFilterLine(string fieldName, SimpleTableFilterType type, string value)
         {

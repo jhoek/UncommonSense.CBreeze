@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PartPageControl : PageControl
+        public class PartPageControl : PageControl
     {
         public PartPageControl(int id, int? indentationLevel)
             : base(id, indentationLevel)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ReportDataItemLinkProperty : ReferenceProperty<ReportDataItemLink>
+        public class ReportDataItemLinkProperty : ReferenceProperty<ReportDataItemLink>
     {
         internal ReportDataItemLinkProperty(string name) : base(name)
         {

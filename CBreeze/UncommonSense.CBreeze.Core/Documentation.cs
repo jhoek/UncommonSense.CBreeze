@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Documentation
+        public class Documentation
     {
         internal Documentation(Code code)
         {

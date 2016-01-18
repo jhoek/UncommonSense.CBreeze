@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TableReferenceProperty : NullableIntegerProperty
+        public class TableReferenceProperty : NullableIntegerProperty
     {
         internal TableReferenceProperty(string name)
             : base(name)

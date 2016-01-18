@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DurationTableField : TableField
+        public class DurationTableField : TableField
     {
         public DurationTableField(int no, string name)
             : base(no, name)

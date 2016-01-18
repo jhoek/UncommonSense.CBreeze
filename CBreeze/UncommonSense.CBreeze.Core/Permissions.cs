@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Permissions : IEnumerable<Permission>
+        public class Permissions : IEnumerable<Permission>
     {
         private Dictionary<int,Permission> innerList = new Dictionary<int,Permission>();
 

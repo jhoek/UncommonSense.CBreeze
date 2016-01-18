@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DecimalVariable : Variable
+        public class DecimalVariable : Variable
     {
         public DecimalVariable(int id, string name)
             : base(id, name)

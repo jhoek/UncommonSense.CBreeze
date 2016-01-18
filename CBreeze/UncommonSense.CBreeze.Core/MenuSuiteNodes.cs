@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MenuSuiteNodes : GuidKeyedContainer<MenuSuiteNode>
+        public class MenuSuiteNodes : GuidKeyedContainer<MenuSuiteNode>
     {
         internal MenuSuiteNodes()
         {

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TransactionModelProperty : NullableValueProperty<TransactionModel>
+        public class TransactionModelProperty : NullableValueProperty<TransactionModel>
     {
         internal TransactionModelProperty(string name)
             : base(name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class GroupPageControlLayoutProperty : NullableValueProperty<GroupPageControlLayout>
+        public class GroupPageControlLayoutProperty : NullableValueProperty<GroupPageControlLayout>
     {
         internal GroupPageControlLayoutProperty(string name)
             : base(name)

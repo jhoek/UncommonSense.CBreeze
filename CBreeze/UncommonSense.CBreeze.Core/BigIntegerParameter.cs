@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BigIntegerParameter : Parameter
+        public class BigIntegerParameter : Parameter
     {
         public BigIntegerParameter(bool var, int id, string name) : base(var, id, name)
         {

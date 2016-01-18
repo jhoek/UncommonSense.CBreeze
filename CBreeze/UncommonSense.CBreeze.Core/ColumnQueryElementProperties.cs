@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ColumnQueryElementProperties : Properties
+        public class ColumnQueryElementProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private ColumnFilterProperty columnFilter = new ColumnFilterProperty("ColumnFilter");

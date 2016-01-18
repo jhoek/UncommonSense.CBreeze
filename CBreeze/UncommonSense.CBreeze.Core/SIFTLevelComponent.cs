@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class SIFTLevelComponent
+        public class SIFTLevelComponent
     {
         public SIFTLevelComponent(string fieldName, string aspect)
         {

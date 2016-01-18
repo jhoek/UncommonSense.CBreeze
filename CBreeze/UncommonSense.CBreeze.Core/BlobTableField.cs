@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BlobTableField : TableField
+        public class BlobTableField : TableField
     {
         public BlobTableField(int no, string name)
             : base(no, name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BooleanVariable : Variable
+        public class BooleanVariable : Variable
     {
         public BooleanVariable(int id, string name)
             : base(id, name)

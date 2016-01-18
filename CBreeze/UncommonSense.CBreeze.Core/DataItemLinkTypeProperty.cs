@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DataItemLinkTypeProperty : NullableValueProperty<DataItemLinkType>
+        public class DataItemLinkTypeProperty : NullableValueProperty<DataItemLinkType>
     {
         internal DataItemLinkTypeProperty(string name)
             : base(name)

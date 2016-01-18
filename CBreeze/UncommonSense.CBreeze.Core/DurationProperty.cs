@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DurationProperty : NullableValueProperty<TimeSpan>
+        public class DurationProperty : NullableValueProperty<TimeSpan>
     {
         internal DurationProperty(string name)
             : base(name)

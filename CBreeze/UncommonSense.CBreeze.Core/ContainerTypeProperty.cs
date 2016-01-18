@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ContainerTypeProperty : NullableValueProperty<ContainerType>
+        public class ContainerTypeProperty : NullableValueProperty<ContainerType>
     {
         internal ContainerTypeProperty(string name)
             : base(name)

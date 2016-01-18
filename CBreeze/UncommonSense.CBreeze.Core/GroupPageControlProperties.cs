@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class GroupPageControlProperties : Properties
+        public class GroupPageControlProperties : Properties
     {
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");

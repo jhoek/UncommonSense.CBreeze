@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class OcxVariable : Variable
+        public class OcxVariable : Variable
     {
         public OcxVariable(int id, string name, string subType)
             : base(id, name)

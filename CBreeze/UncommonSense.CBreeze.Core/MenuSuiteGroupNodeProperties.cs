@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MenuSuiteGroupNodeProperties : Properties
+        public class MenuSuiteGroupNodeProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableGuidProperty firstChild = new NullableGuidProperty("FirstChild");

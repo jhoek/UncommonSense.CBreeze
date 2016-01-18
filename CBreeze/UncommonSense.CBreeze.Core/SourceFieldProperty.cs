@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class SourceFieldProperty : ReferenceProperty<SourceField>
+        public class SourceFieldProperty : ReferenceProperty<SourceField>
     {
         internal SourceFieldProperty(string name)
             : base(name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PageControls : IntegerKeyedAndNamedContainer<PageControl>
+        public class PageControls : IntegerKeyedAndNamedContainer<PageControl>
     {
         internal PageControls(IPage page)
         {

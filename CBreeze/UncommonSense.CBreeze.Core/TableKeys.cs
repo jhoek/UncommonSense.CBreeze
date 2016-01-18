@@ -6,8 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TableKeys : Collection<TableKey>
+        public class TableKeys : Collection<TableKey>
     {
         internal TableKeys()
         {

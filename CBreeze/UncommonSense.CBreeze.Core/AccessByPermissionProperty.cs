@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2015
-    [Serializable]
-    public class AccessByPermissionProperty : ReferenceProperty<AccessByPermission>
+        public class AccessByPermissionProperty : ReferenceProperty<AccessByPermission>
     {
         internal AccessByPermissionProperty(string name)
             : base(name)

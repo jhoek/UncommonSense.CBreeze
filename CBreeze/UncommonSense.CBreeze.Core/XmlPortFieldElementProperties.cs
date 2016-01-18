@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPortFieldElementProperties : Properties
+        public class XmlPortFieldElementProperties : Properties
     {
         private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField");
         private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");

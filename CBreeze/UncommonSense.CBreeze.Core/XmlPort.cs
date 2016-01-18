@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPort : Object, IHasCode
+        public class XmlPort : Object, IHasCode
     {
         public XmlPort(int id, string name)
             : base(id, name)

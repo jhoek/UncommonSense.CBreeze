@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPorts : IntegerKeyedAndNamedContainer<XmlPort>
+        public class XmlPorts : IntegerKeyedAndNamedContainer<XmlPort>
     {
         internal XmlPorts()
         {

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Queries : IntegerKeyedAndNamedContainer<Query>
+        public class Queries : IntegerKeyedAndNamedContainer<Query>
     {
         internal Queries()
         {

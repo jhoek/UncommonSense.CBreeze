@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ColumnFilterProperty : ReferenceProperty<ColumnFilter>
+        public class ColumnFilterProperty : ReferenceProperty<ColumnFilter>
     {
         internal ColumnFilterProperty(string name)
             : base(name)

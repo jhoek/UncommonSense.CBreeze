@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TestFunctionTypeProperty : NullableValueProperty<TestFunctionType>
+        public class TestFunctionTypeProperty : NullableValueProperty<TestFunctionType>
     {
         internal TestFunctionTypeProperty(string name)
             : base(name)

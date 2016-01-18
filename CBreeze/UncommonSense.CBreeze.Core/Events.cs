@@ -6,8 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Events : Collection<Event>
+        public class Events : Collection<Event>
     {
         internal Events(Code code)
         {

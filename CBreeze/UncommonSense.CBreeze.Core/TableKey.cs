@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TableKey
+        public class TableKey
     {
         public TableKey(params string[] fieldNames)
         {

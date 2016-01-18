@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PageActionGroupProperties : Properties
+        public class PageActionGroupProperties : Properties
     {
         private ActionContainerTypeProperty actionContainerType = new ActionContainerTypeProperty("ActionContainerType");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");

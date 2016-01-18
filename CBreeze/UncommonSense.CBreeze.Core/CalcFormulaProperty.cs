@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class CalcFormulaProperty : ReferenceProperty<CalcFormula>
+        public class CalcFormulaProperty : ReferenceProperty<CalcFormula>
     {
         internal CalcFormulaProperty(string name)
             : base(name)

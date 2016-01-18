@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2015
-    [Serializable]
-    public enum AccessByPermissionObjectType
+        public enum AccessByPermissionObjectType
     {
         TableData,
         Table,

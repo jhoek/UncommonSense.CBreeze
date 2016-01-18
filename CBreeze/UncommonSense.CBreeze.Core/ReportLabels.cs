@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ReportLabels : IntegerKeyedAndNamedContainer<ReportLabel>
+        public class ReportLabels : IntegerKeyedAndNamedContainer<ReportLabel>
     {
         internal ReportLabels()
         {

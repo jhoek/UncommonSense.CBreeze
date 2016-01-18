@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DataItemQueryElementProperties : Properties
+        public class DataItemQueryElementProperties : Properties
     {
         private QueryDataItemLinkProperty dataItemLink = new QueryDataItemLinkProperty("DataItemLink");
         private DataItemLinkTypeProperty dataItemLinkType = new DataItemLinkTypeProperty("DataItemLinkType");

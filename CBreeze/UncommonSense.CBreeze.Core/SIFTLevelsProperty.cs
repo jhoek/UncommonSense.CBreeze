@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class SIFTLevelsProperty : ReferenceProperty<SIFTLevels>
+        public class SIFTLevelsProperty : ReferenceProperty<SIFTLevels>
     {
         internal SIFTLevelsProperty(string name)
             : base(name)

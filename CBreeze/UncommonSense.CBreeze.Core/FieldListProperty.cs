@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class FieldListProperty : ReferenceProperty<FieldList>
+        public class FieldListProperty : ReferenceProperty<FieldList>
     {
         internal FieldListProperty(string name)
             : base(name)

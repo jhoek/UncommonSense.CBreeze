@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class PaperSourceProperty : NullableValueProperty<PaperSource>
+        public class PaperSourceProperty : NullableValueProperty<PaperSource>
     {
         internal PaperSourceProperty(string name)
             : base(name)

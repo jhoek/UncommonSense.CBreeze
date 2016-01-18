@@ -6,8 +6,7 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-    [Serializable]
-    public class XmlPortNamespacesProperty : ReferenceProperty<XmlPortNamespaces>
+        public class XmlPortNamespacesProperty : ReferenceProperty<XmlPortNamespaces>
     {
         internal XmlPortNamespacesProperty(string name)
             : base(name)

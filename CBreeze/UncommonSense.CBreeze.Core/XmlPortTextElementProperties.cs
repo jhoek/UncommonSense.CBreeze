@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPortTextElementProperties : Properties
+        public class XmlPortTextElementProperties : Properties
     {
         private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");

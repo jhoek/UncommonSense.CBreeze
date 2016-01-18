@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class KeyRefVariable : Variable
+        public class KeyRefVariable : Variable
     {
         public KeyRefVariable(int id, string name)
             : base(id, name)

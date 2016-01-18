@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DataItemReportElementProperties : Properties
+        public class DataItemReportElementProperties : Properties
     {
         private FieldListProperty calcFields = new FieldListProperty("CalcFields");
         private ReportDataItemLinkProperty dataItemLink = new ReportDataItemLinkProperty("DataItemLink");

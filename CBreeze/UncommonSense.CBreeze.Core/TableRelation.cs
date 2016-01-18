@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TableRelation : Collection<TableRelationLine>
+        public class TableRelation : Collection<TableRelationLine>
     {
     }
 }

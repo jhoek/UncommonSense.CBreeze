@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public class ActionList : IntegerKeyedAndNamedContainer<PageActionBase>
+		public class ActionList : IntegerKeyedAndNamedContainer<PageActionBase>
 	{
 		// Ctor made public so that ActionListProperty can new this up
 		public ActionList()

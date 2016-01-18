@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ColumnReportElementProperties : Properties
+        public class ColumnReportElementProperties : Properties
     {
         private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");

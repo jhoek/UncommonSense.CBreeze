@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class XmlPortTableElementProperties : Properties
+        public class XmlPortTableElementProperties : Properties
     {
         private NullableBooleanProperty autoReplace = new NullableBooleanProperty("AutoReplace");
         private NullableBooleanProperty autoSave = new NullableBooleanProperty("AutoSave");

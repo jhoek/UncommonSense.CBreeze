@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DecimalPlacesProperty : ReferenceProperty<DecimalPlaces>
+        public class DecimalPlacesProperty : ReferenceProperty<DecimalPlaces>
     {
         internal DecimalPlacesProperty(string name)
             : base(name)

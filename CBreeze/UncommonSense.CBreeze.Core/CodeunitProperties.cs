@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class CodeunitProperties : Properties
+        public class CodeunitProperties : Properties
     {
 #if NAV2016
         private EventSubscriberInstanceProperty eventSubscriberInstance = new EventSubscriberInstanceProperty("EventSubscriberInstance");

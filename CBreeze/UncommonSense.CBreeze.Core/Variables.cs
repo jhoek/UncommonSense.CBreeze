@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Variables : IntegerKeyedAndNamedContainer<Variable>
+        public class Variables : IntegerKeyedAndNamedContainer<Variable>
     {
         internal Variables(IHasVariables container)
         {

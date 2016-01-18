@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Pages : IntegerKeyedAndNamedContainer<Page>
+        public class Pages : IntegerKeyedAndNamedContainer<Page>
     {
         internal Pages()
         {

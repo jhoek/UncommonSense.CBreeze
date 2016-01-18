@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class MultiLanguageValue : IEnumerable<MultiLanguageEntry>
+        public class MultiLanguageValue : IEnumerable<MultiLanguageEntry>
     {
         private Dictionary<string, MultiLanguageEntry> innerList = new Dictionary<string, MultiLanguageEntry>();
 

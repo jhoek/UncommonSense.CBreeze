@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-	[Serializable]
-	public abstract class TableField : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class TableField : KeyedItem<int>, IHasName, IHasProperties
 	{
 		internal TableField(int id, string name)
 		{

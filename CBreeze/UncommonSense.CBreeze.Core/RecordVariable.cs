@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class RecordVariable : Variable
+        public class RecordVariable : Variable
     {
         public RecordVariable(int id, string name, int subType)
             : base(id, name)

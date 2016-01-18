@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TextParameter : Parameter
+        public class TextParameter : Parameter
     {
         public TextParameter(bool var, int id, string name, int? dataLength = null)
             : base(var, id, name)

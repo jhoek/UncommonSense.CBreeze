@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class BlobSubTypeProperty : NullableValueProperty<BlobSubType>
+        public class BlobSubTypeProperty : NullableValueProperty<BlobSubType>
     {
         internal BlobSubTypeProperty(string name)
             : base(name)

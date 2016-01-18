@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class ReadStateProperty : NullableValueProperty<ReadState>
+        public class ReadStateProperty : NullableValueProperty<ReadState>
     {
         internal ReadStateProperty(string name)
             : base(name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Table : Object, IHasCode
+        public class Table : Object, IHasCode
     {
         public Table(int id, string name)
             : base(id, name)

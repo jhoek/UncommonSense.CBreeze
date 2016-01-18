@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TriggerProperty : ReferenceProperty<Trigger>
+        public class TriggerProperty : ReferenceProperty<Trigger>
     {
         internal TriggerProperty(string name)
             : base(name)

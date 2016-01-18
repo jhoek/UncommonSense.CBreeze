@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class RecordRefParameter : Parameter
+        public class RecordRefParameter : Parameter
     {
         public RecordRefParameter(bool var, int id, string name)
             : base(var, id, name)

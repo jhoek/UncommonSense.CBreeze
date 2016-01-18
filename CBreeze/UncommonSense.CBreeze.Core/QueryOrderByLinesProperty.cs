@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class QueryOrderByLinesProperty : ReferenceProperty<QueryOrderByLines>
+        public class QueryOrderByLinesProperty : ReferenceProperty<QueryOrderByLines>
     {
         internal QueryOrderByLinesProperty(string name)
             : base(name)

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TableKeyProperties : Properties
+        public class TableKeyProperties : Properties
     {
 
         private NullableBooleanProperty clustered = new NullableBooleanProperty("Clustered");

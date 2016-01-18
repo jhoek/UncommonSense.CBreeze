@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TestIsolationProperty : NullableValueProperty<TestIsolation>
+        public class TestIsolationProperty : NullableValueProperty<TestIsolation>
     {
         internal TestIsolationProperty(string name)
             : base(name)

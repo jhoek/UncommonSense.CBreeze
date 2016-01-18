@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DateTimeTableField : TableField
+        public class DateTimeTableField : TableField
     {
         public DateTimeTableField(int no, string name)
             : base(no, name)

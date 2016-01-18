@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class RunObjectLinkProperty : ReferenceProperty<RunObjectLink>
+        public class RunObjectLinkProperty : ReferenceProperty<RunObjectLink>
     {
         internal RunObjectLinkProperty(string name)
             : base(name)

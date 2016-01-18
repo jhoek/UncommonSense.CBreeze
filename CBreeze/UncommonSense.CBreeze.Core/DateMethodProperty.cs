@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class DateMethodProperty : NullableValueProperty<DateMethod>
+        public class DateMethodProperty : NullableValueProperty<DateMethod>
     {
         internal DateMethodProperty(string name)
             : base(name)

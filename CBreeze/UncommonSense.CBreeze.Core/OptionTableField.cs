@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class OptionTableField : TableField, IHasOptionString
+        public class OptionTableField : TableField, IHasOptionString
     {
         public OptionTableField(int no, string name)
             : base(no, name)

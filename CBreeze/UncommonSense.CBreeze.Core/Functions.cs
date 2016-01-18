@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class Functions : IntegerKeyedAndNamedContainer<Function>
+        public class Functions : IntegerKeyedAndNamedContainer<Function>
     {
         internal Functions(Code code)
         {

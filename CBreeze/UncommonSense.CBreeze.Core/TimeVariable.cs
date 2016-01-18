@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    [Serializable]
-    public class TimeVariable : Variable
+        public class TimeVariable : Variable
     {
         public TimeVariable(int id, string name)
             : base(id, name)
