@@ -40,7 +40,6 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 
 ## Roadmap
 - Pester tests for PowerShell functions
-- Add [Serializable] where appropriate
 - Implement Add-CBreezeStatisticsPage (FlowFilters, FlowFields, page action). When calling Add-CBreezeMasterEntityType, it's too soon to create the statistics page, because we don't have any FlowFields/FlowFilters yet.
 - Automation: make dynamic parameters protected fields instead of properties; combine declaration with initialization
 - Eliminate types derived from e.g. NullableValueProperty; use NullableValueProperty<T> directly
