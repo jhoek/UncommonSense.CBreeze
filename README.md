@@ -38,7 +38,7 @@ Any cleverness like auto-captioning, auto-objectproperties or even auto-assignin
 ### Type property for derived types
 If type AB and AC derive from type A, type A should have an abstract read-only property of an enum type that has B and C as its values. AB and AC should implement the abstract property and return the correct enum value.
 
-## Roadmap
+## To dos and Roadmap
 - Pester tests for PowerShell functions
 - Implement Add-CBreezeStatisticsPage (FlowFilters, FlowFields, page action). When calling Add-CBreezeMasterEntityType, it's too soon to create the statistics page, because we don't have any FlowFields/FlowFilters yet.
 - Automation: make dynamic parameters protected fields instead of properties; combine declaration with initialization
@@ -46,7 +46,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
 - PowerShell pattern for Journal entity types
-- Make parser faster by doing more stuff in parallel; using F#? Or relying on model.dll for parsing and writing?
+- Leave reading and writing to model.dll
 
 ## Known issues
 ### Objects with a time and no date
