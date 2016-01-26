@@ -636,19 +636,19 @@ namespace UncommonSense.CBreeze.Automation
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
 
-                    if (ChartPartID.RuntimeDefinedParameter.IsSet)
+                    if (ChartPartID.Value != null)
                     {
                         partPageControl.Properties.PartType = PartType.Chart;
                         partPageControl.Properties.ChartPartID = ChartPartID.Value;
                     }
 
-                    if (PagePartID.RuntimeDefinedParameter.IsSet)
+                    if (PagePartID.Value != null)
                     {
                         partPageControl.Properties.PartType = PartType.Page;
                         partPageControl.Properties.PagePartID = PagePartID.Value;
                     }
 
-                    if (SystemPartID.RuntimeDefinedParameter.IsSet)
+                    if (SystemPartID.Value != null)
                     {
                         partPageControl.Properties.PartType = PartType.System;
                         partPageControl.Properties.SystemPartID = SystemPartID.Value;
