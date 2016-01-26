@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             IncludeInDataset = new DynamicParameter<bool?>("IncludeInDataset", false);
             IntegerSubType = new DynamicParameter<int>("SubType", true, minRange: 1, maxRange: int.MaxValue);
             MandatoryDataLength = new DynamicParameter<int>("DataLength", true, minRange: 1, maxRange: 250);
-            OptionalDataLength = new DynamicParameter<int>("DataLength", false, minRange: 1, maxRange: 250);
+            OptionalDataLength = new DynamicParameter<int>("DataLength", false, minRange: 1, maxRange: 1024);
             OptionString = new DynamicParameter<string>("OptionString", false);
             QuerySecurityFiltering = new DynamicParameter<Core.QuerySecurityFiltering?>("SecurityFiltering", false);
             RunOnClient = new DynamicParameter<bool?>("RunOnClient", false);
