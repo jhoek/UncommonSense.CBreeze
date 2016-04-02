@@ -45,6 +45,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
 - A pattern for adding dimension support
 - Leave reading and writing to model.dll
+- DSL for defining application objects
 
 ## Known issues
 ### Objects with a time and no date
