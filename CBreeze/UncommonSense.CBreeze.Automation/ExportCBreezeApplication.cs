@@ -11,7 +11,7 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsData.Export, "CBreezeApplication", DefaultParameterSetName = "ToPath")]
+    [Cmdlet(VerbsData.Export, "CBreezeApplication", DefaultParameterSetName = "ToTextWriter")]
     public class ExportCBreezeApplication : PSCmdlet
     {
         public ExportCBreezeApplication()
@@ -43,7 +43,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ToTextWriter", Position = 1)]
+        [Parameter(ParameterSetName = "ToTextWriter", Position = 1)]
         public TextWriter TextWriter
         {
             get;
@@ -101,7 +101,7 @@ namespace UncommonSense.CBreeze.Automation
                     Application.Write(Path);
                     break;
                 case "ToTextWriter":
-                    Application.Write(TextWriter);
+                    Application.Write(TextWriter ?? Console.Out);
                     break;
                 case "ToStream":
                     Application.Write(Stream);
