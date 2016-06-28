@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
 using System;
 using UncommonSense.CBreeze.Parse;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Read
 {
@@ -1073,7 +1074,7 @@ namespace UncommonSense.CBreeze.Read
                     var newFilterQueryElement = currentQueryElements.Add(new FilterQueryElement(elementID, elementName, elementIndentation));
                     currentProperties.Push(newFilterQueryElement.Properties);
                     break;
-                case UncommonSense.CBreeze.Core.QueryElementType.Column:
+                case QueryElementType.Column:
                     var newColumnQueryElement = currentQueryElements.Add(new ColumnQueryElement(elementID, elementName, elementIndentation));
                     currentProperties.Push(newColumnQueryElement.Properties);
                     break;

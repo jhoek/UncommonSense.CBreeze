@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation

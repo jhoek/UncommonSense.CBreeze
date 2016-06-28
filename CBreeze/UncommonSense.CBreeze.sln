@@ -6,14 +6,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Write", "UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj", "{1233B6B5-8D24-4483-A974-FF921DBA85C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Demo", "UncommonSense.CBreeze.Demo\UncommonSense.CBreeze.Demo.csproj", "{7CE45259-8593-4DDF-A527-9D6256EF95A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B17B9C13-574D-413C-BCBC-6C3239E17BE8} = {B17B9C13-574D-413C-BCBC-6C3239E17BE8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Read", "UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj", "{11BF778B-6524-4845-895D-CCDF90329FB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Automation", "UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.csproj", "{AD418664-85BF-445B-8792-6CD3CFD4AD33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.IO", "UncommonSense.CBreeze.IO\UncommonSense.CBreeze.IO.csproj", "{8F590103-F4B1-456B-BD22-A159846B0687}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Parse", "UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.csproj", "{36FFE616-5167-4BB4-AF46-AB69606CBAA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,16 +87,6 @@ Global
 		{8F590103-F4B1-456B-BD22-A159846B0687}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8F590103-F4B1-456B-BD22-A159846B0687}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8F590103-F4B1-456B-BD22-A159846B0687}.Release|x86.ActiveCfg = Release|Any CPU
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Debug|x86.ActiveCfg = Debug|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Debug|x86.Build.0 = Debug|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Any CPU.ActiveCfg = Release|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Mixed Platforms.Build.0 = Release|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|x86.ActiveCfg = Release|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

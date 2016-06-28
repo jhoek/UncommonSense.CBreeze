@@ -38,8 +38,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="UncommonSense.CBreeze.Common">
+      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
+    </Reference>
     <Reference Include="UncommonSense.CBreeze.Core">
       <HintPath>..\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UncommonSense.CBreeze.Parse">
+      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse\bin\Debug\UncommonSense.CBreeze.Parse.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -48,10 +54,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.csproj">
-      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
-      <Name>UncommonSense.CBreeze.Parse</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
       <Project>{11BF778B-6524-4845-895D-CCDF90329FB2}</Project>
       <Name>UncommonSense.CBreeze.Read</Name>
