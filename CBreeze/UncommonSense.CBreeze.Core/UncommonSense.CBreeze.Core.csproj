@@ -46,6 +46,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UncommonSense.CBreeze.Common">
+      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessByPermission.cs" />
@@ -206,7 +209,6 @@
     <Compile Include="FormatEvaluateProperty.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="FunctionReturnValue.cs" />
-    <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="ReportFormatParameter.cs" />
     <Compile Include="ReportFormatVariable.cs" />
@@ -266,7 +268,6 @@
     <Compile Include="MenuSuiteMenuNodeProperties.cs" />
     <Compile Include="MenuSuiteNode.cs" />
     <Compile Include="MenuSuiteNodes.cs" />
-    <Compile Include="MenuSuiteNodeType.cs" />
     <Compile Include="MenuSuiteProperties.cs" />
     <Compile Include="MenuSuiteRootNodeProperties.cs" />
     <Compile Include="MenuSuites.cs" />
@@ -291,7 +292,6 @@
     <Compile Include="ObjectProperty.cs" />
     <Compile Include="RunObject.cs" />
     <Compile Include="RunObjectProperty.cs" />
-    <Compile Include="ObjectType.cs" />
     <Compile Include="Occurrence.cs" />
     <Compile Include="OccurrenceProperty.cs" />
     <Compile Include="OcxParameter.cs" />
@@ -307,7 +307,6 @@
     <Compile Include="Page.cs" />
     <Compile Include="PageAction.cs" />
     <Compile Include="PageActionBase.cs" />
-    <Compile Include="PageActionBaseType.cs" />
     <Compile Include="PageActionContainer.cs" />
     <Compile Include="PageActionContainerProperties.cs" />
     <Compile Include="PageActionGroup.cs" />
@@ -319,7 +318,6 @@
     <Compile Include="PageActionSeparatorProperties.cs" />
     <Compile Include="PageControl.cs" />
     <Compile Include="PageControls.cs" />
-    <Compile Include="PageControlType.cs" />
     <Compile Include="PageParameter.cs" />
     <Compile Include="PageProperties.cs" />
     <Compile Include="PageReferenceProperty.cs" />
@@ -331,7 +329,6 @@
     <Compile Include="PaperSourceProperty.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Parameters.cs" />
-    <Compile Include="ParameterType.cs" />
     <Compile Include="PartPageControl.cs" />
     <Compile Include="PartPageControlProperties.cs" />
     <Compile Include="PartType.cs" />
@@ -353,7 +350,6 @@
     <Compile Include="QueryDataItemLinkProperty.cs" />
     <Compile Include="QueryElement.cs" />
     <Compile Include="QueryElements.cs" />
-    <Compile Include="QueryElementType.cs" />
     <Compile Include="QueryOrderByDirection.cs" />
     <Compile Include="QueryOrderByLine.cs" />
     <Compile Include="QueryOrderByLines.cs" />
@@ -426,7 +422,6 @@
     <Compile Include="TableFieldGroupProperties.cs" />
     <Compile Include="TableFieldGroups.cs" />
     <Compile Include="TableFields.cs" />
-    <Compile Include="TableFieldType.cs" />
     <Compile Include="TableFieldTypeProperty.cs" />
     <Compile Include="TableFilter.cs" />
     <Compile Include="TableFilterLine.cs" />
@@ -485,7 +480,6 @@
     <Compile Include="ValueProperty.cs" />
     <Compile Include="Variable.cs" />
     <Compile Include="Variables.cs" />
-    <Compile Include="VariableType.cs" />
     <Compile Include="VariantParameter.cs" />
     <Compile Include="VariantVariable.cs" />
     <Compile Include="WordLayout.cs" />
