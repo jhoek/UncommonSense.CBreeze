@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public enum XmlPortNodeType
+    public enum XmlPortNodeAndSourceType
     {
         XmlPortFieldAttribute,
         XmlPortFieldElement,

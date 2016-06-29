@@ -13,11 +13,11 @@ namespace UncommonSense.CBreeze.Core
             Properties = new XmlPortTextAttributeProperties();
         }
 
-        public override XmlPortNodeType Type
+        public override XmlPortNodeAndSourceType Type
         {
             get
             {
-                return XmlPortNodeType.XmlPortTextAttribute;
+                return XmlPortNodeAndSourceType.XmlPortTextAttribute;
             }
         }
 

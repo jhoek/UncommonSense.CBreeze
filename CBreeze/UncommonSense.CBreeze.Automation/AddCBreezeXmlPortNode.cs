@@ -351,33 +351,33 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (GetNodeType())
             {
-                case XmlPortNodeType.XmlPortTableElement:
+                case XmlPortNodeAndSourceType.XmlPortTableElement:
                     return CreateTableElementNode();
-                case XmlPortNodeType.XmlPortFieldElement:
+                case XmlPortNodeAndSourceType.XmlPortFieldElement:
                     return CreateFieldElementNode();
-                case XmlPortNodeType.XmlPortTextElement:
+                case XmlPortNodeAndSourceType.XmlPortTextElement:
                     return CreateTextElementNode();
-                case XmlPortNodeType.XmlPortTableAttribute:
+                case XmlPortNodeAndSourceType.XmlPortTableAttribute:
                     return CreateTableAttributeNode();
-                case XmlPortNodeType.XmlPortFieldAttribute:
+                case XmlPortNodeAndSourceType.XmlPortFieldAttribute:
                     return CreateFieldAttributeNode();
-                case XmlPortNodeType.XmlPortTextAttribute:
+                case XmlPortNodeAndSourceType.XmlPortTextAttribute:
                     return CreateTextAttributeNode();
                 default:
                     throw new ArgumentOutOfRangeException("Don't know how to create this node.");
             }
         }
 
-        protected XmlPortNodeType GetNodeType()
+        protected XmlPortNodeAndSourceType GetNodeType()
         {
             if (Element.IsPresent)
             {
                 if (Table.IsPresent)
-                    return XmlPortNodeType.XmlPortTableElement;
+                    return XmlPortNodeAndSourceType.XmlPortTableElement;
                 if (Field.IsPresent)
-                    return XmlPortNodeType.XmlPortFieldElement;
+                    return XmlPortNodeAndSourceType.XmlPortFieldElement;
                 if (Text.IsPresent)
-                    return XmlPortNodeType.XmlPortTextElement;
+                    return XmlPortNodeAndSourceType.XmlPortTextElement;
 
                 throw new ArgumentOutOfRangeException("Unknown source type.");
             }
@@ -385,11 +385,11 @@ namespace UncommonSense.CBreeze.Automation
             if (Attribute.IsPresent)
             {
                 if (Table.IsPresent)
-                    return XmlPortNodeType.XmlPortTableAttribute;
+                    return XmlPortNodeAndSourceType.XmlPortTableAttribute;
                 if (Field.IsPresent)
-                    return XmlPortNodeType.XmlPortFieldAttribute;
+                    return XmlPortNodeAndSourceType.XmlPortFieldAttribute;
                 if (Text.IsPresent)
-                    return XmlPortNodeType.XmlPortTextAttribute;
+                    return XmlPortNodeAndSourceType.XmlPortTextAttribute;
 
                 throw new ArgumentOutOfRangeException("Unknown source type.");
             }

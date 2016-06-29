@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Core
             NodeName = nodeName;
         }
 
-        public abstract XmlPortNodeType Type
+        public abstract XmlPortNodeAndSourceType Type
         {
             get;
         }

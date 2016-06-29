@@ -377,7 +377,6 @@
     <Compile Include="ReportDataItemLinkProperty.cs" />
     <Compile Include="ReportElement.cs" />
     <Compile Include="ReportElements.cs" />
-    <Compile Include="ReportElementType.cs" />
     <Compile Include="ReportLabel.cs" />
     <Compile Include="ReportLabelProperties.cs" />
     <Compile Include="ReportLabels.cs" />
@@ -496,7 +495,7 @@
     <Compile Include="XmlPortNamespacesProperty.cs" />
     <Compile Include="XmlPortNode.cs" />
     <Compile Include="XmlPortNodes.cs" />
-    <Compile Include="XmlPortNodeType.cs" />
+    <Compile Include="XmlPortNodeAndSourceType.cs" />
     <Compile Include="XmlPortParameter.cs" />
     <Compile Include="XmlPortProperties.cs" />
     <Compile Include="XmlPortRequestPage.cs" />
