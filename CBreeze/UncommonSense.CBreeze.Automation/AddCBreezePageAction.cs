@@ -23,6 +23,7 @@ namespace UncommonSense.CBreeze.Automation
             IsHeader = new DynamicParameter<bool?>("IsHeader");
             Name = new DynamicParameter<string>("Name");
             ParentAction = new DynamicParameter<PageActionBase>("ParentAction", true);
+            Position = new DynamicParameter<Position?>("Position");
             Promoted = new DynamicParameter<bool?>("Promoted");
             PromotedCategory = new DynamicParameter<Core.PromotedCategory?>("PromotedCategory");
             PromotedIsBig = new DynamicParameter<bool?>("PromotedIsBig");
@@ -40,7 +41,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Page Page
+        public PSObject InputObject
         {
             get;
             set;
@@ -128,6 +129,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected DynamicParameter<Position?> Position
+        {
+            get;
+            set;
+        }
+
         protected DynamicParameter<bool?> Promoted
         {
             get;
@@ -204,7 +211,66 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var pageAction = Page.Properties.ActionList.Add(CreatePageAction());
+            var pageAction = CreatePageAction();
+
+            if (InputObject.BaseObject is PageActionContainer)
+            {
+                (InputObject.BaseObject as PageActionContainer).AddChildPageAction(pageAction, Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer));
+            }
+            else if (InputObject.BaseObject is PageActionGroup)
+            {
+                (InputObject.BaseObject as PageActionGroup).AddChildPageAction(pageAction, Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer));
+            }
+            else if (InputObject.BaseObject is ActionList)
+            {
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
+                {
+                    case Core.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as ActionList).Insert(0, pageAction);
+                        break;
+                    case Core.Position.LastWithinContainer:
+                        (InputObject.BaseObject as ActionList).Add(pageAction);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is Page)
+            {
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
+                {
+                    case Core.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as Page).Actions.Insert(0, pageAction);
+                        break;
+                    case Core.Position.LastWithinContainer:
+                        (InputObject.BaseObject as Page).Actions.Add(pageAction);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is ReportRequestPage)
+            {
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
+                {
+                    case Core.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as ReportRequestPage).Actions.Insert(0, pageAction);
+                        break;
+                    case Core.Position.LastWithinContainer:
+                        (InputObject.BaseObject as ReportRequestPage).Actions.Add(pageAction);
+                        break;
+                }
+            }
+            else if (InputObject.BaseObject is XmlPortRequestPage)
+            {
+                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
+                {
+                    case Core.Position.FirstWithinContainer:
+                        (InputObject.BaseObject as XmlPortRequestPage).Actions.Insert(0, pageAction);
+                        break;
+                    case Core.Position.LastWithinContainer:
+                        (InputObject.BaseObject as XmlPortRequestPage).Actions.Add(pageAction);
+                        break;
+                }
+            }
+            else
+                throw new ArgumentOutOfRangeException("Don't know how to add a page action to an InputObject of this type.");
 
             if (PassThru)
                 WriteObject(pageAction);
@@ -214,13 +280,42 @@ namespace UncommonSense.CBreeze.Automation
         {
             get
             {
-                return Page.Actions.Select(a => a.ID).Union(Page.Controls.Select(c => c.ID));
+                return InputObject.GetActions().Select(a => a.ID).Union(InputObject.GetPageControls().Select(c => c.ID));
             }
+        }
+
+        protected int GetObjectID()
+        {
+            //if (InputObject.BaseObject is ActionList)
+                //return (InputObject.BaseObject as ActionList).Page.ObjectID;
+            //else 
+            if (InputObject.BaseObject is Page)
+                return (InputObject.BaseObject as Page).ID;
+            else if (InputObject.BaseObject is ReportRequestPage)
+                return (InputObject.BaseObject as ReportRequestPage).Report.ID;
+            else if (InputObject.BaseObject is XmlPortRequestPage)
+                return (InputObject.BaseObject as XmlPortRequestPage).XmlPort.ID;
+            //else if (InputObject.BaseObject is PageActionContainer)
+                //return (InputObject.BaseObject as PageActionContainer).Container.Page.ObjectID;
+            //else if (InputObject.BaseObject is PageActionGroup)
+                //return (InputObject.BaseObject as PageActionGroup).Container.Page.ObjectID;
+            else
+                throw new ArgumentOutOfRangeException("Don't know how to determine object ID for this InputObject.");
         }
 
         protected PageActionBase CreatePageAction()
         {
-            var id = ID.GetID(IDsInUse, Page.ID);
+            var pageID = 0;
+
+            try
+            {
+                pageID = GetObjectID();
+            }
+            catch
+            {
+            }
+
+            var id = ID.GetID(IDsInUse, pageID);
 
             switch (Type.Value)
             {
