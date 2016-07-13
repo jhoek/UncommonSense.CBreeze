@@ -385,6 +385,7 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageActionBaseType.ActionGroup:
+                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
@@ -395,6 +396,7 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageActionBaseType.Action:
+                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return Ellipsis.RuntimeDefinedParameter;
@@ -420,6 +422,7 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageActionBaseType.Separator:
+                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return IsHeader.RuntimeDefinedParameter;
                         yield return ParentAction.RuntimeDefinedParameter;
