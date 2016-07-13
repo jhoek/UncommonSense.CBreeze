@@ -70,6 +70,43 @@ namespace UncommonSense.CBreeze.Automation
                 return Enumerable.Empty<int>();
         }
 
+        public static IEnumerable<PageActionBase> GetActions(this PSObject inputObject)
+        {
+            if (inputObject.BaseObject is PageControls)
+                return (inputObject.BaseObject as PageControls).Page.Actions;
+            else if (inputObject.BaseObject is Page)
+                return (inputObject.BaseObject as Page).Properties.ActionList;
+            else if (inputObject.BaseObject is ReportRequestPage)
+                return (inputObject.BaseObject as ReportRequestPage).Properties.ActionList;
+            else if (inputObject.BaseObject is XmlPortRequestPage)
+                return (inputObject.BaseObject as XmlPortRequestPage).Properties.ActionList;
+            else if (inputObject.BaseObject is ContainerPageControl)
+                return (inputObject.BaseObject as ContainerPageControl).Container.Page.Actions;
+            else if (inputObject.BaseObject is GroupPageControl)
+                return (inputObject.BaseObject as GroupPageControl).Container.Page.Actions;
+            else
+                throw new ArgumentOutOfRangeException("Don't know how to determine used action IDs for this InputObject.");
+        }
+
+        public static IEnumerable<PageControl> GetPageControls(this PSObject inputObject)
+        {
+            if (inputObject.BaseObject is PageControls)
+                return (inputObject.BaseObject as PageControls);
+            else if (inputObject.BaseObject is Page)
+                return (inputObject.BaseObject as Page).Controls;
+            else if (inputObject.BaseObject is ReportRequestPage)
+                return (inputObject.BaseObject as ReportRequestPage).Controls;
+            else if (inputObject.BaseObject is XmlPortRequestPage)
+                return (inputObject.BaseObject as XmlPortRequestPage).Controls;
+            else if (inputObject.BaseObject is ContainerPageControl)
+                return (inputObject.BaseObject as ContainerPageControl).Container;
+            else if (inputObject.BaseObject is GroupPageControl)
+                return (inputObject.BaseObject as GroupPageControl).Container;
+            else
+                throw new ArgumentOutOfRangeException("Don't know how to determine used control IDs for this InputObject.");
+        }
+
+
         public static Variables GetVariables(this PSObject inputObject)
         {
             if (inputObject.BaseObject is Table)

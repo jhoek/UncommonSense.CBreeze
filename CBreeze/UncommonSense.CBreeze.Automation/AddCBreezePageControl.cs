@@ -689,7 +689,7 @@ namespace UncommonSense.CBreeze.Automation
                 if (range.Contains(GetObjectID()))
                     range = 1.To(int.MaxValue);
 
-                return range.Except(GetControlIDs()).Except(GetActionIDs()).First();
+                return range.Except(InputObject.GetPageControls().Select(c=> c.ID)).Except(InputObject.GetActions().Select(a=>a.ID)).First();
             }
 
             throw new ArgumentOutOfRangeException("Cannot determine ID.");
@@ -711,42 +711,6 @@ namespace UncommonSense.CBreeze.Automation
                 return (InputObject.BaseObject as GroupPageControl).Container.Page.ObjectID;
             else
                 throw new ArgumentOutOfRangeException("Don't know how to determine object ID for this InputObject.");
-        }
-
-        protected IEnumerable<int> GetControlIDs()
-        {
-            if (InputObject.BaseObject is PageControls)
-                return (InputObject.BaseObject as PageControls).Select(c => c.ID);
-            else if (InputObject.BaseObject is Page)
-                return (InputObject.BaseObject as Page).Controls.Select(c => c.ID);
-            else if (InputObject.BaseObject is ReportRequestPage)
-                return (InputObject.BaseObject as ReportRequestPage).Controls.Select(c => c.ID);
-            else if (InputObject.BaseObject is XmlPortRequestPage)
-                return (InputObject.BaseObject as XmlPortRequestPage).Controls.Select(c => c.ID);
-            else if (InputObject.BaseObject is ContainerPageControl)
-                return (InputObject.BaseObject as ContainerPageControl).Container.Select(c => c.ID);
-            else if (InputObject.BaseObject is GroupPageControl)
-                return (InputObject.BaseObject as GroupPageControl).Container.Select(c => c.ID);
-            else
-                throw new ArgumentOutOfRangeException("Don't know how to determine used control IDs for this InputObject.");
-        }
-
-        protected IEnumerable<int> GetActionIDs()
-        {
-            if (InputObject.BaseObject is PageControls)
-                return (InputObject.BaseObject as PageControls).Page.Actions.Select(a => a.ID);
-            else if (InputObject.BaseObject is Page)
-                return (InputObject.BaseObject as Page).Properties.ActionList.Select(a => a.ID);
-            else if (InputObject.BaseObject is ReportRequestPage)
-                return (InputObject.BaseObject as ReportRequestPage).Properties.ActionList.Select(a => a.ID);
-            else if (InputObject.BaseObject is XmlPortRequestPage)
-                return (InputObject.BaseObject as XmlPortRequestPage).Properties.ActionList.Select(a => a.ID);
-            else if (InputObject.BaseObject is ContainerPageControl)
-                return (InputObject.BaseObject as ContainerPageControl).Container.Page.Actions.Select(a => a.ID);
-            else if (InputObject.BaseObject is GroupPageControl)
-                return (InputObject.BaseObject as GroupPageControl).Container.Page.Actions.Select(a => a.ID);
-            else
-                throw new ArgumentOutOfRangeException("Don't know how to determine used action IDs for this InputObject.");
         }
 
         protected int GetIndentationLevel()
