@@ -286,36 +286,25 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetObjectID()
         {
-            //if (InputObject.BaseObject is ActionList)
-                //return (InputObject.BaseObject as ActionList).Page.ObjectID;
-            //else 
-            if (InputObject.BaseObject is Page)
+            if (InputObject.BaseObject is ActionList)
+                return (InputObject.BaseObject as ActionList).Page.ObjectID;
+            else if (InputObject.BaseObject is Page)
                 return (InputObject.BaseObject as Page).ID;
             else if (InputObject.BaseObject is ReportRequestPage)
                 return (InputObject.BaseObject as ReportRequestPage).Report.ID;
             else if (InputObject.BaseObject is XmlPortRequestPage)
                 return (InputObject.BaseObject as XmlPortRequestPage).XmlPort.ID;
-            //else if (InputObject.BaseObject is PageActionContainer)
-                //return (InputObject.BaseObject as PageActionContainer).Container.Page.ObjectID;
-            //else if (InputObject.BaseObject is PageActionGroup)
-                //return (InputObject.BaseObject as PageActionGroup).Container.Page.ObjectID;
+            else if (InputObject.BaseObject is PageActionContainer)
+                return (InputObject.BaseObject as PageActionContainer).Container.Page.ObjectID;
+            else if (InputObject.BaseObject is PageActionGroup)
+                return (InputObject.BaseObject as PageActionGroup).Container.Page.ObjectID;
             else
                 throw new ArgumentOutOfRangeException("Don't know how to determine object ID for this InputObject.");
         }
 
         protected PageActionBase CreatePageAction()
         {
-            var pageID = 0;
-
-            try
-            {
-                pageID = GetObjectID();
-            }
-            catch
-            {
-            }
-
-            var id = ID.GetID(IDsInUse, pageID);
+            var id = ID.GetID(IDsInUse, GetObjectID());
 
             switch (Type.Value)
             {
