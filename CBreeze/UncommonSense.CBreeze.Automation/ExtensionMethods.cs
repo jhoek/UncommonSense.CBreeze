@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -70,42 +71,30 @@ namespace UncommonSense.CBreeze.Automation
                 return Enumerable.Empty<int>();
         }
 
-        public static IEnumerable<PageActionBase> GetActions(this PSObject inputObject)
+        public static IPage GetIPage(this PSObject inputObject)
         {
-            if (inputObject.BaseObject is PageControls)
-                return (inputObject.BaseObject as PageControls).Page.Actions;
-            else if (inputObject.BaseObject is Page)
-                return (inputObject.BaseObject as Page).Properties.ActionList;
-            else if (inputObject.BaseObject is ReportRequestPage)
-                return (inputObject.BaseObject as ReportRequestPage).Properties.ActionList;
-            else if (inputObject.BaseObject is XmlPortRequestPage)
-                return (inputObject.BaseObject as XmlPortRequestPage).Properties.ActionList;
-            else if (inputObject.BaseObject is PageActionContainer)
-                return (inputObject.BaseObject as PageActionContainer).Container.Page.Actions;
-            else if (inputObject.BaseObject is PageActionGroup)
-                return (inputObject.BaseObject as PageActionGroup).Container.Page.Actions;
-            else
-                throw new ArgumentOutOfRangeException("Don't know how to determine used action IDs for this InputObject.");
-        }
+            IPage result = null;
 
-        public static IEnumerable<PageControl> GetPageControls(this PSObject inputObject)
-        {
-            if (inputObject.BaseObject is PageControls)
-                return (inputObject.BaseObject as PageControls);
-            else if (inputObject.BaseObject is Page)
-                return (inputObject.BaseObject as Page).Controls;
-            else if (inputObject.BaseObject is ReportRequestPage)
-                return (inputObject.BaseObject as ReportRequestPage).Controls;
-            else if (inputObject.BaseObject is XmlPortRequestPage)
-                return (inputObject.BaseObject as XmlPortRequestPage).Controls;
-            else if (inputObject.BaseObject is ContainerPageControl)
-                return (inputObject.BaseObject as ContainerPageControl).Container;
-            else if (inputObject.BaseObject is GroupPageControl)
-                return (inputObject.BaseObject as GroupPageControl).Container;
-            else
-                throw new ArgumentOutOfRangeException("Don't know how to determine used control IDs for this InputObject.");
-        }
+            TypeSwitch.Do(
+                inputObject.BaseObject,
+                TypeSwitch.Case<Page>(i => result = i),
+                TypeSwitch.Case<Report>(i => result = i.RequestPage),
+                TypeSwitch.Case<XmlPort>(i => result = i.RequestPage),
+                TypeSwitch.Case<ReportRequestPage>(i => result = i),
+                TypeSwitch.Case<XmlPortRequestPage>(i => result = i),
+                TypeSwitch.Case<ActionList>(i => result = i.Page),
+                TypeSwitch.Case<PageControls>(i => result = i.Page),
+                TypeSwitch.Case<PageActionContainer>(i=>result=i.Container.Page),
+                TypeSwitch.Case<PageActionGroup>(i=>result = i.Container.Page),
+                TypeSwitch.Case<GroupPageControl>(i=>result = i.Container.Page),
+                TypeSwitch.Case<ContainerPageControl>(i=>result = i.Container.Page)
+            );
 
+            if (result == null)
+                throw new ArgumentOutOfRangeException("Don't know how to determine IPage interface for this InputObject.");
+
+            return result;
+        }
 
         public static Variables GetVariables(this PSObject inputObject)
         {
