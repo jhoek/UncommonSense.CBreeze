@@ -80,10 +80,10 @@ namespace UncommonSense.CBreeze.Automation
                 return (inputObject.BaseObject as ReportRequestPage).Properties.ActionList;
             else if (inputObject.BaseObject is XmlPortRequestPage)
                 return (inputObject.BaseObject as XmlPortRequestPage).Properties.ActionList;
-            else if (inputObject.BaseObject is ContainerPageControl)
-                return (inputObject.BaseObject as ContainerPageControl).Container.Page.Actions;
-            else if (inputObject.BaseObject is GroupPageControl)
-                return (inputObject.BaseObject as GroupPageControl).Container.Page.Actions;
+            else if (inputObject.BaseObject is PageActionContainer)
+                return (inputObject.BaseObject as PageActionContainer).Container.Page.Actions;
+            else if (inputObject.BaseObject is PageActionGroup)
+                return (inputObject.BaseObject as PageActionGroup).Container.Page.Actions;
             else
                 throw new ArgumentOutOfRangeException("Don't know how to determine used action IDs for this InputObject.");
         }
