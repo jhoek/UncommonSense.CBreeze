@@ -276,35 +276,10 @@ namespace UncommonSense.CBreeze.Automation
                 WriteObject(pageAction);
         }
 
-        protected IEnumerable<int> IDsInUse
-        {
-            get
-            {
-                return InputObject.GetActions().Select(a => a.ID).Union(InputObject.GetPageControls().Select(c => c.ID));
-            }
-        }
-
-        protected int GetObjectID()
-        {
-            if (InputObject.BaseObject is ActionList)
-                return (InputObject.BaseObject as ActionList).Page.ObjectID;
-            else if (InputObject.BaseObject is Page)
-                return (InputObject.BaseObject as Page).ID;
-            else if (InputObject.BaseObject is ReportRequestPage)
-                return (InputObject.BaseObject as ReportRequestPage).Report.ID;
-            else if (InputObject.BaseObject is XmlPortRequestPage)
-                return (InputObject.BaseObject as XmlPortRequestPage).XmlPort.ID;
-            else if (InputObject.BaseObject is PageActionContainer)
-                return (InputObject.BaseObject as PageActionContainer).Container.Page.ObjectID;
-            else if (InputObject.BaseObject is PageActionGroup)
-                return (InputObject.BaseObject as PageActionGroup).Container.Page.ObjectID;
-            else
-                throw new ArgumentOutOfRangeException("Don't know how to determine object ID for this InputObject.");
-        }
-
         protected PageActionBase CreatePageAction()
         {
-            var id = ID.GetID(IDsInUse, GetObjectID());
+            var page = InputObject.GetIPage();
+            var id = ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
 
             switch (Type.Value)
             {

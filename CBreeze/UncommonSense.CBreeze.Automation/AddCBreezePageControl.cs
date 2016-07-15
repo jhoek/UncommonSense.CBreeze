@@ -685,32 +685,15 @@ namespace UncommonSense.CBreeze.Automation
             else if (ID.BaseObject is IEnumerable<int>)
             {
                 var range = ID.BaseObject as IEnumerable<int>;
+                var page = InputObject.GetIPage();
 
-                if (range.Contains(GetObjectID()))
+                if (range.Contains(page.ObjectID))
                     range = 1.To(int.MaxValue);
 
-                return range.Except(InputObject.GetPageControls().Select(c=> c.ID)).Except(InputObject.GetActions().Select(a=>a.ID)).First();
+                return range.Except(page.Controls.Select(c=> c.ID)).Except(page.Actions.Select(a=>a.ID)).First();
             }
 
             throw new ArgumentOutOfRangeException("Cannot determine ID.");
-        }
-
-        protected int GetObjectID()
-        {
-            if (InputObject.BaseObject is PageControls)
-                return (InputObject.BaseObject as PageControls).Page.ObjectID;
-            else if (InputObject.BaseObject is Page)
-                return (InputObject.BaseObject as Page).ID;
-            else if (InputObject.BaseObject is ReportRequestPage)
-                return (InputObject.BaseObject as ReportRequestPage).Report.ID;
-            else if (InputObject.BaseObject is XmlPortRequestPage)
-                return (InputObject.BaseObject as XmlPortRequestPage).XmlPort.ID;
-            else if (InputObject.BaseObject is ContainerPageControl)
-                return (InputObject.BaseObject as ContainerPageControl).Container.Page.ObjectID;
-            else if (InputObject.BaseObject is GroupPageControl)
-                return (InputObject.BaseObject as GroupPageControl).Container.Page.ObjectID;
-            else
-                throw new ArgumentOutOfRangeException("Don't know how to determine object ID for this InputObject.");
         }
 
         protected int GetIndentationLevel()
