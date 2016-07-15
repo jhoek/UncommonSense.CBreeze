@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
             Report = report;
 
             Properties = new ReportRequestPageProperties();
+            Properties.ActionList.Page = this;
+
             Controls = new PageControls(this);
         }
 

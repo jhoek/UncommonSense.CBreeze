@@ -12,6 +12,7 @@ namespace UncommonSense.CBreeze.Core
 			: base(id, indentationLevel)
 		{
 			Properties = new GroupPageControlProperties();
+            Properties.ActionList.Page = Container.Page;
 		}
 
 		public override PageControlType Type

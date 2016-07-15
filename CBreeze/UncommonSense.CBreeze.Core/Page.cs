@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
             : base(id, name)
         {
             Properties = new PageProperties();
+            Properties.ActionList.Page = this;
+
             Controls = new PageControls(this);
             Code = new Code(this);
         }

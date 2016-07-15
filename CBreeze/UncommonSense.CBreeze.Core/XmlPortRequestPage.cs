@@ -10,7 +10,10 @@ namespace UncommonSense.CBreeze.Core
         internal XmlPortRequestPage(XmlPort xmlPort)
         {
             XmlPort = xmlPort;
+
             Properties = new XmlPortRequestPageProperties();
+            Properties.ActionList.Page = this;
+
             Controls = new PageControls(this);
         }
 
