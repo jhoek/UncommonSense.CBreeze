@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Core
 			IndentationLevel = indentationLevel;
 		}
 
-		public PageControls Container
+		public virtual PageControls Container
 		{
 			get;
 			internal set;

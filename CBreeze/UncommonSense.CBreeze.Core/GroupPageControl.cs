@@ -12,7 +12,11 @@ namespace UncommonSense.CBreeze.Core
 			: base(id, indentationLevel)
 		{
 			Properties = new GroupPageControlProperties();
-            Properties.ActionList.Page = Container.Page;
+
+            // Cannot set ActionList.Page from here; Container has not been set yet.
+            // Note that this applies only to GroupPageControls, since the other
+            // page control types don't have their own action lists.
+            // Properties.ActionList.Page = Container.Page;
 		}
 
 		public override PageControlType Type
@@ -22,6 +26,19 @@ namespace UncommonSense.CBreeze.Core
 				return PageControlType.Group;
 			}
 		}
+
+        public override PageControls Container
+        {
+            get
+            {
+                return base.Container;
+            }
+            internal set
+            {
+                base.Container = value;
+                Properties.ActionList.Page = Container == null ? null : Container.Page;
+            }
+        }
 
 		public GroupPageControlProperties Properties
 		{
