@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Write;
 
@@ -84,10 +85,10 @@ namespace UncommonSense.CBreeze.Automation
                 TypeSwitch.Case<XmlPortRequestPage>(i => result = i),
                 TypeSwitch.Case<ActionList>(i => result = i.Page),
                 TypeSwitch.Case<PageControls>(i => result = i.Page),
-                TypeSwitch.Case<PageActionContainer>(i=>result=i.Container.Page),
-                TypeSwitch.Case<PageActionGroup>(i=>result = i.Container.Page),
-                TypeSwitch.Case<GroupPageControl>(i=>result = i.Container.Page),
-                TypeSwitch.Case<ContainerPageControl>(i=>result = i.Container.Page)
+                TypeSwitch.Case<PageActionContainer>(i => result = i.Container.Page),
+                TypeSwitch.Case<PageActionGroup>(i => result = i.Container.Page),
+                TypeSwitch.Case<GroupPageControl>(i => result = i.Container.Page),
+                TypeSwitch.Case<ContainerPageControl>(i => result = i.Container.Page)
             );
 
             if (result == null)
@@ -151,6 +152,36 @@ namespace UncommonSense.CBreeze.Automation
                 return variables.Select(v => v.ID);
 
             return Enumerable.Empty<int>();
+        }
+
+        public static T AddPageActionAtPosition<T>(this ActionList actionList, T pageAction, Position position) where T: PageActionBase
+        {
+            switch (position)
+            {
+                case Position.FirstWithinContainer:
+                    actionList.Insert(0, pageAction);
+                    break;
+                case Position.LastWithinContainer:
+                    actionList.Add(pageAction);
+                    break;
+            }
+
+            return pageAction;
+        }
+
+        public static T AddPageActionAtPosition<T>(this IPage page, T pageAction, Position position) where T:PageActionBase
+        {
+            switch (position)
+            {
+                case Position.FirstWithinContainer:
+                    page.Actions.Insert(0, pageAction);
+                    break;
+                case Position.LastWithinContainer:
+                    page.Actions.Add(pageAction);
+                    break;
+            }
+
+            return pageAction;
         }
     }
 }

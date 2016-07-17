@@ -5,6 +5,7 @@ using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -212,68 +213,24 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var pageAction = CreatePageAction();
+            var position = Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer);
 
-            if (InputObject.BaseObject is PageActionContainer)
-            {
-                (InputObject.BaseObject as PageActionContainer).AddChildPageAction(pageAction, Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer));
-            }
-            else if (InputObject.BaseObject is PageActionGroup)
-            {
-                (InputObject.BaseObject as PageActionGroup).AddChildPageAction(pageAction, Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer));
-            }
-            else if (InputObject.BaseObject is ActionList)
-            {
-                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
-                {
-                    case Core.Position.FirstWithinContainer:
-                        (InputObject.BaseObject as ActionList).Insert(0, pageAction);
-                        break;
-                    case Core.Position.LastWithinContainer:
-                        (InputObject.BaseObject as ActionList).Add(pageAction);
-                        break;
-                }
-            }
-            else if (InputObject.BaseObject is Page)
-            {
-                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
-                {
-                    case Core.Position.FirstWithinContainer:
-                        (InputObject.BaseObject as Page).Actions.Insert(0, pageAction);
-                        break;
-                    case Core.Position.LastWithinContainer:
-                        (InputObject.BaseObject as Page).Actions.Add(pageAction);
-                        break;
-                }
-            }
-            else if (InputObject.BaseObject is ReportRequestPage)
-            {
-                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
-                {
-                    case Core.Position.FirstWithinContainer:
-                        (InputObject.BaseObject as ReportRequestPage).Actions.Insert(0, pageAction);
-                        break;
-                    case Core.Position.LastWithinContainer:
-                        (InputObject.BaseObject as ReportRequestPage).Actions.Add(pageAction);
-                        break;
-                }
-            }
-            else if (InputObject.BaseObject is XmlPortRequestPage)
-            {
-                switch (Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer))
-                {
-                    case Core.Position.FirstWithinContainer:
-                        (InputObject.BaseObject as XmlPortRequestPage).Actions.Insert(0, pageAction);
-                        break;
-                    case Core.Position.LastWithinContainer:
-                        (InputObject.BaseObject as XmlPortRequestPage).Actions.Add(pageAction);
-                        break;
-                }
-            }
-            else
-                throw new ArgumentOutOfRangeException("Don't know how to add a page action to an InputObject of this type.");
+            TypeSwitch.Do(
+                InputObject.BaseObject,
+                TypeSwitch.Case<PageActionContainer>(i => i.AddChildPageAction(pageAction, position)),
+                TypeSwitch.Case<PageActionGroup>(i=> i.AddChildPageAction(pageAction, position)),
+                TypeSwitch.Case<ActionList>(i=>i.AddPageActionAtPosition(pageAction, position)),
+                TypeSwitch.Case<IPage>(i=>i.AddPageActionAtPosition(pageAction, position)),
+                TypeSwitch.Default(() => UnknownInputObjectType())
+            );
 
             if (PassThru)
                 WriteObject(pageAction);
+        }
+
+        protected void UnknownInputObjectType()
+        {
+            throw new ArgumentOutOfRangeException("Don't know how to add a page action to an InputObject of this type.");
         }
 
         protected PageActionBase CreatePageAction()
