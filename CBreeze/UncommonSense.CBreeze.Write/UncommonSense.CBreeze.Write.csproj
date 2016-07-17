@@ -50,9 +50,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.CBreeze.Common">
-      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionWriter.cs" />
@@ -102,7 +99,6 @@
     <Compile Include="TableKeysWriter.cs" />
     <Compile Include="TablePropertiesWriter.cs" />
     <Compile Include="TableWriter.cs" />
-    <Compile Include="TypeSwitch.cs" />
     <Compile Include="VariablesWriter.cs" />
     <Compile Include="ApplicationWriter.cs" />
     <Compile Include="VariableWriter.cs" />
@@ -125,6 +121,10 @@
     <Compile Include="MenuSuiteNodeWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
       <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UncommonSense.CBreeze.Core;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Write
 {
