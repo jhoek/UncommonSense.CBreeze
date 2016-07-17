@@ -40,9 +40,6 @@
     <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\packages\System.Management.Automation.6.1.7601.17515\lib\net40\System.Management.Automation.dll</HintPath>
     </Reference>
-    <Reference Include="UncommonSense.CBreeze.Common">
-      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
-    </Reference>
     <Reference Include="UncommonSense.CBreeze.Parse">
       <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse\bin\Debug\UncommonSense.CBreeze.Parse.dll</HintPath>
     </Reference>
@@ -93,6 +90,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
       <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>

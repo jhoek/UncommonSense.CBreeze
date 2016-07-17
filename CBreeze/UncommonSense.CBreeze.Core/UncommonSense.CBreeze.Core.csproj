@@ -46,9 +46,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.CBreeze.Common">
-      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessByPermission.cs" />
@@ -516,6 +513,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Export BaseApp Static Class.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Core", "UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj", "{B17B9C13-574D-413C-BCBC-6C3239E17BE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Write", "UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj", "{1233B6B5-8D24-4483-A974-FF921DBA85C1}"
@@ -15,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Automation", "UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.csproj", "{AD418664-85BF-445B-8792-6CD3CFD4AD33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.IO", "UncommonSense.CBreeze.IO\UncommonSense.CBreeze.IO.csproj", "{8F590103-F4B1-456B-BD22-A159846B0687}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Common", "UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj", "{ADE7D762-7EFD-4867-8B34-926D64793335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,18 @@ Global
 		{8F590103-F4B1-456B-BD22-A159846B0687}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8F590103-F4B1-456B-BD22-A159846B0687}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8F590103-F4B1-456B-BD22-A159846B0687}.Release|x86.ActiveCfg = Release|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Debug|x86.Build.0 = Debug|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Release|x86.ActiveCfg = Release|Any CPU
+		{ADE7D762-7EFD-4867-8B34-926D64793335}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
