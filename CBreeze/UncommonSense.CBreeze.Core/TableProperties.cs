@@ -25,10 +25,14 @@ namespace UncommonSense.CBreeze.Core
         private TableTypeProperty tableType = new TableTypeProperty("TableType");
         private StringProperty externalName = new StringProperty("ExternalName");
         private StringProperty externalSchema = new StringProperty("ExternalSchema");
+        private NullableBooleanProperty writeProtected = new NullableBooleanProperty("WriteProtected");
 #endif
 
         internal TableProperties()
         {
+#if NAV2016
+            innerList.Add(writeProtected); 
+#endif
             innerList.Add(dataPerCompany); // 4935
             innerList.Add(permissions); // 4947
             innerList.Add(dataCaptionFields); // 21105
@@ -224,6 +228,18 @@ namespace UncommonSense.CBreeze.Core
             set
             {
                 this.externalSchema.Value = value;
+            }
+        }
+
+        public bool? WriteProtected
+        {
+            get
+            {
+                return this.writeProtected.Value;
+            }
+            set
+            {
+                this.writeProtected.Value = value;
             }
         }
 #endif
