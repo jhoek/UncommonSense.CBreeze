@@ -35,9 +35,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<FieldRefVariable>(p => DoWrite(p.Name, p.ID, "FieldRef", p.Dimensions, writer)),
                 TypeSwitch.Case<FileVariable>(p => DoWrite(p.Name, p.ID, "File", p.Dimensions, writer)),
 #if NAV2016
-                TypeSwitch.Case<FilterPageBuilderVariable>(p=>DoWrite(p.Name, p.ID, "FilterPageBuilder", p.Dimensions, writer)),
+ TypeSwitch.Case<FilterPageBuilderVariable>(p => DoWrite(p.Name, p.ID, "FilterPageBuilder", p.Dimensions, writer)),
 #endif
-                TypeSwitch.Case<GuidVariable>(p => DoWrite(p.Name, p.ID, "GUID", p.Dimensions, writer)),
+ TypeSwitch.Case<GuidVariable>(p => DoWrite(p.Name, p.ID, "GUID", p.Dimensions, writer)),
                 TypeSwitch.Case<InStreamVariable>(p => DoWrite(p.Name, p.ID, "InStream", p.Dimensions, writer)),
                 TypeSwitch.Case<IntegerVariable>(p => DoWrite(p.Name, p.ID, "Integer", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<KeyRefVariable>(p => DoWrite(p.Name, p.ID, "KeyRef", p.Dimensions, writer)),
@@ -51,15 +51,15 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<RecordRefVariable>(p => DoWrite(p.Name, p.ID, "RecordRef", p.Dimensions, false, false, false, false, p.SecurityFiltering.HasValue ? p.SecurityFiltering.Value.ToString() : null, writer)),
                 TypeSwitch.Case<ReportVariable>(p => DoWrite(p.Name, p.ID, string.Format("Report {0}", p.SubType), p.Dimensions, writer)),
 #if NAV2016
-                TypeSwitch.Case<ReportFormatVariable>(p=>DoWrite(p.Name, p.ID, "ReportFormat", p.Dimensions, writer)),
-                TypeSwitch.Case<TableConnectionTypeVariable>(p=>DoWrite(p.Name, p.ID, "TableConnectionType", p.Dimensions, writer)),
+ TypeSwitch.Case<ReportFormatVariable>(p => DoWrite(p.Name, p.ID, "ReportFormat", p.Dimensions, writer)),
+                TypeSwitch.Case<TableConnectionTypeVariable>(p => DoWrite(p.Name, p.ID, "TableConnectionType", p.Dimensions, writer)),
 #endif
-                TypeSwitch.Case<TestPageVariable>(p => DoWrite(p.Name, p.ID, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),
+ TypeSwitch.Case<TestPageVariable>(p => DoWrite(p.Name, p.ID, string.Format("TestPage {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<TextConstant>(p => WriteTextConstant(p, writer)),
 #if NAV2016
-                TypeSwitch.Case<TextEncodingVariable>(p=>DoWrite(p.Name, p.ID, "TextEncoding", p.Dimensions, writer)),
+ TypeSwitch.Case<TextEncodingVariable>(p => DoWrite(p.Name, p.ID, "TextEncoding", p.Dimensions, writer)),
 #endif
-                TypeSwitch.Case<TextVariable>(p => DoWrite(p.Name, p.ID, p.DataLength.HasValue ? string.Format("Text[{0}]", p.DataLength) : "Text", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
+ TypeSwitch.Case<TextVariable>(p => DoWrite(p.Name, p.ID, p.DataLength.HasValue ? string.Format("Text[{0}]", p.DataLength) : "Text", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<TimeVariable>(p => DoWrite(p.Name, p.ID, "Time", p.Dimensions, writer)),
                 TypeSwitch.Case<TransactionTypeVariable>(p => DoWrite(p.Name, p.ID, "TransactionType", p.Dimensions, writer)),
                 TypeSwitch.Case<VariantVariable>(p => DoWrite(p.Name, p.ID, "Variant", p.Dimensions, writer)),
@@ -117,7 +117,7 @@ namespace UncommonSense.CBreeze.Write
 
         private static bool IsMultiLineTextConstant(TextConstant textConstant)
         {
-            return textConstant.Values.Sum(v => v.QuotedValue.Length) >= 1002; 
+            return textConstant.Values.Sum(v => v.QuotedValue.Length) >= 1002;
         }
 
         private static void WriteSingleLineTextConstant(TextConstant textConstant, CSideWriter writer)
