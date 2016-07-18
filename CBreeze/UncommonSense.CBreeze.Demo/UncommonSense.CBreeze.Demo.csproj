@@ -38,8 +38,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="UncommonSense.CBreeze.Common">
-      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
+    <Reference Include="UncommonSense.CBreeze.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
     </Reference>
     <Reference Include="UncommonSense.CBreeze.Core">
       <HintPath>..\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll</HintPath>
