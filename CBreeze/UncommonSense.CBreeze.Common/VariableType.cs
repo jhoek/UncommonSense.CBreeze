@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Common
         TableConnectionType,
 #endif
         TestPage,
-        TextConstant,
+        TextConst,
         Text,
 #if NAV2016
         TextEncoding,

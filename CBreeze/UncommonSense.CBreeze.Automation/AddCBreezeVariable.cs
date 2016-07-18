@@ -362,7 +362,7 @@ namespace UncommonSense.CBreeze.Automation
                     return textEncodingVariable;
 #endif
 
-                case VariableType.TextConstant:
+                case VariableType.TextConst:
                     var textConstant = new TextConstant(id, Name);
                     textConstant.Values.Set("ENU", Value.Value);
                     return textConstant;
@@ -475,7 +475,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return IncludeInDataset.RuntimeDefinedParameter;
                         break;
 
-                    case VariableType.TextConstant:
+                    case VariableType.TextConst:
                         yield return Value.RuntimeDefinedParameter;
                         break;
 
@@ -484,7 +484,7 @@ namespace UncommonSense.CBreeze.Automation
                         break;
                 }
 
-                if (Type != VariableType.TextConstant)
+                if (Type != VariableType.TextConst)
                     yield return Dimensions.RuntimeDefinedParameter;
             }
         }

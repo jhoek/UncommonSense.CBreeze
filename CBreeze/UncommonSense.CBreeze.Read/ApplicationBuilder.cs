@@ -760,7 +760,7 @@ namespace UncommonSense.CBreeze.Read
                     textVariable.Dimensions = variableDimensions;
                     textVariable.IncludeInDataset = variableInDataSet;
                     break;
-                case VariableType.TextConstant:
+                case VariableType.TextConst:
                     var textConstant = variables.Add(new TextConstant(variableID, variableName));
                     textConstant.Values.SetMultiLanguageValue(variableConstValue);
                     break;

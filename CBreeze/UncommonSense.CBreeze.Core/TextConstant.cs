@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return VariableType.TextConstant;
+                return VariableType.TextConst;
             }
         }
 
