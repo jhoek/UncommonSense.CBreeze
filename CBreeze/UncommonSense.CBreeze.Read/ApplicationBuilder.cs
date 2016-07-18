@@ -1233,11 +1233,13 @@ namespace UncommonSense.CBreeze.Read
                 {
                     currentProperties.Push(currentReportRequestPage.Properties);
                     currentPageControls = currentReportRequestPage.Controls;
+                    currentPageActionList = currentReportRequestPage.Actions;
                 }),
                 TypeSwitch.Case<XmlPort>(x =>
                 {
                     currentProperties.Push(currentXmlPortRequestPage.Properties);
                     currentPageControls = currentXmlPortRequestPage.Controls;
+                    currentPageActionList = currentXmlPortRequestPage.Actions;
                 }));
         }
 
@@ -1245,6 +1247,7 @@ namespace UncommonSense.CBreeze.Read
         {
             currentProperties.Pop();
             currentPageControls = null;
+            currentPageActionList = null;
         }
 
 
