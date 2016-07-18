@@ -762,7 +762,7 @@ namespace UncommonSense.CBreeze.Read
                     break;
                 case VariableType.TextConst:
                     var textConstant = variables.Add(new TextConstant(variableID, variableName));
-                    textConstant.Values.SetMultiLanguageValue(variableConstValue);
+                    textConstant.Values.SetMultiLanguageValue(variableConstValue ?? string.Empty);
                     break;
 #if NAV2016
                 case VariableType.TextEncoding:
