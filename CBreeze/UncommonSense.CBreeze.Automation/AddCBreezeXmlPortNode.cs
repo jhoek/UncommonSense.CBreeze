@@ -141,7 +141,7 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2016
         [Parameter(ParameterSetName=TextAttribute)]
 #endif
-        public TableFieldType? DataType
+        public XmlPortNodeDataType? DataType
         {
             get;
             set;

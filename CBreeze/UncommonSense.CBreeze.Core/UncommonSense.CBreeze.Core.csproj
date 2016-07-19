@@ -491,6 +491,7 @@
     <Compile Include="XmlPortNamespaces.cs" />
     <Compile Include="XmlPortNamespacesProperty.cs" />
     <Compile Include="XmlPortNode.cs" />
+    <Compile Include="XmlPortNodeDataTypeProperty.cs" />
     <Compile Include="XmlPortNodes.cs" />
     <Compile Include="XmlPortNodeAndSourceType.cs" />
     <Compile Include="XmlPortParameter.cs" />

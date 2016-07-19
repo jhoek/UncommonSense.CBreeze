@@ -15,8 +15,8 @@ namespace UncommonSense.CBreeze.Demo
             var compareToolFileName = @"c:\Program Files\Araxis\Araxis Merge\compare.exe";
 
             var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var inputFileName = Path.Combine(desktopFolderName, "nav2016.txt");
-            var outputFileName = Path.Combine(desktopFolderName, "nav2016.output.txt");
+            var inputFileName = Path.Combine(desktopFolderName, "xmlport.txt");
+            var outputFileName = Path.Combine(desktopFolderName, "xmlport.output.txt");
 
             var readerStopWatch = new Stopwatch();
             readerStopWatch.Start();

@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Core
         public class XmlPortFieldAttributeProperties : Properties   
     {
         private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField"); // 21057
-        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType"); // 0
+        private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType"); // 0
         private NullableBooleanProperty fieldValidate = new NullableBooleanProperty("FieldValidate"); // 54079
         private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence"); // 54096
         private ScopedTriggerProperty onAfterAssignField = new ScopedTriggerProperty("OnAfterAssignField"); 
@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableFieldType? DataType
+      public XmlPortNodeDataType? DataType
         {
             get
             {

@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Core
         public class XmlPortFieldElementProperties : Properties
     {
         private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField");
-        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
+        private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType");
         private NullableBooleanProperty fieldValidate = new NullableBooleanProperty("FieldValidate");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
@@ -55,7 +55,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public TableFieldType? DataType
+        public XmlPortNodeDataType? DataType
         {
             get
             {

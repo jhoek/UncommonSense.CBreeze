@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
         public class XmlPortTextElementProperties : Properties
     {
-        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
+            private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
 #if NAV2016
@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
-        public TableFieldType? DataType
+        public XmlPortNodeDataType? DataType
         {
             get
             {

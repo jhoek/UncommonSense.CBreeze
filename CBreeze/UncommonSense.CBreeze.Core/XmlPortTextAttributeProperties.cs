@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Core
         public class XmlPortTextAttributeProperties : Properties
     {
 #if NAV2016
-        private TableFieldTypeProperty dataType = new TableFieldTypeProperty("DataType");
+            private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType");
 #endif
         private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence");
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
-        public TableFieldType? DataType
+        public XmlPortNodeDataType? DataType
         {
             get
             {

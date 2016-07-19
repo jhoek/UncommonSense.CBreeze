@@ -106,7 +106,8 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<NullableBigIntegerProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<NullableGuidProperty>(p => WriteSimpleProperty(p.Name, string.Format("[{0}]", p.Value.GetValueOrDefault().ToString("B").ToUpper()), isLastProperty, writer)),
                 TypeSwitch.Case<NullableIntegerProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
-                TypeSwitch.Case<NullableTimeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString("c"), isLastProperty, writer))
+                TypeSwitch.Case<NullableTimeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString("c"), isLastProperty, writer)),
+                TypeSwitch.Case<XmlPortNodeDataTypeProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer))
             );
         }
 
