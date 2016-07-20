@@ -20,6 +20,7 @@ namespace UncommonSense.CBreeze.Common
         Guid,
         Integer,
         OemCode,
+        OemText,
         Option,
         RecordID,
         TableFilter,
