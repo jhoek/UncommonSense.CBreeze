@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.IO;
 using UncommonSense.CBreeze.Write;
@@ -14,6 +15,8 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsData.Export, "CBreezeApplication", DefaultParameterSetName = "ToTextWriter")]
     public class ExportCBreezeApplication : PSCmdlet
     {
+        protected Application CachedObjects = new Application();
+
         public ExportCBreezeApplication()
         {
 #if NAV2016
@@ -30,7 +33,8 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)]
-        public Application Application
+        [Alias("Application")]
+        public PSObject[] InputObject
         {
             get;
             set;
@@ -93,26 +97,44 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected override void BeginProcessing()
+        {
+            CachedObjects.Clear();
+        }
+
         protected override void ProcessRecord()
+        {
+            foreach (var item in InputObject)
+            {
+                TypeSwitch.Do(
+                    item.BaseObject,
+                    TypeSwitch.Case<Application>(a => CachedObjects.Add(a.Objects)),
+                    TypeSwitch.Case<Core.Object>(o=> CachedObjects.Add(o))
+                );
+            }
+        }
+
+        protected override void EndProcessing()
         {
             switch (ParameterSetName)
             {
                 case "ToPath":
-                    Application.Write(Path);
+                    CachedObjects.Write(Path);
                     break;
                 case "ToTextWriter":
-                    Application.Write(TextWriter ?? Console.Out);
+                    CachedObjects.Write(TextWriter ?? Console.Out);
                     break;
                 case "ToStream":
-                    Application.Write(Stream);
+                    CachedObjects.Write(Stream);
                     break;
                 case "ToDatabase":
-                    ApplicationImporter.Import(Application, DevClientPath, ServerName, Database);
+                    ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database);
 
                     if (AutoCompile)
-                        ApplicationCompiler.Compile(Application, DevClientPath, ServerName, Database);
+                        ApplicationCompiler.Compile(CachedObjects, DevClientPath, ServerName, Database);
                     break;
             }
+
         }
     }
 }
