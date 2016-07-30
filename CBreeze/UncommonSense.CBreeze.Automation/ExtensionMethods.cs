@@ -11,6 +11,30 @@ namespace UncommonSense.CBreeze.Automation
 {
     public static class ExtensionMethods
     {
+        public static void Add<T>(this Application application, IEnumerable<T> objs) where T : Core.Object
+        {
+            foreach (var obj in objs)
+            {
+                application.Add(obj);
+            }
+        }
+
+        public static T Add<T>(this Application application, T obj) where T : Core.Object
+        {
+            TypeSwitch.Do(
+                obj,
+                TypeSwitch.Case<Table>(t => application.Tables.Add(t)),
+                TypeSwitch.Case<Page>(p => application.Pages.Add(p)),
+                TypeSwitch.Case<Report>(r => application.Reports.Add(r)),
+                TypeSwitch.Case<Codeunit>(c => application.Codeunits.Add(c)),
+                TypeSwitch.Case<XmlPort>(x => application.XmlPorts.Add(x)),
+                TypeSwitch.Case<Query>(q => application.Queries.Add(q)),
+                TypeSwitch.Case<MenuSuite>(m => application.MenuSuites.Add(m))
+                );
+
+            return obj;
+        }
+
         public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, int containingID = 0, int objectID = 0, IEnumerable<int> alternativeRange = null)
         {
             if (id.BaseObject is int)
