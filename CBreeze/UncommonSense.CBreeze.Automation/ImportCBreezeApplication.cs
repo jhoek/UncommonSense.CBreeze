@@ -15,6 +15,8 @@ namespace UncommonSense.CBreeze.Automation
     [OutputType(typeof(Application))]
     public class ImportCBreezeApplication : PSCmdlet
     {
+        protected List<string> CachedFileNames = new List<string>();
+
         public ImportCBreezeApplication()
         {
 #if NAV2016
@@ -29,8 +31,8 @@ namespace UncommonSense.CBreeze.Automation
             ServerName = ".";
         }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "FromPath")]
-        public string Path
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "FromPath")]
+        public string[] Path
         {
             get;
             set;
@@ -57,19 +59,44 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName="FromDatabase")]
+        [Parameter(ParameterSetName = "FromDatabase")]
         public string Filter
         {
             get;
             set;
         }
 
+        protected IEnumerable<string> FilesFromPath()
+        {
+            foreach (var fileSpec in Path)
+            {
+                var fullFileSpec = this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(fileSpec);
+                var directoryName = System.IO.Path.GetDirectoryName(fullFileSpec);
+                var fileName = System.IO.Path.GetFileName(fullFileSpec);
+
+                foreach (var item in Directory.EnumerateFiles(directoryName, fileName))
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        protected override void BeginProcessing()
+        {
+            CachedFileNames.Clear();
+        }
+
         protected override void ProcessRecord()
+        {
+
+        }
+
+        protected override void EndProcessing()
         {
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObject(ApplicationBuilder.FromFile(Path));
+                    WriteObject(ApplicationBuilder.FromFiles(CachedFileNames));
                     break;
                 case "FromDatabase":
                     WriteObject(ApplicationExporter.Export(DevClientPath, ServerName, Database, Filter));

@@ -38,14 +38,14 @@ namespace UncommonSense.CBreeze.Read
 
         private Stack<IEnumerable<Property>> currentProperties = new Stack<IEnumerable<Property>>();
 
-        public static Application FromFile(string fileName)
+        public static Application FromFiles(IEnumerable<string> fileNames)
         {
             var parser = new Parser();
             var application = new Application();
             var applicationBuilder = new ApplicationBuilder(application);
 
             parser.Listener = applicationBuilder;
-            parser.Parse(fileName);
+            parser.ParseFiles(fileNames);
 
             return application;
         }
@@ -57,7 +57,7 @@ namespace UncommonSense.CBreeze.Read
             var applicationBuilder = new ApplicationBuilder(application);
 
             parser.Listener = applicationBuilder;
-            parser.Parse(lines);
+            parser.ParseLines(lines);
 
             return application;
         }
