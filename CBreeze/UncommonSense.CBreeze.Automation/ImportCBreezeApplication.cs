@@ -68,9 +68,9 @@ namespace UncommonSense.CBreeze.Automation
 
         protected IEnumerable<string> FilesFromPath()
         {
-            foreach (var fileSpec in Path)
+            foreach (var cachedFileName in CachedFileNames)
             {
-                var fullFileSpec = this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(fileSpec);
+                var fullFileSpec = this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(cachedFileName);
                 var directoryName = System.IO.Path.GetDirectoryName(fullFileSpec);
                 var fileName = System.IO.Path.GetFileName(fullFileSpec);
 
@@ -88,7 +88,10 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-
+            foreach (var fileName in Path)
+            {
+                CachedFileNames.Add(fileName);
+            }
         }
 
         protected override void EndProcessing()
@@ -96,7 +99,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObject(ApplicationBuilder.FromFiles(CachedFileNames));
+                    WriteObject(ApplicationBuilder.FromFiles(FilesFromPath()));
                     break;
                 case "FromDatabase":
                     WriteObject(ApplicationExporter.Export(DevClientPath, ServerName, Database, Filter));
