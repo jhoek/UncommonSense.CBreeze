@@ -18,6 +18,17 @@ namespace UncommonSense.CBreeze.Core
 			MenuSuites = new MenuSuites();
 		}
 
+        public void Clear()
+        {
+            Tables.Clear();
+            Pages.Clear();
+            Reports.Clear();
+            XmlPorts.Clear();
+            Codeunits.Clear();
+            Queries.Clear();
+            MenuSuites.Clear();
+        }
+
 		public Tables Tables
 		{
 			get;
