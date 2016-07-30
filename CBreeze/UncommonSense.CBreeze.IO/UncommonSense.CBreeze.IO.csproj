@@ -38,9 +38,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.CBreeze.Common">
-      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Common\bin\Debug\UncommonSense.CBreeze.Common.dll</HintPath>
-    </Reference>
     <Reference Include="UncommonSense.CBreeze.Parse">
       <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse\bin\Debug\UncommonSense.CBreeze.Parse.dll</HintPath>
     </Reference>
@@ -60,6 +57,10 @@
     <Compile Include="StringBuilderExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
       <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
