@@ -178,7 +178,7 @@ namespace UncommonSense.CBreeze.Automation
             return Enumerable.Empty<int>();
         }
 
-        public static T AddPageActionAtPosition<T>(this ActionList actionList, T pageAction, Position position) where T: PageActionBase
+        public static T AddPageActionAtPosition<T>(this ActionList actionList, T pageAction, Position position) where T : PageActionBase
         {
             switch (position)
             {
@@ -193,7 +193,7 @@ namespace UncommonSense.CBreeze.Automation
             return pageAction;
         }
 
-        public static T AddPageActionAtPosition<T>(this IPage page, T pageAction, Position position) where T:PageActionBase
+        public static T AddPageActionAtPosition<T>(this IPage page, T pageAction, Position position) where T : PageActionBase
         {
             switch (position)
             {
