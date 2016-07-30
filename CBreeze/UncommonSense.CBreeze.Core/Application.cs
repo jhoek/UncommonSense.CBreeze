@@ -60,5 +60,20 @@ namespace UncommonSense.CBreeze.Core
 			protected set;
 		}
 
+        public IEnumerable<Object> Objects
+        {
+            get
+            {
+                return
+                    Tables
+                    .AsEnumerable<Object>()
+                    .Concat(Pages.AsEnumerable<Object>())
+                    .Concat(Reports.AsEnumerable<Object>())
+                    .Concat(XmlPorts.AsEnumerable<Object>())
+                    .Concat(Codeunits.AsEnumerable<Object>())
+                    .Concat(Queries.AsEnumerable<Object>())
+                    .Concat(MenuSuites.AsEnumerable<Object>());
+            }
+        }
 	}
 }
