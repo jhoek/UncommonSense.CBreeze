@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Read
 {
-    public partial class ApplicationBuilder : IListener
+    public partial class ApplicationBuilder : ListenerBase
     {
         private Application application;
         private UncommonSense.CBreeze.Core.Object currentObject;
@@ -67,7 +67,7 @@ namespace UncommonSense.CBreeze.Read
             this.application = application;
         }
 
-        public void OnBeginObject(ObjectType objectType, int objectID, string objectName)
+        public override void OnBeginObject(ObjectType objectType, int objectID, string objectName)
         {
             switch (objectType)
             {
@@ -137,7 +137,7 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndObject()
+        public override void OnEndObject()
         {
             currentObject = null;
             currentProperties.Pop();
@@ -161,17 +161,17 @@ namespace UncommonSense.CBreeze.Read
             currentMenuSuiteNodes = null;
         }
 
-        public void OnBeginSection(SectionType sectionType)
+        public override void OnBeginSection(SectionType sectionType)
         {
             currentSectionType = sectionType;
         }
 
-        public void OnEndSection()
+        public override void OnEndSection()
         {
             currentSectionType = null;
         }
 
-        public void OnObjectProperty(string propertyName, string propertyValue)
+        public override void OnObjectProperty(string propertyName, string propertyValue)
         {
             switch (propertyName)
             {
@@ -192,7 +192,7 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnProperty(string propertyName, string propertyValue)
+        public override void OnProperty(string propertyName, string propertyValue)
         {
             var properties = currentProperties.Peek();
 
@@ -315,7 +315,7 @@ namespace UncommonSense.CBreeze.Read
             throw new ArgumentOutOfRangeException("Unknown property type.");
         }
 
-        public void OnBeginTrigger(string triggerName)
+        public override void OnBeginTrigger(string triggerName)
         {
             Parsing.TryMatch(ref triggerName, @"^Import::");
             Parsing.TryMatch(ref triggerName, @"^Export::");
@@ -338,12 +338,12 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndTrigger()
+        public override void OnEndTrigger()
         {
             currentTrigger = null;
         }
 
-        public void OnBeginTableField(int fieldNo, bool? fieldEnabled, string fieldName, TableFieldType fieldType, int fieldLength)
+        public override void OnBeginTableField(int fieldNo, bool? fieldEnabled, string fieldName, TableFieldType fieldType, int fieldLength)
         {
             var fields = (currentObject as Table).Fields;
 
@@ -439,13 +439,13 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndTableField()
+        public override void OnEndTableField()
         {
             currentProperties.Pop();
             currentTableField = null;
         }
 
-        public void OnBeginTableKey(bool? keyEnabled, string[] keyFields)
+        public override void OnBeginTableKey(bool? keyEnabled, string[] keyFields)
         {
             currentTableKey = (currentObject as Table).Keys.Add(new TableKey(keyFields));
             currentTableKey.Enabled = keyEnabled;
@@ -453,37 +453,37 @@ namespace UncommonSense.CBreeze.Read
             currentProperties.Push(currentTableKey.Properties);
         }
 
-        public void OnEndTableKey()
+        public override void OnEndTableKey()
         {
             currentProperties.Pop();
             currentTableKey = null;
         }
 
-        public void OnBeginTableFieldGroup(int fieldGroupID, string fieldGroupName, string[] fieldGroupFields)
+        public override void OnBeginTableFieldGroup(int fieldGroupID, string fieldGroupName, string[] fieldGroupFields)
         {
             currentTableFieldGroup = (currentObject as Table).FieldGroups.Add(new TableFieldGroup(fieldGroupID, fieldGroupName));
             currentTableFieldGroup.Fields.AddRange(fieldGroupFields);
             currentProperties.Push(currentTableFieldGroup.Properties);
         }
 
-        public void OnEndTableFieldGroup()
+        public override void OnEndTableFieldGroup()
         {
             currentProperties.Pop();
             currentTableFieldGroup = null;
         }
 
-        public void OnBeginFunction(int functionID, string functionName, bool functionLocal)
+        public override void OnBeginFunction(int functionID, string functionName, bool functionLocal)
         {
             currentFunction = currentCode.Functions.Add(new Function(functionID, functionName));
             currentFunction.Local = functionLocal;
         }
 
-        public void OnEndFunction()
+        public override void OnEndFunction()
         {
             currentFunction = null;
         }
 
-        public void OnFunctionAttribute(string name, params string[] values)
+        public override void OnFunctionAttribute(string name, params string[] values)
         {
             switch (name)
             {
@@ -557,7 +557,7 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnVariable(int variableID, string variableName, VariableType variableType, string variableSubType, int? variableLength, string variableOptionString, string variableConstValue, bool variableTemporary, string variableDimensions, bool variableRunOnClient, bool variableWithEvents, string variableSecurityFiltering, bool variableInDataSet)
+        public override void OnVariable(int variableID, string variableName, VariableType variableType, string variableSubType, int? variableLength, string variableOptionString, string variableConstValue, bool variableTemporary, string variableDimensions, bool variableRunOnClient, bool variableWithEvents, string variableSecurityFiltering, bool variableInDataSet)
         {
             Variables variables = null;
 
@@ -792,7 +792,7 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnCodeLine(string codeLine)
+        public override void OnCodeLine(string codeLine)
         {
             CodeLines codeLines = null;
 
@@ -840,7 +840,7 @@ namespace UncommonSense.CBreeze.Read
         }
 
 
-        public void OnParameter(bool parameterVar, int parameterID, string parameterName, ParameterType parameterType, string parameterSubType, int? parameterLength, string parameterOptionString, bool parameterTemporary, string parameterDimensions, bool parameterRunOnClient, string parameterSecurityFiltering, bool parameterSuppressDispose)
+        public override void OnParameter(bool parameterVar, int parameterID, string parameterName, ParameterType parameterType, string parameterSubType, int? parameterLength, string parameterOptionString, bool parameterTemporary, string parameterDimensions, bool parameterRunOnClient, string parameterSecurityFiltering, bool parameterSuppressDispose)
         {
             Parameters parameters = null;
 
@@ -1044,7 +1044,7 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnReturnValue(string returnValueName, FunctionReturnValueType? returnValueType, int? returnValueLength, string returnValueDimensions)
+        public override void OnReturnValue(string returnValueName, FunctionReturnValueType? returnValueType, int? returnValueLength, string returnValueDimensions)
         {
             currentFunction.ReturnValue.Name = returnValueName;
             currentFunction.ReturnValue.Type = returnValueType;
@@ -1052,18 +1052,18 @@ namespace UncommonSense.CBreeze.Read
             currentFunction.ReturnValue.Dimensions = returnValueDimensions;
         }
 
-        public void OnBeginEvent(int sourceID, string sourceName, int eventID, string eventName)
+        public override void OnBeginEvent(int sourceID, string sourceName, int eventID, string eventName)
         {
             currentEvent = currentCode.Events.Add(new Event(sourceID, sourceName, eventID, eventName));
         }
 
-        public void OnEndEvent()
+        public override void OnEndEvent()
         {
             currentEvent = null;
         }
 
 
-        public void OnBeginQueryElement(int elementID, int? elementIndentation, string elementName, QueryElementType elementType)
+        public override void OnBeginQueryElement(int elementID, int? elementIndentation, string elementName, QueryElementType elementType)
         {
             switch (elementType)
             {
@@ -1084,12 +1084,12 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndQueryElement()
+        public override void OnEndQueryElement()
         {
             currentProperties.Pop();
         }
 
-        public void OnBeginPageControl(int controlID, int? controlIndentation, PageControlType controlType)
+        public override void OnBeginPageControl(int controlID, int? controlIndentation, PageControlType controlType)
         {
             switch (controlType)
             {
@@ -1115,13 +1115,13 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndPageControl()
+        public override void OnEndPageControl()
         {
             currentPageActionList = null;
             currentProperties.Pop();
         }
 
-        public void OnBeginPageAction(int actionID, int? actionIndentation, PageActionBaseType actionType)
+        public override void OnBeginPageAction(int actionID, int? actionIndentation, PageActionBaseType actionType)
         {
             switch (actionType)
             {
@@ -1144,13 +1144,13 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndPageAction()
+        public override void OnEndPageAction()
         {
             currentProperties.Pop();
         }
 
 
-        public void OnBeginXmlPortElement(Guid elementID, int? elementIndentation, string elementName, UncommonSense.CBreeze.Common.XmlPortNodeType elementNodeType, XmlPortSourceType elementSourceType)
+        public override void OnBeginXmlPortElement(Guid elementID, int? elementIndentation, string elementName, UncommonSense.CBreeze.Common.XmlPortNodeType elementNodeType, XmlPortSourceType elementSourceType)
         {
             switch (elementSourceType)
             {
@@ -1196,13 +1196,13 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndXmlPortElement()
+        public override void OnEndXmlPortElement()
         {
             currentProperties.Pop();
         }
 
 
-        public void OnBeginReportElement(int elementID, int? elementIndentation, string elementName, ReportElementType elementType)
+        public override void OnBeginReportElement(int elementID, int? elementIndentation, string elementName, ReportElementType elementType)
         {
             switch (elementType)
             {
@@ -1221,12 +1221,12 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndReportElement()
+        public override void OnEndReportElement()
         {
             currentProperties.Pop();
         }
 
-        public void OnBeginRequestPage()
+        public override void OnBeginRequestPage()
         {
             TypeSwitch.Do(
                 currentObject,
@@ -1244,7 +1244,7 @@ namespace UncommonSense.CBreeze.Read
                 }));
         }
 
-        public void OnEndRequestPage()
+        public override void OnEndRequestPage()
         {
             currentProperties.Pop();
             currentPageControls = null;
@@ -1252,19 +1252,19 @@ namespace UncommonSense.CBreeze.Read
         }
 
 
-        public void OnBeginReportLabel(int labelID, string labelName)
+        public override void OnBeginReportLabel(int labelID, string labelName)
         {
             var newReportLabel = currentReportLabels.Add(new ReportLabel(labelID, labelName));
             currentProperties.Push(newReportLabel.Properties);
         }
 
-        public void OnEndReportLabel()
+        public override void OnEndReportLabel()
         {
             currentProperties.Pop();
         }
 
 
-        public void OnBeginMenuSuiteNode(MenuSuiteNodeType nodeType, Guid nodeID)
+        public override void OnBeginMenuSuiteNode(MenuSuiteNodeType nodeType, Guid nodeID)
         {
             switch (nodeType)
             {
@@ -1291,7 +1291,7 @@ namespace UncommonSense.CBreeze.Read
             }
         }
 
-        public void OnEndMenuSuiteNode()
+        public override void OnEndMenuSuiteNode()
         {
             currentProperties.Pop();
         }
