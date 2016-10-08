@@ -14,8 +14,9 @@ namespace UncommonSense.CBreeze.Core
 
             var pageControlIDs = page.Controls.Select(c => c.ID);
             var pageActionIDs = page.Actions.Select(a => a.ID);
+            var controlActionIDs = page.Controls.OfType<GroupPageControl>().SelectMany(g => g.Properties.ActionList).Select(c => c.ID);
 
-            return range.Except(pageControlIDs).Except(pageActionIDs).First();
+            return range.Except(pageControlIDs).Except(pageActionIDs).Except(controlActionIDs).First();
         }
 
         public static IEnumerable<int> To(this int from, int to)
