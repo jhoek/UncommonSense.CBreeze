@@ -121,11 +121,6 @@ namespace UncommonSense.CBreeze.Automation
             return result;
         }
 
-        public static IEnumerable<int> GetPageUIDsInUse(this IPage page)
-        {
-            return page.Actions.Select(a => a.ID).Union(page.Controls.Select(c => c.ID));
-        }
-
         public static Variables GetVariables(this PSObject inputObject)
         {
             if (inputObject.BaseObject is Table)

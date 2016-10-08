@@ -544,10 +544,13 @@ namespace UncommonSense.CBreeze.Automation
 
         protected PageControl CreatePageControl()
         {
+            var page = InputObject.GetIPage();
+            var id = ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
+
             switch (Type)
             {
                 case PageControlType.Container:
-                    var containerPageControl = new ContainerPageControl(GetPageControlID(), 0);
+                    var containerPageControl = new ContainerPageControl(id, 0);
                     containerPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     containerPageControl.Properties.Description = Description;
                     containerPageControl.Properties.Name = Name;
@@ -559,7 +562,7 @@ namespace UncommonSense.CBreeze.Automation
                     return containerPageControl;
 
                 case PageControlType.Group:
-                    var groupPageControl = new GroupPageControl(GetPageControlID(), GetIndentationLevel());
+                    var groupPageControl = new GroupPageControl(id, GetIndentationLevel());
                     groupPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     groupPageControl.Properties.Description = Description;
                     groupPageControl.Properties.Name = Name;
@@ -579,7 +582,7 @@ namespace UncommonSense.CBreeze.Automation
                     return groupPageControl;
 
                 case PageControlType.Field:
-                    var fieldPageControl = new FieldPageControl(GetPageControlID(), GetIndentationLevel());
+                    var fieldPageControl = new FieldPageControl(id, GetIndentationLevel());
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
                     fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
@@ -633,7 +636,7 @@ namespace UncommonSense.CBreeze.Automation
                     return fieldPageControl;
 
                 case PageControlType.Part:
-                    var partPageControl = new PartPageControl(GetPageControlID(), GetIndentationLevel());
+                    var partPageControl = new PartPageControl(id, GetIndentationLevel());
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
 
@@ -674,26 +677,6 @@ namespace UncommonSense.CBreeze.Automation
                 default:
                     throw new ArgumentOutOfRangeException("Unknown control type.");
             }
-        }
-
-        protected int GetPageControlID()
-        {
-            if (ID.BaseObject is int)
-            {
-                return (int)ID.BaseObject;
-            }
-            else if (ID.BaseObject is IEnumerable<int>)
-            {
-                var range = ID.BaseObject as IEnumerable<int>;
-                var page = InputObject.GetIPage();
-
-                if (range.Contains(page.ObjectID))
-                    range = 1.To(int.MaxValue);
-
-                return range.Except(page.Controls.Select(c=> c.ID)).Except(page.Actions.Select(a=>a.ID)).First();
-            }
-
-            throw new ArgumentOutOfRangeException("Cannot determine ID.");
         }
 
         protected int GetIndentationLevel()

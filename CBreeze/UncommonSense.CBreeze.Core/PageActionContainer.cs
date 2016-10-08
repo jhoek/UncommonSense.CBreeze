@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Core
 
 			if (pageActionGroup == null)
 			{
-				pageActionGroup = new PageActionGroup(range.GetNextPageControlID(page), 1);
+				pageActionGroup = new PageActionGroup(range.GetNextPageControlOrActionID(page), 1);
 				pageActionGroup.Properties.CaptionML.Set("ENU", caption);
 				AddChildPageAction(pageActionGroup, position);
 			}

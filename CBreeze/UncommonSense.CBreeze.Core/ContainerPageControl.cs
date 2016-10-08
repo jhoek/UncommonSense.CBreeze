@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Core
 
 			if (groupPageControl == null)
 			{
-				groupPageControl = new GroupPageControl(range.GetNextPageControlID(Container.Page), 1);
+				groupPageControl = new GroupPageControl(range.GetNextPageControlOrActionID(Container.Page), 1);
 				groupPageControl.Properties.CaptionML.Set("ENU", caption);
 				this.AddChildPageControl(groupPageControl, position);
 			}
@@ -61,7 +61,7 @@ namespace UncommonSense.CBreeze.Core
 
 			if (groupPageControl == null)
 			{
-				groupPageControl = new GroupPageControl(range.GetNextPageControlID(Container.Page), 1);
+				groupPageControl = new GroupPageControl(range.GetNextPageControlOrActionID(Container.Page), 1);
 				groupPageControl.Properties.GroupType = type;
 				AddChildPageControl(groupPageControl, position);
 			}
