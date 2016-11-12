@@ -1395,7 +1395,6 @@ namespace UncommonSense.CBreeze.Automation
                         yield return CalcFormulaTableName.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
-                        yield return Enabled.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
 #if NAV2016
                         yield return ExternalAccess.RuntimeDefinedParameter;
