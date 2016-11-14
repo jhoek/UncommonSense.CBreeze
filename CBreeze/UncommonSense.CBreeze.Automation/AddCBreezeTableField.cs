@@ -20,10 +20,7 @@ namespace UncommonSense.CBreeze.Automation
             AutoOptionCaption = new DynamicParameter<SwitchParameter>("AutoOptionCaption");
             BlankNumbers = new DynamicParameter<BlankNumbers?>("BlankNumbers");
             BlankZero = new DynamicParameter<bool?>("BlankZero");
-            CalcFormulaFieldName = new DynamicParameter<string>("CalcFormulaFieldName");
-            CalcFormulaMethod = new DynamicParameter<Core.CalcFormulaMethod?>("CalcFormulaMethod");
-            CalcFormulaReverseSign = new DynamicParameter<bool?>("CalcFormulaReverseSign");
-            CalcFormulaTableName = new DynamicParameter<string>("CalcFormulaTableName");
+            CalcFormula = new DynamicParameter<CalcFormula?>("CalcFormula");
             CaptionClass = new DynamicParameter<string>("CaptionClass");
             CharAllowed = new DynamicParameter<string>("CharAllowed");
             ClosingDates = new DynamicParameter<bool?>("ClosingDates");
@@ -180,25 +177,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<CalcFormulaMethod?> CalcFormulaMethod
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> CalcFormulaFieldName
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> CalcFormulaReverseSign
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> CalcFormulaTableName
+        protected DynamicParameter<CalcFormula?> CalcFormula
         {
             get;
             set;
@@ -1120,10 +1099,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoIncrement.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1174,10 +1150,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1203,10 +1176,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return CharAllowed.RuntimeDefinedParameter;
                         yield return DataLength.RuntimeDefinedParameter;
@@ -1236,10 +1206,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return ClosingDates.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
@@ -1266,10 +1233,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1293,10 +1257,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1325,10 +1286,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return DecimalPlacesAtLeast.RuntimeDefinedParameter;
                         yield return DecimalPlacesAtMost.RuntimeDefinedParameter;
@@ -1359,10 +1317,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoFormatType.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1389,10 +1344,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1418,10 +1370,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoIncrement.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1452,10 +1401,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AutoOptionCaption.RuntimeDefinedParameter;
                         yield return BlankNumbers.RuntimeDefinedParameter;
                         yield return BlankZero.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1485,10 +1431,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
@@ -1517,10 +1460,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return CharAllowed.RuntimeDefinedParameter;
                         yield return DataLength.RuntimeDefinedParameter;
@@ -1548,10 +1488,7 @@ namespace UncommonSense.CBreeze.Automation
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
-                        yield return CalcFormulaFieldName.RuntimeDefinedParameter;
-                        yield return CalcFormulaMethod.RuntimeDefinedParameter;
-                        yield return CalcFormulaReverseSign.RuntimeDefinedParameter;
-                        yield return CalcFormulaTableName.RuntimeDefinedParameter;
+                        yield return CalcFormula.RuntimeDefinedParameter;
                         yield return CaptionClass.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return ExtendedDataType.RuntimeDefinedParameter;
