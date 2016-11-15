@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Automation
             AutoOptionCaption = new DynamicParameter<SwitchParameter>("AutoOptionCaption");
             BlankNumbers = new DynamicParameter<BlankNumbers?>("BlankNumbers");
             BlankZero = new DynamicParameter<bool?>("BlankZero");
-            CalcFormula = new DynamicParameter<CalcFormula?>("CalcFormula");
+            CalcFormula = new DynamicParameter<CalcFormula>("CalcFormula");
             CaptionClass = new DynamicParameter<string>("CaptionClass");
             CharAllowed = new DynamicParameter<string>("CharAllowed");
             ClosingDates = new DynamicParameter<bool?>("ClosingDates");
@@ -177,7 +177,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<CalcFormula?> CalcFormula
+        protected DynamicParameter<CalcFormula> CalcFormula
         {
             get;
             set;
@@ -519,10 +519,7 @@ namespace UncommonSense.CBreeze.Automation
                     bigIntegerTableField.Properties.AutoIncrement = AutoIncrement.Value;
                     bigIntegerTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     bigIntegerTableField.Properties.BlankZero = BlankZero.Value;
-                    bigIntegerTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    bigIntegerTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    bigIntegerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    bigIntegerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    bigIntegerTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     bigIntegerTableField.Properties.CaptionClass = CaptionClass.Value;
                     bigIntegerTableField.Properties.Description = Description;
                     bigIntegerTableField.Properties.Editable = Editable.Value;
@@ -589,10 +586,7 @@ namespace UncommonSense.CBreeze.Automation
                     booleanTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     booleanTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     booleanTableField.Properties.BlankZero = BlankZero.Value;
-                    booleanTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    booleanTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    booleanTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    booleanTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    booleanTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     booleanTableField.Properties.CaptionClass = CaptionClass.Value;
                     booleanTableField.Properties.Description = Description;
                     booleanTableField.Properties.Editable = Editable.Value;
@@ -624,10 +618,7 @@ namespace UncommonSense.CBreeze.Automation
                     codeTableField.Properties.AltSearchField = AltSearchField.Value;
                     codeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     codeTableField.Properties.AutoFormatType = AutoFormatType.Value;
-                    codeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    codeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    codeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    codeTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    codeTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     codeTableField.Properties.CaptionClass = CaptionClass.Value;
                     codeTableField.Properties.CharAllowed = CharAllowed.Value;
                     codeTableField.Properties.DateFormula = DateFormula.Value;
@@ -662,10 +653,7 @@ namespace UncommonSense.CBreeze.Automation
                     dateTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     dateTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     dateTableField.Properties.BlankNumbers = BlankNumbers.Value;
-                    dateTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    dateTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    dateTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    dateTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    dateTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     dateTableField.Properties.CaptionClass = CaptionClass.Value;
                     dateTableField.Properties.ClosingDates = ClosingDates.Value;
                     dateTableField.Properties.Description = Description;
@@ -698,10 +686,7 @@ namespace UncommonSense.CBreeze.Automation
                     dateFormulaTableField.Properties.AltSearchField = AltSearchField.Value;
                     dateFormulaTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     dateFormulaTableField.Properties.AutoFormatType = AutoFormatType.Value;
-                    dateFormulaTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    dateFormulaTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    dateFormulaTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    dateFormulaTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    dateFormulaTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     dateFormulaTableField.Properties.CaptionClass = CaptionClass.Value;
                     dateFormulaTableField.Properties.Description = Description;
                     dateFormulaTableField.Properties.Editable = Editable.Value;
@@ -731,10 +716,7 @@ namespace UncommonSense.CBreeze.Automation
                     dateTimeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     dateTimeTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     dateTimeTableField.Properties.BlankNumbers = BlankNumbers.Value;
-                    dateTimeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    dateTimeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    dateTimeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    dateTimeTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    dateTimeTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     dateTimeTableField.Properties.CaptionClass = CaptionClass.Value;
                     dateTimeTableField.Properties.Description = Description;
                     dateTimeTableField.Properties.Editable = Editable.Value;
@@ -769,10 +751,7 @@ namespace UncommonSense.CBreeze.Automation
                     decimalTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     decimalTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     decimalTableField.Properties.BlankZero = BlankZero.Value;
-                    decimalTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    decimalTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    decimalTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    decimalTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    decimalTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     decimalTableField.Properties.CaptionClass = CaptionClass.Value;
                     decimalTableField.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast.Value;
                     decimalTableField.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost.Value;
@@ -809,10 +788,7 @@ namespace UncommonSense.CBreeze.Automation
                     durationTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     durationTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     durationTableField.Properties.BlankZero = BlankZero.Value;
-                    durationTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    durationTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    durationTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    durationTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    durationTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     durationTableField.Properties.CaptionClass = CaptionClass.Value;
                     durationTableField.Properties.Description = Description;
                     durationTableField.Properties.Editable = Editable.Value;
@@ -845,10 +821,7 @@ namespace UncommonSense.CBreeze.Automation
                     guidTableField.Properties.AltSearchField = AltSearchField.Value;
                     guidTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     guidTableField.Properties.AutoFormatType = AutoFormatType.Value;
-                    guidTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    guidTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    guidTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    guidTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    guidTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     guidTableField.Properties.CaptionClass = CaptionClass.Value;
                     guidTableField.Properties.Description = Description;
                     guidTableField.Properties.Editable = Editable.Value;
@@ -880,10 +853,7 @@ namespace UncommonSense.CBreeze.Automation
                     integerTableField.Properties.AutoIncrement = AutoIncrement.Value;
                     integerTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     integerTableField.Properties.BlankZero = BlankZero.Value;
-                    integerTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    integerTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    integerTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    integerTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    integerTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     integerTableField.Properties.CaptionClass = CaptionClass.Value;
                     integerTableField.Properties.Description = Description;
                     integerTableField.Properties.Editable = Editable.Value;
@@ -919,10 +889,7 @@ namespace UncommonSense.CBreeze.Automation
                     optionTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     optionTableField.Properties.BlankNumbers = BlankNumbers.Value;
                     optionTableField.Properties.BlankZero = BlankZero.Value;
-                    optionTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    optionTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    optionTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    optionTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    optionTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     optionTableField.Properties.CaptionClass = CaptionClass.Value;
                     optionTableField.Properties.Description = Description;
                     optionTableField.Properties.Editable = Editable.Value;
@@ -962,10 +929,7 @@ namespace UncommonSense.CBreeze.Automation
                     recordIDTableField.Properties.AltSearchField = AltSearchField.Value;
                     recordIDTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     recordIDTableField.Properties.AutoFormatType = AutoFormatType.Value;
-                    recordIDTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    recordIDTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    recordIDTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    recordIDTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    recordIDTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     recordIDTableField.Properties.CaptionClass = CaptionClass.Value;
                     recordIDTableField.Properties.Description = Description;
                     recordIDTableField.Properties.Editable = Editable.Value;
@@ -1006,10 +970,7 @@ namespace UncommonSense.CBreeze.Automation
                     textTableField.Properties.AltSearchField = AltSearchField.Value;
                     textTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     textTableField.Properties.AutoFormatType = AutoFormatType.Value;
-                    textTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    textTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    textTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    textTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    textTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     textTableField.Properties.CaptionClass = CaptionClass.Value;
                     textTableField.Properties.CharAllowed = CharAllowed.Value;
                     textTableField.Properties.DateFormula = DateFormula.Value;
@@ -1043,10 +1004,7 @@ namespace UncommonSense.CBreeze.Automation
                     timeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     timeTableField.Properties.AutoFormatType = AutoFormatType.Value;
                     timeTableField.Properties.BlankNumbers = BlankNumbers.Value;
-                    timeTableField.Properties.CalcFormula.FieldName = CalcFormulaFieldName.Value;
-                    timeTableField.Properties.CalcFormula.Method = CalcFormulaMethod.Value;
-                    timeTableField.Properties.CalcFormula.ReverseSign = CalcFormulaReverseSign.Value ?? false;
-                    timeTableField.Properties.CalcFormula.TableName = CalcFormulaTableName.Value;
+                    timeTableField.Properties.CalcFormula.Set(CalcFormula.Value);
                     timeTableField.Properties.CaptionClass = CaptionClass.Value;
                     timeTableField.Properties.Description = Description;
                     timeTableField.Properties.Editable = Editable.Value;
