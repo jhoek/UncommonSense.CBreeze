@@ -67,10 +67,12 @@
     <Compile Include="AddCBreezeFilter.cs" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
-    <Compile Include="New-CBreezeCalcFormula.cs" />
+    <Compile Include="NewCBreezeCalcFormula.cs" />
+    <Compile Include="NewCBreezeMenuSuite.cs" />
+    <Compile Include="NewCBreezeTable.cs" />
     <Compile Include="SetCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
-    <Compile Include="AddCBreezeObject.cs" />
+    <Compile Include="NewCBreezeObject.cs" />
     <Compile Include="AddCBreezeParameter.cs" />
     <Compile Include="AddCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
