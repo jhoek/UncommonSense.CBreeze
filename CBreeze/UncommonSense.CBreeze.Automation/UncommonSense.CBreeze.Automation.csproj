@@ -70,6 +70,7 @@
     <Compile Include="NewCBreezeCalcFormula.cs" />
     <Compile Include="NewCBreezeMenuSuite.cs" />
     <Compile Include="NewCBreezeCodeunit.cs" />
+    <Compile Include="NewCBreezeReport.cs" />
     <Compile Include="NewCBreezeXmlPort.cs" />
     <Compile Include="NewCBreezeQuery.cs" />
     <Compile Include="NewCBreezePage.cs" />
