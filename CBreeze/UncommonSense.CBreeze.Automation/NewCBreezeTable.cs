@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Automation
     // FIXME: After that, make New-CBreezeObject the abstract base class for
     // the other new object cmdlets (note: remove Cmdlet attribute for base class)
 
-    [Cmdlet(VerbsCommon.New, "CBreezeTable")]
+    [Cmdlet(VerbsCommon.New, "CBreezeTable", DefaultParameterSetName = "ManualObjectProperties")]
     public class NewCBreezeTable : NewCBreezeObject
     {
         [Parameter()]
@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 #endif
 
-        protected override void ProcessRecord()
+        protected Table CreateTable()
         {
             var table = new Table(ID.GetID(null, 0), Name);
             SetObjectProperties(table);
@@ -112,7 +112,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 table.AutoCaption();
 
-            WriteObject(table);
+            return table;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateTable());
         }
     }
 }
