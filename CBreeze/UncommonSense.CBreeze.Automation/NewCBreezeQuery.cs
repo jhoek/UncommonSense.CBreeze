@@ -11,44 +11,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeQuery")]
     public class NewCBreezeQuery : NewCBreezeObject
     {
-        [Parameter(Mandatory = true, Position = 1)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get; set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        [ValidateLength(1, 30)]
-        public string Name
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter Modified
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string VersionList
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter AutoCaption
-        {
-            get; set;
-        }
-
         [Parameter()]
         public string Description
         {
@@ -71,10 +33,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var query = new Query(ID.GetID(null, 0), Name);
-
-            query.ObjectProperties.DateTime = DateTime;
-            query.ObjectProperties.Modified = Modified;
-            query.ObjectProperties.VersionList = VersionList;
+            SetObjectProperties(query);
 
             query.Properties.Description = Description;
             query.Properties.ReadState = ReadState;

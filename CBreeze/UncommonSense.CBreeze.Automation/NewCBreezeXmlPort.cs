@@ -143,18 +143,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var xmlPort = new XmlPort(ID.GetID(null, 0), Name);
-
-            if (AutoObjectProperties.IsPresent)
-            {
-                xmlPort.ObjectProperties.DateTime = System.DateTime.Now;
-                xmlPort.ObjectProperties.Modified = true;
-            }
-            else
-            {
-                xmlPort.ObjectProperties.DateTime = DateTime;
-                xmlPort.ObjectProperties.Modified = Modified;
-                xmlPort.ObjectProperties.VersionList = VersionList;
-            }
+            SetObjectProperties(xmlPort);
 
             xmlPort.Properties.DefaultFieldsValidation = DefaultFieldsValidation;
             xmlPort.Properties.DefaultNamespace = DefaultNamespace;

@@ -11,43 +11,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeCodeunit")]
     public class NewCBreezeCodeunit : NewCBreezeObject
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        [ValidateLength(1, 30)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool Modified
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string VersionList
-        {
-            get;
-            set;
-        }
-
 #if !NAV2016
         [Parameter()]
         public bool? CFrontMayUsePermissions
@@ -94,10 +57,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var codeunit = new Codeunit(ID.GetID(null, 0), Name);
-
-            codeunit.ObjectProperties.DateTime = DateTime;
-            codeunit.ObjectProperties.Modified = Modified;
-            codeunit.ObjectProperties.VersionList = VersionList;
+            SetObjectProperties(codeunit);
 
 #if !NAV2016
             codeunit.Properties.CFRONTMayUsePermissions = CFrontMayUsePermissions;

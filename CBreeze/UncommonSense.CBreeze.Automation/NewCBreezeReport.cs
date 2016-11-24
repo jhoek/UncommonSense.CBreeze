@@ -11,49 +11,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeReport")]
     public class NewCBreezeReport : NewCBreezeObject
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        [ValidateLength(1, 30)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter Modified
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string VersionList
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter AutoCaption
-        {
-            get;
-            set;
-        }
-
 #if NAV2015
         [Parameter()]
         public DefaultLayout? DefaultLayout
@@ -169,10 +126,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var report = new Report(ID.GetID(null, 0), Name);
-
-            report.ObjectProperties.DateTime = DateTime;
-            report.ObjectProperties.Modified = Modified;
-            report.ObjectProperties.VersionList = VersionList;
+            SetObjectProperties(report);
 
 #if NAV2015
             report.Properties.DefaultLayout = DefaultLayout;

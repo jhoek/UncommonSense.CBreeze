@@ -11,45 +11,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezePage")]
     public class NewCBreezePage : NewCBreezeObject
     {
-        [Parameter(Mandatory = true, Position = 1)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get; set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        [ValidateLength(1, 30)]
-        public string Name
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter Modified
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string VersionList
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter AutoCaption
-        {
-            get;
-            set;
-        }
-
         [Parameter()]
         public bool? AutoSplitKey
         {
@@ -168,6 +129,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var page = new Page(ID.GetID(null, 0), Name);
+            SetObjectProperties(page);
 
             page.ObjectProperties.DateTime = DateTime;
             page.ObjectProperties.Modified = Modified;

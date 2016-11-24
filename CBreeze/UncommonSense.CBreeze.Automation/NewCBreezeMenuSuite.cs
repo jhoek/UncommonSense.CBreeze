@@ -11,49 +11,11 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite")]
     public class NewCBreezeMenuSuite : NewCBreezeObject
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get; set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        [ValidateLength(1, 30)]
-        public string Name
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter Modified
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string VersionList
-        {
-            get; set;
-        }
-
         protected override void ProcessRecord()
         {
-
             var menusuite = new MenuSuite(ID.GetID(null, 0), Name);
-
-            menusuite.ObjectProperties.DateTime = DateTime;
-            menusuite.ObjectProperties.Modified = Modified;
-            menusuite.ObjectProperties.VersionList = VersionList;
-
+            SetObjectProperties(menusuite);
             WriteObject(menusuite);
-
         }
     }
 }

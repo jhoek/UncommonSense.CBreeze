@@ -15,44 +15,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeTable")]
     public class NewCBreezeTable : NewCBreezeObject
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get; set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        [ValidateLength(1, 30)]
-        public string Name
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter Modified
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string VersionList
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter AutoCaption
-        {
-            get; set;
-        }
-
         [Parameter()]
         public string[] DataCaptionFields
         {
@@ -129,10 +91,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var table = new Table(ID.GetID(null, 0), Name);
-
-            table.ObjectProperties.DateTime = DateTime;
-            table.ObjectProperties.Modified = Modified;
-            table.ObjectProperties.VersionList = VersionList;
+            SetObjectProperties(table);
 
             table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
             table.Properties.DataPerCompany = DataPerCompany;
