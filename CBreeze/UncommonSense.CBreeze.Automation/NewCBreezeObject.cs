@@ -8,7 +8,6 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeObject")]
     public class NewCBreezeObject : CmdletWithDynamicParams
     {
         public NewCBreezeObject()
