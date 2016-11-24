@@ -131,10 +131,6 @@ namespace UncommonSense.CBreeze.Automation
             var page = new Page(ID.GetID(null, 0), Name);
             SetObjectProperties(page);
 
-            page.ObjectProperties.DateTime = DateTime;
-            page.ObjectProperties.Modified = Modified;
-            page.ObjectProperties.VersionList = VersionList;
-
             page.Properties.AutoSplitKey = AutoSplitKey;
             page.Properties.CardPageID = CardPageID;
             page.Properties.DataCaptionExpr = DataCaptionExpr;
