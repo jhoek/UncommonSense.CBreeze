@@ -48,6 +48,7 @@
     <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="AddCBreezeMenuSuiteNode.cs" />
     <Compile Include="AddCBreezeOrderBy.cs" />
+    <Compile Include="AddCBreezePage.cs" />
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="AddCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />

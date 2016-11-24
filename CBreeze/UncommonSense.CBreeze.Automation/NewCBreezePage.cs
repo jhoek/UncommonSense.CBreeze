@@ -126,7 +126,7 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected override void ProcessRecord()
+        protected Page CreatePage()
         {
             var page = new Page(ID.GetID(null, 0), Name);
             SetObjectProperties(page);
@@ -154,7 +154,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 page.AutoCaption();
 
-            WriteObject(page);
+            return page;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreatePage());
         }
     }
 }
