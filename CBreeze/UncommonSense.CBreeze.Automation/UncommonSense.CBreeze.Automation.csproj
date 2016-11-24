@@ -97,9 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="PREFACE.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="PREFACE.md" />
     <None Include="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -138,7 +136,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetPath) C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll
+copy $(TargetDir)README.md C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation
+copy $(TargetDir)*.ps?1 C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
