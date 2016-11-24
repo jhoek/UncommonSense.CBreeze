@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "AutoObjectProperties")]
+        [Parameter(ParameterSetName = "AutoObjectProperties")]
         public SwitchParameter AutoObjectProperties
         {
             get; set;
