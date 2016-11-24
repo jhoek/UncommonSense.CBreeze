@@ -52,6 +52,7 @@ Set-Alias -Name XmlPort -Value New-CBreezeXmlPort
 Set-Alias -Name Codeunit -Value New-CBreezeCodeunit
 Set-Alias -Name Query -Value New-CBreezeQuery
 Set-Alias -Name MenuSuite -Value New-CBreezeMenuSuite
+Set-Alias -Name Field -Value New-CBreezeTableField
 
 # Export members
 Export-ModuleMember -Alias * -Function * -Cmdlet *
