@@ -69,6 +69,7 @@
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
     <Compile Include="NewCBreezeMenuSuite.cs" />
+    <Compile Include="NewCBreezeCodeunit.cs" />
     <Compile Include="NewCBreezeQuery.cs" />
     <Compile Include="NewCBreezePage.cs" />
     <Compile Include="NewCBreezeTable.cs" />
