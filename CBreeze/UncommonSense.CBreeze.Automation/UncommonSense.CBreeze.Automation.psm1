@@ -38,13 +38,20 @@ Set-Alias -Name scml -Value Set-CBreezeMLValue
 Set-Alias -Name scpe -Value Set-CBreezePermission
 
 # Command-style aliases
-Set-Alias -Name compile -Value Compile-CBreezeApplication
-Set-Alias -Name export -Value Export-CBreezeApplication
-Set-Alias -Name import -Value Import-CBreezeApplication
-Set-Alias -Name invoke -Value Invoke-CBreezeObject 
+Set-Alias -Name Compile -Value Compile-CBreezeApplication
+Set-Alias -Name Export -Value Export-CBreezeApplication
+Set-Alias -Name Import -Value Import-CBreezeApplication
+Set-Alias -Name Invoke -Value Invoke-CBreezeObject 
 
-# Shortcuts for most common operations
-Set-Alias -Name Object -Value Add-CBreezeObject 
-Set-Alias -Name Field -Value Add-CBreezeTableField
+# Fluent-style aliases
+Set-Alias -Name Application -Value New-CBreezeApplication
+Set-Alias -Name Table -Value New-CBreezeTable
+Set-Alias -Name Page -Value New-CBreezePage
+Set-Alias -Name Report -Value New-CBreezeReport
+Set-Alias -Name XmlPort -Value New-CBreezeXmlPort
+Set-Alias -Name Codeunit -Value New-CBreezeCodeunit
+Set-Alias -Name Query -Value New-CBreezeQuery
+Set-Alias -Name MenuSuite -Value New-CBreezeMenuSuite
 
+# Export members
 Export-ModuleMember -Alias * -Function * -Cmdlet *
