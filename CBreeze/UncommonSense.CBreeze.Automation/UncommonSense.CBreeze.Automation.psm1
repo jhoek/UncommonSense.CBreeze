@@ -53,6 +53,7 @@ Set-Alias -Name Codeunit -Value New-CBreezeCodeunit
 Set-Alias -Name Query -Value New-CBreezeQuery
 Set-Alias -Name MenuSuite -Value New-CBreezeMenuSuite
 Set-Alias -Name Field -Value New-CBreezeTableField
+Set-Alias -Name Procedure -Value New-CBreezeFunction
 
 # Export members
 Export-ModuleMember -Alias * -Function * -Cmdlet *
