@@ -72,6 +72,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        [ValidateRange(1, int.MaxValue)]
         public int? DrillDownPageID
         {
             get; set;
@@ -104,6 +105,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        [ValidateRange(1, int.MaxValue)]
         public int? LookupPageID
         {
             get; set;
