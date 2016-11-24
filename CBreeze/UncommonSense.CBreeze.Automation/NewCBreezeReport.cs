@@ -9,7 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeReport")]
-    public class NewCBreezeReport : Cmdlet
+    public class NewCBreezeReport : NewCBreezeObject
     {
         [Parameter(Mandatory = true, Position = 0)]
         [Alias("Range")]

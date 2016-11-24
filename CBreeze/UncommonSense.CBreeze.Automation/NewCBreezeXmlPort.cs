@@ -5,52 +5,8 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeXmlPort")]
-    public class NewCBreezeXmlPort : Cmdlet
+    public class NewCBreezeXmlPort : NewCBreezeObject
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        [ValidateLength(1, 30)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public DateTime? DateTime
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool Modified
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string VersionList
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter AutoCaption
-        {
-            get;
-            set;
-        }
-
         [Parameter()]
         public bool? DefaultFieldsValidation
         {
@@ -188,9 +144,17 @@ namespace UncommonSense.CBreeze.Automation
         {
             var xmlPort = new XmlPort(ID.GetID(null, 0), Name);
 
-            xmlPort.ObjectProperties.DateTime = DateTime;
-            xmlPort.ObjectProperties.Modified = Modified;
-            xmlPort.ObjectProperties.VersionList = VersionList;
+            if (AutoObjectProperties.IsPresent)
+            {
+                xmlPort.ObjectProperties.DateTime = System.DateTime.Now;
+                xmlPort.ObjectProperties.Modified = true;
+            }
+            else
+            {
+                xmlPort.ObjectProperties.DateTime = DateTime;
+                xmlPort.ObjectProperties.Modified = Modified;
+                xmlPort.ObjectProperties.VersionList = VersionList;
+            }
 
             xmlPort.Properties.DefaultFieldsValidation = DefaultFieldsValidation;
             xmlPort.Properties.DefaultNamespace = DefaultNamespace;

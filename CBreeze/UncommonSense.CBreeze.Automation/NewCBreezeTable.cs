@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Automation
     // the other new object cmdlets (note: remove Cmdlet attribute for base class)
 
     [Cmdlet(VerbsCommon.New, "CBreezeTable")]
-    public class NewCBreezeTable : Cmdlet
+    public class NewCBreezeTable : NewCBreezeObject
     {
         [Parameter(Mandatory = true, Position = 0)]
         [Alias("Range")]
