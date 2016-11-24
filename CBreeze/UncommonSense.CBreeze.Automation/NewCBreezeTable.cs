@@ -112,6 +112,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 table.AutoCaption();
 
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                subObjects.OfType<TableField>().ToList().ForEach(f => table.Fields.Add(f));
+            }
+
             return table;
         }
 

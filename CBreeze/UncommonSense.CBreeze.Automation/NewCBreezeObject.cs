@@ -60,6 +60,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(Position=2)]
+        public ScriptBlock SubObjects
+        {
+            get; set;
+        }
+
         protected void SetObjectProperties(Core.Object @object)
         {
             if (AutoObjectProperties.IsPresent)
