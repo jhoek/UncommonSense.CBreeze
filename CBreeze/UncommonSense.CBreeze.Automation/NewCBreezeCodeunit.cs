@@ -70,6 +70,13 @@ namespace UncommonSense.CBreeze.Automation
             codeunit.Properties.TableNo = TableNo;
             codeunit.Properties.TestIsolation = TestIsolation;
 
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+
+                subObjects.OfType<Function>().ToList().ForEach(f => codeunit.Code.Functions.Add(f));
+            }
+
             WriteObject(codeunit);
         }
     }
