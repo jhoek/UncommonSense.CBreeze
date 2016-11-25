@@ -140,7 +140,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected override void ProcessRecord()
+        protected XmlPort CreateXmlPort()
         {
             var xmlPort = new XmlPort(ID.GetID(null, 0), Name);
             SetObjectProperties(xmlPort);
@@ -168,7 +168,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 xmlPort.AutoCaption();
 
-            WriteObject(xmlPort);
+            return xmlPort;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateXmlPort());
         }
     }
 }
