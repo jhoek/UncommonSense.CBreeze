@@ -123,7 +123,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 #endif
 
-        protected override void ProcessRecord()
+        protected Report CreateReport()
         {
             var report = new Report(ID.GetID(null, 0), Name);
             SetObjectProperties(report);
@@ -153,7 +153,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 report.AutoCaption();
 
-            WriteObject(report);
+            return report;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateReport());
         }
     }
 

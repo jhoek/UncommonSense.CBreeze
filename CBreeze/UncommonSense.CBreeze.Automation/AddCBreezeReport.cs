@@ -1,12 +1,16 @@
-﻿using System.Management.Automation;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Management.Automation;
+using System.Text;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuite", DefaultParameterSetName = "ManualObjectProperties")]
-    public class AddCBreezeMenuSuite : NewCBreezeMenuSuite
+    [Cmdlet(VerbsCommon.Add, "CBreezeReport", DefaultParameterSetName = "ManualObjectProperties")]
+    public class AddCBreezeReport : NewCBreezeReport
     {
-        public AddCBreezeMenuSuite()
+        public AddCBreezeReport()
         {
             PassThru = true;
         }
@@ -25,12 +29,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var menusuite = CreateMenuSuite();
-            Application.MenuSuites.Add(menusuite);
+            var report = CreateReport();
+            Application.Reports.Add(report);
 
             if (PassThru)
             {
-                WriteObject(menusuite);
+                WriteObject(report);
             }
         }
     }
