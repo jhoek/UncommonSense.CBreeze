@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeCodeunit")]
+    [Cmdlet(VerbsCommon.New, "CBreezeCodeunit", DefaultParameterSetName = "ManualObjectProperties")]
     public class NewCBreezeCodeunit : NewCBreezeObject
     {
 #if !NAV2016
@@ -54,7 +54,7 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected override void ProcessRecord()
+        protected Codeunit CreateCodeunit()
         {
             var codeunit = new Codeunit(ID.GetID(null, 0), Name);
             SetObjectProperties(codeunit);
@@ -77,7 +77,13 @@ namespace UncommonSense.CBreeze.Automation
                 subObjects.OfType<Function>().ToList().ForEach(f => codeunit.Code.Functions.Add(f));
             }
 
-            WriteObject(codeunit);
+            return codeunit;
+        }
+
+        protected override void ProcessRecord()
+        {
+
+            WriteObject(CreateCodeunit());
         }
     }
 }

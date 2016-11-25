@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="NewCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuiteNode.cs" />
