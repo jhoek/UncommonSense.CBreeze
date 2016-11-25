@@ -8,14 +8,19 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite")]
+    [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite", DefaultParameterSetName = "ManualObjectProperties")]
     public class NewCBreezeMenuSuite : NewCBreezeObject
     {
-        protected override void ProcessRecord()
+        protected MenuSuite CreateMenuSuite()
         {
             var menusuite = new MenuSuite(ID.GetID(null, 0), Name);
             SetObjectProperties(menusuite);
-            WriteObject(menusuite);
+            return menusuite;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateMenuSuite());
         }
     }
 }
