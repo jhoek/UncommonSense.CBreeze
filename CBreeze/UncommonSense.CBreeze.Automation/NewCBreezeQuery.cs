@@ -30,7 +30,7 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected override void ProcessRecord()
+        protected Query CreateQuery()
         {
             var query = new Query(ID.GetID(null, 0), Name);
             SetObjectProperties(query);
@@ -42,7 +42,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 query.AutoCaption();
 
-            WriteObject(query);
+            return query;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateQuery());
         }
     }
 }
