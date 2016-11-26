@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public bool? OnlyMaxLimit
+        public bool OnlyMaxLimit
         {
             get;
             set;
@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public bool? ValueIsFilter
+        public bool ValueIsFilter
         {
             get;
             set;
