@@ -67,14 +67,14 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? OnlyMaxLimit
+        public SwitchParameter OnlyMaxLimit
         {
             get;
             set;
         }
 
         [Parameter()]
-        public bool? ValueIsFilter
+        public SwitchParameter ValueIsFilter
         {
             get;
             set;
