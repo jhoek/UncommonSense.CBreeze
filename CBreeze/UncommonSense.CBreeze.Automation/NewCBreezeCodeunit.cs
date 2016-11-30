@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeCodeunit", DefaultParameterSetName = "ManualObjectProperties")]
+    [Cmdlet(VerbsCommon.New, "CBreezeCodeunit")]
     public class NewCBreezeCodeunit : NewCBreezeObject
     {
 #if !NAV2016
@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected Codeunit CreateCodeunit()
         {
-            var codeunit = new Codeunit(ID.GetID(null, 0), Name);
+            var codeunit = new Codeunit(ID, Name);
             SetObjectProperties(codeunit);
 
 #if !NAV2016

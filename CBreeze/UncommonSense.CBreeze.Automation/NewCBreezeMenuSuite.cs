@@ -8,12 +8,12 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite", DefaultParameterSetName = "ManualObjectProperties")]
+    [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite")]
     public class NewCBreezeMenuSuite : NewCBreezeObject
     {
         protected MenuSuite CreateMenuSuite()
         {
-            var menusuite = new MenuSuite(ID.GetID(null, 0), Name);
+            var menusuite = new MenuSuite(ID, Name);
             SetObjectProperties(menusuite);
             return menusuite;
         }

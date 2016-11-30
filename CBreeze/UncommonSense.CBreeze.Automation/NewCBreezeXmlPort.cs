@@ -142,7 +142,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected XmlPort CreateXmlPort()
         {
-            var xmlPort = new XmlPort(ID.GetID(null, 0), Name);
+            var xmlPort = new XmlPort(ID, Name);
             SetObjectProperties(xmlPort);
 
             xmlPort.Properties.DefaultFieldsValidation = DefaultFieldsValidation;
