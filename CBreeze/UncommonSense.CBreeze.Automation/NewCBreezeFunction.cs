@@ -179,6 +179,12 @@ namespace UncommonSense.CBreeze.Automation
         }
 #endif
 
+        [Parameter(Position=2)]
+        public ScriptBlock SubObjects
+        {
+            get; set;
+        }
+
         protected Function CreateFunction()
         {
             if (ReturnValueType.HasValue && (ReturnValueDataLength ?? 0) == 0)
@@ -233,6 +239,15 @@ namespace UncommonSense.CBreeze.Automation
             function.ReturnValue.Type = ReturnValueType;
             function.ReturnValue.DataLength = ReturnValueDataLength;
             function.ReturnValue.Dimensions = ReturnValueDimensions;
+
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+
+                subObjects.OfType<Variable>().ToList().ForEach(f => function.Variables.Add(f));
+                subObjects.OfType<Parameter>().ToList().ForEach(p => function.Parameters.Add(p));
+                subObjects.OfType<string>().ToList().ForEach(c => function.CodeLines.Add(c));
+            }
 
             return function;
         }

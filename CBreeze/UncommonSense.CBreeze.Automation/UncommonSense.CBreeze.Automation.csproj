@@ -50,6 +50,7 @@
     <Compile Include="AddCBreezeMenuSuite.cs" />
     <Compile Include="AddCBreezeQuery.cs" />
     <Compile Include="AddCBreezeReport.cs" />
+    <Compile Include="NewCBreezeVariable.cs" />
     <Compile Include="AddCBreezeXmlPort.cs" />
     <Compile Include="NewCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuiteNode.cs" />
