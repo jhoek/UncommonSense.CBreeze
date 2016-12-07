@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected Query CreateQuery()
         {
-            var query = new Query(ID.GetID(null, 0), Name);
+            var query = new Query(ID, Name);
             SetObjectProperties(query);
 
             query.Properties.Description = Description;

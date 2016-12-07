@@ -8,11 +8,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    // FIXME: Replace New-CBreezeObject with a separate cmdlet per object type
-    // FIXME: After that, make New-CBreezeObject the abstract base class for
-    // the other new object cmdlets (note: remove Cmdlet attribute for base class)
-
-    [Cmdlet(VerbsCommon.New, "CBreezeTable", DefaultParameterSetName = "ManualObjectProperties")]
+    [Cmdlet(VerbsCommon.New, "CBreezeTable")] 
     public class NewCBreezeTable : NewCBreezeObject
     {
         [Parameter()]
@@ -90,7 +86,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected Table CreateTable()
         {
-            var table = new Table(ID.GetID(null, 0), Name);
+            var table = new Table(ID, Name);
             SetObjectProperties(table);
 
             table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });

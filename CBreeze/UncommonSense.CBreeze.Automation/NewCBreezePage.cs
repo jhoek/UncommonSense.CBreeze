@@ -128,7 +128,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected Page CreatePage()
         {
-            var page = new Page(ID.GetID(null, 0), Name);
+            var page = new Page(ID, Name);
             SetObjectProperties(page);
 
             page.Properties.AutoSplitKey = AutoSplitKey;

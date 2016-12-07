@@ -125,7 +125,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected Report CreateReport()
         {
-            var report = new Report(ID.GetID(null, 0), Name);
+            var report = new Report(ID, Name);
             SetObjectProperties(report);
 
 #if NAV2015

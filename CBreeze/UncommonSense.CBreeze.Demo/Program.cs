@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Diagnostics;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Write;
@@ -12,31 +13,27 @@ namespace UncommonSense.CBreeze.Demo
     {
         public static void Main(string[] args)
         {
-            var compareToolFileName = @"c:\Program Files\Araxis\Araxis Merge\compare.exe";
-
             var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var inputFileName = Path.Combine(desktopFolderName, "xmlport.txt");
-            var outputFileName = Path.Combine(desktopFolderName, "xmlport.output.txt");
+            var applications = new string[] { "be" };
 
-            var readerStopWatch = new Stopwatch();
-            readerStopWatch.Start();
-            var lines = File.ReadLines(inputFileName, Encoding.GetEncoding("ibm850"));
-            readerStopWatch.Stop();
-            Console.WriteLine("Reading took {0} ms.", readerStopWatch.ElapsedMilliseconds);
+            foreach (var application in applications)
+            {
+                var inputFolderName = Path.Combine(desktopFolderName, application);
+                var outputFolderName = Path.Combine(desktopFolderName, $"{application}.output");
 
-            var parserStopwatch = new Stopwatch();
-            parserStopwatch.Start();
-            var application = ApplicationBuilder.FromLines(lines);
-            parserStopwatch.Stop();
-            Console.WriteLine("Parsing took {0} ms.", parserStopwatch.ElapsedMilliseconds);
+                Directory.CreateDirectory(outputFolderName);
 
-            var writerStopwatch = new Stopwatch();
-            writerStopwatch.Start();
-            application.Write(outputFileName);
-            writerStopwatch.Stop();
-            Console.WriteLine("Writing took {0} ms.", writerStopwatch.ElapsedMilliseconds);
+                foreach (var filePath in Directory.GetFiles(inputFolderName, "*.TXT"))
+                {
+                    var fileName = Path.GetFileName(filePath);
+                    Console.WriteLine(fileName);
 
-            Process.Start(compareToolFileName, string.Format("\"{0}\" \"{1}\"", inputFileName, outputFileName));
+                    var inputPath = Path.Combine(inputFolderName, fileName);
+                    var outputPath = Path.Combine(outputFolderName, fileName);
+
+                    ApplicationBuilder.FromFile(inputPath).Write(outputPath);
+                }
+            }
         }
     }
 }
