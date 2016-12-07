@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Demo
         public static void Main(string[] args)
         {
             var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var applications = new string[] {  "nl2016","be" };
+            var applications = new string[] { "be" };
 
             foreach (var application in applications)
             {
@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Demo
 
                 Directory.CreateDirectory(outputFolderName);
 
-                foreach (var filePath in Directory.GetFiles(inputFolderName, "*.txt"))
+                foreach (var filePath in Directory.GetFiles(inputFolderName, "*.TXT"))
                 {
                     var fileName = Path.GetFileName(filePath);
                     Console.WriteLine(fileName);
@@ -34,15 +34,6 @@ namespace UncommonSense.CBreeze.Demo
                     ApplicationBuilder.FromFile(inputPath).Write(outputPath);
                 }
             }
-
-            //var inputFileName = Path.Combine(desktopFolderName, "be.txt");
-            //var outputFileName = Path.Combine(desktopFolderName, "be.output.txt");
-
-            //var lines = File.ReadLines(inputFileName, Encoding.GetEncoding("ibm850"));
-
-            //var application = ApplicationBuilder.FromLines(lines);
-
-            //application.Write(outputFileName);
         }
     }
 }
