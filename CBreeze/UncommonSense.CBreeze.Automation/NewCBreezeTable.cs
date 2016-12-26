@@ -112,7 +112,10 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
                 subObjects.OfType<TableField>().ToList().ForEach(f => table.Fields.Add(f));
+                subObjects.OfType<TableFieldGroup>().ToList().ForEach(g => table.FieldGroups.Add(g));
                 subObjects.OfType<TableKey>().ToList().ForEach(k => table.Keys.Add(k));
+                subObjects.OfType<Function>().ToList().ForEach(f => table.Code.Functions.Add(f));
+                subObjects.OfType<Variable>().ToList().ForEach(v => table.Code.Variables.Add(v));
             }
 
             return table;
