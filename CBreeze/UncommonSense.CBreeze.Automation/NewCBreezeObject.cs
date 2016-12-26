@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     public abstract class NewCBreezeObject : Cmdlet
     {
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "IDPresent")]
+        [Parameter(Mandatory = true, Position = 0)]
         [ValidateRange(0, int.MaxValue)]
         public int ID
         {
@@ -18,8 +18,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "IDPresent")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "IDNotPresent")]
+        [Parameter(Mandatory = true, Position = 1)]
         [ValidateLength(1, 30)]
         public string Name
         {
@@ -52,7 +51,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
+        [Parameter(Position=2)]
         public ScriptBlock SubObjects
         {
             get; set;
