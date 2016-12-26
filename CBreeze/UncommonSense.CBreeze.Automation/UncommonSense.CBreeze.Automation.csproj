@@ -48,6 +48,7 @@
     <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="AddCBreezeMenuSuite.cs" />
+    <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
     <Compile Include="NewCBreezeParameter.cs" />
     <Compile Include="AddCBreezeQuery.cs" />
