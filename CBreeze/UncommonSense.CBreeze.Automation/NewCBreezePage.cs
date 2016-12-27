@@ -154,6 +154,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 page.AutoCaption();
 
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                subObjects.OfType<PageControl>().ToList().ForEach(c => page.Controls.Add(c));
+            }
+
             return page;
         }
 
