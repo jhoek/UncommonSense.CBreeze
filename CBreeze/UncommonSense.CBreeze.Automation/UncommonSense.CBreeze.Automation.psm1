@@ -58,6 +58,7 @@ Set-Alias -Name Key -Value New-CBreezeTableKey
 Set-Alias -Name Procedure -Value New-CBreezeFunction
 Set-Alias -Name Parameter -Value New-CBreezeParameter
 Set-Alias -Name Variable -Value New-CBreezeVariable
+Set-Alias -name Event -Value New-CBreezeEvent
 
 # Export members
 Export-ModuleMember -Alias * -Function * -Cmdlet *

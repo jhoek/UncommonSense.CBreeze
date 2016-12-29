@@ -8,39 +8,10 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeEvent")]
-    public class AddCBreezeEvent : Cmdlet
+    public class AddCBreezeEvent : NewCBreezeEvent
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 3)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 0)]
-        public int SourceID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        public string SourceName
         {
             get;
             set;
@@ -55,7 +26,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var @event = GetEvents(InputObject).Add(new Event(SourceID, SourceName, ID, Name));
+            var @event = GetEvents(InputObject).Add(CreateEvent());
             
             if (PassThru)
                 WriteObject(@event);
