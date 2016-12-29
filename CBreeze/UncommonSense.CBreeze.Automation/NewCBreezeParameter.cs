@@ -26,7 +26,7 @@ namespace UncommonSense.CBreeze.Automation
             Temporary = new DynamicParameter<bool?>("Temporary", false);
         }
 
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 2)]
         public ParameterType? Type
         {
             get;
@@ -40,14 +40,14 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 0)]
         public int ID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(Mandatory = true, Position = 1)]
         public string Name
         {
             get;
