@@ -158,6 +158,8 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
                 subObjects.OfType<PageControl>().ToList().ForEach(c => page.Controls.Add(c));
+                subObjects.OfType<Function>().ToList().ForEach(f => page.Code.Functions.Add(f));
+                subObjects.OfType<Variable>().ToList().ForEach(v => page.Code.Variables.Add(v));
             }
 
             return page;
