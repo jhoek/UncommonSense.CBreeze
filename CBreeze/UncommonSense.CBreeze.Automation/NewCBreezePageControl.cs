@@ -79,14 +79,14 @@ namespace UncommonSense.CBreeze.Automation
             Type = PageControlType.Field;
         }
 
-        [Parameter(Mandatory=true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0)]
         public PageControlType Type
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true,Position =1)]
+        [Parameter(Mandatory = true, Position = 1)]
         public int ID
         {
             get;
