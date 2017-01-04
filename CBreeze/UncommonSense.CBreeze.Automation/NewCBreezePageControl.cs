@@ -52,7 +52,6 @@ namespace UncommonSense.CBreeze.Automation
             NotBlank = new DynamicParameter<bool?>("NotBlank");
             Numeric = new DynamicParameter<bool?>("Numeric");
             PagePartID = new DynamicParameter<int?>("PagePartID", parameterSetNames: new string[] { "PagePart" });
-            Position = new DynamicParameter<Position?>("Position");
             QuickEntry = new DynamicParameter<string>("QuickEntry");
             SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", parameterSetNames: new string[] { "SystemPart" });
             ProviderID = new DynamicParameter<int?>("ProviderID");
@@ -345,12 +344,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<Position?> Position
-        {
-            get;
-            set;
-        }
-
         protected DynamicParameter<int?> ProviderID
         {
             get;
@@ -622,7 +615,6 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Group:
-                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
@@ -636,7 +628,6 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Field:
-                        yield return Position.RuntimeDefinedParameter;
                         yield return AssistEdit.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
                         yield return AutoFormatType.RuntimeDefinedParameter;
@@ -684,7 +675,6 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageControlType.Part:
-                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Editable.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
