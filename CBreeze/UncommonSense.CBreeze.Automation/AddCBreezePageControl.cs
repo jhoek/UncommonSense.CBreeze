@@ -11,6 +11,11 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezePageControl")]
     public class AddCBreezePageControl : NewCBreezePageControl
     {
+        public AddCBreezePageControl()
+        {
+            Position = new DynamicParameter<Position?>("Position");
+        }
+
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {
@@ -20,6 +25,12 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter]
         public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        protected DynamicParameter<Position?> Position
         {
             get;
             set;
@@ -90,21 +101,28 @@ namespace UncommonSense.CBreeze.Automation
                 throw new ArgumentOutOfRangeException("Don't know how to add a page control to an InputObject of this type.");
             }
 
+            if (ChildControls != null)
+            {
+                var variables = new List<PSVariable>() { new PSVariable("Indentation", pageControl.IndentationLevel + 1) };
+
+                ChildControls
+                    .InvokeWithContext(null, variables)
+                    .Select(o=>o.BaseObject)
+                    .Cast<PageControl>()
+                    .ToList()
+                    .ForEach(c => pageControl.AddChildPageControl(c, Core.Position.LastWithinContainer));
+            }
+
             if (PassThru)
                 WriteObject(pageControl);
         }
 
         protected PageControl CreatePageControl()
         {
-            //            var page = InputObject.GetIPage();
-            //           var id = ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
-
-            var id = 1000; // FIXME
-
             switch (Type)
             {
                 case PageControlType.Container:
-                    var containerPageControl = new ContainerPageControl(id, 0);
+                    var containerPageControl = new ContainerPageControl(ID, 0);
                     containerPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     containerPageControl.Properties.Description = Description;
                     containerPageControl.Properties.Name = Name;
@@ -116,7 +134,7 @@ namespace UncommonSense.CBreeze.Automation
                     return containerPageControl;
 
                 case PageControlType.Group:
-                    var groupPageControl = new GroupPageControl(id, GetIndentationLevel());
+                    var groupPageControl = new GroupPageControl(ID, GetIndentationLevel());
                     groupPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     groupPageControl.Properties.Description = Description;
                     groupPageControl.Properties.Name = Name;
@@ -136,7 +154,7 @@ namespace UncommonSense.CBreeze.Automation
                     return groupPageControl;
 
                 case PageControlType.Field:
-                    var fieldPageControl = new FieldPageControl(id, GetIndentationLevel());
+                    var fieldPageControl = new FieldPageControl(ID, GetIndentationLevel());
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
                     fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
@@ -190,7 +208,7 @@ namespace UncommonSense.CBreeze.Automation
                     return fieldPageControl;
 
                 case PageControlType.Part:
-                    var partPageControl = new PartPageControl(id, GetIndentationLevel());
+                    var partPageControl = new PartPageControl(ID, GetIndentationLevel());
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
 
