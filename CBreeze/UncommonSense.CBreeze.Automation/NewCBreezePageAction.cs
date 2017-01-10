@@ -9,10 +9,10 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezePageAction")]
-    public class AddCBreezePageAction : NewCBreezePageAction
+    [Cmdlet(VerbsCommon.New, "CBreezePageAction")]
+    public class NewCBreezePageAction : PSCmdletWithDynamicParams
     {
-        public AddCBreezePageAction()
+        public NewCBreezePageAction()
         {
             Caption = new DynamicParameter<string>("Caption");
             ContainerType = new DynamicParameter<ActionContainerType?>("ContainerType");
@@ -23,7 +23,6 @@ namespace UncommonSense.CBreeze.Automation
             InFooterBar = new DynamicParameter<bool?>("InFooterBar");
             IsHeader = new DynamicParameter<bool?>("IsHeader");
             Name = new DynamicParameter<string>("Name");
-            Position = new DynamicParameter<Position?>("Position");
             Promoted = new DynamicParameter<bool?>("Promoted");
             PromotedCategory = new DynamicParameter<Core.PromotedCategory?>("PromotedCategory");
             PromotedIsBig = new DynamicParameter<bool?>("PromotedIsBig");
@@ -40,13 +39,6 @@ namespace UncommonSense.CBreeze.Automation
             Visible = new DynamicParameter<string>("Visible");
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true, Position = 0)]
         public PageActionBaseType? Type
         {
@@ -55,15 +47,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, Position = 1)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter PassThru
+        public int ID
         {
             get;
             set;
@@ -118,12 +102,6 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected DynamicParameter<string> Name
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<Position?> Position
         {
             get;
             set;
@@ -203,58 +181,37 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(Position = 2)]
+        public ScriptBlock ChildActions
+        {
+            get; set;
+        }
+
         protected override void ProcessRecord()
         {
-            var pageAction = CreatePageAction();
-            var position = Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer);
+            var indentation = (int)GetVariableValue("Indentation", 0);
+            WriteObject(CreatePageAction(indentation));
 
-            TypeSwitch.Do(
-                InputObject.BaseObject,
-                TypeSwitch.Case<PageActionContainer>(i => i.AddChildPageAction(pageAction, position)),
-                TypeSwitch.Case<PageActionGroup>(i => i.AddChildPageAction(pageAction, position)),
-                TypeSwitch.Case<ActionList>(i => i.AddPageActionAtPosition(pageAction, position)),
-                TypeSwitch.Case<IPage>(i => i.AddPageActionAtPosition(pageAction, position)),
-                TypeSwitch.Default(() => UnknownInputObjectType())
-            );
-
-            if (PassThru)
-                WriteObject(pageAction);
+            if (ChildActions != null)
+            {
+                var variables = new List<PSVariable>() { new PSVariable("Indentation", indentation + 1) };
+                WriteObject(ChildActions.InvokeWithContext(null, variables), true);
+            }
         }
 
-        protected void UnknownInputObjectType()
+        protected PageActionBase CreatePageAction(int indentation)
         {
-            throw new ArgumentOutOfRangeException("Don't know how to add a page action to an InputObject of this type.");
-        }
-
-        protected int GetParentIndentationLevel()
-        {
-            var result = 0;
-
-            TypeSwitch.Do(
-                InputObject.BaseObject,
-                TypeSwitch.Case<PageActionContainer>(i => result = i.IndentationLevel.GetValueOrDefault(0)),
-                TypeSwitch.Case<PageActionGroup>(i => result = i.IndentationLevel.GetValueOrDefault(0))
-                );
-
-            return result;
-        }
-
-        protected PageActionBase CreatePageAction()
-        {
-            var page = InputObject.GetIPage();
-            var id = ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
-
             switch (Type.Value)
             {
                 case PageActionBaseType.ActionContainer:
-                    var pageActionContainer = new PageActionContainer(id, 0);
+                    var pageActionContainer = new PageActionContainer(ID, 0);
                     pageActionContainer.Properties.ActionContainerType = ContainerType.Value;
                     pageActionContainer.Properties.Description = Description.Value;
                     pageActionContainer.Properties.Name = Name.Value;
                     return pageActionContainer;
 
                 case PageActionBaseType.ActionGroup:
-                    var pageActionGroup = new PageActionGroup(id, GetParentIndentationLevel() + 1);
+                    var pageActionGroup = new PageActionGroup(ID, indentation);
                     pageActionGroup.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionGroup.Properties.Description = Description.Value;
                     pageActionGroup.Properties.Enabled = Enabled.Value;
@@ -264,7 +221,7 @@ namespace UncommonSense.CBreeze.Automation
                     return pageActionGroup;
 
                 case PageActionBaseType.Action:
-                    var pageAction = new PageAction(id, GetParentIndentationLevel() + 1);
+                    var pageAction = new PageAction(ID, indentation);
                     pageAction.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageAction.Properties.Description = Description.Value;
                     pageAction.Properties.Ellipsis = Ellipsis.Value;
@@ -289,7 +246,7 @@ namespace UncommonSense.CBreeze.Automation
                     return pageAction;
 
                 case PageActionBaseType.Separator:
-                    var pageActionSeparator = new PageActionSeparator(id, GetParentIndentationLevel() + 1);
+                    var pageActionSeparator = new PageActionSeparator(ID, indentation);
                     pageActionSeparator.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionSeparator.Properties.IsHeader = IsHeader.Value;
                     return pageActionSeparator;
@@ -312,7 +269,6 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageActionBaseType.ActionGroup:
-                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return Enabled.RuntimeDefinedParameter;
@@ -322,7 +278,6 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageActionBaseType.Action:
-                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return Description.RuntimeDefinedParameter;
                         yield return Ellipsis.RuntimeDefinedParameter;
@@ -347,7 +302,6 @@ namespace UncommonSense.CBreeze.Automation
                         break;
 
                     case PageActionBaseType.Separator:
-                        yield return Position.RuntimeDefinedParameter;
                         yield return Caption.RuntimeDefinedParameter;
                         yield return IsHeader.RuntimeDefinedParameter;
                         break;

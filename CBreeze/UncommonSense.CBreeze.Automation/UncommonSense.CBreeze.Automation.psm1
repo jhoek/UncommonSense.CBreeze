@@ -56,6 +56,7 @@ Set-Alias -Name Field -Value New-CBreezeTableField
 Set-Alias -Name FieldGroup -Value New-CBreezeTableFieldGroup
 Set-Alias -Name Key -Value New-CBreezeTableKey
 Set-Alias -Name Control -Value New-CBreezePageControl
+Set-Alias -Name Action -Value New-CBreezePageAction
 Set-Alias -Name Procedure -Value New-CBreezeFunction
 Set-Alias -Name Parameter -Value New-CBreezeParameter
 Set-Alias -Name Variable -Value New-CBreezeVariable
