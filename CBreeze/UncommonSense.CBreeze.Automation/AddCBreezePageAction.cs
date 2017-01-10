@@ -47,16 +47,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public PageActionBaseType? Type
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true, Position = 1)]
         [Alias("Range")]
-        public PSObject ID
+        public new PSObject ID
         {
             get;
             set;
@@ -69,135 +62,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected DynamicParameter<string> Caption
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<ActionContainerType?> ContainerType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Description
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> Ellipsis
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Enabled
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Image
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> InFooterBar
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> IsHeader
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Name
-        {
-            get;
-            set;
-        }
-
         protected DynamicParameter<Position?> Position
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> Promoted
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<PromotedCategory?> PromotedCategory
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> PromotedIsBig
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<RunObjectType?> RunObjectType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int?> RunObjectID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<RunPageMode?> RunPageMode
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> RunPageOnRec
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> RunPageViewKey
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<Order?> RunPageViewOrder
-        {
-            get;
-            set;
-        }
-
-#if NAV2015
-        protected DynamicParameter<PageActionScope?> Scope
-        {
-            get;
-            set;
-        }
-#endif
-
-        protected DynamicParameter<string> ShortcutKey
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Visible
         {
             get;
             set;
@@ -205,7 +70,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var pageAction = CreatePageAction();
+            var pageAction = CreatePageAction(GetID(), GetParentIndentationLevel() + 1);
             var position = Position.Value.GetValueOrDefault(Core.Position.LastWithinContainer);
 
             TypeSwitch.Do(
@@ -239,64 +104,10 @@ namespace UncommonSense.CBreeze.Automation
             return result;
         }
 
-        protected PageActionBase CreatePageAction()
+        protected int GetID()
         {
             var page = InputObject.GetIPage();
-            var id = ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
-
-            switch (Type.Value)
-            {
-                case PageActionBaseType.ActionContainer:
-                    var pageActionContainer = new PageActionContainer(id, 0);
-                    pageActionContainer.Properties.ActionContainerType = ContainerType.Value;
-                    pageActionContainer.Properties.Description = Description.Value;
-                    pageActionContainer.Properties.Name = Name.Value;
-                    return pageActionContainer;
-
-                case PageActionBaseType.ActionGroup:
-                    var pageActionGroup = new PageActionGroup(id, GetParentIndentationLevel() + 1);
-                    pageActionGroup.Properties.CaptionML.Set("ENU", Caption.Value);
-                    pageActionGroup.Properties.Description = Description.Value;
-                    pageActionGroup.Properties.Enabled = Enabled.Value;
-                    pageActionGroup.Properties.Image = Image.Value;
-                    pageActionGroup.Properties.Name = Name.Value;
-                    pageActionGroup.Properties.Visible = Visible.Value;
-                    return pageActionGroup;
-
-                case PageActionBaseType.Action:
-                    var pageAction = new PageAction(id, GetParentIndentationLevel() + 1);
-                    pageAction.Properties.CaptionML.Set("ENU", Caption.Value);
-                    pageAction.Properties.Description = Description.Value;
-                    pageAction.Properties.Ellipsis = Ellipsis.Value;
-                    pageAction.Properties.Enabled = Enabled.Value;
-                    pageAction.Properties.Image = Image.Value;
-                    pageAction.Properties.InFooterBar = InFooterBar.Value;
-                    pageAction.Properties.Name = Name.Value;
-                    pageAction.Properties.Promoted = Promoted.Value;
-                    pageAction.Properties.PromotedCategory = PromotedCategory.Value;
-                    pageAction.Properties.PromotedIsBig = PromotedIsBig.Value;
-                    pageAction.Properties.RunObject.Type = RunObjectType.Value;
-                    pageAction.Properties.RunObject.ID = RunObjectID.Value;
-                    pageAction.Properties.RunPageMode = RunPageMode.Value;
-                    pageAction.Properties.RunPageOnRec = RunPageOnRec.Value;
-                    pageAction.Properties.RunPageView.Key = RunPageViewKey.Value;
-                    pageAction.Properties.RunPageView.Order = RunPageViewOrder.Value;
-#if NAV2015
-                    pageAction.Properties.Scope = Scope.Value;
-#endif
-                    pageAction.Properties.ShortCutKey = ShortcutKey.Value;
-                    pageAction.Properties.Visible = Visible.Value;
-                    return pageAction;
-
-                case PageActionBaseType.Separator:
-                    var pageActionSeparator = new PageActionSeparator(id, GetParentIndentationLevel() + 1);
-                    pageActionSeparator.Properties.CaptionML.Set("ENU", Caption.Value);
-                    pageActionSeparator.Properties.IsHeader = IsHeader.Value;
-                    return pageActionSeparator;
-
-                default:
-                    throw new ArgumentOutOfRangeException("Unknown action type.");
-            }
+            return ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters

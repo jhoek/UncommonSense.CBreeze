@@ -190,7 +190,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var indentation = (int)GetVariableValue("Indentation", 0);
-            WriteObject(CreatePageAction(indentation));
+            WriteObject(CreatePageAction(ID, indentation));
 
             if (ChildActions != null)
             {
@@ -199,19 +199,19 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected PageActionBase CreatePageAction(int indentation)
+        protected PageActionBase CreatePageAction(int id, int indentation)
         {
             switch (Type.Value)
             {
                 case PageActionBaseType.ActionContainer:
-                    var pageActionContainer = new PageActionContainer(ID, 0);
+                    var pageActionContainer = new PageActionContainer(id, 0);
                     pageActionContainer.Properties.ActionContainerType = ContainerType.Value;
                     pageActionContainer.Properties.Description = Description.Value;
                     pageActionContainer.Properties.Name = Name.Value;
                     return pageActionContainer;
 
                 case PageActionBaseType.ActionGroup:
-                    var pageActionGroup = new PageActionGroup(ID, indentation);
+                    var pageActionGroup = new PageActionGroup(id, indentation);
                     pageActionGroup.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionGroup.Properties.Description = Description.Value;
                     pageActionGroup.Properties.Enabled = Enabled.Value;
@@ -221,7 +221,7 @@ namespace UncommonSense.CBreeze.Automation
                     return pageActionGroup;
 
                 case PageActionBaseType.Action:
-                    var pageAction = new PageAction(ID, indentation);
+                    var pageAction = new PageAction(id, indentation);
                     pageAction.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageAction.Properties.Description = Description.Value;
                     pageAction.Properties.Ellipsis = Ellipsis.Value;
@@ -246,7 +246,7 @@ namespace UncommonSense.CBreeze.Automation
                     return pageAction;
 
                 case PageActionBaseType.Separator:
-                    var pageActionSeparator = new PageActionSeparator(ID, indentation);
+                    var pageActionSeparator = new PageActionSeparator(id, indentation);
                     pageActionSeparator.Properties.CaptionML.Set("ENU", Caption.Value);
                     pageActionSeparator.Properties.IsHeader = IsHeader.Value;
                     return pageActionSeparator;
