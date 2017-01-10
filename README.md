@@ -12,6 +12,12 @@
 - Focus on the semantics; leave the syntax to C/Breeze
 - Don't just apply design patterns - automate them!
 
+## FAQ
+<dl>
+<dt>Isn't this the same as https://github.com/Microsoft/AL?</dt>
+<dd>No, not quite, as far as I understand. Microsoft's new AL format is a more text-based way to describe C/SIDE objects, but does not include a way to programmatically interact with the code.</dd>
+</dl>
+
 ## Design Goals
 - Intuitive object model for anybody familiar with C/SIDE;
 - Separate assemblies for each supported NAV version, at least for UncommonSense.CBreeze.Core and UncommonSense.CBreeze.Automation;
