@@ -14,30 +14,7 @@ namespace UncommonSense.CBreeze.Automation
     {
         public AddCBreezePageAction()
         {
-            Caption = new DynamicParameter<string>("Caption");
-            ContainerType = new DynamicParameter<ActionContainerType?>("ContainerType");
-            Description = new DynamicParameter<string>("Description");
-            Ellipsis = new DynamicParameter<bool?>("Ellipsis");
-            Enabled = new DynamicParameter<string>("Enabled");
-            Image = new DynamicParameter<string>("Image");
-            InFooterBar = new DynamicParameter<bool?>("InFooterBar");
-            IsHeader = new DynamicParameter<bool?>("IsHeader");
-            Name = new DynamicParameter<string>("Name");
             Position = new DynamicParameter<Position?>("Position");
-            Promoted = new DynamicParameter<bool?>("Promoted");
-            PromotedCategory = new DynamicParameter<Core.PromotedCategory?>("PromotedCategory");
-            PromotedIsBig = new DynamicParameter<bool?>("PromotedIsBig");
-            RunObjectType = new DynamicParameter<Core.RunObjectType?>("RunObjectType");
-            RunObjectID = new DynamicParameter<int?>("RunObjectID");
-            RunPageMode = new DynamicParameter<Core.RunPageMode?>("RunPageMode");
-            RunPageOnRec = new DynamicParameter<bool?>("RunPageOnRec");
-            RunPageViewKey = new DynamicParameter<string>("RunPageViewKey");
-            RunPageViewOrder = new DynamicParameter<Order?>("RunPageViewOrder");
-#if NAV2015
-            Scope = new DynamicParameter<PageActionScope?>("Scope");
-#endif
-            ShortcutKey = new DynamicParameter<string>("ShortcutKey");
-            Visible = new DynamicParameter<string>("Visible");
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
