@@ -819,14 +819,14 @@ namespace UncommonSense.CBreeze.Read
                         if (currentEvent != null)
                             codeLines = currentEvent.CodeLines;
                         else
-                            codeLines = currentCode.Documentation.Lines;
+                            codeLines = currentCode.Documentation.CodeLines;
                     break;
                 case SectionType.RdlData:
-                    codeLines = currentRdlData.Lines;
+                    codeLines = currentRdlData.CodeLines;
                     break;
 #if NAV2015
                 case SectionType.WordLayout:
-                    codeLines = currentWordLayout.Lines;
+                    codeLines = currentWordLayout.CodeLines;
                     break;
 #endif
                 default:

@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Automation
     public class AddCBreezeCodeLine : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public dynamic InputObject
+        public PSObject InputObject
         {
             get;
             set;
@@ -31,12 +31,17 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        protected CodeLines GetCodeLines()
+        {
+            return (InputObject.BaseObject as IHasCodeLines).CodeLines;
+        }
+
         protected override void ProcessRecord()
         {
             if (ArgumentList == null)
-                InputObject.CodeLines.Add(Line ?? string.Empty);
+                GetCodeLines().Add(Line ?? string.Empty);
             else
-                InputObject.CodeLines.Add(Line ?? string.Empty, ArgumentList);
+                GetCodeLines().Add(Line ?? string.Empty, ArgumentList);
         }
     }
 }

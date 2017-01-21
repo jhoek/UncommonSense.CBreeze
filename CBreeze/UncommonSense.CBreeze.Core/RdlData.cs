@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class RdlData
+    public class RdlData : IHasCodeLines
     {
         internal RdlData()
         {
-            Lines = new CodeLines();
+            CodeLines = new CodeLines();
         }
 
-        public CodeLines Lines
+        public CodeLines CodeLines
         {
             get;
             protected set;

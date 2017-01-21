@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Documentation
+        public class Documentation : IHasCodeLines
     {
         internal Documentation(Code code)
         {
             Code = code;
-            Lines = new CodeLines();
+            CodeLines = new CodeLines();
         }
 
         public Code Code
@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public CodeLines Lines
+        public CodeLines CodeLines
         {
             get;
             protected set;
