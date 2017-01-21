@@ -109,7 +109,6 @@ namespace UncommonSense.CBreeze.Automation
                     .InvokeWithContext(null, variables)
                     .Select(o=>o.BaseObject)
                     .Cast<PageControl>()
-                    .ToList()
                     .ForEach(c => pageControl.AddChildPageControl(c, Core.Position.LastWithinContainer));
             }
 

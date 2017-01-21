@@ -74,9 +74,9 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
 
-                subObjects.OfType<Function>().ToList().ForEach(f => codeunit.Code.Functions.Add(f));
-                subObjects.OfType<Event>().ToList().ForEach(e => codeunit.Code.Events.Add(e));
-                subObjects.OfType<Variable>().ToList().ForEach(v => codeunit.Code.Variables.Add(v));
+                subObjects.OfType<Function>().ForEach(f => codeunit.Code.Functions.Add(f));
+                subObjects.OfType<Event>().ForEach(e => codeunit.Code.Events.Add(e));
+                subObjects.OfType<Variable>().ForEach(v => codeunit.Code.Variables.Add(v));
             }
 
             return codeunit;

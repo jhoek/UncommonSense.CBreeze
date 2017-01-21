@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="NewCBreezeMenuSuiteNode.cs" />
     <Compile Include="NewCBreezePageAction.cs" />
     <Compile Include="PSCmdletWithDynamicParams.cs" />
     <Compile Include="NewCBreezePageControl.cs" />
