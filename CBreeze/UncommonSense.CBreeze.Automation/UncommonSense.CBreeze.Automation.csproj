@@ -50,9 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezePageActionContainer.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
     <Compile Include="NewCBreezeMenuSuiteNode.cs" />
     <Compile Include="NewCBreezePageAction.cs" />
+    <Compile Include="NewCBreezePageActionBase.cs" />
+    <Compile Include="NewCBreezePageActionContainer.cs" />
+    <Compile Include="NewCBreezePageActionGroup.cs" />
+    <Compile Include="NewCBreezePageActionSeparator.cs" />
     <Compile Include="PSCmdletWithDynamicParams.cs" />
     <Compile Include="NewCBreezePageControl.cs" />
     <Compile Include="NewCBreezeEvent.cs" />
