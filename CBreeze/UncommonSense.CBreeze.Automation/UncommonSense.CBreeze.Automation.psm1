@@ -61,6 +61,7 @@ Set-Alias -Name Control -Value New-CBreezePageControl
 Set-Alias -Name Parameter -Value New-CBreezeParameter
 Set-Alias -Name Query -Value New-CBreezeQuery
 Set-Alias -Name Report -Value New-CBreezeReport
+Set-Alias -Name Label -Value New-CBreezeReportLabel
 Set-Alias -Name Table -Value New-CBreezeTable
 Set-Alias -Name Field -Value New-CBreezeTableField
 Set-Alias -Name FieldGroup -Value New-CBreezeTableFieldGroup

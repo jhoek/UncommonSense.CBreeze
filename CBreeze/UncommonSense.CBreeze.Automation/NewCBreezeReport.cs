@@ -153,6 +153,12 @@ namespace UncommonSense.CBreeze.Automation
             if (AutoCaption)
                 report.AutoCaption();
 
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                subObjects.OfType<ReportLabel>().ForEach(l => report.Labels.Add(l));
+            }
+
             return report;
         }
 
