@@ -17,19 +17,25 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
+        [Parameter()]
         public bool? IsHeader
         {
             get; set;
         }
 
-        protected override void ProcessRecord()
+        protected PageActionSeparator CreatePageActionSeparator()
         {
-            var pageActionSeparator = new PageActionSeparator(ID, GetIndentation());
+            var pageActionSeparator = new PageActionSeparator(GetID(), GetIndentation());
 
             pageActionSeparator.Properties.CaptionML.Set("ENU", Caption);
             pageActionSeparator.Properties.IsHeader = IsHeader;
 
-            WriteObject(pageActionSeparator);
+            return pageActionSeparator;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreatePageActionSeparator());
         }
     }
 }

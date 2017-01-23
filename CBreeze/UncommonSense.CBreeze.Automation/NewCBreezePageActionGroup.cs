@@ -53,9 +53,9 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected override void ProcessRecord()
+        protected PageActionGroup CreatePageActionGroup()
         {
-            var pageActionGroup = new PageActionGroup(ID, GetIndentation());
+            var pageActionGroup = new PageActionGroup(GetID(), GetIndentation());
 
             pageActionGroup.Properties.CaptionML.Set("ENU", Caption);
             pageActionGroup.Properties.Description = Description;
@@ -64,7 +64,12 @@ namespace UncommonSense.CBreeze.Automation
             pageActionGroup.Properties.Name = Name;
             pageActionGroup.Properties.Visible = Visible;
 
-            WriteObject(pageActionGroup);
+            return pageActionGroup;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreatePageActionGroup());
 
             if (ChildActions != null)
             {
