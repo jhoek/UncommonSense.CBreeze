@@ -9,8 +9,6 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    // FIXME: Implement AddCBreezePageActionGroup and AddCBreezePageActionSeparator similar to AddCBreezePageActionContainer
-
     [Cmdlet(VerbsCommon.Add, "CBreezePageActionContainer")]
     public class AddCBreezePageActionContainer : NewCBreezePageActionContainer
     {

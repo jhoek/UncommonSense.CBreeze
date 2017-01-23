@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezePageActionContainer.cs" />
+    <Compile Include="AddCBreezePageActionGroup.cs" />
+    <Compile Include="AddCBreezePageActionSeparator.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
     <Compile Include="NewCBreezeMenuSuiteNode.cs" />
     <Compile Include="NewCBreezePageAction.cs" />
