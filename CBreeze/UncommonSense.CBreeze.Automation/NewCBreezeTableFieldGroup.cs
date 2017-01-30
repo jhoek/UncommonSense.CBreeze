@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableFieldGroup")]
+    [OutputType(typeof(TableFieldGroup))]
     public class NewCBreezeTableFieldGroup : Cmdlet
     {
         public NewCBreezeTableFieldGroup()

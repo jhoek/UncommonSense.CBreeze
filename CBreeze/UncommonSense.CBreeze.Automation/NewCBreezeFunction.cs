@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeFunction", DefaultParameterSetName = "Test")]
+    [OutputType(typeof(Function))]
     public class NewCBreezeFunction : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]

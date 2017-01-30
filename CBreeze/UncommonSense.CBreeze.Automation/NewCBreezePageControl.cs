@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageControl")]
+    [OutputType(typeof(PageControl))]
     public class NewCBreezePageControl : PSCmdletWithDynamicParams
     {
         public NewCBreezePageControl()

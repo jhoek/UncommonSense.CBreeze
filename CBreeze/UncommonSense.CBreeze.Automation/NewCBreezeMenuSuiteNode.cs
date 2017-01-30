@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeMenuSuiteNode")]
+    [OutputType(typeof(MenuSuiteNode))]
     public class NewCBreezeMenuSuiteNode : CmdletWithDynamicParams
     {
         protected DynamicParameter<string> caption = new DynamicParameter<string>("Caption", true);

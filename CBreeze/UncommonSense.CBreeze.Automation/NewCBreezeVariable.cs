@@ -10,6 +10,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeVariable")]
+    [OutputType(typeof(Variable))]
     public class NewCBreezeVariable : CmdletWithDynamicParams
     {
         public NewCBreezeVariable()

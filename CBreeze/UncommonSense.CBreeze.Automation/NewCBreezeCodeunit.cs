@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeCodeunit")]
+    [OutputType(typeof(Codeunit))]
     public class NewCBreezeCodeunit : NewCBreezeObject
     {
 #if !NAV2016

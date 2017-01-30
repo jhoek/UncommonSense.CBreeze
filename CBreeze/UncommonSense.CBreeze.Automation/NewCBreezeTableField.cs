@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableField")]
+    [OutputType(typeof(TableField))]
     public class NewCBreezeTableField : CmdletWithDynamicParams
     {
         public NewCBreezeTableField()

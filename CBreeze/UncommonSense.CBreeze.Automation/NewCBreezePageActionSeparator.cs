@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageActionSeparator")]
+    [OutputType(typeof(PageActionSeparator))]
     public class NewCBreezePageActionSeparator : NewCBreezePageActionBase
     {
         [Parameter()]

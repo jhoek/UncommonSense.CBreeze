@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeEvent")]
+    [OutputType(typeof(Event))]
     public class NewCBreezeEvent : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]

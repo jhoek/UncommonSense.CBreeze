@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeReport")]
+    [OutputType(typeof(Report))]
     public class NewCBreezeReport : NewCBreezeObject
     {
 #if NAV2015

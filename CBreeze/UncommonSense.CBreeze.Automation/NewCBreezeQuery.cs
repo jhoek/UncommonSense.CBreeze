@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeQuery")]
+    [OutputType(typeof(Query))]
     public class NewCBreezeQuery : NewCBreezeObject
     {
         [Parameter()]

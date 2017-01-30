@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeOrderBy")]
+    [OutputType(typeof(QueryOrderByLine))]
     public class NewCBreezeOrderBy : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]

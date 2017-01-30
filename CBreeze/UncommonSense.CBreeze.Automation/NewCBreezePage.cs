@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePage")]
+    [OutputType(typeof(Page))]
     public class NewCBreezePage : NewCBreezeObject
     {
         [Parameter()]

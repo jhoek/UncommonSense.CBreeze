@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeReportLabel")]
+    [OutputType(typeof(ReportLabel))]
     public class NewCBreezeReportLabel : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]

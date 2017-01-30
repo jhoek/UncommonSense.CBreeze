@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite")]
+    [OutputType(typeof(MenuSuite))]
     public class NewCBreezeMenuSuite : NewCBreezeObject
     {
         protected MenuSuite CreateMenuSuite()
