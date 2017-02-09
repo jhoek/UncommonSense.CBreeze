@@ -7,18 +7,19 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTableKey")]
-    public class AddCBreezeTableKey : NewCBreezeTableKey
+    [Cmdlet(VerbsCommon.New, "CBreezeOrderBy")]
+    [OutputType(typeof(QueryOrderByLine))]
+    public class NewCBreezeOrderBy : Cmdlet
     {
-        [Parameter(Mandatory = true)]
-        public Table Table
+        [Parameter(Mandatory = true, Position = 0)]
+        public string Column
         {
             get;
             set;
         }
 
-        [Parameter()]
-        public SwitchParameter PassThru
+        [Parameter(Position = 1)]
+        public QueryOrderByDirection Direction
         {
             get;
             set;
@@ -26,10 +27,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var tableKey = Table.Keys.Add(CreateKey());
-
-            if (PassThru)
-                WriteObject(tableKey);
+            WriteObject(new QueryOrderByLine(Column, Direction));
         }
     }
 }

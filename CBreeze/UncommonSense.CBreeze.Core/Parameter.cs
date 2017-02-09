@@ -6,41 +6,41 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public abstract class Parameter : KeyedItem<int>, IHasName
-	{
-		internal Parameter(bool var, int id, string name)
-		{
-			ID = id;
-			Name = name;
-			Var = var;
-		}
+    public abstract class Parameter : KeyedItem<int>, IHasName
+    {
+        internal Parameter(bool var, int id, string name)
+        {
+            ID = id;
+            Name = name;
+            Var = var;
+        }
 
-		public abstract ParameterType Type
-		{
-			get;
-		}
+        public abstract ParameterType Type
+        {
+            get;
+        }
 
-		public bool Var
-		{
-			get;
-			protected set;
-		}
+        public bool Var
+        {
+            get;
+            protected set;
+        }
 
-		public string Dimensions
-		{
-			get;
-			set;
-		}
+        public string Dimensions
+        {
+            get;
+            set;
+        }
 
-		public string Name
-		{
-			get;
-			protected set;
-		}
+        public string Name
+        {
+            get;
+            protected set;
+        }
 
-		public string GetName()
-		{
-			return Name;
-		}
-	}
+        public string GetName()
+        {
+            return Name;
+        }
+    }
 }

@@ -11,11 +11,11 @@ namespace UncommonSense.CBreeze.Write
     {
         public static void Write(this WordLayout wordLayout, CSideWriter writer)
         {
-            if (wordLayout.Lines.Any())
+            if (wordLayout.CodeLines.Any())
             {
                 writer.BeginSection("WORDLAYOUT");
 
-                foreach (var line in wordLayout.Lines)
+                foreach (var line in wordLayout.CodeLines)
                 {
                     writer.WriteLine(line);
                 }

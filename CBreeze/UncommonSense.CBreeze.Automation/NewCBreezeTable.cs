@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTable")] 
+    [OutputType(typeof(Table))]
     public class NewCBreezeTable : NewCBreezeObject
     {
         [Parameter()]
@@ -111,7 +112,11 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-                subObjects.OfType<TableField>().ToList().ForEach(f => table.Fields.Add(f));
+                subObjects.OfType<TableField>().ForEach(f => table.Fields.Add(f));
+                subObjects.OfType<TableFieldGroup>().ForEach(g => table.FieldGroups.Add(g));
+                subObjects.OfType<TableKey>().ForEach(k => table.Keys.Add(k));
+                subObjects.OfType<Function>().ForEach(f => table.Code.Functions.Add(f));
+                subObjects.OfType<Variable>().ForEach(v => table.Code.Variables.Add(v));
             }
 
             return table;

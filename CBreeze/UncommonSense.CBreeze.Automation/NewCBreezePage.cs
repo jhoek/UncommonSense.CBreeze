@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePage")]
+    [OutputType(typeof(Page))]
     public class NewCBreezePage : NewCBreezeObject
     {
         [Parameter()]
@@ -153,6 +154,15 @@ namespace UncommonSense.CBreeze.Automation
 
             if (AutoCaption)
                 page.AutoCaption();
+
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                subObjects.OfType<PageControl>().ForEach(c => page.Controls.Add(c));
+                subObjects.OfType<PageActionBase>().ForEach(a => page.Properties.ActionList.Add(a));
+                subObjects.OfType<Function>().ForEach(f => page.Code.Functions.Add(f));
+                subObjects.OfType<Variable>().ForEach(v => page.Code.Variables.Add(v));
+            }
 
             return page;
         }

@@ -11,6 +11,14 @@ namespace UncommonSense.CBreeze.Automation
 {
     public static class ExtensionMethods
     {
+        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            foreach (var item in items)
+            {
+                action(item);
+            }
+        }
+
         public static void Add<T>(this Application application, IEnumerable<T> objs) where T : Core.Object
         {
             foreach (var obj in objs)

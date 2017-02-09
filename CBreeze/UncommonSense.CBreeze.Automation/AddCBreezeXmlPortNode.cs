@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeXmlPortNode")]
+    [OutputType(typeof(XmlPortNode))]
     public class AddCBreezeXmlPortNode : Cmdlet
     {
         private const string TableElement = "TableElement";

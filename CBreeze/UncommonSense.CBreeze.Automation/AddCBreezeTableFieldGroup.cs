@@ -8,40 +8,10 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeTableFieldGroup")]
-    public class AddCBreezeTableFieldGroup : Cmdlet
+    public class AddCBreezeTableFieldGroup : NewCBreezeTableFieldGroup
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Table Table
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position = 0)]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position = 1)]
-        [ValidateNotNullOrEmpty()]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        public string[] FieldNames
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string Caption
         {
             get;
             set;
@@ -54,17 +24,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        public AddCBreezeTableFieldGroup()
-        {
-            ID = 1;
-            Name = "DropDown";
-        }
-
         protected override void ProcessRecord()
         {
-            var tableFieldGroup = Table.FieldGroups.Add(new TableFieldGroup(ID, Name));
-            tableFieldGroup.Properties.CaptionML.Set("ENU", Caption);
-            tableFieldGroup.Fields.AddRange(FieldNames);
+            var tableFieldGroup = Table.FieldGroups.Add(CreateTableFieldGroup());
 
             if (PassThru)
                 WriteObject(tableFieldGroup);

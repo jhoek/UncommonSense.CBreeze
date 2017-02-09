@@ -38,6 +38,11 @@ namespace UncommonSense.CBreeze.Read
 
         private Stack<IEnumerable<Property>> currentProperties = new Stack<IEnumerable<Property>>();
 
+        public static Application FromFile(params string[] fileNames)
+        {
+            return FromFiles(fileNames);
+        }
+
         public static Application FromFiles(IEnumerable<string> fileNames)
         {
             var parser = new Parser();
@@ -814,14 +819,14 @@ namespace UncommonSense.CBreeze.Read
                         if (currentEvent != null)
                             codeLines = currentEvent.CodeLines;
                         else
-                            codeLines = currentCode.Documentation.Lines;
+                            codeLines = currentCode.Documentation.CodeLines;
                     break;
                 case SectionType.RdlData:
-                    codeLines = currentRdlData.Lines;
+                    codeLines = currentRdlData.CodeLines;
                     break;
 #if NAV2015
                 case SectionType.WordLayout:
-                    codeLines = currentWordLayout.Lines;
+                    codeLines = currentWordLayout.CodeLines;
                     break;
 #endif
                 default:

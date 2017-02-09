@@ -5,6 +5,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeXmlPort")]
+    [OutputType(typeof(XmlPort))]
     public class NewCBreezeXmlPort : NewCBreezeObject
     {
         [Parameter()]

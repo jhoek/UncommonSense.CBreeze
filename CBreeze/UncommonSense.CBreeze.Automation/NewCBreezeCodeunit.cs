@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeCodeunit")]
+    [OutputType(typeof(Codeunit))]
     public class NewCBreezeCodeunit : NewCBreezeObject
     {
 #if !NAV2016
@@ -74,7 +75,9 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
 
-                subObjects.OfType<Function>().ToList().ForEach(f => codeunit.Code.Functions.Add(f));
+                subObjects.OfType<Function>().ForEach(f => codeunit.Code.Functions.Add(f));
+                subObjects.OfType<Event>().ForEach(e => codeunit.Code.Events.Add(e));
+                subObjects.OfType<Variable>().ForEach(v => codeunit.Code.Variables.Add(v));
             }
 
             return codeunit;

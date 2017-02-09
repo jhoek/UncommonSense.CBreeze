@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Common
         DateTime,
         Decimal,
         Duration,
-        Guid,
+        GUID,
         Integer,
         OemCode,
         OemText,

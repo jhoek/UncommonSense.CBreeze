@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeFunction", DefaultParameterSetName = "Test")]
+    [OutputType(typeof(Function))]
     public class NewCBreezeFunction : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
@@ -244,9 +245,9 @@ namespace UncommonSense.CBreeze.Automation
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
 
-                subObjects.OfType<Variable>().ToList().ForEach(f => function.Variables.Add(f));
-                subObjects.OfType<Parameter>().ToList().ForEach(p => function.Parameters.Add(p));
-                subObjects.OfType<string>().ToList().ForEach(c => function.CodeLines.Add(c));
+                subObjects.OfType<Variable>().ForEach(f => function.Variables.Add(f));
+                subObjects.OfType<Parameter>().ForEach(p => function.Parameters.Add(p));
+                subObjects.OfType<string>().ForEach(c => function.CodeLines.Add(c));
             }
 
             return function;

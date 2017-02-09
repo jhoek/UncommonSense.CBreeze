@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableField")]
+    [OutputType(typeof(TableField))]
     public class NewCBreezeTableField : CmdletWithDynamicParams
     {
         public NewCBreezeTableField()
@@ -79,13 +80,6 @@ namespace UncommonSense.CBreeze.Automation
             Width = new DynamicParameter<int?>("Width");
         }
 
-        [Parameter(Mandatory = true, Position = 2)]
-        public TableFieldType? Type
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true, Position = 0)]
         [Alias("Range")]
         public PSObject ID
@@ -95,6 +89,13 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter(Mandatory = true, Position = 1)]
         public string Name
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 2)]
+        public TableFieldType? Type
         {
             get;
             set;

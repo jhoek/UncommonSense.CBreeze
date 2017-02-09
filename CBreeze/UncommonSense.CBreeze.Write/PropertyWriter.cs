@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<DefaultLayoutProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
 #if NAV2016
-                TypeSwitch.Case<ExternalAccessProperty>(p=> WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<ExternalAccessProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
  TypeSwitch.Case<TableTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<EventSubscriberInstanceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<XmlPortNamespacesProperty>(p => p.Write(isLastProperty, style, writer)),
@@ -107,7 +107,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<NullableGuidProperty>(p => WriteSimpleProperty(p.Name, string.Format("[{0}]", p.Value.GetValueOrDefault().ToString("B").ToUpper()), isLastProperty, writer)),
                 TypeSwitch.Case<NullableIntegerProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<NullableTimeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString("c"), isLastProperty, writer)),
-                TypeSwitch.Case<XmlPortNodeDataTypeProperty>(p=>WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer))
+                TypeSwitch.Case<XmlPortNodeDataTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer))
             );
         }
 
@@ -199,9 +199,9 @@ namespace UncommonSense.CBreeze.Write
                     writer.WriteLine(",");
                 else
                     if (isLastProperty)
-                        writer.Write(" ");
-                    else
-                        writer.WriteLine(";");
+                    writer.Write(" ");
+                else
+                    writer.WriteLine(";");
             }
 
             writer.Unindent();
@@ -362,7 +362,7 @@ namespace UncommonSense.CBreeze.Write
             if (requiresBrackets)
                 writer.Write("[");
 
-            writer.Indent(writer.Column);
+            writer.Indent(writer.Column - 1);
 
             foreach (var xmlPortNamespace in property.Value)
             {
@@ -506,9 +506,9 @@ namespace UncommonSense.CBreeze.Write
                     writer.WriteLine("");
                 else
                     if (isLastProperty)
-                        writer.Write(" ");
-                    else
-                        writer.WriteLine(";");
+                    writer.Write(" ");
+                else
+                    writer.WriteLine(";");
 
                 //switch (tableRelationLine == property.Value.Last() && !isLastProperty)
                 //{

@@ -6,14 +6,14 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2015
-        public class WordLayout
+        public class WordLayout : IHasCodeLines
     {
         internal WordLayout()
         {
-            Lines = new CodeLines();
+            CodeLines = new CodeLines();
         }
 
-        public CodeLines Lines
+        public CodeLines CodeLines
         {
             get;
             protected set;

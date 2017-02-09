@@ -3,42 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using System.Threading.Tasks;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezePageAction")]
-    public class AddCBreezePageAction : NewCBreezePageAction
+    [Cmdlet(VerbsCommon.Add, "CBreezePageActionSeparator")]
+    public class AddCBreezePageActionSeparator : NewCBreezePageActionSeparator
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {
-            get;
-            set;
+            get; set;
         }
 
         [Parameter(Mandatory = true, Position = 1)]
         [Alias("Range")]
         public new PSObject ID
         {
-            get;
-            set;
+            get; set;
         }
 
         [Parameter()]
         public SwitchParameter PassThru
         {
-            get;
-            set;
+            get; set;
         }
 
         [Parameter()]
         public Position? Position
         {
-            get;
-            set;
+            get; set;
         }
 
         protected override int GetID()
@@ -51,20 +47,20 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var pageAction = CreatePageAction();
+            var pageActionSeparator = CreatePageActionSeparator();
             var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
 
             TypeSwitch.Do(
                 InputObject.BaseObject,
-                TypeSwitch.Case<PageActionContainer>(i => i.AddChildPageAction(pageAction, position)),
-                TypeSwitch.Case<PageActionGroup>(i => i.AddChildPageAction(pageAction, position)),
-                TypeSwitch.Case<ActionList>(i => i.AddPageActionAtPosition(pageAction, position)),
-                TypeSwitch.Case<IPage>(i => i.AddPageActionAtPosition(pageAction, position)),
+                TypeSwitch.Case<PageActionContainer>(i => i.AddChildPageAction(pageActionSeparator, position)),
+                TypeSwitch.Case<PageActionGroup>(i => i.AddChildPageAction(pageActionSeparator, position)),
+                TypeSwitch.Case<ActionList>(i => i.AddPageActionAtPosition(pageActionSeparator, position)),
+                TypeSwitch.Case<IPage>(i => i.AddPageActionAtPosition(pageActionSeparator, position)),
                 TypeSwitch.Default(() => UnknownInputObjectType())
             );
 
             if (PassThru)
-                WriteObject(pageAction);
+                WriteObject(pageActionSeparator);
         }
 
         protected void UnknownInputObjectType()
@@ -86,4 +82,3 @@ namespace UncommonSense.CBreeze.Automation
         }
     }
 }
-

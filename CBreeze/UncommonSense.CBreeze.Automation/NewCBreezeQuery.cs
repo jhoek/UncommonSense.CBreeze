@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeQuery")]
+    [OutputType(typeof(Query))]
     public class NewCBreezeQuery : NewCBreezeObject
     {
         [Parameter()]
@@ -41,6 +42,12 @@ namespace UncommonSense.CBreeze.Automation
 
             if (AutoCaption)
                 query.AutoCaption();
+
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                query.Properties.OrderBy.AddRange(subObjects.OfType<QueryOrderByLine>());
+            }
 
             return query;
         }
