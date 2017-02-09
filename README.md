@@ -1,10 +1,15 @@
 # UncommonSense.CBreeze
 
 ## Introduction
-- How would you go about changing all present instances of a certain table property in an object text file? Maybe using regular expressions.
-- Now, how would you go about changing a certain property in all tables in an object text file, but currently the property doesn't have a value? More difficult, but still probably regular expressions.
-- What if that property needs to be set to the value of another property, e.g. the ENU CaptionML must be set equal to the Name?
-- How would you do similar operations in an XML file? Probably using the XMLDOM. That's why we need a DOM for the NAV object text format.
+How would you go about changing all present instances of a certain table property in an object text file? Maybe using regular expressions?
+
+Now, how would you go about changing a certain property in all tables in an object text file, but currently the property doesn't have a value? More difficult, but still probably regular expressions!
+
+What if that property needs to be set to the value of another property, e.g. the ENU CaptionML must be set equal to the Name?
+
+How would you do similar operations in an XML file? Probably using something like the XMLDOM, right?
+
+*That's why we need a DOM for the NAV object text format.*
 
 ## Why use C/Breeze?
 - Script your development work as much as possible
