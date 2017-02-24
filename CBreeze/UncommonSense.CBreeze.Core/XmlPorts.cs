@@ -7,13 +7,15 @@ namespace UncommonSense.CBreeze.Core
 {
         public class XmlPorts : IntegerKeyedAndNamedContainer<XmlPort>
     {
-        internal XmlPorts()
+        internal XmlPorts(IEnumerable<XmlPort> xmlPorts)
         {
+            AddRange(xmlPorts);
         }
 
         public override void ValidateName(XmlPort item)
         {
-            
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
         }
     }
 }

@@ -7,8 +7,9 @@ namespace UncommonSense.CBreeze.Core
 {
         public class Codeunits : IntegerKeyedAndNamedContainer<Codeunit>
     {
-        internal Codeunits()
+        internal Codeunits(IEnumerable<Codeunit> codeunits)
         {
+            AddRange(codeunits);
         }
 
         public override void ValidateName(Codeunit item)

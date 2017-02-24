@@ -7,8 +7,9 @@ namespace UncommonSense.CBreeze.Core
 {
         public class MenuSuites : IntegerKeyedAndNamedContainer<MenuSuite>
     {
-        internal MenuSuites()
+        internal MenuSuites(IEnumerable<MenuSuite> menuSuites)
         {
+            AddRange(menuSuites);
         }
 
         public override void ValidateName(MenuSuite item)

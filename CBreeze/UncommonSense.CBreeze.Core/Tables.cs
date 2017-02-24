@@ -5,10 +5,11 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Tables : IntegerKeyedAndNamedContainer<Table>
+    public class Tables : IntegerKeyedAndNamedContainer<Table>
     {
-        internal Tables()
+        internal Tables(IEnumerable<Table> tables)
         {
+            AddRange(tables);
         }
 
         public override void ValidateName(Table item)

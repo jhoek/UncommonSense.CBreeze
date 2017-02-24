@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class Application
-	{
-		public Application()
-		{
-			Tables = new Tables();
-			Pages = new Pages();
-			Reports = new Reports();
-			XmlPorts = new XmlPorts();
-			Codeunits = new Codeunits();
-			Queries = new Queries();
-			MenuSuites = new MenuSuites();
-		}
+    public class Application
+    {
+        public Application(params Object[] objects) 
+        {
+            Tables = new Tables(objects.OfType<Table>());
+            Pages = new Pages(objects.OfType<Page>());
+            Reports = new Reports(objects.OfType<Report>());
+            XmlPorts = new XmlPorts(objects.OfType<XmlPort>());
+            Codeunits = new Codeunits(objects.OfType<Codeunit>());
+            Queries = new Queries(objects.OfType<Query>());
+            MenuSuites = new MenuSuites(objects.OfType<MenuSuite>());
+        }
 
         public void Clear()
         {
@@ -29,47 +29,47 @@ namespace UncommonSense.CBreeze.Core
             MenuSuites.Clear();
         }
 
-		public Tables Tables
-		{
-			get;
-			protected set;
-		}
+        public Tables Tables
+        {
+            get;
+            protected set;
+        }
 
-		public Pages Pages
-		{
-			get;
-			protected set;
-		}
+        public Pages Pages
+        {
+            get;
+            protected set;
+        }
 
-		public Reports Reports
-		{
-			get;
-			protected set;
-		}
+        public Reports Reports
+        {
+            get;
+            protected set;
+        }
 
-		public XmlPorts XmlPorts
-		{
-			get;
-			protected set;
-		}
+        public XmlPorts XmlPorts
+        {
+            get;
+            protected set;
+        }
 
-		public Codeunits Codeunits
-		{
-			get;
-			protected set;
-		}
+        public Codeunits Codeunits
+        {
+            get;
+            protected set;
+        }
 
-		public Queries Queries
-		{
-			get;
-			protected set;
-		}
+        public Queries Queries
+        {
+            get;
+            protected set;
+        }
 
-		public MenuSuites MenuSuites
-		{
-			get;
-			protected set;
-		}
+        public MenuSuites MenuSuites
+        {
+            get;
+            protected set;
+        }
 
         public IEnumerable<Object> Objects
         {
@@ -86,5 +86,5 @@ namespace UncommonSense.CBreeze.Core
                     .Concat(MenuSuites.AsEnumerable<Object>());
             }
         }
-	}
+    }
 }

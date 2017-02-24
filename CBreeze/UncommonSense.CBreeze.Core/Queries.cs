@@ -7,8 +7,9 @@ namespace UncommonSense.CBreeze.Core
 {
         public class Queries : IntegerKeyedAndNamedContainer<Query>
     {
-        internal Queries()
+        internal Queries(IEnumerable<Query> queries)
         {
+            AddRange(queries);
         }
 
         public override void ValidateName(Query item)

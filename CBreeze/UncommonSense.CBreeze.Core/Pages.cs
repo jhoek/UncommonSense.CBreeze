@@ -7,8 +7,9 @@ namespace UncommonSense.CBreeze.Core
 {
         public class Pages : IntegerKeyedAndNamedContainer<Page>
     {
-        internal Pages()
+        internal Pages(IEnumerable<Page> pages)
         {
+            AddRange(pages);
         }
 
         public override void ValidateName(Page item)
