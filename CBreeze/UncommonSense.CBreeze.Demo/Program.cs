@@ -13,27 +13,18 @@ namespace UncommonSense.CBreeze.Demo
     {
         public static void Main(string[] args)
         {
-            var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var applications = new string[] { "be" };
+            var range = Enumerable.Range(50000, 100);
+            var application = new Application();
+            var page = application.Pages.Add(new Page(0, "Foo"));
 
-            foreach (var application in applications)
-            {
-                var inputFolderName = Path.Combine(desktopFolderName, application);
-                var outputFolderName = Path.Combine(desktopFolderName, $"{application}.output");
+            page.ObjectProperties.DateTime = DateTime.Now;
+            page.ObjectProperties.Modified = true;
 
-                Directory.CreateDirectory(outputFolderName);
+            page.Controls.Add(new ContainerPageControl(0, 0, ContainerType.ContentArea));
+            page.Controls.Add(new GroupPageControl(0, 1, GroupType.Repeater));
+            page.Controls.Add(new FieldPageControl(0, 2, "Foo"));
 
-                foreach (var filePath in Directory.GetFiles(inputFolderName, "*.TXT"))
-                {
-                    var fileName = Path.GetFileName(filePath);
-                    Console.WriteLine(fileName);
-
-                    var inputPath = Path.Combine(inputFolderName, fileName);
-                    var outputPath = Path.Combine(outputFolderName, fileName);
-
-                    ApplicationBuilder.FromFile(inputPath).Write(outputPath);
-                }
-            }
+            application.Write(Console.Out);
         }
     }
 }
