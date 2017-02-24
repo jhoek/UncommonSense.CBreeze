@@ -6,67 +6,72 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class ContainerPageControl : PageControl
-	{
-		public ContainerPageControl(int id, int? indentationLevel)
-			: base(id, indentationLevel)
-		{
-			Properties = new ContainerPageControlProperties();
-		}
+    public class ContainerPageControl : PageControl
+    {
+        public ContainerPageControl(int id, int? indentationLevel, ContainerType containerType) : this(id, indentationLevel)
+        {
+            Properties.ContainerType = containerType;
+        }
 
-		public override PageControlType Type
-		{
-			get
-			{
-				return PageControlType.Container;
-			}
-		}
+        public ContainerPageControl(int id, int? indentationLevel)
+            : base(id, indentationLevel)
+        {
+            Properties = new ContainerPageControlProperties();
+        }
 
-		public ContainerPageControlProperties Properties
-		{
-			get;
-			protected set;
-		}
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Container;
+            }
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
+        public ContainerPageControlProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public override string GetName()
-		{
-			return Properties.Name;
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
-		public GroupPageControl GetGroupByCaption(string caption, IEnumerable<int> range, Position position)
-		{
-			var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML ["ENU"] == caption);
+        public override string GetName()
+        {
+            return Properties.Name;
+        }
 
-			if (groupPageControl == null)
-			{
-				groupPageControl = new GroupPageControl(range.GetNextPageControlOrActionID(Container.Page), 1);
-				groupPageControl.Properties.CaptionML.Set("ENU", caption);
-				this.AddChildPageControl(groupPageControl, position);
-			}
+        public GroupPageControl GetGroupByCaption(string caption, IEnumerable<int> range, Position position)
+        {
+            var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
 
-			return groupPageControl;
-		}
+            if (groupPageControl == null)
+            {
+                groupPageControl = new GroupPageControl(range.GetNextPageControlOrActionID(Container.Page), 1);
+                groupPageControl.Properties.CaptionML.Set("ENU", caption);
+                this.AddChildPageControl(groupPageControl, position);
+            }
 
-		public  GroupPageControl GetGroupByType(GroupType type, IEnumerable<int> range, Position position)
-		{
-			var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(g => g.Properties.GroupType == type);
+            return groupPageControl;
+        }
 
-			if (groupPageControl == null)
-			{
-				groupPageControl = new GroupPageControl(range.GetNextPageControlOrActionID(Container.Page), 1);
-				groupPageControl.Properties.GroupType = type;
-				AddChildPageControl(groupPageControl, position);
-			}
+        public GroupPageControl GetGroupByType(GroupType type, IEnumerable<int> range, Position position)
+        {
+            var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(g => g.Properties.GroupType == type);
 
-			return groupPageControl;
-		}
-	}
+            if (groupPageControl == null)
+            {
+                groupPageControl = new GroupPageControl(range.GetNextPageControlOrActionID(Container.Page), 1);
+                groupPageControl.Properties.GroupType = type;
+                AddChildPageControl(groupPageControl, position);
+            }
+
+            return groupPageControl;
+        }
+    }
 }
