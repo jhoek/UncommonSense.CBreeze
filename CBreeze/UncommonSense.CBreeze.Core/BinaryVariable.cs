@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class BinaryVariable : Variable
+    public class BinaryVariable : Variable
     {
         public BinaryVariable(int id, string name, int dataLength = 100)
             : base(id, name)

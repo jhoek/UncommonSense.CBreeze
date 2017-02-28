@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class ActionList : IntegerKeyedAndNamedContainer<PageActionBase>
+    public class ActionList : IntegerKeyedAndNamedContainer<PageActionBase>, INode
     {
         // Ctor made public so that ActionListProperty can new this up
         public ActionList()
@@ -34,5 +34,9 @@ namespace UncommonSense.CBreeze.Core
             get;
             internal set;
         }
+
+        public INode ParentNode => Page;
+
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
     }
 }

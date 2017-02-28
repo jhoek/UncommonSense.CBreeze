@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public interface IHasParameters
+    public interface IHasParameters : INode
     {
         int ID
         {

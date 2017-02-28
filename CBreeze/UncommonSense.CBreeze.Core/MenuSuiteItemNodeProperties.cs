@@ -21,8 +21,10 @@ namespace UncommonSense.CBreeze.Core
         private MenuItemRunObjectTypeProperty runObjectType = new MenuItemRunObjectTypeProperty("RunObjectType");
         private NullableBooleanProperty visible = new NullableBooleanProperty("Visible");
 
-        internal MenuSuiteItemNodeProperties()
+        internal MenuSuiteItemNodeProperties(ItemNode node)
         {
+            Node = node;
+            
             innerList.Add(name);
 #if NAV2015
             innerList.Add(accessByPermission);
@@ -37,6 +39,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(deleted);
             innerList.Add(departmentCategory);
         }
+
+        public ItemNode Node { get; protected set; }
+
+        public override INode ParentNode => Node;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public TimeTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new TimeTableFieldProperties();
+            Properties = new TimeTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

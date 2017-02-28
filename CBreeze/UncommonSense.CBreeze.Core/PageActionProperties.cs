@@ -33,8 +33,10 @@ namespace UncommonSense.CBreeze.Core
         private MultiLanguageProperty toolTipML = new MultiLanguageProperty("ToolTipML");
         private StringProperty visible = new StringProperty("Visible");
 
-        internal PageActionProperties()
+        internal PageActionProperties(PageAction pageAction)
         {
+            PageAction = pageAction;
+
             innerList.Add(name);
 #if NAV2015
             innerList.Add(accessByPermission);
@@ -61,6 +63,10 @@ namespace UncommonSense.CBreeze.Core
 #endif
             innerList.Add(onAction);
         }
+
+        public PageAction PageAction { get; protected set; }
+
+        public override INode ParentNode => PageAction;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

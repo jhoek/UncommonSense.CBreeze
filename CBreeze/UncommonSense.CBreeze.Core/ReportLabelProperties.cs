@@ -10,11 +10,17 @@ namespace UncommonSense.CBreeze.Core
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
 
-        internal ReportLabelProperties()
+        internal ReportLabelProperties(ReportLabel reportLabel)
         {
+            ReportLabel = reportLabel;
+
             innerList.Add(captionML);
             innerList.Add(description);
         }
+
+        public ReportLabel ReportLabel { get; protected set; }
+
+        public override INode ParentNode => ReportLabel;
 
         public MultiLanguageValue CaptionML
         {

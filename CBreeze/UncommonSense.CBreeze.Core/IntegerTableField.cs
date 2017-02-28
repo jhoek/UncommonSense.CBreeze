@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public IntegerTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new IntegerTableFieldProperties();
+            Properties = new IntegerTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

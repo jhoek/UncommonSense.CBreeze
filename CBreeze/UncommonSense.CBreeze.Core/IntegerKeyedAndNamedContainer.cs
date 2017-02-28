@@ -8,16 +8,24 @@ namespace UncommonSense.CBreeze.Core
     // FIXME: GetNextAvailableKey should be implemented for each descendent class, e.g. based on the 
     // object ID range.
 
-	public abstract class IntegerKeyedAndNamedContainer<TItem> : KeyedAndNamedContainer<int, TItem> where TItem : KeyedItem<int>, IHasName
-	{
-		protected override bool IsUninitializedKey(int key)
-		{
-			return key == 0;
-		}
+    public abstract class IntegerKeyedAndNamedContainer<TItem> : KeyedAndNamedContainer<int, TItem> where TItem : KeyedItem<int>, IHasName
+    {
+        protected override bool IsUninitializedKey(int key)
+        {
+            return key == 0;
+        }
 
-		protected override int GetNextAvailableKey()
-		{
-			return this.Any() ? this.Max(i => i.ID) + 1 : 1;
-		}
-	}
+        // FIXmE: later: (Range ?? ParentRange).Except(ExistingIDs).First();
+        protected override int GetNextAvailableKey() => Range.Except(ExistingIDs).First();
+
+        public virtual IEnumerable<int> ExistingIDs => this.Select(i => i.ID);
+
+        // FIXME: Later: protected abstract IEnumerable<int> ParentRange { get; }
+
+        public IEnumerable<int> Range
+        {
+            get;
+            set;
+        }
+    }
 }

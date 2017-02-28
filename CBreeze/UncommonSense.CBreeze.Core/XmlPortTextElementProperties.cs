@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortTextElementProperties : Properties
+    public class XmlPortTextElementProperties : Properties
     {
-            private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType");
+        private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType");
         private MaxOccursProperty maxOccurs = new MaxOccursProperty("MaxOccurs");
         private MinOccursProperty minOccurs = new MinOccursProperty("MinOccurs");
 #if NAV2016
@@ -23,8 +23,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty variableName = new StringProperty("VariableName");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal XmlPortTextElementProperties()
+        internal XmlPortTextElementProperties(XmlPortTextElement xmlPortTextElement)
         {
+            XmlPortTextElement = xmlPortTextElement;
+
             innerList.Add(variableName);
             innerList.Add(textType);
             innerList.Add(dataType);
@@ -40,6 +42,13 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onBeforePassVariable);
             innerList.Add(width);
         }
+
+        public XmlPortTextElement XmlPortTextElement
+        {
+            get; protected set;
+        }
+
+        public override INode ParentNode => XmlPortTextElement;
 
         public XmlPortNodeDataType? DataType
         {

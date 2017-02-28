@@ -34,8 +34,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty validateTableRelation = new NullableBooleanProperty("ValidateTableRelation");
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
 
-        internal RecordIDTableFieldProperties()
+        internal RecordIDTableFieldProperties(RecordIDTableField field)
         {
+            Field = field;
+
             innerList.Add(fieldClass);
             innerList.Add(calcFormula);
             innerList.Add(initValue);
@@ -63,6 +65,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
         }
+
+        public RecordIDTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

@@ -6,12 +6,20 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ColumnReportElement : ReportElement, IHasOptionString
+    public class ColumnReportElement : ReportElement, IHasOptionString
     {
         public ColumnReportElement(int id, int? indentationLevel)
             : base(id, indentationLevel)
         {
-            Properties = new ColumnReportElementProperties();
+            Properties = new ColumnReportElementProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override ReportElementType Type

@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Application
+    public class Application : INode
     {
-        public Application(params Object[] objects) 
+        public Application(params Object[] objects)
         {
-            Tables = new Tables(objects.OfType<Table>());
-            Pages = new Pages(objects.OfType<Page>());
-            Reports = new Reports(objects.OfType<Report>());
-            XmlPorts = new XmlPorts(objects.OfType<XmlPort>());
-            Codeunits = new Codeunits(objects.OfType<Codeunit>());
-            Queries = new Queries(objects.OfType<Query>());
-            MenuSuites = new MenuSuites(objects.OfType<MenuSuite>());
+            Tables = new Tables(this, objects.OfType<Table>());
+            Pages = new Pages(this, objects.OfType<Page>());
+            Reports = new Reports(this, objects.OfType<Report>());
+            XmlPorts = new XmlPorts(this, objects.OfType<XmlPort>());
+            Codeunits = new Codeunits(this, objects.OfType<Codeunit>());
+            Queries = new Queries(this, objects.OfType<Query>());
+            MenuSuites = new MenuSuites(this, objects.OfType<MenuSuite>());
         }
 
         public void Clear()
@@ -28,6 +28,9 @@ namespace UncommonSense.CBreeze.Core
             Queries.Clear();
             MenuSuites.Clear();
         }
+
+        public IEnumerable<int> IDRange { get; set; }
+        public IEnumerable<int> UIDRange { get; set; }
 
         public Tables Tables
         {
@@ -84,6 +87,22 @@ namespace UncommonSense.CBreeze.Core
                     .Concat(Codeunits.AsEnumerable<Object>())
                     .Concat(Queries.AsEnumerable<Object>())
                     .Concat(MenuSuites.AsEnumerable<Object>());
+            }
+        }
+
+        public INode ParentNode => null;
+
+        IEnumerable<INode> INode.ChildNodes
+        {
+            get
+            {
+                yield return Tables;
+                yield return Pages;
+                yield return Reports;
+                yield return XmlPorts;
+                yield return Codeunits;
+                yield return Queries;
+                yield return MenuSuites;
             }
         }
     }

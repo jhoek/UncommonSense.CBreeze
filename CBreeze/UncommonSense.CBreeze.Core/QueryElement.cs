@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public abstract class QueryElement : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class QueryElement : KeyedItem<int>, IHasName, IHasProperties, INode
 	{
 		public QueryElement(int id, string name, int? indentationLevel)
 		{
@@ -64,7 +64,14 @@ namespace UncommonSense.CBreeze.Core
 			}
 		}
 
-		public T AddChildNode<T>(T child, Position position) where T : QueryElement
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes
+        {
+            get;
+        }
+
+        public T AddChildNode<T>(T child, Position position) where T : QueryElement
 		{
 			switch (position)
 			{

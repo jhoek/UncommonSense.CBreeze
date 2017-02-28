@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class QueryElements : IntegerKeyedAndNamedContainer<QueryElement>
+        public class QueryElements : IntegerKeyedAndNamedContainer<QueryElement>, INode
     {
         internal QueryElements(Query query)
         {
@@ -34,5 +34,8 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public INode ParentNode => Query;
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
     }
 }

@@ -5,11 +5,9 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public interface IHasVariables : INode
+    public interface INode
     {
-        Variables Variables
-        {
-            get;
-        }
+        INode ParentNode { get; }
+        IEnumerable<INode> ChildNodes { get; }
     }
 }

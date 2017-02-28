@@ -16,7 +16,15 @@ namespace UncommonSense.CBreeze.Core
         public ContainerPageControl(int id, int? indentationLevel)
             : base(id, indentationLevel)
         {
-            Properties = new ContainerPageControlProperties();
+            Properties = new ContainerPageControlProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override PageControlType Type

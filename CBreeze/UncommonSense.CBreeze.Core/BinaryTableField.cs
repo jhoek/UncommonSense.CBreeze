@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Core
             : base(no, name)
         {
             DataLength = dataLength;
-            Properties = new BinaryTableFieldProperties();
+            Properties = new BinaryTableFieldProperties(this);
         }
 
         public override TableFieldType Type
@@ -45,6 +45,14 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return Properties;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes 
+        {
+            get
+            {
+                yield return Properties;
             }
         }
     }

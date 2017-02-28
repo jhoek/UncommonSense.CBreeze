@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Event : IHasParameters, IHasVariables, IHasCodeLines
+    public class Event : IHasParameters, IHasVariables, IHasCodeLines, INode
     {
         public Event(int sourceID, string sourceName, int id, string name)
         {
@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Core
             Name = name;
             SourceID = sourceID;
             SourceName = sourceName;
-            CodeLines = new CodeLines();
+            CodeLines = new CodeLines(this);
             Parameters = new Parameters(this);
             Variables = new Variables(this);
         }
@@ -66,5 +66,16 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public INode ParentNode => Container;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return CodeLines;
+                yield return Parameters;
+                yield return Variables;
+            }
+        }
     }
 }

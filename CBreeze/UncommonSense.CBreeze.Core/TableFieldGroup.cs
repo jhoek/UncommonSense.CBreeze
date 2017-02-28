@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class TableFieldGroup : KeyedItem<int>, IHasName
+		public class TableFieldGroup : KeyedItem<int>, IHasName, INode
 	{
 		public TableFieldGroup(int id, string name)
 		{
 			ID = id;
 			Name = name;
 			Fields = new FieldList();
-			Properties = new TableFieldGroupProperties();
+			Properties = new TableFieldGroupProperties(this);
 		}
 
 		public string Name
@@ -33,7 +33,19 @@ namespace UncommonSense.CBreeze.Core
 			protected set;
 		}
 
-		public string GetName()
+        public TableFieldGroups Container { get; internal set; }
+
+        public INode ParentNode => Container;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
+
+        public string GetName()
 		{
 			return Name;
 		}

@@ -5,12 +5,20 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Documentation : IHasCodeLines
+    public class Documentation : IHasCodeLines, INode
     {
         internal Documentation(Code code)
         {
             Code = code;
-            CodeLines = new CodeLines();
+            CodeLines = new CodeLines(this);
+        }
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return CodeLines;
+            }
         }
 
         public Code Code
@@ -24,5 +32,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public INode ParentNode => Code;
     }
 }

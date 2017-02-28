@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class IntegerTableFieldProperties : Properties
+    public class IntegerTableFieldProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
@@ -42,8 +42,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty @volatile = new NullableBooleanProperty("Volatile");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal IntegerTableFieldProperties()
+        internal IntegerTableFieldProperties(IntegerTableField field)
         {
+            Field = field;
+
             innerList.Add(fieldClass);
             innerList.Add(calcFormula);
             innerList.Add(initValue);
@@ -79,6 +81,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
         }
+
+        public IntegerTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

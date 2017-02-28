@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public interface IPage
+    public interface IPage : INode
     {
         PageControls Controls
         {

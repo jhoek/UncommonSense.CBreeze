@@ -6,15 +6,15 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Table : Object, IHasCode
+    public class Table : Object, IHasCode
     {
         public Table(int id, string name)
             : base(id, name)
         {
-            Properties = new TableProperties();
-            Fields = new TableFields();
-            Keys = new TableKeys();
-            FieldGroups = new TableFieldGroups();
+            Properties = new TableProperties(this);
+            Fields = new TableFields(this);
+            Keys = new TableKeys(this);
+            FieldGroups = new TableFieldGroups(this);
             Code = new Code(this);
         }
 
@@ -25,6 +25,8 @@ namespace UncommonSense.CBreeze.Core
                 return ObjectType.Table;
             }
         }
+
+        public Tables Container { get; internal set; }
 
         public TableProperties Properties
         {
@@ -61,6 +63,26 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return Properties;
+            }
+        }
+
+        public override INode ParentNode
+        {
+            get
+            {
+                return Container;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Fields;
+                yield return Keys;
+                yield return FieldGroups;
+                yield return Code;
             }
         }
     }

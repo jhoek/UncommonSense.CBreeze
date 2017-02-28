@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public interface IHasCodeLines
+    public interface IHasCodeLines : INode
     {
         CodeLines CodeLines
         {

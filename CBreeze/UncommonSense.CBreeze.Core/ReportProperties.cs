@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ReportProperties : Properties
+    public class ReportProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 #if NAV2015
@@ -34,8 +34,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty wordMergeDataItem = new StringProperty("WordMergeDataItem");
 #endif
 
-        internal ReportProperties()
+        internal ReportProperties(Report report)
         {
+            Report = report;
+
             innerList.Add(permissions);
             innerList.Add(transactionType);
             innerList.Add(captionML);
@@ -59,6 +61,10 @@ namespace UncommonSense.CBreeze.Core
 #endif
             innerList.Add(useRequestPage);
         }
+
+        public Report Report { get; protected set; }
+
+        public override INode ParentNode => Report;
 
         public MultiLanguageValue CaptionML
         {

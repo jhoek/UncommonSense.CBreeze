@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class MenuSuiteMenuNodeProperties : Properties
+    public class MenuSuiteMenuNodeProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty enabled = new NullableBooleanProperty("Enabled");
@@ -18,8 +18,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableGuidProperty parentNodeID = new NullableGuidProperty("ParentNodeID");
         private NullableBooleanProperty visible = new NullableBooleanProperty("Visible");
 
-        internal MenuSuiteMenuNodeProperties()
+        internal MenuSuiteMenuNodeProperties(MenuNode node)
         {
+            Node = node;
+
             innerList.Add(name);
             innerList.Add(captionML);
             innerList.Add(memberOfMenu);
@@ -32,6 +34,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(firstChild);
         }
 
+        public MenuNode Node { get; protected set; }
+
+        public override INode ParentNode => Node;
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -40,7 +46,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Enabled
+        public bool? Enabled
         {
             get
             {
@@ -52,7 +58,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? FirstChild
+        public System.Guid? FirstChild
         {
             get
             {
@@ -64,7 +70,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? Image
+        public int? Image
         {
             get
             {
@@ -76,7 +82,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? IsShortcut
+        public bool? IsShortcut
         {
             get
             {
@@ -88,7 +94,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? MemberOfMenu
+        public System.Guid? MemberOfMenu
         {
             get
             {
@@ -100,7 +106,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Name
+        public string Name
         {
             get
             {
@@ -112,7 +118,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? NextNodeID
+        public System.Guid? NextNodeID
         {
             get
             {
@@ -124,7 +130,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? ParentNodeID
+        public System.Guid? ParentNodeID
         {
             get
             {
@@ -136,7 +142,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Visible
+        public bool? Visible
         {
             get
             {

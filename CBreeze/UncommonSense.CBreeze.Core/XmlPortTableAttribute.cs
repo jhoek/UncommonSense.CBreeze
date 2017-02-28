@@ -10,7 +10,15 @@ namespace UncommonSense.CBreeze.Core
         public XmlPortTableAttribute(Guid id, string nodeName, int? indentationLevel)
             : base(id, nodeName, indentationLevel)
         {
-            Properties = new XmlPortTableAttributeProperties();
+            Properties = new XmlPortTableAttributeProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override XmlPortNodeAndSourceType Type

@@ -18,8 +18,10 @@ namespace UncommonSense.CBreeze.Core
 #endif
         private StringProperty visible = new StringProperty("Visible");
 
-        internal PageActionGroupProperties()
+        internal PageActionGroupProperties(PageActionGroup pageActionGroup)
         {
+            PageActionGroup = pageActionGroup;
+
             innerList.Add(name);
             innerList.Add(captionML);
 #if NAV2016
@@ -31,6 +33,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(actionContainerType);
             innerList.Add(image);
         }
+
+        public PageActionGroup PageActionGroup { get; protected set; }
+
+        public override INode ParentNode => PageActionGroup;
 
         // See also: http://www.uncommonsense.nl/zen/?p=29
         public ActionContainerType? ActionContainerType

@@ -16,8 +16,10 @@ namespace UncommonSense.CBreeze.Core
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private StringProperty tableIDExpr = new StringProperty("TableIDExpr");
 
-        internal TableFilterTableFieldProperties()
+        internal TableFilterTableFieldProperties(TableFilterTableField field)
         {
+            Field = field;
+
             innerList.Add(onValidate);
             innerList.Add(onLookup);
             innerList.Add(tableIDExpr);
@@ -27,6 +29,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionML);
             innerList.Add(description);
         }
+
+        public TableFilterTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

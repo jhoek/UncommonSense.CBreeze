@@ -5,12 +5,20 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortTextAttribute : XmlPortNode
+    public class XmlPortTextAttribute : XmlPortNode
     {
         public XmlPortTextAttribute(Guid id, string nodeName, int? indentationLevel)
             : base(id, nodeName, indentationLevel)
         {
-            Properties = new XmlPortTextAttributeProperties();
+            Properties = new XmlPortTextAttributeProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override XmlPortNodeAndSourceType Type

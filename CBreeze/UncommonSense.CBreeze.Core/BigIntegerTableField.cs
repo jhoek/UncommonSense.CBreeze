@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Core
         public BigIntegerTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new BigIntegerTableFieldProperties();
+            Properties = new BigIntegerTableFieldProperties(this);
         }
 
         public override TableFieldType Type
@@ -33,6 +33,14 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return Properties;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
             }
         }
     }

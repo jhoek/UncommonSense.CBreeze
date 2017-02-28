@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public DataItemReportElement(int id, int? indentationLevel)
             : base(id, indentationLevel)
         {
-            Properties = new DataItemReportElementProperties();
+            Properties = new DataItemReportElementProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override ReportElementType Type

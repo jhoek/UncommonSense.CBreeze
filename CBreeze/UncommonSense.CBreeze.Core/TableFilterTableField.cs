@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public TableFilterTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new TableFilterTableFieldProperties();
+            Properties = new TableFilterTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

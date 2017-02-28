@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DataItemReportElementProperties : Properties
+    public class DataItemReportElementProperties : Properties
     {
         private FieldListProperty calcFields = new FieldListProperty("CalcFields");
         private ReportDataItemLinkProperty dataItemLink = new ReportDataItemLinkProperty("DataItemLink");
@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty temporary = new NullableBooleanProperty("Temporary");
 #endif
 
-        internal DataItemReportElementProperties()
+        internal DataItemReportElementProperties(DataItemReportElement dataItemReportElement)
         {
             innerList.Add(dataItemTable);
             innerList.Add(dataItemTableView);
@@ -42,6 +42,10 @@ namespace UncommonSense.CBreeze.Core
 #endif
         }
 
+        public DataItemReportElement DataItemReportElement { get; protected set; }
+
+        public override INode ParentNode => DataItemReportElement;
+
         public FieldList CalcFields
         {
             get
@@ -58,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string DataItemLinkReference
+        public string DataItemLinkReference
         {
             get
             {
@@ -70,7 +74,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? DataItemTable
+        public int? DataItemTable
         {
             get
             {
@@ -90,7 +94,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? MaxIteration
+        public int? MaxIteration
         {
             get
             {
@@ -126,7 +130,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? PrintOnlyIfDetail
+        public bool? PrintOnlyIfDetail
         {
             get
             {

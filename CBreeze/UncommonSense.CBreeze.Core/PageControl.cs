@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public abstract class PageControl : KeyedItem<int>, IHasName, IHasProperties
+    public abstract class PageControl : KeyedItem<int>, IHasName, IHasProperties, INode
     {
         internal PageControl(int id, int? indentationLevel)
         {
@@ -68,6 +68,13 @@ namespace UncommonSense.CBreeze.Core
             {
                 return Container.Where(c => c.IndentationLevel == (IndentationLevel ?? 0) - 1).Where(c => c.Index < Index).Last();
             }
+        }
+
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes
+        {
+            get;
         }
 
         public T AddChildPageControl<T>(T child, Position position) where T : PageControl

@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public DecimalTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new DecimalTableFieldProperties();
+            Properties = new DecimalTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DataItemQueryElementProperties : Properties
+    public class DataItemQueryElementProperties : Properties
     {
         private QueryDataItemLinkProperty dataItemLink = new QueryDataItemLinkProperty("DataItemLink");
         private DataItemLinkTypeProperty dataItemLinkType = new DataItemLinkTypeProperty("DataItemLinkType");
@@ -14,8 +14,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty description = new StringProperty("Description");
         private SqlJoinTypeProperty sQLJoinType = new SqlJoinTypeProperty("SQLJoinType");
 
-        internal DataItemQueryElementProperties()
+        internal DataItemQueryElementProperties(DataItemQueryElement dataItemQueryElement)
         {
+            DataItemQueryElement = dataItemQueryElement;
+
             innerList.Add(dataItemTable);
             innerList.Add(description);
             innerList.Add(dataItemTableFilter);
@@ -23,6 +25,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataItemLinkType);
             innerList.Add(sQLJoinType);
         }
+
+        public DataItemQueryElement DataItemQueryElement { get; protected set; }
+
+        public override INode ParentNode => DataItemQueryElement;
 
         public QueryDataItemLink DataItemLink
         {
@@ -44,7 +50,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? DataItemTable
+        public int? DataItemTable
         {
             get
             {
@@ -64,7 +70,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {

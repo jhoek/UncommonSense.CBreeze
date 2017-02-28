@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Code : IHasVariables
+        public class Code : IHasVariables, INode
     {
         internal Code(Object @object)
         {
@@ -44,6 +44,19 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             protected set;
+        }
+
+        public INode ParentNode => Object;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Documentation ;
+                yield return Events ;
+                yield return Functions ;
+                yield return Variables ;
+            }
         }
     }
 }

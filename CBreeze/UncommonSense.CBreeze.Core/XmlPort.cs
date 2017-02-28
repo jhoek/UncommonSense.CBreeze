@@ -6,13 +6,13 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPort : Object, IHasCode
+    public class XmlPort : Object, IHasCode
     {
         public XmlPort(int id, string name)
             : base(id, name)
         {
-            Properties = new XmlPortProperties();
-            Nodes = new XmlPortNodes();
+            Properties = new XmlPortProperties(this);
+            Nodes = new XmlPortNodes(this);
             RequestPage = new XmlPortRequestPage(this);
             Code = new Code(this);
         }
@@ -24,6 +24,8 @@ namespace UncommonSense.CBreeze.Core
                 return ObjectType.XmlPort;
             }
         }
+
+        public XmlPorts Container { get; internal set; }
 
         public XmlPortProperties Properties
         {
@@ -56,5 +58,18 @@ namespace UncommonSense.CBreeze.Core
                 return Properties;
             }
         }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Nodes;
+                yield return RequestPage;
+                yield return Code;
+            }
+        }
+
+        public override INode ParentNode => Container;
     }
 }

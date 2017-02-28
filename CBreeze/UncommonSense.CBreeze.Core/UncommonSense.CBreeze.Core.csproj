@@ -108,6 +108,7 @@
     <Compile Include="IHasVariables.cs" />
     <Compile Include="IPageExtensionMethods.cs" />
     <Compile Include="MissingAction.cs" />
+    <Compile Include="INode.cs" />
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="XmlPortNamespace.cs" />
     <Compile Include="ObjectReference.cs" />

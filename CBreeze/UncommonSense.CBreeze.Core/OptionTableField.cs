@@ -6,12 +6,20 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class OptionTableField : TableField, IHasOptionString
+    public class OptionTableField : TableField, IHasOptionString
     {
         public OptionTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new OptionTableFieldProperties();
+            Properties = new OptionTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

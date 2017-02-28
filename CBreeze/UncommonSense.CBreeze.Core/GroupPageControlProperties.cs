@@ -22,8 +22,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty showAsTree = new NullableBooleanProperty("ShowAsTree");
         private StringProperty visible = new StringProperty("Visible");
 
-        internal GroupPageControlProperties()
+        internal GroupPageControlProperties(GroupPageControl control)
         {
+            Control = control;
+
             innerList.Add(name);
             innerList.Add(captionML);
             innerList.Add(description);
@@ -39,6 +41,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(layout);
             innerList.Add(actionList);
         }
+
+        public GroupPageControl Control { get; protected set; }
+
+        public override INode ParentNode => Control;
 
         public ActionList ActionList
         {

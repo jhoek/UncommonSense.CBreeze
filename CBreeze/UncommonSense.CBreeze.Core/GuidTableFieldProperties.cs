@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class GuidTableFieldProperties : Properties
+    public class GuidTableFieldProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty validateTableRelation = new NullableBooleanProperty("ValidateTableRelation");
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
 
-        internal GuidTableFieldProperties()
+        internal GuidTableFieldProperties(GuidTableField field)
         {
             innerList.Add(fieldClass);
             innerList.Add(calcFormula);
@@ -64,6 +64,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionClass);
         }
 
+        public GuidTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
+
 #if NAV2015
         public AccessByPermission AccessByPermission
         {
@@ -74,7 +78,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-      public string AltSearchField
+        public string AltSearchField
         {
             get
             {
@@ -86,7 +90,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string AutoFormatExpr
+        public string AutoFormatExpr
         {
             get
             {
@@ -118,7 +122,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string CaptionClass
+        public string CaptionClass
         {
             get
             {
@@ -138,7 +142,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -150,7 +154,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Editable
+        public bool? Editable
         {
             get
             {
@@ -224,7 +228,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? InitValue
+        public System.Guid? InitValue
         {
             get
             {
@@ -236,7 +240,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? NotBlank
+        public bool? NotBlank
         {
             get
             {
@@ -272,7 +276,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? TestTableRelation
+        public bool? TestTableRelation
         {
             get
             {
@@ -284,7 +288,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? ValidateTableRelation
+        public bool? ValidateTableRelation
         {
             get
             {
@@ -296,7 +300,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string ValuesAllowed
+        public string ValuesAllowed
         {
             get
             {

@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ReportRequestPage : IPage
+        public class ReportRequestPage : IPage, INode
     {
         internal ReportRequestPage(Report report)
         {
             Report = report;
 
-            Properties = new ReportRequestPageProperties();
+            Properties = new ReportRequestPageProperties(this);
             Properties.ActionList.Page = this;
 
             Controls = new PageControls(this);
@@ -49,6 +49,17 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return Report.ID;
+            }
+        }
+
+        public INode ParentNode => Report;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Controls;
             }
         }
     }

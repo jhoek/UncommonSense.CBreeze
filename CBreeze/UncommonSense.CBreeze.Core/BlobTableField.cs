@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public BlobTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new BlobTableFieldProperties();
+            Properties = new BlobTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

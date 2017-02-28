@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortRequestPage : IPage
+        public class XmlPortRequestPage : IPage, INode
     {
         internal XmlPortRequestPage(XmlPort xmlPort)
         {
             XmlPort = xmlPort;
 
-            Properties = new XmlPortRequestPageProperties();
+            Properties = new XmlPortRequestPageProperties(this);
             Properties.ActionList.Page = this;
 
             Controls = new PageControls(this);
@@ -49,6 +49,17 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return XmlPort.ID;
+            }
+        }
+
+        public INode ParentNode => XmlPort;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Controls;
             }
         }
     }

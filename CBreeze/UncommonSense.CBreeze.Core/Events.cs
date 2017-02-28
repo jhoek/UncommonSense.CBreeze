@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Events : Collection<Event>
+        public class Events : Collection<Event>, INode
     {
         internal Events(Code code)
         {
@@ -18,6 +18,10 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public INode ParentNode => Code;
+
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
         protected override void InsertItem(int index, Event item)
         {

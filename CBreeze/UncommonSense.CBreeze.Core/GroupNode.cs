@@ -11,10 +11,18 @@ namespace UncommonSense.CBreeze.Core
 		public GroupNode(Guid id)
 			: base(id)
 		{
-			Properties = new MenuSuiteGroupNodeProperties();
+			Properties = new MenuSuiteGroupNodeProperties(this);
 		}
 
-		public override MenuSuiteNodeType Type
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
+
+        public override MenuSuiteNodeType Type
 		{
 			get
 			{

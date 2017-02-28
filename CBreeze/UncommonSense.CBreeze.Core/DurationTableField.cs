@@ -6,21 +6,23 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DurationTableField : TableField
+    public class DurationTableField : TableField
     {
         public DurationTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new DurationTableFieldProperties();
+            Properties = new DurationTableFieldProperties(this);
         }
 
-        public override TableFieldType Type
+        public override IEnumerable<INode> ChildNodes
         {
             get
             {
-                return TableFieldType.Duration;
+                yield return Properties;
             }
         }
+
+        public override TableFieldType Type => TableFieldType.Duration;
 
         public DurationTableFieldProperties Properties
         {

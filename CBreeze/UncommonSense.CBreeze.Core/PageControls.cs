@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class PageControls : IntegerKeyedAndNamedContainer<PageControl>
+        public class PageControls : IntegerKeyedAndNamedContainer<PageControl>, INode
     {
         internal PageControls(IPage page)
         {
@@ -34,5 +34,8 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public INode ParentNode => Page;
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
     }
 }

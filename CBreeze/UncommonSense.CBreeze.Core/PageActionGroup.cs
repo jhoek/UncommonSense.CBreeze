@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Core
 		public PageActionGroup(int id, int? indentationLevel)
 			: base(id, indentationLevel)
 		{
-			Properties = new PageActionGroupProperties();
+			Properties = new PageActionGroupProperties(this);
 		}
 
 		public override PageActionBaseType Type
@@ -22,7 +22,15 @@ namespace UncommonSense.CBreeze.Core
 			}
 		}
 
-		public PageActionGroupProperties Properties
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
+
+        public PageActionGroupProperties Properties
 		{
 			get;
 			protected set;

@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public GuidTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new GuidTableFieldProperties();
+            Properties = new GuidTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

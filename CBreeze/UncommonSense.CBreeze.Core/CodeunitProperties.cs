@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class CodeunitProperties : Properties
+    public class CodeunitProperties : Properties
     {
 #if NAV2016
         private EventSubscriberInstanceProperty eventSubscriberInstance = new EventSubscriberInstanceProperty("EventSubscriberInstance");
@@ -20,8 +20,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableIntegerProperty tableNo = new NullableIntegerProperty("TableNo");
         private TestIsolationProperty testIsolation = new TestIsolationProperty("TestIsolation");
 
-        internal CodeunitProperties()
+        internal CodeunitProperties(Codeunit codeunit)
         {
+            Codeunit = codeunit;
+
             innerList.Add(tableNo);
             innerList.Add(permissions);
 #if !NAV2016
@@ -35,6 +37,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(testIsolation);
             innerList.Add(onRun);
         }
+
+        public Codeunit Codeunit { get; protected set; }
+
+        public override INode ParentNode => Codeunit;
 
 #if NAV2016
         public EventSubscriberInstance? EventSubscriberInstance

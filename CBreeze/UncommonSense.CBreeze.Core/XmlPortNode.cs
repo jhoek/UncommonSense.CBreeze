@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public abstract class XmlPortNode : KeyedItem<Guid>, IHasProperties
+        public abstract class XmlPortNode : KeyedItem<Guid>, IHasProperties, INode
     {
         internal XmlPortNode(Guid id, string nodeName, int? indentationLevel)
         {
@@ -56,6 +56,13 @@ namespace UncommonSense.CBreeze.Core
             {
                 return Container.Skip(Index + 1).TakeWhile(n => n.IndentationLevel > IndentationLevel);
             }
+        }
+
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes
+        {
+            get;
         }
 
         public  T AddChildNode<T>(T child, Position position) where T : XmlPortNode

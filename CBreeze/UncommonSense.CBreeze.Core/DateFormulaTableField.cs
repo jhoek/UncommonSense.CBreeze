@@ -11,7 +11,15 @@ namespace UncommonSense.CBreeze.Core
         public DateFormulaTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new DateFormulaTableFieldProperties();
+            Properties = new DateFormulaTableFieldProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override TableFieldType Type

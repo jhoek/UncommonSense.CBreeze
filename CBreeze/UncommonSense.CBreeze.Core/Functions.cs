@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Functions : IntegerKeyedAndNamedContainer<Function>
+    public class Functions : IntegerKeyedAndNamedContainer<Function>, INode
     {
         internal Functions(Code code)
         {
@@ -17,6 +17,9 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public INode ParentNode => Code;
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
         protected override void InsertItem(int index, Function item)
         {

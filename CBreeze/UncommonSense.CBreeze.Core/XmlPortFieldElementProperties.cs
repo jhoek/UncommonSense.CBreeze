@@ -24,8 +24,10 @@ namespace UncommonSense.CBreeze.Core
 #endif
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal XmlPortFieldElementProperties()
+        internal XmlPortFieldElementProperties(XmlPortFieldElement xmlPortFieldElement)
         {
+            XmlPortFieldElement = xmlPortFieldElement;
+
             innerList.Add(dataType);
             innerList.Add(fieldValidate);
             innerList.Add(autoCalcField);
@@ -42,6 +44,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onBeforePassField);
             innerList.Add(width);
         }
+
+        public XmlPortFieldElement XmlPortFieldElement { get; protected set; }
+
+        public override INode ParentNode => XmlPortFieldElement;
 
         public bool? AutoCalcField
         {

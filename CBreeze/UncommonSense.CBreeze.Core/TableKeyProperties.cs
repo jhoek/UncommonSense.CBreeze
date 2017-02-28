@@ -16,8 +16,10 @@ namespace UncommonSense.CBreeze.Core
         private FieldListProperty sqlIndex = new FieldListProperty("SQLIndex");
         private FieldListProperty sumIndexFields = new FieldListProperty("SumIndexFields");
 
-        internal TableKeyProperties()
+        internal TableKeyProperties(TableKey tableKey )
         {
+            TableKey = tableKey;
+
             innerList.Add(sumIndexFields);
             innerList.Add(keyGroups);
             innerList.Add(maintainSQLIndex);
@@ -26,6 +28,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(siftLevelsToMaintain);
             innerList.Add(clustered);
         }
+
+        public TableKey TableKey { get; protected set; }
+
+        public override INode ParentNode => TableKey;
 
         public bool? Clustered
         {

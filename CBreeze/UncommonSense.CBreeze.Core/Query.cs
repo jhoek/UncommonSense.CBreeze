@@ -6,15 +6,17 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Query : Object, IHasCode
+    public class Query : Object, IHasCode
     {
         public Query(int id, string name)
             : base(id, name)
         {
-            Properties = new QueryProperties();
+            Properties = new QueryProperties(this);
             Elements = new QueryElements(this);
             Code = new Code(this);
         }
+
+        public Queries Container { get; internal set; }
 
         public override ObjectType Type
         {
@@ -47,6 +49,18 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return Properties;
+            }
+        }
+
+        public override INode ParentNode => Container;
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Elements;
+                yield return Code;
             }
         }
     }

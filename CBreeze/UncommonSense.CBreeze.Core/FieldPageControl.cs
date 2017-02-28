@@ -16,7 +16,12 @@ namespace UncommonSense.CBreeze.Core
         public FieldPageControl(int id, int? indentationLevel)
             : base(id, indentationLevel)
         {
-            Properties = new FieldPageControlProperties();
+            Properties = new FieldPageControlProperties(this);
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get { yield return Properties; }
         }
 
         public override PageControlType Type
