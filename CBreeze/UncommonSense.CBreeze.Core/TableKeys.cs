@@ -1,8 +1,5 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -13,10 +10,7 @@ namespace UncommonSense.CBreeze.Core
             Table = table;
         }
 
-        public Table Table
-        {
-            get; protected set;
-        }
+        public Table Table { get; protected set; }
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 

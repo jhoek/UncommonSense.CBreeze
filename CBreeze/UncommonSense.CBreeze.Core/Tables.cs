@@ -1,7 +1,5 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -13,7 +11,11 @@ namespace UncommonSense.CBreeze.Core
             AddRange(tables);
         }
 
-        public Application Application { get; protected set; }
+        public Application Application
+        {
+            get; protected set;
+        }
+
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
         public INode ParentNode => Application;
 
