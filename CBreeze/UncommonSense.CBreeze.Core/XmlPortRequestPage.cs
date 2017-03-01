@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortRequestPage : IPage, INode
+    public class XmlPortRequestPage : IPage, INode
     {
         internal XmlPortRequestPage(XmlPort xmlPort)
         {
@@ -17,31 +17,29 @@ namespace UncommonSense.CBreeze.Core
             Controls = new PageControls(this);
         }
 
-        public PageControls Controls
-        {
-            get;
-            protected set;
-        }
-
-        public XmlPortRequestPageProperties Properties
-        {
-            get;
-            protected set;
-        }
-
-        public XmlPort XmlPort
-        {
-            get;
-            protected set;
-        }
-
-
         public ActionList Actions
         {
             get
             {
                 return Properties.ActionList;
             }
+        }
+
+        public Application Application => XmlPort.Container.Application;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Controls;
+            }
+        }
+
+        public PageControls Controls
+        {
+            get;
+            protected set;
         }
 
         public int ObjectID
@@ -54,13 +52,16 @@ namespace UncommonSense.CBreeze.Core
 
         public INode ParentNode => XmlPort;
 
-        public IEnumerable<INode> ChildNodes
+        public XmlPortRequestPageProperties Properties
         {
-            get
-            {
-                yield return Properties;
-                yield return Controls;
-            }
+            get;
+            protected set;
+        }
+
+        public XmlPort XmlPort
+        {
+            get;
+            protected set;
         }
     }
 }

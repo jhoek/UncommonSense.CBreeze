@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -22,6 +23,8 @@ namespace UncommonSense.CBreeze.Core
         public override IEnumerable<int> ExistingIDs => this.Select(v => v.ID); // FIXME: ook parameters
 
         public INode ParentNode => Container;
+
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
         public override void ValidateName(Variable item)
         {

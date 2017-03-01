@@ -5,21 +5,29 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ReportLabels : IntegerKeyedAndNamedContainer<ReportLabel>, INode
+    public class ReportLabels : IntegerKeyedAndNamedContainer<ReportLabel>, INode
     {
         internal ReportLabels(Report report)
         {
             Report = report;
         }
 
-        public Report Report
-        {
-            get;protected set;
-        }
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
         public INode ParentNode => Report;
 
-        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
+        public Report Report
+        {
+            get; protected set;
+        }
+
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
+
+        public override void ValidateName(ReportLabel item)
+        {
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
+        }
 
         protected override void InsertItem(int index, ReportLabel item)
         {
@@ -31,12 +39,6 @@ namespace UncommonSense.CBreeze.Core
         {
             this[index].Container = null;
             base.RemoveItem(index);
-        }
-
-        public override void ValidateName(ReportLabel item)
-        {
-            TestNameNotNullOrEmpty(item);
-            TestNameUnique(item);
         }
     }
 }

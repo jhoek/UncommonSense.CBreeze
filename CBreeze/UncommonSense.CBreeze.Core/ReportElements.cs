@@ -13,13 +13,14 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
-
         public INode ParentNode => Report;
 
         public Report Report
         {
             get; protected set;
         }
+
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
         public override void ValidateName(ReportElement item)
         {

@@ -14,6 +14,7 @@ namespace UncommonSense.CBreeze.Core
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
+        // FIXME: INclude variables in public override IEnumerable<int> ExistingIDs
         public IHasParameters Container
         {
             get;
@@ -21,6 +22,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public INode ParentNode => Container;
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
         public override void ValidateName(Parameter item)
         {

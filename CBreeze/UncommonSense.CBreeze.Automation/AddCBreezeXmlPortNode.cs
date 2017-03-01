@@ -140,7 +140,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = FieldAttribute)]
         [Parameter(ParameterSetName = TextElement)]
 #if NAV2016
-        [Parameter(ParameterSetName=TextAttribute)]
+        [Parameter(ParameterSetName = TextAttribute)]
 #endif
         public XmlPortNodeDataType? DataType
         {
@@ -191,6 +191,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2016
+
         [Parameter(ParameterSetName = TableElement)]
         [Parameter(ParameterSetName = FieldElement)]
         [Parameter(ParameterSetName = TextElement)]
@@ -199,6 +200,7 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
 #endif
 
         [Parameter(ParameterSetName = TableAttribute)]
@@ -276,6 +278,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2013R2
+
         [Parameter(ParameterSetName = FieldElement)]
         [Parameter(ParameterSetName = TextElement)]
         public bool? Unbound
@@ -283,6 +286,7 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
 #endif
 
         [Parameter(ParameterSetName = TableElement)]
@@ -318,6 +322,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as XmlPort).Nodes.Insert(0, node);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as XmlPort).Nodes.Add(node);
                         break;
@@ -330,6 +335,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as XmlPortNodes).Insert(0, node);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as XmlPortNodes).Add(node);
                         break;
@@ -354,16 +360,22 @@ namespace UncommonSense.CBreeze.Automation
             {
                 case XmlPortNodeAndSourceType.XmlPortTableElement:
                     return CreateTableElementNode();
+
                 case XmlPortNodeAndSourceType.XmlPortFieldElement:
                     return CreateFieldElementNode();
+
                 case XmlPortNodeAndSourceType.XmlPortTextElement:
                     return CreateTextElementNode();
+
                 case XmlPortNodeAndSourceType.XmlPortTableAttribute:
                     return CreateTableAttributeNode();
+
                 case XmlPortNodeAndSourceType.XmlPortFieldAttribute:
                     return CreateFieldAttributeNode();
+
                 case XmlPortNodeAndSourceType.XmlPortTextAttribute:
                     return CreateTextAttributeNode();
+
                 default:
                     throw new ArgumentOutOfRangeException("Don't know how to create this node.");
             }

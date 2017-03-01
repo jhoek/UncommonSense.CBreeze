@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class BigTextVariable : Variable
+    public class BigTextVariable : Variable
     {
         public BigTextVariable(int id, string name)
             : base(id, name)
@@ -26,6 +26,5 @@ namespace UncommonSense.CBreeze.Core
             get;
             set;
         }
-
     }
 }

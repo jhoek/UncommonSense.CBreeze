@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPorts : IntegerKeyedAndNamedContainer<XmlPort>, INode
+    public class XmlPorts : IntegerKeyedAndNamedContainer<XmlPort>, INode
     {
         internal XmlPorts(Application application, IEnumerable<XmlPort> xmlPorts)
         {
@@ -15,6 +15,13 @@ namespace UncommonSense.CBreeze.Core
         public Application Application { get; protected set; }
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
         public INode ParentNode => Application;
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.ID;
+
+        public override void ValidateName(XmlPort item)
+        {
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
+        }
 
         protected override void InsertItem(int index, XmlPort item)
         {
@@ -26,12 +33,6 @@ namespace UncommonSense.CBreeze.Core
         {
             this[index].Container = null;
             base.RemoveItem(index);
-        }
-
-        public override void ValidateName(XmlPort item)
-        {
-            TestNameNotNullOrEmpty(item);
-            TestNameUnique(item);
         }
     }
 }

@@ -5,11 +5,28 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class PageControls : IntegerKeyedAndNamedContainer<PageControl>, INode
+    public class PageControls : IntegerKeyedAndNamedContainer<PageControl>, INode
     {
         internal PageControls(IPage page)
         {
             Page = page;
+        }
+
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
+
+        public IPage Page
+        {
+            get;
+            protected set;
+        }
+
+        public INode ParentNode => Page;
+
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
+
+        public override void ValidateName(PageControl item)
+        {
+            TestNameUnique(item);
         }
 
         protected override void InsertItem(int index, PageControl item)
@@ -23,19 +40,5 @@ namespace UncommonSense.CBreeze.Core
             this.ElementAt(index).Container = null;
             base.RemoveItem(index);
         }
-
-        public override void ValidateName(PageControl item)
-        {
-            TestNameUnique(item);
-        }
-
-        public IPage Page
-        {
-            get;
-            protected set;
-        }
-
-        public INode ParentNode => Page;
-        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
     }
 }

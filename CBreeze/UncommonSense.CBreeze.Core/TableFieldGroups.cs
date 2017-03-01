@@ -1,7 +1,6 @@
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -12,14 +11,21 @@ namespace UncommonSense.CBreeze.Core
             Table = table;
         }
 
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
+
+        public INode ParentNode => Table;
+
         public Table Table
         {
             get; protected set;
         }
 
-        public INode ParentNode => Table;
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.ID;
 
-        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
+        public override void ValidateName(TableFieldGroup item)
+        {
+            TestNameUnique(item);
+        }
 
         protected override void InsertItem(int index, TableFieldGroup item)
         {
@@ -31,11 +37,6 @@ namespace UncommonSense.CBreeze.Core
         {
             this[index].Container = null;
             base.RemoveItem(index);
-        }
-
-        public override void ValidateName(TableFieldGroup item)
-        {
-            TestNameUnique(item);
         }
     }
 }

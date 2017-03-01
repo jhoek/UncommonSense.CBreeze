@@ -12,13 +12,16 @@ namespace UncommonSense.CBreeze.Core
             Table = table;
         }
 
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
+
+        public INode ParentNode => Table;
+
         public Table Table
         {
             get; protected set;
         }
 
-        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
-        public INode ParentNode => Table;
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.ID;
 
         public override void ValidateName(TableField item)
         {

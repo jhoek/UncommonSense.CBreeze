@@ -18,51 +18,21 @@ namespace UncommonSense.CBreeze.Core
             MenuSuites = new MenuSuites(this, objects.OfType<MenuSuite>());
         }
 
-        public void Clear()
+        IEnumerable<INode> INode.ChildNodes
         {
-            Tables.Clear();
-            Pages.Clear();
-            Reports.Clear();
-            XmlPorts.Clear();
-            Codeunits.Clear();
-            Queries.Clear();
-            MenuSuites.Clear();
-        }
-
-        public IEnumerable<int> IDRange { get; set; }
-        public IEnumerable<int> UIDRange { get; set; }
-
-        public Tables Tables
-        {
-            get;
-            protected set;
-        }
-
-        public Pages Pages
-        {
-            get;
-            protected set;
-        }
-
-        public Reports Reports
-        {
-            get;
-            protected set;
-        }
-
-        public XmlPorts XmlPorts
-        {
-            get;
-            protected set;
+            get
+            {
+                yield return Tables;
+                yield return Pages;
+                yield return Reports;
+                yield return XmlPorts;
+                yield return Codeunits;
+                yield return Queries;
+                yield return MenuSuites;
+            }
         }
 
         public Codeunits Codeunits
-        {
-            get;
-            protected set;
-        }
-
-        public Queries Queries
         {
             get;
             protected set;
@@ -90,20 +60,47 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public Pages Pages
+        {
+            get;
+            protected set;
+        }
+
         public INode ParentNode => null;
 
-        IEnumerable<INode> INode.ChildNodes
+        public Queries Queries
         {
-            get
-            {
-                yield return Tables;
-                yield return Pages;
-                yield return Reports;
-                yield return XmlPorts;
-                yield return Codeunits;
-                yield return Queries;
-                yield return MenuSuites;
-            }
+            get;
+            protected set;
+        }
+
+        public Reports Reports
+        {
+            get;
+            protected set;
+        }
+
+        public Tables Tables
+        {
+            get;
+            protected set;
+        }
+
+        public XmlPorts XmlPorts
+        {
+            get;
+            protected set;
+        }
+
+        public void Clear()
+        {
+            Tables.Clear();
+            Pages.Clear();
+            Reports.Clear();
+            XmlPorts.Clear();
+            Codeunits.Clear();
+            Queries.Clear();
+            MenuSuites.Clear();
         }
     }
 }

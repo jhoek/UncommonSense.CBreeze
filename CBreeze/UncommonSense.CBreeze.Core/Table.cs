@@ -8,6 +8,10 @@ namespace UncommonSense.CBreeze.Core
 {
     public class Table : Object, IHasCode
     {
+        public Table(string name) : this(0, name)
+        {
+        }
+
         public Table(int id, string name)
             : base(id, name)
         {
@@ -18,17 +22,35 @@ namespace UncommonSense.CBreeze.Core
             Code = new Code(this);
         }
 
-        public override ObjectType Type
+        public override Properties AllProperties
         {
             get
             {
-                return ObjectType.Table;
+                return Properties;
             }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Fields;
+                yield return Keys;
+                yield return FieldGroups;
+                yield return Code;
+            }
+        }
+
+        public Code Code
+        {
+            get;
+            protected set;
         }
 
         public Tables Container { get; internal set; }
 
-        public TableProperties Properties
+        public TableFieldGroups FieldGroups
         {
             get;
             protected set;
@@ -46,26 +68,6 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public TableFieldGroups FieldGroups
-        {
-            get;
-            protected set;
-        }
-
-        public Code Code
-        {
-            get;
-            protected set;
-        }
-
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
-
         public override INode ParentNode
         {
             get
@@ -74,15 +76,17 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override IEnumerable<INode> ChildNodes
+        public TableProperties Properties
+        {
+            get;
+            protected set;
+        }
+
+        public override ObjectType Type
         {
             get
             {
-                yield return Properties;
-                yield return Fields;
-                yield return Keys;
-                yield return FieldGroups;
-                yield return Code;
+                return ObjectType.Table;
             }
         }
     }

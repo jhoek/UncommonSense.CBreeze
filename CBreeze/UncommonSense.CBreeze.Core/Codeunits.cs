@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Codeunits : IntegerKeyedAndNamedContainer<Codeunit>, INode
+    public class Codeunits : IntegerKeyedAndNamedContainer<Codeunit>, INode
     {
         internal Codeunits(Application application, IEnumerable<Codeunit> codeunits)
         {
@@ -16,6 +16,7 @@ namespace UncommonSense.CBreeze.Core
         public Application Application { get; protected set; }
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
         public INode ParentNode => Application;
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.ID;
 
         public override void ValidateName(Codeunit item)
         {
