@@ -19,6 +19,9 @@ namespace UncommonSense.CBreeze.Demo
             var application = new Application();
             var page = application.Pages.Add(new Page("Foo"));
 
+            page.Actions.Add(new PageActionContainer(containerType: ActionContainerType.ActionItems));
+            page.Actions.Add(new PageActionGroup(0, 1));
+
             page.Controls.Add(new ContainerPageControl(0, 0, ContainerType.ContentArea));
             page.Controls.Add(new GroupPageControl(0, 1, GroupType.Repeater));
 

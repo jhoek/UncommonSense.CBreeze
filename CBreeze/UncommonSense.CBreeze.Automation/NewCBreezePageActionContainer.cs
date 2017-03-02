@@ -12,14 +12,14 @@ namespace UncommonSense.CBreeze.Automation
     [OutputType(typeof(PageActionContainer))]
     public class NewCBreezePageActionContainer : NewCBreezePageActionBase
     {
-        [Parameter(Mandatory = true, Position = 1)]
-        public ActionContainerType ContainerType
+        [Parameter(Position = 2)]
+        public ScriptBlock ChildActions
         {
             get; set;
         }
 
-        [Parameter(Position = 2)]
-        public ScriptBlock ChildActions
+        [Parameter(Mandatory = true, Position = 1)]
+        public ActionContainerType ContainerType
         {
             get; set;
         }
@@ -38,8 +38,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected PageActionContainer CreatePageActionContainer()
         {
-            var pageActionContainer = new PageActionContainer(GetID(), 0);
-            pageActionContainer.Properties.ActionContainerType = ContainerType;
+            var pageActionContainer = new PageActionContainer(0, GetID(), ContainerType);
             pageActionContainer.Properties.Description = Description;
             pageActionContainer.Properties.Name = Name;
 

@@ -14,6 +14,8 @@ namespace UncommonSense.CBreeze.Core
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
+        public override IEnumerable<int> ExistingIDs => Page.Actions.Select(a => a.ID).Concat(Page.Controls.Select(c => c.ID));
+
         public IPage Page
         {
             get;

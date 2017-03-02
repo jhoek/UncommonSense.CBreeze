@@ -10,9 +10,14 @@ namespace UncommonSense.CBreeze.Core
     {
         public static PageActionContainer GetPageActionContainer(this IPage page, IEnumerable<int> range, ActionContainerType type)
         {
-            var result = page.Actions.OfType<PageActionContainer>().FirstOrDefault(c => c.Properties.ActionContainerType == type) ?? page.Actions.Insert(0, new PageActionContainer(range.GetNextPageControlOrActionID(page), 0));
-            result.Properties.ActionContainerType = type;
-            return result;
+            return
+                page
+                    .Actions
+                    .OfType<PageActionContainer>()
+                    .FirstOrDefault(c => c.Properties.ActionContainerType == type) ??
+                    page
+                        .Actions
+                        .Insert(0, new PageActionContainer(0, range.GetNextPageControlOrActionID(page), type));
         }
 
         public static ContainerPageControl GetPageControlContainer(this IPage page, IEnumerable<int> range, ContainerType type)
