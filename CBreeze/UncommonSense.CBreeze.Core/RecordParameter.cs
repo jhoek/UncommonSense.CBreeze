@@ -6,20 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class RecordParameter : Parameter
+    public class RecordParameter : Parameter
     {
-        public RecordParameter(bool var, int id, string name, int subType)
-            : base(var, id, name)
+        public RecordParameter(string name, int subType, bool var = false, int id = 0)
+            : base(name, var, id)
         {
             SubType = subType;
-        }
-
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Record;
-            }
         }
 
         public RecordSecurityFiltering? SecurityFiltering
@@ -39,5 +31,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             set;
         }
+
+        public override ParameterType Type => ParameterType.Record;
     }
 }

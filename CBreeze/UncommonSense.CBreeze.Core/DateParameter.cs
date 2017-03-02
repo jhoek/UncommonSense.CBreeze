@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DateParameter : Parameter
+    public class DateParameter : Parameter
     {
-        public DateParameter(bool var, int id, string name) : base(var, id, name)
+        public DateParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Date;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.Date;
     }
 }

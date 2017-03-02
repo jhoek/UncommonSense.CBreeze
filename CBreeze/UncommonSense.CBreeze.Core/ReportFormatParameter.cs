@@ -7,20 +7,15 @@ using UncommonSense.CBreeze.Common;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-        public class ReportFormatParameter : Parameter
+
+    public class ReportFormatParameter : Parameter
     {
-        public ReportFormatParameter(bool var, int id, string name)
-            : base(var, id, name)
+        public ReportFormatParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.ReportFormat;
-            }
-        }
+        public override ParameterType Type => ParameterType.ReportFormat;
     }
+
 #endif
 }

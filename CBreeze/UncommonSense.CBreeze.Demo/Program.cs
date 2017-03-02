@@ -35,8 +35,9 @@ namespace UncommonSense.CBreeze.Demo
             page.Controls.Add(new GroupPageControl(0, 1, GroupType.Repeater));
 
             var function = page.Code.Functions.Add(new Function(0, "Foo"));
-            function.Parameters.Add(new IntegerParameter(false, 0, "MyParam"));
-            function.Parameters.Add(new BigTextParameter(false, 0, "MyBigText"));
+            function.Parameters.Add(new IntegerParameter("MyParam"));
+            function.Parameters.Add(new BigTextParameter("MyBigText"));
+            function.Parameters.Add(new TextParameter("MyText", dataLength: 80, var: true));
             function.Variables.Add(new IntegerVariable(0, "Oink"));
             function.Variables.Add(new IntegerVariable(0, "Boink"));
 
