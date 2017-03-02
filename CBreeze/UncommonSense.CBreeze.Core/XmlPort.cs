@@ -8,6 +8,10 @@ namespace UncommonSense.CBreeze.Core
 {
     public class XmlPort : Object, IHasCode
     {
+        public XmlPort(string name) : this(0, name)
+        {
+        }
+
         public XmlPort(int id, string name)
             : base(id, name)
         {
@@ -15,40 +19,6 @@ namespace UncommonSense.CBreeze.Core
             Nodes = new XmlPortNodes(this);
             RequestPage = new XmlPortRequestPage(this);
             Code = new Code(this);
-        }
-
-        public override ObjectType Type
-        {
-            get
-            {
-                return ObjectType.XmlPort;
-            }
-        }
-
-        public XmlPorts Container { get; internal set; }
-
-        public XmlPortProperties Properties
-        {
-            get;
-            protected set;
-        }
-
-        public XmlPortNodes Nodes
-        {
-            get;
-            protected set;
-        }
-
-        public XmlPortRequestPage RequestPage
-        {
-            get;
-            protected set;
-        }
-
-        public Code Code
-        {
-            get;
-            protected set;
         }
 
         public override Properties AllProperties
@@ -70,6 +40,40 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public Code Code
+        {
+            get;
+            protected set;
+        }
+
+        public XmlPorts Container { get; internal set; }
+
+        public XmlPortNodes Nodes
+        {
+            get;
+            protected set;
+        }
+
         public override INode ParentNode => Container;
+
+        public XmlPortProperties Properties
+        {
+            get;
+            protected set;
+        }
+
+        public XmlPortRequestPage RequestPage
+        {
+            get;
+            protected set;
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.XmlPort;
+            }
+        }
     }
 }

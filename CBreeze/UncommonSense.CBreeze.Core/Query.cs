@@ -8,40 +8,16 @@ namespace UncommonSense.CBreeze.Core
 {
     public class Query : Object, IHasCode
     {
+        public Query(string name) : this(0, name)
+        {
+        }
+
         public Query(int id, string name)
             : base(id, name)
         {
             Properties = new QueryProperties(this);
             Elements = new QueryElements(this);
             Code = new Code(this);
-        }
-
-        public Queries Container { get; internal set; }
-
-        public override ObjectType Type
-        {
-            get
-            {
-                return ObjectType.Query;
-            }
-        }
-
-        public QueryProperties Properties
-        {
-            get;
-            protected set;
-        }
-
-        public QueryElements Elements
-        {
-            get;
-            protected set;
-        }
-
-        public Code Code
-        {
-            get;
-            protected set;
         }
 
         public override Properties AllProperties
@@ -52,8 +28,6 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override INode ParentNode => Container;
-
         public override IEnumerable<INode> ChildNodes
         {
             get
@@ -61,6 +35,36 @@ namespace UncommonSense.CBreeze.Core
                 yield return Properties;
                 yield return Elements;
                 yield return Code;
+            }
+        }
+
+        public Code Code
+        {
+            get;
+            protected set;
+        }
+
+        public Queries Container { get; internal set; }
+
+        public QueryElements Elements
+        {
+            get;
+            protected set;
+        }
+
+        public override INode ParentNode => Container;
+
+        public QueryProperties Properties
+        {
+            get;
+            protected set;
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Query;
             }
         }
     }

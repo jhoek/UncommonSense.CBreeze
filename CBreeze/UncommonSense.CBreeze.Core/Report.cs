@@ -8,6 +8,10 @@ namespace UncommonSense.CBreeze.Core
 {
     public class Report : Object, IHasCode
     {
+        public Report(string name) : this(0, name)
+        {
+        }
+
         public Report(int id, string name)
             : base(id, name)
         {
@@ -69,11 +73,13 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2015
+
         public WordLayout WordLayout
         {
             get;
             protected set;
         }
+
 #endif
 
         public override Properties AllProperties
@@ -91,13 +97,13 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 yield return Properties;
-                yield return Elements ;
-                yield return RequestPage ;
-                yield return Labels ;
-                yield return Code ;
-                yield return RdlData ;
+                yield return Elements;
+                yield return RequestPage;
+                yield return Labels;
+                yield return Code;
+                yield return RdlData;
 #if NAV2015
-                yield return WordLayout ;
+                yield return WordLayout;
 #endif
             }
         }
