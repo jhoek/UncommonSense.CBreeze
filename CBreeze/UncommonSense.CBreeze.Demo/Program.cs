@@ -17,7 +17,16 @@ namespace UncommonSense.CBreeze.Demo
             DefaultRanges.UID = Enumerable.Range(1000000000, 1000);
 
             var application = new Application();
-            var page = application.Pages.Add(new Page("Foo"));
+            var table = application.Tables.Add(new Table("MyTable"));
+            var page = application.Pages.Add(new Page("MyPage"));
+            var report = application.Reports.Add(new Report("MyReport"));
+            var xmlPort = application.XmlPorts.Add(new XmlPort("MyXmlPort"));
+            var query = application.Queries.Add(new Query("MyQuery"));
+            var menuSuite = application.MenuSuites.Add(new MenuSuite("MyMenuSuite"));
+
+            // FIXME: ParentID in zelfde range => dan nummeren van 1
+            table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.DropDown, "Foo", "Baz"));
+            table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.Brick, "Oink", "BOink"));
 
             page.Actions.Add(new PageActionContainer(containerType: ActionContainerType.ActionItems));
             page.Actions.Add(new PageActionGroup(0, 1));
