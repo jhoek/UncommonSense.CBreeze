@@ -7,6 +7,10 @@ namespace UncommonSense.CBreeze.Core
 {
     public class Function : KeyedItem<int>, IHasName, IHasParameters, IHasVariables, IHasCodeLines, INode
     {
+        public Function(string name) : this(0, name)
+        {
+        }
+
         public Function(int id, string name)
         {
             ID = id;
@@ -52,14 +56,17 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2015
+
         public UpgradeFunctionType? UpgradeFunctionType
         {
             get;
             set;
         }
+
 #endif
 
 #if NAV2016
+
         public bool? TryFunction
         {
             get;
@@ -119,6 +126,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             set;
         }
+
 #endif
 
         public Functions Container
