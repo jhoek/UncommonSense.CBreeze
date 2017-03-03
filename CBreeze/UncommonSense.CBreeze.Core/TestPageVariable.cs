@@ -6,20 +6,16 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TestPageVariable : Variable
+    public class TestPageVariable : Variable
     {
+        public TestPageVariable(string name, int subType) : this(0, name, subType)
+        {
+        }
+
         public TestPageVariable(int id, string name, int subType)
             : base(id, name)
         {
             SubType = subType;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.TestPage;
-            }
         }
 
         public string Dimensions
@@ -32,6 +28,14 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             protected set;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.TestPage;
+            }
         }
     }
 }

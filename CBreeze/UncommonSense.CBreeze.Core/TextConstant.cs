@@ -6,8 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TextConstant : Variable
+    public class TextConstant : Variable
     {
+        public TextConstant(string name) : this(0, name)
+        {
+        }
+
         public TextConstant(int id, string name)
             : base(id, name)
         {

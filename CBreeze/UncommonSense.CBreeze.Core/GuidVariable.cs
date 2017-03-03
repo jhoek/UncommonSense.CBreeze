@@ -6,11 +6,21 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class GuidVariable : Variable
+    public class GuidVariable : Variable
     {
+        public GuidVariable(string name) : this(0, name)
+        {
+        }
+
         public GuidVariable(int id, string name)
             : base(id, name)
         {
+        }
+
+        public string Dimensions
+        {
+            get;
+            set;
         }
 
         public override VariableType Type
@@ -19,12 +29,6 @@ namespace UncommonSense.CBreeze.Core
             {
                 return VariableType.Guid;
             }
-        }
-
-        public string Dimensions
-        {
-            get;
-            set;
         }
     }
 }

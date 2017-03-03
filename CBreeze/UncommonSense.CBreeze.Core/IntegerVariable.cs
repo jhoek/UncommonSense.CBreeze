@@ -6,19 +6,15 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class IntegerVariable : Variable
+    public class IntegerVariable : Variable
     {
-        public IntegerVariable(int id, string name)
-            : base(id, name)
+        public IntegerVariable(string name) : this(0, name)
         {
         }
 
-        public override VariableType Type
+        public IntegerVariable(int id, string name)
+            : base(id, name)
         {
-            get
-            {
-                return VariableType.Integer;
-            }
         }
 
         public string Dimensions
@@ -31,6 +27,14 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             set;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Integer;
+            }
         }
     }
 }

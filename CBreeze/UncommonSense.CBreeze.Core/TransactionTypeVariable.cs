@@ -6,11 +6,21 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TransactionTypeVariable : Variable
+    public class TransactionTypeVariable : Variable
     {
+        public TransactionTypeVariable(string name) : this(0, name)
+        {
+        }
+
         public TransactionTypeVariable(int id, string name)
             : base(id, name)
         {
+        }
+
+        public string Dimensions
+        {
+            get;
+            set;
         }
 
         public override VariableType Type
@@ -19,12 +29,6 @@ namespace UncommonSense.CBreeze.Core
             {
                 return VariableType.TransactionType;
             }
-        }
-
-        public string Dimensions
-        {
-            get;
-            set;
         }
     }
 }
