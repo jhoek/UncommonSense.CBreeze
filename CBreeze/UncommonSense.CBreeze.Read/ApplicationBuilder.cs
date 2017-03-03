@@ -1343,15 +1343,14 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case ReportElementType.DataItem:
-                    var newDataItemElement = new DataItemReportElement(elementID, elementIndentation);
+                    var newDataItemElement = new DataItemReportElement(null, elementID, elementIndentation);
                     newDataItemElement.Name = elementName;
                     currentReportElements.Add(newDataItemElement);
                     currentProperties.Push(newDataItemElement.Properties);
                     break;
 
                 case ReportElementType.Column:
-                    var newColumnElement = new ColumnReportElement(elementID, elementIndentation);
-                    newColumnElement.Name = elementName;
+                    var newColumnElement = new ColumnReportElement(elementName, null, elementID, elementIndentation);
                     currentReportElements.Add(newColumnElement);
                     currentProperties.Push(newColumnElement.Properties);
                     break;
