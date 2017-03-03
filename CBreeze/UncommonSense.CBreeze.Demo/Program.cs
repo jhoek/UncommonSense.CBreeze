@@ -41,7 +41,18 @@ namespace UncommonSense.CBreeze.Demo
             function.Variables.Add(new IntegerVariable(0, "Oink"));
             function.Variables.Add(new IntegerVariable(0, "Boink"));
 
-            var function2 = page.Code.Functions.Add(new Function(0, "Baz"));
+            var function2 = page.Code.Functions.Add(new Function("Baz"));
+
+            report
+                .Labels
+                .Add(new ReportLabel("MyLabel"))
+                .Properties
+                .CaptionML
+                .Set("ENU", "Foo")
+                .Set("NLD", "Baz");
+
+            report.Elements.Add(new DataItemReportElement(BaseApp.TableIDs.Customer));
+            report.Elements.Add(new ColumnReportElement("No", "No."));
 
             application.Write();
         }
