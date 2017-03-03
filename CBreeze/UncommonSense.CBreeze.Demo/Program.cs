@@ -22,6 +22,7 @@ namespace UncommonSense.CBreeze.Demo
             var report = application.Reports.Add(new Report("MyReport"));
             var xmlPort = application.XmlPorts.Add(new XmlPort("MyXmlPort"));
             var query = application.Queries.Add(new Query("MyQuery"));
+            var codeunit = application.Codeunits.Add(new Codeunit("MyCodeunit"));
             var menuSuite = application.MenuSuites.Add(new MenuSuite("MyMenuSuite"));
 
             // FIXME: ParentID in zelfde range => dan nummeren van 1
@@ -53,6 +54,8 @@ namespace UncommonSense.CBreeze.Demo
 
             report.Elements.Add(new DataItemReportElement(BaseApp.TableIDs.Customer));
             report.Elements.Add(new ColumnReportElement("No", "No."));
+
+            codeunit.Code.Variables.Add(new ActionVariable("MyActionVariable"));
 
             application.Write();
         }
