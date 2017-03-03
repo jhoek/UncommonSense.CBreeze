@@ -14,44 +14,14 @@ namespace UncommonSense.CBreeze.Core
             IndentationLevel = indentationLevel;
         }
 
-        public virtual PageControls Container
-        {
-            get;
-            internal set;
-        }
-
-        public abstract PageControlType Type
-        {
-            get;
-        }
-
-        public int? IndentationLevel
-        {
-            get;
-            protected set;
-        }
-
-        public abstract string GetName();
-
         public abstract Properties AllProperties
         {
             get;
         }
 
-        public int Index
+        public abstract IEnumerable<INode> ChildNodes
         {
-            get
-            {
-                return Container.IndexOf(this);
-            }
-        }
-
-        public IEnumerable<PageControl> DescendantPageControls
-        {
-            get
-            {
-                return Container.Skip(Index + 1).TakeWhile(c => c.IndentationLevel > (IndentationLevel ?? 0));
-            }
+            get;
         }
 
         public IEnumerable<PageControl> ChildPageControls
@@ -62,6 +32,36 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public virtual PageControls Container
+        {
+            get;
+            internal set;
+        }
+
+        public IEnumerable<PageControl> DescendantPageControls
+        {
+            get
+            {
+                return Container.Skip(Index + 1).TakeWhile(c => c.IndentationLevel > (IndentationLevel ?? 0));
+            }
+        }
+
+        public int? IndentationLevel
+        {
+            get;
+            protected set;
+        }
+
+        public int Index
+        {
+            get
+            {
+                return Container.IndexOf(this);
+            }
+        }
+
+        public INode ParentNode => Container;
+
         public PageControl ParentPageControl
         {
             get
@@ -70,9 +70,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public INode ParentNode => Container;
-
-        public abstract IEnumerable<INode> ChildNodes
+        public abstract PageControlType Type
         {
             get;
         }
@@ -84,6 +82,7 @@ namespace UncommonSense.CBreeze.Core
                 case Position.FirstWithinContainer:
                     Container.Insert(Index + 1, child);
                     break;
+
                 case Position.LastWithinContainer:
                     var descendantPageControls = DescendantPageControls;
                     var lastIndex = descendantPageControls.Any() ? descendantPageControls.Last().Index : Index;
@@ -93,5 +92,7 @@ namespace UncommonSense.CBreeze.Core
 
             return child;
         }
+
+        public abstract string GetName();
     }
 }
