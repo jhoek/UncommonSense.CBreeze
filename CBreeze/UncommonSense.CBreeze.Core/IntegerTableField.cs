@@ -6,12 +6,24 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class IntegerTableField : TableField
+    public class IntegerTableField : TableField
     {
+        public IntegerTableField(string name) : this(0, name)
+        {
+        }
+
         public IntegerTableField(int no, string name)
             : base(no, name)
         {
             Properties = new IntegerTableFieldProperties(this);
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -22,25 +34,17 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override TableFieldType Type
-        {
-            get
-            {
-                return TableFieldType.Integer;
-            }
-        }
-
         public IntegerTableFieldProperties Properties
         {
             get;
             protected set;
         }
 
-        public override Properties AllProperties
+        public override TableFieldType Type
         {
             get
             {
-                return Properties;
+                return TableFieldType.Integer;
             }
         }
     }

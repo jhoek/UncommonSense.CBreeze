@@ -6,12 +6,24 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class BlobTableField : TableField
+    public class BlobTableField : TableField
     {
+        public BlobTableField(string name) : this(0, name)
+        {
+        }
+
         public BlobTableField(int no, string name)
             : base(no, name)
         {
             Properties = new BlobTableFieldProperties(this);
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -22,25 +34,17 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override TableFieldType Type
-        {
-            get
-            {
-                return TableFieldType.BLOB;
-            }
-        }
-
         public BlobTableFieldProperties Properties
         {
             get;
             protected set;
         }
 
-        public override Properties AllProperties
+        public override TableFieldType Type
         {
             get
             {
-                return Properties;
+                return TableFieldType.BLOB;
             }
         }
     }

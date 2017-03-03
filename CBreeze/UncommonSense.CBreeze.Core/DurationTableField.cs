@@ -8,10 +8,22 @@ namespace UncommonSense.CBreeze.Core
 {
     public class DurationTableField : TableField
     {
+        public DurationTableField(string name) : this(0, name)
+        {
+        }
+
         public DurationTableField(int no, string name)
             : base(no, name)
         {
             Properties = new DurationTableFieldProperties(this);
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -22,20 +34,12 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override TableFieldType Type => TableFieldType.Duration;
-
         public DurationTableFieldProperties Properties
         {
             get;
             protected set;
         }
 
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
+        public override TableFieldType Type => TableFieldType.Duration;
     }
 }

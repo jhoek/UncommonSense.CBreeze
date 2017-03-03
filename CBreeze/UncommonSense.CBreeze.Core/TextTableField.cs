@@ -8,11 +8,23 @@ namespace UncommonSense.CBreeze.Core
 {
     public class TextTableField : TableField
     {
+        public TextTableField(string name, int dataLength = 30) : this(0, name, dataLength)
+        {
+        }
+
         public TextTableField(int no, string name, int dataLength = 30)
             : base(no, name)
         {
             DataLength = dataLength;
             Properties = new TextTableFieldProperties(this);
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -21,19 +33,6 @@ namespace UncommonSense.CBreeze.Core
             {
                 yield return Properties;
             }
-        }
-
-        public override TableFieldType Type
-        {
-            get
-            {
-                return TableFieldType.Text;
-            }
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{0}[{1}]", base.ToString(), DataLength);
         }
 
         public int DataLength
@@ -48,12 +47,17 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
+        public override TableFieldType Type
         {
             get
             {
-                return Properties;
+                return TableFieldType.Text;
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}[{1}]", base.ToString(), DataLength);
         }
     }
 }

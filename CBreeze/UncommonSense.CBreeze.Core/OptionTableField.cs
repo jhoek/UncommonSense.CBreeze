@@ -8,10 +8,22 @@ namespace UncommonSense.CBreeze.Core
 {
     public class OptionTableField : TableField, IHasOptionString
     {
+        public OptionTableField(string name) : this(0, name)
+        {
+        }
+
         public OptionTableField(int no, string name)
             : base(no, name)
         {
             Properties = new OptionTableFieldProperties(this);
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -22,25 +34,17 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override TableFieldType Type
-        {
-            get
-            {
-                return TableFieldType.Option;
-            }
-        }
-
         public OptionTableFieldProperties Properties
         {
             get;
             protected set;
         }
 
-        public override Properties AllProperties
+        public override TableFieldType Type
         {
             get
             {
-                return Properties;
+                return TableFieldType.Option;
             }
         }
 
