@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezeColumnReportElement.cs" />
+    <Compile Include="AddCBreezeDataItemReportElement.cs" />
     <Compile Include="AddCBreezePageActionContainer.cs" />
     <Compile Include="AddCBreezePageActionGroup.cs" />
     <Compile Include="AddCBreezePageActionSeparator.cs" />
@@ -81,7 +83,6 @@
     <Compile Include="AddCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="AddCBreezeQueryElement.cs" />
-    <Compile Include="AddCBreezeReportElement.cs" />
     <Compile Include="AddCBreezeReportLabel.cs" />
     <Compile Include="AddCBreezeTable.cs" />
     <Compile Include="NewCBreezeTableField.cs" />
