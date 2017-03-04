@@ -1191,17 +1191,17 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case QueryElementType.DataItem:
-                    var newDataItemQueryElement = currentQueryElements.Add(new DataItemQueryElement(elementID, elementName, elementIndentation));
+                    var newDataItemQueryElement = currentQueryElements.Add(new DataItemQueryElement(0, elementID, elementName, elementIndentation));
                     currentProperties.Push(newDataItemQueryElement.Properties);
                     break;
 
                 case QueryElementType.Filter:
-                    var newFilterQueryElement = currentQueryElements.Add(new FilterQueryElement(elementID, elementName, elementIndentation));
+                    var newFilterQueryElement = currentQueryElements.Add(new FilterQueryElement(null, elementID, elementName, elementIndentation));
                     currentProperties.Push(newFilterQueryElement.Properties);
                     break;
 
                 case QueryElementType.Column:
-                    var newColumnQueryElement = currentQueryElements.Add(new ColumnQueryElement(elementID, elementName, elementIndentation));
+                    var newColumnQueryElement = currentQueryElements.Add(new ColumnQueryElement(null, elementID, elementName, elementIndentation));
                     currentProperties.Push(newColumnQueryElement.Properties);
                     break;
 
