@@ -26,8 +26,15 @@ namespace UncommonSense.CBreeze.Demo
             var menuSuite = application.MenuSuites.Add(new MenuSuite("MyMenuSuite"));
 
             // FIXME: ParentID in zelfde range => dan nummeren van 1
+
+            #region Table
+
             table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.DropDown, "Foo", "Baz"));
             table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.Brick, "Oink", "BOink"));
+
+            #endregion Table
+
+            #region Page
 
             page.Actions.Add(new PageActionContainer(containerType: ActionContainerType.ActionItems));
             page.Actions.Add(new PageActionGroup(0, 1));
@@ -44,6 +51,10 @@ namespace UncommonSense.CBreeze.Demo
 
             var function2 = page.Code.Functions.Add(new Function("Baz"));
 
+            #endregion Page
+
+            #region Report
+
             report
                 .Labels
                 .Add(new ReportLabel("MyLabel"))
@@ -55,7 +66,21 @@ namespace UncommonSense.CBreeze.Demo
             report.Elements.Add(new DataItemReportElement(BaseApp.TableIDs.Customer));
             report.Elements.Add(new ColumnReportElement("No", "No."));
 
+            #endregion Report
+
+            #region Codeunit
+
             codeunit.Code.Variables.Add(new ActionVariable("MyActionVariable"));
+
+            #endregion Codeunit
+
+            #region Query
+
+            query.Elements.Add(new DataItemQueryElement(BaseApp.TableIDs.Customer));
+            query.Elements.Add(new FilterQueryElement("No.", indentationLevel: 1));
+            query.Elements.Add(new ColumnQueryElement("Name", indentationLevel: 1));
+
+            #endregion Query
 
             application.Write();
         }
