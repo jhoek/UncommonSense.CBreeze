@@ -5,14 +5,18 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class ReportLabel : KeyedItem<int>, IHasName, INode
-	{
-		public ReportLabel(int id, string name)
-		{
-			ID = id;
-			Name = name;
-			Properties = new ReportLabelProperties(this);
-		}
+    public class ReportLabel : KeyedItem<int>, IHasName, INode
+    {
+        public ReportLabel(string name) : this(0, name)
+        {
+        }
+
+        public ReportLabel(int id, string name)
+        {
+            ID = id;
+            Name = name;
+            Properties = new ReportLabelProperties(this);
+        }
 
         public IEnumerable<INode> ChildNodes
         {
@@ -25,22 +29,22 @@ namespace UncommonSense.CBreeze.Core
         public ReportLabels Container { get; internal set; }
 
         public string Name
-		{
-			get;
-			protected set;
-		}
+        {
+            get;
+            protected set;
+        }
 
         public INode ParentNode => Container;
 
         public ReportLabelProperties Properties
-		{
-			get;
-			protected set;
-		}
+        {
+            get;
+            protected set;
+        }
 
-		public string GetName()
-		{
-			return Name;
-		}
-	}
+        public string GetName()
+        {
+            return Name;
+        }
+    }
 }

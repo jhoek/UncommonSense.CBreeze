@@ -8,10 +8,21 @@ namespace UncommonSense.CBreeze.Core
 {
     public class ColumnReportElement : ReportElement, IHasOptionString
     {
-        public ColumnReportElement(int id, int? indentationLevel)
+        public ColumnReportElement(string name, string sourceExpr = null, int id = 0, int? indentationLevel = null)
             : base(id, indentationLevel)
         {
+            Name = name;
+
             Properties = new ColumnReportElementProperties(this);
+            Properties.SourceExpr = sourceExpr;
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -22,25 +33,17 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override ReportElementType Type
-        {
-            get
-            {
-                return ReportElementType.Column;
-            }
-        }
-
         public ColumnReportElementProperties Properties
         {
             get;
             protected set;
         }
 
-        public override Properties AllProperties
+        public override ReportElementType Type
         {
             get
             {
-                return Properties;
+                return ReportElementType.Column;
             }
         }
 

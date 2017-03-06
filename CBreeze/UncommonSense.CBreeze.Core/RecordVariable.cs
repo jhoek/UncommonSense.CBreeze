@@ -6,20 +6,16 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class RecordVariable : Variable
+    public class RecordVariable : Variable
     {
+        public RecordVariable(string name, int subType) : this(0, name, subType)
+        {
+        }
+
         public RecordVariable(int id, string name, int subType)
             : base(id, name)
         {
             SubType = subType;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.Record;
-            }
         }
 
         public string Dimensions
@@ -44,6 +40,14 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             set;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Record;
+            }
         }
     }
 }

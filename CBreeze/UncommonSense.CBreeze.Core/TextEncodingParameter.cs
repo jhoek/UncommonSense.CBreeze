@@ -7,20 +7,15 @@ using UncommonSense.CBreeze.Common;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-        public class TextEncodingParameter : Parameter
+
+    public class TextEncodingParameter : Parameter
     {
-        public TextEncodingParameter(bool var, int id, string name)
-            : base(var, id, name)
+        public TextEncodingParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.TextEncoding;
-            }
-        }
+        public override ParameterType Type => ParameterType.TextEncoding;
     }
+
 #endif
 }

@@ -6,8 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class BinaryTableField : TableField
+    public class BinaryTableField : TableField
     {
+        public BinaryTableField(string name, int dataLength = 4) : this(0, name, dataLength)
+        {
+        }
+
         public BinaryTableField(int no, string name, int dataLength = 4)
             : base(no, name)
         {
@@ -15,17 +19,20 @@ namespace UncommonSense.CBreeze.Core
             Properties = new BinaryTableFieldProperties(this);
         }
 
-        public override TableFieldType Type
+        public override Properties AllProperties
         {
             get
             {
-                return TableFieldType.Binary;
+                return Properties;
             }
         }
 
-        public override string ToString()
+        public override IEnumerable<INode> ChildNodes
         {
-            return string.Format("{0}[{1}]", base.ToString(), DataLength);
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public int DataLength
@@ -40,20 +47,17 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
+        public override TableFieldType Type
         {
             get
             {
-                return Properties;
+                return TableFieldType.Binary;
             }
         }
 
-        public override IEnumerable<INode> ChildNodes 
+        public override string ToString()
         {
-            get
-            {
-                yield return Properties;
-            }
+            return string.Format("{0}[{1}]", base.ToString(), DataLength);
         }
     }
 }

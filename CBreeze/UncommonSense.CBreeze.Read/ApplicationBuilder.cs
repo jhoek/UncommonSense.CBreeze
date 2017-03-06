@@ -938,228 +938,228 @@ namespace UncommonSense.CBreeze.Read
             switch (parameterType)
             {
                 case ParameterType.Action:
-                    var actionParameter = parameters.Add(new ActionParameter(parameterVar, parameterID, parameterName));
+                    var actionParameter = parameters.Add(new ActionParameter(parameterName, parameterVar, parameterID));
                     actionParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Automation:
-                    var automationParameter = parameters.Add(new AutomationParameter(parameterVar, parameterID, parameterName, parameterSubType));
+                    var automationParameter = parameters.Add(new AutomationParameter(parameterName, parameterSubType, parameterVar, parameterID));
                     automationParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.BigInteger:
-                    var bigIntegerParameter = parameters.Add(new BigIntegerParameter(parameterVar, parameterID, parameterName));
+                    var bigIntegerParameter = parameters.Add(new BigIntegerParameter(parameterName, parameterVar, parameterID));
                     bigIntegerParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.BigText:
-                    var bigTextParameter = parameters.Add(new BigTextParameter(parameterVar, parameterID, parameterName));
+                    var bigTextParameter = parameters.Add(new BigTextParameter(parameterName, parameterVar, parameterID));
                     bigTextParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Binary:
-                    var binaryParameter = parameters.Add(new BinaryParameter(parameterVar, parameterID, parameterName, parameterLength.Value));
+                    var binaryParameter = parameters.Add(new BinaryParameter(parameterName, parameterVar, parameterID, parameterLength.Value));
                     binaryParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Boolean:
-                    var booleanParameter = parameters.Add(new BooleanParameter(parameterVar, parameterID, parameterName));
+                    var booleanParameter = parameters.Add(new BooleanParameter(parameterName, parameterVar, parameterID));
                     booleanParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Byte:
-                    var byteParameter = parameters.Add(new ByteParameter(parameterVar, parameterID, parameterName));
+                    var byteParameter = parameters.Add(new ByteParameter(parameterName, parameterVar, parameterID));
                     byteParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Char:
-                    var charParameter = parameters.Add(new CharParameter(parameterVar, parameterID, parameterName));
+                    var charParameter = parameters.Add(new CharParameter(parameterName, parameterVar, parameterID));
                     charParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Code:
-                    var codeParameter = parameters.Add(new CodeParameter(parameterVar, parameterID, parameterName, parameterLength));
+                    var codeParameter = parameters.Add(new CodeParameter(parameterName, parameterVar, parameterID, parameterLength));
                     codeParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Codeunit:
-                    var codeunitParameter = parameters.Add(new CodeunitParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var codeunitParameter = parameters.Add(new CodeunitParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     codeunitParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Date:
-                    var dateParameter = parameters.Add(new DateParameter(parameterVar, parameterID, parameterName));
+                    var dateParameter = parameters.Add(new DateParameter(parameterName, parameterVar, parameterID));
                     dateParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.DateFormula:
-                    var dateFormulaParameter = parameters.Add(new DateFormulaParameter(parameterVar, parameterID, parameterName));
+                    var dateFormulaParameter = parameters.Add(new DateFormulaParameter(parameterName, parameterVar, parameterID));
                     dateFormulaParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.DateTime:
-                    var dateTimeParameter = parameters.Add(new DateTimeParameter(parameterVar, parameterID, parameterName));
+                    var dateTimeParameter = parameters.Add(new DateTimeParameter(parameterName, parameterVar, parameterID));
                     dateTimeParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Decimal:
-                    var decimalParameter = parameters.Add(new DecimalParameter(parameterVar, parameterID, parameterName));
+                    var decimalParameter = parameters.Add(new DecimalParameter(parameterName, parameterVar, parameterID));
                     decimalParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Dialog:
-                    var dialogParameter = parameters.Add(new DialogParameter(parameterVar, parameterID, parameterName));
+                    var dialogParameter = parameters.Add(new DialogParameter(parameterName, parameterVar, parameterID));
                     dialogParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.DotNet:
-                    var dotnetParameter = parameters.Add(new DotNetParameter(parameterVar, parameterID, parameterName, parameterSubType));
+                    var dotnetParameter = parameters.Add(new DotNetParameter(parameterName, parameterSubType, parameterVar, parameterID));
                     dotnetParameter.Dimensions = parameterDimensions;
                     dotnetParameter.RunOnClient = parameterRunOnClient;
                     dotnetParameter.SuppressDispose = parameterSuppressDispose;
                     break;
 
                 case ParameterType.Duration:
-                    var durationParameter = parameters.Add(new DurationParameter(parameterVar, parameterID, parameterName));
+                    var durationParameter = parameters.Add(new DurationParameter(parameterName, parameterVar, parameterID));
                     durationParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.ExecutionMode:
-                    var executionModeParameter = parameters.Add(new ExecutionModeParameter(parameterVar, parameterID, parameterName));
+                    var executionModeParameter = parameters.Add(new ExecutionModeParameter(parameterName, parameterVar, parameterID));
                     executionModeParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.FieldRef:
-                    var fieldRefParameter = parameters.Add(new FieldRefParameter(parameterVar, parameterID, parameterName));
+                    var fieldRefParameter = parameters.Add(new FieldRefParameter(parameterName, parameterVar, parameterID));
                     fieldRefParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.File:
-                    var fileParameter = parameters.Add(new FileParameter(parameterVar, parameterID, parameterName));
+                    var fileParameter = parameters.Add(new FileParameter(parameterName, parameterVar, parameterID));
                     fileParameter.Dimensions = parameterDimensions;
                     break;
 #if NAV2016
                 case ParameterType.FilterPageBuilder:
-                    var filterPageBuilderParameter = parameters.Add(new FilterPageBuilderParameter(parameterVar, parameterID, parameterName));
+                    var filterPageBuilderParameter = parameters.Add(new FilterPageBuilderParameter(parameterName, parameterVar, parameterID));
                     filterPageBuilderParameter.Dimensions = parameterDimensions;
                     break;
 #endif
                 case ParameterType.Guid:
-                    var guidParameter = parameters.Add(new GuidParameter(parameterVar, parameterID, parameterName));
+                    var guidParameter = parameters.Add(new GuidParameter(parameterName, parameterVar, parameterID));
                     guidParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.InStream:
-                    var instreamParameter = parameters.Add(new InStreamParameter(parameterVar, parameterID, parameterName));
+                    var instreamParameter = parameters.Add(new InStreamParameter(parameterName, parameterVar, parameterID));
                     instreamParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Integer:
-                    var integerParameter = parameters.Add(new IntegerParameter(parameterVar, parameterID, parameterName));
+                    var integerParameter = parameters.Add(new IntegerParameter(parameterName, parameterVar, parameterID));
                     integerParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.KeyRef:
-                    var keyRefParameter = parameters.Add(new KeyRefParameter(parameterVar, parameterID, parameterName));
+                    var keyRefParameter = parameters.Add(new KeyRefParameter(parameterName, parameterVar, parameterID));
                     keyRefParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Ocx:
-                    var ocxParameter = parameters.Add(new OcxParameter(parameterVar, parameterID, parameterName, parameterSubType));
+                    var ocxParameter = parameters.Add(new OcxParameter(parameterName, parameterSubType, parameterVar, parameterID));
                     ocxParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Option:
-                    var optionParameter = parameters.Add(new OptionParameter(parameterVar, parameterID, parameterName));
+                    var optionParameter = parameters.Add(new OptionParameter(parameterName, parameterVar, parameterID));
                     optionParameter.Dimensions = parameterDimensions;
                     optionParameter.OptionString = parameterOptionString;
                     break;
 
                 case ParameterType.OutStream:
-                    var outstreamParameter = parameters.Add(new OutStreamParameter(parameterVar, parameterID, parameterName));
+                    var outstreamParameter = parameters.Add(new OutStreamParameter(parameterName, parameterVar, parameterID));
                     outstreamParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Page:
-                    var pageParameter = parameters.Add(new PageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var pageParameter = parameters.Add(new PageParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     pageParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Query:
-                    var queryParameter = parameters.Add(new QueryParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var queryParameter = parameters.Add(new QueryParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     queryParameter.Dimensions = parameterDimensions;
                     queryParameter.SecurityFiltering = parameterSecurityFiltering.ToNullableEnum<QuerySecurityFiltering>();
                     break;
 
                 case ParameterType.Record:
-                    var recordParameter = parameters.Add(new RecordParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var recordParameter = parameters.Add(new RecordParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     recordParameter.Dimensions = parameterDimensions;
                     recordParameter.Temporary = parameterTemporary;
                     break;
 
                 case ParameterType.RecordID:
-                    var recordIDParameter = parameters.Add(new RecordIDParameter(parameterVar, parameterID, parameterName));
+                    var recordIDParameter = parameters.Add(new RecordIDParameter(parameterName, parameterVar, parameterID));
                     recordIDParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.RecordRef:
-                    var recordRefParameter = parameters.Add(new RecordRefParameter(parameterVar, parameterID, parameterName));
+                    var recordRefParameter = parameters.Add(new RecordRefParameter(parameterName, parameterVar, parameterID));
                     recordRefParameter.Dimensions = parameterDimensions;
                     recordRefParameter.SecurityFiltering = parameterSecurityFiltering.ToNullableEnum<RecordSecurityFiltering>();
                     break;
 
                 case ParameterType.Report:
-                    var reportParameter = parameters.Add(new ReportParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var reportParameter = parameters.Add(new ReportParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     reportParameter.Dimensions = parameterDimensions;
                     break;
 #if NAV2016
                 case ParameterType.ReportFormat:
-                    var reportFormatParameter = parameters.Add(new ReportFormatParameter(parameterVar, parameterID, parameterName));
+                    var reportFormatParameter = parameters.Add(new ReportFormatParameter(parameterName, parameterVar, parameterID));
                     reportFormatParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.TableConnectionType:
-                    var tableConnectionTypeParameter = parameters.Add(new TableConnectionTypeParameter(parameterVar, parameterID, parameterName));
+                    var tableConnectionTypeParameter = parameters.Add(new TableConnectionTypeParameter(parameterName, parameterVar, parameterID));
                     tableConnectionTypeParameter.Dimensions = parameterDimensions;
                     break;
 #endif
                 case ParameterType.TestPage:
-                    var testPageParameter = parameters.Add(new TestPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var testPageParameter = parameters.Add(new TestPageParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     testPageParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.TestRequestPage:
-                    var testRequestPageParameter = parameters.Add(new TestRequestPageParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var testRequestPageParameter = parameters.Add(new TestRequestPageParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     testRequestPageParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Text:
-                    var textParameter = parameters.Add(new TextParameter(parameterVar, parameterID, parameterName, parameterLength));
+                    var textParameter = parameters.Add(new TextParameter(parameterName, parameterVar, parameterID, parameterLength));
                     textParameter.Dimensions = parameterDimensions;
                     break;
 #if NAV2016
                 case ParameterType.TextEncoding:
-                    var textEncodingParameter = parameters.Add(new TextEncodingParameter(parameterVar, parameterID, parameterName));
+                    var textEncodingParameter = parameters.Add(new TextEncodingParameter(parameterName, parameterVar, parameterID));
                     textEncodingParameter.Dimensions = parameterDimensions;
                     break;
 #endif
                 case ParameterType.Time:
-                    var timeParameter = parameters.Add(new TimeParameter(parameterVar, parameterID, parameterName));
+                    var timeParameter = parameters.Add(new TimeParameter(parameterName, parameterVar, parameterID));
                     timeParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.TransactionType:
-                    var transactionTypeParameter = parameters.Add(new TransactionTypeParameter(parameterVar, parameterID, parameterName));
+                    var transactionTypeParameter = parameters.Add(new TransactionTypeParameter(parameterName, parameterVar, parameterID));
                     transactionTypeParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.Variant:
-                    var variantParameter = parameters.Add(new VariantParameter(parameterVar, parameterID, parameterName));
+                    var variantParameter = parameters.Add(new VariantParameter(parameterName, parameterVar, parameterID));
                     variantParameter.Dimensions = parameterDimensions;
                     break;
 
                 case ParameterType.XmlPort:
-                    var xmlPortParameter = parameters.Add(new XmlPortParameter(parameterVar, parameterID, parameterName, parameterSubType.ToInteger()));
+                    var xmlPortParameter = parameters.Add(new XmlPortParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     xmlPortParameter.Dimensions = parameterDimensions;
                     break;
 
@@ -1191,17 +1191,17 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case QueryElementType.DataItem:
-                    var newDataItemQueryElement = currentQueryElements.Add(new DataItemQueryElement(elementID, elementName, elementIndentation));
+                    var newDataItemQueryElement = currentQueryElements.Add(new DataItemQueryElement(0, elementID, elementName, elementIndentation));
                     currentProperties.Push(newDataItemQueryElement.Properties);
                     break;
 
                 case QueryElementType.Filter:
-                    var newFilterQueryElement = currentQueryElements.Add(new FilterQueryElement(elementID, elementName, elementIndentation));
+                    var newFilterQueryElement = currentQueryElements.Add(new FilterQueryElement(null, elementID, elementName, elementIndentation));
                     currentProperties.Push(newFilterQueryElement.Properties);
                     break;
 
                 case QueryElementType.Column:
-                    var newColumnQueryElement = currentQueryElements.Add(new ColumnQueryElement(elementID, elementName, elementIndentation));
+                    var newColumnQueryElement = currentQueryElements.Add(new ColumnQueryElement(null, elementID, elementName, elementIndentation));
                     currentProperties.Push(newColumnQueryElement.Properties);
                     break;
 
@@ -1343,15 +1343,14 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case ReportElementType.DataItem:
-                    var newDataItemElement = new DataItemReportElement(elementID, elementIndentation);
+                    var newDataItemElement = new DataItemReportElement(null, elementID, elementIndentation);
                     newDataItemElement.Name = elementName;
                     currentReportElements.Add(newDataItemElement);
                     currentProperties.Push(newDataItemElement.Properties);
                     break;
 
                 case ReportElementType.Column:
-                    var newColumnElement = new ColumnReportElement(elementID, elementIndentation);
-                    newColumnElement.Name = elementName;
+                    var newColumnElement = new ColumnReportElement(elementName, null, elementID, elementIndentation);
                     currentReportElements.Add(newColumnElement);
                     currentProperties.Push(newColumnElement.Properties);
                     break;

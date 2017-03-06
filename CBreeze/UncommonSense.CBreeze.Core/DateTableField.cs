@@ -8,11 +8,17 @@ namespace UncommonSense.CBreeze.Core
 {
     public class DateTableField : TableField
     {
+        public DateTableField(string name) : this(0, name)
+        {
+        }
+
         public DateTableField(int no, string name)
             : base(no, name)
         {
             Properties = new DateTableFieldProperties(this);
         }
+
+        public override Properties AllProperties => Properties;
 
         public override IEnumerable<INode> ChildNodes
         {
@@ -22,8 +28,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override TableFieldType Type => TableFieldType.Date;
         public DateTableFieldProperties Properties { get; protected set; }
-        public override Properties AllProperties => Properties;
+        public override TableFieldType Type => TableFieldType.Date;
     }
 }

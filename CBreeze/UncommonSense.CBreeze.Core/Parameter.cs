@@ -8,22 +8,11 @@ namespace UncommonSense.CBreeze.Core
 {
     public abstract class Parameter : KeyedItem<int>, IHasName
     {
-        internal Parameter(bool var, int id, string name)
+        internal Parameter(string name, bool var = false, int id = 0)
         {
             ID = id;
             Name = name;
             Var = var;
-        }
-
-        public abstract ParameterType Type
-        {
-            get;
-        }
-
-        public bool Var
-        {
-            get;
-            protected set;
         }
 
         public string Dimensions
@@ -33,6 +22,17 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public string Name
+        {
+            get;
+            protected set;
+        }
+
+        public abstract ParameterType Type
+        {
+            get;
+        }
+
+        public bool Var
         {
             get;
             protected set;

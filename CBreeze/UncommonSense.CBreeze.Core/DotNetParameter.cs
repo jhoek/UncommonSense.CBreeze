@@ -6,20 +6,11 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DotNetParameter : Parameter
+    public class DotNetParameter : Parameter
     {
-        public DotNetParameter(bool var, int id, string name, string subType)
-            : base(var, id, name)
+        public DotNetParameter(string name, string subType, bool var = false, int id = 0) : base(name, var, id)
         {
             SubType = subType;
-        }
-
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.DotNet;
-            }
         }
 
         public bool? RunOnClient
@@ -39,5 +30,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             set;
         }
+
+        public override ParameterType Type => ParameterType.DotNet;
     }
 }

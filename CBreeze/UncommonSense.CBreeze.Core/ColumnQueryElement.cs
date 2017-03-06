@@ -6,12 +6,13 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ColumnQueryElement : QueryElement
+    public class ColumnQueryElement : QueryElement
     {
-        public ColumnQueryElement(int id, string name, int? indentationLevel)
+        public ColumnQueryElement(string dataSource = null, int id = 0, string name = null, int? indentationLevel = null)
             : base(id, name, indentationLevel)
         {
             Properties = new ColumnQueryElementProperties(this);
+            Properties.DataSource = dataSource;
         }
 
         public override QueryElementType Type

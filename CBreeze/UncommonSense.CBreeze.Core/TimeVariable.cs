@@ -6,11 +6,21 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TimeVariable : Variable
+    public class TimeVariable : Variable
     {
+        public TimeVariable(string name) : this(0, name)
+        {
+        }
+
         public TimeVariable(int id, string name)
             : base(id, name)
         {
+        }
+
+        public string Dimensions
+        {
+            get;
+            set;
         }
 
         public override VariableType Type
@@ -19,12 +29,6 @@ namespace UncommonSense.CBreeze.Core
             {
                 return VariableType.Time;
             }
-        }
-
-        public string Dimensions
-        {
-            get;
-            set;
         }
     }
 }

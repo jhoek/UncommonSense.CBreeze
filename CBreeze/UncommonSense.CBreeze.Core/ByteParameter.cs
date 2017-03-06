@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ByteParameter : Parameter
+    public class ByteParameter : Parameter
     {
-        public ByteParameter(bool var, int id, string name) : base(var, id, name)
+        public ByteParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Byte;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.Byte;
     }
 }

@@ -22,11 +22,19 @@ namespace UncommonSense.CBreeze.Demo
             var report = application.Reports.Add(new Report("MyReport"));
             var xmlPort = application.XmlPorts.Add(new XmlPort("MyXmlPort"));
             var query = application.Queries.Add(new Query("MyQuery"));
+            var codeunit = application.Codeunits.Add(new Codeunit("MyCodeunit"));
             var menuSuite = application.MenuSuites.Add(new MenuSuite("MyMenuSuite"));
 
             // FIXME: ParentID in zelfde range => dan nummeren van 1
+
+            #region Table
+
             table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.DropDown, "Foo", "Baz"));
             table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.Brick, "Oink", "BOink"));
+
+            #endregion Table
+
+            #region Page
 
             page.Actions.Add(new PageActionContainer(containerType: ActionContainerType.ActionItems));
             page.Actions.Add(new PageActionGroup(0, 1));
@@ -35,12 +43,44 @@ namespace UncommonSense.CBreeze.Demo
             page.Controls.Add(new GroupPageControl(0, 1, GroupType.Repeater));
 
             var function = page.Code.Functions.Add(new Function(0, "Foo"));
-            function.Parameters.Add(new IntegerParameter(false, 0, "MyParam"));
-            function.Parameters.Add(new BigTextParameter(false, 0, "MyBigText"));
+            function.Parameters.Add(new IntegerParameter("MyParam"));
+            function.Parameters.Add(new BigTextParameter("MyBigText"));
+            function.Parameters.Add(new TextParameter("MyText", dataLength: 80, var: true));
             function.Variables.Add(new IntegerVariable(0, "Oink"));
             function.Variables.Add(new IntegerVariable(0, "Boink"));
 
-            var function2 = page.Code.Functions.Add(new Function(0, "Baz"));
+            var function2 = page.Code.Functions.Add(new Function("Baz"));
+
+            #endregion Page
+
+            #region Report
+
+            report
+                .Labels
+                .Add(new ReportLabel("MyLabel"))
+                .Properties
+                .CaptionML
+                .Set("ENU", "Foo")
+                .Set("NLD", "Baz");
+
+            report.Elements.Add(new DataItemReportElement(BaseApp.TableIDs.Customer));
+            report.Elements.Add(new ColumnReportElement("No", "No."));
+
+            #endregion Report
+
+            #region Codeunit
+
+            codeunit.Code.Variables.Add(new ActionVariable("MyActionVariable"));
+
+            #endregion Codeunit
+
+            #region Query
+
+            query.Elements.Add(new DataItemQueryElement(BaseApp.TableIDs.Customer));
+            query.Elements.Add(new FilterQueryElement("No.", indentationLevel: 1));
+            query.Elements.Add(new ColumnQueryElement("Name", indentationLevel: 1));
+
+            #endregion Query
 
             application.Write();
         }

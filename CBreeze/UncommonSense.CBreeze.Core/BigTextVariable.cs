@@ -8,9 +8,19 @@ namespace UncommonSense.CBreeze.Core
 {
     public class BigTextVariable : Variable
     {
+        public BigTextVariable(string name) : this(0, name)
+        {
+        }
+
         public BigTextVariable(int id, string name)
             : base(id, name)
         {
+        }
+
+        public string Dimensions
+        {
+            get;
+            set;
         }
 
         public override VariableType Type
@@ -19,12 +29,6 @@ namespace UncommonSense.CBreeze.Core
             {
                 return VariableType.BigText;
             }
-        }
-
-        public string Dimensions
-        {
-            get;
-            set;
         }
     }
 }
