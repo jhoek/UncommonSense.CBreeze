@@ -16,8 +16,8 @@ namespace UncommonSense.CBreeze.Core
         public Application Application { get; protected set; }
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
         public INode ParentNode => Application;
-
         protected override IEnumerable<int> DefaultRange => DefaultRanges.ID;
+        protected override bool UseAlternativeRange => false;
 
         public override void ValidateName(Query item)
         {
