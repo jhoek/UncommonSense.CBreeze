@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Core
             CodeLines = new CodeLines(this);
             Parameters = new Parameters(this);
             ReturnValue = new FunctionReturnValue(this);
-            Variables = new Variables(this);
+            Variables = new FunctionVariables(this);
 
 #if NAV2016
             EventPublisherObject = new ObjectReference();

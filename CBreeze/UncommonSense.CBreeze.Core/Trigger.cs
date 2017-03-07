@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
         public Trigger()
         {
             CodeLines = new CodeLines(this);
-            Variables = new Variables(this);
+            Variables = new TriggerVariables(this);
         }
 
         public IEnumerable<INode> ChildNodes

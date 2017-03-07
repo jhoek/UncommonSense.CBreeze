@@ -13,6 +13,7 @@ namespace UncommonSense.CBreeze.Core
             Code = code;
         }
 
+        public override IEnumerable<int> AlternativeRange => Enumerable.Range(1000, int.MaxValue);
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
         public Code Code

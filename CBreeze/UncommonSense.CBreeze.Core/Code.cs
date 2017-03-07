@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Code : IHasVariables, INode
+    public class Code : INode
     {
         internal Code(Object @object)
         {
@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Core
             Documentation = new Documentation(this);
             Events = new Events(this);
             Functions = new Functions(this);
-            Variables = new Variables(this);
+            Variables = new GlobalVariables(this);
         }
 
         public IEnumerable<INode> ChildNodes
@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Core
 
         public INode ParentNode => Object;
 
-        public Variables Variables
+        public GlobalVariables Variables
         {
             get;
             protected set;
