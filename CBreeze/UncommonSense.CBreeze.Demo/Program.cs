@@ -13,29 +13,38 @@ namespace UncommonSense.CBreeze.Demo
     {
         public static void Main(string[] args)
         {
-            DefaultRanges.ID = Enumerable.Range(50000, 1000);
-            DefaultRanges.UID = Enumerable.Range(1000000000, 1000);
+            DefaultRanges.ID = Enumerable.Range(50000, 100);
+            DefaultRanges.UID = Enumerable.Range(1000000000, 100);
 
             var application = new Application();
-            var table = application.Tables.Add(new Table("MyTable"));
-            var page = application.Pages.Add(new Page("MyPage"));
-            var report = application.Reports.Add(new Report("MyReport"));
-            var xmlPort = application.XmlPorts.Add(new XmlPort("MyXmlPort"));
-            var query = application.Queries.Add(new Query("MyQuery"));
-            var codeunit = application.Codeunits.Add(new Codeunit("MyCodeunit"));
-            var menuSuite = application.MenuSuites.Add(new MenuSuite("MyMenuSuite"));
+
+            //var table = SetupTable(application.Tables.Add(new Table("MyTable")));
+
+            var page = SetupPage(application.Pages.Add(new Page("MyPage")));
+
+            //var report = SetupReport(application.Reports.Add(new Report("MyReport")));
+            //var xmlPort = SetupXmlPort(application.XmlPorts.Add(new XmlPort("MyXmlPort")));
+            //var query = SetupQuery(application.Queries.Add(new Query("MyQuery")));
+            //var codeunit = SetupCodeunit(application.Codeunits.Add(new Codeunit("MyCodeunit")));
+            //var menuSuite = SetupMenuSuite(application.MenuSuites.Add(new MenuSuite("MyMenuSuite")));
 
             // FIXME: ParentID in zelfde range => dan nummeren van 1
+            application.Write();
+        }
 
-            #region Table
+        private static Codeunit SetupCodeunit(Codeunit codeunit)
+        {
+            codeunit.Code.Variables.Add(new ActionVariable("MyActionVariable"));
+            return codeunit;
+        }
 
-            table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.DropDown, "Foo", "Baz"));
-            table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.Brick, "Oink", "BOink"));
+        private static MenuSuite SetupMenuSuite(MenuSuite menuSuite)
+        {
+            return menuSuite;
+        }
 
-            #endregion Table
-
-            #region Page
-
+        private static Page SetupPage(Page page)
+        {
             page.Actions.Add(new PageActionContainer(containerType: ActionContainerType.ActionItems));
             page.Actions.Add(new PageActionGroup(0, 1));
 
@@ -51,10 +60,20 @@ namespace UncommonSense.CBreeze.Demo
 
             var function2 = page.Code.Functions.Add(new Function("Baz"));
 
-            #endregion Page
+            return page;
+        }
 
-            #region Report
+        private static Query SetupQuery(Query query)
+        {
+            query.Elements.Add(new DataItemQueryElement(BaseApp.TableIDs.Customer));
+            query.Elements.Add(new FilterQueryElement("No.", indentationLevel: 1));
+            query.Elements.Add(new ColumnQueryElement("Name", indentationLevel: 1));
 
+            return query;
+        }
+
+        private static Report SetupReport(Report report)
+        {
             report
                 .Labels
                 .Add(new ReportLabel("MyLabel"))
@@ -66,23 +85,28 @@ namespace UncommonSense.CBreeze.Demo
             report.Elements.Add(new DataItemReportElement(BaseApp.TableIDs.Customer));
             report.Elements.Add(new ColumnReportElement("No", "No."));
 
-            #endregion Report
+            return report;
+        }
 
-            #region Codeunit
+        private static Table SetupTable(Table table)
+        {
+            table.Fields.Add(new IntegerTableField("Foo"));
+            table.Fields.Add(new CodeTableField("Baz"));
 
-            codeunit.Code.Variables.Add(new ActionVariable("MyActionVariable"));
+            table.Keys.Add(new TableKey("Foo"));
 
-            #endregion Codeunit
+            table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.DropDown, "Foo", "Baz"));
+            table.FieldGroups.Add(new TableFieldGroup(TableFieldGroup.Brick, "Oink", "BOink"));
 
-            #region Query
+            var function = table.Code.Functions.Add(new Function("MyFunction"));
+            function.Parameters.Add(new TextParameter("MyTextParameter", true));
 
-            query.Elements.Add(new DataItemQueryElement(BaseApp.TableIDs.Customer));
-            query.Elements.Add(new FilterQueryElement("No.", indentationLevel: 1));
-            query.Elements.Add(new ColumnQueryElement("Name", indentationLevel: 1));
+            return table;
+        }
 
-            #endregion Query
-
-            application.Write();
+        private static XmlPort SetupXmlPort(XmlPort xmlPort)
+        {
+            return xmlPort;
         }
     }
 }

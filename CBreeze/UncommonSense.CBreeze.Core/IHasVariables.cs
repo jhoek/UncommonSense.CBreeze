@@ -7,6 +7,11 @@ namespace UncommonSense.CBreeze.Core
 {
     public interface IHasVariables : INode
     {
+        int ID
+        {
+            get;
+        }
+
         Variables Variables
         {
             get;

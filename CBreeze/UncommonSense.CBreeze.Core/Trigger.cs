@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
@@ -25,7 +26,9 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public INode ParentNode => null;
+        public int ID => 0; // FIXME
+
+        public INode ParentNode => null; // FIXME
 
         public Variables Variables
         {

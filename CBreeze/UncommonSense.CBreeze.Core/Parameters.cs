@@ -23,6 +23,7 @@ namespace UncommonSense.CBreeze.Core
 
         public INode ParentNode => Container;
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
+        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Container.ID);
 
         public override void ValidateName(Parameter item)
         {

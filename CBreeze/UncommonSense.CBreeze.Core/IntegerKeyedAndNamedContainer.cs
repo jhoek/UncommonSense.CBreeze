@@ -7,7 +7,9 @@ namespace UncommonSense.CBreeze.Core
 {
     public abstract class IntegerKeyedAndNamedContainer<TItem> : KeyedAndNamedContainer<int, TItem> where TItem : KeyedItem<int>, IHasName
     {
+        // FIXME: SHould alternative range for functions be 1000..?
         public static IEnumerable<int> AlternativeRange => Enumerable.Range(1, int.MaxValue);
+
         public virtual IEnumerable<int> ExistingIDs => this.Select(i => i.ID);
 
         public IEnumerable<int> Range { get; set; }

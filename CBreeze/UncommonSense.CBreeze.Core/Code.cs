@@ -46,6 +46,8 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public int ID => Object.ID;
+
         public Object Object
         {
             get;

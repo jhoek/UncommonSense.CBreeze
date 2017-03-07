@@ -10,6 +10,7 @@ namespace UncommonSense.CBreeze.Core
     {
         internal Variables(IHasVariables container)
         {
+            Container = container;
         }
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
@@ -20,11 +21,13 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override IEnumerable<int> ExistingIDs => this.Select(v => v.ID); // FIXME: ook parameters
-
+        public override IEnumerable<int> ExistingIDs => this.Select(v => v.ID);
         public INode ParentNode => Container;
 
+        // FIXME: ook parameters
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
+
+        protected override bool UseAlternativeRange => (Range ?? AlternativeRange).Contains(Container.ID);
 
         public override void ValidateName(Variable item)
         {
