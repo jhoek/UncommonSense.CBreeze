@@ -22,6 +22,8 @@ namespace UncommonSense.CBreeze.Core
             internal set;
         }
 
+        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Page.ObjectID);
+
         public INode ParentNode => Page;
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 

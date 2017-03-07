@@ -20,6 +20,8 @@ namespace UncommonSense.CBreeze.Core
             get; protected set;
         }
 
+        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Report.ID);
+
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
         public override void ValidateName(ReportElement item)
