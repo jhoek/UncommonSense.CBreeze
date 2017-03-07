@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Trigger : IHasVariables, IHasCodeLines
+    public class Trigger : IHasCodeLines
     {
         public Trigger()
         {

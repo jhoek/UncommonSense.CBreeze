@@ -108,7 +108,6 @@
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="IHasCodeLines.cs" />
-    <Compile Include="IHasVariables.cs" />
     <Compile Include="IPageExtensionMethods.cs" />
     <Compile Include="LocalVariables.cs" />
     <Compile Include="MissingAction.cs" />

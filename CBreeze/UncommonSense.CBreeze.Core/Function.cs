@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Function : KeyedItem<int>, IHasName, IHasParameters, IHasVariables, IHasCodeLines, INode
+    public class Function : KeyedItem<int>, IHasName, IHasParameters, IHasCodeLines, INode
     {
         public Function(string name) : this(0, name)
         {
