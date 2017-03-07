@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Function : KeyedItem<int>, IHasName, IHasParameters, IHasCodeLines, INode
+    public class Function : KeyedItem<int>, IHasName, IHasCodeLines, INode
     {
         public Function(string name) : this(0, name)
         {
@@ -16,7 +16,7 @@ namespace UncommonSense.CBreeze.Core
             ID = id;
             Name = name;
             CodeLines = new CodeLines(this);
-            Parameters = new Parameters(this);
+            Parameters = new FunctionParameters(this);
             ReturnValue = new FunctionReturnValue(this);
             Variables = new FunctionVariables(this);
 

@@ -95,6 +95,7 @@
     <Compile Include="CalcFormulaTableFilterLine.cs" />
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
+    <Compile Include="EventParameters.cs" />
     <Compile Include="EventPublisherSubscriber.cs" />
     <Compile Include="EventSubscriberInstance.cs" />
     <Compile Include="EventSubscriberInstanceProperty.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="ExternalAccessProperty.cs" />
     <Compile Include="FilterPageBuilderParameter.cs" />
     <Compile Include="FilterPageBuilderVariable.cs" />
+    <Compile Include="FunctionParameters.cs" />
     <Compile Include="FunctionVariables.cs" />
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
@@ -236,7 +238,6 @@
     <Compile Include="GuidVariable.cs" />
     <Compile Include="IHasCode.cs" />
     <Compile Include="IHasOptionString.cs" />
-    <Compile Include="IHasParameters.cs" />
     <Compile Include="IPage.cs" />
     <Compile Include="IHasProperties.cs" />
     <Compile Include="Importance.cs" />

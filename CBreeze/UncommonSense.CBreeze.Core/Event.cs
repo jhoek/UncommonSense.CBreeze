@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Event : IHasParameters, IHasCodeLines, INode
+    public class Event : IHasCodeLines, INode
     {
         public Event(int sourceID, string sourceName, int id, string name)
         {
@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Core
             SourceID = sourceID;
             SourceName = sourceName;
             CodeLines = new CodeLines(this);
-            Parameters = new Parameters(this);
+            Parameters = new EventParameters(this);
             Variables = new EventVariables(this);
         }
 
