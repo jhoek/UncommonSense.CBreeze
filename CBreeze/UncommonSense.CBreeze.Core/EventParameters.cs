@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public Event Event { get; protected set; }
-
+        public override IEnumerable<int> ExistingIDs => this.Select(p => p.ID).Concat(Event.Variables.Select(v => v.ID));
         public override INode ParentNode => Event;
     }
 }

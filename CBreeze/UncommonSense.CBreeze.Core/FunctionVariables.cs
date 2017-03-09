@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
             Function = function;
         }
 
+        public override IEnumerable<int> ExistingIDs => this.Select(v => v.ID).Concat(Function.Parameters.Select(p => p.ID));
+
         public Function Function { get; protected set; }
         public override INode ParentNode => Function;
     }
