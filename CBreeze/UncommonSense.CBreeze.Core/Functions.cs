@@ -13,7 +13,6 @@ namespace UncommonSense.CBreeze.Core
             Code = code;
         }
 
-        public override IEnumerable<int> AlternativeRange => Enumerable.Range(1000, int.MaxValue);
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
         public Code Code
@@ -24,7 +23,7 @@ namespace UncommonSense.CBreeze.Core
 
         public INode ParentNode => Code;
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
-        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Code.Object.ID);
+        protected override bool UseAlternativeRange => false;
 
         public override void ValidateName(Function item)
         {
