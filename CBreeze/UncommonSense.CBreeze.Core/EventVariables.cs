@@ -14,6 +14,5 @@ namespace UncommonSense.CBreeze.Core
 
         public Event Event { get; protected set; }
         public override INode ParentNode => Event;
-        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Event.ID);
     }
 }

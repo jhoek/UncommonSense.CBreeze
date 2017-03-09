@@ -15,7 +15,7 @@ namespace UncommonSense.CBreeze.Core
         public IEnumerable<int> Range { get; set; }
 
         protected abstract IEnumerable<int> DefaultRange { get; }
-        protected abstract bool UseAlternativeRange { get; }
+        protected virtual bool UseAlternativeRange => false;
 
         protected override int GetNextAvailableKey() => (Range ?? (UseAlternativeRange ? AlternativeRange : DefaultRange)).Except(ExistingIDs).First();
 

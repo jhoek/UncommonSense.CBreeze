@@ -15,8 +15,6 @@ namespace UncommonSense.CBreeze.Core
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
         public INode ParentNode => Query;
 
-        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Query.ID);
-
         public Query Query
         {
             get;

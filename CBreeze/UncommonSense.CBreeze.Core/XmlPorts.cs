@@ -16,7 +16,6 @@ namespace UncommonSense.CBreeze.Core
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
         public INode ParentNode => Application;
         protected override IEnumerable<int> DefaultRange => DefaultRanges.ID;
-        protected override bool UseAlternativeRange => false;
 
         public override void ValidateName(XmlPort item)
         {

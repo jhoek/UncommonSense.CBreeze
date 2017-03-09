@@ -23,7 +23,6 @@ namespace UncommonSense.CBreeze.Core
 
         public INode ParentNode => Code;
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
-        protected override bool UseAlternativeRange => false;
 
         public override void ValidateName(Function item)
         {

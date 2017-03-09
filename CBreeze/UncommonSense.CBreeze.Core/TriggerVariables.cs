@@ -14,6 +14,5 @@ namespace UncommonSense.CBreeze.Core
 
         public override INode ParentNode => Trigger;
         public Trigger Trigger { get; protected set; }
-        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Trigger.ID);
     }
 }

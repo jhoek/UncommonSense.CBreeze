@@ -14,6 +14,5 @@ namespace UncommonSense.CBreeze.Core
 
         public Code Code { get; protected set; }
         public override INode ParentNode => Code;
-        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Code.Object.ID);
     }
 }
