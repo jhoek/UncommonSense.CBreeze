@@ -18,9 +18,10 @@ namespace UncommonSense.CBreeze.Demo
 
             var application = new Application();
 
-            //var table = SetupTable(application.Tables.Add(new Table("MyTable")));
+            var table = SetupTable(application.Tables.Add(new Table("MyTable")));
+            var table2 = SetupTable(application.Tables.Add(new Table(1, "MyOtherTable")));
 
-            var page = SetupPage(application.Pages.Add(new Page("MyPage")));
+            //var page = SetupPage(application.Pages.Add(new Page("MyPage")));
 
             //var report = SetupReport(application.Reports.Add(new Report("MyReport")));
             //var xmlPort = SetupXmlPort(application.XmlPorts.Add(new XmlPort("MyXmlPort")));
