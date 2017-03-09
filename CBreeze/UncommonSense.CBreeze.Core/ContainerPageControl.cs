@@ -8,37 +8,10 @@ namespace UncommonSense.CBreeze.Core
 {
     public class ContainerPageControl : PageControl
     {
-        public ContainerPageControl(int id, int? indentationLevel, ContainerType containerType) : this(id, indentationLevel)
-        {
-            Properties.ContainerType = containerType;
-        }
-
-        public ContainerPageControl(int id, int? indentationLevel)
-            : base(id, indentationLevel)
+        public ContainerPageControl(int id = 0, int? indentationLevel = null, ContainerType containerType = ContainerType.ContentArea) : base(id, indentationLevel)
         {
             Properties = new ContainerPageControlProperties(this);
-        }
-
-        public override IEnumerable<INode> ChildNodes
-        {
-            get
-            {
-                yield return Properties;
-            }
-        }
-
-        public override PageControlType Type
-        {
-            get
-            {
-                return PageControlType.Container;
-            }
-        }
-
-        public ContainerPageControlProperties Properties
-        {
-            get;
-            protected set;
+            Properties.ContainerType = containerType;
         }
 
         public override Properties AllProperties
@@ -49,9 +22,26 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override string GetName()
+        public override IEnumerable<INode> ChildNodes
         {
-            return Properties.Name;
+            get
+            {
+                yield return Properties;
+            }
+        }
+
+        public ContainerPageControlProperties Properties
+        {
+            get;
+            protected set;
+        }
+
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Container;
+            }
         }
 
         public GroupPageControl GetGroupByCaption(string caption, IEnumerable<int> range, Position position)
@@ -80,6 +70,11 @@ namespace UncommonSense.CBreeze.Core
             }
 
             return groupPageControl;
+        }
+
+        public override string GetName()
+        {
+            return Properties.Name;
         }
     }
 }

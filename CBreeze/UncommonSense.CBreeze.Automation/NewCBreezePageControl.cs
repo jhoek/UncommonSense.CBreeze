@@ -121,6 +121,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         #region Dynamic parameters
+
         protected DynamicParameter<bool?> AssistEdit
         {
             get;
@@ -266,11 +267,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2015
+
         protected DynamicParameter<string> Image
         {
             get;
             set;
         }
+
 #endif
 
         protected DynamicParameter<Importance?> Importance
@@ -382,11 +385,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2015
+
         protected DynamicParameter<string> ShowMandatory
         {
             get;
             set;
         }
+
 #endif
 
         protected DynamicParameter<string> SourceExpr
@@ -432,11 +437,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2015
+
         protected DynamicParameter<UpdatePropagation?> UpdatePropagation
         {
             get;
             set;
         }
+
 #endif
 
         protected DynamicParameter<string> ValuesAllowed
@@ -456,7 +463,8 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-        #endregion
+
+        #endregion Dynamic parameters
 
         protected override void ProcessRecord()
         {
@@ -507,7 +515,7 @@ namespace UncommonSense.CBreeze.Automation
                     return groupPageControl;
 
                 case PageControlType.Field:
-                    var fieldPageControl = new FieldPageControl(ID, indentation);
+                    var fieldPageControl = new FieldPageControl(SourceExpr.Value, ID, indentation);
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
                     fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
@@ -547,7 +555,8 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
                     fieldPageControl.Properties.ShowMandatory = ShowMandatory.Value;
 #endif
-                    fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
+
+                    //fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
                     fieldPageControl.Properties.Style = Style.Value;
                     fieldPageControl.Properties.StyleExpr = StyleExpr.Value;
                     fieldPageControl.Properties.Title = Title.Value;
@@ -599,6 +608,7 @@ namespace UncommonSense.CBreeze.Automation
                         partPageControl.AutoCaption();
 
                     return partPageControl;
+
                 default:
                     throw new ArgumentOutOfRangeException("Unknown control type.");
             }

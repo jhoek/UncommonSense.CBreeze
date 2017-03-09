@@ -8,28 +8,23 @@ namespace UncommonSense.CBreeze.Core
 {
     public class FieldPageControl : PageControl
     {
-        public FieldPageControl(int id, int? indentationLevel, string sourceExpr) : this(id, indentationLevel)
+        public FieldPageControl(string sourceExpr, int id = 0, int? indentationLevel = null) : base(id, indentationLevel)
         {
+            Properties = new FieldPageControlProperties(this);
             Properties.SourceExpr = sourceExpr;
         }
 
-        public FieldPageControl(int id, int? indentationLevel)
-            : base(id, indentationLevel)
+        public override Properties AllProperties
         {
-            Properties = new FieldPageControlProperties(this);
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
         {
             get { yield return Properties; }
-        }
-
-        public override PageControlType Type
-        {
-            get
-            {
-                return PageControlType.Field;
-            }
         }
 
         public FieldPageControlProperties Properties
@@ -38,11 +33,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
+        public override PageControlType Type
         {
             get
             {
-                return Properties;
+                return PageControlType.Field;
             }
         }
 

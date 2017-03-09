@@ -8,10 +8,19 @@ namespace UncommonSense.CBreeze.Core
 {
     public class PartPageControl : PageControl
     {
-        public PartPageControl(int id, int? indentationLevel)
+        public PartPageControl(int id = 0, int? indentationLevel = null, PartType partType = PartType.Page)
             : base(id, indentationLevel)
         {
             Properties = new PartPageControlProperties(this);
+            Properties.PartType = partType;
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -22,6 +31,12 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public PartPageControlProperties Properties
+        {
+            get;
+            protected set;
+        }
+
         public override PageControlType Type
         {
             get
@@ -30,23 +45,9 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public PartPageControlProperties Properties
-        {
-            get;
-            protected set;
-        }
-
         public override string GetName()
         {
             return Properties.Name;
-        }
-
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
         }
     }
 }

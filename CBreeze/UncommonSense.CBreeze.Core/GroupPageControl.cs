@@ -8,20 +8,22 @@ namespace UncommonSense.CBreeze.Core
 {
     public class GroupPageControl : PageControl
     {
-        public GroupPageControl(int id, int? indentationLevel, GroupType groupType) : this(id, indentationLevel)
-        {
-            Properties.GroupType = groupType;
-        }
-
-        public GroupPageControl(int id, int? indentationLevel)
-            : base(id, indentationLevel)
+        public GroupPageControl(int id = 0, int? indentationLevel = null, GroupType groupType = GroupType.Group) : base(id, indentationLevel)
         {
             Properties = new GroupPageControlProperties(this);
+            Properties.GroupType = groupType;
 
-            // Cannot set ActionList.Page from here; Container has not been set yet.
-            // Note that this applies only to GroupPageControls, since the other
-            // page control types don't have their own action lists.
-            // Properties.ActionList.Page = Container.Page;
+            // Cannot set ActionList.Page from here; Container has not been set yet. Note that this
+            // applies only to GroupPageControls, since the other page control types don't have their
+            // own action lists. Properties.ActionList.Page = Container.Page;
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -29,14 +31,6 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 yield return Properties;
-            }
-        }
-
-        public override PageControlType Type
-        {
-            get
-            {
-                return PageControlType.Group;
             }
         }
 
@@ -59,11 +53,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
+        public override PageControlType Type
         {
             get
             {
-                return Properties;
+                return PageControlType.Group;
             }
         }
 

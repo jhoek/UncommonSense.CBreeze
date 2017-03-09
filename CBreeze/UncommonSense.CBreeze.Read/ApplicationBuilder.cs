@@ -1231,7 +1231,7 @@ namespace UncommonSense.CBreeze.Read
                     break;
 
                 case PageControlType.Field:
-                    var newFieldPageControl = currentPageControls.Add(new FieldPageControl(controlID, controlIndentation));
+                    var newFieldPageControl = currentPageControls.Add(new FieldPageControl(null, controlID, controlIndentation));
                     currentProperties.Push(newFieldPageControl.Properties);
                     break;
 

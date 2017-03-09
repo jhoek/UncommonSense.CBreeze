@@ -55,6 +55,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as PageControls).Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as PageControls).Add(pageControl);
                         break;
@@ -67,6 +68,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as Page).Controls.Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as Page).Controls.Add(pageControl);
                         break;
@@ -79,6 +81,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as ReportRequestPage).Controls.Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as ReportRequestPage).Controls.Add(pageControl);
                         break;
@@ -91,6 +94,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as XmlPortRequestPage).Controls.Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as XmlPortRequestPage).Controls.Add(pageControl);
                         break;
@@ -107,7 +111,7 @@ namespace UncommonSense.CBreeze.Automation
 
                 ChildControls
                     .InvokeWithContext(null, variables)
-                    .Select(o=>o.BaseObject)
+                    .Select(o => o.BaseObject)
                     .Cast<PageControl>()
                     .ForEach(c => pageControl.AddChildPageControl(c, Core.Position.LastWithinContainer));
             }
@@ -153,7 +157,7 @@ namespace UncommonSense.CBreeze.Automation
                     return groupPageControl;
 
                 case PageControlType.Field:
-                    var fieldPageControl = new FieldPageControl(ID, GetIndentationLevel());
+                    var fieldPageControl = new FieldPageControl(SourceExpr.Value, ID, GetIndentationLevel());
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
                     fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
@@ -193,7 +197,8 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
                     fieldPageControl.Properties.ShowMandatory = ShowMandatory.Value;
 #endif
-                    fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
+
+                    //fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
                     fieldPageControl.Properties.Style = Style.Value;
                     fieldPageControl.Properties.StyleExpr = StyleExpr.Value;
                     fieldPageControl.Properties.Title = Title.Value;
@@ -245,6 +250,7 @@ namespace UncommonSense.CBreeze.Automation
                         partPageControl.AutoCaption();
 
                     return partPageControl;
+
                 default:
                     throw new ArgumentOutOfRangeException("Unknown control type.");
             }

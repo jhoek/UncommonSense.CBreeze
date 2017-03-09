@@ -18,10 +18,10 @@ namespace UncommonSense.CBreeze.Demo
 
             var application = new Application();
 
-            var table = SetupTable(application.Tables.Add(new Table("MyTable")));
-            var table2 = SetupTable(application.Tables.Add(new Table(1, "MyOtherTable")));
+            //var table = SetupTable(application.Tables.Add(new Table("MyTable")));
+            //var table2 = SetupTable(application.Tables.Add(new Table(1, "MyOtherTable")));
 
-            //var page = SetupPage(application.Pages.Add(new Page("MyPage")));
+            var page = SetupPage(application.Pages.Add(new Page("MyPage")));
 
             //var report = SetupReport(application.Reports.Add(new Report("MyReport")));
             //var xmlPort = SetupXmlPort(application.XmlPorts.Add(new XmlPort("MyXmlPort")));
@@ -49,8 +49,9 @@ namespace UncommonSense.CBreeze.Demo
             page.Actions.Add(new PageActionContainer(containerType: ActionContainerType.ActionItems));
             page.Actions.Add(new PageActionGroup(0, 1));
 
-            page.Controls.Add(new ContainerPageControl(0, 0, ContainerType.ContentArea));
-            page.Controls.Add(new GroupPageControl(0, 1, GroupType.Repeater));
+            page.Controls.Add(new ContainerPageControl());
+            page.Controls.Add(new GroupPageControl(indentationLevel: 1, groupType: GroupType.Repeater));
+            page.Controls.Add(new FieldPageControl("MyField", indentationLevel: 2));
 
             var function = page.Code.Functions.Add(new Function(0, "Foo"));
             function.Parameters.Add(new IntegerParameter("MyParam"));
