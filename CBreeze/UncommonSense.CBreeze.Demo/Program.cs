@@ -46,8 +46,10 @@ namespace UncommonSense.CBreeze.Demo
 
         private static Page SetupPage(Page page)
         {
-            page.Actions.Add(new PageActionContainer(containerType: ActionContainerType.ActionItems));
-            page.Actions.Add(new PageActionGroup(0, 1));
+            page.Actions.Add(new PageActionContainer());
+            page.Actions.Add(new PageActionGroup(indentationLevel: 1, caption: "FOo"));
+            page.Actions.Add(new PageAction(caption: "Oink", indentationLevel: 2));
+            page.Actions.Add(new PageActionSeparator(indentationLevel: 2));
 
             page.Controls.Add(new ContainerPageControl());
             page.Controls.Add(new GroupPageControl(indentationLevel: 1, groupType: GroupType.Repeater));

@@ -6,21 +6,22 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class PageActionGroup : PageActionBase
-	{
-		public PageActionGroup(int id, int? indentationLevel)
-			: base(id, indentationLevel)
-		{
-			Properties = new PageActionGroupProperties(this);
-		}
+    public class PageActionGroup : PageActionBase
+    {
+        public PageActionGroup(int id = 0, int? indentationLevel = null, string caption = null)
+            : base(id, indentationLevel)
+        {
+            Properties = new PageActionGroupProperties(this);
+            Properties.CaptionML.Set("ENU", caption);
+        }
 
-		public override PageActionBaseType Type
-		{
-			get
-			{
-				return PageActionBaseType.ActionGroup;
-			}
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
         public override IEnumerable<INode> ChildNodes
         {
@@ -31,22 +32,22 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public PageActionGroupProperties Properties
-		{
-			get;
-			protected set;
-		}
+        {
+            get;
+            protected set;
+        }
 
-		public override string GetName()
-		{
-			return Properties.Name;
-		}
+        public override PageActionBaseType Type
+        {
+            get
+            {
+                return PageActionBaseType.ActionGroup;
+            }
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
-	}
+        public override string GetName()
+        {
+            return Properties.Name;
+        }
+    }
 }

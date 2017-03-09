@@ -8,10 +8,18 @@ namespace UncommonSense.CBreeze.Core
 {
     public class PageActionSeparator : PageActionBase
     {
-        public PageActionSeparator(int id, int? indentationLevel)
+        public PageActionSeparator(int id = 0, int? indentationLevel = null)
             : base(id, indentationLevel)
         {
             Properties = new PageActionSeparatorProperties(this);
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
         }
 
         public override IEnumerable<INode> ChildNodes
@@ -22,6 +30,12 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public PageActionSeparatorProperties Properties
+        {
+            get;
+            protected set;
+        }
+
         public override PageActionBaseType Type
         {
             get
@@ -30,24 +44,9 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public PageActionSeparatorProperties Properties
-        {
-            get;
-            protected set;
-        }
-
         public override string GetName()
         {
             return null;
-        }
-
-
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
         }
     }
 }

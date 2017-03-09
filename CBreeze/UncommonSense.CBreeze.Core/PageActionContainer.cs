@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
     public class PageActionContainer : PageActionBase
     {
-        public PageActionContainer(int? indentationLevel = null, int id = 0, ActionContainerType? containerType = null)
+        public PageActionContainer(int? indentationLevel = null, int id = 0, ActionContainerType? containerType = ActionContainerType.ActionItems)
             : base(id, indentationLevel)
         {
             Properties = new PageActionContainerProperties(this);
