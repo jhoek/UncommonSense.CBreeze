@@ -10,9 +10,30 @@ namespace UncommonSense.CBreeze.Automation
 {
     public abstract class NewCBreezeObject : Cmdlet
     {
+        [Parameter()]
+        public SwitchParameter AutoCaption
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public DateTime? DateTime
+        {
+            get;
+            set;
+        }
+
         [Parameter(Mandatory = true, Position = 0)]
         [ValidateRange(0, int.MaxValue)]
         public int ID
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter Modified
         {
             get;
             set;
@@ -26,35 +47,17 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter(Position = 2)]
+        public ScriptBlock SubObjects
+        {
+            get; set;
+        }
+
         [Parameter()]
-        public SwitchParameter AutoCaption
-        {
-            get;
-            set;
-        }
-
-        public DateTime? DateTime
-        {
-            get;
-            set;
-        }
-
-        public SwitchParameter Modified
-        {
-            get;
-            set;
-        }
-
         public string VersionList
         {
             get;
             set;
-        }
-
-        [Parameter(Position=2)]
-        public ScriptBlock SubObjects
-        {
-            get; set;
         }
 
         protected void SetObjectProperties(Core.Object @object)
