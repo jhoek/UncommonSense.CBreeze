@@ -19,7 +19,9 @@ namespace UncommonSense.CBreeze.Automation
 
         public ExportCBreezeApplication()
         {
-#if NAV2016
+#if NAV2017
+            DevClientPath = @"c:\Program Files (x86)\Microsoft Dynamics NAV\100\RoleTailored Client\finsql.exe";
+#elif NAV2016
             DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\90\RoleTailored Client\finsql.exe";
 #elif NAV2015
             DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\80\RoleTailored Client\finsql.exe";
@@ -109,7 +111,7 @@ namespace UncommonSense.CBreeze.Automation
                 TypeSwitch.Do(
                     item.BaseObject,
                     TypeSwitch.Case<Application>(a => CachedObjects.Add(a.Objects)),
-                    TypeSwitch.Case<Core.Object>(o=> CachedObjects.Add(o))
+                    TypeSwitch.Case<Core.Object>(o => CachedObjects.Add(o))
                 );
             }
         }
@@ -121,12 +123,15 @@ namespace UncommonSense.CBreeze.Automation
                 case "ToPath":
                     CachedObjects.Write(Path);
                     break;
+
                 case "ToTextWriter":
                     CachedObjects.Write(TextWriter ?? Console.Out);
                     break;
+
                 case "ToStream":
                     CachedObjects.Write(Stream);
                     break;
+
                 case "ToDatabase":
                     ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database);
 
@@ -134,7 +139,6 @@ namespace UncommonSense.CBreeze.Automation
                         ApplicationCompiler.Compile(CachedObjects, DevClientPath, ServerName, Database);
                     break;
             }
-
         }
     }
 }
