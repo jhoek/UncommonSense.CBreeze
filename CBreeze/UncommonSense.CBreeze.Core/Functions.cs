@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
 
         protected override void RemoveItem(int index)
         {
-            this[index].Container = null;
+            this.ElementAt(index).Container = null;
             base.RemoveItem(index);
         }
     }
