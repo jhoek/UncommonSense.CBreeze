@@ -1290,12 +1290,12 @@ namespace UncommonSense.CBreeze.Read
                     switch (elementNodeType)
                     {
                         case UncommonSense.CBreeze.Common.XmlPortNodeType.Element:
-                            var newTextElementNode = currentXmlPortNodes.Add(new XmlPortTextElement(elementID, elementName, elementIndentation));
+                            var newTextElementNode = currentXmlPortNodes.Add(new XmlPortTextElement(elementName, elementIndentation, elementID));
                             currentProperties.Push(newTextElementNode.Properties);
                             break;
 
                         case UncommonSense.CBreeze.Common.XmlPortNodeType.Attribute:
-                            var newTextAttributeNode = currentXmlPortNodes.Add(new XmlPortTextAttribute(elementID, elementName, elementIndentation));
+                            var newTextAttributeNode = currentXmlPortNodes.Add(new XmlPortTextAttribute(elementName, elementIndentation, elementID));
                             currentProperties.Push(newTextAttributeNode.Properties);
                             break;
                     }
@@ -1305,12 +1305,12 @@ namespace UncommonSense.CBreeze.Read
                     switch (elementNodeType)
                     {
                         case UncommonSense.CBreeze.Common.XmlPortNodeType.Element:
-                            var newTableElementNode = currentXmlPortNodes.Add(new XmlPortTableElement(elementID, elementName, elementIndentation));
+                            var newTableElementNode = currentXmlPortNodes.Add(new XmlPortTableElement(elementName, elementIndentation, elementID));
                             currentProperties.Push(newTableElementNode.Properties);
                             break;
 
                         case UncommonSense.CBreeze.Common.XmlPortNodeType.Attribute:
-                            var newTableAttributeNode = currentXmlPortNodes.Add(new XmlPortTableAttribute(elementID, elementName, elementIndentation));
+                            var newTableAttributeNode = currentXmlPortNodes.Add(new XmlPortTableAttribute(elementName, elementIndentation, elementID));
                             currentProperties.Push(newTableAttributeNode.Properties);
                             break;
                     }
@@ -1320,12 +1320,12 @@ namespace UncommonSense.CBreeze.Read
                     switch (elementNodeType)
                     {
                         case UncommonSense.CBreeze.Common.XmlPortNodeType.Element:
-                            var newFieldElementNode = currentXmlPortNodes.Add(new XmlPortFieldElement(elementID, elementName, elementIndentation));
+                            var newFieldElementNode = currentXmlPortNodes.Add(new XmlPortFieldElement(elementName, elementIndentation, elementID));
                             currentProperties.Push(newFieldElementNode.Properties);
                             break;
 
                         case UncommonSense.CBreeze.Common.XmlPortNodeType.Attribute:
-                            var newFieldAttributeNode = currentXmlPortNodes.Add(new XmlPortFieldAttribute(elementID, elementName, elementIndentation));
+                            var newFieldAttributeNode = currentXmlPortNodes.Add(new XmlPortFieldAttribute(elementName, elementIndentation, elementID));
                             currentProperties.Push(newFieldAttributeNode.Properties);
                             break;
                     }

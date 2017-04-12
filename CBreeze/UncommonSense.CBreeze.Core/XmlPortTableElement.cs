@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortTableElement : XmlPortNode
+    public class XmlPortTableElement : XmlPortNode
     {
-        public XmlPortTableElement(Guid id, string nodeName, int? indentationLevel)
-            : base(id, nodeName, indentationLevel)
+        public XmlPortTableElement(string nodeName, int? indentationLevel = null, Guid id = new Guid())
+            : base(nodeName, indentationLevel, id)
         {
             Properties = new XmlPortTableElementProperties(this);
         }

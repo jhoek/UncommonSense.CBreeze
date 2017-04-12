@@ -7,8 +7,8 @@ namespace UncommonSense.CBreeze.Core
 {
     public class XmlPortFieldAttribute : XmlPortNode
     {
-        public XmlPortFieldAttribute(Guid id, string nodeName, int? indentationLevel)
-            : base(id, nodeName, indentationLevel)
+        public XmlPortFieldAttribute(string nodeName, int? indentationLevel = null, Guid id = new Guid())
+            : base(nodeName, indentationLevel, id)
         {
             Properties = new XmlPortFieldAttributeProperties(this);
         }
