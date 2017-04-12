@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
 
@@ -168,6 +169,14 @@ namespace UncommonSense.CBreeze.Automation
 
             if (AutoCaption)
                 xmlPort.AutoCaption();
+
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                subObjects.OfType<XmlPortNode>().ForEach(n => xmlPort.Nodes.Add(n));
+                subObjects.OfType<Function>().ForEach(f => xmlPort.Code.Functions.Add(f));
+                subObjects.OfType<Variable>().ForEach(v => xmlPort.Code.Variables.Add(v));
+            }
 
             return xmlPort;
         }
