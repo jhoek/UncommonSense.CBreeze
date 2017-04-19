@@ -9,8 +9,6 @@ namespace UncommonSense.CBreeze.Core
     {
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
-        // FIXME: INclude variables in public override IEnumerable<int> ExistingIDs
-
         public abstract INode ParentNode { get; }
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 

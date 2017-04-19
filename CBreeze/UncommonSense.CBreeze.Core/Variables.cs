@@ -13,7 +13,6 @@ namespace UncommonSense.CBreeze.Core
         public override IEnumerable<int> ExistingIDs => this.Select(v => v.ID);
         public abstract INode ParentNode { get; }
 
-        // FIXME: ook parameters
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
         public override void ValidateName(Variable item)

@@ -26,9 +26,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public int ID => 0; // FIXME
-
-        public INode ParentNode => null; // FIXME
+        public INode ParentNode => null;
 
         public Variables Variables
         {

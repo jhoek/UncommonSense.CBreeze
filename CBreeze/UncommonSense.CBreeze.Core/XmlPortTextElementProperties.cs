@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(textType);
             innerList.Add(dataType);
 #if NAV2016
-            innerList.Add(namespacePrefix); // FIXME
+            innerList.Add(namespacePrefix);
 #endif
             innerList.Add(minOccurs);
             innerList.Add(maxOccurs);
@@ -87,6 +87,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
+
         public string NamespacePrefix
         {
             get
@@ -98,6 +99,7 @@ namespace UncommonSense.CBreeze.Core
                 this.namespacePrefix.Value = value;
             }
         }
+
 #endif
 
         public Trigger OnAfterAssignVariable
@@ -129,6 +131,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2013R2
+
         public bool? Unbound
         {
             get
@@ -140,6 +143,7 @@ namespace UncommonSense.CBreeze.Core
                 this.unbound.Value = value;
             }
         }
+
 #endif
 
         public string VariableName
