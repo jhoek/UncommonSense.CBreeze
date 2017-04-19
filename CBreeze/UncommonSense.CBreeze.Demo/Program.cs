@@ -30,6 +30,12 @@ namespace UncommonSense.CBreeze.Demo
 
             xmlport.Properties.FieldDelimiter = "$";
 
+            var table = application.Tables.Add(new Table("Customer Group"));
+            var codeField = table.Fields.Add(new CodeTableField("Code"));
+            var descriptionField = table.Fields.Add(new TextTableField("Description"));
+
+            table.Properties.DataCaptionFields.AddRange(codeField.Name, descriptionField.Name);
+
             application.Write();
         }
     }
