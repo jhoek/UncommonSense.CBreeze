@@ -24,6 +24,12 @@ namespace UncommonSense.CBreeze.Demo
             xmlport.Nodes.Add(new XmlPortFieldElement("Balance", 1));
             xmlport.Nodes.Add(new XmlPortTextAttribute("Currency", 2));
 
+            xmlport.Code.Functions.Add(new Function("Foo")).Local = true;
+            xmlport.Code.Variables.Add(new IntegerVariable(9, "MyInteger")).IncludeInDataset = true;
+            xmlport.Code.Variables.Add(new TextConstant("Text000")).Values.Set("ENU", "OInk").Set("NLD", "Boink");
+
+            xmlport.Properties.FieldDelimiter = "$";
+
             application.Write();
         }
     }
