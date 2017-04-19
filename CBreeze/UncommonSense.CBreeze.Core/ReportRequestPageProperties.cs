@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ReportRequestPageProperties : Properties
+    public class ReportRequestPageProperties : Properties
     {
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");
@@ -41,8 +41,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty sourceTableTemporary = new NullableBooleanProperty("SourceTableTemporary");
         private TableViewProperty sourceTableView = new TableViewProperty("SourceTableView");
 
-        internal ReportRequestPageProperties()
+        internal ReportRequestPageProperties(ReportRequestPage reportRequestPage)
         {
+            ReportRequestPage = reportRequestPage;
+
             innerList.Add(permissions);
             innerList.Add(editable);
             innerList.Add(captionML);
@@ -78,6 +80,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(actionList);
         }
 
+        public ReportRequestPage ReportRequestPage { get; protected set; }
+
+        public override INode ParentNode => ReportRequestPage;
+
         public ActionList ActionList
         {
             get
@@ -86,7 +92,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? AutoSplitKey
+        public bool? AutoSplitKey
         {
             get
             {
@@ -106,7 +112,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string CardPageID
+        public string CardPageID
         {
             get
             {
@@ -118,7 +124,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string DataCaptionExpr
+        public string DataCaptionExpr
         {
             get
             {
@@ -138,7 +144,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? DeleteAllowed
+        public bool? DeleteAllowed
         {
             get
             {
@@ -150,7 +156,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -162,7 +168,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Editable
+        public bool? Editable
         {
             get
             {
@@ -174,7 +180,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? InsertAllowed
+        public bool? InsertAllowed
         {
             get
             {
@@ -194,7 +200,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? LinksAllowed
+        public bool? LinksAllowed
         {
             get
             {
@@ -206,7 +212,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? ModifyAllowed
+        public bool? ModifyAllowed
         {
             get
             {
@@ -218,7 +224,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? MultipleNewLines
+        public bool? MultipleNewLines
         {
             get
             {
@@ -334,7 +340,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? PopulateAllFields
+        public bool? PopulateAllFields
         {
             get
             {
@@ -346,7 +352,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? SaveValues
+        public bool? SaveValues
         {
             get
             {
@@ -358,7 +364,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? ShowFilter
+        public bool? ShowFilter
         {
             get
             {
@@ -370,7 +376,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? SourceTable
+        public int? SourceTable
         {
             get
             {
@@ -382,7 +388,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? SourceTableTemporary
+        public bool? SourceTableTemporary
         {
             get
             {

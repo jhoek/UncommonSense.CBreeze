@@ -5,18 +5,12 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Parameters : IntegerKeyedAndNamedContainer<Parameter>
+    public abstract class Parameters : IntegerKeyedAndNamedContainer<Parameter>, INode
     {
-        internal Parameters(IHasParameters container)
-        {
-            Container = container;
-        }
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
-        public IHasParameters Container
-        {
-            get;
-            protected set;
-        }
+        public abstract INode ParentNode { get; }
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
         public override void ValidateName(Parameter item)
         {

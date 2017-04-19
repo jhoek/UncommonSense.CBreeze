@@ -15,8 +15,10 @@ namespace UncommonSense.CBreeze.Core
         private ReadStateProperty readState = new ReadStateProperty("ReadState");
         private NullableIntegerProperty topNumberOfRows = new NullableIntegerProperty("TopNumberOfRows");
 
-        internal QueryProperties()
+        internal QueryProperties(Query query)
         {
+            Query =query;
+
             innerList.Add(permissions);
             innerList.Add(captionML);
             innerList.Add(description);
@@ -25,6 +27,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(orderBy);
             innerList.Add(onBeforeOpen);
         }
+
+        public Query Query { get; protected set; }
+
+        public override INode ParentNode => Query;
 
         public MultiLanguageValue CaptionML
         {

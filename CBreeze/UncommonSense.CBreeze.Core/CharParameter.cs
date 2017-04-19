@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class CharParameter : Parameter
+    public class CharParameter : Parameter
     {
-        public CharParameter(bool var, int id, string name) : base(var, id, name)
+        public CharParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Char;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.Char;
     }
 }

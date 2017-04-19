@@ -6,20 +6,11 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class CodeunitParameter : Parameter
+    public class CodeunitParameter : Parameter
     {
-        public CodeunitParameter(bool var, int id, string name, int subType)
-            : base(var, id, name)
+        public CodeunitParameter(string name, int subType, bool var = false, int id = 0) : base(name, var, id)
         {
             SubType = subType;
-        }
-
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Codeunit;
-            }
         }
 
         public int SubType
@@ -27,5 +18,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public override ParameterType Type => ParameterType.Codeunit;
     }
 }

@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Core
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal DecimalTableFieldProperties()
+        internal DecimalTableFieldProperties(DecimalTableField field)
         {
             innerList.Add(fieldClass);
             innerList.Add(initValue);
@@ -77,6 +77,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
         }
+
+        public DecimalTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

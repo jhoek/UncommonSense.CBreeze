@@ -6,39 +6,44 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class FieldPageControl : PageControl
-	{
-		public FieldPageControl(int id, int? indentationLevel)
-			: base(id, indentationLevel)
-		{
-			Properties = new FieldPageControlProperties();
-		}
+    public class FieldPageControl : PageControl
+    {
+        public FieldPageControl(string sourceExpr, int id = 0, int? indentationLevel = null) : base(id, indentationLevel)
+        {
+            Properties = new FieldPageControlProperties(this);
+            Properties.SourceExpr = sourceExpr;
+        }
 
-		public override PageControlType Type
-		{
-			get
-			{
-				return PageControlType.Field;
-			}
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
-		public FieldPageControlProperties Properties
-		{
-			get;
-			protected set;
-		}
+        public override IEnumerable<INode> ChildNodes
+        {
+            get { yield return Properties; }
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
+        public FieldPageControlProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public override string GetName()
-		{
-			return Properties.Name;
-		}
-	}
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Field;
+            }
+        }
+
+        public override string GetName()
+        {
+            return Properties.Name;
+        }
+    }
 }

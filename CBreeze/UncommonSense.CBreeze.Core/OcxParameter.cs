@@ -6,20 +6,11 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class OcxParameter : Parameter
+    public class OcxParameter : Parameter
     {
-        public OcxParameter(bool var, int id, string name, string subType)
-            : base(var, id, name)
+        public OcxParameter(string name, string subType, bool var = false, int id = 0) : base(name, var, id)
         {
             SubType = subType;
-        }
-
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Ocx;
-            }
         }
 
         public string SubType
@@ -27,5 +18,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public override ParameterType Type => ParameterType.Ocx;
     }
 }

@@ -5,11 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public interface IHasVariables
+    public abstract class LocalVariables : Variables
     {
-        Variables Variables
-        {
-            get;
-        }
     }
 }

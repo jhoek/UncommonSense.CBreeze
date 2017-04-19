@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeCalcFormula")]
+    [OutputType(typeof(CalcFormula))]
     public class NewCBreezeCalcFormula : Cmdlet
     {
         protected override void EndProcessing()

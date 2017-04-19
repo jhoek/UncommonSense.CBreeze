@@ -6,11 +6,14 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class FunctionReturnValue
+    public class FunctionReturnValue : INode
     {
-        internal FunctionReturnValue()
+        internal FunctionReturnValue(Function function)
         {
+            Function = function;
         }
+
+        public Function Function { get; protected set; }
 
         public string Dimensions
         {
@@ -34,6 +37,16 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             set;
+        }
+
+        public INode ParentNode => Function;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield break;
+            }
         }
     }
 }

@@ -6,19 +6,31 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DecimalTableField : TableField
+    public class DecimalTableField : TableField
     {
+        public DecimalTableField(string name) : this(0, name)
+        {
+        }
+
         public DecimalTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new DecimalTableFieldProperties();
+            Properties = new DecimalTableFieldProperties(this);
         }
 
-        public override TableFieldType Type
+        public override Properties AllProperties
         {
             get
             {
-                return TableFieldType.Decimal;
+                return Properties;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
             }
         }
 
@@ -28,11 +40,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
+        public override TableFieldType Type
         {
             get
             {
-                return Properties;
+                return TableFieldType.Decimal;
             }
         }
     }

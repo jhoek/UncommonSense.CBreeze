@@ -5,16 +5,22 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class MenuSuiteDeltaNodeProperties : Properties
+    public class MenuSuiteDeltaNodeProperties : Properties
     {
         private NullableBooleanProperty deleted = new NullableBooleanProperty("Deleted");
         private NullableGuidProperty nextNodeID = new NullableGuidProperty("NextNodeID");
 
-        internal MenuSuiteDeltaNodeProperties()
+        internal MenuSuiteDeltaNodeProperties(DeltaNode node)
         {
+            Node = node;
+
             innerList.Add(deleted);
             innerList.Add(nextNodeID);
         }
+
+        public DeltaNode Node { get; protected set; }
+
+        public override INode ParentNode => Node;
 
         public bool? Deleted
         {

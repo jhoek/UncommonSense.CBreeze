@@ -6,19 +6,15 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class OptionVariable : Variable, IHasOptionString
+    public class OptionVariable : Variable, IHasOptionString
     {
-        public OptionVariable(int id, string name)
-            : base(id, name)
+        public OptionVariable(string name) : this(0, name)
         {
         }
 
-        public override VariableType Type
+        public OptionVariable(int id, string name)
+            : base(id, name)
         {
-            get
-            {
-                return VariableType.Option;
-            }
         }
 
         public string Dimensions
@@ -33,6 +29,13 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Option;
+            }
+        }
 
         public string GetOptionString()
         {

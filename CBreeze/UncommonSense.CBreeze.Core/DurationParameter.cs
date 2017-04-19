@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DurationParameter : Parameter
+    public class DurationParameter : Parameter
     {
-        public DurationParameter(bool var, int id, string name) : base(var, id, name)
+        public DurationParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Duration;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.Duration;
     }
 }

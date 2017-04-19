@@ -5,11 +5,20 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class MenuSuiteNodes : GuidKeyedContainer<MenuSuiteNode>
+        public class MenuSuiteNodes : GuidKeyedContainer<MenuSuiteNode>, INode
     {
-        internal MenuSuiteNodes()
+        internal MenuSuiteNodes(MenuSuite menuSuite)
         {
+            MenuSuite = menuSuite;
         }
+
+        public MenuSuite MenuSuite
+        {get;protected set;
+        }
+
+        public INode ParentNode => MenuSuite;
+
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
         protected override void InsertItem(int index, MenuSuiteNode item)
         {

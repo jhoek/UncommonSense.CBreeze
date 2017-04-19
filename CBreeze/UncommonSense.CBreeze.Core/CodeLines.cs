@@ -6,13 +6,26 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class CodeLines : Collection<string>
+    public class CodeLines : Collection<string>, INode
     {
-        internal CodeLines()
+        internal CodeLines(IHasCodeLines container)
         {
+            Container = container;
         }
 
-        public new  void Add(string text)
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield break;
+            }
+        }
+
+        public IHasCodeLines Container { get; protected set; }
+
+        public INode ParentNode => Container;
+
+        public new void Add(string text)
         {
             base.Add(text);
         }

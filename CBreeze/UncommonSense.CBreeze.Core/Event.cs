@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Event : IHasParameters, IHasVariables
+    public class Event : IHasCodeLines, INode
     {
         public Event(int sourceID, string sourceName, int id, string name)
         {
@@ -13,21 +13,31 @@ namespace UncommonSense.CBreeze.Core
             Name = name;
             SourceID = sourceID;
             SourceName = sourceName;
-            CodeLines = new CodeLines();
-            Parameters = new Parameters(this);
-            Variables = new Variables(this);
+            CodeLines = new CodeLines(this);
+            Parameters = new EventParameters(this);
+            Variables = new EventVariables(this);
         }
 
-        public int SourceID
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return CodeLines;
+                yield return Parameters;
+                yield return Variables;
+            }
+        }
+
+        public CodeLines CodeLines
         {
             get;
             protected set;
         }
 
-        public string SourceName
+        public Events Container
         {
             get;
-            protected set;
+            internal set;
         }
 
         public int ID
@@ -42,19 +52,21 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public Events Container
-        {
-            get;
-            internal set;
-        }
-
-        public CodeLines CodeLines
+        public Parameters Parameters
         {
             get;
             protected set;
         }
 
-        public Parameters Parameters
+        public INode ParentNode => Container;
+
+        public int SourceID
+        {
+            get;
+            protected set;
+        }
+
+        public string SourceName
         {
             get;
             protected set;
@@ -65,6 +77,5 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
-
     }
 }

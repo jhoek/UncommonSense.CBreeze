@@ -6,34 +6,29 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DateTableField : TableField
+    public class DateTableField : TableField
     {
+        public DateTableField(string name) : this(0, name)
+        {
+        }
+
         public DateTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new DateTableFieldProperties();
+            Properties = new DateTableFieldProperties(this);
         }
 
-        public override TableFieldType Type
+        public override Properties AllProperties => Properties;
+
+        public override IEnumerable<INode> ChildNodes
         {
             get
             {
-                return TableFieldType.Date;
+                yield return Properties;
             }
         }
 
-        public DateTableFieldProperties Properties
-        {
-            get;
-            protected set;
-        }
-
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
+        public DateTableFieldProperties Properties { get; protected set; }
+        public override TableFieldType Type => TableFieldType.Date;
     }
 }

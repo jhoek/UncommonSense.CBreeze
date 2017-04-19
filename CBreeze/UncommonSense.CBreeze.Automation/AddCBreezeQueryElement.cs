@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true,Position=0)]
+        [Parameter(Mandatory = true, Position = 0)]
         [Alias("Range")]
         public PSObject ID
         {
@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Position=1)]
+        [Parameter(Position = 1)]
         public string Name
         {
             get;
@@ -111,7 +111,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName=DataItemParameterSet)]
+        [Parameter(ParameterSetName = DataItemParameterSet)]
         public SqlJoinType? SqlJoinType
         {
             get;
@@ -149,6 +149,7 @@ namespace UncommonSense.CBreeze.Automation
                         case Core.Position.FirstWithinContainer:
                             GetQuery().Elements.Insert(0, element);
                             break;
+
                         case Core.Position.LastWithinContainer:
                             GetQuery().Elements.Add(element);
                             break;
@@ -168,10 +169,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             if (DataItem)
             {
-                var dataItem = new DataItemQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
+                var dataItem = new DataItemQueryElement(DataItemTable, ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
 
                 dataItem.Properties.DataItemLinkType = DataItemLinkType;
-                dataItem.Properties.DataItemTable = DataItemTable;
                 dataItem.Properties.Description = Description;
                 dataItem.Properties.SQLJoinType = SqlJoinType;
 
@@ -179,9 +179,8 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (Column)
             {
-                var column = new ColumnQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
+                var column = new ColumnQueryElement(DataSource, ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
 
-                column.Properties.DataSource = DataSource;
                 column.Properties.Description = Description;
                 column.Properties.ReverseSign = ReverseSign;
 
@@ -200,11 +199,8 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (Filter)
             {
-                var filter = new FilterQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
-
-                filter.Properties.DataSource = DataSource;
+                var filter = new FilterQueryElement(DataSource, ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
                 filter.Properties.Description = Description;
-
                 return filter;
             }
             else

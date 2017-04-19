@@ -2,10 +2,11 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Code : IHasVariables
+    public class Code : INode
     {
         internal Code(Object @object)
         {
@@ -13,13 +14,18 @@ namespace UncommonSense.CBreeze.Core
             Documentation = new Documentation(this);
             Events = new Events(this);
             Functions = new Functions(this);
-            Variables = new Variables(this);
+            Variables = new GlobalVariables(this);
         }
 
-        public Object Object
+        public IEnumerable<INode> ChildNodes
         {
-            get;
-            protected set;
+            get
+            {
+                yield return Documentation;
+                yield return Events;
+                yield return Functions;
+                yield return Variables;
+            }
         }
 
         public Documentation Documentation
@@ -40,7 +46,17 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public Variables Variables
+        public int ID => Object.ID;
+
+        public Object Object
+        {
+            get;
+            protected set;
+        }
+
+        public INode ParentNode => Object;
+
+        public GlobalVariables Variables
         {
             get;
             protected set;

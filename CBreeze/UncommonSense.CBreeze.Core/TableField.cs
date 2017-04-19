@@ -6,52 +6,61 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public abstract class TableField : KeyedItem<int>, IHasName, IHasProperties
-	{
-		internal TableField(int id, string name)
-		{
-			ID = id;
-			Name = name;
-		}
+    public abstract class TableField : KeyedItem<int>, IHasName, IHasProperties, INode
+    {
+        internal TableField(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
 
-		public override string ToString()
-		{
-			return string.Format("{0}@{1}:{2}", Name, ID, Type);
-		}
+        public TableFields Container { get; internal set; }
 
-		public abstract TableFieldType Type
-		{
-			get;
-		}
+        public override string ToString()
+        {
+            return string.Format("{0}@{1}:{2}", Name, ID, Type);
+        }
 
-		public string Name
-		{
-			get;
-			set;
-		}
+        public abstract TableFieldType Type
+        {
+            get;
+        }
 
-		public string QuotedName
-		{
-			get
-			{
-				return Name.Quoted();
-			}
-		}
+        public string Name
+        {
+            get;
+            set;
+        }
 
-		public bool? Enabled
-		{
-			get;
-			set;
-		}
+        public string QuotedName
+        {
+            get
+            {
+                return Name.Quoted();
+            }
+        }
 
-		public string GetName()
-		{
-			return Name;
-		}
+        public bool? Enabled
+        {
+            get;
+            set;
+        }
 
-		public abstract Properties AllProperties
-		{
-			get;
-		}
-	}
+        public string GetName()
+        {
+            return Name;
+        }
+
+        public abstract Properties AllProperties
+        {
+            get;
+        }
+
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes
+        {
+            get;
+        }
+    }
 }

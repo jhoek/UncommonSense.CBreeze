@@ -6,12 +6,13 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DataItemQueryElement : QueryElement
+    public class DataItemQueryElement : QueryElement
     {
-        public DataItemQueryElement(int id, string name, int? indentationLevel)
+        public DataItemQueryElement(int dataItemTable, int id = 0, string name = null, int? indentationLevel = null)
             : base(id, name, indentationLevel)
         {
-            Properties = new DataItemQueryElementProperties();
+            Properties = new DataItemQueryElementProperties(this);
+            Properties.DataItemTable = dataItemTable;
         }
 
         public override QueryElementType Type
@@ -26,6 +27,14 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             protected set;
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override Properties AllProperties

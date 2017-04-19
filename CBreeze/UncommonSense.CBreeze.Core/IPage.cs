@@ -5,21 +5,12 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public interface IPage
+    public interface IPage : INode
     {
-        PageControls Controls
-        {
-            get;
-        }
+        ActionList Actions { get; }
 
-        ActionList Actions
-        {
-            get;
-        }
+        PageControls Controls { get; }
 
-        int ObjectID
-        {
-            get;
-        }
+        int ObjectID { get; }
     }
 }

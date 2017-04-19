@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class GuidParameter : Parameter
+    public class GuidParameter : Parameter
     {
-        public GuidParameter(bool var, int id, string name) : base(var, id, name)
+        public GuidParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Guid;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.Guid;
     }
 }

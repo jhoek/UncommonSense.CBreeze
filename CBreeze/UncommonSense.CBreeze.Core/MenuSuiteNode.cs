@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public abstract class MenuSuiteNode : KeyedItem<Guid>, IHasName, IHasProperties
+		public abstract class MenuSuiteNode : KeyedItem<Guid>, IHasName, IHasProperties, INode
 	{
 		internal MenuSuiteNode(Guid id)
 		{
@@ -38,5 +38,12 @@ namespace UncommonSense.CBreeze.Core
 				return Container.IndexOf(this);
 			}
 		}
-	}
+
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes
+        {
+            get;
+        }
+    }
 }

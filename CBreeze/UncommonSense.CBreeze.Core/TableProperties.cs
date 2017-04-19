@@ -28,8 +28,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty writeProtected = new NullableBooleanProperty("WriteProtected");
 #endif
 
-        internal TableProperties()
+        internal TableProperties(Table table)
         {
+            Table = table;
+
 #if NAV2016
             innerList.Add(writeProtected); 
 #endif
@@ -53,6 +55,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(lookupPageID); // 55116
             innerList.Add(drillDownPageID); // 55117
        }
+
+        public Table Table { get; protected set; }
+
+        public override INode ParentNode => Table;
 
         public MultiLanguageValue CaptionML
         {

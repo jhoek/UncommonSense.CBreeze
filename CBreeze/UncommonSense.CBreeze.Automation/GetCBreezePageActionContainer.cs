@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Get, "CBreezePageActionContainer")]
+    [OutputType(typeof(PageActionContainer))]
     public class GetCBreezePageActionContainer : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]

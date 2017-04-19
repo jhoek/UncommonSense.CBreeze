@@ -15,8 +15,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty description = new StringProperty("Description");
         private StringProperty name = new StringProperty("Name");
 
-        internal PageActionContainerProperties()
+        internal PageActionContainerProperties(PageActionContainer pageActionContainer)
         {
+            PageActionContainer = pageActionContainer;
+
             innerList.Add(name);
             innerList.Add(captionML);
 #if NAV2016
@@ -25,6 +27,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(description);
             innerList.Add(actionContainerType);
         }
+
+        public PageActionContainer PageActionContainer { get; protected set; }
+
+        public override INode ParentNode => PageActionContainer;
 
         public ActionContainerType? ActionContainerType
         {

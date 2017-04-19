@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public abstract class ReportElement : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class ReportElement : KeyedItem<int>, IHasName, IHasProperties, INode
 	{
 		public ReportElement(int id, int? indentationLevel)
 		{
@@ -18,6 +18,8 @@ namespace UncommonSense.CBreeze.Core
 		{
 			get;
 		}
+
+        public ReportElements Container { get; internal set; }
 
 		public int? IndentationLevel
 		{
@@ -36,7 +38,14 @@ namespace UncommonSense.CBreeze.Core
 			get;
 		}
 
-		public string GetName()
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes 
+        {
+            get;
+        }
+
+        public string GetName()
 		{
 			return Name;
 		}

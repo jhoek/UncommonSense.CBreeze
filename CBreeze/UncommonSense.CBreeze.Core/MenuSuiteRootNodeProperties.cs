@@ -9,10 +9,15 @@ namespace UncommonSense.CBreeze.Core
     {
         private NullableGuidProperty firstChild = new NullableGuidProperty("FirstChild");
 
-        internal MenuSuiteRootNodeProperties()
+        internal MenuSuiteRootNodeProperties(RootNode node)
         {
+            Node = node;
             innerList.Add(firstChild);
         }
+
+        public RootNode Node { get; protected set; }
+
+        public override INode ParentNode => Node;
 
         public System.Guid? FirstChild
         {

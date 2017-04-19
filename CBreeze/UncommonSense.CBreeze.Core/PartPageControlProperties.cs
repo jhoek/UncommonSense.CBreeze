@@ -29,8 +29,10 @@ namespace UncommonSense.CBreeze.Core
 #endif
         private StringProperty visible = new StringProperty("Visible");
 
-        internal PartPageControlProperties()
+        internal PartPageControlProperties(PartPageControl partPageControl)
         {
+            PartPageControl = partPageControl;
+
             innerList.Add(name);
 #if NAV2015
             innerList.Add(accessByPermission);
@@ -53,6 +55,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(updatePropagation);
 #endif
         }
+
+        public PartPageControl PartPageControl { get; protected set; }
+
+        public override INode ParentNode => PartPageControl;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

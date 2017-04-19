@@ -16,7 +16,7 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty reverseSign = new NullableBooleanProperty("ReverseSign");
         private TotalsMethodProperty totalsMethod = new TotalsMethodProperty("TotalsMethod");
 
-        internal ColumnQueryElementProperties()
+        internal ColumnQueryElementProperties(ColumnQueryElement columnQueryElement)
         {
             innerList.Add(captionML);
             innerList.Add(description);
@@ -27,6 +27,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dateMethod);
             innerList.Add(totalsMethod);
         }
+
+        public ColumnQueryElement ColumnQueryElement { get; protected set; }
+
+        public override INode ParentNode => ColumnQueryElement;
 
         public MultiLanguageValue CaptionML
         {

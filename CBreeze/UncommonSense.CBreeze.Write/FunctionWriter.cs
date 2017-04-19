@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Write
             parameters = parameters == ",DEFAULT,DEFAULT" ? "" : parameters;
             parameters = parameters == ",Skip,DEFAULT" ? ",Skip" : parameters;
             parameters = parameters == ",Error,DEFAULT" ? ",Error" : parameters;
-            eventPublisherElement = parameters == "" && eventPublisherElement == ",\"\"" ? "" : eventPublisherElement;
+            eventPublisherElement = (parameters == "" && eventPublisherElement == ",\"\"" ? "" : eventPublisherElement);
 
             writer.WriteLine("{0}{1})]", eventPublisherElement, parameters);
         }

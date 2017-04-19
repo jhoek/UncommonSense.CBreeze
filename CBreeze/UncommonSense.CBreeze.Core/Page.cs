@@ -6,36 +6,33 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Page : Object, IHasCode, IPage
+    public class Page : Object, IHasCode, IPage
     {
+        public Page(string name) : this(0, name)
+        {
+        }
+
         public Page(int id, string name)
             : base(id, name)
         {
-            Properties = new PageProperties();
+            Properties = new PageProperties(this);
             Properties.ActionList.Page = this;
-
             Controls = new PageControls(this);
             Code = new Code(this);
         }
 
-        public override ObjectType Type
+        public ActionList Actions => Properties.ActionList;
+        public override Properties AllProperties => Properties;
+        public Application Application => Container.Application;
+
+        public override IEnumerable<INode> ChildNodes
         {
             get
             {
-                return ObjectType.Page;
+                yield return Properties;
+                yield return Controls;
+                yield return Code;
             }
-        }
-
-        public PageProperties Properties
-        {
-            get;
-            protected set;
-        }
-
-        public PageControls Controls
-        {
-            get;
-            protected set;
         }
 
         public Code Code
@@ -44,21 +41,12 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
+        public Pages Container { get; internal set; }
 
-
-        public ActionList Actions
+        public PageControls Controls
         {
-            get
-            {
-                return Properties.ActionList;
-            }
+            get;
+            protected set;
         }
 
         public int ObjectID
@@ -66,6 +54,22 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return ID;
+            }
+        }
+
+        public override INode ParentNode => Container;
+
+        public PageProperties Properties
+        {
+            get;
+            protected set;
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Page;
             }
         }
     }

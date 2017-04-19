@@ -6,12 +6,21 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class FilterQueryElement : QueryElement
+    public class FilterQueryElement : QueryElement
     {
-        public FilterQueryElement(int id, string name, int? indentationLevel)
+        public FilterQueryElement(string dataSource = null, int id = 0, string name = null, int? indentationLevel = null)
             : base(id, name, indentationLevel)
         {
-            Properties = new FilterQueryElementProperties();
+            Properties = new FilterQueryElementProperties(this);
+            Properties.DataSource = dataSource;
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
         }
 
         public override QueryElementType Type

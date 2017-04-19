@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2015
-        public class AccessByPermission
+
+    public class AccessByPermission
     {
         public AccessByPermissionObjectType? ObjectType
         {
@@ -68,5 +66,6 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
     }
+
 #endif
 }

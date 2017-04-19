@@ -6,20 +6,16 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class OcxVariable : Variable
+    public class OcxVariable : Variable
     {
+        public OcxVariable(string name, string subType) : this(0, name, subType)
+        {
+        }
+
         public OcxVariable(int id, string name, string subType)
             : base(id, name)
         {
             SubType = subType;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.Ocx;
-            }
         }
 
         public string Dimensions
@@ -32,6 +28,14 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             protected set;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Ocx;
+            }
         }
     }
 }

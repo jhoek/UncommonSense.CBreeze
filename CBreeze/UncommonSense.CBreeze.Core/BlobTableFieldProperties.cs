@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
         private BlobSubTypeProperty subType = new BlobSubTypeProperty("SubType");
         private NullableBooleanProperty @volatile = new NullableBooleanProperty("Volatile");
 
-        internal BlobTableFieldProperties()
+        internal BlobTableFieldProperties(BlobTableField field)
         {
             innerList.Add(onValidate);
             innerList.Add(onLookup);
@@ -43,6 +43,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(owner);
             innerList.Add(subType);
         }
+
+        public BlobTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

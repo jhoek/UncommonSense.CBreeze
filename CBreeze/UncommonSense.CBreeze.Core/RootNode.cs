@@ -6,39 +6,47 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class RootNode : MenuSuiteNode
-	{
-		public RootNode(Guid id)
-			: base(id)
-		{
-			Properties = new MenuSuiteRootNodeProperties();
-		}
+    public class RootNode : MenuSuiteNode
+    {
+        public RootNode(Guid id)
+            : base(id)
+        {
+            Properties = new MenuSuiteRootNodeProperties(this);
+        }
 
-		public override MenuSuiteNodeType Type
-		{
-			get
-			{
-				return MenuSuiteNodeType.Root;
-			}
-		}
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
 
-		public MenuSuiteRootNodeProperties Properties
-		{
-			get;
-			protected set;
-		}
+        public override MenuSuiteNodeType Type
+        {
+            get
+            {
+                return MenuSuiteNodeType.Root;
+            }
+        }
 
-		public override string GetName()
-		{
-			return null;
-		}
+        public MenuSuiteRootNodeProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
-	}
+        public override string GetName()
+        {
+            return null;
+        }
+
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
+    }
 }

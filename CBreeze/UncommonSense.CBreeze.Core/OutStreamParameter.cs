@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class OutStreamParameter : Parameter
+    public class OutStreamParameter : Parameter
     {
-        public OutStreamParameter(bool var, int id, string name) : base(var, id, name)
+        public OutStreamParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.OutStream;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.OutStream;
     }
 }

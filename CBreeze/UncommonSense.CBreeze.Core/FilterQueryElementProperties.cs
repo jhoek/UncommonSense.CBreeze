@@ -12,13 +12,19 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty dataSource = new StringProperty("DataSource");
         private StringProperty description = new StringProperty("Description");
 
-        internal FilterQueryElementProperties()
+        internal FilterQueryElementProperties(FilterQueryElement element)
         {
+            Element = element;
+
             innerList.Add(captionML);
             innerList.Add(description);
             innerList.Add(columnFilter);
             innerList.Add(dataSource);
         }
+
+        public FilterQueryElement Element { get; protected set; }
+
+        public override INode ParentNode => Element;
 
         public MultiLanguageValue CaptionML
         {

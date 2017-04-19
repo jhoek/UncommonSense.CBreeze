@@ -16,8 +16,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableGuidProperty parentNodeID = new NullableGuidProperty("ParentNodeID");
         private NullableBooleanProperty visible = new NullableBooleanProperty("Visible");
 
-        internal MenuSuiteGroupNodeProperties()
+        internal MenuSuiteGroupNodeProperties(GroupNode node)
         {
+            Node = node;
+
             innerList.Add(name);
             innerList.Add(captionML);
             innerList.Add(memberOfMenu);
@@ -27,6 +29,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(firstChild);
             innerList.Add(isDepartmentPage);
         }
+
+        public GroupNode Node { get; protected set; }
+
+        public override INode ParentNode => Node;
 
         public MultiLanguageValue CaptionML
         {

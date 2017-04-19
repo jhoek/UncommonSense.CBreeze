@@ -6,18 +6,31 @@ using System.Text;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2015
-        public class WordLayout
+    public class WordLayout : IHasCodeLines, INode
     {
-        internal WordLayout()
+        internal WordLayout(Report report)
         {
-            Lines = new CodeLines();
+            Report = report;
+            CodeLines = new CodeLines(this);
         }
 
-        public CodeLines Lines
+        public Report Report { get; protected set; }
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return CodeLines;
+            }
+        }
+
+        public CodeLines CodeLines
         {
             get;
             protected set;
         }
+
+        public INode ParentNode => Report;
     }
 #endif
 }

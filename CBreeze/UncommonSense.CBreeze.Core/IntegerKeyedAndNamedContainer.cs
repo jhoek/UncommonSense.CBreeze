@@ -5,16 +5,19 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-	public abstract class IntegerKeyedAndNamedContainer<TItem> : KeyedAndNamedContainer<int, TItem> where TItem : KeyedItem<int>, IHasName
-	{
-		protected override bool IsUninitializedKey(int key)
-		{
-			return key == 0;
-		}
+    public abstract class IntegerKeyedAndNamedContainer<TItem> : KeyedAndNamedContainer<int, TItem> where TItem : KeyedItem<int>, IHasName
+    {
+        public virtual IEnumerable<int> AlternativeRange => Enumerable.Range(1, int.MaxValue);
 
-		protected override int GetNextAvailableKey()
-		{
-			return this.Any() ? this.Max(i => i.ID) + 1 : 1;
-		}
-	}
+        public virtual IEnumerable<int> ExistingIDs => this.Select(i => i.ID);
+
+        public IEnumerable<int> Range { get; set; }
+
+        protected abstract IEnumerable<int> DefaultRange { get; }
+        protected virtual bool UseAlternativeRange => false;
+
+        protected override int GetNextAvailableKey() => (Range ?? (UseAlternativeRange ? AlternativeRange : DefaultRange)).Except(ExistingIDs).First();
+
+        protected override bool IsUninitializedKey(int key) => key == 0;
+    }
 }

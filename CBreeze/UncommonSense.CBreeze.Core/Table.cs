@@ -6,27 +6,51 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Table : Object, IHasCode
+    public class Table : Object, IHasCode
     {
+        public Table(string name) : this(0, name)
+        {
+        }
+
         public Table(int id, string name)
             : base(id, name)
         {
-            Properties = new TableProperties();
-            Fields = new TableFields();
-            Keys = new TableKeys();
-            FieldGroups = new TableFieldGroups();
+            Properties = new TableProperties(this);
+            Fields = new TableFields(this);
+            Keys = new TableKeys(this);
+            FieldGroups = new TableFieldGroups(this);
             Code = new Code(this);
         }
 
-        public override ObjectType Type
+        public override Properties AllProperties
         {
             get
             {
-                return ObjectType.Table;
+                return Properties;
             }
         }
 
-        public TableProperties Properties
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+                yield return Fields;
+                yield return Keys;
+                yield return FieldGroups;
+                yield return Code;
+            }
+        }
+
+        public Code Code
+        {
+            get;
+            protected set;
+        }
+
+        public Tables Container { get; internal set; }
+
+        public TableFieldGroups FieldGroups
         {
             get;
             protected set;
@@ -44,23 +68,25 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public TableFieldGroups FieldGroups
-        {
-            get;
-            protected set;
-        }
-
-        public Code Code
-        {
-            get;
-            protected set;
-        }
-
-        public override Properties AllProperties
+        public override INode ParentNode
         {
             get
             {
-                return Properties;
+                return Container;
+            }
+        }
+
+        public TableProperties Properties
+        {
+            get;
+            protected set;
+        }
+
+        public override ObjectType Type
+        {
+            get
+            {
+                return ObjectType.Table;
             }
         }
     }

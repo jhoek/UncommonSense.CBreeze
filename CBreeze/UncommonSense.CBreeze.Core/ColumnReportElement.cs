@@ -6,19 +6,30 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ColumnReportElement : ReportElement, IHasOptionString
+    public class ColumnReportElement : ReportElement, IHasOptionString
     {
-        public ColumnReportElement(int id, int? indentationLevel)
+        public ColumnReportElement(string name, string sourceExpr = null, int id = 0, int? indentationLevel = null)
             : base(id, indentationLevel)
         {
-            Properties = new ColumnReportElementProperties();
+            Name = name;
+
+            Properties = new ColumnReportElementProperties(this);
+            Properties.SourceExpr = sourceExpr;
         }
 
-        public override ReportElementType Type
+        public override Properties AllProperties
         {
             get
             {
-                return ReportElementType.Column;
+                return Properties;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
             }
         }
 
@@ -28,11 +39,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
+        public override ReportElementType Type
         {
             get
             {
-                return Properties;
+                return ReportElementType.Column;
             }
         }
 

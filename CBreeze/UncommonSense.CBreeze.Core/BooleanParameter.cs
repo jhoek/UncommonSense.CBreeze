@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class BooleanParameter : Parameter
+    public class BooleanParameter : Parameter
     {
-        public BooleanParameter(bool var, int id, string name) : base(var, id, name)
+        public BooleanParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Boolean;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.Boolean;
     }
 }

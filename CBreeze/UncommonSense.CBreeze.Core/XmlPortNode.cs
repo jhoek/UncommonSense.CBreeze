@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public abstract class XmlPortNode : KeyedItem<Guid>, IHasProperties
+    public abstract class XmlPortNode : KeyedItem<Guid>, IHasProperties, INode
     {
-        internal XmlPortNode(Guid id, string nodeName, int? indentationLevel)
+        internal XmlPortNode(string nodeName, int? indentationLevel, Guid id)
         {
-            ID = id;
+            ID = (id == Guid.Empty ? Guid.NewGuid() : id);
             IndentationLevel = indentationLevel;
             NodeName = nodeName;
         }
@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Core
         public int? IndentationLevel
         {
             get;
-            protected set;
+            set;
         }
 
         public abstract Properties AllProperties
@@ -58,13 +58,21 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public  T AddChildNode<T>(T child, Position position) where T : XmlPortNode
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes
+        {
+            get;
+        }
+
+        public T AddChildNode<T>(T child, Position position) where T : XmlPortNode
         {
             switch (position)
             {
                 case Position.FirstWithinContainer:
                     Container.Insert(Index + 1, child);
                     break;
+
                 case Position.LastWithinContainer:
                     var childNodes = DescendantNodes;
                     var lastINdex = childNodes.Any() ? childNodes.Last().Index : Index;

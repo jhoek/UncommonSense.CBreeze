@@ -7,8 +7,13 @@ using UncommonSense.CBreeze.Common;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
-        public class TableConnectionTypeVariable : Variable
+
+    public class TableConnectionTypeVariable : Variable
     {
+        public TableConnectionTypeVariable(string name) : this(0, name)
+        {
+        }
+
         public TableConnectionTypeVariable(int id, string name)
             : base(id, name)
         {
@@ -28,5 +33,6 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
     }
+
 #endif
 }

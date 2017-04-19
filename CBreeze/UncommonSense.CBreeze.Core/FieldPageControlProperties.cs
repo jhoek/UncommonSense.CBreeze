@@ -64,8 +64,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty visible = new StringProperty("Visible");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal FieldPageControlProperties()
+        internal FieldPageControlProperties(FieldPageControl control)
         {
+            Control = control;
+
             innerList.Add(name);
             innerList.Add(extendedDatatype);
             innerList.Add(width);
@@ -121,6 +123,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(showCaption);
             innerList.Add(quickEntry);
         }
+
+        public FieldPageControl Control { get; protected set; }
+
+        public override INode ParentNode => Control;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

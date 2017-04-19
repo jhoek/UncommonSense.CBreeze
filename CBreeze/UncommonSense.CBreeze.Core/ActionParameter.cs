@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ActionParameter : Parameter
+    public class ActionParameter : Parameter
     {
-        public ActionParameter(bool var, int id, string name) : base(var, id, name)
+        public ActionParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
@@ -19,6 +19,5 @@ namespace UncommonSense.CBreeze.Core
                 return ParameterType.Action;
             }
         }
-
     }
 }

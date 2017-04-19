@@ -11,10 +11,18 @@ namespace UncommonSense.CBreeze.Core
 		public ItemNode(Guid id)
 			: base(id)
 		{
-			Properties = new MenuSuiteItemNodeProperties();
+			Properties = new MenuSuiteItemNodeProperties(this);
 		}
 
-		public override MenuSuiteNodeType Type
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
+
+        public override MenuSuiteNodeType Type
 		{
 			get
 			{

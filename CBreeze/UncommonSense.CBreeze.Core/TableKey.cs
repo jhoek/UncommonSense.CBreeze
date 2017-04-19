@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TableKey
+    public class TableKey : INode
     {
         public TableKey(params string[] fieldNames)
         {
             Fields = new FieldList();
-            Properties = new TableKeyProperties();
+            Properties = new TableKeyProperties(this);
 
             Fields.AddRange(fieldNames);
         }
@@ -18,6 +18,11 @@ namespace UncommonSense.CBreeze.Core
         public override string ToString()
         {
             return string.Join(",", Fields);
+        }
+
+        public TableKeys Container
+        {
+            get; internal set;
         }
 
         public bool? Enabled
@@ -38,5 +43,14 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public INode ParentNode => Container;
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
     }
 }

@@ -6,20 +6,16 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class QueryVariable : Variable
+    public class QueryVariable : Variable
     {
+        public QueryVariable(string name, int subType) : this(0, name, subType)
+        {
+        }
+
         public QueryVariable(int id, string name, int subType)
             : base(id, name)
         {
             SubType = subType;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.Query;
-            }
         }
 
         public string Dimensions
@@ -38,6 +34,14 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             protected set;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Query;
+            }
         }
     }
 }

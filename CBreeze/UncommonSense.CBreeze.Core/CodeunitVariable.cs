@@ -6,20 +6,16 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class CodeunitVariable : Variable
+    public class CodeunitVariable : Variable
     {
+        public CodeunitVariable(string name, int subType) : this(0, name, subType)
+        {
+        }
+
         public CodeunitVariable(int id, string name, int subType)
             : base(id, name)
         {
             SubType = subType;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.Codeunit;
-            }
         }
 
         public string Dimensions
@@ -34,5 +30,12 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.Codeunit;
+            }
+        }
     }
 }

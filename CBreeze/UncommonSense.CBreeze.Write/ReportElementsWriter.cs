@@ -8,17 +8,6 @@ namespace UncommonSense.CBreeze.Write
 {
     public static class ReportElementsWriter
     {
-        internal static string BuildReportElementPart(string value, int minLength, ref int debt)
-        {
-            var actualLength = value.Trim().Length;
-            var idealLength = Math.Max(minLength - debt, 0);
-            var length = Math.Max(actualLength, idealLength);
-
-            debt += length - minLength;
-
-            return value.PadRight(length);
-        }
-
         public static void Write(this ReportElements reportElements, CSideWriter writer)
         {
             writer.BeginSection("DATASET");
@@ -44,8 +33,8 @@ namespace UncommonSense.CBreeze.Write
             var elementID = BuildReportElementPart(reportElement.ID.ToString(), 4, ref debt);
             var elementIndentation = BuildReportElementPart(reportElement.IndentationLevel.AsString(), 4, ref debt);
             var elementType = BuildReportElementPart(type, 8, ref debt);
-            var elementName = BuildReportElementPart(reportElement.Name, 20, ref debt);
-            var declaration = string.Format("{{ {0};{1};{2};{3}", elementID, elementIndentation,elementType, elementName);
+            var elementName = BuildReportElementPart(reportElement.Name ?? string.Empty, 20, ref debt);
+            var declaration = string.Format("{{ {0};{1};{2};{3}", elementID, elementIndentation, elementType, elementName);
 
             writer.Write(declaration);
             writer.Indent(15);
@@ -65,6 +54,7 @@ namespace UncommonSense.CBreeze.Write
                     writer.WriteLine(";");
                     relevantProperties.Write(PropertiesStyle.Field, writer);
                     break;
+
                 default:
                     writer.Write(" ");
                     break;
@@ -79,6 +69,16 @@ namespace UncommonSense.CBreeze.Write
             writer.Unindent();
             writer.InnerWriter.WriteLine();
         }
+
+        internal static string BuildReportElementPart(string value, int minLength, ref int debt)
+        {
+            var actualLength = value.Trim().Length;
+            var idealLength = Math.Max(minLength - debt, 0);
+            var length = Math.Max(actualLength, idealLength);
+
+            debt += length - minLength;
+
+            return value.PadRight(length);
+        }
     }
 }
-

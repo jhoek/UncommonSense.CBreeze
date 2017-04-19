@@ -10,11 +10,17 @@ namespace UncommonSense.CBreeze.Core
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty isHeader = new NullableBooleanProperty("IsHeader");
 
-        internal PageActionSeparatorProperties()
+        internal PageActionSeparatorProperties(PageActionSeparator pageActionSeparator)
         {
+            PageActionSeparator = pageActionSeparator;
+
             innerList.Add(captionML);
             innerList.Add(isHeader);
         }
+
+        public PageActionSeparator PageActionSeparator { get; protected set; }
+
+        public override INode ParentNode => PageActionSeparator;
 
         public MultiLanguageValue CaptionML
         {
