@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
     public class GroupPageControl : PageControl
     {
-        public GroupPageControl(int id = 0, int? indentationLevel = null, GroupType groupType = GroupType.Group) : base(id, indentationLevel)
+        public GroupPageControl(int id = 0, int? indentationLevel = null, GroupType? groupType = null) : base(id, indentationLevel)
         {
             Properties = new GroupPageControlProperties(this);
             Properties.GroupType = groupType;
