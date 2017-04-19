@@ -1,6 +1,7 @@
 ﻿Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
 
 $PSDefaultParameterValues['New-CBreeze*:AutoCaption'] = $true
+$PSDefaultParameterValues['Add-CBreeze*:AutoCaption'] = $true
 $PSDefaultParameterValues['New-CBreeze*:AutoObjectProperties'] = $true
 
 function Test-Application
@@ -13,6 +14,7 @@ function Test-Application
 
     $Table = $Application.Tables[50000]
     $Table.Name | Should Be Table
+	$Table.Properties.CaptionML['ENU'] | Should Be Table
 
     $Page = $Application.Pages[50000]
     $Page.Name | Should Be Page
@@ -25,9 +27,9 @@ function Test-Application
 
     $Query = $Application.Queries[50000]
     $Query.Name | Should Be Query
-    
+
     $XmlPort = $Application.XmlPorts[50000]
-    $XmlPort.Name | Should Be XmlPort 
+    $XmlPort.Name | Should Be XmlPort
 
     $MenuSuite = $Application.MenuSuites[50000]
     $MenuSuite.Name | Should Be MenuSuite
@@ -36,22 +38,26 @@ function Test-Application
 Describe 'UncommonSense.CBreeze.Automation' {
     It 'Creates objects using New* cmdlets' {
         $Application = Application {
-            Table 50000 Table 
-            Page 50000 Page 
-            Report 50000 Report 
-            Codeunit 50000 Codeunit  
-            Query 50000 Query 
-            XmlPort 50000 XmlPort 
+            Table 50000 Table
+            Page 50000 Page
+            Report 50000 Report
+            Codeunit 50000 Codeunit
+            Query 50000 Query
+            XmlPort 50000 XmlPort {
+				XmlPortNode -Name Customer -Element -Table -SourceTable ([UncommonSense.CBreeze.Core.BaseApp+TableIDs]::Customer) -ChildNodes {
+                    XmlPortNode -Name No -Element -Field -SourceFieldName "NO."
+                }
+			}
             MenuSuite 50000 MenuSuite
-        } 
+        }
 
         Test-Application -Application $Application
     }
 
     It 'Creates objects using Add* cmdlets' {
-        $Application = New-CBreezeApplication 
+        $Application = New-CBreezeApplication
 
-        $Application | Add-CBreezeTable 50000 Table -PassThru:$false
+        $Application | Add-CBreezeTable 50000 Table -PassThru:$false 
         $Application | Add-CBreezePage 50000 Page -PassThru:$false
         $Application | Add-CBreezeReport 50000 Report -PassThru:$false
         $Application | Add-CBreezeCodeunit 50000 Codeunit -PassThru:$false
