@@ -21,12 +21,14 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 
 #if NAV2016
+
         [Parameter()]
         public EventSubscriberInstance? EventSubscriberInstance
         {
             get;
             set;
         }
+
 #endif
 
         [Parameter()]
@@ -74,10 +76,9 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-
-                subObjects.OfType<Function>().ForEach(f => codeunit.Code.Functions.Add(f));
-                subObjects.OfType<Event>().ForEach(e => codeunit.Code.Events.Add(e));
-                subObjects.OfType<Variable>().ForEach(v => codeunit.Code.Variables.Add(v));
+                codeunit.Code.Functions.AddRange(subObjects.OfType<Function>());
+                codeunit.Code.Variables.AddRange(subObjects.OfType<Variable>());
+                codeunit.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
             return codeunit;
@@ -85,9 +86,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-
             WriteObject(CreateCodeunit());
         }
     }
 }
-

@@ -158,10 +158,11 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-                subObjects.OfType<PageControl>().ForEach(c => page.Controls.Add(c));
-                subObjects.OfType<PageActionBase>().ForEach(a => page.Properties.ActionList.Add(a));
-                subObjects.OfType<Function>().ForEach(f => page.Code.Functions.Add(f));
-                subObjects.OfType<Variable>().ForEach(v => page.Code.Variables.Add(v));
+                page.Controls.AddRange(subObjects.OfType<PageControl>());
+                page.Properties.ActionList.AddRange(subObjects.OfType<PageActionBase>());
+                page.Code.Functions.AddRange(subObjects.OfType<Function>());
+                page.Code.Variables.AddRange(subObjects.OfType<Variable>());
+                page.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
             return page;
@@ -173,4 +174,3 @@ namespace UncommonSense.CBreeze.Automation
         }
     }
 }
-

@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeTable")] 
+    [Cmdlet(VerbsCommon.New, "CBreezeTable")]
     [OutputType(typeof(Table))]
     public class NewCBreezeTable : NewCBreezeObject
     {
@@ -38,6 +38,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2016
+
         [Parameter()]
         public string ExternalName
         {
@@ -49,6 +50,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             get; set;
         }
+
 #endif
 
         [Parameter()]
@@ -78,11 +80,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2016
+
         [Parameter()]
         public TableType? TableType
         {
             get; set;
         }
+
 #endif
 
         protected Table CreateTable()
@@ -112,11 +116,12 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-                subObjects.OfType<TableField>().ForEach(f => table.Fields.Add(f));
-                subObjects.OfType<TableFieldGroup>().ForEach(g => table.FieldGroups.Add(g));
-                subObjects.OfType<TableKey>().ForEach(k => table.Keys.Add(k));
-                subObjects.OfType<Function>().ForEach(f => table.Code.Functions.Add(f));
-                subObjects.OfType<Variable>().ForEach(v => table.Code.Variables.Add(v));
+                table.Fields.AddRange(subObjects.OfType<TableField>());
+                table.FieldGroups.AddRange(subObjects.OfType<TableFieldGroup>());
+                table.Keys.AddRange(subObjects.OfType<TableKey>());
+                table.Code.Functions.AddRange(subObjects.OfType<Function>());
+                table.Code.Variables.AddRange(subObjects.OfType<Variable>());
+                table.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
             return table;

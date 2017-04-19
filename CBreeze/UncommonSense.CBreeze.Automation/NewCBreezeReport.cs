@@ -13,12 +13,14 @@ namespace UncommonSense.CBreeze.Automation
     public class NewCBreezeReport : NewCBreezeObject
     {
 #if NAV2015
+
         [Parameter()]
         public DefaultLayout? DefaultLayout
         {
             get;
             set;
         }
+
 #endif
 
         [Parameter()]
@@ -71,12 +73,14 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2015
+
         [Parameter()]
         public PreviewMode? PreviewMode
         {
             get;
             set;
         }
+
 #endif
 
         [Parameter()]
@@ -114,14 +118,15 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-
 #if NAV2015
+
         [Parameter()]
         public string WordMergeDataItem
         {
             get;
             set;
         }
+
 #endif
 
         protected Report CreateReport()
@@ -157,7 +162,11 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-                subObjects.OfType<ReportLabel>().ForEach(l => report.Labels.Add(l));
+                report.Labels.AddRange(subObjects.OfType<ReportLabel>());
+                report.Elements.AddRange(subObjects.OfType<ReportElement>());
+                report.Code.Functions.AddRange(subObjects.OfType<Function>());
+                report.Code.Variables.AddRange(subObjects.OfType<Variable>());
+                report.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
             return report;
@@ -168,5 +177,4 @@ namespace UncommonSense.CBreeze.Automation
             WriteObject(CreateReport());
         }
     }
-
 }

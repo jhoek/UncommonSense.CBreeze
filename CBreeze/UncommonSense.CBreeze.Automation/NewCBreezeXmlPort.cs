@@ -173,9 +173,10 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-                subObjects.OfType<XmlPortNode>().ForEach(n => xmlPort.Nodes.Add(n));
-                subObjects.OfType<Function>().ForEach(f => xmlPort.Code.Functions.Add(f));
-                subObjects.OfType<Variable>().ForEach(v => xmlPort.Code.Variables.Add(v));
+                xmlPort.Nodes.AddRange(subObjects.OfType<XmlPortNode>());
+                xmlPort.Code.Functions.AddRange(subObjects.OfType<Function>());
+                xmlPort.Code.Variables.AddRange(subObjects.OfType<Variable>());
+                xmlPort.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
             return xmlPort;
