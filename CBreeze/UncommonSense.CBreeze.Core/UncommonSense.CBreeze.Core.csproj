@@ -114,7 +114,7 @@
     <Compile Include="LocalVariables.cs" />
     <Compile Include="MissingAction.cs" />
     <Compile Include="INode.cs" />
-    <Compile Include="Ranges.cs" />
+    <Compile Include="DefaultRanges.cs" />
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="TriggerVariables.cs" />
     <Compile Include="XmlPortNamespace.cs" />
