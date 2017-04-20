@@ -92,7 +92,7 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-        
+
         protected override void ProcessRecord()
         {
             var tableField = Table.Fields.Add(CreateTableField());
@@ -100,14 +100,6 @@ namespace UncommonSense.CBreeze.Automation
 
             if (PassThru)
                 WriteObject(tableField);
-        }
-
-         protected override int GetTableFieldNo()
-        {
-            return ID.GetID(
-                idsInUse: Table.Fields.Select(f => f.ID),
-                containingID: Table.ID,
-                alternativeRange: PrimaryKeyFieldNoRange ? 1.To(int.MaxValue) : 10.To(int.MaxValue));
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
@@ -119,6 +111,7 @@ namespace UncommonSense.CBreeze.Automation
                 switch (Type)
                 {
                     #region BigInteger
+
                     case TableFieldType.BigInteger:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -148,15 +141,19 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Width.RuntimeDefinedParameter;
 
                         break;
-                    #endregion
+
+                    #endregion BigInteger
 
                     #region Binary
+
                     case TableFieldType.Binary:
                         yield return DataLength.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Binary
 
                     #region Blob
+
                     case TableFieldType.BLOB:
                         yield return Compressed.RuntimeDefinedParameter;
 #if NAV2016
@@ -168,9 +165,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return SubType.RuntimeDefinedParameter;
                         yield return Volatile.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Blob
 
                     #region Boolean
+
                     case TableFieldType.Boolean:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -196,9 +195,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Boolean
 
                     #region Code
+
                     case TableFieldType.Code:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -225,9 +226,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Code
 
                     #region Date
+
                     case TableFieldType.Date:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -253,9 +256,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Date
 
                     #region DateFormula
+
                     case TableFieldType.DateFormula:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -276,9 +281,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion DateFormula
 
                     #region DateTime
+
                     case TableFieldType.DateTime:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -304,9 +311,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Volatile.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion DateTime
 
                     #region Decimal
+
                     case TableFieldType.Decimal:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -335,9 +344,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Decimal
 
                     #region Duration
+
                     case TableFieldType.Duration:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -364,9 +375,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Duration
 
                     #region Guid
+
                     case TableFieldType.Guid:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -387,9 +400,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Guid
 
                     #region Integer
+
                     case TableFieldType.Integer:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -418,9 +433,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Volatile.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Integer
 
                     #region Option
+
                     case TableFieldType.Option:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -451,9 +468,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Option
 
                     #region RecordID
+
                     case TableFieldType.RecordID:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -474,15 +493,19 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion RecordID
 
                     #region TableFilter
+
                     case TableFieldType.TableFilter:
                         yield return TableIDExpr.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion TableFilter
 
                     #region Text
+
                     case TableFieldType.Text:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -508,9 +531,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Text
 
                     #region Time
+
                     case TableFieldType.Time:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -534,7 +559,8 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                        #endregion Time
                 }
             }
         }

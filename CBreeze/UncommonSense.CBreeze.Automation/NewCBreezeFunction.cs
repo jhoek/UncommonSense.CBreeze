@@ -13,8 +13,7 @@ namespace UncommonSense.CBreeze.Automation
     public class NewCBreezeFunction : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
+        public int ID
         {
             get;
             set;
@@ -190,7 +189,7 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected Function CreateFunction(int id)
+        protected Function CreateFunction()
         {
             if (ReturnValueType.HasValue && (ReturnValueDataLength ?? 0) == 0)
             {
@@ -206,7 +205,7 @@ namespace UncommonSense.CBreeze.Automation
                 }
             }
 
-            var function = new Function(id, Name);
+            var function = new Function(ID, Name);
             function.Local = Local;
             function.TestFunctionType = TestFunctionType;
             function.HandlerFunctions = HandlerFunctions;
@@ -260,7 +259,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            WriteObject(CreateFunction(0));
+            WriteObject(CreateFunction());
         }
 
         private Functions GetFunctions(PSObject inputObject)

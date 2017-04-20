@@ -81,8 +81,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
+        public int ID
         {
             get; set;
         }
@@ -103,13 +102,6 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter PrimaryKeyFieldNoRange
         {
             get;
             set;
@@ -237,6 +229,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2016
+
         protected DynamicParameter<ExternalAccess?> ExternalAccess
         {
             get;
@@ -254,6 +247,7 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
 #endif
 
         protected DynamicParameter<FieldClass?> FieldClass
@@ -496,8 +490,9 @@ namespace UncommonSense.CBreeze.Automation
             switch (Type)
             {
                 #region BigInteger
+
                 case TableFieldType.BigInteger:
-                    var bigIntegerTableField = new BigIntegerTableField(GetTableFieldNo(), Name);
+                    var bigIntegerTableField = new BigIntegerTableField(ID, Name);
                     bigIntegerTableField.Properties.AltSearchField = AltSearchField.Value;
                     bigIntegerTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     bigIntegerTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -530,22 +525,26 @@ namespace UncommonSense.CBreeze.Automation
                         bigIntegerTableField.AutoCaption();
 
                     return bigIntegerTableField;
-                #endregion
+
+                #endregion BigInteger
 
                 #region Binary
+
                 case TableFieldType.Binary:
-                    var binaryTableField = new BinaryTableField(GetTableFieldNo(), Name, DataLength.Value ?? 4);
+                    var binaryTableField = new BinaryTableField(ID, Name, DataLength.Value ?? 4);
                     binaryTableField.Properties.Description = Description;
 
                     if (AutoCaption)
                         binaryTableField.AutoCaption();
 
                     return binaryTableField;
-                #endregion
+
+                #endregion Binary
 
                 #region Blob
+
                 case TableFieldType.BLOB:
-                    var blobTableField = new BlobTableField(GetTableFieldNo(), Name);
+                    var blobTableField = new BlobTableField(ID, Name);
                     blobTableField.Properties.Compressed = Compressed.Value;
                     blobTableField.Properties.Description = Description;
 #if NAV2016
@@ -561,11 +560,13 @@ namespace UncommonSense.CBreeze.Automation
                         blobTableField.AutoCaption();
 
                     return blobTableField;
-                #endregion
+
+                #endregion Blob
 
                 #region Boolean
+
                 case TableFieldType.Boolean:
-                    var booleanTableField = new BooleanTableField(GetTableFieldNo(), Name);
+                    var booleanTableField = new BooleanTableField(ID, Name);
                     booleanTableField.Properties.AltSearchField = AltSearchField.Value;
                     booleanTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     booleanTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -595,11 +596,13 @@ namespace UncommonSense.CBreeze.Automation
                         booleanTableField.AutoCaption();
 
                     return booleanTableField;
-                #endregion
+
+                #endregion Boolean
 
                 #region Code
+
                 case TableFieldType.Code:
-                    var codeTableField = new CodeTableField(GetTableFieldNo(), Name, DataLength.Value ?? 10);
+                    var codeTableField = new CodeTableField(ID, Name, DataLength.Value ?? 10);
                     codeTableField.Properties.AltSearchField = AltSearchField.Value;
                     codeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     codeTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -629,11 +632,13 @@ namespace UncommonSense.CBreeze.Automation
                         codeTableField.AutoCaption();
 
                     return codeTableField;
-                #endregion
+
+                #endregion Code
 
                 #region Date
+
                 case TableFieldType.Date:
-                    var dateTableField = new DateTableField(GetTableFieldNo(), Name);
+                    var dateTableField = new DateTableField(ID, Name);
                     dateTableField.Properties.AltSearchField = AltSearchField.Value;
                     dateTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     dateTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -663,11 +668,13 @@ namespace UncommonSense.CBreeze.Automation
                         dateTableField.AutoCaption();
 
                     return dateTableField;
-                #endregion
+
+                #endregion Date
 
                 #region DateFormula
+
                 case TableFieldType.DateFormula:
-                    var dateFormulaTableField = new DateFormulaTableField(GetTableFieldNo(), Name);
+                    var dateFormulaTableField = new DateFormulaTableField(ID, Name);
                     dateFormulaTableField.Properties.AltSearchField = AltSearchField.Value;
                     dateFormulaTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     dateFormulaTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -692,11 +699,13 @@ namespace UncommonSense.CBreeze.Automation
                         dateFormulaTableField.AutoCaption();
 
                     return dateFormulaTableField;
-                #endregion
+
+                #endregion DateFormula
 
                 #region DateTime
+
                 case TableFieldType.DateTime:
-                    var dateTimeTableField = new DateTimeTableField(GetTableFieldNo(), Name);
+                    var dateTimeTableField = new DateTimeTableField(ID, Name);
                     dateTimeTableField.Properties.AltSearchField = AltSearchField.Value;
                     dateTimeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     dateTimeTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -726,11 +735,13 @@ namespace UncommonSense.CBreeze.Automation
                         dateTimeTableField.AutoCaption();
 
                     return dateTimeTableField;
-                #endregion
+
+                #endregion DateTime
 
                 #region Decimal
+
                 case TableFieldType.Decimal:
-                    var decimalTableField = new DecimalTableField(GetTableFieldNo(), Name);
+                    var decimalTableField = new DecimalTableField(ID, Name);
                     decimalTableField.Properties.AltSearchField = AltSearchField.Value;
                     decimalTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     decimalTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -763,11 +774,13 @@ namespace UncommonSense.CBreeze.Automation
                         decimalTableField.AutoCaption();
 
                     return decimalTableField;
-                #endregion
+
+                #endregion Decimal
 
                 #region Duration
+
                 case TableFieldType.Duration:
-                    var durationTableField = new DurationTableField(GetTableFieldNo(), Name);
+                    var durationTableField = new DurationTableField(ID, Name);
                     durationTableField.Properties.AltSearchField = AltSearchField.Value;
                     durationTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     durationTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -798,11 +811,13 @@ namespace UncommonSense.CBreeze.Automation
                         durationTableField.AutoCaption();
 
                     return durationTableField;
-                #endregion
+
+                #endregion Duration
 
                 #region Guid
+
                 case TableFieldType.Guid:
-                    var guidTableField = new GuidTableField(GetTableFieldNo(), Name);
+                    var guidTableField = new GuidTableField(ID, Name);
                     guidTableField.Properties.AltSearchField = AltSearchField.Value;
                     guidTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     guidTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -827,11 +842,13 @@ namespace UncommonSense.CBreeze.Automation
                         guidTableField.AutoCaption();
 
                     return guidTableField;
-                #endregion
+
+                #endregion Guid
 
                 #region Integer
+
                 case TableFieldType.Integer:
-                    var integerTableField = new IntegerTableField(GetTableFieldNo(), Name);
+                    var integerTableField = new IntegerTableField(ID, Name);
                     integerTableField.Properties.AltSearchField = AltSearchField.Value;
                     integerTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     integerTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -864,11 +881,13 @@ namespace UncommonSense.CBreeze.Automation
                         integerTableField.AutoCaption();
 
                     return integerTableField;
-                #endregion
+
+                #endregion Integer
 
                 #region Option
+
                 case TableFieldType.Option:
-                    var optionTableField = new OptionTableField(GetTableFieldNo(), Name);
+                    var optionTableField = new OptionTableField(ID, Name);
                     optionTableField.Properties.AltSearchField = AltSearchField.Value;
                     optionTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     optionTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -906,11 +925,13 @@ namespace UncommonSense.CBreeze.Automation
                             optionTableField.AutoOptionCaption();
 
                     return optionTableField;
-                #endregion
+
+                #endregion Option
 
                 #region RecordID
+
                 case TableFieldType.RecordID:
-                    var recordIDTableField = new RecordIDTableField(GetTableFieldNo(), Name);
+                    var recordIDTableField = new RecordIDTableField(ID, Name);
                     recordIDTableField.Properties.AltSearchField = AltSearchField.Value;
                     recordIDTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     recordIDTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -935,11 +956,13 @@ namespace UncommonSense.CBreeze.Automation
                         recordIDTableField.AutoCaption();
 
                     return recordIDTableField;
-                #endregion
+
+                #endregion RecordID
 
                 #region TableFilter
+
                 case TableFieldType.TableFilter:
-                    var tableFilterTableField = new TableFilterTableField(GetTableFieldNo(), Name);
+                    var tableFilterTableField = new TableFilterTableField(ID, Name);
                     tableFilterTableField.Properties.Description = Description;
                     tableFilterTableField.Properties.TableIDExpr = TableIDExpr.Value;
 
@@ -947,11 +970,13 @@ namespace UncommonSense.CBreeze.Automation
                         tableFilterTableField.AutoCaption();
 
                     return tableFilterTableField;
-                #endregion
+
+                #endregion TableFilter
 
                 #region Text
+
                 case TableFieldType.Text:
-                    var textTableField = new TextTableField(GetTableFieldNo(), Name, DataLength.Value ?? 30);
+                    var textTableField = new TextTableField(ID, Name, DataLength.Value ?? 30);
                     textTableField.Properties.AltSearchField = AltSearchField.Value;
                     textTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     textTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -980,11 +1005,13 @@ namespace UncommonSense.CBreeze.Automation
                         textTableField.AutoCaption();
 
                     return textTableField;
-                #endregion
+
+                #endregion Text
 
                 #region Time
+
                 case TableFieldType.Time:
-                    var timeTableField = new TimeTableField(GetTableFieldNo(), Name);
+                    var timeTableField = new TimeTableField(ID, Name);
                     timeTableField.Properties.AltSearchField = AltSearchField.Value;
                     timeTableField.Properties.AutoFormatExpr = AutoFormatExpr.Value;
                     timeTableField.Properties.AutoFormatType = AutoFormatType.Value;
@@ -1011,19 +1038,12 @@ namespace UncommonSense.CBreeze.Automation
                         timeTableField.AutoCaption();
 
                     return timeTableField;
-                #endregion
+
+                #endregion Time
 
                 default:
                     throw new ArgumentOutOfRangeException("Unknown field type.");
             }
-        }
-
-        protected virtual int GetTableFieldNo()
-        {
-            return ID.GetID(
-                null,
-                0,
-                alternativeRange: PrimaryKeyFieldNoRange ? 1.To(int.MaxValue) : 10.To(int.MaxValue));
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
@@ -1035,6 +1055,7 @@ namespace UncommonSense.CBreeze.Automation
                 switch (Type)
                 {
                     #region BigInteger
+
                     case TableFieldType.BigInteger:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1064,15 +1085,19 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Width.RuntimeDefinedParameter;
 
                         break;
-                    #endregion
+
+                    #endregion BigInteger
 
                     #region Binary
+
                     case TableFieldType.Binary:
                         yield return DataLength.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Binary
 
                     #region Blob
+
                     case TableFieldType.BLOB:
                         yield return Compressed.RuntimeDefinedParameter;
 #if NAV2016
@@ -1084,9 +1109,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return SubType.RuntimeDefinedParameter;
                         yield return Volatile.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Blob
 
                     #region Boolean
+
                     case TableFieldType.Boolean:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1112,9 +1139,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Boolean
 
                     #region Code
+
                     case TableFieldType.Code:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1141,9 +1170,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Code
 
                     #region Date
+
                     case TableFieldType.Date:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1169,9 +1200,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Date
 
                     #region DateFormula
+
                     case TableFieldType.DateFormula:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1192,9 +1225,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion DateFormula
 
                     #region DateTime
+
                     case TableFieldType.DateTime:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1220,9 +1255,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Volatile.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion DateTime
 
                     #region Decimal
+
                     case TableFieldType.Decimal:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1251,9 +1288,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Decimal
 
                     #region Duration
+
                     case TableFieldType.Duration:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1280,9 +1319,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Duration
 
                     #region Guid
+
                     case TableFieldType.Guid:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1303,9 +1344,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Guid
 
                     #region Integer
+
                     case TableFieldType.Integer:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1334,9 +1377,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return Volatile.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Integer
 
                     #region Option
+
                     case TableFieldType.Option:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1367,9 +1412,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Option
 
                     #region RecordID
+
                     case TableFieldType.RecordID:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1390,15 +1437,19 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion RecordID
 
                     #region TableFilter
+
                     case TableFieldType.TableFilter:
                         yield return TableIDExpr.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion TableFilter
 
                     #region Text
+
                     case TableFieldType.Text:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1424,9 +1475,11 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         yield return Width.RuntimeDefinedParameter;
                         break;
-                    #endregion
+
+                    #endregion Text
 
                     #region Time
+
                     case TableFieldType.Time:
                         yield return AltSearchField.RuntimeDefinedParameter;
                         yield return AutoFormatExpr.RuntimeDefinedParameter;
@@ -1450,7 +1503,8 @@ namespace UncommonSense.CBreeze.Automation
                         yield return ValidateTableRelation.RuntimeDefinedParameter;
                         yield return ValuesAllowed.RuntimeDefinedParameter;
                         break;
-                        #endregion
+
+                        #endregion Time
                 }
             }
         }

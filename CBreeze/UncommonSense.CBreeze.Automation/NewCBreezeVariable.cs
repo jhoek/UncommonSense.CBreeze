@@ -31,8 +31,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, Position = 0)]
-        [Alias("Range")]
-        public PSObject ID
+        public int ID
         {
             get; set;
         }
@@ -44,7 +43,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position=2)]
+        [Parameter(Mandatory = true, Position = 2)]
         public VariableType Type
         {
             get;
@@ -136,250 +135,242 @@ namespace UncommonSense.CBreeze.Automation
 
         protected Variable CreateVariable()
         {
-            var id = GetVariableID();
-
             switch (Type)
             {
                 case VariableType.Action:
-                    var actionVariable = new ActionVariable(id, Name);
+                    var actionVariable = new ActionVariable(ID, Name);
                     actionVariable.Dimensions = Dimensions.Value;
                     return actionVariable;
 
                 case VariableType.Automation:
-                    var automationVariable = new AutomationVariable(id, Name, StringSubType.Value);
+                    var automationVariable = new AutomationVariable(ID, Name, StringSubType.Value);
                     automationVariable.Dimensions = Dimensions.Value;
                     automationVariable.WithEvents = WithEvents.Value;
                     return automationVariable;
 
                 case VariableType.BigInteger:
-                    var bigIntegerVariable = new BigIntegerVariable(id, Name);
+                    var bigIntegerVariable = new BigIntegerVariable(ID, Name);
                     bigIntegerVariable.Dimensions = Dimensions.Value;
                     return bigIntegerVariable;
 
                 case VariableType.BigText:
-                    var bigTextVariable = new BigTextVariable(id, Name);
+                    var bigTextVariable = new BigTextVariable(ID, Name);
                     bigTextVariable.Dimensions = Dimensions.Value;
                     return bigTextVariable;
 
                 case VariableType.Binary:
-                    var binaryVariable = new BinaryVariable(id, Name, MandatoryDataLength.Value);
+                    var binaryVariable = new BinaryVariable(ID, Name, MandatoryDataLength.Value);
                     binaryVariable.Dimensions = Dimensions.Value;
                     return binaryVariable;
 
                 case VariableType.Boolean:
-                    var booleanVariable = new BooleanVariable(id, Name);
+                    var booleanVariable = new BooleanVariable(ID, Name);
                     booleanVariable.Dimensions = Dimensions.Value;
                     booleanVariable.IncludeInDataset = IncludeInDataset.Value;
                     return booleanVariable;
 
                 case VariableType.Byte:
-                    var byteVariable = new ByteVariable(id, Name);
+                    var byteVariable = new ByteVariable(ID, Name);
                     byteVariable.Dimensions = Dimensions.Value;
                     return byteVariable;
 
                 case VariableType.Char:
-                    var charVariable = new CharVariable(id, Name);
+                    var charVariable = new CharVariable(ID, Name);
                     charVariable.Dimensions = Dimensions.Value;
                     return charVariable;
 
                 case VariableType.Code:
-                    var codeVariable = new CodeVariable(id, Name, OptionalDataLength.Value);
+                    var codeVariable = new CodeVariable(ID, Name, OptionalDataLength.Value);
                     codeVariable.Dimensions = Dimensions.Value;
                     codeVariable.IncludeInDataset = IncludeInDataset.Value;
                     return codeVariable;
 
                 case VariableType.Codeunit:
-                    var codeunitVariable = new CodeunitVariable(id, Name, IntegerSubType.Value);
+                    var codeunitVariable = new CodeunitVariable(ID, Name, IntegerSubType.Value);
                     codeunitVariable.Dimensions = Dimensions.Value;
                     return codeunitVariable;
 
                 case VariableType.Date:
-                    var dateVariable = new DateVariable(id, Name);
+                    var dateVariable = new DateVariable(ID, Name);
                     dateVariable.Dimensions = Dimensions.Value;
                     return dateVariable;
 
                 case VariableType.DateFormula:
-                    var dateFormulaVariable = new DateFormulaVariable(id, Name);
+                    var dateFormulaVariable = new DateFormulaVariable(ID, Name);
                     dateFormulaVariable.Dimensions = Dimensions.Value;
                     return dateFormulaVariable;
 
                 case VariableType.DateTime:
-                    var dateTimeVariable = new DateTimeVariable(id, Name);
+                    var dateTimeVariable = new DateTimeVariable(ID, Name);
                     dateTimeVariable.Dimensions = Dimensions.Value;
                     return dateTimeVariable;
 
                 case VariableType.Decimal:
-                    var decimalVariable = new DecimalVariable(id, Name);
+                    var decimalVariable = new DecimalVariable(ID, Name);
                     decimalVariable.Dimensions = Dimensions.Value;
                     return decimalVariable;
 
                 case VariableType.Dialog:
-                    var dialogVariable = new DialogVariable(id, Name);
+                    var dialogVariable = new DialogVariable(ID, Name);
                     dialogVariable.Dimensions = Dimensions.Value;
                     return dialogVariable;
 
                 case VariableType.DotNet:
-                    var dotNetVariable = new DotNetVariable(id, Name, StringSubType.Value);
+                    var dotNetVariable = new DotNetVariable(ID, Name, StringSubType.Value);
                     dotNetVariable.Dimensions = Dimensions.Value;
                     dotNetVariable.RunOnClient = RunOnClient.Value;
                     dotNetVariable.WithEvents = WithEvents.Value;
                     return dotNetVariable;
 
                 case VariableType.Duration:
-                    var durationVariable = new DurationVariable(id, Name);
+                    var durationVariable = new DurationVariable(ID, Name);
                     durationVariable.Dimensions = Dimensions.Value;
                     return durationVariable;
 
                 case VariableType.ExecutionMode:
-                    var executionModeVariable = new ExecutionModeVariable(id, Name);
+                    var executionModeVariable = new ExecutionModeVariable(ID, Name);
                     executionModeVariable.Dimensions = Dimensions.Value;
                     return executionModeVariable;
 
                 case VariableType.FieldRef:
-                    var fieldRefVariable = new FieldRefVariable(id, Name);
+                    var fieldRefVariable = new FieldRefVariable(ID, Name);
                     fieldRefVariable.Dimensions = Dimensions.Value;
                     return fieldRefVariable;
 
                 case VariableType.File:
-                    var fileVariable = new FileVariable(id, Name);
+                    var fileVariable = new FileVariable(ID, Name);
                     fileVariable.Dimensions = Dimensions.Value;
                     return fileVariable;
 
                 case VariableType.Guid:
-                    var guidVariable = new GuidVariable(id, Name);
+                    var guidVariable = new GuidVariable(ID, Name);
                     guidVariable.Dimensions = Dimensions.Value;
                     return guidVariable;
 
                 case VariableType.InStream:
-                    var instreamVariable = new InStreamVariable(id, Name);
+                    var instreamVariable = new InStreamVariable(ID, Name);
                     instreamVariable.Dimensions = Dimensions.Value;
                     return instreamVariable;
 
                 case VariableType.Integer:
-                    var integerVariable = new IntegerVariable(id, Name);
+                    var integerVariable = new IntegerVariable(ID, Name);
                     integerVariable.Dimensions = Dimensions.Value;
                     integerVariable.IncludeInDataset = IncludeInDataset.Value;
                     return integerVariable;
 
                 case VariableType.KeyRef:
-                    var keyRefVariable = new KeyRefVariable(id, Name);
+                    var keyRefVariable = new KeyRefVariable(ID, Name);
                     keyRefVariable.Dimensions = Dimensions.Value;
                     return keyRefVariable;
 
                 case VariableType.Ocx:
-                    var ocxVariable = new OcxVariable(id, Name, StringSubType.Value);
+                    var ocxVariable = new OcxVariable(ID, Name, StringSubType.Value);
                     ocxVariable.Dimensions = Dimensions.Value;
                     return ocxVariable;
 
                 case VariableType.Option:
-                    var optionVariable = new OptionVariable(id, Name);
+                    var optionVariable = new OptionVariable(ID, Name);
                     optionVariable.Dimensions = Dimensions.Value;
                     optionVariable.OptionString = OptionString.Value;
                     return optionVariable;
 
                 case VariableType.OutStream:
-                    var outStreamVariable = new OutStreamVariable(id, Name);
+                    var outStreamVariable = new OutStreamVariable(ID, Name);
                     outStreamVariable.Dimensions = Dimensions.Value;
                     return outStreamVariable;
 
                 case VariableType.Page:
-                    var pageVariable = new PageVariable(id, Name, IntegerSubType.Value);
+                    var pageVariable = new PageVariable(ID, Name, IntegerSubType.Value);
                     pageVariable.Dimensions = Dimensions.Value;
                     return pageVariable;
 
                 case VariableType.Query:
-                    var queryVariable = new QueryVariable(id, Name, IntegerSubType.Value);
+                    var queryVariable = new QueryVariable(ID, Name, IntegerSubType.Value);
                     queryVariable.Dimensions = Dimensions.Value;
                     queryVariable.SecurityFiltering = QuerySecurityFiltering.Value;
                     return queryVariable;
 
                 case VariableType.Record:
-                    var recordVariable = new RecordVariable(id, Name, IntegerSubType.Value);
+                    var recordVariable = new RecordVariable(ID, Name, IntegerSubType.Value);
                     recordVariable.Dimensions = Dimensions.Value;
                     recordVariable.SecurityFiltering = RecordSecurityFiltering.Value;
                     recordVariable.Temporary = Temporary.Value;
                     return recordVariable;
 
                 case VariableType.RecordID:
-                    var recordIDVariable = new RecordIDVariable(id, Name);
+                    var recordIDVariable = new RecordIDVariable(ID, Name);
                     recordIDVariable.Dimensions = Dimensions.Value;
                     return recordIDVariable;
 
                 case VariableType.RecordRef:
-                    var recordRefVariable = new RecordRefVariable(id, Name);
+                    var recordRefVariable = new RecordRefVariable(ID, Name);
                     recordRefVariable.Dimensions = Dimensions.Value;
                     recordRefVariable.SecurityFiltering = RecordSecurityFiltering.Value;
                     return recordRefVariable;
 
                 case VariableType.Report:
-                    var reportVariable = new ReportVariable(id, Name, IntegerSubType.Value);
+                    var reportVariable = new ReportVariable(ID, Name, IntegerSubType.Value);
                     reportVariable.Dimensions = Dimensions.Value;
                     return reportVariable;
 
 #if NAV2016
                 case VariableType.ReportFormat:
-                    var reportFormatVariable = new ReportFormatVariable(id, Name);
+                    var reportFormatVariable = new ReportFormatVariable(ID, Name);
                     reportFormatVariable.Dimensions = Dimensions.Value;
                     return reportFormatVariable;
 
                 case VariableType.TableConnectionType:
-                    var tableConnectionTypeVariable = new TableConnectionTypeVariable(id, Name);
+                    var tableConnectionTypeVariable = new TableConnectionTypeVariable(ID, Name);
                     tableConnectionTypeVariable.Dimensions = Dimensions.Value;
                     return tableConnectionTypeVariable;
 #endif
 
                 case VariableType.TestPage:
-                    var testPageVariable = new TestPageVariable(id, Name, IntegerSubType.Value);
+                    var testPageVariable = new TestPageVariable(ID, Name, IntegerSubType.Value);
                     testPageVariable.Dimensions = Dimensions.Value;
                     return testPageVariable;
 
                 case VariableType.Text:
-                    var textVariable = new TextVariable(id, Name, OptionalDataLength.Value);
+                    var textVariable = new TextVariable(ID, Name, OptionalDataLength.Value);
                     textVariable.Dimensions = Dimensions.Value;
                     textVariable.IncludeInDataset = IncludeInDataset.Value;
                     return textVariable;
 
 #if NAV2016
                 case VariableType.TextEncoding:
-                    var textEncodingVariable = new TextEncodingVariable(id, Name);
+                    var textEncodingVariable = new TextEncodingVariable(ID, Name);
                     textEncodingVariable.Dimensions = Dimensions.Value;
                     return textEncodingVariable;
 #endif
 
                 case VariableType.TextConst:
-                    var textConstant = new TextConstant(id, Name);
+                    var textConstant = new TextConstant(ID, Name);
                     textConstant.Values.Set("ENU", Value.Value);
                     return textConstant;
 
                 case VariableType.Time:
-                    var timeVariable = new TimeVariable(id, Name);
+                    var timeVariable = new TimeVariable(ID, Name);
                     timeVariable.Dimensions = Dimensions.Value;
                     return timeVariable;
 
                 case VariableType.TransactionType:
-                    var transactionTypeVariable = new TransactionTypeVariable(id, Name);
+                    var transactionTypeVariable = new TransactionTypeVariable(ID, Name);
                     transactionTypeVariable.Dimensions = Dimensions.Value;
                     return transactionTypeVariable;
 
                 case VariableType.Variant:
-                    var variantVariable = new VariantVariable(id, Name);
+                    var variantVariable = new VariantVariable(ID, Name);
                     variantVariable.Dimensions = Dimensions.Value;
                     return variantVariable;
 
                 case VariableType.XmlPort:
-                    var xmlPortVariable = new XmlPortVariable(id, Name, IntegerSubType.Value);
+                    var xmlPortVariable = new XmlPortVariable(ID, Name, IntegerSubType.Value);
                     xmlPortVariable.Dimensions = Dimensions.Value;
                     return xmlPortVariable;
 
                 default:
                     throw new ArgumentOutOfRangeException("Unknown variable type.");
             }
-        }
-
-        protected int GetVariableID()
-        {
-            // return ID.GetID(inputObject.GetVariableIDs().Union(inputObject.GetParameterIDs()));
-            return ID.GetID();
         }
 
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters

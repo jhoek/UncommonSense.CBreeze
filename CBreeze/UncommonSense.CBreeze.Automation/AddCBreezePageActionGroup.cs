@@ -12,16 +12,15 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezePageActionGroup")]
     public class AddCBreezePageActionGroup : NewCBreezePageActionGroup
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        [Parameter(Mandatory = true, Position = 1)]
+        public int ID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        [Alias("Range")]
-        public new PSObject ID
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public PSObject InputObject
         {
             get;
             set;
@@ -39,13 +38,20 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected override int GetID()
-        {
-            var page = InputObject.GetIPage();
-            return ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
-        }
-
         protected override int GetIndentation() => GetParentIndentationLevel() + 1;
+
+        protected int GetParentIndentationLevel()
+        {
+            var result = 0;
+
+            TypeSwitch.Do(
+                InputObject.BaseObject,
+                TypeSwitch.Case<PageActionContainer>(i => result = i.IndentationLevel.GetValueOrDefault(0)),
+                TypeSwitch.Case<PageActionGroup>(i => result = i.IndentationLevel.GetValueOrDefault(0))
+                );
+
+            return result;
+        }
 
         protected override void ProcessRecord()
         {
@@ -68,19 +74,6 @@ namespace UncommonSense.CBreeze.Automation
         protected void UnknownInputObjectType()
         {
             throw new ArgumentOutOfRangeException("Don't know how to add a page action to an InputObject of this type.");
-        }
-
-        protected int GetParentIndentationLevel()
-        {
-            var result = 0;
-
-            TypeSwitch.Do(
-                InputObject.BaseObject,
-                TypeSwitch.Case<PageActionContainer>(i => result = i.IndentationLevel.GetValueOrDefault(0)),
-                TypeSwitch.Case<PageActionGroup>(i => result = i.IndentationLevel.GetValueOrDefault(0))
-                );
-
-            return result;
         }
     }
 }

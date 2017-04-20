@@ -12,16 +12,15 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezePageActionContainer")]
     public class AddCBreezePageActionContainer : NewCBreezePageActionContainer
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        [Parameter(Mandatory = true, Position = 1)]
+        public int ID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        [Alias("Range")]
-        public new PSObject ID
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public PSObject InputObject
         {
             get;
             set;
@@ -39,12 +38,6 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected override int GetID()
-        {
-            var page = InputObject.GetIPage();
-            return ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
-        }
-
         protected override int GetIndentation() => 0;
 
         protected override void ProcessRecord()
@@ -55,7 +48,7 @@ namespace UncommonSense.CBreeze.Automation
             TypeSwitch.Do(
                 InputObject.BaseObject,
                 TypeSwitch.Case<IPage>(i => i.AddPageActionAtPosition(pageActionContainer, position)),
-                TypeSwitch.Case<ActionList>(i=>i.AddPageActionAtPosition(pageActionContainer,position))
+                TypeSwitch.Case<ActionList>(i => i.AddPageActionAtPosition(pageActionContainer, position))
                 );
 
             if (PassThru)
