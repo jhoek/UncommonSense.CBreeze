@@ -75,39 +75,58 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, int containingID = 0, int objectID = 0, IEnumerable<int> alternativeRange = null)
+        public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, int containingID = 0, int objectID = 0, IEnumerable<int> alternativeRange = null, Action<string> log = null)
         {
-            if (id.BaseObject is int)
+            log?.Invoke($"ID is of type {id.BaseObject.GetType().FullName}");
+
+            var baseObject = id.BaseObject;
+
+            if (baseObject is int)
             {
-                return (int)id.BaseObject;
+                return (int)baseObject;
             }
 
-            if (id.BaseObject is IEnumerable<int>)
+            var range = GetIDs(id.BaseObject);
+            var useAlternativeRange = false;
+
+            // Note: containingID may be an object ID (in case of e.g. page controls), or e.g. a
+            // function ID (in case of parameters). In multi-layered scenario's, such as function
+            // parameters, the containingID contains the function ID, and the objectID contains the
+            // object ID. See also this gist: https://gist.github.com/jhoek/8988ffb441e4162c8b5e
+
+            if (containingID != 0)
             {
-                var range = id.BaseObject as IEnumerable<int>;
-                var useAlternativeRange = false;
-
-                // Note: containingID may be an object ID (in case of e.g. page controls), or e.g. a
-                // function ID (in case of parameters). In multi-layered scenario's, such as function
-                // parameters, the containingID contains the function ID, and the objectID contains
-                // the object ID. See also this gist: https://gist.github.com/jhoek/8988ffb441e4162c8b5e
-
-                if (containingID != 0)
+                if (range.Contains(containingID))
                 {
-                    if (range.Contains(containingID))
-                    {
-                        useAlternativeRange = true;
-                    }
-                    else
-                    {
-                        useAlternativeRange = range.Contains(objectID);
-                    }
+                    useAlternativeRange = true;
                 }
+                else
+                {
+                    useAlternativeRange = range.Contains(objectID);
+                }
+            }
 
-                if (useAlternativeRange)
-                    range = (alternativeRange ?? 1.To(int.MaxValue));
+            if (useAlternativeRange)
+                range = (alternativeRange ?? 1.To(int.MaxValue));
 
-                return range.Except(idsInUse ?? Enumerable.Empty<int>()).First();
+            return range.Except(idsInUse ?? Enumerable.Empty<int>()).First();
+        }
+
+        public static IEnumerable<int> GetIDs(object baseObject)
+        {
+            if (baseObject is IEnumerable<int>)
+            {
+                return (baseObject as IEnumerable<int>);
+            }
+
+            if (baseObject is IEnumerable<object>)
+            {
+                var objects = (baseObject as IEnumerable<object>);
+
+                if (objects.All(o => o is int))
+                {
+                    return objects.Cast<int>();
+                }
             }
 
             throw new ArgumentOutOfRangeException("Cannot determine ID.");

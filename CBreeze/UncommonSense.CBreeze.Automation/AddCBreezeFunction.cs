@@ -27,7 +27,8 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var function = GetFunctions(InputObject).Add(CreateFunction());
+            var id = ID.GetID(GetFunctions(InputObject).Select(f => f.ID), 0, log: s => this.WriteVerbose(s));
+            var function = GetFunctions(InputObject).Add(CreateFunction(id));
 
             if (PassThru)
                 WriteObject(function);

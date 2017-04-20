@@ -85,15 +85,18 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2015
+
         [Parameter(ParameterSetName = "Upgrade")]
         public UpgradeFunctionType? UpgradeFunctionType
         {
             get;
             set;
         }
+
 #endif
 
 #if NAV2016
+
         [Parameter(Mandatory = true, ParameterSetName = "EventSubscriber")]
         public SwitchParameter EventSubscriber
         {
@@ -178,15 +181,16 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
 #endif
 
-        [Parameter(Position=2)]
+        [Parameter(Position = 2)]
         public ScriptBlock SubObjects
         {
             get; set;
         }
 
-        protected Function CreateFunction()
+        protected Function CreateFunction(int id)
         {
             if (ReturnValueType.HasValue && (ReturnValueDataLength ?? 0) == 0)
             {
@@ -195,13 +199,14 @@ namespace UncommonSense.CBreeze.Automation
                     case FunctionReturnValueType.Text:
                         ReturnValueDataLength = 30;
                         break;
+
                     case FunctionReturnValueType.Code:
                         ReturnValueDataLength = 10;
                         break;
                 }
             }
 
-            var function = new Function(ID.GetID(null, 0), Name);
+            var function = new Function(id, Name);
             function.Local = Local;
             function.TestFunctionType = TestFunctionType;
             function.HandlerFunctions = HandlerFunctions;
@@ -255,7 +260,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            WriteObject(CreateFunction());
+            WriteObject(CreateFunction(0));
         }
 
         private Functions GetFunctions(PSObject inputObject)
