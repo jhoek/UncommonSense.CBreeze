@@ -2,7 +2,6 @@
 
 $PSDefaultParameterValues['New-CBreeze*:AutoCaption'] = $true
 $PSDefaultParameterValues['Add-CBreeze*:AutoCaption'] = $true
-$PSDefaultParameterValues['New-CBreeze*:AutoObjectProperties'] = $true
 
 function Test-Application
 {
@@ -57,7 +56,7 @@ Describe 'UncommonSense.CBreeze.Automation' {
     It 'Creates objects using Add* cmdlets' {
         $Application = New-CBreezeApplication
 
-        $Application | Add-CBreezeTable 50000 Table -PassThru:$false 
+        $Application | Add-CBreezeTable 50000 Table -PassThru:$false
         $Application | Add-CBreezePage 50000 Page -PassThru:$false
         $Application | Add-CBreezeReport 50000 Report -PassThru:$false
         $Application | Add-CBreezeCodeunit 50000 Codeunit -PassThru:$false

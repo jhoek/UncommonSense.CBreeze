@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeXmlPort", DefaultParameterSetName = "ManualObjectProperties")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeXmlPort")]
     public class AddCBreezeXmlPort : NewCBreezeXmlPort
     {
         public AddCBreezeXmlPort()

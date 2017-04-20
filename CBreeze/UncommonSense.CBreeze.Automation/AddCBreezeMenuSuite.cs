@@ -3,7 +3,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuite", DefaultParameterSetName = "ManualObjectProperties")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuite")]
     public class AddCBreezeMenuSuite : NewCBreezeMenuSuite
     {
         public AddCBreezeMenuSuite()

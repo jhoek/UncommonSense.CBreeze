@@ -10,6 +10,9 @@ namespace UncommonSense.CBreeze.Automation
 {
     public abstract class NewCBreezeObject : Cmdlet
     {
+        protected const string WithID = "WithID";
+        protected const string WithoutID = "WithoutID";
+
         [Parameter()]
         public SwitchParameter AutoCaption
         {
@@ -24,7 +27,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = WithID)]
         [ValidateRange(0, int.MaxValue)]
         public int ID
         {
@@ -39,7 +42,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = WithID)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = WithoutID)]
         [ValidateLength(1, 30)]
         public string Name
         {
@@ -47,7 +51,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Position = 2)]
+        [Parameter(Position = 2, ParameterSetName = WithID)]
+        [Parameter(Position = 1, ParameterSetName = WithoutID)]
         public ScriptBlock SubObjects
         {
             get; set;
