@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTable")]
+    [Cmdlet(VerbsCommon.Add, "CBreezeTable", DefaultParameterSetName = WithoutID)]
     public class AddCBreezeTable : NewCBreezeTable
     {
         public AddCBreezeTable()

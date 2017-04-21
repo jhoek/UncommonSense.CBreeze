@@ -1,7 +1,7 @@
-﻿Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
+﻿using namespace System.Linq
+using namespace UncommonSense.CBreeze.Automation
 
-$PSDefaultParameterValues['New-CBreeze*:AutoCaption'] = $true
-$PSDefaultParameterValues['Add-CBreeze*:AutoCaption'] = $true
+Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
 
 function Test-Application
 {
@@ -11,33 +11,38 @@ function Test-Application
         [UncommonSense.CBreeze.Core.Application]$Application
     )
 
-    $Table = $Application.Tables[50000]
-    $Table.Name | Should Be Table
-	$Table.Properties.CaptionML['ENU'] | Should Be Table
+    $Table = $Application.Tables[60000]
+    $Table.Name | Should Be MyTable
+	#$Table.Properties.CaptionML['ENU'] | Should Be MyTable
 
-    $Page = $Application.Pages[50000]
-    $Page.Name | Should Be Page
+    $Page = $Application.Pages[60000]
+    $Page.Name | Should Be MyPage
 
-    $Report = $Application.Reports[50000]
+    $Report = $Application.Reports[60000]
     $Report.Name | Should Be Report
 
-    $Codeunit = $Application.Codeunits[50000]
+    $Codeunit = $Application.Codeunits[60000]
     $Codeunit.Name | Should Be Codeunit
 
-    $Query = $Application.Queries[50000]
+    $Query = $Application.Queries[60000]
     $Query.Name | Should Be Query
 
-    $XmlPort = $Application.XmlPorts[50000]
+    $XmlPort = $Application.XmlPorts[60000]
     $XmlPort.Name | Should Be XmlPort
 
-    $MenuSuite = $Application.MenuSuites[50000]
+    $MenuSuite = $Application.MenuSuites[60000]
     $MenuSuite.Name | Should Be MenuSuite
 }
 
 Describe 'UncommonSense.CBreeze.Automation' {
-    It 'Creates objects using New* cmdlets' {
+    BeforeEach {
+        [UncommonSense.CBreeze.Core.DefaultRanges]::ID = [Enumerable]::Range(60000, 100)
+        [UncommonSense.CBreeze.Core.DefaultRanges]::UID = [Enumerable]::Range(2000000, 100)
+	}
+
+	It 'Creates objects using New* cmdlets' {
         $Application = Application {
-            Table 50000 Table
+            Table MyTable
             Page 50000 Page
             Report 50000 Report
             Codeunit 50000 Codeunit
@@ -56,13 +61,13 @@ Describe 'UncommonSense.CBreeze.Automation' {
     It 'Creates objects using Add* cmdlets' {
         $Application = New-CBreezeApplication
 
-        $Application | Add-CBreezeTable 50000 Table -PassThru:$false
-        $Application | Add-CBreezePage 50000 Page -PassThru:$false
-        $Application | Add-CBreezeReport 50000 Report -PassThru:$false
-        $Application | Add-CBreezeCodeunit 50000 Codeunit -PassThru:$false
-        $Application | Add-CBreezeQuery 50000 Query -PassThru:$false
-        $Application | Add-CBreezeXmlPort 50000 XmlPort -PassThru:$false
-        $Application | Add-CBreezeMenuSuite 50000 MenuSuite -PassThru:$false
+        $Application | Add-CBreezeTable MyTable -PassThru
+        $Application | Add-CBreezePage MyPage -PassThru:$false
+        $Application | Add-CBreezeReport MyReport -PassThru:$false
+        $Application | Add-CBreezeCodeunit MyCodeunit -PassThru:$false
+        $Application | Add-CBreezeQuery MyQuery -PassThru:$false
+        $Application | Add-CBreezeXmlPort MyXmlPort -PassThru:$false
+        $Application | Add-CBreezeMenuSuite MyMenuSuite -PassThru:$false
 
         Test-Application -Application $Application
     }
