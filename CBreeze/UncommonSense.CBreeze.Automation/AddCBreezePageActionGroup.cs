@@ -12,13 +12,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezePageActionGroup")]
     public class AddCBreezePageActionGroup : NewCBreezePageActionGroup
     {
-        [Parameter(Mandatory = true, Position = 1)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {

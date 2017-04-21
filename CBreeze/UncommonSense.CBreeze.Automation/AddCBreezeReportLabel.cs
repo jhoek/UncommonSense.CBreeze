@@ -10,13 +10,6 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeReportLabel")]
     public class AddCBreezeReportLabel : NewCBreezeReportLabel
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Report Report
         {
