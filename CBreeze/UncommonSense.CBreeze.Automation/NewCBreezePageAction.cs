@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Automation
     [OutputType(typeof(PageAction))]
     public class NewCBreezePageAction : NewCBreezePageActionBase
     {
-        [Parameter(Position=1)]
+        [Parameter(Position = 1)]
         public string Caption
         {
             get; set;
@@ -36,7 +36,7 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter(Position=2)]
+        [Parameter(Position = 2)]
         public string Image
         {
             get; set;
@@ -109,11 +109,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #if NAV2015
+
         [Parameter()]
         public PageActionScope? Scope
         {
             get; set;
         }
+
 #endif
 
         [Parameter()]
@@ -130,6 +132,8 @@ namespace UncommonSense.CBreeze.Automation
 
         protected PageAction CreatePageAction()
         {
+            WriteVerbose("Creating page action");
+
             var pageAction = new PageAction(GetID(), GetIndentation());
             pageAction.Properties.CaptionML.Set("ENU", Caption);
             pageAction.Properties.Description = Description;
@@ -152,6 +156,8 @@ namespace UncommonSense.CBreeze.Automation
 #endif
             pageAction.Properties.ShortCutKey = ShortcutKey;
             pageAction.Properties.Visible = Visible;
+
+            WriteVerbose("Done creating page action");
 
             return pageAction;
         }

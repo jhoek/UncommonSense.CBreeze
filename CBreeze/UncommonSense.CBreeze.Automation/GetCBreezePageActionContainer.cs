@@ -18,13 +18,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true)]
-        public IEnumerable<int> Range
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true)]
         public ActionContainerType Type
         {
@@ -34,7 +27,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            WriteObject(Page.GetPageActionContainer(Range, Type));
+            WriteObject(Page.GetPageActionContainer(Type));
         }
     }
 }

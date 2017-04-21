@@ -45,13 +45,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public PageActionGroup GetGroupByCaption(IPage page, string caption, IEnumerable<int> range, Position position)
+        public PageActionGroup GetGroupByCaption(IPage page, string caption, Position position)
         {
             var pageActionGroup = ChildPageActions.OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
 
             if (pageActionGroup == null)
             {
-                pageActionGroup = new PageActionGroup(range.GetNextPageControlOrActionID(page), 1);
+                pageActionGroup = new PageActionGroup(indentationLevel: 1);
                 pageActionGroup.Properties.CaptionML.Set("ENU", caption);
                 AddChildPageAction(pageActionGroup, position);
             }

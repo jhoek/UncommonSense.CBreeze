@@ -11,15 +11,8 @@ namespace UncommonSense.CBreeze.Automation
     [OutputType(typeof(PageActionGroup))]
     public class GetCBreezePageActionGroup : PSCmdlet
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Page Page
-        {
-            get;
-            set;
-        }
-
         [Parameter(Mandatory = true)]
-        public IEnumerable<int> Range
+        public string Caption
         {
             get;
             set;
@@ -32,8 +25,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory=true)]
-        public string Caption
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public Page Page
         {
             get;
             set;
@@ -48,8 +41,8 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var container = Page.GetPageActionContainer(Range, ContainerType);
-            WriteObject(container.GetGroupByCaption(Page, Caption, Range, Position ?? Core.Position.LastWithinContainer));
+            var container = Page.GetPageActionContainer(ContainerType);
+            WriteObject(container.GetGroupByCaption(Page, Caption, Position ?? Core.Position.LastWithinContainer));
         }
     }
 }
