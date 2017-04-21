@@ -10,12 +10,6 @@ namespace UncommonSense.CBreeze.Core
         where TItem : KeyedItem<TKey>, IHasName
         where TKey : struct
     {
-        protected override void InsertItem(int index, TItem item)
-        {
-            ValidateName(item);
-            base.InsertItem(index, item);
-        }
-
         public TItem this[string name]
         {
             get
@@ -26,6 +20,12 @@ namespace UncommonSense.CBreeze.Core
 
         public abstract void ValidateName(TItem item);
 
+        protected override void InsertItem(int index, TItem item)
+        {
+            ValidateName(item);
+            base.InsertItem(index, item);
+        }
+
         protected void TestNameNotNullOrEmpty(TItem item)
         {
             if (string.IsNullOrEmpty(item.GetName()))
@@ -34,12 +34,18 @@ namespace UncommonSense.CBreeze.Core
 
         protected void TestNameUnique(TItem item)
         {
-            if (!string.IsNullOrEmpty(item.GetName()))
-            {
-                if (this.Any(i => i.GetName().Equals(item.GetName(), StringComparison.InvariantCultureIgnoreCase)))
+            var newName = item.GetName();
 
-                    throw new ArgumentOutOfRangeException("Collection item names must be unique.");
-            }
+            if (string.IsNullOrEmpty(newName))
+                return;
+
+            var existingNames =
+                this
+                    .Select(i => i.GetName())
+                    .Where(n => !string.IsNullOrEmpty(n));
+
+            if (existingNames.Any(n => n.Equals(newName, StringComparison.InvariantCultureIgnoreCase)))
+                throw new ArgumentOutOfRangeException("Collection item names must be unique.");
         }
     }
 }
