@@ -79,13 +79,11 @@
     <Compile Include="NewCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuiteNode.cs" />
     <Compile Include="AddCBreezeOrderBy.cs" />
-    <Compile Include="AddCBreezePage.cs" />
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="AddCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="AddCBreezeQueryElement.cs" />
     <Compile Include="AddCBreezeReportLabel.cs" />
-    <Compile Include="AddCBreezeTable.cs" />
     <Compile Include="NewCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
@@ -106,8 +104,8 @@
     <Compile Include="NewCBreezeReport.cs" />
     <Compile Include="NewCBreezeXmlPort.cs" />
     <Compile Include="NewCBreezeQuery.cs" />
-    <Compile Include="NewCBreezePage.cs" />
-    <Compile Include="NewCBreezeTable.cs" />
+    <Compile Include="AddCBreezePage.cs" />
+    <Compile Include="AddCBreezeTable.cs" />
     <Compile Include="SetCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />

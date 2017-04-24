@@ -8,10 +8,12 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class NewCBreezeObject : Cmdlet
+    public abstract class NewCBreezeObject : PSCmdlet
     {
-        protected const string WithID = "WithID";
-        protected const string WithoutID = "WithoutID";
+        protected const string AddWithID = "AddWithID";
+        protected const string AddWithoutID = "AddWithoutID";
+        protected const string NewWithID = "NewWithID";
+        protected const string NewWithoutID = "NewWithoutID";
 
         [Parameter()]
         public SwitchParameter AutoCaption
@@ -27,7 +29,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = WithID)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddWithID)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = NewWithID)]
         [ValidateRange(0, int.MaxValue)]
         public int ID
         {
@@ -42,8 +45,10 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = WithID)]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = WithoutID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = AddWithID)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = AddWithoutID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = NewWithID)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = NewWithoutID)]
         [ValidateLength(1, 30)]
         public string Name
         {
@@ -51,8 +56,10 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Position = 2, ParameterSetName = WithID)]
-        [Parameter(Position = 1, ParameterSetName = WithoutID)]
+        [Parameter(Position = 3, ParameterSetName = AddWithID)]
+        [Parameter(Position = 2, ParameterSetName = AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = NewWithoutID)]
         public ScriptBlock SubObjects
         {
             get; set;
