@@ -67,7 +67,6 @@
     <Compile Include="NewCBreezePageControl.cs" />
     <Compile Include="NewCBreezeEvent.cs" />
     <Compile Include="AddCBreezeEvent.cs" />
-    <Compile Include="AddCBreezeMenuSuite.cs" />
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
     <Compile Include="NewCBreezeParameter.cs" />
@@ -96,7 +95,7 @@
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
-    <Compile Include="NewCBreezeMenuSuite.cs" />
+    <Compile Include="AddCBreezeMenuSuite.cs" />
     <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezeReport.cs" />
     <Compile Include="NewCBreezeXmlPort.cs" />

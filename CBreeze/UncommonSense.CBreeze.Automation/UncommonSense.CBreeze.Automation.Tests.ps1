@@ -17,6 +17,7 @@ function Test-Application
 	Test-Reports -Application $Application
 	Test-Codeunits -Application $Application
 	Test-Queries -Application $Application
+	Test-MenuSuites -Application $Application
 }
 
 function Test-ObjectCounts
@@ -32,6 +33,7 @@ function Test-ObjectCounts
 	$Application.Reports.Count | Should Be 2
 	$Application.Codeunits.Count | Should Be 2
 	$Application.Queries.Count | Should Be 2
+	$Application.MenuSuites.Count | Should Be 2
 }
 
 function Test-Tables
@@ -117,6 +119,21 @@ function Test-Queries
 	$Query.Properties.CaptionML['ENU'] | Should Be $Query.Name
 }
 
+function Test-MenuSuites
+{
+	Param
+	(
+		[Parameter(Mandatory)]
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	$MenuSuite = $Application.MenuSuites[10]
+	$MenuSuite.Name | Should Be MyMenuSuiteInSpecifiedRange
+
+	$MenuSuite = $Application.MenuSuites[60000]
+	$MenuSuite.Name | Should Be MyMenuSuiteInDefaultRange
+}
+
 Describe 'UncommonSense.CBreeze.Automation' {
     BeforeAll {
         [UncommonSense.CBreeze.Core.DefaultRanges]::ID = [Enumerable]::Range(60000, 100)
@@ -135,6 +152,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 			Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
 			Query MyQueryInDefaultRange -AutoCaption
 			Query 10 MyQueryInSpecifiedRange -AutoCaption
+			MenuSuite MyMenuSuiteInDefaultRange -AutoCaption
+			MenuSuite 10 MyMenuSuiteInSpecifiedRange -AutoCaption
         }
 
 		Test-Application -Application $Application
@@ -152,6 +171,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 		$Application | Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
 		$Application | Query MyQueryInDefaultRange -AutoCaption
 		$Application | Query 10 MyQueryInSpecifiedRange -AutoCaption
+		$Application | MenuSuite MyMenuSuiteInDefaultRange -AutoCaption
+		$Application | MenuSuite 10 MyMenuSuiteInSpecifiedRange -AutoCaption
 
 		Test-Application $Application
     }

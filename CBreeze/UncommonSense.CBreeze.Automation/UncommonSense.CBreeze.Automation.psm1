@@ -11,7 +11,7 @@ Set-Alias -Name Codeunit -Value Add-CBreezeCodeunit
 Set-Alias -name Event -Value New-CBreezeEvent
 Set-Alias -Name Procedure -Value New-CBreezeFunction
 Set-Alias -Name _Function -Value New-CBreezeFunction
-Set-Alias -Name MenuSuite -Value New-CBreezeMenuSuite
+Set-Alias -Name MenuSuite -Value Add-CBreezeMenuSuite
 Set-Alias -Name MenuSuiteNode -Value New-CBreezeMenuSuiteNode
 Set-Alias -Name OrderBy -Value New-CBreezeOrderBy
 Set-Alias -Name Page -Value Add-CBreezePage
