@@ -14,6 +14,8 @@ function Test-Application
 	Test-ObjectCounts -Application $Application
 	Test-Tables -Application $Application
 	Test-Pages -Application $Application
+	Test-Reports -Application $Application
+	Test-Codeunits -Application $Application
 }
 
 function Test-ObjectCounts
@@ -62,6 +64,38 @@ function Test-Pages
 	$Page = $Application.Pages[60000]
 	$Page.Name | Should Be MyPageInDefaultRange
 	$Page.Properties.CaptionML['ENU'] | Should Be $Page.Name
+}
+
+function Test-Reports
+{
+	Param
+	(
+		[Parameter(Mandatory)]
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	$Report = $Application.Reports[10]
+	$Report.Name | Should Be MyReportInSpecifiedRange
+	$Report.Properties.CaptionML['ENU'] | Should Be $Report.Name
+
+	$Report = $Application.Reports[60000]
+	$Report.Name | Should Be MyReportInDefaultRange
+	$Report.Properties.CaptionML['ENU'] | Should Be $Report.Name
+}
+
+function Test-Codeunits
+{
+	Param
+	(
+		[Parameter(Mandatory)]
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	$Codeunit = $Application.Codeunits[10]
+	$Codeunit.Name | Should Be MyCodeunitInSpecifiedRange
+
+	$Codeunit = $Application.Codeunits[60000]
+	$Codeunit.Name | Should Be MyCodeunitInDefaultRange
 }
 
 Describe 'UncommonSense.CBreeze.Automation' {
