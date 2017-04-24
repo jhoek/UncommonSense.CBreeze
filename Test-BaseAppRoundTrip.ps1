@@ -1,4 +1,4 @@
-﻿function Verify-Build
+﻿function Test-BaseAppRoundTrip
 {
     Param
     (
@@ -12,8 +12,8 @@
     Add-Type -Path "C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Read\bin\Debug\UncommonSense.CBreeze.$Version.Read.dll"
     Add-Type -Path "C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Write\bin\Debug\UncommonSense.CBreeze.$Version.Write.dll"
 
-    $InputFileName = "$Home\Desktop\nl$Version.txt"
-    $OutputFileName = "$Home\Desktop\nl$Version.output.txt"
+    $InputFileName = "~\Desktop\nl$Version.txt"
+    $OutputFileName = "~\Desktop\nl$Version.output.txt"
     
     $Reading = Measure-Command { $Lines = [System.IO.File]::ReadLines($InputFileName, [System.Text.Encoding]::GetEncoding('ibm850')) }
     $Parsing = Measure-Command { $Application = [UncommonSense.CBreeze.Read.ApplicationBuilder]::FromLines($Lines) }
