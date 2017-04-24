@@ -3,6 +3,19 @@ using namespace UncommonSense.CBreeze.Automation
 
 Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
 
+function Test-Application
+{
+	Param
+	(
+		[Parameter(Mandatory)]
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	Test-ObjectCounts -Application $Application
+	Test-Tables -Application $Application
+	Test-Pages -Application $Application
+}
+
 function Test-ObjectCounts
 {
     param
@@ -34,6 +47,23 @@ function Test-Tables
 	$Table.Properties.CaptionML['ENU'] | Should Be $Table.Name
 }
 
+function Test-Pages
+{
+	Param
+	(
+		[Parameter(Mandatory)]
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	$Page = $Application.Pages[10]
+	$page.Name | Should Be MyPageInSpecifiedRange
+	$page.Properties.CaptionML['ENU'] | Should Be $Page.Name
+
+	$Page = $Application.Pages[60000]
+	$Page.Name | Should Be MyPageInDefaultRange
+	$Page.Properties.CaptionML['ENU'] | Should Be $Page.Name
+}
+
 Describe 'UncommonSense.CBreeze.Automation' {
     BeforeAll {
         [UncommonSense.CBreeze.Core.DefaultRanges]::ID = [Enumerable]::Range(60000, 100)
@@ -52,8 +82,7 @@ Describe 'UncommonSense.CBreeze.Automation' {
 			Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
         }
 
-        Test-ObjectCounts -Application $Application
-		Test-Tables -Application $Application
+		Test-Application -Application $Application
     }
 
     It 'Creates objects using Add* cmdlets' {
@@ -67,7 +96,6 @@ Describe 'UncommonSense.CBreeze.Automation' {
 		$Application | Codeunit MyCodeunitInDefaultRange -AutoCaption
 		$Application | Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
 
-        Test-ObjectCounts -Application $Application
-		Test-Tables -Application $Application
+		Test-Application $Application
     }
 }
