@@ -49,7 +49,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezeColumnReportElement.cs" />
     <Compile Include="AddCBreezeDataItemReportElement.cs" />
     <Compile Include="AddCBreezePageActionContainer.cs" />
@@ -99,7 +98,7 @@
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
     <Compile Include="NewCBreezeMenuSuite.cs" />
-    <Compile Include="NewCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezeReport.cs" />
     <Compile Include="NewCBreezeXmlPort.cs" />
     <Compile Include="NewCBreezeQuery.cs" />

@@ -14,6 +14,7 @@ function Test-ObjectCounts
 	$Application.Tables.Count | Should Be 2
 	$Application.Pages.Count | Should Be 2
 	$Application.Reports.Count | Should Be 2
+	$Application.Codeunits.Count | Should Be 2
 }
 
 function Test-Tables
@@ -47,6 +48,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 			Page 10 MyPageInSpecifiedRange -AutoCaption
 			Report MyReportInDefaultRange -AutoCaption
 			Report 10 MyReportInSpecifiedRange -AutoCaption
+			Codeunit MyCodeunitInDefaultRange -AutoCaption
+			Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
         }
 
         Test-ObjectCounts -Application $Application
@@ -61,6 +64,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 		$Application | Page 10 MyPageInSpecifiedRange -AutoCaption
 		$Application | Report MyReportInDefaultRange -AutoCaption
 		$Application | Report 10 MyReportInSpecifiedRange -AutoCaption
+		$Application | Codeunit MyCodeunitInDefaultRange -AutoCaption
+		$Application | Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
 
         Test-ObjectCounts -Application $Application
 		Test-Tables -Application $Application

@@ -7,7 +7,7 @@ Set-Alias -Name Invoke -Value Invoke-CBreezeObject
 # Fluent-style aliases
 Set-Alias -Name Application -Value New-CBreezeApplication
 Set-Alias -Name CalcFormula -Value New-CBreezeCalcFormula
-Set-Alias -Name Codeunit -Value New-CBreezeCodeunit
+Set-Alias -Name Codeunit -Value Add-CBreezeCodeunit
 Set-Alias -name Event -Value New-CBreezeEvent
 Set-Alias -Name Procedure -Value New-CBreezeFunction
 Set-Alias -Name _Function -Value New-CBreezeFunction
