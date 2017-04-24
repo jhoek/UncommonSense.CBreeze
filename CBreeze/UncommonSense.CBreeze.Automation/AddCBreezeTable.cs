@@ -10,32 +10,15 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeTable", DefaultParameterSetName = WithoutID)]
     public class AddCBreezeTable : NewCBreezeTable
     {
-        public AddCBreezeTable()
-        {
-            PassThru = true;
-        }
-
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Application Application
-        {
-            get; set;
-        }
+        public Application Application { get; set; }
 
         [Parameter()]
-        public SwitchParameter PassThru
-        {
-            get; set;
-        }
+        public SwitchParameter PassThru { get; set; } = true;
 
         protected override void ProcessRecord()
         {
-            var table = CreateTable();
-            Application.Tables.Add(table);
-
-            if (PassThru)
-            {
-                WriteObject(table);
-            }
+            Application.Tables.Add(CreateTable()).DoIf(PassThru, t => WriteObject(t));
         }
     }
 }
