@@ -21,7 +21,7 @@ Set-Alias -Name ActionGroup -Value New-CBreezePageActionGroup
 Set-Alias -Name ActionSeparator -Value New-CBreezePageActionSeparator
 Set-Alias -Name Control -Value New-CBreezePageControl
 Set-Alias -Name Parameter -Value New-CBreezeParameter
-Set-Alias -Name Query -Value New-CBreezeQuery
+Set-Alias -Name Query -Value Add-CBreezeQuery
 Set-Alias -Name Report -Value Add-CBreezeReport
 Set-Alias -Name Label -Value New-CBreezeReportLabel
 Set-Alias -Name Table -Value Add-CBreezeTable

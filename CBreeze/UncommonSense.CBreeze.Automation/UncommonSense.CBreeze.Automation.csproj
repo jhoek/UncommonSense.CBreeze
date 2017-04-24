@@ -71,7 +71,6 @@
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
     <Compile Include="NewCBreezeParameter.cs" />
-    <Compile Include="AddCBreezeQuery.cs" />
     <Compile Include="NewCBreezeVariable.cs" />
     <Compile Include="AddCBreezeXmlPort.cs" />
     <Compile Include="NewCBreezeFunction.cs" />
@@ -101,7 +100,7 @@
     <Compile Include="AddCBreezeCodeunit.cs" />
     <Compile Include="AddCBreezeReport.cs" />
     <Compile Include="NewCBreezeXmlPort.cs" />
-    <Compile Include="NewCBreezeQuery.cs" />
+    <Compile Include="AddCBreezeQuery.cs" />
     <Compile Include="AddCBreezePage.cs" />
     <Compile Include="AddCBreezeTable.cs" />
     <Compile Include="SetCBreezeAccessByPermission.cs" />

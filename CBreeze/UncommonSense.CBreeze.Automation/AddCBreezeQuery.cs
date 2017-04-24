@@ -3,38 +3,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeQuery")]
-    public class AddCBreezeQuery : NewCBreezeQuery
+    [Cmdlet(VerbsCommon.Add, "CBreezeQuery", DefaultParameterSetName = NewWithoutID)]
+    [OutputType(typeof(Query))]
+    public class AddCBreezeQuery : NewCBreezeObject
     {
-        public AddCBreezeQuery()
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
+        public Application Application { get; set; }
+
+        [Parameter()]
+        public string Description
         {
-            PassThru = true;
+            get; set;
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Application Application
+        [Parameter(ParameterSetName = AddWithID)]
+        [Parameter(ParameterSetName = AddWithoutID)]
+        public SwitchParameter PassThru { get; set; } = true;
+
+        [Parameter()]
+        public ReadState? ReadState
         {
             get; set;
         }
 
         [Parameter()]
-        public SwitchParameter PassThru
+        [ValidateRange(0, int.MaxValue)]
+        public int? TopNoOfRows
         {
             get; set;
         }
 
+        protected Query CreateQuery()
+        {
+            var query = new Query(ID, Name);
+            SetObjectProperties(query);
+
+            query.Properties.Description = Description;
+            query.Properties.ReadState = ReadState;
+            query.Properties.TopNumberOfRows = TopNoOfRows;
+
+            if (AutoCaption)
+                query.AutoCaption();
+
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                query.Properties.OrderBy.AddRange(subObjects.OfType<QueryOrderByLine>());
+                query.Elements.AddRange(subObjects.OfType<QueryElement>());
+                query.Code.Functions.AddRange(subObjects.OfType<Function>());
+                query.Code.Variables.AddRange(subObjects.OfType<Variable>());
+                query.Code.Events.AddRange(subObjects.OfType<Event>());
+            }
+
+            return query;
+        }
+
         protected override void ProcessRecord()
         {
-            var query = CreateQuery();
-            Application.Queries.Add(query);
-
-            if (PassThru)
+            switch (ParameterSetName)
             {
-                WriteObject(query);
+                case NewWithID:
+                case NewWithoutID:
+                    WriteObject(CreateQuery());
+                    break;
+
+                case AddWithID:
+                case AddWithoutID:
+                    Application.Queries.Add(CreateQuery()).DoIf(PassThru, q => WriteObject(q));
+                    break;
             }
         }
     }
