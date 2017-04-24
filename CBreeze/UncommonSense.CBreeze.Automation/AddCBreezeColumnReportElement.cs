@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public string Description { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
+        [Parameter(Mandatory = true)]
         public int ID { get; set; }
 
         [Parameter()]
@@ -52,9 +52,6 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public SwitchParameter PassThru { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "Range")]
-        public IEnumerable<int> Range { get; set; }
-
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Report Report { get; set; }
 
@@ -63,8 +60,6 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            Report.Elements.Range = Range;
-
             var element = Report.Elements.Add(new ColumnReportElement(Name, SourceExpr, ID, (ParentElement?.IndentationLevel ?? 0) + 1));
             element.Properties.AutoCalcField = AutoCalcField;
             element.Properties.AutoFormatExpr = AutoFormatExpr;

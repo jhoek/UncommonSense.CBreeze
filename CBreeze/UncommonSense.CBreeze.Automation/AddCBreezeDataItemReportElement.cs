@@ -11,11 +11,8 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeDataItemReportElement")]
     public class AddCBreezeDataItemReportElement : Cmdlet
     {
-        [Parameter(Mandatory = true, ParameterSetName = "ID")]
+        [Parameter(Mandatory = true)]
         public int ID { get; set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "Range")]
-        public IEnumerable<int> Range { get; set; }
 
         [Parameter()]
         public ReportElement ParentElement { get; set; }
@@ -63,8 +60,6 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            Report.Elements.Range = Range;
-
             var element = Report.Elements.Add(new DataItemReportElement(DataItemTable, ID, (ParentElement?.IndentationLevel ?? 0) + 1));
             element.Properties.CalcFields.AddRange(CalcFields);
             element.Properties.DataItemLinkReference = DataItemLinkReference;
