@@ -1,5 +1,7 @@
 Framework "4.6"
 
+# FIXME: Call Update-README.ps1 for Automation project
+
 FormatTaskName {
     param($TaskName)
     Write-Host "*** $TaskName" -ForegroundColor Cyan
