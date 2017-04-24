@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class RecordIDParameter : Parameter
+    public class RecordIDParameter : Parameter
     {
-        public RecordIDParameter(bool var, int id, string name) : base(var, id, name)
+        public RecordIDParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.RecordID;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.RecordID;
     }
 }

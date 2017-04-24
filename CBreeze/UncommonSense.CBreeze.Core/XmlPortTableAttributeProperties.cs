@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortTableAttributeProperties : Properties
+    public class XmlPortTableAttributeProperties : Properties
     {
         private NullableBooleanProperty autoReplace = new NullableBooleanProperty("AutoReplace");
         private NullableBooleanProperty autoSave = new NullableBooleanProperty("AutoSave");
@@ -30,8 +30,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty variableName = new StringProperty("VariableName");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal XmlPortTableAttributeProperties()
+        internal XmlPortTableAttributeProperties(XmlPortTableAttribute xmlPortTableAttribute)
         {
+            XmlPortTableAttribute = xmlPortTableAttribute;
+
             innerList.Add(autoReplace);
             innerList.Add(autoSave);
             innerList.Add(autoUpdate);
@@ -56,7 +58,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
-      public bool? AutoReplace
+        public XmlPortTableAttribute XmlPortTableAttribute
+        {
+            get; protected set;
+        }
+
+        public override INode ParentNode => XmlPortTableAttribute;
+
+        public bool? AutoReplace
         {
             get
             {
@@ -68,7 +77,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? AutoSave
+        public bool? AutoSave
         {
             get
             {
@@ -80,7 +89,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? AutoUpdate
+        public bool? AutoUpdate
         {
             get
             {
@@ -108,7 +117,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string LinkTable
+        public string LinkTable
         {
             get
             {
@@ -120,7 +129,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? LinkTableForceInsert
+        public bool? LinkTableForceInsert
         {
             get
             {
@@ -216,7 +225,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? SourceTable
+        public int? SourceTable
         {
             get
             {
@@ -236,7 +245,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Temporary
+        public bool? Temporary
         {
             get
             {
@@ -248,7 +257,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string VariableName
+        public string VariableName
         {
             get
             {
@@ -260,7 +269,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? Width
+        public int? Width
         {
             get
             {

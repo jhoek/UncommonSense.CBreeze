@@ -28,6 +28,14 @@ namespace UncommonSense.CBreeze.Core
             return item;
         }
 
+        public void AddRange(IEnumerable<TItem> items)
+        {
+            foreach (var item in items)
+            {
+                Add(item);
+            }
+        }
+
         public new TItem Insert(int index, TItem item)
         {
             this.InsertItem(index, item);
@@ -47,7 +55,7 @@ namespace UncommonSense.CBreeze.Core
 
         protected override void InsertItem(int index, TItem item)
         {
-            InitializeKey(item);    
+            InitializeKey(item);
             base.InsertItem(index, item);
         }
 

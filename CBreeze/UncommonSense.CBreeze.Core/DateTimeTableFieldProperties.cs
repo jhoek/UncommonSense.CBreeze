@@ -39,8 +39,10 @@ namespace UncommonSense.CBreeze.Core
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
         private NullableBooleanProperty @volatile = new NullableBooleanProperty("Volatile");
 
-        internal DateTimeTableFieldProperties()
+        internal DateTimeTableFieldProperties(DateTimeTableField field)
         {
+            Field = field;
+
             innerList.Add(fieldClass);
             innerList.Add(calcFormula);
             innerList.Add(initValue);
@@ -73,6 +75,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
         }
+
+        public DateTimeTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

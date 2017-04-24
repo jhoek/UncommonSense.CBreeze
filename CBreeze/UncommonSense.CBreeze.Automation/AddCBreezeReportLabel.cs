@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeReportLabel")]
-    public class AddCBreezeReportLabel : Cmdlet
+    public class AddCBreezeReportLabel : NewCBreezeReportLabel
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public Report Report
@@ -17,47 +17,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position=0)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position=1)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string Caption
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string Description
-        {
-            get;
-            set;
-        }
-
-        protected int GetReportLabelID()
-        {
-            return ID.GetID(Report.Labels.Select(l => l.ID), Report.ID);
-        }
-
         protected override void ProcessRecord()
         {
-            var reportLabel = new ReportLabel(GetReportLabelID(), Name);
-            reportLabel.Properties.CaptionML.Set("ENU", Caption);
-            reportLabel.Properties.Description = Description;
-
-            Report.Labels.Add(reportLabel);
+            Report.Labels.Add(CreateReportLabel());
         }
     }
 }

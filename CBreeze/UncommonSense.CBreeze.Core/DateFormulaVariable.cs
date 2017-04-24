@@ -6,11 +6,21 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DateFormulaVariable : Variable
+    public class DateFormulaVariable : Variable
     {
+        public DateFormulaVariable(string name) : this(0, name)
+        {
+        }
+
         public DateFormulaVariable(int id, string name)
             : base(id, name)
         {
+        }
+
+        public string Dimensions
+        {
+            get;
+            set;
         }
 
         public override VariableType Type
@@ -19,12 +29,6 @@ namespace UncommonSense.CBreeze.Core
             {
                 return VariableType.DateFormula;
             }
-        }
-
-        public string Dimensions
-        {
-            get;
-            set;
         }
     }
 }

@@ -6,20 +6,11 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class BinaryParameter : Parameter
+    public class BinaryParameter : Parameter
     {
-        public BinaryParameter(bool var, int id, string name, int dataLength = 100)
-            : base(var, id, name)
+        public BinaryParameter(string name, bool var = false, int id = 0, int dataLength = 100) : base(name, var, id)
         {
             DataLength = dataLength;
-        }
-
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Binary;
-            }
         }
 
         public int DataLength
@@ -28,5 +19,6 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public override ParameterType Type => ParameterType.Binary;
     }
 }

@@ -9,17 +9,19 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UncommonSense.CBreeze.Automation</RootNamespace>
     <AssemblyName>UncommonSense.CBreeze.Automation</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NAV2013R2 NAV2015 NAV2016</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NAV2013R2 NAV2015 NAV2016 NAV2017</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,32 +30,63 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.Automation.dll.10.0.10586.0\lib\net40\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\System.Management.Automation.6.1.7601.17515\lib\net40\System.Management.Automation.dll</HintPath>
-    </Reference>
     <Reference Include="UncommonSense.CBreeze.Parse">
       <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse\bin\Debug\UncommonSense.CBreeze.Parse.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCBreezeCodeunit.cs" />
+    <Compile Include="AddCBreezeColumnReportElement.cs" />
+    <Compile Include="AddCBreezeDataItemReportElement.cs" />
+    <Compile Include="AddCBreezePageActionContainer.cs" />
+    <Compile Include="AddCBreezePageActionGroup.cs" />
+    <Compile Include="AddCBreezePageActionSeparator.cs" />
+    <Compile Include="NewCBreezeXmlPortNode.cs" />
+    <Compile Include="NewCBreezeReportLabel.cs" />
+    <Compile Include="NewCBreezeOrderBy.cs" />
+    <Compile Include="NewCBreezeMenuSuiteNode.cs" />
+    <Compile Include="NewCBreezePageAction.cs" />
+    <Compile Include="NewCBreezePageActionBase.cs" />
+    <Compile Include="NewCBreezePageActionContainer.cs" />
+    <Compile Include="NewCBreezePageActionGroup.cs" />
+    <Compile Include="NewCBreezePageActionSeparator.cs" />
+    <Compile Include="PSCmdletWithDynamicParams.cs" />
+    <Compile Include="NewCBreezePageControl.cs" />
+    <Compile Include="NewCBreezeEvent.cs" />
     <Compile Include="AddCBreezeEvent.cs" />
+    <Compile Include="AddCBreezeMenuSuite.cs" />
+    <Compile Include="NewCBreezeTableFieldGroup.cs" />
+    <Compile Include="NewCBreezeTableKey.cs" />
+    <Compile Include="NewCBreezeParameter.cs" />
+    <Compile Include="AddCBreezeQuery.cs" />
+    <Compile Include="AddCBreezeReport.cs" />
+    <Compile Include="NewCBreezeVariable.cs" />
+    <Compile Include="AddCBreezeXmlPort.cs" />
+    <Compile Include="NewCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuiteNode.cs" />
     <Compile Include="AddCBreezeOrderBy.cs" />
+    <Compile Include="AddCBreezePage.cs" />
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="AddCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="AddCBreezeQueryElement.cs" />
-    <Compile Include="AddCBreezeReportElement.cs" />
     <Compile Include="AddCBreezeReportLabel.cs" />
+    <Compile Include="AddCBreezeTable.cs" />
+    <Compile Include="NewCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
     <Compile Include="AddCBreezeXmlPortLink.cs" />
@@ -67,10 +100,17 @@
     <Compile Include="AddCBreezeFilter.cs" />
     <Compile Include="AddCBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
-    <Compile Include="New-CBreezeCalcFormula.cs" />
+    <Compile Include="NewCBreezeCalcFormula.cs" />
+    <Compile Include="NewCBreezeMenuSuite.cs" />
+    <Compile Include="NewCBreezeCodeunit.cs" />
+    <Compile Include="NewCBreezeReport.cs" />
+    <Compile Include="NewCBreezeXmlPort.cs" />
+    <Compile Include="NewCBreezeQuery.cs" />
+    <Compile Include="NewCBreezePage.cs" />
+    <Compile Include="NewCBreezeTable.cs" />
     <Compile Include="SetCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
-    <Compile Include="AddCBreezeObject.cs" />
+    <Compile Include="NewCBreezeObject.cs" />
     <Compile Include="AddCBreezeParameter.cs" />
     <Compile Include="AddCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
@@ -89,6 +129,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="PREFACE.md" />
+    <None Include="README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="UncommonSense.CBreeze.Automation.psd1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="UncommonSense.CBreeze.Automation.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="UncommonSense.CBreeze.Automation.Tests.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Update-README.ps1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
@@ -117,7 +171,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll</PostBuildEvent>
+    <PostBuildEvent>md C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation
+copy $(TargetPath) C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll
+copy $(TargetDir)README.md C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation
+copy $(TargetDir)*.ps?1 C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation
+copy $(TargetDir)*.Tests.ps1 c:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,21 +10,13 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeQueryElement")]
     public class AddCBreezeQueryElement : CmdletWithDynamicParams
     {
-        private const string DataItemParameterSet = "DataItem";
-        private const string ColumnParameterSetNoMethod = "ColumnWithNoMethod";
-        private const string ColumnParameterSetDateMethod = "ColumnWithDateMethod";
-        private const string ColumnParameterSetTotalsMethod = "ColumnWithTotalsMethod";
-        private const string FilterParameterSet = "Filter";
-
-        protected DynamicParameter<PSObject> InputObjectForDataItems = new DynamicParameter<PSObject>("InputObject", true, true, parameterSetNames: new string[] { DataItemParameterSet });
         protected DynamicParameter<DataItemQueryElement> InputObjectForColumnsOrFilters = new DynamicParameter<DataItemQueryElement>("InputObject", true, true, parameterSetNames: new string[] { ColumnParameterSetNoMethod, ColumnParameterSetDateMethod, ColumnParameterSetTotalsMethod, FilterParameterSet });
-
-        [Parameter(Mandatory = true, ParameterSetName = DataItemParameterSet)]
-        public SwitchParameter DataItem
-        {
-            get;
-            set;
-        }
+        protected DynamicParameter<PSObject> InputObjectForDataItems = new DynamicParameter<PSObject>("InputObject", true, true, parameterSetNames: new string[] { DataItemParameterSet });
+        private const string ColumnParameterSetDateMethod = "ColumnWithDateMethod";
+        private const string ColumnParameterSetNoMethod = "ColumnWithNoMethod";
+        private const string ColumnParameterSetTotalsMethod = "ColumnWithTotalsMethod";
+        private const string DataItemParameterSet = "DataItem";
+        private const string FilterParameterSet = "Filter";
 
         [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSetNoMethod)]
         [Parameter(Mandatory = true, ParameterSetName = ColumnParameterSetDateMethod)]
@@ -35,30 +27,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = FilterParameterSet)]
-        public SwitchParameter Filter
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true,Position=0)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position=1)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public Position? Position
+        [Parameter(Mandatory = true, ParameterSetName = DataItemParameterSet)]
+        public SwitchParameter DataItem
         {
             get;
             set;
@@ -102,6 +72,60 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
+        {
+            get
+            {
+                if (DataItem)
+                {
+                    yield return InputObjectForDataItems.RuntimeDefinedParameter;
+                }
+                else if (Column)
+                {
+                    yield return InputObjectForColumnsOrFilters.RuntimeDefinedParameter;
+                }
+                else if (Filter)
+                {
+                    yield return InputObjectForColumnsOrFilters.RuntimeDefinedParameter;
+                }
+            }
+        }
+
+        [Parameter(Mandatory = true, ParameterSetName = FilterParameterSet)]
+        public SwitchParameter Filter
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0)]
+        public int ID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Position = 1)]
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public Position? Position
+        {
+            get;
+            set;
+        }
+
         [Parameter(ParameterSetName = ColumnParameterSetNoMethod)]
         [Parameter(ParameterSetName = ColumnParameterSetDateMethod)]
         [Parameter(ParameterSetName = ColumnParameterSetTotalsMethod)]
@@ -111,7 +135,7 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName=DataItemParameterSet)]
+        [Parameter(ParameterSetName = DataItemParameterSet)]
         public SqlJoinType? SqlJoinType
         {
             get;
@@ -125,53 +149,13 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()]
-        public SwitchParameter PassThru
-        {
-            get;
-            set;
-        }
-
-        protected override void ProcessRecord()
-        {
-            var element = CreateElement();
-
-            if (DataItem)
-            {
-                if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
-                {
-                    (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).AddChildNode(element, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-                }
-                else
-                {
-                    switch (Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-                    {
-                        case Core.Position.FirstWithinContainer:
-                            GetQuery().Elements.Insert(0, element);
-                            break;
-                        case Core.Position.LastWithinContainer:
-                            GetQuery().Elements.Add(element);
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                InputObjectForColumnsOrFilters.Value.AddChildNode(element, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-            }
-
-            if (PassThru)
-                WriteObject(element);
-        }
-
         protected QueryElement CreateElement()
         {
             if (DataItem)
             {
-                var dataItem = new DataItemQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
+                var dataItem = new DataItemQueryElement(DataItemTable, ID, Name, GetIndentationLevel());
 
                 dataItem.Properties.DataItemLinkType = DataItemLinkType;
-                dataItem.Properties.DataItemTable = DataItemTable;
                 dataItem.Properties.Description = Description;
                 dataItem.Properties.SQLJoinType = SqlJoinType;
 
@@ -179,9 +163,8 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (Column)
             {
-                var column = new ColumnQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
+                var column = new ColumnQueryElement(DataSource, ID, Name, GetIndentationLevel());
 
-                column.Properties.DataSource = DataSource;
                 column.Properties.Description = Description;
                 column.Properties.ReverseSign = ReverseSign;
 
@@ -200,35 +183,13 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (Filter)
             {
-                var filter = new FilterQueryElement(ID.GetID(GetElementIDs(), GetQuery().ID), Name, GetIndentationLevel());
-
-                filter.Properties.DataSource = DataSource;
+                var filter = new FilterQueryElement(DataSource, ID, Name, GetIndentationLevel());
                 filter.Properties.Description = Description;
-
                 return filter;
             }
             else
             {
                 throw new ArgumentOutOfRangeException("Don't know how to create an element of this type.");
-            }
-        }
-
-        protected Query GetQuery()
-        {
-            if (DataItem)
-            {
-                if (InputObjectForDataItems.Value.BaseObject is Query)
-                    return (InputObjectForDataItems.Value.BaseObject as Query);
-                else if (InputObjectForDataItems.Value.BaseObject is QueryElements)
-                    return (InputObjectForDataItems.Value.BaseObject as QueryElements).Query;
-                else if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
-                    return (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).Container.Query;
-                else
-                    throw new ArgumentOutOfRangeException("Cannot determine query object for this InputObject.");
-            }
-            else
-            {
-                return InputObjectForColumnsOrFilters.Value.Container.Query;
             }
         }
 
@@ -252,23 +213,56 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
+        protected Query GetQuery()
         {
-            get
+            if (DataItem)
             {
-                if (DataItem)
+                if (InputObjectForDataItems.Value.BaseObject is Query)
+                    return (InputObjectForDataItems.Value.BaseObject as Query);
+                else if (InputObjectForDataItems.Value.BaseObject is QueryElements)
+                    return (InputObjectForDataItems.Value.BaseObject as QueryElements).Query;
+                else if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
+                    return (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).Container.Query;
+                else
+                    throw new ArgumentOutOfRangeException("Cannot determine query object for this InputObject.");
+            }
+            else
+            {
+                return InputObjectForColumnsOrFilters.Value.Container.Query;
+            }
+        }
+
+        protected override void ProcessRecord()
+        {
+            var element = CreateElement();
+
+            if (DataItem)
+            {
+                if (InputObjectForDataItems.Value.BaseObject is DataItemQueryElement)
                 {
-                    yield return InputObjectForDataItems.RuntimeDefinedParameter;
+                    (InputObjectForDataItems.Value.BaseObject as DataItemQueryElement).AddChildNode(element, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                 }
-                else if (Column)
+                else
                 {
-                    yield return InputObjectForColumnsOrFilters.RuntimeDefinedParameter;
-                }
-                else if (Filter)
-                {
-                    yield return InputObjectForColumnsOrFilters.RuntimeDefinedParameter;
+                    switch (Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+                    {
+                        case Core.Position.FirstWithinContainer:
+                            GetQuery().Elements.Insert(0, element);
+                            break;
+
+                        case Core.Position.LastWithinContainer:
+                            GetQuery().Elements.Add(element);
+                            break;
+                    }
                 }
             }
+            else
+            {
+                InputObjectForColumnsOrFilters.Value.AddChildNode(element, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+            }
+
+            if (PassThru)
+                WriteObject(element);
         }
     }
 }

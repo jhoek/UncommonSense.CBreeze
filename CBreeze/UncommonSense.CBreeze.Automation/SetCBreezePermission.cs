@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Set, "CBreezePermission")]
+    [OutputType(typeof(IHasProperties))]
     public class SetCBreezePermission : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -53,11 +54,20 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public SwitchParameter PassThru
+        {
+            get; set;
+        }
+
         protected override void ProcessRecord()
         {
             foreach (var inputObject in InputObject)
             {
                 GetPermissions(inputObject).Set(TableID, Read.IsPresent, Insert.IsPresent, Modify.IsPresent, Delete.IsPresent);
+
+                if (PassThru)
+                    WriteObject(inputObject);
             }
         }
 

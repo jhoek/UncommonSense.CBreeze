@@ -44,8 +44,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty validateTableRelation = new NullableBooleanProperty("ValidateTableRelation");
         private SemiColonSeparatedStringProperty valuesAllowed = new SemiColonSeparatedStringProperty("ValuesAllowed");
 
-        internal OptionTableFieldProperties()
+        internal OptionTableFieldProperties(OptionTableField field)
         {
+            Field = field;
+
             innerList.Add(fieldClass);
             innerList.Add(initValue);
             innerList.Add(calcFormula);
@@ -81,6 +83,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatExpr);
             innerList.Add(captionClass);
         }
+
+        public OptionTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

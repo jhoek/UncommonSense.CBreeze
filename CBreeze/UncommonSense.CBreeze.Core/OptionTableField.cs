@@ -6,19 +6,31 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class OptionTableField : TableField, IHasOptionString
+    public class OptionTableField : TableField, IHasOptionString
     {
+        public OptionTableField(string name) : this(0, name)
+        {
+        }
+
         public OptionTableField(int no, string name)
             : base(no, name)
         {
-            Properties = new OptionTableFieldProperties();
+            Properties = new OptionTableFieldProperties(this);
         }
 
-        public override TableFieldType Type
+        public override Properties AllProperties
         {
             get
             {
-                return TableFieldType.Option;
+                return Properties;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
             }
         }
 
@@ -28,11 +40,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override Properties AllProperties
+        public override TableFieldType Type
         {
             get
             {
-                return Properties;
+                return TableFieldType.Option;
             }
         }
 

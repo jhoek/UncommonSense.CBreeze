@@ -6,19 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DecimalParameter : Parameter
+    public class DecimalParameter : Parameter
     {
-        public DecimalParameter(bool var, int id, string name) : base(var, id, name)
+        public DecimalParameter(string name, bool var = false, int id = 0) : base(name, var, id)
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Decimal;
-            }
-        }
-
+        public override ParameterType Type => ParameterType.Decimal;
     }
 }

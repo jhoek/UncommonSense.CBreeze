@@ -9,114 +9,15 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezePageControl")]
-    public class AddCBreezePageControl : CmdletWithDynamicParams
+    public class AddCBreezePageControl : NewCBreezePageControl
     {
         public AddCBreezePageControl()
         {
-            AssistEdit = new DynamicParameter<bool?>("AssistEdit");
-            AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr");
-            AutoFormatType = new DynamicParameter<Core.AutoFormatType?>("AutoFormatType");
-            BlankNumbers = new DynamicParameter<Core.BlankNumbers?>("BlankNumbers");
-            BlankZero = new DynamicParameter<bool?>("BlankZero");
-            Caption = new DynamicParameter<string>("Caption");
-            CaptionClass = new DynamicParameter<string>("CaptionClass");
-            CharAllowed = new DynamicParameter<string>("CharAllowed");
-            ChartPartID = new DynamicParameter<string>("ChartPartID", parameterSetNames: new string[] { "ChartPart" });
-            ClosingDates = new DynamicParameter<bool?>("ClosingDates");
-            ColumnSpan = new DynamicParameter<int?>("ColumnSpan");
-            ContainerType = new DynamicParameter<ContainerType?>("ContainerType", defaultValue: Core.ContainerType.ContentArea);
-            ControlAddIn = new DynamicParameter<string>("ControlAddIn");
-            DateFormula = new DynamicParameter<bool?>("DateFormula");
-            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", minRange: 0, maxRange: int.MaxValue);
-            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", minRange: 0, maxRange: int.MaxValue);
-            DrillDown = new DynamicParameter<bool?>("DrillDown");
-            DrillDownPageID = new DynamicParameter<string>("DrillDownPageID");
-            Editable = new DynamicParameter<string>("Editable");
-            Enabled = new DynamicParameter<string>("Enabled");
-            ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
-            FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
-            GroupType = new DynamicParameter<Core.GroupType?>("GroupType", defaultValue: Core.GroupType.Group);
-            HideValue = new DynamicParameter<string>("HideValue");
-#if NAV2015
-            Image = new DynamicParameter<string>("Image");
-#endif
-            Importance = new DynamicParameter<Core.Importance?>("Importance");
-            IndentationColumnName = new DynamicParameter<string>("IndentationColumnName");
-            IndentationControls = new DynamicParameter<string[]>("IndentationControls");
-            Layout = new DynamicParameter<GroupPageControlLayout?>("Layout");
-            Lookup = new DynamicParameter<bool?>("Lookup");
-            LookupPageID = new DynamicParameter<string>("LookupPageID");
-            MaxValue = new DynamicParameter<object>("MaxValue");
-            MinValue = new DynamicParameter<object>("MinValue");
-            MultiLine = new DynamicParameter<bool?>("MultiLine");
-            NotBlank = new DynamicParameter<bool?>("NotBlank");
-            Numeric = new DynamicParameter<bool?>("Numeric");
-            PagePartID = new DynamicParameter<int?>("PagePartID", parameterSetNames: new string[] { "PagePart" });
             Position = new DynamicParameter<Position?>("Position");
-            QuickEntry = new DynamicParameter<string>("QuickEntry");
-            SystemPartID = new DynamicParameter<SystemPartID?>("SystemPartID", parameterSetNames: new string[] { "SystemPart" });
-            ProviderID = new DynamicParameter<int?>("ProviderID");
-            RowSpan = new DynamicParameter<int?>("RowSpan");
-            ShowAsTree = new DynamicParameter<bool?>("ShowAsTree");
-            ShowCaption = new DynamicParameter<bool?>("ShowCaption");
-            ShowFilter = new DynamicParameter<bool?>("ShowFilter");
-#if NAV2015
-            ShowMandatory = new DynamicParameter<string>("ShowMandatory");
-#endif
-            SourceExpr = new DynamicParameter<string>("SourceExpr", true);
-            Style = new DynamicParameter<Core.Style?>("Style");
-            StyleExpr = new DynamicParameter<string>("StyleExpr");
-            SubPageViewKey = new DynamicParameter<string>("SubPageViewKey");
-            SubPageViewOrder = new DynamicParameter<Order?>("SubPageViewOrder");
-            Title = new DynamicParameter<bool?>("Title");
-#if NAV2015
-            UpdatePropagation = new DynamicParameter<UpdatePropagation?>("UpdatePropagation");
-#endif
-            ValuesAllowed = new DynamicParameter<string>("ValuesAllowed");
-            Visible = new DynamicParameter<string>("Visible");
-            Width = new DynamicParameter<int?>("Width");
-
-            Type = PageControlType.Field;
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public PageControlType Type
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true)]
-        [Alias("Range")]
-        public PSObject ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string Description
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter AutoCaption
         {
             get;
             set;
@@ -129,349 +30,11 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        #region Dynamic parameters
-        protected DynamicParameter<bool?> AssistEdit
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> AutoFormatExpr
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<AutoFormatType?> AutoFormatType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<BlankNumbers?> BlankNumbers
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> BlankZero
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Caption
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> CaptionClass
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> CharAllowed
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> ChartPartID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> ClosingDates
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int?> ColumnSpan
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<ContainerType?> ContainerType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> ControlAddIn
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> DateFormula
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int?> DecimalPlacesAtLeast
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int?> DecimalPlacesAtMost
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> DrillDown
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> DrillDownPageID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Editable
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Enabled
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<ExtendedDataType?> ExtendedDataType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> FreezeColumnID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<GroupType?> GroupType
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> HideValue
-        {
-            get;
-            set;
-        }
-
-#if NAV2015
-        protected DynamicParameter<string> Image
-        {
-            get;
-            set;
-        }
-#endif
-
-        protected DynamicParameter<Importance?> Importance
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> IndentationColumnName
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string[]> IndentationControls
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<GroupPageControlLayout?> Layout
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> Lookup
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> LookupPageID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<object> MaxValue
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<object> MinValue
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> MultiLine
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> NotBlank
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> Numeric
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int?> PagePartID
-        {
-            get;
-            set;
-        }
-
         protected DynamicParameter<Position?> Position
         {
             get;
             set;
         }
-
-        protected DynamicParameter<int?> ProviderID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> QuickEntry
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int?> RowSpan
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> ShowAsTree
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> ShowCaption
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> ShowFilter
-        {
-            get;
-            set;
-        }
-
-#if NAV2015
-        protected DynamicParameter<string> ShowMandatory
-        {
-            get;
-            set;
-        }
-#endif
-
-        protected DynamicParameter<string> SourceExpr
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<Style?> Style
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> StyleExpr
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> SubPageViewKey
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<Order?> SubPageViewOrder
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<SystemPartID?> SystemPartID
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<bool?> Title
-        {
-            get;
-            set;
-        }
-
-#if NAV2015
-        protected DynamicParameter<UpdatePropagation?> UpdatePropagation
-        {
-            get;
-            set;
-        }
-#endif
-
-        protected DynamicParameter<string> ValuesAllowed
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<string> Visible
-        {
-            get;
-            set;
-        }
-
-        protected DynamicParameter<int?> Width
-        {
-            get;
-            set;
-        }
-        #endregion
 
         protected override void ProcessRecord()
         {
@@ -492,6 +55,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as PageControls).Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as PageControls).Add(pageControl);
                         break;
@@ -504,6 +68,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as Page).Controls.Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as Page).Controls.Add(pageControl);
                         break;
@@ -516,6 +81,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as ReportRequestPage).Controls.Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as ReportRequestPage).Controls.Add(pageControl);
                         break;
@@ -528,6 +94,7 @@ namespace UncommonSense.CBreeze.Automation
                     case Core.Position.FirstWithinContainer:
                         (InputObject.BaseObject as XmlPortRequestPage).Controls.Insert(0, pageControl);
                         break;
+
                     case Core.Position.LastWithinContainer:
                         (InputObject.BaseObject as XmlPortRequestPage).Controls.Add(pageControl);
                         break;
@@ -538,19 +105,27 @@ namespace UncommonSense.CBreeze.Automation
                 throw new ArgumentOutOfRangeException("Don't know how to add a page control to an InputObject of this type.");
             }
 
+            if (ChildControls != null)
+            {
+                var variables = new List<PSVariable>() { new PSVariable("Indentation", pageControl.IndentationLevel + 1) };
+
+                ChildControls
+                    .InvokeWithContext(null, variables)
+                    .Select(o => o.BaseObject)
+                    .Cast<PageControl>()
+                    .ForEach(c => pageControl.AddChildPageControl(c, Core.Position.LastWithinContainer));
+            }
+
             if (PassThru)
                 WriteObject(pageControl);
         }
 
         protected PageControl CreatePageControl()
         {
-            var page = InputObject.GetIPage();
-            var id = ID.GetID(page.GetPageUIDsInUse(), page.ObjectID);
-
             switch (Type)
             {
                 case PageControlType.Container:
-                    var containerPageControl = new ContainerPageControl(id, 0);
+                    var containerPageControl = new ContainerPageControl(ID, 0);
                     containerPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     containerPageControl.Properties.Description = Description;
                     containerPageControl.Properties.Name = Name;
@@ -562,7 +137,7 @@ namespace UncommonSense.CBreeze.Automation
                     return containerPageControl;
 
                 case PageControlType.Group:
-                    var groupPageControl = new GroupPageControl(id, GetIndentationLevel());
+                    var groupPageControl = new GroupPageControl(ID, GetIndentationLevel());
                     groupPageControl.Properties.CaptionML.Set("ENU", Caption.Value);
                     groupPageControl.Properties.Description = Description;
                     groupPageControl.Properties.Name = Name;
@@ -582,7 +157,7 @@ namespace UncommonSense.CBreeze.Automation
                     return groupPageControl;
 
                 case PageControlType.Field:
-                    var fieldPageControl = new FieldPageControl(id, GetIndentationLevel());
+                    var fieldPageControl = new FieldPageControl(SourceExpr.Value, ID, GetIndentationLevel());
                     fieldPageControl.Properties.Description = Description;
                     fieldPageControl.Properties.Name = Name;
                     fieldPageControl.Properties.AssistEdit = AssistEdit.Value;
@@ -622,7 +197,8 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
                     fieldPageControl.Properties.ShowMandatory = ShowMandatory.Value;
 #endif
-                    fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
+
+                    //fieldPageControl.Properties.SourceExpr = SourceExpr.Value;
                     fieldPageControl.Properties.Style = Style.Value;
                     fieldPageControl.Properties.StyleExpr = StyleExpr.Value;
                     fieldPageControl.Properties.Title = Title.Value;
@@ -636,7 +212,7 @@ namespace UncommonSense.CBreeze.Automation
                     return fieldPageControl;
 
                 case PageControlType.Part:
-                    var partPageControl = new PartPageControl(id, GetIndentationLevel());
+                    var partPageControl = new PartPageControl(ID, GetIndentationLevel());
                     partPageControl.Properties.Description = Description;
                     partPageControl.Properties.Name = Name;
 
@@ -674,6 +250,7 @@ namespace UncommonSense.CBreeze.Automation
                         partPageControl.AutoCaption();
 
                     return partPageControl;
+
                 default:
                     throw new ArgumentOutOfRangeException("Unknown control type.");
             }

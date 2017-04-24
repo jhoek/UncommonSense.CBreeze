@@ -34,8 +34,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty variableName = new StringProperty("VariableName");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal XmlPortTableElementProperties()
+        internal XmlPortTableElementProperties(XmlPortTableElement xmlPortTableElement)
         {
+            XmlPortTableElement = xmlPortTableElement;
+
             innerList.Add(reqFilterFields);
             innerList.Add(reqFilterHeadingML);
             innerList.Add(variableName);
@@ -64,7 +66,14 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
-      public bool? AutoReplace
+        public XmlPortTableElement XmlPortTableElement
+        {
+            get;protected set;
+        }
+
+        public override INode ParentNode => XmlPortTableElement;
+
+        public bool? AutoReplace
         {
             get
             {

@@ -6,40 +6,47 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class PageActionSeparator : PageActionBase
-	{
-		public PageActionSeparator(int id, int? indentationLevel)
-			: base(id, indentationLevel)
-		{
-			Properties = new PageActionSeparatorProperties();
-		}
+    public class PageActionSeparator : PageActionBase
+    {
+        public PageActionSeparator(int id = 0, int? indentationLevel = null)
+            : base(id, indentationLevel)
+        {
+            Properties = new PageActionSeparatorProperties(this);
+        }
 
-		public override PageActionBaseType Type
-		{
-			get
-			{
-				return PageActionBaseType.Separator;
-			}
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
 
-		public PageActionSeparatorProperties Properties
-		{
-			get;
-			protected set;
-		}
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
 
-		public override string GetName()
-		{
-			return null;
-		}
+        public PageActionSeparatorProperties Properties
+        {
+            get;
+            protected set;
+        }
 
+        public override PageActionBaseType Type
+        {
+            get
+            {
+                return PageActionBaseType.Separator;
+            }
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
-	}
+        public override string GetName()
+        {
+            return null;
+        }
+    }
 }

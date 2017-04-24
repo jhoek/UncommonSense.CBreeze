@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -9,17 +8,11 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Get, "CBreezePageControlGroup")]
+    [OutputType(typeof(GroupPageControl))]
     public class GetCBreezePageControlGroup : PSCmdlet
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Page Page
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true)]
-        public IEnumerable<int> Range
+        [Parameter(Mandatory = true, ParameterSetName = "ByGroupCaption")]
+        public string GroupCaption
         {
             get;
             set;
@@ -32,8 +25,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByGroupCaption")]
-        public string GroupCaption
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public Page Page
         {
             get;
             set;
@@ -48,15 +41,16 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var contentArea = Page.GetPageControlContainer(Range, ContainerType.ContentArea);
+            var contentArea = Page.GetPageControlContainer(ContainerType.ContentArea);
 
             switch (ParameterSetName)
             {
                 case "ByGroupType":
-                    WriteObject(contentArea.GetGroupByType(GroupType, Range, Position ?? UncommonSense.CBreeze.Core.Position.FirstWithinContainer));
+                    WriteObject(contentArea.GetGroupByType(GroupType, Position ?? UncommonSense.CBreeze.Core.Position.FirstWithinContainer));
                     break;
+
                 case "ByGroupCaption":
-                    WriteObject(contentArea.GetGroupByCaption(GroupCaption, Range, Position ?? UncommonSense.CBreeze.Core.Position.LastWithinContainer));
+                    WriteObject(contentArea.GetGroupByCaption(GroupCaption, Position ?? UncommonSense.CBreeze.Core.Position.LastWithinContainer));
                     break;
             }
         }

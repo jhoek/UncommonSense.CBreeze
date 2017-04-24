@@ -6,20 +6,16 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DotNetVariable : Variable
+    public class DotNetVariable : Variable
     {
+        public DotNetVariable(string name, string subType) : this(0, name, subType)
+        {
+        }
+
         public DotNetVariable(int id, string name, string subType)
             : base(id, name)
         {
             SubType = subType;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.DotNet;
-            }
         }
 
         public string Dimensions
@@ -38,6 +34,14 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             protected set;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.DotNet;
+            }
         }
 
         public bool? WithEvents

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Diagnostics;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Write;
@@ -8,35 +9,46 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Demo
 {
-    class MainClass
+    internal class MainClass
     {
         public static void Main(string[] args)
         {
-            var compareToolFileName = @"c:\Program Files\Araxis\Araxis Merge\compare.exe";
+            DefaultRanges.ID = Enumerable.Range(50000, 100);
+            DefaultRanges.UID = Enumerable.Range(1000000000, 100);
 
-            var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var inputFileName = Path.Combine(desktopFolderName, "xmlport.txt");
-            var outputFileName = Path.Combine(desktopFolderName, "xmlport.output.txt");
+            var application = new Application();
 
-            var readerStopWatch = new Stopwatch();
-            readerStopWatch.Start();
-            var lines = File.ReadLines(inputFileName, Encoding.GetEncoding("ibm850"));
-            readerStopWatch.Stop();
-            Console.WriteLine("Reading took {0} ms.", readerStopWatch.ElapsedMilliseconds);
+            /*
+            var xmlport = application.XmlPorts.Add(new XmlPort("My XMLport"));
 
-            var parserStopwatch = new Stopwatch();
-            parserStopwatch.Start();
-            var application = ApplicationBuilder.FromLines(lines);
-            parserStopwatch.Stop();
-            Console.WriteLine("Parsing took {0} ms.", parserStopwatch.ElapsedMilliseconds);
+            xmlport.Nodes.Add(new XmlPortTableElement("Customer")).Properties.SourceTable = BaseApp.TableIDs.Customer;
+            xmlport.Nodes.Add(new XmlPortFieldElement("No", 1));
+            xmlport.Nodes.Add(new XmlPortFieldElement("Balance", 1));
+            xmlport.Nodes.Add(new XmlPortTextAttribute("Currency", 2));
 
-            var writerStopwatch = new Stopwatch();
-            writerStopwatch.Start();
-            application.Write(outputFileName);
-            writerStopwatch.Stop();
-            Console.WriteLine("Writing took {0} ms.", writerStopwatch.ElapsedMilliseconds);
+            xmlport.Code.Functions.Add(new Function("Foo")).Local = true;
+            xmlport.Code.Variables.Add(new IntegerVariable(9, "MyInteger")).IncludeInDataset = true;
+            xmlport.Code.Variables.Add(new TextConstant("Text000")).Values.Set("ENU", "OInk").Set("NLD", "Boink");
 
-            Process.Start(compareToolFileName, string.Format("\"{0}\" \"{1}\"", inputFileName, outputFileName));
+            xmlport.Properties.FieldDelimiter = "$";
+            */
+
+            var table = application.Tables.Add(new Table("Customer Group"));
+            var codeField = table.Fields.Add(new CodeTableField("Code"));
+            var descriptionField = table.Fields.Add(new TextTableField("Description"));
+
+            table.Keys.Add(new TableKey(codeField.Name)).Properties.Clustered = true;
+
+            table.Code.Variables.Add(new IntegerVariable("GlobalInt"));
+            table.Code.Variables.Add(new TextConstant("Text000")).Values.Set("ENU", "Blaat").Set("NLD", "Klinkt");
+
+            var function = table.Code.Functions.Add(new Function("Foo"));
+            function.Parameters.Add(new IntegerParameter("Baz"));
+            function.Variables.Add(new IntegerVariable("Bar"));
+
+            table.Properties.DataCaptionFields.AddRange(codeField.Name, descriptionField.Name);
+
+            application.Write();
         }
     }
 }

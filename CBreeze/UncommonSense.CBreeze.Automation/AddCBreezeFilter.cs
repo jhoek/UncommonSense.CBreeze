@@ -60,6 +60,20 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public SwitchParameter OnlyMaxLimit
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter ValueIsFilter
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
         public SwitchParameter PassThru
         {
             get;
@@ -70,8 +84,18 @@ namespace UncommonSense.CBreeze.Automation
         {
             TypeSwitch.Do(
                 InputObject.BaseObject,
-                TypeSwitch.Case<CalcFormula>(i => i.TableFilter.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value))),
-                TypeSwitch.Case<CalcFormulaTableFilter>(i => i.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value))),
+                TypeSwitch.Case<CalcFormula>(i => i.TableFilter.Add(
+                    new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value)
+                    {
+                        OnlyMaxLimit = OnlyMaxLimit ,
+                        ValueIsFilter = ValueIsFilter 
+                    })),
+                TypeSwitch.Case<CalcFormulaTableFilter>(i => i.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value)
+                {
+                    OnlyMaxLimit = OnlyMaxLimit ,
+                    ValueIsFilter = ValueIsFilter 
+                }
+                )),
                 TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageView.TableFilter.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
                 TypeSwitch.Case<TableView>(i => i.TableFilter.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
                 TypeSwitch.Case<TableFilter>(i => i.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),

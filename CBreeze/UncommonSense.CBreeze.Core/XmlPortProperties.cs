@@ -35,8 +35,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty useRequestPage = new NullableBooleanProperty("UseRequestPage");
         private XmlVersionNoProperty xmlVersionNo = new XmlVersionNoProperty("XmlVersionNo");
 
-        internal XmlPortProperties()
+        internal XmlPortProperties(XmlPort xmlPort)
         {
+            XmlPort = xmlPort;
+
             innerList.Add(permissions);
             innerList.Add(transactionType);
             innerList.Add(captionML);
@@ -65,6 +67,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(useLax);
             innerList.Add(fileName);
         }
+
+        public XmlPort XmlPort { get; protected set; }
+
+        public override INode ParentNode => XmlPort;
 
         public MultiLanguageValue CaptionML
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public abstract class Properties : IProperties
+    public abstract class Properties : IProperties, INode
     {
         protected List<Property> innerList = new List<Property>();
 
@@ -27,6 +27,19 @@ namespace UncommonSense.CBreeze.Core
             get
             {
                 return innerList.Where(p => p.HasValue);
+            }
+        }
+
+        public abstract INode ParentNode
+        {
+            get;
+        }
+
+        public IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield break;
             }
         }
 

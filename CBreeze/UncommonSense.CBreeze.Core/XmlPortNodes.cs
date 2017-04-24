@@ -5,10 +5,20 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortNodes : GuidKeyedContainer<XmlPortNode>
+    public class XmlPortNodes : GuidKeyedContainer<XmlPortNode>, INode
     {
-        internal XmlPortNodes()
+        internal XmlPortNodes(XmlPort xmlPort)
         {
+            XmlPort = xmlPort;
+        }
+
+        public IEnumerable<INode> ChildNodes => this.Cast<INode>();
+
+        public INode ParentNode => XmlPort;
+
+        public XmlPort XmlPort
+        {
+            get; protected set;
         }
 
         protected override void InsertItem(int index, XmlPortNode item)

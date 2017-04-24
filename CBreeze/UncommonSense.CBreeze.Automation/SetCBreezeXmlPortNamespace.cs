@@ -9,6 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
 #if NAV2016
     [Cmdlet(VerbsCommon.Set, "CBreezeXmlPortNamespace")]
+    [OutputType(typeof(XmlPort))]
     public class SetCBreezeXmlPortNamespace : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]

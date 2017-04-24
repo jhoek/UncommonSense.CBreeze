@@ -15,8 +15,10 @@ namespace UncommonSense.CBreeze.Core
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
 
-        internal BinaryTableFieldProperties()
+        internal BinaryTableFieldProperties(BinaryTableField field)
         {
+            Field = field;
+
             innerList.Add(onValidate);
             innerList.Add(onLookup);
 #if NAV2015
@@ -25,6 +27,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionML);
             innerList.Add(description);
         }
+
+        public BinaryTableField Field { get; protected set; }
+
+        public override INode ParentNode => Field;
 
 #if NAV2015
         public AccessByPermission AccessByPermission

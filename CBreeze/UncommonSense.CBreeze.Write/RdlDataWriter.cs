@@ -13,9 +13,9 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.BeginSection("RDLDATA");
 
-            if (rdlData.Lines.Any())
+            if (rdlData.CodeLines.Any())
             {
-                foreach (var line in rdlData.Lines)
+                foreach (var line in rdlData.CodeLines)
                 {
                     writer.InnerWriter.WriteLine(line);
                 }

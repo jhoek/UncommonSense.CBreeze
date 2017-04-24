@@ -12,13 +12,17 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty description = new StringProperty("Description");
         private StringProperty name = new StringProperty("Name");
 
-        internal ContainerPageControlProperties()
+        internal ContainerPageControlProperties(ContainerPageControl containerPageControl)
         {
+            ContainerPageControl = containerPageControl;
+
             innerList.Add(name);
             innerList.Add(captionML);
             innerList.Add(description);
             innerList.Add(containerType);
         }
+
+        public ContainerPageControl ContainerPageControl { get; protected set; }
 
         public MultiLanguageValue CaptionML
         {
@@ -63,5 +67,7 @@ namespace UncommonSense.CBreeze.Core
                 this.name.Value = value;
             }
         }
+
+        public override INode ParentNode => ContainerPageControl;
     }
 }

@@ -6,26 +6,33 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-		public class GroupPageControl : PageControl
-	{
-		public GroupPageControl(int id, int? indentationLevel)
-			: base(id, indentationLevel)
-		{
-			Properties = new GroupPageControlProperties();
+    public class GroupPageControl : PageControl
+    {
+        public GroupPageControl(int id = 0, int? indentationLevel = null, GroupType? groupType = null) : base(id, indentationLevel)
+        {
+            Properties = new GroupPageControlProperties(this);
+            Properties.GroupType = groupType;
 
-            // Cannot set ActionList.Page from here; Container has not been set yet.
-            // Note that this applies only to GroupPageControls, since the other
-            // page control types don't have their own action lists.
-            // Properties.ActionList.Page = Container.Page;
-		}
+            // Cannot set ActionList.Page from here; Container has not been set yet. Note that this
+            // applies only to GroupPageControls, since the other page control types don't have their
+            // own action lists. Properties.ActionList.Page = Container.Page;
+        }
 
-		public override PageControlType Type
-		{
-			get
-			{
-				return PageControlType.Group;
-			}
-		}
+        public override Properties AllProperties
+        {
+            get
+            {
+                return Properties;
+            }
+        }
+
+        public override IEnumerable<INode> ChildNodes
+        {
+            get
+            {
+                yield return Properties;
+            }
+        }
 
         public override PageControls Container
         {
@@ -40,23 +47,23 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-		public GroupPageControlProperties Properties
-		{
-			get;
-			protected set;
-		}
+        public GroupPageControlProperties Properties
+        {
+            get;
+            protected set;
+        }
 
-		public override Properties AllProperties
-		{
-			get
-			{
-				return Properties;
-			}
-		}
+        public override PageControlType Type
+        {
+            get
+            {
+                return PageControlType.Group;
+            }
+        }
 
-		public override string GetName()
-		{
-			return Properties.Name;
-		}
-	}
+        public override string GetName()
+        {
+            return Properties.Name;
+        }
+    }
 }

@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Core
 	// PageActionBase, and the derived classes PageActionContainer, PageActionGroup
 	// PageActionSeparator and PageAction.
 
-		public abstract class PageActionBase : KeyedItem<int>, IHasName, IHasProperties
+		public abstract class PageActionBase : KeyedItem<int>, IHasName, IHasProperties, INode
 	{
 		internal PageActionBase(int id, int? indentationLevel)
 		{
@@ -70,7 +70,14 @@ namespace UncommonSense.CBreeze.Core
 			}
 		}
 
-		public T AddChildPageAction<T>(T child, Position position) where T : PageActionBase
+        public INode ParentNode => Container;
+
+        public abstract IEnumerable<INode> ChildNodes
+        {
+            get;
+        }
+
+        public T AddChildPageAction<T>(T child, Position position) where T : PageActionBase
 		{
 			switch (position)
 			{

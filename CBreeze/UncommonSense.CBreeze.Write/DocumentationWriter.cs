@@ -13,11 +13,11 @@ namespace UncommonSense.CBreeze.Write
             writer.InnerWriter.WriteLine();
             writer.WriteLine("BEGIN");
 
-            if (documentation.Lines.Any())
+            if (documentation.CodeLines.Any())
             {
                 writer.WriteLine("{");
                 writer.Indent();
-                documentation.Lines.Write(writer);
+                documentation.CodeLines.Write(writer);
                 writer.Unindent();
                 writer.WriteLine("}");
             }

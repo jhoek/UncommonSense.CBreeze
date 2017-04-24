@@ -6,18 +6,18 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortFieldAttributeProperties : Properties   
+    public class XmlPortFieldAttributeProperties : Properties
     {
         private NullableBooleanProperty autoCalcField = new NullableBooleanProperty("AutoCalcField"); // 21057
         private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType"); // 0
         private NullableBooleanProperty fieldValidate = new NullableBooleanProperty("FieldValidate"); // 54079
         private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence"); // 54096
-        private ScopedTriggerProperty onAfterAssignField = new ScopedTriggerProperty("OnAfterAssignField"); 
+        private ScopedTriggerProperty onAfterAssignField = new ScopedTriggerProperty("OnAfterAssignField");
         private ScopedTriggerProperty onBeforePassField = new ScopedTriggerProperty("OnBeforePassField");
         private SourceFieldProperty sourceField = new SourceFieldProperty("SourceField"); // 54081
         private NullableIntegerProperty width = new NullableIntegerProperty("Width"); // 5010
 
-        internal XmlPortFieldAttributeProperties()
+        internal XmlPortFieldAttributeProperties(XmlPortFieldAttribute xmlPortFieldAttribute)
         {
             innerList.Add(dataType);
             innerList.Add(fieldValidate);
@@ -29,7 +29,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(width);
         }
 
-      public bool? AutoCalcField
+        public XmlPortFieldAttribute XmlPortFieldAttribute { get; protected set; }
+
+        public override INode ParentNode => XmlPortFieldAttribute;
+
+        public bool? AutoCalcField
         {
             get
             {
@@ -41,7 +45,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public XmlPortNodeDataType? DataType
+        public XmlPortNodeDataType? DataType
         {
             get
             {
@@ -53,7 +57,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? FieldValidate
+        public bool? FieldValidate
         {
             get
             {
@@ -101,7 +105,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? Width
+        public int? Width
         {
             get
             {

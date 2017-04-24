@@ -35,43 +35,58 @@ namespace UncommonSense.CBreeze.Automation
             return obj;
         }
 
-        public static int GetID(this PSObject id, IEnumerable<int> idsInUse = null, int containingID = 0, int objectID = 0, IEnumerable<int> alternativeRange = null)
+        public static T AddPageActionAtPosition<T>(this ActionList actionList, T pageAction, Position position) where T : PageActionBase
         {
-            if (id.BaseObject is int)
+            switch (position)
             {
-                return (int)id.BaseObject;
+                case Position.FirstWithinContainer:
+                    actionList.Insert(0, pageAction);
+                    break;
+
+                case Position.LastWithinContainer:
+                    actionList.Add(pageAction);
+                    break;
             }
 
-            if (id.BaseObject is IEnumerable<int>)
+            return pageAction;
+        }
+
+        public static T AddPageActionAtPosition<T>(this IPage page, T pageAction, Position position) where T : PageActionBase
+        {
+            switch (position)
             {
-                var range = id.BaseObject as IEnumerable<int>;
-                var useAlternativeRange = false;
+                case Position.FirstWithinContainer:
+                    page.Actions.Insert(0, pageAction);
+                    break;
 
-                // Note: containingID may be an object ID (in case of e.g. page controls),
-                // or e.g. a function ID (in case of parameters). In multi-layered scenario's,
-                // such as function parameters, the containingID contains the function ID, 
-                // and the objectID contains the object ID.
-                // See also this gist: https://gist.github.com/jhoek/8988ffb441e4162c8b5e
-
-                if (containingID != 0)
-                {
-                    if (range.Contains(containingID))
-                    {
-                        useAlternativeRange = true;
-                    }
-                    else
-                    {
-                        useAlternativeRange = range.Contains(objectID);
-                    }
-                }
-
-                if (useAlternativeRange)
-                    range = (alternativeRange ?? 1.To(int.MaxValue));
-
-                return range.Except(idsInUse ?? Enumerable.Empty<int>()).First();
+                case Position.LastWithinContainer:
+                    page.Actions.Add(pageAction);
+                    break;
             }
 
-            throw new ArgumentOutOfRangeException("Cannot determine ID.");
+            return pageAction;
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            foreach (var item in items)
+            {
+                action(item);
+            }
+        }
+
+        public static IEnumerable<int> GetParameterIDs(this PSObject inputObject)
+        {
+            var result = Enumerable.Empty<int>();
+
+            TypeSwitch.Do(
+                inputObject.BaseObject,
+                TypeSwitch.Case<Parameters>(i => result = i.Select(p => p.ID)),
+                TypeSwitch.Case<Function>(f => result = f.Parameters.Select(p => p.ID)),
+                TypeSwitch.Case<Event>(e => result = e.Parameters.Select(p => p.ID))
+                );
+
+            return result;
         }
 
         public static Parameters GetParameters(this PSObject inputObject)
@@ -86,39 +101,14 @@ namespace UncommonSense.CBreeze.Automation
             throw new ApplicationException("Cannot add parameters to this object.");
         }
 
-        public static IEnumerable<int> GetParameterIDs(this PSObject inputObject)
+        public static IEnumerable<int> GetVariableIDs(this PSObject inputObject)
         {
-            if (inputObject.BaseObject is Parameters)
-                return (inputObject.BaseObject as Parameters).Select(p => p.ID);
-            else if (inputObject.BaseObject is IHasParameters)
-                return (inputObject.BaseObject as IHasParameters).Parameters.Select(p => p.ID);
-            else
-                return Enumerable.Empty<int>();
-        }
+            Variables variables = null;
 
-        public static IPage GetIPage(this PSObject inputObject)
-        {
-            IPage result = null;
+            if (TryGetVariables(inputObject, out variables))
+                return variables.Select(v => v.ID);
 
-            TypeSwitch.Do(
-                inputObject.BaseObject,
-                TypeSwitch.Case<Page>(i => result = i),
-                TypeSwitch.Case<Report>(i => result = i.RequestPage),
-                TypeSwitch.Case<XmlPort>(i => result = i.RequestPage),
-                TypeSwitch.Case<ReportRequestPage>(i => result = i),
-                TypeSwitch.Case<XmlPortRequestPage>(i => result = i),
-                TypeSwitch.Case<ActionList>(i => result = i.Page),
-                TypeSwitch.Case<PageControls>(i => result = i.Page),
-                TypeSwitch.Case<PageActionContainer>(i => result = i.Container.Page),
-                TypeSwitch.Case<PageActionGroup>(i => result = i.Container.Page),
-                TypeSwitch.Case<GroupPageControl>(i => result = i.Container.Page),
-                TypeSwitch.Case<ContainerPageControl>(i => result = i.Container.Page)
-            );
-
-            if (result == null)
-                throw new ArgumentOutOfRangeException("Don't know how to determine IPage interface for this InputObject.");
-
-            return result;
+            return Enumerable.Empty<int>();
         }
 
         public static Variables GetVariables(this PSObject inputObject)
@@ -161,46 +151,6 @@ namespace UncommonSense.CBreeze.Automation
                 variables = null;
                 return false;
             }
-        }
-
-        public static IEnumerable<int> GetVariableIDs(this PSObject inputObject)
-        {
-            Variables variables = null;
-
-            if (TryGetVariables(inputObject, out variables))
-                return variables.Select(v => v.ID);
-
-            return Enumerable.Empty<int>();
-        }
-
-        public static T AddPageActionAtPosition<T>(this ActionList actionList, T pageAction, Position position) where T : PageActionBase
-        {
-            switch (position)
-            {
-                case Position.FirstWithinContainer:
-                    actionList.Insert(0, pageAction);
-                    break;
-                case Position.LastWithinContainer:
-                    actionList.Add(pageAction);
-                    break;
-            }
-
-            return pageAction;
-        }
-
-        public static T AddPageActionAtPosition<T>(this IPage page, T pageAction, Position position) where T : PageActionBase
-        {
-            switch (position)
-            {
-                case Position.FirstWithinContainer:
-                    page.Actions.Insert(0, pageAction);
-                    break;
-                case Position.LastWithinContainer:
-                    page.Actions.Add(pageAction);
-                    break;
-            }
-
-            return pageAction;
         }
     }
 }

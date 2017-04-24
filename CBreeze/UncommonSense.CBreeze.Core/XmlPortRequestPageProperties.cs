@@ -41,8 +41,10 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty sourceTableTemporary = new NullableBooleanProperty("SourceTableTemporary");
         private TableViewProperty sourceTableView = new TableViewProperty("SourceTableView");
 
-        internal XmlPortRequestPageProperties()
+        internal XmlPortRequestPageProperties(XmlPortRequestPage xmlPortRequestPage)
         {
+            XmlPortRequestPage = xmlPortRequestPage;
+
             innerList.Add(permissions);
             innerList.Add(editable);
             innerList.Add(captionML);
@@ -77,6 +79,12 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAfterGetCurrRecord);
             innerList.Add(actionList);
         }
+
+        public XmlPortRequestPage XmlPortRequestPage
+        {get; protected set;
+        }
+
+        public override INode ParentNode => XmlPortRequestPage;
 
         public ActionList ActionList
         {

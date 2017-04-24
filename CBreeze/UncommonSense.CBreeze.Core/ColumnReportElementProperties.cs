@@ -17,8 +17,10 @@ namespace UncommonSense.CBreeze.Core
         private OptionStringProperty optionString = new OptionStringProperty("OptionString");
         private StringProperty sourceExpr = new StringProperty("SourceExpr");
 
-        internal ColumnReportElementProperties()
+        internal ColumnReportElementProperties(ColumnReportElement columnReportElement)
         {
+            ColumnReportElement = columnReportElement;
+
             innerList.Add(optionCaptionML);
             innerList.Add(optionString);
             innerList.Add(decimalPlaces);
@@ -29,6 +31,8 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(autoFormatType);
             innerList.Add(autoFormatExpr);
         }
+
+        public ColumnReportElement ColumnReportElement { get; protected set; }
 
         public bool? AutoCalcField
         {
@@ -129,5 +133,7 @@ namespace UncommonSense.CBreeze.Core
                 this.sourceExpr.Value = value;
             }
         }
+
+        public override INode ParentNode => ColumnReportElement;
     }
 }

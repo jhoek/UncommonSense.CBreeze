@@ -9,10 +9,16 @@ namespace UncommonSense.CBreeze.Core
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 
-        internal TableFieldGroupProperties()
+        internal TableFieldGroupProperties(TableFieldGroup tableFieldGroup)
         {
+            TableFieldGroup = tableFieldGroup;
+
             innerList.Add(captionML);
         }
+
+        public TableFieldGroup TableFieldGroup { get; protected set; }
+
+        public override INode ParentNode => TableFieldGroup;
 
         public MultiLanguageValue CaptionML
         {

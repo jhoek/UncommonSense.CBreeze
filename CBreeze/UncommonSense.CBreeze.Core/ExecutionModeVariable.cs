@@ -6,25 +6,29 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ExecutionModeVariable : Variable
+    public class ExecutionModeVariable : Variable
     {
-        public ExecutionModeVariable(int id, string name)
-            : base(id, name)
+        public ExecutionModeVariable(string name) : this(0, name)
         {
         }
 
-        public override VariableType Type
+        public ExecutionModeVariable(int id, string name)
+            : base(id, name)
         {
-            get 
-            {
-                return VariableType.ExecutionMode;
-            }
         }
 
         public string Dimensions
         {
             get;
             set;
+        }
+
+        public override VariableType Type
+        {
+            get
+            {
+                return VariableType.ExecutionMode;
+            }
         }
     }
 }

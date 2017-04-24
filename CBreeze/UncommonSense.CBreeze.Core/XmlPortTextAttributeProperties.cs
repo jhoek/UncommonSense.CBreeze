@@ -6,10 +6,10 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortTextAttributeProperties : Properties
+    public class XmlPortTextAttributeProperties : Properties
     {
 #if NAV2016
-            private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType");
+        private XmlPortNodeDataTypeProperty dataType = new XmlPortNodeDataTypeProperty("DataType");
 #endif
         private OccurrenceProperty occurrence = new OccurrenceProperty("Occurrence");
         private ScopedTriggerProperty onAfterAssignVariable = new ScopedTriggerProperty("OnAfterAssignVariable");
@@ -18,8 +18,10 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty variableName = new StringProperty("VariableName");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal XmlPortTextAttributeProperties()
+        internal XmlPortTextAttributeProperties(XmlPortTextAttribute xmlPortTextAttribute)
         {
+            XmlPortTextAttribute = xmlPortTextAttribute;
+
             innerList.Add(variableName);
             innerList.Add(textType);
 #if NAV2016
@@ -30,6 +32,13 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onBeforePassVariable);
             innerList.Add(width);
         }
+
+        public XmlPortTextAttribute XmlPortTextAttribute
+        {
+            get; protected set;
+        }
+
+        public override INode ParentNode => XmlPortTextAttribute;
 
 #if NAV2016
         public XmlPortNodeDataType? DataType
@@ -85,7 +94,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string VariableName
+        public string VariableName
         {
             get
             {
@@ -97,7 +106,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? Width
+        public int? Width
         {
             get
             {
