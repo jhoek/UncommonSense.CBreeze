@@ -3,7 +3,7 @@ using namespace UncommonSense.CBreeze.Automation
 
 Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
 
-function Test-Application
+function Test-ObjectCounts
 {
     param
     (
@@ -11,64 +11,58 @@ function Test-Application
         [UncommonSense.CBreeze.Core.Application]$Application
     )
 
+	$Application.Tables.Count | Should Be 2
+	$Application.Pages.Count | Should Be 2
+	$Application.Reports.Count | Should Be 2
+}
+
+function Test-Tables
+{
+	Param
+	(
+		[Parameter(Mandatory)]
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	$Table = $Application.Tables[10]
+	$Table.Name | Should Be MyTableInSpecifiedRange
+	$Table.Properties.CaptionML['ENU'] | Should Be $Table.Name
+
     $Table = $Application.Tables[60000]
-    $Table.Name | Should Be MyTable
-	#$Table.Properties.CaptionML['ENU'] | Should Be MyTable
-
-    $Page = $Application.Pages[60000]
-    $Page.Name | Should Be MyPage
-
-    $Report = $Application.Reports[60000]
-    $Report.Name | Should Be Report
-
-    $Codeunit = $Application.Codeunits[60000]
-    $Codeunit.Name | Should Be Codeunit
-
-    $Query = $Application.Queries[60000]
-    $Query.Name | Should Be Query
-
-    $XmlPort = $Application.XmlPorts[60000]
-    $XmlPort.Name | Should Be XmlPort
-
-    $MenuSuite = $Application.MenuSuites[60000]
-    $MenuSuite.Name | Should Be MenuSuite
+    $Table.Name | Should Be MyTableInDefaultRange
+	$Table.Properties.CaptionML['ENU'] | Should Be $Table.Name
 }
 
 Describe 'UncommonSense.CBreeze.Automation' {
-    BeforeEach {
+    BeforeAll {
         [UncommonSense.CBreeze.Core.DefaultRanges]::ID = [Enumerable]::Range(60000, 100)
         [UncommonSense.CBreeze.Core.DefaultRanges]::UID = [Enumerable]::Range(2000000, 100)
 	}
 
 	It 'Creates objects using New* cmdlets' {
         $Application = Application {
-            Table MyTable
-            Page 50000 Page
-            Report 50000 Report
-            Codeunit 50000 Codeunit
-            Query 50000 Query
-            XmlPort 50000 XmlPort {
-				XmlPortNode -Name Customer -Element -Table -SourceTable ([UncommonSense.CBreeze.Core.BaseApp+TableIDs]::Customer) -ChildNodes {
-                    XmlPortNode -Name No -Element -Field -SourceFieldName "NO."
-                }
-			}
-            MenuSuite 50000 MenuSuite
+            Table MyTableInDefaultRange -AutoCaption
+			Table 10 MyTableInSpecifiedRange -AutoCaption
+			Page MyPageInDefaultRange -AutoCaption
+			Page 10 MyPageInSpecifiedRange -AutoCaption
+			Report MyReportInDefaultRange -AutoCaption
+			Report 10 MyReportInSpecifiedRange -AutoCaption
         }
 
-        Test-Application -Application $Application
+        Test-ObjectCounts -Application $Application
+		Test-Tables -Application $Application
     }
 
     It 'Creates objects using Add* cmdlets' {
-        $Application = New-CBreezeApplication
+        $Application = Application
+        $Application | Table MyTableInDefaultRange -AutoCaption
+		$Application | Table 10 MyTableInSpecifiedRange -AutoCaption
+		$Application | Page MyPageInDefaultRange -AutoCaption
+		$Application | Page 10 MyPageInSpecifiedRange -AutoCaption
+		$Application | Report MyReportInDefaultRange -AutoCaption
+		$Application | Report 10 MyReportInSpecifiedRange -AutoCaption
 
-        $Application | Add-CBreezeTable MyTable -PassThru
-        $Application | Add-CBreezePage MyPage -PassThru:$false
-        $Application | Add-CBreezeReport MyReport -PassThru:$false
-        $Application | Add-CBreezeCodeunit MyCodeunit -PassThru:$false
-        $Application | Add-CBreezeQuery MyQuery -PassThru:$false
-        $Application | Add-CBreezeXmlPort MyXmlPort -PassThru:$false
-        $Application | Add-CBreezeMenuSuite MyMenuSuite -PassThru:$false
-
-        Test-Application -Application $Application
+        Test-ObjectCounts -Application $Application
+		Test-Tables -Application $Application
     }
 }
