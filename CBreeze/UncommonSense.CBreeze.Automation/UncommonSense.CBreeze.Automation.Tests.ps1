@@ -16,6 +16,7 @@ function Test-Application
 	Test-Pages -Application $Application
 	Test-Reports -Application $Application
 	Test-Codeunits -Application $Application
+	Test-Queries -Application $Application
 }
 
 function Test-ObjectCounts
@@ -30,6 +31,7 @@ function Test-ObjectCounts
 	$Application.Pages.Count | Should Be 2
 	$Application.Reports.Count | Should Be 2
 	$Application.Codeunits.Count | Should Be 2
+	$Application.Queries.Count | Should Be 2
 }
 
 function Test-Tables
@@ -98,6 +100,23 @@ function Test-Codeunits
 	$Codeunit.Name | Should Be MyCodeunitInDefaultRange
 }
 
+function Test-Queries
+{
+	Param
+	(
+		[Parameter(Mandatory)]
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	$Query = $Application.Queries[10]
+	$Query.Name | Should Be MyQueryInSpecifiedRange
+	$Query.Properties.CaptionML['ENU'] | Should Be $Query.Name
+
+	$Query = $Application.Queries[60000]
+	$Query.Name | Should Be MyQueryInDefaultRange
+	$Query.Properties.CaptionML['ENU'] | Should Be $Query.Name
+}
+
 Describe 'UncommonSense.CBreeze.Automation' {
     BeforeAll {
         [UncommonSense.CBreeze.Core.DefaultRanges]::ID = [Enumerable]::Range(60000, 100)
@@ -114,6 +133,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 			Report 10 MyReportInSpecifiedRange -AutoCaption
 			Codeunit MyCodeunitInDefaultRange -AutoCaption
 			Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
+			Query MyQueryInDefaultRange -AutoCaption
+			Query 10 MyQueryInSpecifiedRange -AutoCaption
         }
 
 		Test-Application -Application $Application
@@ -129,6 +150,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 		$Application | Report 10 MyReportInSpecifiedRange -AutoCaption
 		$Application | Codeunit MyCodeunitInDefaultRange -AutoCaption
 		$Application | Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
+		$Application | Query MyQueryInDefaultRange -AutoCaption
+		$Application | Query 10 MyQueryInSpecifiedRange -AutoCaption
 
 		Test-Application $Application
     }
