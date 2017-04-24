@@ -6,32 +6,15 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuite")]
     public class AddCBreezeMenuSuite : NewCBreezeMenuSuite
     {
-        public AddCBreezeMenuSuite()
-        {
-            PassThru = true;
-        }
-
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Application Application
-        {
-            get; set;
-        }
+        public Application Application { get; set; }
 
         [Parameter()]
-        public SwitchParameter PassThru
-        {
-            get; set;
-        }
+        public SwitchParameter PassThru { get; set; } = true;
 
         protected override void ProcessRecord()
         {
-            var menusuite = CreateMenuSuite();
-            Application.MenuSuites.Add(menusuite);
-
-            if (PassThru)
-            {
-                WriteObject(menusuite);
-            }
+            Application.MenuSuites.Add(CreateMenuSuite()).DoIf(PassThru, m => WriteObject(m));
         }
     }
 }

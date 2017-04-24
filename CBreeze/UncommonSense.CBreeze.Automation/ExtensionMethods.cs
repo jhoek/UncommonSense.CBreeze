@@ -67,6 +67,12 @@ namespace UncommonSense.CBreeze.Automation
             return pageAction;
         }
 
+        public static void DoIf<T>(this T obj, bool condition, Action<T> action)
+        {
+            if (condition)
+                action(obj);
+        }
+
         public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
             foreach (var item in items)

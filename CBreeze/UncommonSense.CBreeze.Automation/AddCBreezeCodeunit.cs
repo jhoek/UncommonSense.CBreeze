@@ -10,32 +10,15 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.Add, "CBreezeCodeunit")]
     public class AddCBreezeCodeunit : NewCBreezeCodeunit
     {
-        public AddCBreezeCodeunit()
-        {
-            PassThru = true;
-        }
-
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public Application Application
-        {
-            get; set;
-        }
+        public Application Application { get; set; }
 
         [Parameter()]
-        public SwitchParameter PassThru
-        {
-            get; set;
-        }
+        public SwitchParameter PassThru { get; set; } = true;
 
         protected override void ProcessRecord()
         {
-            var codeunit = CreateCodeunit();
-            Application.Codeunits.Add(codeunit);
-
-            if (PassThru)
-            {
-                WriteObject(codeunit);
-            }
+            Application.Codeunits.Add(CreateCodeunit()).DoIf(PassThru, c => WriteObject(c));
         }
     }
 }
