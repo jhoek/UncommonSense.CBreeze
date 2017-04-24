@@ -17,6 +17,7 @@ function Test-Application
 	Test-Reports -Application $Application
 	Test-Codeunits -Application $Application
 	Test-Queries -Application $Application
+	Test-XmlPorts -Application $Application
 	Test-MenuSuites -Application $Application
 }
 
@@ -33,6 +34,7 @@ function Test-ObjectCounts
 	$Application.Reports.Count | Should Be 2
 	$Application.Codeunits.Count | Should Be 2
 	$Application.Queries.Count | Should Be 2
+	$Application.XmlPorts.Count | Should Be 2
 	$Application.MenuSuites.Count | Should Be 2
 }
 
@@ -119,6 +121,22 @@ function Test-Queries
 	$Query.Properties.CaptionML['ENU'] | Should Be $Query.Name
 }
 
+function Test-XmlPorts
+{
+	Param
+	(
+		[UncommonSense.CBreeze.Core.Application]$Application
+	)
+
+	$XmlPort = $Application.XmlPorts[10]
+	$XmlPort.Name | Should Be MyXmlPortInSpecifiedRange
+	$XmlPort.Properties.CaptionML['ENU'] | Should Be $XmlPort.Name
+
+	$XmlPort = $Application.XmlPorts[60000]
+	$XmlPort.Name | Should Be MyXmlPortInDefaultRange
+	$XmlPort.Properties.CaptionML['ENU'] | Should Be $XmlPort.Name
+}
+
 function Test-MenuSuites
 {
 	Param
@@ -152,6 +170,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 			Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
 			Query MyQueryInDefaultRange -AutoCaption
 			Query 10 MyQueryInSpecifiedRange -AutoCaption
+			XmlPort MyXmlPortInDefaultRange -AutoCaption
+			XmlPort 10 MyXmlPortInSpecifiedRange -AutoCaption
 			MenuSuite MyMenuSuiteInDefaultRange -AutoCaption
 			MenuSuite 10 MyMenuSuiteInSpecifiedRange -AutoCaption
         }
@@ -171,6 +191,8 @@ Describe 'UncommonSense.CBreeze.Automation' {
 		$Application | Codeunit 10 MyCodeunitInSpecifiedRange -AutoCaption
 		$Application | Query MyQueryInDefaultRange -AutoCaption
 		$Application | Query 10 MyQueryInSpecifiedRange -AutoCaption
+		$Application | XmlPort MyXmlPortInDefaultRange -AutoCaption
+		$Application | XmlPort 10 MyXmlPortInSpecifiedRange -AutoCaption
 		$Application | MenuSuite MyMenuSuiteInDefaultRange -AutoCaption
 		$Application | MenuSuite 10 MyMenuSuiteInSpecifiedRange -AutoCaption
 
