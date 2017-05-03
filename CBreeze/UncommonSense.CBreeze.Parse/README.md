@@ -2,14 +2,6 @@
 
 UncommonSense.CBreeze.Parse is a simple event-based parser for Microsoft Dynamics NAV object text files. While processing NAV objects, the parser reports what it finds by calling the methods on a user-provided listener (an implementation of the `IListener` interface).
 
-## Project Structure
-| Folder | Contents | 
-| --- | --- |
-| [UncommonSense.CBreeze.Parse](UncommonSense.CBreeze.Parse)| The parser library | 
-| [UncommonSense.CBreeze.Parse.Demo](UncommonSense.CBreeze.Parse.Demo) | C# demo code for the parser library |
-| [UncommonSense.CBreeze.Parse.Automation](UncommonSense.CBreeze.Parse.Automation) | PowerShell wrapper for the parser library | 
-| [UncommonSense.CBreeze.Parse.Automation.Demo](UncommonSense.CBreeze.Parse.Automation.Demo) | PowerShell demo scripts for the PowerShell wrapper | 
-
 ## FAQ
 
 ### What can I do with this?
