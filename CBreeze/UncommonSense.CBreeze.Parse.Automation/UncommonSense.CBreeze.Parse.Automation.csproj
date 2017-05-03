@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BECAB978-D8C6-434F-9701-12E534B78097}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UncommonSense.CBreeze.Parse.Automation</RootNamespace>
+    <AssemblyName>UncommonSense.CBreeze.Parse.Automation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\UncommonSense.CBreeze.Parse.Automation.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.Automation.dll.10.0.10586.0\lib\net40\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InvokeCBreezeParser.cs" />
+    <Compile Include="InvokeCBreezeParser.Parameters.cs" />
+    <Compile Include="Listener.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Demo\Example - Fields per Table.ps1" />
+    <None Include="Demo\Example - Objects per File.ps1" />
+    <None Include="Demo\Examples - Codeunit Function Code.ps1" />
+    <None Include="INSTALL.md" />
+    <None Include="packages.config" />
+    <None Include="README.md" />
+    <None Include="Update-README.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.csproj">
+      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
+      <Name>UncommonSense.CBreeze.Parse</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetDir)*.dll c:\users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Parse.Automation
+
+"C:\Program Files\XmlDoc2CmdletDoc\XmlDoc2CmdletDoc.exe" $(TargetPath)
+
+copy $(TargetDir)*.dll-Help.xml c:\users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Parse.Automation</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
