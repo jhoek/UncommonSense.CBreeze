@@ -30,7 +30,8 @@ Set-Alias -Name FieldGroup -Value New-CBreezeTableFieldGroup
 Set-Alias -Name Key -Value New-CBreezeTableKey
 Set-Alias -Name Variable -Value New-CBreezeVariable
 Set-Alias -Name XmlPort -Value Add-CBreezeXmlPort
-set-Alias -Name XmlPortNode -Value New-CBreezeXmlPortNode
+Set-Alias -Name XmlPortNode -Value New-CBreezeXmlPortNode
+Set-Alias -Name _Filter -Value Add-CBreezeFilter
 
 # Export members
 Export-ModuleMember -Alias * -Function * -Cmdlet *
