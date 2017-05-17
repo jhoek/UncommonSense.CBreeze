@@ -9,22 +9,8 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeReportLabel")]
     [OutputType(typeof(ReportLabel))]
-    public class NewCBreezeReportLabel : Cmdlet
+    public class NewCBreezeReportLabel : NewNamedItemCmdlet<ReportLabel, Report>
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
         [Parameter()]
         public string Caption
         {
@@ -39,22 +25,17 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected virtual int GetID()
+        protected override void AddItemToInputObject(ReportLabel item, Report inputObject)
         {
-            return ID;
+            inputObject.Labels.Add(item);
         }
 
-        protected ReportLabel CreateReportLabel()
+        protected override ReportLabel CreateItem()
         {
-            var reportLabel = new ReportLabel(GetID(), Name);
+            var reportLabel = new ReportLabel(ID, Name);
             reportLabel.Properties.CaptionML.Set("ENU", Caption);
             reportLabel.Properties.Description = Description;
             return reportLabel;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreateReportLabel());
         }
     }
 }
