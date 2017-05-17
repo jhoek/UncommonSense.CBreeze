@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class ReportLabel : KeyedItem<int>, IHasName, INode
+    public class ReportLabel : KeyedItem<int>, IHasName, INode, IHasProperties
     {
         public ReportLabel(string name) : this(0, name)
         {
@@ -17,6 +17,8 @@ namespace UncommonSense.CBreeze.Core
             Name = name;
             Properties = new ReportLabelProperties(this);
         }
+
+        public Properties AllProperties => Properties;
 
         public IEnumerable<INode> ChildNodes
         {
@@ -42,9 +44,6 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public string GetName()
-        {
-            return Name;
-        }
+        public string GetName() => Name;
     }
 }
