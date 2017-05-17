@@ -8,14 +8,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezePage", DefaultParameterSetName = NewWithoutID)]
+    [Cmdlet(VerbsCommon.Add, "CBreezePage", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Page))]
-    public class AddCBreezePage : NewCBreezeObject
+    public class AddCBreezePage : NewCBreezeObject<Page>
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
-        public Application Application { get; set; }
-
         [Parameter()]
         public bool? AutoSplitKey
         {
@@ -94,10 +90,6 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter(ParameterSetName = AddWithID)]
-        [Parameter(ParameterSetName = AddWithoutID)]
-        public SwitchParameter PassThru { get; set; } = true;
-
         [Parameter()]
         public bool? PopulateAllFields
         {
@@ -135,7 +127,12 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected Page CreatePage()
+        protected override void AddItemToInputObject(Page item, Application inputObject)
+        {
+            inputObject.Pages.Add(item);
+        }
+
+        protected override Page CreateItem()
         {
             var page = new Page(ID, Name);
             SetObjectProperties(page);
@@ -174,22 +171,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             return page;
-        }
-
-        protected override void ProcessRecord()
-        {
-            switch (ParameterSetName)
-            {
-                case NewWithoutID:
-                case NewWithID:
-                    WriteObject(CreatePage());
-                    break;
-
-                case AddWithoutID:
-                case AddWithID:
-                    Application.Pages.Add(CreatePage()).DoIf(PassThru, p => WriteObject(p));
-                    break;
-            }
         }
     }
 }

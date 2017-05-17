@@ -8,19 +8,16 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuite", DefaultParameterSetName = NewWithoutID)]
+    [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuite", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(MenuSuite))]
-    public class AddCBreezeMenuSuite : NewCBreezeObject
+    public class AddCBreezeMenuSuite : NewCBreezeObject<MenuSuite>
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
-        public Application Application { get; set; }
+        protected override void AddItemToInputObject(MenuSuite item, Application inputObject)
+        {
+            inputObject.MenuSuites.Add(item);
+        }
 
-        [Parameter(ParameterSetName = AddWithID)]
-        [Parameter(ParameterSetName = AddWithoutID)]
-        public SwitchParameter PassThru { get; set; } = true;
-
-        protected MenuSuite CreateMenuSuite()
+        protected override MenuSuite CreateItem()
         {
             var menusuite = new MenuSuite(ID, Name);
             SetObjectProperties(menusuite);
@@ -32,22 +29,6 @@ namespace UncommonSense.CBreeze.Automation
                 .ForEach(n => menusuite.Nodes.Add(n));
 
             return menusuite;
-        }
-
-        protected override void ProcessRecord()
-        {
-            switch (ParameterSetName)
-            {
-                case NewWithoutID:
-                case NewWithID:
-                    WriteObject(CreateMenuSuite());
-                    break;
-
-                case AddWithoutID:
-                case AddWithID:
-                    Application.MenuSuites.Add(CreateMenuSuite()).DoIf(PassThru, m => WriteObject(m));
-                    break;
-            }
         }
     }
 }

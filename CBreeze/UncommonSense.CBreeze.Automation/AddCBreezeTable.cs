@@ -8,9 +8,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTable", DefaultParameterSetName = NewWithoutID)]
+    [Cmdlet(VerbsCommon.Add, "CBreezeTable", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Table))]
-    public class AddCBreezeTable : NewCBreezeObject
+    public class AddCBreezeTable : NewCBreezeObject<Table>
     {
         [Parameter()]
         public string[] DataCaptionFields
@@ -89,7 +89,7 @@ namespace UncommonSense.CBreeze.Automation
 
 #endif
 
-        protected Table CreateTable()
+        protected override Table CreateItem()
         {
             var table = new Table(ID, Name);
             SetObjectProperties(table);
@@ -127,28 +127,9 @@ namespace UncommonSense.CBreeze.Automation
             return table;
         }
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
-        public Application Application { get; set; }
-
-        [Parameter(ParameterSetName = AddWithID)]
-        [Parameter(ParameterSetName = AddWithoutID)]
-        public SwitchParameter PassThru { get; set; } = true;
-
-        protected override void ProcessRecord()
+        protected override void AddItemToInputObject(Table item, Application inputObject)
         {
-            switch (ParameterSetName)
-            {
-                case NewWithoutID:
-                case NewWithID:
-                    WriteObject(CreateTable());
-                    break;
-
-                case AddWithoutID:
-                case AddWithID:
-                    Application.Tables.Add(CreateTable()).DoIf(PassThru, t => WriteObject(t));
-                    break;
-            }
+            inputObject.Tables.Add(item);
         }
     }
 }

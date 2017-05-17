@@ -8,18 +8,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeCodeunit", DefaultParameterSetName = NewWithoutID)]
+    [Cmdlet(VerbsCommon.Add, "CBreezeCodeunit", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Codeunit))]
-    public class AddCBreezeCodeunit : NewCBreezeObject
+    public class AddCBreezeCodeunit : NewCBreezeObject<Codeunit>
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
-        public Application Application { get; set; }
-
-        [Parameter(ParameterSetName = AddWithID)]
-        [Parameter(ParameterSetName = AddWithoutID)]
-        public SwitchParameter PassThru { get; set; } = true;
-
 #if !NAV2016
         [Parameter()]
         public bool? CFrontMayUsePermissions
@@ -65,7 +57,12 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected Codeunit CreateCodeunit()
+        protected override void AddItemToInputObject(Codeunit item, Application inputObject)
+        {
+            inputObject.Codeunits.Add(item);
+        }
+
+        protected override Codeunit CreateItem()
         {
             var codeunit = new Codeunit(ID, Name);
             SetObjectProperties(codeunit);
@@ -90,22 +87,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             return codeunit;
-        }
-
-        protected override void ProcessRecord()
-        {
-            switch (ParameterSetName)
-            {
-                case NewWithoutID:
-                case NewWithID:
-                    WriteObject(CreateCodeunit());
-                    break;
-
-                case AddWithoutID:
-                case AddWithID:
-                    Application.Codeunits.Add(CreateCodeunit()).DoIf(PassThru, c => WriteObject(c));
-                    break;
-            }
         }
     }
 }

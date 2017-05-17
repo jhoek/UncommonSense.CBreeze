@@ -8,23 +8,15 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeQuery", DefaultParameterSetName = NewWithoutID)]
+    [Cmdlet(VerbsCommon.Add, "CBreezeQuery", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Query))]
-    public class AddCBreezeQuery : NewCBreezeObject
+    public class AddCBreezeQuery : NewCBreezeObject<Query>
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
-        public Application Application { get; set; }
-
         [Parameter()]
         public string Description
         {
             get; set;
         }
-
-        [Parameter(ParameterSetName = AddWithID)]
-        [Parameter(ParameterSetName = AddWithoutID)]
-        public SwitchParameter PassThru { get; set; } = true;
 
         [Parameter()]
         public ReadState? ReadState
@@ -39,7 +31,12 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected Query CreateQuery()
+        protected override void AddItemToInputObject(Query item, Application inputObject)
+        {
+            inputObject.Queries.Add(item);
+        }
+
+        protected override Query CreateItem()
         {
             var query = new Query(ID, Name);
             SetObjectProperties(query);
@@ -62,22 +59,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             return query;
-        }
-
-        protected override void ProcessRecord()
-        {
-            switch (ParameterSetName)
-            {
-                case NewWithID:
-                case NewWithoutID:
-                    WriteObject(CreateQuery());
-                    break;
-
-                case AddWithID:
-                case AddWithoutID:
-                    Application.Queries.Add(CreateQuery()).DoIf(PassThru, q => WriteObject(q));
-                    break;
-            }
         }
     }
 }

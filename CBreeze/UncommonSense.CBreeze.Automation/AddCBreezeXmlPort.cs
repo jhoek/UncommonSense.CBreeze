@@ -5,12 +5,12 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeXmlPort", DefaultParameterSetName = NewWithoutID)]
+    [Cmdlet(VerbsCommon.Add, "CBreezeXmlPort", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(XmlPort))]
-    public class AddCBreezeXmlPort : NewCBreezeObject
+    public class AddCBreezeXmlPort : NewCBreezeObject<XmlPort>
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public Application Application { get; set; }
 
         [Parameter()]
@@ -83,8 +83,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName = AddWithID)]
-        [Parameter(ParameterSetName = AddWithoutID)]
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
         public SwitchParameter PassThru { get; set; } = true;
 
         [Parameter()]
@@ -150,7 +150,12 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected XmlPort CreateXmlPort()
+        protected override void AddItemToInputObject(XmlPort item, Application inputObject)
+        {
+            inputObject.XmlPorts.Add(item);
+        }
+
+        protected override XmlPort CreateItem()
         {
             var xmlPort = new XmlPort(ID, Name);
             SetObjectProperties(xmlPort);
@@ -188,22 +193,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             return xmlPort;
-        }
-
-        protected override void ProcessRecord()
-        {
-            switch (ParameterSetName)
-            {
-                case NewWithoutID:
-                case NewWithID:
-                    WriteObject(CreateXmlPort());
-                    break;
-
-                case AddWithoutID:
-                case AddWithID:
-                    Application.XmlPorts.Add(CreateXmlPort()).DoIf(PassThru, x => WriteObject(x));
-                    break;
-            }
         }
     }
 }

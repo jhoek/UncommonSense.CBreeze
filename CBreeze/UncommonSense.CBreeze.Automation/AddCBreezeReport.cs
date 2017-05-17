@@ -8,9 +8,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeReport", DefaultParameterSetName = NewWithoutID)]
+    [Cmdlet(VerbsCommon.Add, "CBreezeReport", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Report))]
-    public class AddCBreezeReport : NewCBreezeObject
+    public class AddCBreezeReport : NewCBreezeObject<Report>
     {
 #if NAV2015
 
@@ -129,7 +129,12 @@ namespace UncommonSense.CBreeze.Automation
 
 #endif
 
-        protected Report CreateReport()
+        protected override void AddItemToInputObject(Report item, Application inputObject)
+        {
+            inputObject.Reports.Add(item);
+        }
+
+        protected override Report CreateItem()
         {
             var report = new Report(ID, Name);
             SetObjectProperties(report);
@@ -170,36 +175,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             return report;
-        }
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithoutID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = AddWithID)]
-        public Application Application
-        {
-            get; set;
-        }
-
-        [Parameter(ParameterSetName = AddWithoutID)]
-        [Parameter(ParameterSetName = AddWithID)]
-        public SwitchParameter PassThru
-        {
-            get; set;
-        } = true;
-
-        protected override void ProcessRecord()
-        {
-            switch (ParameterSetName)
-            {
-                case NewWithoutID:
-                case NewWithID:
-                    WriteObject(CreateReport());
-                    break;
-
-                case AddWithoutID:
-                case AddWithID:
-                    Application.Reports.Add(CreateReport()).DoIf(PassThru, r => WriteObject(r));
-                    break;
-            }
         }
     }
 }
