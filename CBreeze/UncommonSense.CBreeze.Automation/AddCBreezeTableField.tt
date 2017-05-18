@@ -23,10 +23,7 @@
 		{ typeof(TextTableField), 30 }
 	};
 #>
-// FIXME AutoDataCaptionFields?
-// FIXME CalcFormula.Set
 // FIXME Field numbering if table is in "own" range
-// FIXME OptionString mandatory
 // FIXME Rename output file, remove old classes
 
 using System;
@@ -39,7 +36,7 @@ namespace UncommonSense.CBreeze.Automation
 	var variableName = Char.ToLowerInvariant(@type.Name[0]) + @type.Name.Substring(1); 
 	var hasDataLength = @type.GetProperty("DataLength") != null; 
 	var propertiesClass = @type.GetProperty("Properties").PropertyType;
-	var skipProperties = new List<string>() { "Field", "ParentNode", "Description", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "AccessByPermission", "TableRelation", "CalcFormula" }; 
+	var skipProperties = new List<string>() { "Field", "ParentNode", "Description", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "AccessByPermission", "TableRelation" }; 
 
 	var relevantProperties = propertiesClass
 		.GetProperties()
@@ -48,7 +45,7 @@ namespace UncommonSense.CBreeze.Automation
 			Name = p.Name, 
 			Type = p.PropertyType,
 			Mandatory = p.Name == "OptionString",
-			Assignment = $"{variableName}.Properties.{p.Name} = {p.Name};" }); 
+			Assignment = (p.Name == "CalcFormula" ? $"{variableName}.Properties.{p.Name}.Set({p.Name});" : $"{variableName}.Properties.{p.Name} = {p.Name};") }); 
 
 	if (relevantProperties.Any(p => p.Name == "DecimalPlaces"))
 	{
