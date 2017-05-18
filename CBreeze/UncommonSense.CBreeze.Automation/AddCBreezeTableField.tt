@@ -29,7 +29,8 @@ namespace UncommonSense.CBreeze.Automation
 <# foreach(var @type in types) { 
 	var variableName = Char.ToLowerInvariant(@type.Name[0]) + @type.Name.Substring(1); 
 	var hasDataLength = @type.GetProperty("DataLength") != null; 
-	var propertiesClass = @type.GetProperty("Properties").PropertyType; #>
+	var propertiesClass = @type.GetProperty("Properties").PropertyType;
+	var skipProperties = new List<string>() { "Field", "ParentNode", "Description", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "AccessByPermission" }; #>
 	[Cmdlet(VerbsCommon.Add, "CBreeze<#=@type.Name#>")]
 	[Alias("<#=@type.Name.Replace("Table", "")#>")]
 	public class AddCBreeze<#=@type.Name#> : AddCBreezeTableField2<<#=@type.Name#>>
@@ -53,9 +54,29 @@ namespace UncommonSense.CBreeze.Automation
 			return <#=variableName#>;
 		}
 
-		// <#= string.Join(", ", propertiesClass.GetProperties().Select(p=>p.Name)) #>
+<# foreach(var property in propertiesClass.GetProperties().Where(p => !skipProperties.Contains(p.Name))) { #>
+	[Parameter()]
+	public <#=GetFullTypeName(property.PropertyType)#> <#=property.Name#> { get;set; }
+
+<# } #>
 
 	}
 
 <# } #>
 }
+<#+
+	static string GetFullTypeName(Type t)
+	{
+		if (!t.IsGenericType)
+			return t.Name;
+
+		var stringBuilder = new StringBuilder();
+
+		stringBuilder.Append(t.Name.Substring(0, t.Name.LastIndexOf("`")));
+		stringBuilder.Append("<");
+		stringBuilder.Append(string.Join(",", t.GetGenericArguments().Select(a => GetFullTypeName(a))));
+		stringBuilder.Append(">");
+
+		return stringBuilder.ToString();
+	}
+#>
