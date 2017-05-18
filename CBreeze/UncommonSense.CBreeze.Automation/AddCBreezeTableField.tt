@@ -1,9 +1,11 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="System.Management.Automation" #>
 <#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Management.Automation" #>
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
 <#@ output extension=".cs" #>
 <#
@@ -21,12 +23,10 @@
 		{ typeof(TextTableField), 30 }
 	};
 #>
-// FIXME DecimalPlacesAtMost, DecimalPlacesAtLeast
-// FIXME #ifdef
-// FIXME AutoOptionCaptionML
 // FIXME AutoDataCaptionFields?
 // FIXME CalcFormula.Set
 // FIXME Field numbering if table is in "own" range
+// FIXME OptionString mandatory
 
 using System;
 using UncommonSense.CBreeze.Core;
@@ -38,8 +38,56 @@ namespace UncommonSense.CBreeze.Automation
 	var variableName = Char.ToLowerInvariant(@type.Name[0]) + @type.Name.Substring(1); 
 	var hasDataLength = @type.GetProperty("DataLength") != null; 
 	var propertiesClass = @type.GetProperty("Properties").PropertyType;
-	var skipProperties = new List<string>() { "Field", "ParentNode", "Description", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "AccessByPermission", "TableRelation", "OptionCaptionML", "DecimalPlaces", "CalcFormula" }; 
-	var relevantProperties = propertiesClass.GetProperties().Where(p => !skipProperties.Contains(p.Name)); #>
+	var skipProperties = new List<string>() { "Field", "ParentNode", "Description", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "AccessByPermission", "TableRelation", "CalcFormula" }; 
+
+	var relevantProperties = propertiesClass
+		.GetProperties()
+		.Where(p => !skipProperties.Contains(p.Name))
+		.Select(p=> new { 
+			Name = p.Name, 
+			Type = p.PropertyType,
+			Assignment = $"{variableName}.Properties.{p.Name} = {p.Name};" }); 
+
+	if (relevantProperties.Any(p => p.Name == "DecimalPlaces"))
+	{
+		var newProperties = new[] {
+			new{ 
+				Name = "DecimalPlacesAtLeast", 
+				Type = typeof(int?),
+				Assignment = $"{variableName}.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;"
+			},
+			new {
+				Name = "DecimalPlacesAtMost", 
+				Type = typeof(int?),
+				Assignment = $"{variableName}.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;"
+			}
+		};
+
+		relevantProperties = relevantProperties
+			.Where(p => p.Name != "DecimalPlaces")
+			.Concat(newProperties);
+	}
+
+	relevantProperties = relevantProperties.OrderBy(p => p.Name);
+
+	if (relevantProperties.Any(p => p.Name == "OptionCaptionML"))
+	{
+		var crLf = Environment.NewLine;
+
+		var newProperties = new [] {
+			new {
+				Name = "AutoOptionCaption",
+				Type = typeof(SwitchParameter),
+				Assignment = $"{crLf}			if (AutoOptionCaption) {crLf}				{variableName}.AutoOptionCaption();"
+			}
+		};
+
+		relevantProperties = relevantProperties
+			.Where(p => p.Name != "OptionCaptionML")
+			.Concat(newProperties);
+	}
+
+#>
 	[Cmdlet(VerbsCommon.Add, "CBreeze<#=@type.Name#>")]
 	[OutputType(typeof(<#=type.Name#>))]
 	[Alias("<#=@type.Name.Replace("Table", "")#>")]
@@ -59,7 +107,7 @@ namespace UncommonSense.CBreeze.Automation
             <#=variableName#>.Properties.Description = Description;
 
 <# foreach(var property in relevantProperties) { #>
-			<#= variableName #>.Properties.<#= property.Name #> = <#= property.Name #>;
+			<#=property.Assignment#>
 <# } #>
 
 			if (AutoCaption)
@@ -70,7 +118,7 @@ namespace UncommonSense.CBreeze.Automation
 
 <# foreach(var property in relevantProperties) { #>
 	[Parameter()]
-	public <#=GetFullTypeName(property.PropertyType)#> <#=property.Name#> { get;set; }
+	public <#=GetFullTypeName(property.Type)#> <#=property.Name#> { get;set; }
 
 <# } #>
 
