@@ -21,9 +21,8 @@ namespace UncommonSense.CBreeze.Core
             get; protected set;
         }
 
-        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Table.ID);
-
         protected override IEnumerable<int> DefaultRange => DefaultRanges.ID;
+        protected override bool UseAlternativeRange => (Range ?? DefaultRange).Contains(Table.ID) || Table.ID == 0;
 
         public override void ValidateName(TableField item)
         {
