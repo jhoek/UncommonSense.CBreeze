@@ -59,7 +59,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddCBreezeTableField.tt</DependentUpon>
     </Compile>
-    <Compile Include="AddCBreezeTableField2.cs" />
     <Compile Include="NewCBreezeXmlPortNode.cs" />
     <Compile Include="NewCBreezeReportLabel.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
@@ -87,7 +86,6 @@
     <Compile Include="AddCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="AddCBreezeQueryElement.cs" />
-    <Compile Include="NewCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
     <Compile Include="AddCBreezeXmlPortLink.cs" />
@@ -113,7 +111,6 @@
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />
     <Compile Include="AddCBreezeParameter.cs" />
-    <Compile Include="AddCBreezeTableField.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
     <Compile Include="AddCBreezeVariable.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />

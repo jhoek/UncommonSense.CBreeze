@@ -25,7 +25,6 @@ Set-Alias -Name Query -Value Add-CBreezeQuery
 Set-Alias -Name Report -Value Add-CBreezeReport
 Set-Alias -Name Label -Value New-CBreezeReportLabel
 Set-Alias -Name Table -Value Add-CBreezeTable
-Set-Alias -Name Field -Value New-CBreezeTableField
 Set-Alias -Name FieldGroup -Value New-CBreezeTableFieldGroup
 Set-Alias -Name Key -Value New-CBreezeTableKey
 Set-Alias -Name Variable -Value New-CBreezeVariable

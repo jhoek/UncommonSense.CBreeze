@@ -1,7 +1,4 @@
-﻿// FIXME Field numbering if table is in "own" range
-// FIXME Rename output file, remove old classes
-
-using System;
+﻿using System;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
 
@@ -10,7 +7,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeBigIntegerTableField")]
 	[OutputType(typeof(BigIntegerTableField))]
 	[Alias("BigIntegerField")]
-	public class AddCBreezeBigIntegerTableField : AddCBreezeTableField2<BigIntegerTableField>
+	public class AddCBreezeBigIntegerTableField : NewNamedItemCmdlet<BigIntegerTableField, Table>
 	{
 
 
@@ -28,6 +25,7 @@ namespace UncommonSense.CBreeze.Automation
 			bigIntegerTableField.Properties.BlankZero = BlankZero;
 			bigIntegerTableField.Properties.CalcFormula.Set(CalcFormula);
 			bigIntegerTableField.Properties.CaptionClass = CaptionClass;
+			bigIntegerTableField.Properties.Description = Description;
 			bigIntegerTableField.Properties.Editable = Editable;
 			bigIntegerTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			bigIntegerTableField.Properties.ExternalAccess = ExternalAccess;
@@ -52,6 +50,17 @@ namespace UncommonSense.CBreeze.Automation
 			return bigIntegerTableField;
 		}
 
+        protected override void AddItemToInputObject(BigIntegerTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -75,6 +84,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -133,7 +145,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeBinaryTableField")]
 	[OutputType(typeof(BinaryTableField))]
 	[Alias("BinaryField")]
-	public class AddCBreezeBinaryTableField : AddCBreezeTableField2<BinaryTableField>
+	public class AddCBreezeBinaryTableField : NewNamedItemCmdlet<BinaryTableField, Table>
 	{
 
 		[Parameter()]
@@ -146,6 +158,7 @@ namespace UncommonSense.CBreeze.Automation
 			binaryTableField.Enabled = Enabled;
             binaryTableField.Properties.Description = Description;
 
+			binaryTableField.Properties.Description = Description;
 
 			if (AutoCaption)
                 binaryTableField.AutoCaption();
@@ -153,13 +166,27 @@ namespace UncommonSense.CBreeze.Automation
 			return binaryTableField;
 		}
 
+        protected override void AddItemToInputObject(BinaryTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
+	[Parameter()]
+	public String Description { get;set; }
+
 
 	}
 
 	[Cmdlet(VerbsCommon.Add, "CBreezeBlobTableField")]
 	[OutputType(typeof(BlobTableField))]
 	[Alias("BlobField")]
-	public class AddCBreezeBlobTableField : AddCBreezeTableField2<BlobTableField>
+	public class AddCBreezeBlobTableField : NewNamedItemCmdlet<BlobTableField, Table>
 	{
 
 
@@ -170,6 +197,7 @@ namespace UncommonSense.CBreeze.Automation
             blobTableField.Properties.Description = Description;
 
 			blobTableField.Properties.Compressed = Compressed;
+			blobTableField.Properties.Description = Description;
 			blobTableField.Properties.ExternalAccess = ExternalAccess;
 			blobTableField.Properties.ExternalName = ExternalName;
 			blobTableField.Properties.ExternalType = ExternalType;
@@ -183,8 +211,22 @@ namespace UncommonSense.CBreeze.Automation
 			return blobTableField;
 		}
 
+        protected override void AddItemToInputObject(BlobTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public Nullable<Boolean> Compressed { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<ExternalAccess> ExternalAccess { get;set; }
@@ -210,7 +252,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeBooleanTableField")]
 	[OutputType(typeof(BooleanTableField))]
 	[Alias("BooleanField")]
-	public class AddCBreezeBooleanTableField : AddCBreezeTableField2<BooleanTableField>
+	public class AddCBreezeBooleanTableField : NewNamedItemCmdlet<BooleanTableField, Table>
 	{
 
 
@@ -227,6 +269,7 @@ namespace UncommonSense.CBreeze.Automation
 			booleanTableField.Properties.BlankZero = BlankZero;
 			booleanTableField.Properties.CalcFormula.Set(CalcFormula);
 			booleanTableField.Properties.CaptionClass = CaptionClass;
+			booleanTableField.Properties.Description = Description;
 			booleanTableField.Properties.Editable = Editable;
 			booleanTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			booleanTableField.Properties.ExternalAccess = ExternalAccess;
@@ -248,6 +291,17 @@ namespace UncommonSense.CBreeze.Automation
 			return booleanTableField;
 		}
 
+        protected override void AddItemToInputObject(BooleanTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -268,6 +322,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -317,7 +374,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeCodeTableField")]
 	[OutputType(typeof(CodeTableField))]
 	[Alias("CodeField")]
-	public class AddCBreezeCodeTableField : AddCBreezeTableField2<CodeTableField>
+	public class AddCBreezeCodeTableField : NewNamedItemCmdlet<CodeTableField, Table>
 	{
 
 		[Parameter()]
@@ -337,6 +394,7 @@ namespace UncommonSense.CBreeze.Automation
 			codeTableField.Properties.CaptionClass = CaptionClass;
 			codeTableField.Properties.CharAllowed = CharAllowed;
 			codeTableField.Properties.DateFormula = DateFormula;
+			codeTableField.Properties.Description = Description;
 			codeTableField.Properties.Editable = Editable;
 			codeTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			codeTableField.Properties.ExternalAccess = ExternalAccess;
@@ -358,6 +416,17 @@ namespace UncommonSense.CBreeze.Automation
 			return codeTableField;
 		}
 
+        protected override void AddItemToInputObject(CodeTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -378,6 +447,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public Nullable<Boolean> DateFormula { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -427,7 +499,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeDateFormulaTableField")]
 	[OutputType(typeof(DateFormulaTableField))]
 	[Alias("DateFormulaField")]
-	public class AddCBreezeDateFormulaTableField : AddCBreezeTableField2<DateFormulaTableField>
+	public class AddCBreezeDateFormulaTableField : NewNamedItemCmdlet<DateFormulaTableField, Table>
 	{
 
 
@@ -442,6 +514,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateFormulaTableField.Properties.AutoFormatType = AutoFormatType;
 			dateFormulaTableField.Properties.CalcFormula.Set(CalcFormula);
 			dateFormulaTableField.Properties.CaptionClass = CaptionClass;
+			dateFormulaTableField.Properties.Description = Description;
 			dateFormulaTableField.Properties.Editable = Editable;
 			dateFormulaTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			dateFormulaTableField.Properties.ExternalAccess = ExternalAccess;
@@ -460,6 +533,17 @@ namespace UncommonSense.CBreeze.Automation
 			return dateFormulaTableField;
 		}
 
+        protected override void AddItemToInputObject(DateFormulaTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -474,6 +558,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -514,7 +601,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeDateTableField")]
 	[OutputType(typeof(DateTableField))]
 	[Alias("DateField")]
-	public class AddCBreezeDateTableField : AddCBreezeTableField2<DateTableField>
+	public class AddCBreezeDateTableField : NewNamedItemCmdlet<DateTableField, Table>
 	{
 
 
@@ -531,6 +618,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTableField.Properties.CalcFormula.Set(CalcFormula);
 			dateTableField.Properties.CaptionClass = CaptionClass;
 			dateTableField.Properties.ClosingDates = ClosingDates;
+			dateTableField.Properties.Description = Description;
 			dateTableField.Properties.Editable = Editable;
 			dateTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			dateTableField.Properties.ExternalAccess = ExternalAccess;
@@ -552,6 +640,17 @@ namespace UncommonSense.CBreeze.Automation
 			return dateTableField;
 		}
 
+        protected override void AddItemToInputObject(DateTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -572,6 +671,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public Nullable<Boolean> ClosingDates { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -621,7 +723,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeDateTimeTableField")]
 	[OutputType(typeof(DateTimeTableField))]
 	[Alias("DateTimeField")]
-	public class AddCBreezeDateTimeTableField : AddCBreezeTableField2<DateTimeTableField>
+	public class AddCBreezeDateTimeTableField : NewNamedItemCmdlet<DateTimeTableField, Table>
 	{
 
 
@@ -637,6 +739,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTimeTableField.Properties.BlankNumbers = BlankNumbers;
 			dateTimeTableField.Properties.CalcFormula.Set(CalcFormula);
 			dateTimeTableField.Properties.CaptionClass = CaptionClass;
+			dateTimeTableField.Properties.Description = Description;
 			dateTimeTableField.Properties.Editable = Editable;
 			dateTimeTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			dateTimeTableField.Properties.ExternalAccess = ExternalAccess;
@@ -659,6 +762,17 @@ namespace UncommonSense.CBreeze.Automation
 			return dateTimeTableField;
 		}
 
+        protected override void AddItemToInputObject(DateTimeTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -676,6 +790,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -728,7 +845,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeDecimalTableField")]
 	[OutputType(typeof(DecimalTableField))]
 	[Alias("DecimalField")]
-	public class AddCBreezeDecimalTableField : AddCBreezeTableField2<DecimalTableField>
+	public class AddCBreezeDecimalTableField : NewNamedItemCmdlet<DecimalTableField, Table>
 	{
 
 
@@ -747,6 +864,7 @@ namespace UncommonSense.CBreeze.Automation
 			decimalTableField.Properties.CaptionClass = CaptionClass;
 			decimalTableField.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;
 			decimalTableField.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;
+			decimalTableField.Properties.Description = Description;
 			decimalTableField.Properties.Editable = Editable;
 			decimalTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			decimalTableField.Properties.ExternalAccess = ExternalAccess;
@@ -768,6 +886,17 @@ namespace UncommonSense.CBreeze.Automation
 
 			return decimalTableField;
 		}
+
+        protected override void AddItemToInputObject(DecimalTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
 
 	[Parameter()]
 	public String AltSearchField { get;set; }
@@ -795,6 +924,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public Nullable<Int32> DecimalPlacesAtMost { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -847,7 +979,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeDurationTableField")]
 	[OutputType(typeof(DurationTableField))]
 	[Alias("DurationField")]
-	public class AddCBreezeDurationTableField : AddCBreezeTableField2<DurationTableField>
+	public class AddCBreezeDurationTableField : NewNamedItemCmdlet<DurationTableField, Table>
 	{
 
 
@@ -864,6 +996,7 @@ namespace UncommonSense.CBreeze.Automation
 			durationTableField.Properties.BlankZero = BlankZero;
 			durationTableField.Properties.CalcFormula.Set(CalcFormula);
 			durationTableField.Properties.CaptionClass = CaptionClass;
+			durationTableField.Properties.Description = Description;
 			durationTableField.Properties.Editable = Editable;
 			durationTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			durationTableField.Properties.ExternalAccess = ExternalAccess;
@@ -886,6 +1019,17 @@ namespace UncommonSense.CBreeze.Automation
 			return durationTableField;
 		}
 
+        protected override void AddItemToInputObject(DurationTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -906,6 +1050,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -958,7 +1105,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeGuidTableField")]
 	[OutputType(typeof(GuidTableField))]
 	[Alias("GuidField")]
-	public class AddCBreezeGuidTableField : AddCBreezeTableField2<GuidTableField>
+	public class AddCBreezeGuidTableField : NewNamedItemCmdlet<GuidTableField, Table>
 	{
 
 
@@ -973,6 +1120,7 @@ namespace UncommonSense.CBreeze.Automation
 			guidTableField.Properties.AutoFormatType = AutoFormatType;
 			guidTableField.Properties.CalcFormula.Set(CalcFormula);
 			guidTableField.Properties.CaptionClass = CaptionClass;
+			guidTableField.Properties.Description = Description;
 			guidTableField.Properties.Editable = Editable;
 			guidTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			guidTableField.Properties.ExternalAccess = ExternalAccess;
@@ -991,6 +1139,17 @@ namespace UncommonSense.CBreeze.Automation
 			return guidTableField;
 		}
 
+        protected override void AddItemToInputObject(GuidTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -1005,6 +1164,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -1045,7 +1207,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeIntegerTableField")]
 	[OutputType(typeof(IntegerTableField))]
 	[Alias("IntegerField")]
-	public class AddCBreezeIntegerTableField : AddCBreezeTableField2<IntegerTableField>
+	public class AddCBreezeIntegerTableField : NewNamedItemCmdlet<IntegerTableField, Table>
 	{
 
 
@@ -1063,6 +1225,7 @@ namespace UncommonSense.CBreeze.Automation
 			integerTableField.Properties.BlankZero = BlankZero;
 			integerTableField.Properties.CalcFormula.Set(CalcFormula);
 			integerTableField.Properties.CaptionClass = CaptionClass;
+			integerTableField.Properties.Description = Description;
 			integerTableField.Properties.Editable = Editable;
 			integerTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			integerTableField.Properties.ExternalAccess = ExternalAccess;
@@ -1085,6 +1248,17 @@ namespace UncommonSense.CBreeze.Automation
 
 			return integerTableField;
 		}
+
+        protected override void AddItemToInputObject(IntegerTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
 
 	[Parameter()]
 	public String AltSearchField { get;set; }
@@ -1109,6 +1283,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -1164,7 +1341,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeOptionTableField")]
 	[OutputType(typeof(OptionTableField))]
 	[Alias("OptionField")]
-	public class AddCBreezeOptionTableField : AddCBreezeTableField2<OptionTableField>
+	public class AddCBreezeOptionTableField : NewNamedItemCmdlet<OptionTableField, Table>
 	{
 
 
@@ -1181,6 +1358,7 @@ namespace UncommonSense.CBreeze.Automation
 			optionTableField.Properties.BlankZero = BlankZero;
 			optionTableField.Properties.CalcFormula.Set(CalcFormula);
 			optionTableField.Properties.CaptionClass = CaptionClass;
+			optionTableField.Properties.Description = Description;
 			optionTableField.Properties.Editable = Editable;
 			optionTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			optionTableField.Properties.ExternalAccess = ExternalAccess;
@@ -1207,6 +1385,17 @@ namespace UncommonSense.CBreeze.Automation
 			return optionTableField;
 		}
 
+        protected override void AddItemToInputObject(OptionTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -1227,6 +1416,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -1285,7 +1477,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeRecordIDTableField")]
 	[OutputType(typeof(RecordIDTableField))]
 	[Alias("RecordIDField")]
-	public class AddCBreezeRecordIDTableField : AddCBreezeTableField2<RecordIDTableField>
+	public class AddCBreezeRecordIDTableField : NewNamedItemCmdlet<RecordIDTableField, Table>
 	{
 
 
@@ -1300,6 +1492,7 @@ namespace UncommonSense.CBreeze.Automation
 			recordIDTableField.Properties.AutoFormatType = AutoFormatType;
 			recordIDTableField.Properties.CalcFormula.Set(CalcFormula);
 			recordIDTableField.Properties.CaptionClass = CaptionClass;
+			recordIDTableField.Properties.Description = Description;
 			recordIDTableField.Properties.Editable = Editable;
 			recordIDTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			recordIDTableField.Properties.ExternalAccess = ExternalAccess;
@@ -1318,6 +1511,17 @@ namespace UncommonSense.CBreeze.Automation
 			return recordIDTableField;
 		}
 
+        protected override void AddItemToInputObject(RecordIDTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -1332,6 +1536,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -1372,7 +1579,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeTableFilterTableField")]
 	[OutputType(typeof(TableFilterTableField))]
 	[Alias("FilterField")]
-	public class AddCBreezeTableFilterTableField : AddCBreezeTableField2<TableFilterTableField>
+	public class AddCBreezeTableFilterTableField : NewNamedItemCmdlet<TableFilterTableField, Table>
 	{
 
 
@@ -1382,6 +1589,7 @@ namespace UncommonSense.CBreeze.Automation
 			tableFilterTableField.Enabled = Enabled;
             tableFilterTableField.Properties.Description = Description;
 
+			tableFilterTableField.Properties.Description = Description;
 			tableFilterTableField.Properties.TableIDExpr = TableIDExpr;
 
 			if (AutoCaption)
@@ -1389,6 +1597,20 @@ namespace UncommonSense.CBreeze.Automation
 
 			return tableFilterTableField;
 		}
+
+        protected override void AddItemToInputObject(TableFilterTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public String TableIDExpr { get;set; }
@@ -1399,7 +1621,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeTextTableField")]
 	[OutputType(typeof(TextTableField))]
 	[Alias("TextField")]
-	public class AddCBreezeTextTableField : AddCBreezeTableField2<TextTableField>
+	public class AddCBreezeTextTableField : NewNamedItemCmdlet<TextTableField, Table>
 	{
 
 		[Parameter()]
@@ -1419,6 +1641,7 @@ namespace UncommonSense.CBreeze.Automation
 			textTableField.Properties.CaptionClass = CaptionClass;
 			textTableField.Properties.CharAllowed = CharAllowed;
 			textTableField.Properties.DateFormula = DateFormula;
+			textTableField.Properties.Description = Description;
 			textTableField.Properties.Editable = Editable;
 			textTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			textTableField.Properties.ExternalAccess = ExternalAccess;
@@ -1440,6 +1663,17 @@ namespace UncommonSense.CBreeze.Automation
 			return textTableField;
 		}
 
+        protected override void AddItemToInputObject(TextTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -1460,6 +1694,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public Nullable<Boolean> DateFormula { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
@@ -1509,7 +1746,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreezeTimeTableField")]
 	[OutputType(typeof(TimeTableField))]
 	[Alias("TimeField")]
-	public class AddCBreezeTimeTableField : AddCBreezeTableField2<TimeTableField>
+	public class AddCBreezeTimeTableField : NewNamedItemCmdlet<TimeTableField, Table>
 	{
 
 
@@ -1525,6 +1762,7 @@ namespace UncommonSense.CBreeze.Automation
 			timeTableField.Properties.BlankNumbers = BlankNumbers;
 			timeTableField.Properties.CalcFormula.Set(CalcFormula);
 			timeTableField.Properties.CaptionClass = CaptionClass;
+			timeTableField.Properties.Description = Description;
 			timeTableField.Properties.Editable = Editable;
 			timeTableField.Properties.ExtendedDatatype = ExtendedDatatype;
 			timeTableField.Properties.ExternalAccess = ExternalAccess;
@@ -1546,6 +1784,17 @@ namespace UncommonSense.CBreeze.Automation
 			return timeTableField;
 		}
 
+        protected override void AddItemToInputObject(TimeTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
 	[Parameter()]
 	public String AltSearchField { get;set; }
 
@@ -1563,6 +1812,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
 
 	[Parameter()]
 	public Nullable<Boolean> Editable { get;set; }
