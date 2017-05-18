@@ -27,6 +27,7 @@
 // FIXME CalcFormula.Set
 // FIXME Field numbering if table is in "own" range
 // FIXME OptionString mandatory
+// FIXME Rename output file, remove old classes
 
 using System;
 using UncommonSense.CBreeze.Core;
@@ -46,6 +47,7 @@ namespace UncommonSense.CBreeze.Automation
 		.Select(p=> new { 
 			Name = p.Name, 
 			Type = p.PropertyType,
+			Mandatory = p.Name == "OptionString",
 			Assignment = $"{variableName}.Properties.{p.Name} = {p.Name};" }); 
 
 	if (relevantProperties.Any(p => p.Name == "DecimalPlaces"))
@@ -54,11 +56,13 @@ namespace UncommonSense.CBreeze.Automation
 			new{ 
 				Name = "DecimalPlacesAtLeast", 
 				Type = typeof(int?),
+				Mandatory = false,
 				Assignment = $"{variableName}.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;"
 			},
 			new {
 				Name = "DecimalPlacesAtMost", 
 				Type = typeof(int?),
+				Mandatory = false,
 				Assignment = $"{variableName}.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;"
 			}
 		};
@@ -78,6 +82,7 @@ namespace UncommonSense.CBreeze.Automation
 			new {
 				Name = "AutoOptionCaption",
 				Type = typeof(SwitchParameter),
+				Mandatory = false,
 				Assignment = $"{crLf}			if (AutoOptionCaption) {crLf}				{variableName}.AutoOptionCaption();"
 			}
 		};
@@ -117,7 +122,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 <# foreach(var property in relevantProperties) { #>
-	[Parameter()]
+	[Parameter(<# if (property.Mandatory) { #>Mandatory=true<# } #>)]
 	public <#=GetFullTypeName(property.Type)#> <#=property.Name#> { get;set; }
 
 <# } #>
