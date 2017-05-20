@@ -3,101 +3,88 @@
 $Name = 'MyParameter'
 $Dimensions = '1,2,8'
 $DataLength = 42
+$IntegerSubType = 84
 $StringSubType = 'MyStringSubType'
-
-function Test-Parameter([Parameter(ValueFromPipeLine)]$Parameter)
-{
-    Process 
-    { 
-        foreach($Item in $Parameter)
-        {
-            $Parameter.Name | Should Be $Name
-            $Parameter.Var | Should Be $true
-            $Parameter.Dimensions | Should Be $Dimensions
-        }
-    }
-}
 
 $TestCases = @(
     @{
-        Type = 'ActionParameter'
+        Expression = 'ActionParameter'
     },
     @{
-        Type = 'CodeunitParameter'
+        Expression = "AutomationParameter -SubType $StringSubType"
+        TypeSpecificTests = { param($Parameter) $Parameter.SubType | Should Be $StringSubType }
+    },
+    @{
+        Expression = "BigIntegerParameter"
+    },
+    @{
+        Expression = 'BigTextParameter'
+    },
+    @{
+        Expression = "BinaryParameter -DataLength $DataLength"
+        TypeSpecificTests = { param($Parameter) $Parameter.DataLength | Should Be $DataLength }
+    },
+    @{
+        Expression = 'BooleanParameter'
+    },
+    @{
+        Expression = 'ByteParameter'
+    },
+    @{
+        Expression = 'CharParameter'
+    },
+    @{
+        Expression = "CodeParameter -DataLength $DataLength"
+        TypeSpecificTests = { param($Parameter) $Parameter.DataLength | Should Be $DataLength }
+    },
+    @{
+        Expression = "CodeParameter"
+    },
+    @{
+        Expression = "CodeunitParameter -SubType $IntegerSubType"
         TypeSpecificTests = { param($Parameter) $Parameter.SubType | Should Be $IntegerSubType }
+    },
+    @{
+        Expression = 'DateFormulaParameter'
+    },
+    @{
+        Expression = 'DateParameter'
+    },
+    @{
+        Expression = 'DateTimeParameter'
+    },
+    @{
+        Expression = 'DecimalParameter'
+    },
+    @{
+        Expression = 'DialogParameter'
+    },
+    @{
+        Expression = "DotNetParameter $StringSubType"
+        TypeSpecificTests = { param($Parameter) $Parameter.SubType | Should Be $StringSubType }
     }
 )
 
 Describe 'Add-CBreezeParameter' {
-    It 'Works for <Type>' -TestCases $TestCases {
-        param($Type, $TypeSpecificTests)
+    It 'Works for <Expression>' -TestCases $TestCases {
+        param($Expression, $TypeSpecificTests)
 
+        $Parameter = [ScriptBlock]::Create("$Expression -Var -Name `$Name -Dimensions `$Dimensions").Invoke()
+        $Parameter.Name | Should Be $Name
+        $Parameter.Var | Should Be $true
+        $Parameter.Dimensions | Should Be $Dimensions
 
-
+        if ($TypeSpecificTests) {
+            & $TypeSpecificTests -Parameter $Parameter
+        }
     }
 
-
-
-    It 'Works for Action parameters' {
-        ActionParameter -Dimensions $Dimensions -Var -Name $Name | Test-Parameter
-    }
-
-    It 'Works for Automation parameters' {
-        $Parameter = AutomationParameter -Dimensions $Dimensions -Var -Name $Name -SubType $StringSubType 
-        $Parameter | Test-Parameter 
-        $Parameter.SubType | Should Be $StringSubType
-    }
-
-    It 'Works for BigInteger parameters' {
-        BigIntegerParameter -Dimensions $Dimensions -Var -Name $Name | Test-Parameter
-    }
-
-    It 'Works for BigText parameters' {
-        BigTextParameter -Dimensions $Dimensions -Var -Name $Name | Test-Parameter
-    }
-
-    It 'Works for Binary parameters ' {
-        $Parameter = BinaryParameter -Dimensions $Dimensions -DataLength $DataLength -Var -Name $Name
-        $Parameter | Test-Parameter 
-        $Parameter.DataLength | Should Be $DataLength
-    }
-
-    It 'Works for Boolean parameters' {
-        BooleanParameter -Var -Dimensions $Dimensions -Name $Name | Test-Parameter
-    }
-
-    It 'Works for Byte parameters' {
-        ByteParameter -Var -Dimensions $Dimensions -Name $Name | Test-Parameter
-    }
-
-    It 'Works for Char parameters' {
-        CharParameter -Var -Dimensions $Dimensions -Name $Name | Test-Parameter
-    }
-
-    It 'Works for Code parameters' {
-        $Parameter = CodeParameter -Var -Dimensions $Dimensions -DataLength $DataLength -Name $Name 
-        $Parameter | Test-Parameter
-        $Parameter.DataLength | Should Be $DataLength
-        
-        $Parameter = CodeParameter -Var -Dimensions $Dimensions -Name $Name 
-        $Parameter | Test-Parameter 
-        $Parameter.DataLength | Should Be 0
-    }    
-
-    It 'Works for Codeunit parameters ' {
-        $Parameter = 
-    }
-    
+<#
+   
 
 <#
 FIXME: remaining types
 Procedure 1 Test {
-    Codeunit,
-    DateFormula,
-    Date,
-    DateTime,
-    Decimal,
-    Dialog,
     DotNet,
     Duration,
     ExecutionMode,
