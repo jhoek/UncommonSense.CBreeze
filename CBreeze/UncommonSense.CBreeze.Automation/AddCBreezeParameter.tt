@@ -1,0 +1,113 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="UncommonSense.CBreeze.Core"#>
+<#@ output extension=".cs" #>
+<#
+	var types = AppDomain
+		.CurrentDomain
+		.GetAssemblies()
+		.SelectMany(a => a.GetTypes())
+		.Where(t => typeof(Parameter).IsAssignableFrom(t))
+		.Where(t => typeof(Parameter) != t); 
+
+	var typesWithIntegerSubType = new List<string>() { "RecordParameter",  "PageParameter", "ReportParameter", "CodeunitParameter", "TestPageParameter", "TestRequestPageParameter", "QueryParameter", "XmlPortParameter" };
+	var typesWithStringSubType = new List<string>() { "AutomationParameter", "OcxParameter", "DotNetParameter" };
+	var typesWithDataLength = new List<string>() { "TextParameter", "CodeParameter", "BinaryParameter" };
+	var typesWithMandatoryDataLength = new List<string>() { "BinaryParameter" };
+	var typesWithRecordSecurityFiltering = new List<string>() { "RecordParameter", "RecordRefParameter" };
+	var typesWithQuerySecurityFiltering = new List<string>() { "QueryParameter" };
+#>
+using System;
+using System.Management.Automation;
+using UncommonSense.CBreeze.Core;
+
+namespace UncommonSense.CBreeze.Automation 
+{
+<#
+	foreach(var @type in types) 
+	{
+		var variableName = Char.ToLowerInvariant(@type.Name[0]) + @type.Name.Substring(1);
+		var hasIntegerSubType = typesWithIntegerSubType.Contains(@type.Name);
+		var hasStringSubType = typesWithStringSubType.Contains(@type.Name);
+		var hasSubType = hasIntegerSubType || hasStringSubType;
+		var hasDataLength = typesWithDataLength.Contains(@type.Name);
+		var dataLengthMandatory = typesWithMandatoryDataLength.Contains(@type.Name);
+		var hasOptionString = (@type.Name == "OptionParameter");
+		var hasTemporary = (@type.Name == "RecordParameter");
+		var hasRecordSecurityFiltering = typesWithRecordSecurityFiltering.Contains(@type.Name);
+		var hasQuerySecurityFiltering = typesWithQuerySecurityFiltering.Contains(@type.Name);
+		var hasSecurityFiltering = hasRecordSecurityFiltering || hasQuerySecurityFiltering;
+#>
+[Cmdlet(VerbsCommon.Add, "CBreeze<#=@type.Name#>")]
+[OutputType(typeof(<#=type.Name#>))]
+[Alias("<#=type.Name#>")]
+public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, PSObject>
+{
+	protected override <#=@type.Name#> CreateItem()
+	{
+		var <#= variableName #> = new <#= @type.Name #>(Name<# if (hasSubType) { #>, SubType<# } #>, Var, ID<# if (hasDataLength) { #>, DataLength<# } #>);
+		<#= variableName #>.Dimensions = Dimensions;
+<# if (hasOptionString) { #><#= variableName #>.OptionString = OptionString; <# } #>
+<# if (hasSecurityFiltering) { #>		<#= variableName #>.SecurityFiltering = SecurityFiltering; 
+<# if (hasTemporary) {#>		<#= variableName #>.Temporary = Temporary; <# } #>
+<# } #>
+		return <#= variableName #>;
+	}
+
+	protected override void AddItemToInputObject(<#= @type.Name #> item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+<# if (hasDataLength) { #>
+	[Parameter(Mandatory=<#=dataLengthMandatory.ToString().ToLowerInvariant()#>)]
+	[ValidateRange(1, int.MaxValue)]
+	public int DataLength { get; set; }
+<# } #>
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+
+<# if (hasOptionString) { #>
+	[Parameter()]
+	public string OptionString { get;set; } 
+<# } #>
+
+<# if (hasRecordSecurityFiltering) { #>
+	[Parameter()]
+	public RecordSecurityFiltering? SecurityFiltering { get; set; }
+<# } #>
+
+<# if (hasQuerySecurityFiltering) { #>
+	[Parameter()]
+	public QuerySecurityFiltering? SecurityFiltering { get; set; }
+<# } #>
+
+<# if (hasIntegerSubType) { #>
+	[Parameter(Mandatory=true)]
+	[ValidateRange(1, int.MaxValue)]
+	public int SubType { get; set; }
+<# } #>
+
+<# if (hasStringSubType) { #>
+	[Parameter(Mandatory=true)]
+	[ValidateRange(1, int.MaxValue)]
+	public string SubType { get; set; }
+<# } #>
+
+<# if (hasTemporary) { #>
+	[Parameter()]
+	public bool? Temporary { get; set; }
+<# } #>
+}
+<#		
+	}
+#>
+}

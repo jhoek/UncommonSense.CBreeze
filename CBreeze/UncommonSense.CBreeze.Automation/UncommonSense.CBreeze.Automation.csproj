@@ -54,6 +54,11 @@
     <Compile Include="AddCBreezePageActionContainer.cs" />
     <Compile Include="AddCBreezePageActionGroup.cs" />
     <Compile Include="AddCBreezePageActionSeparator.cs" />
+    <Compile Include="AddCBreezeParameter1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddCBreezeParameter.tt</DependentUpon>
+    </Compile>
     <Compile Include="AddCBreezeTableField1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,6 +172,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddCBreezeParameter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AddCBreezeParameter1.cs</LastGenOutput>
+    </Content>
     <Content Include="AddCBreezeTableField.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AddCBreezeTableField1.cs</LastGenOutput>
