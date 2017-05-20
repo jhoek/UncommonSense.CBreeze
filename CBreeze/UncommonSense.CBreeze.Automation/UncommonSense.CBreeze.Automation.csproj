@@ -130,6 +130,7 @@
     <Compile Include="SetCBreezeXmlPortNamespace.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AddCBreezeParameter.Tests.ps1" />
     <None Include="packages.config" />
     <None Include="PREFACE.md" />
     <None Include="README.md">

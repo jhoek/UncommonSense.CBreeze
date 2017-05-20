@@ -41,6 +41,8 @@ namespace UncommonSense.CBreeze.Automation
 		var hasRecordSecurityFiltering = typesWithRecordSecurityFiltering.Contains(@type.Name);
 		var hasQuerySecurityFiltering = typesWithQuerySecurityFiltering.Contains(@type.Name);
 		var hasSecurityFiltering = hasRecordSecurityFiltering || hasQuerySecurityFiltering;
+		var hasRunOnClient = (@type.Name == "DotNetParameter");
+		var hasSuppressDispose = (@type.Name == "DotNetParameter");
 #>
 [Cmdlet(VerbsCommon.Add, "CBreeze<#=@type.Name#>")]
 [OutputType(typeof(<#=type.Name#>))]
@@ -51,10 +53,11 @@ public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, PSO
 	{
 		var <#= variableName #> = new <#= @type.Name #>(Name<# if (hasSubType) { #>, SubType<# } #>, Var, ID<# if (hasDataLength) { #>, DataLength<# } #>);
 		<#= variableName #>.Dimensions = Dimensions;
-<# if (hasOptionString) { #><#= variableName #>.OptionString = OptionString; <# } #>
-<# if (hasSecurityFiltering) { #>		<#= variableName #>.SecurityFiltering = SecurityFiltering; 
-<# if (hasTemporary) {#>		<#= variableName #>.Temporary = Temporary; <# } #>
-<# } #>
+<# if (hasOptionString)      { #>		<#= variableName #>.OptionString = OptionString; <# } #>
+<# if (hasSecurityFiltering) { #>		<#= variableName #>.SecurityFiltering = SecurityFiltering; <# } #>
+<# if (hasTemporary)         { #>		<#= variableName #>.Temporary = Temporary; <# } #>
+<# if (hasRunOnClient)       { #>		<#= variableName #>.RunOnClient = RunOnClient; <# } #>
+<# if (hasSuppressDispose)   { #>		<#= variableName #>.SuppressDispose = SuppressDispose; <# } #>
 		return <#= variableName #>;
 	}
 
@@ -74,39 +77,49 @@ public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, PSO
 
 	[Parameter()]
 	public string Dimensions { get; set; }
-
 <# if (hasOptionString) { #>
+
 	[Parameter()]
 	public string OptionString { get;set; } 
 <# } #>
-
 <# if (hasRecordSecurityFiltering) { #>
+
 	[Parameter()]
 	public RecordSecurityFiltering? SecurityFiltering { get; set; }
 <# } #>
-
 <# if (hasQuerySecurityFiltering) { #>
+
 	[Parameter()]
 	public QuerySecurityFiltering? SecurityFiltering { get; set; }
 <# } #>
+<# if (hasRunOnClient) { #>
 
+	[Parameter()]
+	public bool? RunOnClient { get; set; }
+<# } #>
 <# if (hasIntegerSubType) { #>
+
 	[Parameter(Mandatory=true)]
 	[ValidateRange(1, int.MaxValue)]
 	public int SubType { get; set; }
 <# } #>
-
 <# if (hasStringSubType) { #>
+
 	[Parameter(Mandatory=true)]
-	[ValidateRange(1, int.MaxValue)]
 	public string SubType { get; set; }
 <# } #>
+<# if (hasSuppressDispose) { #>
 
+	[Parameter()]
+	public bool? SuppressDispose { get; set; } 
+<# } #>
 <# if (hasTemporary) { #>
+
 	[Parameter()]
 	public bool? Temporary { get; set; }
 <# } #>
 }
+
 <#		
 	}
 #>
