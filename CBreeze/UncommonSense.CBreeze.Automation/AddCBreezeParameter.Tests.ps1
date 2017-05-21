@@ -60,8 +60,25 @@ $TestCases = @(
         Expression = 'DialogParameter'
     },
     @{
-        Expression = "DotNetParameter $StringSubType"
-        TypeSpecificTests = { param($Parameter) $Parameter.SubType | Should Be $StringSubType }
+        Expression = "DotNetParameter -SubType $StringSubType -RunOnClient `$true -SuppressDispose `$true" 
+        TypeSpecificTests = { 
+            param($Parameter) 
+            $Parameter.SubType | Should Be $StringSubType 
+            $Parameter.RunOnClient | Should Be $true
+            $Parameter.SuppressDispose | Should Be $true
+        }
+    },
+    @{
+        Expression = 'DurationParameter'
+    },
+    @{
+        Expression = 'ExecutionModeParameter'
+    },
+    @{
+        Expression = 'FieldRefParameter'
+    },
+    @{
+        Expression = 'FileParameter'
     }
 )
 
@@ -78,6 +95,7 @@ Describe 'Add-CBreezeParameter' {
             & $TypeSpecificTests -Parameter $Parameter
         }
     }
+}
 
 <#
    
@@ -85,9 +103,6 @@ Describe 'Add-CBreezeParameter' {
 <#
 FIXME: remaining types
 Procedure 1 Test {
-    DotNet,
-    Duration,
-    ExecutionMode,
     FieldRef,
     File,
 #if NAV2016
@@ -121,4 +136,3 @@ Procedure 1 Test {
         Variant,
         XmlPort,
 }#>
-}
