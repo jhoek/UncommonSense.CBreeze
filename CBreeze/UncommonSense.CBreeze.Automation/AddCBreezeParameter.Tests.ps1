@@ -5,6 +5,7 @@ $Dimensions = '1,2,8'
 $DataLength = 42
 $IntegerSubType = 84
 $StringSubType = 'MyStringSubType'
+$OptionString = 'One,Two,Three'
 
 $TestCases = @(
     @{
@@ -80,6 +81,30 @@ $TestCases = @(
     @{
         Expression = 'FileParameter'
     }
+    @{
+        Expression = 'FilterPageBuilderParameter'
+    }
+    @{
+        Expression = 'GuidParameter'        
+    }
+    @{
+        Expression = 'InStreamParameter'
+    },
+    @{
+        Expression = 'IntegerParameter'
+    },
+    @{
+        Expression = 'KeyRefParameter'
+    },
+    @{
+        Expression = "OcxParameter -SubType $StringSubType"
+    },
+    @{
+        Expression = "OptionParameter -OptionString '$OptionString'"
+    },
+    @{
+        Expression = 'OutStreamParameter'
+    }
 )
 
 Describe 'Add-CBreezeParameter' {
@@ -97,23 +122,9 @@ Describe 'Add-CBreezeParameter' {
     }
 }
 
-<#
-   
+
 
 <#
-FIXME: remaining types
-Procedure 1 Test {
-    FieldRef,
-    File,
-#if NAV2016
-        FilterPageBuilder,
-#endif
-        Guid,
-        InStream,
-        Integer,
-        KeyRef,
-        Ocx,
-        Option,
         OutStream,
         Page,
         Query,
