@@ -6,6 +6,7 @@ $DataLength = 42
 $IntegerSubType = 84
 $StringSubType = 'MyStringSubType'
 $OptionString = 'One,Two,Three'
+$SecurityFiltering = 'Disallowed'
 
 $TestCases = @(
     @{
@@ -61,10 +62,10 @@ $TestCases = @(
         Expression = 'DialogParameter'
     },
     @{
-        Expression = "DotNetParameter -SubType $StringSubType -RunOnClient `$true -SuppressDispose `$true" 
-        TypeSpecificTests = { 
-            param($Parameter) 
-            $Parameter.SubType | Should Be $StringSubType 
+        Expression = "DotNetParameter -SubType $StringSubType -RunOnClient `$true -SuppressDispose `$true"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $StringSubType
             $Parameter.RunOnClient | Should Be $true
             $Parameter.SuppressDispose | Should Be $true
         }
@@ -85,7 +86,7 @@ $TestCases = @(
         Expression = 'FilterPageBuilderParameter'
     }
     @{
-        Expression = 'GuidParameter'        
+        Expression = 'GuidParameter'
     }
     @{
         Expression = 'InStreamParameter'
@@ -98,12 +99,59 @@ $TestCases = @(
     },
     @{
         Expression = "OcxParameter -SubType $StringSubType"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $StringSubType
+        }
     },
     @{
         Expression = "OptionParameter -OptionString '$OptionString'"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.OptionString | Should Be $OptionString
+        }
     },
     @{
         Expression = 'OutStreamParameter'
+    },
+	@{
+		Expression = "PageParameter -SubType $IntegerSubType"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $IntegerSubType
+        }
+	},
+    @{
+        Expression = "QueryParameter -SubType $IntegerSubType"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $IntegerSubType
+        }
+    },
+    @{
+        Expression = 'RecordIDParameter'
+    },
+    @{
+        Expression = "RecordParameter -SecurityFiltering $SecurityFiltering -SubType $IntegerSubType -Temporary `$true"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SecurityFiltering | Should Be $SecurityFiltering
+            $Parameter.SubType | Should Be $IntegerSubType
+            $Parameter.Temporary | Should Be $true
+        }
+    },
+    @{
+        Expression = 'RecordRefParameter'
+    },
+    @{
+        Expression = "ReportParameter -SubType $IntegerSubType"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $IntegerSubType
+        }
+    },
+    @{
+        Expression = 'ReportFormatParameter'
     }
 )
 
@@ -125,15 +173,6 @@ Describe 'Add-CBreezeParameter' {
 
 
 <#
-        OutStream,
-        Page,
-        Query,
-        RecordID,
-        Record,
-        RecordRef,
-        Report,
-#if NAV2016
-        ReportFormat,
         TableConnectionType,
 #endif
         TestPage,
