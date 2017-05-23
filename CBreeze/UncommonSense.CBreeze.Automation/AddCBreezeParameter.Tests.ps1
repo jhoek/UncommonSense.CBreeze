@@ -152,6 +152,49 @@ $TestCases = @(
     },
     @{
         Expression = 'ReportFormatParameter'
+    },
+    @{
+        Expression = 'TableConnectionTypeParameter'
+    },
+    @{
+        Expression = "TestPageParameter -SubType $IntegerSubType"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $IntegerSubType
+        }
+    }
+    @{
+        Expression = "TestRequestPageParameter -SubType $IntegerSubType"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $IntegerSubType
+        }
+    },
+    @{
+        Expression = "TextParameter -DataLength $DataLength"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.DataLength | Should Be $DataLength
+        }
+    },
+    @{
+        Expression = 'TextEncodingParameter'
+    },
+    @{
+        Expression = 'TimeParameter'
+    },
+    @{
+        Expression = 'TransactionTypeParameter'
+    },
+    @{
+        Expression = 'VariantParameter'
+    },
+    @{
+        Expression = "XmlPortParameter -SubType $IntegerSubType"
+        TypeSpecificTests = {
+            param($Parameter)
+            $Parameter.SubType | Should Be $IntegerSubType
+        }
     }
 )
 
@@ -169,20 +212,3 @@ Describe 'Add-CBreezeParameter' {
         }
     }
 }
-
-
-
-<#
-        TableConnectionType,
-#endif
-        TestPage,
-        TestRequestPage,
-        Text,
-#if NAV2016
-        TextEncoding,
-#endif
-        Time,
-        TransactionType,
-        Variant,
-        XmlPort,
-}#>
