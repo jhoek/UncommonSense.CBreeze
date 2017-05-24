@@ -64,6 +64,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddCBreezeTableField.tt</DependentUpon>
     </Compile>
+    <Compile Include="AddCBreezeXmlPortNode1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddCBreezeXmlPortNode.tt</DependentUpon>
+    </Compile>
     <Compile Include="NewCBreezeXmlPortNode.cs" />
     <Compile Include="NewCBreezeReportLabel.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
@@ -82,7 +87,6 @@
     <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
-    <Compile Include="NewCBreezeParameter.cs" />
     <Compile Include="NewCBreezeVariable.cs" />
     <Compile Include="NewCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuiteNode.cs" />
@@ -115,7 +119,6 @@
     <Compile Include="SetCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />
-    <Compile Include="AddCBreezeParameter.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
     <Compile Include="AddCBreezeVariable.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />
@@ -180,6 +183,10 @@
     <Content Include="AddCBreezeTableField.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AddCBreezeTableField1.cs</LastGenOutput>
+    </Content>
+    <Content Include="AddCBreezeXmlPortNode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AddCBreezeXmlPortNode1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
