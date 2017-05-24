@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Automation
 [Cmdlet(VerbsCommon.Add, "CBreeze<#=@type.Name#>")]
 [OutputType(typeof(<#=type.Name#>))]
 [Alias("<#=type.Name#>")]
-public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, PSObject>
+public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, int, PSObject>
 {
 	protected override <#=@type.Name#> CreateItem()
 	{

@@ -9,8 +9,21 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeReportLabel")]
     [OutputType(typeof(ReportLabel))]
-    public class NewCBreezeReportLabel : NewNamedItemCmdlet<ReportLabel, Report>
+    public class NewCBreezeReportLabel : NewNamedItemCmdlet<ReportLabel, int, Report>
     {
+        protected override void AddItemToInputObject(ReportLabel item, Report inputObject)
+        {
+            inputObject.Labels.Add(item);
+        }
+
+        protected override ReportLabel CreateItem()
+        {
+            var reportLabel = new ReportLabel(ID, Name);
+            reportLabel.Properties.CaptionML.Set("ENU", Caption);
+            reportLabel.Properties.Description = Description;
+            return reportLabel;
+        }
+
         [Parameter()]
         public string Caption
         {
@@ -23,19 +36,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get;
             set;
-        }
-
-        protected override void AddItemToInputObject(ReportLabel item, Report inputObject)
-        {
-            inputObject.Labels.Add(item);
-        }
-
-        protected override ReportLabel CreateItem()
-        {
-            var reportLabel = new ReportLabel(ID, Name);
-            reportLabel.Properties.CaptionML.Set("ENU", Caption);
-            reportLabel.Properties.Description = Description;
-            return reportLabel;
         }
     }
 }

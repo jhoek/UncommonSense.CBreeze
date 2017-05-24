@@ -90,7 +90,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Cmdlet(VerbsCommon.Add, "CBreeze<#=@type.Name#>")]
 	[OutputType(typeof(<#=type.Name#>))]
 	[Alias("<#=@type.Name.Replace("Table", "")#>")]
-	public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, Table>
+	public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, int, Table>
 	{
 
 <# if (hasDataLength) { #>

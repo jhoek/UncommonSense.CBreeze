@@ -7,20 +7,8 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class NewItemCmdlet<TItem, TInputObject> : PSCmdlet
+    public abstract class NewItemCmdlet<TItem, TID, TInputObject> : PSCmdlet
     {
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithID)]
-        public int ID { get; set; }
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        public TInputObject InputObject { get; set; }
-
-        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
-        public SwitchParameter PassThru { get; set; }
-
         protected abstract void AddItemToInputObject(TItem item, TInputObject inputObject);
 
         protected abstract TItem CreateItem();
@@ -45,5 +33,17 @@ namespace UncommonSense.CBreeze.Automation
                     break;
             }
         }
+
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithID)]
+        public TID ID { get; set; }
+
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        public TInputObject InputObject { get; set; }
+
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
+        public SwitchParameter PassThru { get; set; }
     }
 }

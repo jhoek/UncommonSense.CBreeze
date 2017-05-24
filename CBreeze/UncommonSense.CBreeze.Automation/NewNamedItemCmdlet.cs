@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class NewNamedItemCmdlet<TItem, TInputObject> : NewItemCmdlet<TItem, TInputObject>
+    public abstract class NewNamedItemCmdlet<TItem, TID, TInputObject> : NewItemCmdlet<TItem, TID, TInputObject>
     {
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]

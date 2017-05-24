@@ -8,8 +8,15 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class NewCBreezeObject<T> : NewNamedItemCmdlet<T, Application>
+    public abstract class NewCBreezeObject<T> : NewNamedItemCmdlet<T, int, Application>
     {
+        protected void SetObjectProperties(Core.Object @object)
+        {
+            @object.ObjectProperties.DateTime = DateTime;
+            @object.ObjectProperties.Modified = Modified;
+            @object.ObjectProperties.VersionList = VersionList;
+        }
+
         [Parameter()]
         public SwitchParameter AutoCaption
         {
@@ -45,13 +52,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get;
             set;
-        }
-
-        protected void SetObjectProperties(Core.Object @object)
-        {
-            @object.ObjectProperties.DateTime = DateTime;
-            @object.ObjectProperties.Modified = Modified;
-            @object.ObjectProperties.VersionList = VersionList;
         }
     }
 }
