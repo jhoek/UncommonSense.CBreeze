@@ -24,7 +24,9 @@
 		"XmlPortTableAttribute",
 		"XmlPortTableElement",
 		"XmlPortTextElement",
-		"XmlPortTextAttribute"
+		"XmlPortTextAttribute",
+		"ReqFilterHeadingML",
+		"LinkFields"
 	};
 #>
 using System;
@@ -46,8 +48,57 @@ foreach (var @type in types) {
 		.Select(p => new {
 			Name = p.Name,
 			Type = p.PropertyType,
-			Mandatory = false
+			Mandatory = false,
+			Assignment = p.PropertyType == typeof(FieldList) ? $"{variableName}.Properties.{p.Name}.AddRange({p.Name});" : $"{variableName}.Properties.{p.Name} = {p.Name};"
 		});
+
+	if (relevantProperties.Any(p => p.Name == "SourceField"))
+	{
+		var newProperties = new[] {
+			new {
+				Name = "SourceFieldTableVariableName",
+				Type = typeof(string),
+				Mandatory = false,
+				Assignment = $"{variableName}.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;"
+			},
+			new {
+				Name = "SourceFieldName",
+				Type = typeof(string),
+				Mandatory = false,
+				Assignment = $"{variableName}.Properties.SourceField.FieldName = SourceFieldName;"
+			}
+		};
+
+		relevantProperties = 
+			relevantProperties
+				.Where(p => p.Name != "SourceField")
+				.Concat(newProperties);
+	}
+
+	if (relevantProperties.Any(p => p.Name == "SourceTableView"))
+	{
+		var newProperties = new [] {
+			new {
+				Name = "SourceTableViewKey",
+				Type = typeof(string),
+				Mandatory = false,
+				Assignment = $"{variableName}.Properties.SourceTableView.Key = SourceTableViewKey;"
+			},
+			new {
+				Name = "SourceTableViewOrder",
+				Type = typeof(Order?),
+				Mandatory = false, 
+				Assignment = $"{variableName}.Properties.SourceTableView.Order = SourceTableViewOrder;"
+			}
+		};
+
+		relevantProperties = 
+			relevantProperties
+				.Where(p => p.Name != "SourceTableView")
+				.Concat(newProperties);
+	}
+
+	relevantProperties = relevantProperties.OrderBy(p => p.Name);
 #>
 	[Cmdlet(VerbsCommon.Add, "CBreeze<#= @type.Name #>")]
 	[OutputType(typeof(<#= @type.Name #>))]
@@ -59,7 +110,7 @@ foreach (var @type in types) {
 			var <#=variableName#> = new <#=@type.Name#>(Name, GetIndentation(), ID);
 
 <# foreach(var property in relevantProperties) { #>
-			<#=variableName#>.Properties.<#=property.Name#> = <#=property.Name#>;
+			<#= property.Assignment #>
 <# } #>
 
 			return <#=variableName#>;

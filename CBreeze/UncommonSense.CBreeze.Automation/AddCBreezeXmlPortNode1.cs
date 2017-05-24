@@ -19,7 +19,8 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortFieldAttribute.Properties.DataType = DataType;
 			xmlPortFieldAttribute.Properties.FieldValidate = FieldValidate;
 			xmlPortFieldAttribute.Properties.Occurrence = Occurrence;
-			xmlPortFieldAttribute.Properties.SourceField = SourceField;
+			xmlPortFieldAttribute.Properties.SourceField.FieldName = SourceFieldName;
+			xmlPortFieldAttribute.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
 			xmlPortFieldAttribute.Properties.Width = Width;
 
 			return xmlPortFieldAttribute;
@@ -60,7 +61,10 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<Occurrence> Occurrence { get; set; }
 
 		[Parameter()]
-		public SourceField SourceField { get; set; }
+		public String SourceFieldName { get; set; }
+
+		[Parameter()]
+		public String SourceFieldTableVariableName { get; set; }
 
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
@@ -82,7 +86,8 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortFieldElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortFieldElement.Properties.MinOccurs = MinOccurs;
 			xmlPortFieldElement.Properties.NamespacePrefix = NamespacePrefix;
-			xmlPortFieldElement.Properties.SourceField = SourceField;
+			xmlPortFieldElement.Properties.SourceField.FieldName = SourceFieldName;
+			xmlPortFieldElement.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
 			xmlPortFieldElement.Properties.Unbound = Unbound;
 			xmlPortFieldElement.Properties.Width = Width;
 
@@ -130,7 +135,10 @@ namespace UncommonSense.CBreeze.Automation
 		public String NamespacePrefix { get; set; }
 
 		[Parameter()]
-		public SourceField SourceField { get; set; }
+		public String SourceFieldName { get; set; }
+
+		[Parameter()]
+		public String SourceFieldTableVariableName { get; set; }
 
 		[Parameter()]
 		public Nullable<Boolean> Unbound { get; set; }
@@ -152,15 +160,14 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTableAttribute.Properties.AutoReplace = AutoReplace;
 			xmlPortTableAttribute.Properties.AutoSave = AutoSave;
 			xmlPortTableAttribute.Properties.AutoUpdate = AutoUpdate;
-			xmlPortTableAttribute.Properties.CalcFields = CalcFields;
-			xmlPortTableAttribute.Properties.LinkFields = LinkFields;
+			xmlPortTableAttribute.Properties.CalcFields.AddRange(CalcFields);
 			xmlPortTableAttribute.Properties.LinkTable = LinkTable;
 			xmlPortTableAttribute.Properties.LinkTableForceInsert = LinkTableForceInsert;
 			xmlPortTableAttribute.Properties.Occurrence = Occurrence;
-			xmlPortTableAttribute.Properties.ReqFilterFields = ReqFilterFields;
-			xmlPortTableAttribute.Properties.ReqFilterHeadingML = ReqFilterHeadingML;
+			xmlPortTableAttribute.Properties.ReqFilterFields.AddRange(ReqFilterFields);
 			xmlPortTableAttribute.Properties.SourceTable = SourceTable;
-			xmlPortTableAttribute.Properties.SourceTableView = SourceTableView;
+			xmlPortTableAttribute.Properties.SourceTableView.Key = SourceTableViewKey;
+			xmlPortTableAttribute.Properties.SourceTableView.Order = SourceTableViewOrder;
 			xmlPortTableAttribute.Properties.Temporary = Temporary;
 			xmlPortTableAttribute.Properties.VariableName = VariableName;
 			xmlPortTableAttribute.Properties.Width = Width;
@@ -203,9 +210,6 @@ namespace UncommonSense.CBreeze.Automation
 		public FieldList CalcFields { get; set; }
 
 		[Parameter()]
-		public LinkFields LinkFields { get; set; }
-
-		[Parameter()]
 		public String LinkTable { get; set; }
 
 		[Parameter()]
@@ -218,13 +222,13 @@ namespace UncommonSense.CBreeze.Automation
 		public FieldList ReqFilterFields { get; set; }
 
 		[Parameter()]
-		public MultiLanguageValue ReqFilterHeadingML { get; set; }
-
-		[Parameter()]
 		public Nullable<Int32> SourceTable { get; set; }
 
 		[Parameter()]
-		public TableView SourceTableView { get; set; }
+		public String SourceTableViewKey { get; set; }
+
+		[Parameter()]
+		public Nullable<Order> SourceTableViewOrder { get; set; }
 
 		[Parameter()]
 		public Nullable<Boolean> Temporary { get; set; }
@@ -249,17 +253,16 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTableElement.Properties.AutoReplace = AutoReplace;
 			xmlPortTableElement.Properties.AutoSave = AutoSave;
 			xmlPortTableElement.Properties.AutoUpdate = AutoUpdate;
-			xmlPortTableElement.Properties.CalcFields = CalcFields;
-			xmlPortTableElement.Properties.LinkFields = LinkFields;
+			xmlPortTableElement.Properties.CalcFields.AddRange(CalcFields);
 			xmlPortTableElement.Properties.LinkTable = LinkTable;
 			xmlPortTableElement.Properties.LinkTableForceInsert = LinkTableForceInsert;
 			xmlPortTableElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortTableElement.Properties.MinOccurs = MinOccurs;
 			xmlPortTableElement.Properties.NamespacePrefix = NamespacePrefix;
-			xmlPortTableElement.Properties.ReqFilterFields = ReqFilterFields;
-			xmlPortTableElement.Properties.ReqFilterHeadingML = ReqFilterHeadingML;
+			xmlPortTableElement.Properties.ReqFilterFields.AddRange(ReqFilterFields);
 			xmlPortTableElement.Properties.SourceTable = SourceTable;
-			xmlPortTableElement.Properties.SourceTableView = SourceTableView;
+			xmlPortTableElement.Properties.SourceTableView.Key = SourceTableViewKey;
+			xmlPortTableElement.Properties.SourceTableView.Order = SourceTableViewOrder;
 			xmlPortTableElement.Properties.Temporary = Temporary;
 			xmlPortTableElement.Properties.VariableName = VariableName;
 			xmlPortTableElement.Properties.Width = Width;
@@ -302,9 +305,6 @@ namespace UncommonSense.CBreeze.Automation
 		public FieldList CalcFields { get; set; }
 
 		[Parameter()]
-		public LinkFields LinkFields { get; set; }
-
-		[Parameter()]
 		public String LinkTable { get; set; }
 
 		[Parameter()]
@@ -323,13 +323,13 @@ namespace UncommonSense.CBreeze.Automation
 		public FieldList ReqFilterFields { get; set; }
 
 		[Parameter()]
-		public MultiLanguageValue ReqFilterHeadingML { get; set; }
-
-		[Parameter()]
 		public Nullable<Int32> SourceTable { get; set; }
 
 		[Parameter()]
-		public TableView SourceTableView { get; set; }
+		public String SourceTableViewKey { get; set; }
+
+		[Parameter()]
+		public Nullable<Order> SourceTableViewOrder { get; set; }
 
 		[Parameter()]
 		public Nullable<Boolean> Temporary { get; set; }
