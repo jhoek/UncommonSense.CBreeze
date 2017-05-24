@@ -12,5 +12,9 @@ namespace UncommonSense.CBreeze.Automation
         public const string AddWithoutID = "AddWithoutID";
         public const string NewWithID = "NewWithID";
         public const string NewWithoutID = "NewWithoutID";
+
+        public static bool IsAdd(string name) => (name == AddWithID) || (name == AddWithoutID);
+
+        public static bool IsNew(string name) => (name == NewWithID) || (name == NewWithoutID);
     }
 }
