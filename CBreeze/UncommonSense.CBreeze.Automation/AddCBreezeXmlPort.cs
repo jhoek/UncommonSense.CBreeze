@@ -186,6 +186,7 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                xmlPort.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());
                 xmlPort.Nodes.AddRange(subObjects.OfType<XmlPortNode>());
                 xmlPort.Code.Functions.AddRange(subObjects.OfType<Function>());
                 xmlPort.Code.Variables.AddRange(subObjects.OfType<Variable>());

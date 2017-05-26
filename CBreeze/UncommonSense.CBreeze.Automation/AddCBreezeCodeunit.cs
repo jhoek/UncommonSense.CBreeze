@@ -81,6 +81,7 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                codeunit.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());
                 codeunit.Code.Functions.AddRange(subObjects.OfType<Function>());
                 codeunit.Code.Variables.AddRange(subObjects.OfType<Variable>());
                 codeunit.Code.Events.AddRange(subObjects.OfType<Event>());

@@ -116,6 +116,7 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                table.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());
                 table.Fields.AddRange(subObjects.OfType<TableField>());
                 table.FieldGroups.AddRange(subObjects.OfType<TableFieldGroup>());
                 table.Keys.AddRange(subObjects.OfType<TableKey>());

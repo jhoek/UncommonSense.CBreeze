@@ -165,6 +165,7 @@ namespace UncommonSense.CBreeze.Automation
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
                 page.Controls.AddRange(subObjects.OfType<PageControl>());
                 page.Properties.ActionList.AddRange(subObjects.OfType<PageActionBase>());
+                page.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());
                 page.Code.Functions.AddRange(subObjects.OfType<Function>());
                 page.Code.Variables.AddRange(subObjects.OfType<Variable>());
                 page.Code.Events.AddRange(subObjects.OfType<Event>());

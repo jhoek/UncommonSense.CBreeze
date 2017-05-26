@@ -51,6 +51,7 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                query.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());
                 query.Properties.OrderBy.AddRange(subObjects.OfType<QueryOrderByLine>());
                 query.Elements.AddRange(subObjects.OfType<QueryElement>());
                 query.Code.Functions.AddRange(subObjects.OfType<Function>());

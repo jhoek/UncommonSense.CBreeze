@@ -167,6 +167,7 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                report.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());
                 report.Labels.AddRange(subObjects.OfType<ReportLabel>());
                 report.Elements.AddRange(subObjects.OfType<ReportElement>());
                 report.Code.Functions.AddRange(subObjects.OfType<Function>());
