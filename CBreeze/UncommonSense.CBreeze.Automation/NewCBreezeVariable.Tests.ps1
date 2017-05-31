@@ -118,6 +118,29 @@ Describe "Syntax for New-CBreezeVariable" {
 
             TestPageVariable MyTestPageVariable 123
             TestPageVariable ($NextVariableID++) MyOtherTestPageVariable 123
+
+            TextVariable MyTextVariable
+            TextVariable MyTextVariableWithDataLength 123
+            TextVariable ($NextVariableID++) MyOtherTextVariable
+            TextVariable ($NextVariableID++) MyOtherTextVariableWithDataLength 123
+            
+            TextEncodingVariable MyTextEncodingVariable
+            TextEncodingVariable ($NextVariableID++) MyOtherTextEncodingVariable
+
+            TextConstant MyTextConstant | Set-CBreezeMLValue CaptionML ENU Foo -PassThru | Set-CBreezeMLValue CaptionML NLD Baz -PassThru
+            TextConstant ($NextVariableID++) MyOtherTextConstant | Set-CBreezeMLValue CaptionML ENU Foo -PassThru | Set-CBreezeMLValue CaptionML NLD Baz -PassThru
+
+            TimeVariable MyTimeVariable 
+            TimeVariable ($NextVariableID++) MyOtherTimeVariable 
+
+            TransactionTypeVariable MyTransactionTypeVariable
+            TransactionTypeVariable ($NextVariableID++) MyOtherTransactionTypeVariable
+
+            VariantVariable MyVariantVariable
+            VariantVariable ($NextVariableID++) MyOtherVariantVariable
+
+            XmlPortVariable MyXmlPortVariable 123
+            XmlPortVariable ($NextVariableID++) MyOtherXmlPortVariable 123
         } 
 
         Write-Host ($Codeunit | Export-CBreezeApplication)
