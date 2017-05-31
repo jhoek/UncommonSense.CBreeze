@@ -1,9 +1,11 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="c:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
+<#@ assembly name="C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="UncommonSense.CBreeze.Automation" #>
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
 <#@ output extension=".cs" #>
 <#
@@ -25,9 +27,7 @@
 		{"DataLength", new[] { "BinaryVariable" } }
 	};
 
-	var positionalProperties = new Dictionary<string, int>() {
-		{ "SubType", 3 }
-	};
+	var positionalProperties = new List<string>() { "SubType", "DataLength" };
 #>
 using System;
 using System.Management.Automation;
@@ -44,16 +44,15 @@ namespace UncommonSense.CBreeze.Automation
 			Name = p.Name,
 			FullType = GetFullTypeName(p.PropertyType),
 			Mandatory = mandatoryProperties.ContainsKey(p.Name) ? mandatoryProperties[p.Name].Contains(@type.Name) : false,
-			Position = positionalProperties.ContainsKey(p.Name) ? positionalProperties[p.Name] : 0,
 		});
 	var variableName = Char.ToLowerInvariant(@type.Name[0]) + @type.Name.Substring(1);
 	var hasSubType = allProperties.Any(p => p.Name == "SubType");
 	var hasDataLength = allProperties.Any(p => p.Name == "DataLength");
 #>
-	[Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>>")]
+	[Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(<#= @type.Name #>))]
 	[Alias("<#= @type.Name #>")]
-	public class AddBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=type.Name#>, int, PSObject>
+	public class NewBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=type.Name#>, int, PSObject>
 	{
 		protected override <#=@type.Name#> CreateItem()
 		{
@@ -76,11 +75,25 @@ if (hasDataLength) { arguments.Add("DataLength"); }
 		}
 
 <# foreach(var property in relevantProperties) { 
-	arguments = new List<string>();
-	if (property.Mandatory) { arguments.Add("Mandatory=true"); }
-	if (property.Position != 0) { arguments.Add($"Position={property.Position}"); }
-#>
+	if (!positionalProperties.Contains(property.Name))
+	{
+		arguments = new List<string>();	
+		if (property.Mandatory) { arguments.Add("Mandatory=true"); } #>
 		[Parameter(<#= string.Join(", ", arguments) #>)]
+<#	}
+	else
+	{
+		foreach(var parameterSetName in ParameterSetNames.Enumerate())
+		{
+			var position = ParameterSetNames.WithID(parameterSetName) ? 3 : 2;
+			arguments = new List<string>();
+			if (property.Mandatory) { arguments.Add("Mandatory=true"); } 
+			arguments.Add($"Position={position}");
+			arguments.Add($"ParameterSetName=\"{parameterSetName}\""); #>
+		[Parameter(<#= string.Join(", ", arguments) #>)]
+<#		}
+	}
+#>
 		public <#= property.FullType #> <#= property.Name #> { get; set; }
 
 <# } #>
