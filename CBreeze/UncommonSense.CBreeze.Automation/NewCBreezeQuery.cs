@@ -8,29 +8,11 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeQuery", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeQuery", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Query))]
-    public class AddCBreezeQuery : NewCBreezeObject<Query>
+    [Alias("Query")]
+    public class NewCBreezeQuery : NewCBreezeObject<Query>
     {
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public ReadState? ReadState
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        [ValidateRange(0, int.MaxValue)]
-        public int? TopNoOfRows
-        {
-            get; set;
-        }
-
         protected override void AddItemToInputObject(Query item, Application inputObject)
         {
             inputObject.Queries.Add(item);
@@ -60,6 +42,25 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             return query;
+        }
+
+        [Parameter()]
+        public string Description
+        {
+            get; set;
+        }
+
+        [Parameter()]
+        public ReadState? ReadState
+        {
+            get; set;
+        }
+
+        [Parameter()]
+        [ValidateRange(0, int.MaxValue)]
+        public int? TopNoOfRows
+        {
+            get; set;
         }
     }
 }

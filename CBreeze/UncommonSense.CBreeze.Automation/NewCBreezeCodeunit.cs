@@ -8,9 +8,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeCodeunit", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeCodeunit", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Codeunit))]
-    public class AddCBreezeCodeunit : NewCBreezeObject<Codeunit>
+    [Alias("Codeunit")]
+    public class NewCBreezeCodeunit : NewCBreezeObject<Codeunit>
     {
 #if !NAV2016
         [Parameter()]

@@ -54,10 +54,10 @@
     <Compile Include="AddCBreezePageActionContainer.cs" />
     <Compile Include="AddCBreezePageActionGroup.cs" />
     <Compile Include="AddCBreezePageActionSeparator.cs" />
-    <Compile Include="AddCBreezeParameter1.cs">
+    <Compile Include="NewCBreezeParameter.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AddCBreezeParameter.tt</DependentUpon>
+      <DependentUpon>NewCBreezeParameter.tt</DependentUpon>
     </Compile>
     <Compile Include="AddCBreezeTableField1.cs">
       <AutoGen>True</AutoGen>
@@ -93,7 +93,6 @@
     <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
-    <Compile Include="NewCBreezeVariable.cs" />
     <Compile Include="NewCBreezeFunction.cs" />
     <Compile Include="AddCBreezeMenuSuiteNode.cs" />
     <Compile Include="AddCBreezeOrderBy.cs" />
@@ -115,18 +114,17 @@
     <Compile Include="NewBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
-    <Compile Include="AddCBreezeMenuSuite.cs" />
-    <Compile Include="AddCBreezeCodeunit.cs" />
-    <Compile Include="AddCBreezeReport.cs" />
-    <Compile Include="AddCBreezeXmlPort.cs" />
-    <Compile Include="AddCBreezeQuery.cs" />
-    <Compile Include="AddCBreezePage.cs" />
-    <Compile Include="AddCBreezeTable.cs" />
+    <Compile Include="NewCBreezeMenuSuite.cs" />
+    <Compile Include="NewCBreezeCodeunit.cs" />
+    <Compile Include="NewCBreezeReport.cs" />
+    <Compile Include="NewCBreezeXmlPort.cs" />
+    <Compile Include="NewCBreezeQuery.cs" />
+    <Compile Include="NewCBreezePage.cs" />
+    <Compile Include="NewCBreezeTable.cs" />
     <Compile Include="SetCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />
     <Compile Include="AddCBreezeTableKey.cs" />
-    <Compile Include="AddCBreezeVariable.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />
     <Compile Include="DynamicParameter.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
@@ -139,7 +137,12 @@
     <Compile Include="SetCBreezeXmlPortNamespace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AddCBreezeParameter.Tests.ps1" />
+    <None Include="AddCBreezeParameter.Tests.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="NewCBreezeVariable.Tests.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="PREFACE.md" />
     <None Include="README.md">
@@ -182,9 +185,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AddCBreezeParameter.tt">
+    <Content Include="NewCBreezeParameter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AddCBreezeParameter1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeParameter.cs</LastGenOutput>
     </Content>
     <Content Include="AddCBreezeTableField.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

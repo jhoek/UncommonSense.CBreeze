@@ -8,9 +8,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeMenuSuite", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(MenuSuite))]
-    public class AddCBreezeMenuSuite : NewCBreezeObject<MenuSuite>
+    [Alias("MenuSuite")]
+    public class NewCBreezeMenuSuite : NewCBreezeObject<MenuSuite>
     {
         protected override void AddItemToInputObject(MenuSuite item, Application inputObject)
         {

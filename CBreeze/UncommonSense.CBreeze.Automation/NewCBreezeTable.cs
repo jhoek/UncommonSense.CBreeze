@@ -8,9 +8,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeTable", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeTable", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Table))]
-    public class AddCBreezeTable : NewCBreezeObject<Table>
+    [Alias("Table")]
+    public class NewCBreezeTable : NewCBreezeObject<Table>
     {
         [Parameter()]
         public string[] DataCaptionFields
