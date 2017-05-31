@@ -107,7 +107,7 @@
     <Compile Include="GetCBreezePageControlContainer.cs" />
     <Compile Include="GetCBreezePageControlGroup.cs" />
     <Compile Include="AddCBreezeFilter.cs" />
-    <Compile Include="AddCBreezeCodeLine.cs" />
+    <Compile Include="NewBreezeCodeLine.cs" />
     <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
     <Compile Include="AddCBreezeMenuSuite.cs" />

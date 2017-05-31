@@ -7,10 +7,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeCodeLine", DefaultParameterSetName = "NewWithoutID")]
+    [Cmdlet(VerbsCommon.New, "CBreezeCodeLine", DefaultParameterSetName = "NewWithoutID")]
     [Alias("CodeLine")]
     [OutputType(typeof(string))]
-    public class AddCBreezeCodeLine : NewItemCmdlet<string, PSObject>
+    public class NewBreezeCodeLine : NewItemCmdlet<string, PSObject>
     {
         protected override void AddItemToInputObject(string item, PSObject inputObject)
         {
