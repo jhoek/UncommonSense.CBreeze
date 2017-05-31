@@ -23,11 +23,11 @@
 	};
 
 	var mandatoryProperties = new Dictionary<string, string[]> () {
-		{"SubType", new[] { "DotNetVariable", "AutomationVariable", "RecordVariable", "PageVariable", "ReportVariable", "CodeunitVariable", "QueryVariable", "TestPageVariable", "XmlPortVariable"  }},
-		{"DataLength", new[] { "BinaryVariable" } }
+		{"SubType", new[] { "DotNetVariable", "AutomationVariable", "OcxVariable", "RecordVariable", "PageVariable", "ReportVariable", "CodeunitVariable", "QueryVariable", "TestPageVariable", "XmlPortVariable"  }},
+		{"DataLength", new[] { "BinaryVariable", "CodeVariable" } }
 	};
 
-	var positionalProperties = new List<string>() { "SubType", "DataLength" };
+	var positionalProperties = new List<string>() { "SubType", "DataLength", "OptionString" };
 #>
 using System;
 using System.Management.Automation;
