@@ -137,7 +137,7 @@
     <Compile Include="SetCBreezeXmlPortNamespace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AddCBreezeParameter.Tests.ps1">
+    <None Include="NewCBreezeParameter.Tests.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="NewCBreezeVariable.Tests.ps1">
