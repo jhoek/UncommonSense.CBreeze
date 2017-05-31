@@ -10,6 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeMenuSuiteNode")]
     [OutputType(typeof(MenuSuiteNode))]
+    [Alias("MenuSuiteNode")]
     public class NewCBreezeMenuSuiteNode : CmdletWithDynamicParams
     {
         protected DynamicParameter<string> caption = new DynamicParameter<string>("Caption", true);
@@ -24,21 +25,9 @@ namespace UncommonSense.CBreeze.Automation
         protected DynamicParameter<string> name = new DynamicParameter<string>("Name");
         protected DynamicParameter<Guid?> nextNodeID = new DynamicParameter<Guid?>("NextNodeID");
         protected DynamicParameter<Guid?> parentNodeID = new DynamicParameter<Guid?>("ParentNodeID");
-        protected DynamicParameter<MenuItemRunObjectType?> runObjectType = new DynamicParameter<MenuItemRunObjectType?>("RunObjectType", true);
         protected DynamicParameter<int?> runObjectID = new DynamicParameter<int?>("RunObjectID", true, minRange: 1, maxRange: int.MaxValue);
+        protected DynamicParameter<MenuItemRunObjectType?> runObjectType = new DynamicParameter<MenuItemRunObjectType?>("RunObjectType", true);
         protected DynamicParameter<bool?> visible = new DynamicParameter<bool?>("Visible");
-
-        [Parameter(Mandatory = true, Position = 0)]
-        public MenuSuiteNodeType Type
-        {
-            get;
-            set;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreateNode(Guid.NewGuid()));
-        }
 
         protected MenuSuiteNode CreateNode(Guid guid)
         {
@@ -100,6 +89,11 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateNode(Guid.NewGuid()));
+        }
+
         public override IEnumerable<RuntimeDefinedParameter> DynamicParameters
         {
             get
@@ -153,6 +147,13 @@ namespace UncommonSense.CBreeze.Automation
                         break;
                 }
             }
+        }
+
+        [Parameter(Mandatory = true, Position = 0)]
+        public MenuSuiteNodeType Type
+        {
+            get;
+            set;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsData.Import, "CBreezeApplication", DefaultParameterSetName = "FromPath")]
     [OutputType(typeof(Application))]
+    [Alias("Import")]
     public class ImportCBreezeApplication : PSCmdlet
     {
         protected List<string> CachedFileNames = new List<string>();
@@ -101,6 +102,7 @@ namespace UncommonSense.CBreeze.Automation
                 case "FromPath":
                     WriteObject(ApplicationBuilder.FromFiles(FilesFromPath()));
                     break;
+
                 case "FromDatabase":
                     WriteObject(ApplicationExporter.Export(DevClientPath, ServerName, Database, Filter));
                     break;

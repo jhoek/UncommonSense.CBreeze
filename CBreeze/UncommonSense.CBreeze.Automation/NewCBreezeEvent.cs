@@ -9,43 +9,9 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeEvent")]
     [OutputType(typeof(Event))]
+    [Alias("Event")]
     public class NewCBreezeEvent : Cmdlet
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        public int SourceID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        public string SourceName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 3)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position = 4)]
-        public ScriptBlock SubObjects
-        {
-            get; set;
-        }
-
         protected Event CreateEvent()
         {
             var @event = new Event(SourceID, SourceName, ID, Name);
@@ -65,6 +31,41 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             WriteObject(CreateEvent());
+        }
+
+        [Parameter(Mandatory = true, Position = 2)]
+        [ValidateRange(1, int.MaxValue)]
+        public int ID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 3)]
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0)]
+        public int SourceID
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1)]
+        public string SourceName
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Position = 4)]
+        public ScriptBlock SubObjects
+        {
+            get; set;
         }
     }
 }

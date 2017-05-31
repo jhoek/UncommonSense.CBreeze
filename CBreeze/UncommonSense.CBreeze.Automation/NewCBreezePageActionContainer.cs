@@ -10,8 +10,29 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageActionContainer")]
     [OutputType(typeof(PageActionContainer))]
+    [Alias("ActionContainer")]
     public class NewCBreezePageActionContainer : NewCBreezePageActionBase
     {
+        protected PageActionContainer CreatePageActionContainer()
+        {
+            var pageActionContainer = new PageActionContainer(0, GetID(), ContainerType);
+            pageActionContainer.Properties.Description = Description;
+            pageActionContainer.Properties.Name = Name;
+
+            return pageActionContainer;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreatePageActionContainer());
+
+            if (ChildActions != null)
+            {
+                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                WriteObject(ChildActions.InvokeWithContext(null, variables), true);
+            }
+        }
+
         [Parameter(Position = 2)]
         public ScriptBlock ChildActions
         {
@@ -34,26 +55,6 @@ namespace UncommonSense.CBreeze.Automation
         public string Name
         {
             get; set;
-        }
-
-        protected PageActionContainer CreatePageActionContainer()
-        {
-            var pageActionContainer = new PageActionContainer(0, GetID(), ContainerType);
-            pageActionContainer.Properties.Description = Description;
-            pageActionContainer.Properties.Name = Name;
-
-            return pageActionContainer;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreatePageActionContainer());
-
-            if (ChildActions != null)
-            {
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-                WriteObject(ChildActions.InvokeWithContext(null, variables), true);
-            }
         }
     }
 }

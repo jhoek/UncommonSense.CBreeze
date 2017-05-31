@@ -10,6 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeXmlPortNode")]
     [OutputType(typeof(XmlPortNode))]
+    [Alias("XmlPortNode")]
     public class NewCBreezeXmlPortNode : PSCmdlet
     {
         private const string TableElement = "TableElement";

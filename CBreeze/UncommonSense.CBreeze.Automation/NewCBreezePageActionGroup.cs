@@ -10,8 +10,34 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageActionGroup")]
     [OutputType(typeof(PageActionGroup))]
+    [Alias("ActionGroup")]
     public class NewCBreezePageActionGroup : NewCBreezePageActionBase
     {
+        protected PageActionGroup CreatePageActionGroup()
+        {
+            var pageActionGroup = new PageActionGroup(GetID(), GetIndentation());
+
+            pageActionGroup.Properties.CaptionML.Set("ENU", Caption);
+            pageActionGroup.Properties.Description = Description;
+            pageActionGroup.Properties.Enabled = Enabled;
+            pageActionGroup.Properties.Image = Image;
+            pageActionGroup.Properties.Name = Name;
+            pageActionGroup.Properties.Visible = Visible;
+
+            return pageActionGroup;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreatePageActionGroup());
+
+            if (ChildActions != null)
+            {
+                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                WriteObject(ChildActions.InvokeWithContext(null, variables), true);
+            }
+        }
+
         [Parameter(Position = 1)]
         public string Caption
         {
@@ -52,31 +78,6 @@ namespace UncommonSense.CBreeze.Automation
         public string Visible
         {
             get; set;
-        }
-
-        protected PageActionGroup CreatePageActionGroup()
-        {
-            var pageActionGroup = new PageActionGroup(GetID(), GetIndentation());
-
-            pageActionGroup.Properties.CaptionML.Set("ENU", Caption);
-            pageActionGroup.Properties.Description = Description;
-            pageActionGroup.Properties.Enabled = Enabled;
-            pageActionGroup.Properties.Image = Image;
-            pageActionGroup.Properties.Name = Name;
-            pageActionGroup.Properties.Visible = Visible;
-
-            return pageActionGroup;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreatePageActionGroup());
-
-            if (ChildActions != null)
-            {
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-                WriteObject(ChildActions.InvokeWithContext(null, variables), true);
-            }
         }
     }
 }

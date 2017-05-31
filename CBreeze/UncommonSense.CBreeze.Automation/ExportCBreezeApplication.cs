@@ -13,6 +13,7 @@ using UncommonSense.CBreeze.Write;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsData.Export, "CBreezeApplication", DefaultParameterSetName = "ToTextWriter")]
+    [Alias("Export")]
     public class ExportCBreezeApplication : PSCmdlet
     {
         protected Application CachedObjects = new Application();

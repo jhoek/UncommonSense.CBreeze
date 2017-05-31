@@ -9,8 +9,29 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableKey")]
     [OutputType(typeof(TableKey))]
+    [Alias("Key")]
     public class NewCBreezeTableKey : Cmdlet
     {
+        protected TableKey CreateKey()
+        {
+            var tableKey = new TableKey(Fields);
+
+            tableKey.Enabled = Enabled;
+            tableKey.Properties.Clustered = Clustered;
+            tableKey.Properties.KeyGroups = KeyGroups;
+            tableKey.Properties.MaintainSIFTIndex = MaintainSIFTIndex;
+            tableKey.Properties.MaintainSQLIndex = MaintainSQLIndex;
+            tableKey.Properties.SQLIndex.AddRange(SQLIndex ?? new string[] { });
+            tableKey.Properties.SumIndexFields.AddRange(SumIndexFields ?? new string[] { });
+
+            return tableKey;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateKey());
+        }
+
         [Parameter()]
         public bool? Clustered
         {
@@ -66,26 +87,5 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-
-        protected TableKey CreateKey()
-        {
-            var tableKey = new TableKey(Fields);
-
-            tableKey.Enabled = Enabled;
-            tableKey.Properties.Clustered = Clustered;
-            tableKey.Properties.KeyGroups = KeyGroups;
-            tableKey.Properties.MaintainSIFTIndex = MaintainSIFTIndex;
-            tableKey.Properties.MaintainSQLIndex = MaintainSQLIndex;
-            tableKey.Properties.SQLIndex.AddRange(SQLIndex ?? new string[] { });
-            tableKey.Properties.SumIndexFields.AddRange(SumIndexFields ?? new string[] { });
-
-            return tableKey;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreateKey());
-        }
     }
 }
-

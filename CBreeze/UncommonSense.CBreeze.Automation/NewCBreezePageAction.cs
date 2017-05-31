@@ -10,6 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageAction")]
     [OutputType(typeof(PageAction))]
+    [Alias("Action")]
     public class NewCBreezePageAction : NewCBreezePageActionBase
     {
         [Parameter(Position = 1)]

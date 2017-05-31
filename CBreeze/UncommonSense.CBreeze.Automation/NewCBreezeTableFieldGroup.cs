@@ -9,12 +9,41 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableFieldGroup")]
     [OutputType(typeof(TableFieldGroup))]
+    [Alias("FieldGroup")]
     public class NewCBreezeTableFieldGroup : Cmdlet
     {
         public NewCBreezeTableFieldGroup()
         {
             ID = 1;
             Name = "DropDown";
+        }
+
+        protected TableFieldGroup CreateTableFieldGroup()
+        {
+            var tableFieldGroup = new TableFieldGroup(ID, Name);
+            tableFieldGroup.Properties.CaptionML.Set("ENU", Caption);
+            tableFieldGroup.Fields.AddRange(FieldNames);
+
+            return tableFieldGroup;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateTableFieldGroup());
+        }
+
+        [Parameter()]
+        public string Caption
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 2)]
+        public string[] FieldNames
+        {
+            get;
+            set;
         }
 
         [Parameter(Position = 0)]
@@ -31,34 +60,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get;
             set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        public string[] FieldNames
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public string Caption
-        {
-            get;
-            set;
-        }
-
-        protected TableFieldGroup CreateTableFieldGroup()
-        {
-            var tableFieldGroup = new TableFieldGroup(ID, Name);
-            tableFieldGroup.Properties.CaptionML.Set("ENU", Caption);
-            tableFieldGroup.Fields.AddRange(FieldNames);
-
-            return tableFieldGroup;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreateTableFieldGroup());
         }
     }
 }

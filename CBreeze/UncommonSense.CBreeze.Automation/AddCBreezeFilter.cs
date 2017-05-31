@@ -10,74 +10,22 @@ using UncommonSense.CBreeze.Write;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Add, "CBreezeFilter", DefaultParameterSetName = ConstParameterSetName)]
+    [Alias("Filter")]
     public class AddCBreezeFilter : Cmdlet
     {
         private const string ConstParameterSetName = "Const";
-        private const string FilterParameterSetName = "Filter";
         private const string FieldParameterSetName = "Field";
+        private const string FilterParameterSetName = "Filter";
 
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        protected void InvalidInputObject()
         {
-            get;
-            set;
+            throw new ArgumentOutOfRangeException("Cannot add a filter to this object.");
         }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public string FieldName
+        protected void PassThruInputObject(object inputObject)
         {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ConstParameterSetName)]
-        public SwitchParameter Const
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FilterParameterSetName)]
-        public SwitchParameter Filter
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FieldParameterSetName)]
-        public SwitchParameter Field
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        [AllowEmptyString]
-        public string Value
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter OnlyMaxLimit
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter ValueIsFilter
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter PassThru
-        {
-            get;
-            set;
+            if (PassThru)
+                WriteObject(inputObject);
         }
 
         protected override void ProcessRecord()
@@ -87,13 +35,13 @@ namespace UncommonSense.CBreeze.Automation
                 TypeSwitch.Case<CalcFormula>(i => i.TableFilter.Add(
                     new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value)
                     {
-                        OnlyMaxLimit = OnlyMaxLimit ,
-                        ValueIsFilter = ValueIsFilter 
+                        OnlyMaxLimit = OnlyMaxLimit,
+                        ValueIsFilter = ValueIsFilter
                     })),
                 TypeSwitch.Case<CalcFormulaTableFilter>(i => i.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value)
                 {
-                    OnlyMaxLimit = OnlyMaxLimit ,
-                    ValueIsFilter = ValueIsFilter 
+                    OnlyMaxLimit = OnlyMaxLimit,
+                    ValueIsFilter = ValueIsFilter
                 }
                 )),
                 TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageView.TableFilter.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
@@ -112,15 +60,81 @@ namespace UncommonSense.CBreeze.Automation
             PassThruInputObject(InputObject);
         }
 
-        protected void InvalidInputObject()
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ConstParameterSetName)]
+        public SwitchParameter Const
         {
-            throw new ArgumentOutOfRangeException("Cannot add a filter to this object.");
+            get;
+            set;
         }
 
-        protected void PassThruInputObject(object inputObject)
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FieldParameterSetName)]
+        public SwitchParameter Field
         {
-            if (PassThru)
-                WriteObject(inputObject);
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 0)]
+        public string FieldName
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FilterParameterSetName)]
+        public SwitchParameter Filter
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public PSObject InputObject
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter OnlyMaxLimit
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 2)]
+        [AllowEmptyString]
+        public string Value
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter ValueIsFilter
+        {
+            get;
+            set;
+        }
+
+        protected SimpleTableFilterType SimpleTableFilterType
+        {
+            get
+            {
+                if (Const.IsPresent)
+                    return SimpleTableFilterType.Const;
+                if (Filter.IsPresent)
+                    return Core.SimpleTableFilterType.Filter;
+
+                throw new ArgumentOutOfRangeException("SimpleTableFilterType");
+            }
         }
 
         protected TableFilterType TableFilterType
@@ -135,19 +149,6 @@ namespace UncommonSense.CBreeze.Automation
                     return Core.TableFilterType.Field;
 
                 throw new ArgumentOutOfRangeException("ExtendedTableFilterType");
-            }
-        }
-
-        protected SimpleTableFilterType SimpleTableFilterType
-        {
-            get
-            {
-                if (Const.IsPresent)
-                    return SimpleTableFilterType.Const;
-                if (Filter.IsPresent)
-                    return Core.SimpleTableFilterType.Filter;
-
-                throw new ArgumentOutOfRangeException("SimpleTableFilterType");
             }
         }
     }

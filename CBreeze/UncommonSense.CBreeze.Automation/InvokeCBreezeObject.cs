@@ -10,6 +10,7 @@ using UncommonSense.CBreeze.IO;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsLifecycle.Invoke, "CBreezeObject")]
+    [Alias("Invoke")]
     public class InvokeCBreezeObject : Cmdlet
     {
         public InvokeCBreezeObject()
@@ -19,74 +20,6 @@ namespace UncommonSense.CBreeze.Automation
             ServerPort = 7046;
             ServerInstance = "DynamicsNAV70";
             CompanyName = "CRONUS International Ltd.";
-        }
-
-        [Parameter(Mandatory = true,ValueFromPipeline=true, Position=0)]
-        public UncommonSense.CBreeze.Core.Object Object
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        public string RoleTailoredClientPath
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        public string ServerName
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        [ValidateRange(1, int.MaxValue)]
-        public int ServerPort
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        public string ServerInstance
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        public string CompanyName
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public PageMode PageMode
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter HideNavigationPane
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter FullScreen
-        {
-            get;
-            set;
         }
 
         protected override void ProcessRecord()
@@ -120,7 +53,74 @@ namespace UncommonSense.CBreeze.Automation
                 default:
                     throw new ApplicationException(string.Format("Don't know how to invoke an object of type {0}.", Object.Type));
             }
+        }
 
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        public string CompanyName
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter FullScreen
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter HideNavigationPane
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)]
+        public UncommonSense.CBreeze.Core.Object Object
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public PageMode PageMode
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        public string RoleTailoredClientPath
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        public string ServerInstance
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        public string ServerName
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        [ValidateRange(1, int.MaxValue)]
+        public int ServerPort
+        {
+            get;
+            set;
         }
     }
 }

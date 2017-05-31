@@ -10,20 +10,9 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageActionSeparator")]
     [OutputType(typeof(PageActionSeparator))]
+    [Alias("ActionSeparator")]
     public class NewCBreezePageActionSeparator : NewCBreezePageActionBase
     {
-        [Parameter()]
-        public string Caption
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? IsHeader
-        {
-            get; set;
-        }
-
         protected PageActionSeparator CreatePageActionSeparator()
         {
             var pageActionSeparator = new PageActionSeparator(GetID(), GetIndentation());
@@ -37,6 +26,18 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             WriteObject(CreatePageActionSeparator());
+        }
+
+        [Parameter()]
+        public string Caption
+        {
+            get; set;
+        }
+
+        [Parameter()]
+        public bool? IsHeader
+        {
+            get; set;
         }
     }
 }

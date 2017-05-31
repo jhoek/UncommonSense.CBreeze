@@ -10,6 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageControl")]
     [OutputType(typeof(PageControl))]
+    [Alias("Control")]
     public class NewCBreezePageControl : PSCmdletWithDynamicParams
     {
         public NewCBreezePageControl()

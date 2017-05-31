@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.IO;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet("Compile", "CBreezeApplication")]
+    [Alias("Compile")]
     public class CompileCBreezeApplication : Cmdlet
     {
         public CompileCBreezeApplication()

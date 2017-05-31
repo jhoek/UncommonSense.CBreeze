@@ -9,8 +9,14 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeOrderBy")]
     [OutputType(typeof(QueryOrderByLine))]
+    [Alias("OrderBy")]
     public class NewCBreezeOrderBy : Cmdlet
     {
+        protected override void ProcessRecord()
+        {
+            WriteObject(new QueryOrderByLine(Column, Direction));
+        }
+
         [Parameter(Mandatory = true, Position = 0)]
         public string Column
         {
@@ -23,11 +29,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get;
             set;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(new QueryOrderByLine(Column, Direction));
         }
     }
 }

@@ -9,25 +9,26 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeApplication")]
     [OutputType(typeof(Application))]
+    [Alias("Application")]
     public class NewCBreezeApplication : Cmdlet
     {
-        [Parameter(Position=0)]
-        public ScriptBlock Objects
-        {
-            get;
-            set;
-        }
-
         protected override void EndProcessing()
         {
             var application = new Application();
 
             if (Objects != null)
             {
-                application.Add(Objects.Invoke().Select(o=>o.BaseObject).Cast<Core.Object>());
+                application.Add(Objects.Invoke().Select(o => o.BaseObject).Cast<Core.Object>());
             }
 
-            WriteObject( application);
+            WriteObject(application);
+        }
+
+        [Parameter(Position = 0)]
+        public ScriptBlock Objects
+        {
+            get;
+            set;
         }
     }
 }
