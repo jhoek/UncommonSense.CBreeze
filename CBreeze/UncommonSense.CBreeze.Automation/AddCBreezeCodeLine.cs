@@ -7,11 +7,25 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeCodeLine")]
-    public class AddCBreezeCodeLine : Cmdlet
+    [Cmdlet(VerbsCommon.Add, "CBreezeCodeLine", DefaultParameterSetName = "NewWithoutID")]
+    [Alias("CodeLine")]
+    [OutputType(typeof(string))]
+    public class AddCBreezeCodeLine : NewItemCmdlet<string, PSObject>
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
+        protected override void AddItemToInputObject(string item, PSObject inputObject)
+        {
+            (InputObject.BaseObject as IHasCodeLines).CodeLines.Add(item);
+        }
+
+        protected override string CreateItem()
+        {
+            return ArgumentList == null ?
+                (Line ?? string.Empty) :
+                string.Format((Line ?? string.Empty), ArgumentList);
+        }
+
+        [Parameter(Position = 1)]
+        public object[] ArgumentList
         {
             get;
             set;
@@ -22,26 +36,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get;
             set;
-        }
-
-        [Parameter(Position = 1)]
-        public object[] ArgumentList
-        {
-            get;
-            set;
-        }
-
-        protected CodeLines GetCodeLines()
-        {
-            return (InputObject.BaseObject as IHasCodeLines).CodeLines;
-        }
-
-        protected override void ProcessRecord()
-        {
-            if (ArgumentList == null)
-                GetCodeLines().Add(Line ?? string.Empty);
-            else
-                GetCodeLines().Add(Line ?? string.Empty, ArgumentList);
         }
     }
 }
