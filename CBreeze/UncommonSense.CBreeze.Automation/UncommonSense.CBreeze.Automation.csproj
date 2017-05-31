@@ -69,6 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddCBreezeXmlPortNode.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewCBreezeVariable1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCBreezeVariable.tt</DependentUpon>
+    </Compile>
     <Compile Include="NewCBreezeXmlPortNode.cs" />
     <Compile Include="NewCBreezeReportLabel.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
@@ -188,6 +193,10 @@
     <Content Include="AddCBreezeXmlPortNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AddCBreezeXmlPortNode1.cs</LastGenOutput>
+    </Content>
+    <Content Include="NewCBreezeVariable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NewCBreezeVariable1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
