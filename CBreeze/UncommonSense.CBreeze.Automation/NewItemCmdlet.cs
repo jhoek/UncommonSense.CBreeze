@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class NewItemCmdlet<TItem, TID, TInputObject> : PSCmdlet
+    public abstract class NewItemCmdlet<TItem, TInputObject> : PSCmdlet
     {
         protected abstract void AddItemToInputObject(TItem item, TInputObject inputObject);
 
@@ -15,32 +15,33 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
+            var item = CreateItem();
+
             switch (ParameterSetName)
             {
                 case ParameterSetNames.NewWithoutID:
                 case ParameterSetNames.NewWithID:
-                    WriteObject(CreateItem());
+                    WriteVerbose($"Creating new item '{item}'");
+                    WriteObject(item);
                     break;
 
                 case ParameterSetNames.AddWithoutID:
                 case ParameterSetNames.AddWithID:
-                    var item = CreateItem();
+                    WriteVerbose($"Adding new item '{item}' to '{InputObject}'");
                     AddItemToInputObject(item, InputObject);
 
                     if (PassThru)
+                    {
+                        WriteVerbose("Passing through new item");
                         WriteObject(item);
+                    }
 
                     break;
             }
         }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithID)]
-        public TID ID { get; set; }
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        public TInputObject InputObject { get; set; }
+        public virtual TInputObject InputObject { get; set; }
 
         [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]

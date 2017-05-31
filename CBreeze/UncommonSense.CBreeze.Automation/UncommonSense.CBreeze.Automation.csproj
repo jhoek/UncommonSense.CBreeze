@@ -79,6 +79,7 @@
     <Compile Include="NewCBreezePageActionGroup.cs" />
     <Compile Include="NewCBreezePageActionSeparator.cs" />
     <Compile Include="NewItemCmdlet.cs" />
+    <Compile Include="NewItemWithIDCmdlet.cs" />
     <Compile Include="NewNamedItemCmdlet.cs" />
     <Compile Include="ParameterSetNames.cs" />
     <Compile Include="PSCmdletWithDynamicParams.cs" />
