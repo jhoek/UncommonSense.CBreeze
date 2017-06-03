@@ -100,10 +100,10 @@ foreach (var @type in types) {
 
 	relevantProperties = relevantProperties.OrderBy(p => p.Name);
 #>
-	[Cmdlet(VerbsCommon.Add, "CBreeze<#= @type.Name #>")]
+	[Cmdlet(VerbsCommon.New, "CBreeze<#= @type.Name #>")]
 	[OutputType(typeof(<#= @type.Name #>))]
 	[Alias("<#= @type.Name.Replace("XmlPort", "") #>")]
-	public class AddCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, Guid, PSObject>
+	public class NewCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, Guid, PSObject>
 	{
 		protected override <#=@type.Name#> CreateItem()
 		{
@@ -112,6 +112,8 @@ foreach (var @type in types) {
 <# foreach(var property in relevantProperties) { #>
 			<#= property.Assignment #>
 <# } #>
+
+			
 
 			return <#=variableName#>;
 		}
@@ -127,7 +129,10 @@ foreach (var @type in types) {
 			{
 				case ParameterSetNames.AddWithID:
 				case ParameterSetNames.AddWithoutID:
-					return null; // FIXME
+					if (InputObject.BaseObject is XmlPort) { return null; }
+					if (InputObject.BaseObject is XmlPortNodes) { return null; } 
+					if (InputObject.BaseObject is XmlPortNode) { return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1; };
+	                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
@@ -143,6 +148,11 @@ foreach (var @type in types) {
 		public <#= GetFullTypeName(property.Type) #> <#= property.Name #> { get; set; }
 
 <# } #>
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+		public ScriptBlock ChildNodes { get; set; }
 	}
 
 <# } #>

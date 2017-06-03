@@ -69,10 +69,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddCBreezeTableField.tt</DependentUpon>
     </Compile>
-    <Compile Include="AddCBreezeXmlPortNode1.cs">
+    <Compile Include="NewCBreezeXmlPortNode1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AddCBreezeXmlPortNode.tt</DependentUpon>
+      <DependentUpon>NewCBreezeXmlPortNode.tt</DependentUpon>
     </Compile>
     <Compile Include="NewCBreezeVariable1.cs">
       <AutoGen>True</AutoGen>
@@ -140,7 +140,6 @@
     <Compile Include="SetCBreezeXmlPortNamespace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NewCBreezeMenuSuiteNode.Tests.ps1" />
     <None Include="NewCBreezeParameter.Tests.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -197,9 +196,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AddCBreezeTableField1.cs</LastGenOutput>
     </Content>
-    <Content Include="AddCBreezeXmlPortNode.tt">
+    <Content Include="NewCBreezeXmlPortNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AddCBreezeXmlPortNode1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeXmlPortNode1.cs</LastGenOutput>
     </Content>
     <Content Include="NewCBreezeVariable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
