@@ -75,11 +75,22 @@ namespace UncommonSense.CBreeze.Automation
             return obj;
         }
 
-        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
             foreach (var item in items)
             {
                 action(item);
+                yield return item;
+            }
+        }
+
+        public static IEnumerable<T> ForEachIf<T>(this IEnumerable<T> items, Func<T, bool> condition, Action<T> action)
+        {
+            foreach (var item in items)
+            {
+                if (condition(item))
+                    action(item);
+                yield return item;
             }
         }
 

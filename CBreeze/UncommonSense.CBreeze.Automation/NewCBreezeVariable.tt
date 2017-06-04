@@ -32,6 +32,7 @@
 using System;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
+using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Automation 
 {
@@ -54,7 +55,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("<#= @type.Name #>")]
 	public class NewBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=type.Name#>, int, PSObject>
 	{
-		protected override <#=@type.Name#> CreateItem()
+		protected override IEnumerable<<#=@type.Name#>> CreateItems()
 		{
 <# var arguments = new List<string>();
 arguments.Add("ID");
@@ -66,7 +67,7 @@ if (hasDataLength) { arguments.Add("DataLength"); }
 <# foreach(var property in relevantProperties.Where(p => p.Name != "SubType").Where(p => p.Name != "DataLength")) { #>
 			<#= variableName #>.<#= property.Name #> = <#= property.Name #>;
 <# } #>
-			return <#= variableName #>;
+			yield return <#= variableName #>;
 		}
 
 		protected override void AddItemToInputObject(<#=@type.Name#> item, PSObject inputObject)

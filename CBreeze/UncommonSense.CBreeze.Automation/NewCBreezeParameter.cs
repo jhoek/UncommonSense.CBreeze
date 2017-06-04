@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
 
@@ -9,11 +10,11 @@ namespace UncommonSense.CBreeze.Automation
 [Alias("ActionParameter")]
 public class NewCBreezeActionParameter : NewNamedItemCmdlet<ActionParameter, int, PSObject>
 {
-	protected override ActionParameter CreateItem()
+	protected override IEnumerable<ActionParameter> CreateItems()
 	{
 		var actionParameter = new ActionParameter(Name, Var, ID);
 		actionParameter.Dimensions = Dimensions;
-		return actionParameter;
+		yield return actionParameter;
 	}
 
 	protected override void AddItemToInputObject(ActionParameter item, PSObject inputObject)
@@ -34,11 +35,11 @@ public class NewCBreezeActionParameter : NewNamedItemCmdlet<ActionParameter, int
 [Alias("AutomationParameter")]
 public class NewCBreezeAutomationParameter : NewNamedItemCmdlet<AutomationParameter, int, PSObject>
 {
-	protected override AutomationParameter CreateItem()
+	protected override IEnumerable<AutomationParameter> CreateItems()
 	{
 		var automationParameter = new AutomationParameter(Name, SubType, Var, ID);
 		automationParameter.Dimensions = Dimensions;
-		return automationParameter;
+		yield return automationParameter;
 	}
 
 	protected override void AddItemToInputObject(AutomationParameter item, PSObject inputObject)
@@ -62,11 +63,11 @@ public class NewCBreezeAutomationParameter : NewNamedItemCmdlet<AutomationParame
 [Alias("BigIntegerParameter")]
 public class NewCBreezeBigIntegerParameter : NewNamedItemCmdlet<BigIntegerParameter, int, PSObject>
 {
-	protected override BigIntegerParameter CreateItem()
+	protected override IEnumerable<BigIntegerParameter> CreateItems()
 	{
 		var bigIntegerParameter = new BigIntegerParameter(Name, Var, ID);
 		bigIntegerParameter.Dimensions = Dimensions;
-		return bigIntegerParameter;
+		yield return bigIntegerParameter;
 	}
 
 	protected override void AddItemToInputObject(BigIntegerParameter item, PSObject inputObject)
@@ -87,11 +88,11 @@ public class NewCBreezeBigIntegerParameter : NewNamedItemCmdlet<BigIntegerParame
 [Alias("BigTextParameter")]
 public class NewCBreezeBigTextParameter : NewNamedItemCmdlet<BigTextParameter, int, PSObject>
 {
-	protected override BigTextParameter CreateItem()
+	protected override IEnumerable<BigTextParameter> CreateItems()
 	{
 		var bigTextParameter = new BigTextParameter(Name, Var, ID);
 		bigTextParameter.Dimensions = Dimensions;
-		return bigTextParameter;
+		yield return bigTextParameter;
 	}
 
 	protected override void AddItemToInputObject(BigTextParameter item, PSObject inputObject)
@@ -112,11 +113,11 @@ public class NewCBreezeBigTextParameter : NewNamedItemCmdlet<BigTextParameter, i
 [Alias("BinaryParameter")]
 public class NewCBreezeBinaryParameter : NewNamedItemCmdlet<BinaryParameter, int, PSObject>
 {
-	protected override BinaryParameter CreateItem()
+	protected override IEnumerable<BinaryParameter> CreateItems()
 	{
 		var binaryParameter = new BinaryParameter(Name, Var, ID, DataLength);
 		binaryParameter.Dimensions = Dimensions;
-		return binaryParameter;
+		yield return binaryParameter;
 	}
 
 	protected override void AddItemToInputObject(BinaryParameter item, PSObject inputObject)
@@ -140,11 +141,11 @@ public class NewCBreezeBinaryParameter : NewNamedItemCmdlet<BinaryParameter, int
 [Alias("BooleanParameter")]
 public class NewCBreezeBooleanParameter : NewNamedItemCmdlet<BooleanParameter, int, PSObject>
 {
-	protected override BooleanParameter CreateItem()
+	protected override IEnumerable<BooleanParameter> CreateItems()
 	{
 		var booleanParameter = new BooleanParameter(Name, Var, ID);
 		booleanParameter.Dimensions = Dimensions;
-		return booleanParameter;
+		yield return booleanParameter;
 	}
 
 	protected override void AddItemToInputObject(BooleanParameter item, PSObject inputObject)
@@ -165,11 +166,11 @@ public class NewCBreezeBooleanParameter : NewNamedItemCmdlet<BooleanParameter, i
 [Alias("ByteParameter")]
 public class NewCBreezeByteParameter : NewNamedItemCmdlet<ByteParameter, int, PSObject>
 {
-	protected override ByteParameter CreateItem()
+	protected override IEnumerable<ByteParameter> CreateItems()
 	{
 		var byteParameter = new ByteParameter(Name, Var, ID);
 		byteParameter.Dimensions = Dimensions;
-		return byteParameter;
+		yield return byteParameter;
 	}
 
 	protected override void AddItemToInputObject(ByteParameter item, PSObject inputObject)
@@ -190,11 +191,11 @@ public class NewCBreezeByteParameter : NewNamedItemCmdlet<ByteParameter, int, PS
 [Alias("CharParameter")]
 public class NewCBreezeCharParameter : NewNamedItemCmdlet<CharParameter, int, PSObject>
 {
-	protected override CharParameter CreateItem()
+	protected override IEnumerable<CharParameter> CreateItems()
 	{
 		var charParameter = new CharParameter(Name, Var, ID);
 		charParameter.Dimensions = Dimensions;
-		return charParameter;
+		yield return charParameter;
 	}
 
 	protected override void AddItemToInputObject(CharParameter item, PSObject inputObject)
@@ -215,11 +216,11 @@ public class NewCBreezeCharParameter : NewNamedItemCmdlet<CharParameter, int, PS
 [Alias("FilterPageBuilderParameter")]
 public class NewCBreezeFilterPageBuilderParameter : NewNamedItemCmdlet<FilterPageBuilderParameter, int, PSObject>
 {
-	protected override FilterPageBuilderParameter CreateItem()
+	protected override IEnumerable<FilterPageBuilderParameter> CreateItems()
 	{
 		var filterPageBuilderParameter = new FilterPageBuilderParameter(Name, Var, ID);
 		filterPageBuilderParameter.Dimensions = Dimensions;
-		return filterPageBuilderParameter;
+		yield return filterPageBuilderParameter;
 	}
 
 	protected override void AddItemToInputObject(FilterPageBuilderParameter item, PSObject inputObject)
@@ -240,11 +241,11 @@ public class NewCBreezeFilterPageBuilderParameter : NewNamedItemCmdlet<FilterPag
 [Alias("CodeParameter")]
 public class NewCBreezeCodeParameter : NewNamedItemCmdlet<CodeParameter, int, PSObject>
 {
-	protected override CodeParameter CreateItem()
+	protected override IEnumerable<CodeParameter> CreateItems()
 	{
 		var codeParameter = new CodeParameter(Name, Var, ID, DataLength);
 		codeParameter.Dimensions = Dimensions;
-		return codeParameter;
+		yield return codeParameter;
 	}
 
 	protected override void AddItemToInputObject(CodeParameter item, PSObject inputObject)
@@ -268,11 +269,11 @@ public class NewCBreezeCodeParameter : NewNamedItemCmdlet<CodeParameter, int, PS
 [Alias("CodeunitParameter")]
 public class NewCBreezeCodeunitParameter : NewNamedItemCmdlet<CodeunitParameter, int, PSObject>
 {
-	protected override CodeunitParameter CreateItem()
+	protected override IEnumerable<CodeunitParameter> CreateItems()
 	{
 		var codeunitParameter = new CodeunitParameter(Name, SubType, Var, ID);
 		codeunitParameter.Dimensions = Dimensions;
-		return codeunitParameter;
+		yield return codeunitParameter;
 	}
 
 	protected override void AddItemToInputObject(CodeunitParameter item, PSObject inputObject)
@@ -297,11 +298,11 @@ public class NewCBreezeCodeunitParameter : NewNamedItemCmdlet<CodeunitParameter,
 [Alias("DateFormulaParameter")]
 public class NewCBreezeDateFormulaParameter : NewNamedItemCmdlet<DateFormulaParameter, int, PSObject>
 {
-	protected override DateFormulaParameter CreateItem()
+	protected override IEnumerable<DateFormulaParameter> CreateItems()
 	{
 		var dateFormulaParameter = new DateFormulaParameter(Name, Var, ID);
 		dateFormulaParameter.Dimensions = Dimensions;
-		return dateFormulaParameter;
+		yield return dateFormulaParameter;
 	}
 
 	protected override void AddItemToInputObject(DateFormulaParameter item, PSObject inputObject)
@@ -322,11 +323,11 @@ public class NewCBreezeDateFormulaParameter : NewNamedItemCmdlet<DateFormulaPara
 [Alias("DateParameter")]
 public class NewCBreezeDateParameter : NewNamedItemCmdlet<DateParameter, int, PSObject>
 {
-	protected override DateParameter CreateItem()
+	protected override IEnumerable<DateParameter> CreateItems()
 	{
 		var dateParameter = new DateParameter(Name, Var, ID);
 		dateParameter.Dimensions = Dimensions;
-		return dateParameter;
+		yield return dateParameter;
 	}
 
 	protected override void AddItemToInputObject(DateParameter item, PSObject inputObject)
@@ -347,11 +348,11 @@ public class NewCBreezeDateParameter : NewNamedItemCmdlet<DateParameter, int, PS
 [Alias("DateTimeParameter")]
 public class NewCBreezeDateTimeParameter : NewNamedItemCmdlet<DateTimeParameter, int, PSObject>
 {
-	protected override DateTimeParameter CreateItem()
+	protected override IEnumerable<DateTimeParameter> CreateItems()
 	{
 		var dateTimeParameter = new DateTimeParameter(Name, Var, ID);
 		dateTimeParameter.Dimensions = Dimensions;
-		return dateTimeParameter;
+		yield return dateTimeParameter;
 	}
 
 	protected override void AddItemToInputObject(DateTimeParameter item, PSObject inputObject)
@@ -372,11 +373,11 @@ public class NewCBreezeDateTimeParameter : NewNamedItemCmdlet<DateTimeParameter,
 [Alias("DecimalParameter")]
 public class NewCBreezeDecimalParameter : NewNamedItemCmdlet<DecimalParameter, int, PSObject>
 {
-	protected override DecimalParameter CreateItem()
+	protected override IEnumerable<DecimalParameter> CreateItems()
 	{
 		var decimalParameter = new DecimalParameter(Name, Var, ID);
 		decimalParameter.Dimensions = Dimensions;
-		return decimalParameter;
+		yield return decimalParameter;
 	}
 
 	protected override void AddItemToInputObject(DecimalParameter item, PSObject inputObject)
@@ -397,11 +398,11 @@ public class NewCBreezeDecimalParameter : NewNamedItemCmdlet<DecimalParameter, i
 [Alias("DialogParameter")]
 public class NewCBreezeDialogParameter : NewNamedItemCmdlet<DialogParameter, int, PSObject>
 {
-	protected override DialogParameter CreateItem()
+	protected override IEnumerable<DialogParameter> CreateItems()
 	{
 		var dialogParameter = new DialogParameter(Name, Var, ID);
 		dialogParameter.Dimensions = Dimensions;
-		return dialogParameter;
+		yield return dialogParameter;
 	}
 
 	protected override void AddItemToInputObject(DialogParameter item, PSObject inputObject)
@@ -422,11 +423,11 @@ public class NewCBreezeDialogParameter : NewNamedItemCmdlet<DialogParameter, int
 [Alias("DotNetParameter")]
 public class NewCBreezeDotNetParameter : NewNamedItemCmdlet<DotNetParameter, int, PSObject>
 {
-	protected override DotNetParameter CreateItem()
+	protected override IEnumerable<DotNetParameter> CreateItems()
 	{
 		var dotNetParameter = new DotNetParameter(Name, SubType, Var, ID);
 		dotNetParameter.Dimensions = Dimensions;
-		dotNetParameter.RunOnClient = RunOnClient; 		dotNetParameter.SuppressDispose = SuppressDispose; 		return dotNetParameter;
+		dotNetParameter.RunOnClient = RunOnClient; 		dotNetParameter.SuppressDispose = SuppressDispose; 		yield return dotNetParameter;
 	}
 
 	protected override void AddItemToInputObject(DotNetParameter item, PSObject inputObject)
@@ -456,11 +457,11 @@ public class NewCBreezeDotNetParameter : NewNamedItemCmdlet<DotNetParameter, int
 [Alias("DurationParameter")]
 public class NewCBreezeDurationParameter : NewNamedItemCmdlet<DurationParameter, int, PSObject>
 {
-	protected override DurationParameter CreateItem()
+	protected override IEnumerable<DurationParameter> CreateItems()
 	{
 		var durationParameter = new DurationParameter(Name, Var, ID);
 		durationParameter.Dimensions = Dimensions;
-		return durationParameter;
+		yield return durationParameter;
 	}
 
 	protected override void AddItemToInputObject(DurationParameter item, PSObject inputObject)
@@ -481,11 +482,11 @@ public class NewCBreezeDurationParameter : NewNamedItemCmdlet<DurationParameter,
 [Alias("ExecutionModeParameter")]
 public class NewCBreezeExecutionModeParameter : NewNamedItemCmdlet<ExecutionModeParameter, int, PSObject>
 {
-	protected override ExecutionModeParameter CreateItem()
+	protected override IEnumerable<ExecutionModeParameter> CreateItems()
 	{
 		var executionModeParameter = new ExecutionModeParameter(Name, Var, ID);
 		executionModeParameter.Dimensions = Dimensions;
-		return executionModeParameter;
+		yield return executionModeParameter;
 	}
 
 	protected override void AddItemToInputObject(ExecutionModeParameter item, PSObject inputObject)
@@ -506,11 +507,11 @@ public class NewCBreezeExecutionModeParameter : NewNamedItemCmdlet<ExecutionMode
 [Alias("FieldRefParameter")]
 public class NewCBreezeFieldRefParameter : NewNamedItemCmdlet<FieldRefParameter, int, PSObject>
 {
-	protected override FieldRefParameter CreateItem()
+	protected override IEnumerable<FieldRefParameter> CreateItems()
 	{
 		var fieldRefParameter = new FieldRefParameter(Name, Var, ID);
 		fieldRefParameter.Dimensions = Dimensions;
-		return fieldRefParameter;
+		yield return fieldRefParameter;
 	}
 
 	protected override void AddItemToInputObject(FieldRefParameter item, PSObject inputObject)
@@ -531,11 +532,11 @@ public class NewCBreezeFieldRefParameter : NewNamedItemCmdlet<FieldRefParameter,
 [Alias("FileParameter")]
 public class NewCBreezeFileParameter : NewNamedItemCmdlet<FileParameter, int, PSObject>
 {
-	protected override FileParameter CreateItem()
+	protected override IEnumerable<FileParameter> CreateItems()
 	{
 		var fileParameter = new FileParameter(Name, Var, ID);
 		fileParameter.Dimensions = Dimensions;
-		return fileParameter;
+		yield return fileParameter;
 	}
 
 	protected override void AddItemToInputObject(FileParameter item, PSObject inputObject)
@@ -556,11 +557,11 @@ public class NewCBreezeFileParameter : NewNamedItemCmdlet<FileParameter, int, PS
 [Alias("ReportFormatParameter")]
 public class NewCBreezeReportFormatParameter : NewNamedItemCmdlet<ReportFormatParameter, int, PSObject>
 {
-	protected override ReportFormatParameter CreateItem()
+	protected override IEnumerable<ReportFormatParameter> CreateItems()
 	{
 		var reportFormatParameter = new ReportFormatParameter(Name, Var, ID);
 		reportFormatParameter.Dimensions = Dimensions;
-		return reportFormatParameter;
+		yield return reportFormatParameter;
 	}
 
 	protected override void AddItemToInputObject(ReportFormatParameter item, PSObject inputObject)
@@ -581,11 +582,11 @@ public class NewCBreezeReportFormatParameter : NewNamedItemCmdlet<ReportFormatPa
 [Alias("TableConnectionTypeParameter")]
 public class NewCBreezeTableConnectionTypeParameter : NewNamedItemCmdlet<TableConnectionTypeParameter, int, PSObject>
 {
-	protected override TableConnectionTypeParameter CreateItem()
+	protected override IEnumerable<TableConnectionTypeParameter> CreateItems()
 	{
 		var tableConnectionTypeParameter = new TableConnectionTypeParameter(Name, Var, ID);
 		tableConnectionTypeParameter.Dimensions = Dimensions;
-		return tableConnectionTypeParameter;
+		yield return tableConnectionTypeParameter;
 	}
 
 	protected override void AddItemToInputObject(TableConnectionTypeParameter item, PSObject inputObject)
@@ -606,11 +607,11 @@ public class NewCBreezeTableConnectionTypeParameter : NewNamedItemCmdlet<TableCo
 [Alias("GuidParameter")]
 public class NewCBreezeGuidParameter : NewNamedItemCmdlet<GuidParameter, int, PSObject>
 {
-	protected override GuidParameter CreateItem()
+	protected override IEnumerable<GuidParameter> CreateItems()
 	{
 		var guidParameter = new GuidParameter(Name, Var, ID);
 		guidParameter.Dimensions = Dimensions;
-		return guidParameter;
+		yield return guidParameter;
 	}
 
 	protected override void AddItemToInputObject(GuidParameter item, PSObject inputObject)
@@ -631,11 +632,11 @@ public class NewCBreezeGuidParameter : NewNamedItemCmdlet<GuidParameter, int, PS
 [Alias("InStreamParameter")]
 public class NewCBreezeInStreamParameter : NewNamedItemCmdlet<InStreamParameter, int, PSObject>
 {
-	protected override InStreamParameter CreateItem()
+	protected override IEnumerable<InStreamParameter> CreateItems()
 	{
 		var inStreamParameter = new InStreamParameter(Name, Var, ID);
 		inStreamParameter.Dimensions = Dimensions;
-		return inStreamParameter;
+		yield return inStreamParameter;
 	}
 
 	protected override void AddItemToInputObject(InStreamParameter item, PSObject inputObject)
@@ -656,11 +657,11 @@ public class NewCBreezeInStreamParameter : NewNamedItemCmdlet<InStreamParameter,
 [Alias("IntegerParameter")]
 public class NewCBreezeIntegerParameter : NewNamedItemCmdlet<IntegerParameter, int, PSObject>
 {
-	protected override IntegerParameter CreateItem()
+	protected override IEnumerable<IntegerParameter> CreateItems()
 	{
 		var integerParameter = new IntegerParameter(Name, Var, ID);
 		integerParameter.Dimensions = Dimensions;
-		return integerParameter;
+		yield return integerParameter;
 	}
 
 	protected override void AddItemToInputObject(IntegerParameter item, PSObject inputObject)
@@ -681,11 +682,11 @@ public class NewCBreezeIntegerParameter : NewNamedItemCmdlet<IntegerParameter, i
 [Alias("KeyRefParameter")]
 public class NewCBreezeKeyRefParameter : NewNamedItemCmdlet<KeyRefParameter, int, PSObject>
 {
-	protected override KeyRefParameter CreateItem()
+	protected override IEnumerable<KeyRefParameter> CreateItems()
 	{
 		var keyRefParameter = new KeyRefParameter(Name, Var, ID);
 		keyRefParameter.Dimensions = Dimensions;
-		return keyRefParameter;
+		yield return keyRefParameter;
 	}
 
 	protected override void AddItemToInputObject(KeyRefParameter item, PSObject inputObject)
@@ -706,11 +707,11 @@ public class NewCBreezeKeyRefParameter : NewNamedItemCmdlet<KeyRefParameter, int
 [Alias("OcxParameter")]
 public class NewCBreezeOcxParameter : NewNamedItemCmdlet<OcxParameter, int, PSObject>
 {
-	protected override OcxParameter CreateItem()
+	protected override IEnumerable<OcxParameter> CreateItems()
 	{
 		var ocxParameter = new OcxParameter(Name, SubType, Var, ID);
 		ocxParameter.Dimensions = Dimensions;
-		return ocxParameter;
+		yield return ocxParameter;
 	}
 
 	protected override void AddItemToInputObject(OcxParameter item, PSObject inputObject)
@@ -734,11 +735,11 @@ public class NewCBreezeOcxParameter : NewNamedItemCmdlet<OcxParameter, int, PSOb
 [Alias("OptionParameter")]
 public class NewCBreezeOptionParameter : NewNamedItemCmdlet<OptionParameter, int, PSObject>
 {
-	protected override OptionParameter CreateItem()
+	protected override IEnumerable<OptionParameter> CreateItems()
 	{
 		var optionParameter = new OptionParameter(Name, Var, ID);
 		optionParameter.Dimensions = Dimensions;
-		optionParameter.OptionString = OptionString; 		return optionParameter;
+		optionParameter.OptionString = OptionString; 		yield return optionParameter;
 	}
 
 	protected override void AddItemToInputObject(OptionParameter item, PSObject inputObject)
@@ -762,11 +763,11 @@ public class NewCBreezeOptionParameter : NewNamedItemCmdlet<OptionParameter, int
 [Alias("OutStreamParameter")]
 public class NewCBreezeOutStreamParameter : NewNamedItemCmdlet<OutStreamParameter, int, PSObject>
 {
-	protected override OutStreamParameter CreateItem()
+	protected override IEnumerable<OutStreamParameter> CreateItems()
 	{
 		var outStreamParameter = new OutStreamParameter(Name, Var, ID);
 		outStreamParameter.Dimensions = Dimensions;
-		return outStreamParameter;
+		yield return outStreamParameter;
 	}
 
 	protected override void AddItemToInputObject(OutStreamParameter item, PSObject inputObject)
@@ -787,11 +788,11 @@ public class NewCBreezeOutStreamParameter : NewNamedItemCmdlet<OutStreamParamete
 [Alias("PageParameter")]
 public class NewCBreezePageParameter : NewNamedItemCmdlet<PageParameter, int, PSObject>
 {
-	protected override PageParameter CreateItem()
+	protected override IEnumerable<PageParameter> CreateItems()
 	{
 		var pageParameter = new PageParameter(Name, SubType, Var, ID);
 		pageParameter.Dimensions = Dimensions;
-		return pageParameter;
+		yield return pageParameter;
 	}
 
 	protected override void AddItemToInputObject(PageParameter item, PSObject inputObject)
@@ -816,11 +817,11 @@ public class NewCBreezePageParameter : NewNamedItemCmdlet<PageParameter, int, PS
 [Alias("QueryParameter")]
 public class NewCBreezeQueryParameter : NewNamedItemCmdlet<QueryParameter, int, PSObject>
 {
-	protected override QueryParameter CreateItem()
+	protected override IEnumerable<QueryParameter> CreateItems()
 	{
 		var queryParameter = new QueryParameter(Name, SubType, Var, ID);
 		queryParameter.Dimensions = Dimensions;
-		queryParameter.SecurityFiltering = SecurityFiltering; 		return queryParameter;
+		queryParameter.SecurityFiltering = SecurityFiltering; 		yield return queryParameter;
 	}
 
 	protected override void AddItemToInputObject(QueryParameter item, PSObject inputObject)
@@ -848,11 +849,11 @@ public class NewCBreezeQueryParameter : NewNamedItemCmdlet<QueryParameter, int, 
 [Alias("RecordIDParameter")]
 public class NewCBreezeRecordIDParameter : NewNamedItemCmdlet<RecordIDParameter, int, PSObject>
 {
-	protected override RecordIDParameter CreateItem()
+	protected override IEnumerable<RecordIDParameter> CreateItems()
 	{
 		var recordIDParameter = new RecordIDParameter(Name, Var, ID);
 		recordIDParameter.Dimensions = Dimensions;
-		return recordIDParameter;
+		yield return recordIDParameter;
 	}
 
 	protected override void AddItemToInputObject(RecordIDParameter item, PSObject inputObject)
@@ -873,11 +874,11 @@ public class NewCBreezeRecordIDParameter : NewNamedItemCmdlet<RecordIDParameter,
 [Alias("RecordParameter")]
 public class NewCBreezeRecordParameter : NewNamedItemCmdlet<RecordParameter, int, PSObject>
 {
-	protected override RecordParameter CreateItem()
+	protected override IEnumerable<RecordParameter> CreateItems()
 	{
 		var recordParameter = new RecordParameter(Name, SubType, Var, ID);
 		recordParameter.Dimensions = Dimensions;
-		recordParameter.SecurityFiltering = SecurityFiltering; 		recordParameter.Temporary = Temporary; 		return recordParameter;
+		recordParameter.SecurityFiltering = SecurityFiltering; 		recordParameter.Temporary = Temporary; 		yield return recordParameter;
 	}
 
 	protected override void AddItemToInputObject(RecordParameter item, PSObject inputObject)
@@ -908,11 +909,11 @@ public class NewCBreezeRecordParameter : NewNamedItemCmdlet<RecordParameter, int
 [Alias("RecordRefParameter")]
 public class NewCBreezeRecordRefParameter : NewNamedItemCmdlet<RecordRefParameter, int, PSObject>
 {
-	protected override RecordRefParameter CreateItem()
+	protected override IEnumerable<RecordRefParameter> CreateItems()
 	{
 		var recordRefParameter = new RecordRefParameter(Name, Var, ID);
 		recordRefParameter.Dimensions = Dimensions;
-		recordRefParameter.SecurityFiltering = SecurityFiltering; 		return recordRefParameter;
+		recordRefParameter.SecurityFiltering = SecurityFiltering; 		yield return recordRefParameter;
 	}
 
 	protected override void AddItemToInputObject(RecordRefParameter item, PSObject inputObject)
@@ -936,11 +937,11 @@ public class NewCBreezeRecordRefParameter : NewNamedItemCmdlet<RecordRefParamete
 [Alias("ReportParameter")]
 public class NewCBreezeReportParameter : NewNamedItemCmdlet<ReportParameter, int, PSObject>
 {
-	protected override ReportParameter CreateItem()
+	protected override IEnumerable<ReportParameter> CreateItems()
 	{
 		var reportParameter = new ReportParameter(Name, SubType, Var, ID);
 		reportParameter.Dimensions = Dimensions;
-		return reportParameter;
+		yield return reportParameter;
 	}
 
 	protected override void AddItemToInputObject(ReportParameter item, PSObject inputObject)
@@ -965,11 +966,11 @@ public class NewCBreezeReportParameter : NewNamedItemCmdlet<ReportParameter, int
 [Alias("TestPageParameter")]
 public class NewCBreezeTestPageParameter : NewNamedItemCmdlet<TestPageParameter, int, PSObject>
 {
-	protected override TestPageParameter CreateItem()
+	protected override IEnumerable<TestPageParameter> CreateItems()
 	{
 		var testPageParameter = new TestPageParameter(Name, SubType, Var, ID);
 		testPageParameter.Dimensions = Dimensions;
-		return testPageParameter;
+		yield return testPageParameter;
 	}
 
 	protected override void AddItemToInputObject(TestPageParameter item, PSObject inputObject)
@@ -994,11 +995,11 @@ public class NewCBreezeTestPageParameter : NewNamedItemCmdlet<TestPageParameter,
 [Alias("TestRequestPageParameter")]
 public class NewCBreezeTestRequestPageParameter : NewNamedItemCmdlet<TestRequestPageParameter, int, PSObject>
 {
-	protected override TestRequestPageParameter CreateItem()
+	protected override IEnumerable<TestRequestPageParameter> CreateItems()
 	{
 		var testRequestPageParameter = new TestRequestPageParameter(Name, SubType, Var, ID);
 		testRequestPageParameter.Dimensions = Dimensions;
-		return testRequestPageParameter;
+		yield return testRequestPageParameter;
 	}
 
 	protected override void AddItemToInputObject(TestRequestPageParameter item, PSObject inputObject)
@@ -1023,11 +1024,11 @@ public class NewCBreezeTestRequestPageParameter : NewNamedItemCmdlet<TestRequest
 [Alias("TextEncodingParameter")]
 public class NewCBreezeTextEncodingParameter : NewNamedItemCmdlet<TextEncodingParameter, int, PSObject>
 {
-	protected override TextEncodingParameter CreateItem()
+	protected override IEnumerable<TextEncodingParameter> CreateItems()
 	{
 		var textEncodingParameter = new TextEncodingParameter(Name, Var, ID);
 		textEncodingParameter.Dimensions = Dimensions;
-		return textEncodingParameter;
+		yield return textEncodingParameter;
 	}
 
 	protected override void AddItemToInputObject(TextEncodingParameter item, PSObject inputObject)
@@ -1048,11 +1049,11 @@ public class NewCBreezeTextEncodingParameter : NewNamedItemCmdlet<TextEncodingPa
 [Alias("TextParameter")]
 public class NewCBreezeTextParameter : NewNamedItemCmdlet<TextParameter, int, PSObject>
 {
-	protected override TextParameter CreateItem()
+	protected override IEnumerable<TextParameter> CreateItems()
 	{
 		var textParameter = new TextParameter(Name, Var, ID, DataLength);
 		textParameter.Dimensions = Dimensions;
-		return textParameter;
+		yield return textParameter;
 	}
 
 	protected override void AddItemToInputObject(TextParameter item, PSObject inputObject)
@@ -1076,11 +1077,11 @@ public class NewCBreezeTextParameter : NewNamedItemCmdlet<TextParameter, int, PS
 [Alias("TimeParameter")]
 public class NewCBreezeTimeParameter : NewNamedItemCmdlet<TimeParameter, int, PSObject>
 {
-	protected override TimeParameter CreateItem()
+	protected override IEnumerable<TimeParameter> CreateItems()
 	{
 		var timeParameter = new TimeParameter(Name, Var, ID);
 		timeParameter.Dimensions = Dimensions;
-		return timeParameter;
+		yield return timeParameter;
 	}
 
 	protected override void AddItemToInputObject(TimeParameter item, PSObject inputObject)
@@ -1101,11 +1102,11 @@ public class NewCBreezeTimeParameter : NewNamedItemCmdlet<TimeParameter, int, PS
 [Alias("TransactionTypeParameter")]
 public class NewCBreezeTransactionTypeParameter : NewNamedItemCmdlet<TransactionTypeParameter, int, PSObject>
 {
-	protected override TransactionTypeParameter CreateItem()
+	protected override IEnumerable<TransactionTypeParameter> CreateItems()
 	{
 		var transactionTypeParameter = new TransactionTypeParameter(Name, Var, ID);
 		transactionTypeParameter.Dimensions = Dimensions;
-		return transactionTypeParameter;
+		yield return transactionTypeParameter;
 	}
 
 	protected override void AddItemToInputObject(TransactionTypeParameter item, PSObject inputObject)
@@ -1126,11 +1127,11 @@ public class NewCBreezeTransactionTypeParameter : NewNamedItemCmdlet<Transaction
 [Alias("VariantParameter")]
 public class NewCBreezeVariantParameter : NewNamedItemCmdlet<VariantParameter, int, PSObject>
 {
-	protected override VariantParameter CreateItem()
+	protected override IEnumerable<VariantParameter> CreateItems()
 	{
 		var variantParameter = new VariantParameter(Name, Var, ID);
 		variantParameter.Dimensions = Dimensions;
-		return variantParameter;
+		yield return variantParameter;
 	}
 
 	protected override void AddItemToInputObject(VariantParameter item, PSObject inputObject)
@@ -1151,11 +1152,11 @@ public class NewCBreezeVariantParameter : NewNamedItemCmdlet<VariantParameter, i
 [Alias("XmlPortParameter")]
 public class NewCBreezeXmlPortParameter : NewNamedItemCmdlet<XmlPortParameter, int, PSObject>
 {
-	protected override XmlPortParameter CreateItem()
+	protected override IEnumerable<XmlPortParameter> CreateItems()
 	{
 		var xmlPortParameter = new XmlPortParameter(Name, SubType, Var, ID);
 		xmlPortParameter.Dimensions = Dimensions;
-		return xmlPortParameter;
+		yield return xmlPortParameter;
 	}
 
 	protected override void AddItemToInputObject(XmlPortParameter item, PSObject inputObject)

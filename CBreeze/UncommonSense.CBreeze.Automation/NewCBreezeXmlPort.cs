@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
@@ -15,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.XmlPorts.Add(item);
         }
 
-        protected override XmlPort CreateItem()
+        protected override IEnumerable<XmlPort> CreateItems()
         {
             var xmlPort = new XmlPort(ID, Name);
             SetObjectProperties(xmlPort);
@@ -53,7 +54,7 @@ namespace UncommonSense.CBreeze.Automation
                 xmlPort.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
-            return xmlPort;
+            yield return xmlPort;
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]

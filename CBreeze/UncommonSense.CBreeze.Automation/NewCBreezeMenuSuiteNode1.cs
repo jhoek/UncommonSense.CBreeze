@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
 
@@ -10,12 +11,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DeltaNode")]
 	public class NewCBreezeDeltaMenuSuiteNode : NewItemWithIDCmdlet<DeltaNode, Guid, MenuSuite>
 	{
-		protected override DeltaNode CreateItem() 
+		protected override IEnumerable<DeltaNode> CreateItems() 
 		{
 			var deltaNode = new DeltaNode(ID);	
 			deltaNode.Properties.Deleted = Deleted;
 			deltaNode.Properties.NextNodeID = NextNodeID;
-			return deltaNode;
+			yield return deltaNode;
 		}
 
 		protected override void AddItemToInputObject(DeltaNode item, MenuSuite inputObject)
@@ -48,7 +49,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("GroupNode")]
 	public class NewCBreezeGroupMenuSuiteNode : NewItemWithIDCmdlet<GroupNode, Guid, MenuSuite>
 	{
-		protected override GroupNode CreateItem() 
+		protected override IEnumerable<GroupNode> CreateItems() 
 		{
 			var groupNode = new GroupNode(ID);	
 			groupNode.Properties.FirstChild = FirstChild;
@@ -59,7 +60,7 @@ namespace UncommonSense.CBreeze.Automation
 			groupNode.Properties.ParentNodeID = ParentNodeID;
 			groupNode.Properties.Visible = Visible;
 			groupNode.Properties.CaptionML.Set("ENU", Caption);
-			return groupNode;
+			yield return groupNode;
 		}
 
 		protected override void AddItemToInputObject(GroupNode item, MenuSuite inputObject)
@@ -131,7 +132,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("ItemNode")]
 	public class NewCBreezeItemMenuSuiteNode : NewItemWithIDCmdlet<ItemNode, Guid, MenuSuite>
 	{
-		protected override ItemNode CreateItem() 
+		protected override IEnumerable<ItemNode> CreateItems() 
 		{
 			var itemNode = new ItemNode(ID);	
 			itemNode.Properties.Deleted = Deleted;
@@ -144,7 +145,7 @@ namespace UncommonSense.CBreeze.Automation
 			itemNode.Properties.CaptionML.Set("ENU", Caption);
 			itemNode.Properties.RunObjectType = RunObjectType;
 			itemNode.Properties.RunObjectID = RunObjectID;
-			return itemNode;
+			yield return itemNode;
 		}
 
 		protected override void AddItemToInputObject(ItemNode item, MenuSuite inputObject)
@@ -235,7 +236,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("MenuNode")]
 	public class NewCBreezeMenuMenuSuiteNode : NewItemWithIDCmdlet<MenuNode, Guid, MenuSuite>
 	{
-		protected override MenuNode CreateItem() 
+		protected override IEnumerable<MenuNode> CreateItems() 
 		{
 			var menuNode = new MenuNode(ID);	
 			menuNode.Properties.Enabled = Enabled;
@@ -248,7 +249,7 @@ namespace UncommonSense.CBreeze.Automation
 			menuNode.Properties.ParentNodeID = ParentNodeID;
 			menuNode.Properties.Visible = Visible;
 			menuNode.Properties.CaptionML.Set("ENU", Caption);
-			return menuNode;
+			yield return menuNode;
 		}
 
 		protected override void AddItemToInputObject(MenuNode item, MenuSuite inputObject)
@@ -333,11 +334,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("RootNode")]
 	public class NewCBreezeRootMenuSuiteNode : NewItemWithIDCmdlet<RootNode, Guid, MenuSuite>
 	{
-		protected override RootNode CreateItem() 
+		protected override IEnumerable<RootNode> CreateItems() 
 		{
 			var rootNode = new RootNode(ID);	
 			rootNode.Properties.FirstChild = FirstChild;
-			return rootNode;
+			yield return rootNode;
 		}
 
 		protected override void AddItemToInputObject(RootNode item, MenuSuite inputObject)

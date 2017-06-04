@@ -135,7 +135,7 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.Reports.Add(item);
         }
 
-        protected override Report CreateItem()
+        protected override IEnumerable<Report> CreateItems()
         {
             var report = new Report(ID, Name);
             SetObjectProperties(report);
@@ -176,7 +176,7 @@ namespace UncommonSense.CBreeze.Automation
                 report.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
-            return report;
+            yield return report;
         }
     }
 }

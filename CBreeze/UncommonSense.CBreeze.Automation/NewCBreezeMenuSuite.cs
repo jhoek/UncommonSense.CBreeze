@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.MenuSuites.Add(item);
         }
 
-        protected override MenuSuite CreateItem()
+        protected override IEnumerable<MenuSuite> CreateItems()
         {
             var menusuite = new MenuSuite(ID, Name);
             SetObjectProperties(menusuite);
@@ -29,7 +29,7 @@ namespace UncommonSense.CBreeze.Automation
                 .Cast<MenuSuiteNode>()
                 .ForEach(n => menusuite.Nodes.Add(n));
 
-            return menusuite;
+            yield return menusuite;
         }
     }
 }

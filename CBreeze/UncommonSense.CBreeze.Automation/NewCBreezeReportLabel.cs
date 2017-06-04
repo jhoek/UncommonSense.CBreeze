@@ -17,12 +17,12 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.Labels.Add(item);
         }
 
-        protected override ReportLabel CreateItem()
+        protected override IEnumerable<ReportLabel> CreateItems()
         {
             var reportLabel = new ReportLabel(ID, Name);
             reportLabel.Properties.CaptionML.Set("ENU", Caption);
             reportLabel.Properties.Description = Description;
-            return reportLabel;
+            yield return reportLabel;
         }
 
         [Parameter()]

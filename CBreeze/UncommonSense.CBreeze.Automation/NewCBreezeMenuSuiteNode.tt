@@ -44,6 +44,7 @@
 #>
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
 
@@ -111,13 +112,13 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("<#= type.Name #>")]
 	public class NewCBreeze<#= cmdletNoun #> : NewItemWithIDCmdlet<<#= @type.Name #>, Guid, MenuSuite>
 	{
-		protected override <#= type.Name #> CreateItem() 
+		protected override IEnumerable<<#= type.Name #>> CreateItems() 
 		{
 			var <#= variableName #> = new <#= type.Name #>(ID);	
 <# foreach(var property in relevantProperties) { #>
 			<#= property.Assignment #>
 <# } #>
-			return <#= variableName #>;
+			yield return <#= variableName #>;
 		}
 
 		protected override void AddItemToInputObject(<#= @type.Name #> item, MenuSuite inputObject)

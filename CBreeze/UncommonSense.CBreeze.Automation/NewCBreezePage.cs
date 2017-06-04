@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.Pages.Add(item);
         }
 
-        protected override Page CreateItem()
+        protected override IEnumerable<Page> CreateItems()
         {
             var page = new Page(ID, Name);
             SetObjectProperties(page);
@@ -57,7 +57,7 @@ namespace UncommonSense.CBreeze.Automation
                 page.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
-            return page;
+            yield return page;
         }
 
         [Parameter()]

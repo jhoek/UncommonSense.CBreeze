@@ -1,6 +1,7 @@
 ﻿using System;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
+using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -11,7 +12,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override BigIntegerTableField CreateItem()
+		protected override IEnumerable<BigIntegerTableField> CreateItems()
 		{
 			var bigIntegerTableField = new BigIntegerTableField(ID, Name);
 			bigIntegerTableField.Enabled = Enabled;
@@ -47,7 +48,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 bigIntegerTableField.AutoCaption();
 
-			return bigIntegerTableField;
+			yield return bigIntegerTableField;
 		}
 
         protected override void AddItemToInputObject(BigIntegerTableField item, Table inputObject)
@@ -152,7 +153,7 @@ namespace UncommonSense.CBreeze.Automation
 		[ValidateRange(1, 250)]
 		public int? DataLength { get; set; } 	
 
-		protected override BinaryTableField CreateItem()
+		protected override IEnumerable<BinaryTableField> CreateItems()
 		{
 			var binaryTableField = new BinaryTableField(ID, Name, DataLength ?? 4);
 			binaryTableField.Enabled = Enabled;
@@ -163,7 +164,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 binaryTableField.AutoCaption();
 
-			return binaryTableField;
+			yield return binaryTableField;
 		}
 
         protected override void AddItemToInputObject(BinaryTableField item, Table inputObject)
@@ -190,7 +191,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override BlobTableField CreateItem()
+		protected override IEnumerable<BlobTableField> CreateItems()
 		{
 			var blobTableField = new BlobTableField(ID, Name);
 			blobTableField.Enabled = Enabled;
@@ -208,7 +209,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 blobTableField.AutoCaption();
 
-			return blobTableField;
+			yield return blobTableField;
 		}
 
         protected override void AddItemToInputObject(BlobTableField item, Table inputObject)
@@ -256,7 +257,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override BooleanTableField CreateItem()
+		protected override IEnumerable<BooleanTableField> CreateItems()
 		{
 			var booleanTableField = new BooleanTableField(ID, Name);
 			booleanTableField.Enabled = Enabled;
@@ -288,7 +289,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 booleanTableField.AutoCaption();
 
-			return booleanTableField;
+			yield return booleanTableField;
 		}
 
         protected override void AddItemToInputObject(BooleanTableField item, Table inputObject)
@@ -381,7 +382,7 @@ namespace UncommonSense.CBreeze.Automation
 		[ValidateRange(1, 250)]
 		public int? DataLength { get; set; } 	
 
-		protected override CodeTableField CreateItem()
+		protected override IEnumerable<CodeTableField> CreateItems()
 		{
 			var codeTableField = new CodeTableField(ID, Name, DataLength ?? 10);
 			codeTableField.Enabled = Enabled;
@@ -413,7 +414,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 codeTableField.AutoCaption();
 
-			return codeTableField;
+			yield return codeTableField;
 		}
 
         protected override void AddItemToInputObject(CodeTableField item, Table inputObject)
@@ -503,7 +504,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override DateFormulaTableField CreateItem()
+		protected override IEnumerable<DateFormulaTableField> CreateItems()
 		{
 			var dateFormulaTableField = new DateFormulaTableField(ID, Name);
 			dateFormulaTableField.Enabled = Enabled;
@@ -530,7 +531,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 dateFormulaTableField.AutoCaption();
 
-			return dateFormulaTableField;
+			yield return dateFormulaTableField;
 		}
 
         protected override void AddItemToInputObject(DateFormulaTableField item, Table inputObject)
@@ -605,7 +606,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override DateTableField CreateItem()
+		protected override IEnumerable<DateTableField> CreateItems()
 		{
 			var dateTableField = new DateTableField(ID, Name);
 			dateTableField.Enabled = Enabled;
@@ -637,7 +638,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 dateTableField.AutoCaption();
 
-			return dateTableField;
+			yield return dateTableField;
 		}
 
         protected override void AddItemToInputObject(DateTableField item, Table inputObject)
@@ -727,7 +728,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override DateTimeTableField CreateItem()
+		protected override IEnumerable<DateTimeTableField> CreateItems()
 		{
 			var dateTimeTableField = new DateTimeTableField(ID, Name);
 			dateTimeTableField.Enabled = Enabled;
@@ -759,7 +760,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 dateTimeTableField.AutoCaption();
 
-			return dateTimeTableField;
+			yield return dateTimeTableField;
 		}
 
         protected override void AddItemToInputObject(DateTimeTableField item, Table inputObject)
@@ -849,7 +850,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override DecimalTableField CreateItem()
+		protected override IEnumerable<DecimalTableField> CreateItems()
 		{
 			var decimalTableField = new DecimalTableField(ID, Name);
 			decimalTableField.Enabled = Enabled;
@@ -884,7 +885,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 decimalTableField.AutoCaption();
 
-			return decimalTableField;
+			yield return decimalTableField;
 		}
 
         protected override void AddItemToInputObject(DecimalTableField item, Table inputObject)
@@ -983,7 +984,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override DurationTableField CreateItem()
+		protected override IEnumerable<DurationTableField> CreateItems()
 		{
 			var durationTableField = new DurationTableField(ID, Name);
 			durationTableField.Enabled = Enabled;
@@ -1016,7 +1017,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 durationTableField.AutoCaption();
 
-			return durationTableField;
+			yield return durationTableField;
 		}
 
         protected override void AddItemToInputObject(DurationTableField item, Table inputObject)
@@ -1109,7 +1110,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override GuidTableField CreateItem()
+		protected override IEnumerable<GuidTableField> CreateItems()
 		{
 			var guidTableField = new GuidTableField(ID, Name);
 			guidTableField.Enabled = Enabled;
@@ -1136,7 +1137,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 guidTableField.AutoCaption();
 
-			return guidTableField;
+			yield return guidTableField;
 		}
 
         protected override void AddItemToInputObject(GuidTableField item, Table inputObject)
@@ -1211,7 +1212,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override IntegerTableField CreateItem()
+		protected override IEnumerable<IntegerTableField> CreateItems()
 		{
 			var integerTableField = new IntegerTableField(ID, Name);
 			integerTableField.Enabled = Enabled;
@@ -1246,7 +1247,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 integerTableField.AutoCaption();
 
-			return integerTableField;
+			yield return integerTableField;
 		}
 
         protected override void AddItemToInputObject(IntegerTableField item, Table inputObject)
@@ -1345,7 +1346,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override OptionTableField CreateItem()
+		protected override IEnumerable<OptionTableField> CreateItems()
 		{
 			var optionTableField = new OptionTableField(ID, Name);
 			optionTableField.Enabled = Enabled;
@@ -1382,7 +1383,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 optionTableField.AutoCaption();
 
-			return optionTableField;
+			yield return optionTableField;
 		}
 
         protected override void AddItemToInputObject(OptionTableField item, Table inputObject)
@@ -1481,7 +1482,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override RecordIDTableField CreateItem()
+		protected override IEnumerable<RecordIDTableField> CreateItems()
 		{
 			var recordIDTableField = new RecordIDTableField(ID, Name);
 			recordIDTableField.Enabled = Enabled;
@@ -1508,7 +1509,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 recordIDTableField.AutoCaption();
 
-			return recordIDTableField;
+			yield return recordIDTableField;
 		}
 
         protected override void AddItemToInputObject(RecordIDTableField item, Table inputObject)
@@ -1583,7 +1584,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override TableFilterTableField CreateItem()
+		protected override IEnumerable<TableFilterTableField> CreateItems()
 		{
 			var tableFilterTableField = new TableFilterTableField(ID, Name);
 			tableFilterTableField.Enabled = Enabled;
@@ -1595,7 +1596,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 tableFilterTableField.AutoCaption();
 
-			return tableFilterTableField;
+			yield return tableFilterTableField;
 		}
 
         protected override void AddItemToInputObject(TableFilterTableField item, Table inputObject)
@@ -1628,7 +1629,7 @@ namespace UncommonSense.CBreeze.Automation
 		[ValidateRange(1, 250)]
 		public int? DataLength { get; set; } 	
 
-		protected override TextTableField CreateItem()
+		protected override IEnumerable<TextTableField> CreateItems()
 		{
 			var textTableField = new TextTableField(ID, Name, DataLength ?? 30);
 			textTableField.Enabled = Enabled;
@@ -1660,7 +1661,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 textTableField.AutoCaption();
 
-			return textTableField;
+			yield return textTableField;
 		}
 
         protected override void AddItemToInputObject(TextTableField item, Table inputObject)
@@ -1750,7 +1751,7 @@ namespace UncommonSense.CBreeze.Automation
 	{
 
 
-		protected override TimeTableField CreateItem()
+		protected override IEnumerable<TimeTableField> CreateItems()
 		{
 			var timeTableField = new TimeTableField(ID, Name);
 			timeTableField.Enabled = Enabled;
@@ -1781,7 +1782,7 @@ namespace UncommonSense.CBreeze.Automation
 			if (AutoCaption)
                 timeTableField.AutoCaption();
 
-			return timeTableField;
+			yield return timeTableField;
 		}
 
         protected override void AddItemToInputObject(TimeTableField item, Table inputObject)

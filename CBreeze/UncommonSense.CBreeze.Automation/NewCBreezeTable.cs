@@ -90,7 +90,7 @@ namespace UncommonSense.CBreeze.Automation
 
 #endif
 
-        protected override Table CreateItem()
+        protected override IEnumerable<Table> CreateItems()
         {
             var table = new Table(ID, Name);
             SetObjectProperties(table);
@@ -126,7 +126,7 @@ namespace UncommonSense.CBreeze.Automation
                 table.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
-            return table;
+            yield return table;
         }
 
         protected override void AddItemToInputObject(Table item, Application inputObject)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
+using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Automation 
 {
@@ -9,11 +10,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("ActionVariable")]
 	public class NewBreezeActionVariable : NewNamedItemCmdlet<ActionVariable, int, PSObject>
 	{
-		protected override ActionVariable CreateItem()
+		protected override IEnumerable<ActionVariable> CreateItems()
 		{
 			var actionVariable = new ActionVariable(ID, Name);
 			actionVariable.Dimensions = Dimensions;
-			return actionVariable;
+			yield return actionVariable;
 		}
 
 		protected override void AddItemToInputObject(ActionVariable item, PSObject inputObject)
@@ -31,12 +32,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("AutomationVariable")]
 	public class NewBreezeAutomationVariable : NewNamedItemCmdlet<AutomationVariable, int, PSObject>
 	{
-		protected override AutomationVariable CreateItem()
+		protected override IEnumerable<AutomationVariable> CreateItems()
 		{
 			var automationVariable = new AutomationVariable(ID, Name, SubType);
 			automationVariable.Dimensions = Dimensions;
 			automationVariable.WithEvents = WithEvents;
-			return automationVariable;
+			yield return automationVariable;
 		}
 
 		protected override void AddItemToInputObject(AutomationVariable item, PSObject inputObject)
@@ -63,11 +64,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("BigIntegerVariable")]
 	public class NewBreezeBigIntegerVariable : NewNamedItemCmdlet<BigIntegerVariable, int, PSObject>
 	{
-		protected override BigIntegerVariable CreateItem()
+		protected override IEnumerable<BigIntegerVariable> CreateItems()
 		{
 			var bigIntegerVariable = new BigIntegerVariable(ID, Name);
 			bigIntegerVariable.Dimensions = Dimensions;
-			return bigIntegerVariable;
+			yield return bigIntegerVariable;
 		}
 
 		protected override void AddItemToInputObject(BigIntegerVariable item, PSObject inputObject)
@@ -85,11 +86,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("BigTextVariable")]
 	public class NewBreezeBigTextVariable : NewNamedItemCmdlet<BigTextVariable, int, PSObject>
 	{
-		protected override BigTextVariable CreateItem()
+		protected override IEnumerable<BigTextVariable> CreateItems()
 		{
 			var bigTextVariable = new BigTextVariable(ID, Name);
 			bigTextVariable.Dimensions = Dimensions;
-			return bigTextVariable;
+			yield return bigTextVariable;
 		}
 
 		protected override void AddItemToInputObject(BigTextVariable item, PSObject inputObject)
@@ -107,11 +108,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("BinaryVariable")]
 	public class NewBreezeBinaryVariable : NewNamedItemCmdlet<BinaryVariable, int, PSObject>
 	{
-		protected override BinaryVariable CreateItem()
+		protected override IEnumerable<BinaryVariable> CreateItems()
 		{
 			var binaryVariable = new BinaryVariable(ID, Name, DataLength);
 			binaryVariable.Dimensions = Dimensions;
-			return binaryVariable;
+			yield return binaryVariable;
 		}
 
 		protected override void AddItemToInputObject(BinaryVariable item, PSObject inputObject)
@@ -135,12 +136,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("BooleanVariable")]
 	public class NewBreezeBooleanVariable : NewNamedItemCmdlet<BooleanVariable, int, PSObject>
 	{
-		protected override BooleanVariable CreateItem()
+		protected override IEnumerable<BooleanVariable> CreateItems()
 		{
 			var booleanVariable = new BooleanVariable(ID, Name);
 			booleanVariable.Dimensions = Dimensions;
 			booleanVariable.IncludeInDataset = IncludeInDataset;
-			return booleanVariable;
+			yield return booleanVariable;
 		}
 
 		protected override void AddItemToInputObject(BooleanVariable item, PSObject inputObject)
@@ -161,11 +162,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("ByteVariable")]
 	public class NewBreezeByteVariable : NewNamedItemCmdlet<ByteVariable, int, PSObject>
 	{
-		protected override ByteVariable CreateItem()
+		protected override IEnumerable<ByteVariable> CreateItems()
 		{
 			var byteVariable = new ByteVariable(ID, Name);
 			byteVariable.Dimensions = Dimensions;
-			return byteVariable;
+			yield return byteVariable;
 		}
 
 		protected override void AddItemToInputObject(ByteVariable item, PSObject inputObject)
@@ -183,11 +184,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("CharVariable")]
 	public class NewBreezeCharVariable : NewNamedItemCmdlet<CharVariable, int, PSObject>
 	{
-		protected override CharVariable CreateItem()
+		protected override IEnumerable<CharVariable> CreateItems()
 		{
 			var charVariable = new CharVariable(ID, Name);
 			charVariable.Dimensions = Dimensions;
-			return charVariable;
+			yield return charVariable;
 		}
 
 		protected override void AddItemToInputObject(CharVariable item, PSObject inputObject)
@@ -205,11 +206,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("FilterPageBuilderVariable")]
 	public class NewBreezeFilterPageBuilderVariable : NewNamedItemCmdlet<FilterPageBuilderVariable, int, PSObject>
 	{
-		protected override FilterPageBuilderVariable CreateItem()
+		protected override IEnumerable<FilterPageBuilderVariable> CreateItems()
 		{
 			var filterPageBuilderVariable = new FilterPageBuilderVariable(ID, Name);
 			filterPageBuilderVariable.Dimensions = Dimensions;
-			return filterPageBuilderVariable;
+			yield return filterPageBuilderVariable;
 		}
 
 		protected override void AddItemToInputObject(FilterPageBuilderVariable item, PSObject inputObject)
@@ -227,11 +228,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("CodeunitVariable")]
 	public class NewBreezeCodeunitVariable : NewNamedItemCmdlet<CodeunitVariable, int, PSObject>
 	{
-		protected override CodeunitVariable CreateItem()
+		protected override IEnumerable<CodeunitVariable> CreateItems()
 		{
 			var codeunitVariable = new CodeunitVariable(ID, Name, SubType);
 			codeunitVariable.Dimensions = Dimensions;
-			return codeunitVariable;
+			yield return codeunitVariable;
 		}
 
 		protected override void AddItemToInputObject(CodeunitVariable item, PSObject inputObject)
@@ -255,12 +256,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("CodeVariable")]
 	public class NewBreezeCodeVariable : NewNamedItemCmdlet<CodeVariable, int, PSObject>
 	{
-		protected override CodeVariable CreateItem()
+		protected override IEnumerable<CodeVariable> CreateItems()
 		{
 			var codeVariable = new CodeVariable(ID, Name, DataLength);
 			codeVariable.Dimensions = Dimensions;
 			codeVariable.IncludeInDataset = IncludeInDataset;
-			return codeVariable;
+			yield return codeVariable;
 		}
 
 		protected override void AddItemToInputObject(CodeVariable item, PSObject inputObject)
@@ -287,11 +288,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DateFormulaVariable")]
 	public class NewBreezeDateFormulaVariable : NewNamedItemCmdlet<DateFormulaVariable, int, PSObject>
 	{
-		protected override DateFormulaVariable CreateItem()
+		protected override IEnumerable<DateFormulaVariable> CreateItems()
 		{
 			var dateFormulaVariable = new DateFormulaVariable(ID, Name);
 			dateFormulaVariable.Dimensions = Dimensions;
-			return dateFormulaVariable;
+			yield return dateFormulaVariable;
 		}
 
 		protected override void AddItemToInputObject(DateFormulaVariable item, PSObject inputObject)
@@ -309,11 +310,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DateTimeVariable")]
 	public class NewBreezeDateTimeVariable : NewNamedItemCmdlet<DateTimeVariable, int, PSObject>
 	{
-		protected override DateTimeVariable CreateItem()
+		protected override IEnumerable<DateTimeVariable> CreateItems()
 		{
 			var dateTimeVariable = new DateTimeVariable(ID, Name);
 			dateTimeVariable.Dimensions = Dimensions;
-			return dateTimeVariable;
+			yield return dateTimeVariable;
 		}
 
 		protected override void AddItemToInputObject(DateTimeVariable item, PSObject inputObject)
@@ -331,11 +332,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DateVariable")]
 	public class NewBreezeDateVariable : NewNamedItemCmdlet<DateVariable, int, PSObject>
 	{
-		protected override DateVariable CreateItem()
+		protected override IEnumerable<DateVariable> CreateItems()
 		{
 			var dateVariable = new DateVariable(ID, Name);
 			dateVariable.Dimensions = Dimensions;
-			return dateVariable;
+			yield return dateVariable;
 		}
 
 		protected override void AddItemToInputObject(DateVariable item, PSObject inputObject)
@@ -353,11 +354,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DecimalVariable")]
 	public class NewBreezeDecimalVariable : NewNamedItemCmdlet<DecimalVariable, int, PSObject>
 	{
-		protected override DecimalVariable CreateItem()
+		protected override IEnumerable<DecimalVariable> CreateItems()
 		{
 			var decimalVariable = new DecimalVariable(ID, Name);
 			decimalVariable.Dimensions = Dimensions;
-			return decimalVariable;
+			yield return decimalVariable;
 		}
 
 		protected override void AddItemToInputObject(DecimalVariable item, PSObject inputObject)
@@ -375,11 +376,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DialogVariable")]
 	public class NewBreezeDialogVariable : NewNamedItemCmdlet<DialogVariable, int, PSObject>
 	{
-		protected override DialogVariable CreateItem()
+		protected override IEnumerable<DialogVariable> CreateItems()
 		{
 			var dialogVariable = new DialogVariable(ID, Name);
 			dialogVariable.Dimensions = Dimensions;
-			return dialogVariable;
+			yield return dialogVariable;
 		}
 
 		protected override void AddItemToInputObject(DialogVariable item, PSObject inputObject)
@@ -397,13 +398,13 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DotNetVariable")]
 	public class NewBreezeDotNetVariable : NewNamedItemCmdlet<DotNetVariable, int, PSObject>
 	{
-		protected override DotNetVariable CreateItem()
+		protected override IEnumerable<DotNetVariable> CreateItems()
 		{
 			var dotNetVariable = new DotNetVariable(ID, Name, SubType);
 			dotNetVariable.Dimensions = Dimensions;
 			dotNetVariable.RunOnClient = RunOnClient;
 			dotNetVariable.WithEvents = WithEvents;
-			return dotNetVariable;
+			yield return dotNetVariable;
 		}
 
 		protected override void AddItemToInputObject(DotNetVariable item, PSObject inputObject)
@@ -433,11 +434,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("DurationVariable")]
 	public class NewBreezeDurationVariable : NewNamedItemCmdlet<DurationVariable, int, PSObject>
 	{
-		protected override DurationVariable CreateItem()
+		protected override IEnumerable<DurationVariable> CreateItems()
 		{
 			var durationVariable = new DurationVariable(ID, Name);
 			durationVariable.Dimensions = Dimensions;
-			return durationVariable;
+			yield return durationVariable;
 		}
 
 		protected override void AddItemToInputObject(DurationVariable item, PSObject inputObject)
@@ -455,11 +456,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("ExecutionModeVariable")]
 	public class NewBreezeExecutionModeVariable : NewNamedItemCmdlet<ExecutionModeVariable, int, PSObject>
 	{
-		protected override ExecutionModeVariable CreateItem()
+		protected override IEnumerable<ExecutionModeVariable> CreateItems()
 		{
 			var executionModeVariable = new ExecutionModeVariable(ID, Name);
 			executionModeVariable.Dimensions = Dimensions;
-			return executionModeVariable;
+			yield return executionModeVariable;
 		}
 
 		protected override void AddItemToInputObject(ExecutionModeVariable item, PSObject inputObject)
@@ -477,11 +478,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("FieldRefVariable")]
 	public class NewBreezeFieldRefVariable : NewNamedItemCmdlet<FieldRefVariable, int, PSObject>
 	{
-		protected override FieldRefVariable CreateItem()
+		protected override IEnumerable<FieldRefVariable> CreateItems()
 		{
 			var fieldRefVariable = new FieldRefVariable(ID, Name);
 			fieldRefVariable.Dimensions = Dimensions;
-			return fieldRefVariable;
+			yield return fieldRefVariable;
 		}
 
 		protected override void AddItemToInputObject(FieldRefVariable item, PSObject inputObject)
@@ -499,11 +500,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("FileVariable")]
 	public class NewBreezeFileVariable : NewNamedItemCmdlet<FileVariable, int, PSObject>
 	{
-		protected override FileVariable CreateItem()
+		protected override IEnumerable<FileVariable> CreateItems()
 		{
 			var fileVariable = new FileVariable(ID, Name);
 			fileVariable.Dimensions = Dimensions;
-			return fileVariable;
+			yield return fileVariable;
 		}
 
 		protected override void AddItemToInputObject(FileVariable item, PSObject inputObject)
@@ -521,11 +522,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("ReportFormatVariable")]
 	public class NewBreezeReportFormatVariable : NewNamedItemCmdlet<ReportFormatVariable, int, PSObject>
 	{
-		protected override ReportFormatVariable CreateItem()
+		protected override IEnumerable<ReportFormatVariable> CreateItems()
 		{
 			var reportFormatVariable = new ReportFormatVariable(ID, Name);
 			reportFormatVariable.Dimensions = Dimensions;
-			return reportFormatVariable;
+			yield return reportFormatVariable;
 		}
 
 		protected override void AddItemToInputObject(ReportFormatVariable item, PSObject inputObject)
@@ -543,11 +544,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TableConnectionTypeVariable")]
 	public class NewBreezeTableConnectionTypeVariable : NewNamedItemCmdlet<TableConnectionTypeVariable, int, PSObject>
 	{
-		protected override TableConnectionTypeVariable CreateItem()
+		protected override IEnumerable<TableConnectionTypeVariable> CreateItems()
 		{
 			var tableConnectionTypeVariable = new TableConnectionTypeVariable(ID, Name);
 			tableConnectionTypeVariable.Dimensions = Dimensions;
-			return tableConnectionTypeVariable;
+			yield return tableConnectionTypeVariable;
 		}
 
 		protected override void AddItemToInputObject(TableConnectionTypeVariable item, PSObject inputObject)
@@ -565,11 +566,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("GuidVariable")]
 	public class NewBreezeGuidVariable : NewNamedItemCmdlet<GuidVariable, int, PSObject>
 	{
-		protected override GuidVariable CreateItem()
+		protected override IEnumerable<GuidVariable> CreateItems()
 		{
 			var guidVariable = new GuidVariable(ID, Name);
 			guidVariable.Dimensions = Dimensions;
-			return guidVariable;
+			yield return guidVariable;
 		}
 
 		protected override void AddItemToInputObject(GuidVariable item, PSObject inputObject)
@@ -587,11 +588,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("InStreamVariable")]
 	public class NewBreezeInStreamVariable : NewNamedItemCmdlet<InStreamVariable, int, PSObject>
 	{
-		protected override InStreamVariable CreateItem()
+		protected override IEnumerable<InStreamVariable> CreateItems()
 		{
 			var inStreamVariable = new InStreamVariable(ID, Name);
 			inStreamVariable.Dimensions = Dimensions;
-			return inStreamVariable;
+			yield return inStreamVariable;
 		}
 
 		protected override void AddItemToInputObject(InStreamVariable item, PSObject inputObject)
@@ -609,12 +610,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("IntegerVariable")]
 	public class NewBreezeIntegerVariable : NewNamedItemCmdlet<IntegerVariable, int, PSObject>
 	{
-		protected override IntegerVariable CreateItem()
+		protected override IEnumerable<IntegerVariable> CreateItems()
 		{
 			var integerVariable = new IntegerVariable(ID, Name);
 			integerVariable.Dimensions = Dimensions;
 			integerVariable.IncludeInDataset = IncludeInDataset;
-			return integerVariable;
+			yield return integerVariable;
 		}
 
 		protected override void AddItemToInputObject(IntegerVariable item, PSObject inputObject)
@@ -635,11 +636,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("KeyRefVariable")]
 	public class NewBreezeKeyRefVariable : NewNamedItemCmdlet<KeyRefVariable, int, PSObject>
 	{
-		protected override KeyRefVariable CreateItem()
+		protected override IEnumerable<KeyRefVariable> CreateItems()
 		{
 			var keyRefVariable = new KeyRefVariable(ID, Name);
 			keyRefVariable.Dimensions = Dimensions;
-			return keyRefVariable;
+			yield return keyRefVariable;
 		}
 
 		protected override void AddItemToInputObject(KeyRefVariable item, PSObject inputObject)
@@ -657,11 +658,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("OcxVariable")]
 	public class NewBreezeOcxVariable : NewNamedItemCmdlet<OcxVariable, int, PSObject>
 	{
-		protected override OcxVariable CreateItem()
+		protected override IEnumerable<OcxVariable> CreateItems()
 		{
 			var ocxVariable = new OcxVariable(ID, Name, SubType);
 			ocxVariable.Dimensions = Dimensions;
-			return ocxVariable;
+			yield return ocxVariable;
 		}
 
 		protected override void AddItemToInputObject(OcxVariable item, PSObject inputObject)
@@ -685,12 +686,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("OptionVariable")]
 	public class NewBreezeOptionVariable : NewNamedItemCmdlet<OptionVariable, int, PSObject>
 	{
-		protected override OptionVariable CreateItem()
+		protected override IEnumerable<OptionVariable> CreateItems()
 		{
 			var optionVariable = new OptionVariable(ID, Name);
 			optionVariable.Dimensions = Dimensions;
 			optionVariable.OptionString = OptionString;
-			return optionVariable;
+			yield return optionVariable;
 		}
 
 		protected override void AddItemToInputObject(OptionVariable item, PSObject inputObject)
@@ -714,11 +715,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("OutStreamVariable")]
 	public class NewBreezeOutStreamVariable : NewNamedItemCmdlet<OutStreamVariable, int, PSObject>
 	{
-		protected override OutStreamVariable CreateItem()
+		protected override IEnumerable<OutStreamVariable> CreateItems()
 		{
 			var outStreamVariable = new OutStreamVariable(ID, Name);
 			outStreamVariable.Dimensions = Dimensions;
-			return outStreamVariable;
+			yield return outStreamVariable;
 		}
 
 		protected override void AddItemToInputObject(OutStreamVariable item, PSObject inputObject)
@@ -736,11 +737,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("PageVariable")]
 	public class NewBreezePageVariable : NewNamedItemCmdlet<PageVariable, int, PSObject>
 	{
-		protected override PageVariable CreateItem()
+		protected override IEnumerable<PageVariable> CreateItems()
 		{
 			var pageVariable = new PageVariable(ID, Name, SubType);
 			pageVariable.Dimensions = Dimensions;
-			return pageVariable;
+			yield return pageVariable;
 		}
 
 		protected override void AddItemToInputObject(PageVariable item, PSObject inputObject)
@@ -764,12 +765,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("QueryVariable")]
 	public class NewBreezeQueryVariable : NewNamedItemCmdlet<QueryVariable, int, PSObject>
 	{
-		protected override QueryVariable CreateItem()
+		protected override IEnumerable<QueryVariable> CreateItems()
 		{
 			var queryVariable = new QueryVariable(ID, Name, SubType);
 			queryVariable.Dimensions = Dimensions;
 			queryVariable.SecurityFiltering = SecurityFiltering;
-			return queryVariable;
+			yield return queryVariable;
 		}
 
 		protected override void AddItemToInputObject(QueryVariable item, PSObject inputObject)
@@ -796,11 +797,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("RecordIDVariable")]
 	public class NewBreezeRecordIDVariable : NewNamedItemCmdlet<RecordIDVariable, int, PSObject>
 	{
-		protected override RecordIDVariable CreateItem()
+		protected override IEnumerable<RecordIDVariable> CreateItems()
 		{
 			var recordIDVariable = new RecordIDVariable(ID, Name);
 			recordIDVariable.Dimensions = Dimensions;
-			return recordIDVariable;
+			yield return recordIDVariable;
 		}
 
 		protected override void AddItemToInputObject(RecordIDVariable item, PSObject inputObject)
@@ -818,12 +819,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("RecordRefVariable")]
 	public class NewBreezeRecordRefVariable : NewNamedItemCmdlet<RecordRefVariable, int, PSObject>
 	{
-		protected override RecordRefVariable CreateItem()
+		protected override IEnumerable<RecordRefVariable> CreateItems()
 		{
 			var recordRefVariable = new RecordRefVariable(ID, Name);
 			recordRefVariable.Dimensions = Dimensions;
 			recordRefVariable.SecurityFiltering = SecurityFiltering;
-			return recordRefVariable;
+			yield return recordRefVariable;
 		}
 
 		protected override void AddItemToInputObject(RecordRefVariable item, PSObject inputObject)
@@ -844,13 +845,13 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("RecordVariable")]
 	public class NewBreezeRecordVariable : NewNamedItemCmdlet<RecordVariable, int, PSObject>
 	{
-		protected override RecordVariable CreateItem()
+		protected override IEnumerable<RecordVariable> CreateItems()
 		{
 			var recordVariable = new RecordVariable(ID, Name, SubType);
 			recordVariable.Dimensions = Dimensions;
 			recordVariable.SecurityFiltering = SecurityFiltering;
 			recordVariable.Temporary = Temporary;
-			return recordVariable;
+			yield return recordVariable;
 		}
 
 		protected override void AddItemToInputObject(RecordVariable item, PSObject inputObject)
@@ -880,11 +881,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("ReportVariable")]
 	public class NewBreezeReportVariable : NewNamedItemCmdlet<ReportVariable, int, PSObject>
 	{
-		protected override ReportVariable CreateItem()
+		protected override IEnumerable<ReportVariable> CreateItems()
 		{
 			var reportVariable = new ReportVariable(ID, Name, SubType);
 			reportVariable.Dimensions = Dimensions;
-			return reportVariable;
+			yield return reportVariable;
 		}
 
 		protected override void AddItemToInputObject(ReportVariable item, PSObject inputObject)
@@ -908,11 +909,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TestPageVariable")]
 	public class NewBreezeTestPageVariable : NewNamedItemCmdlet<TestPageVariable, int, PSObject>
 	{
-		protected override TestPageVariable CreateItem()
+		protected override IEnumerable<TestPageVariable> CreateItems()
 		{
 			var testPageVariable = new TestPageVariable(ID, Name, SubType);
 			testPageVariable.Dimensions = Dimensions;
-			return testPageVariable;
+			yield return testPageVariable;
 		}
 
 		protected override void AddItemToInputObject(TestPageVariable item, PSObject inputObject)
@@ -936,10 +937,10 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TextConstant")]
 	public class NewBreezeTextConstant : NewNamedItemCmdlet<TextConstant, int, PSObject>
 	{
-		protected override TextConstant CreateItem()
+		protected override IEnumerable<TextConstant> CreateItems()
 		{
 			var textConstant = new TextConstant(ID, Name);
-			return textConstant;
+			yield return textConstant;
 		}
 
 		protected override void AddItemToInputObject(TextConstant item, PSObject inputObject)
@@ -954,11 +955,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TextEncodingVariable")]
 	public class NewBreezeTextEncodingVariable : NewNamedItemCmdlet<TextEncodingVariable, int, PSObject>
 	{
-		protected override TextEncodingVariable CreateItem()
+		protected override IEnumerable<TextEncodingVariable> CreateItems()
 		{
 			var textEncodingVariable = new TextEncodingVariable(ID, Name);
 			textEncodingVariable.Dimensions = Dimensions;
-			return textEncodingVariable;
+			yield return textEncodingVariable;
 		}
 
 		protected override void AddItemToInputObject(TextEncodingVariable item, PSObject inputObject)
@@ -976,12 +977,12 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TextVariable")]
 	public class NewBreezeTextVariable : NewNamedItemCmdlet<TextVariable, int, PSObject>
 	{
-		protected override TextVariable CreateItem()
+		protected override IEnumerable<TextVariable> CreateItems()
 		{
 			var textVariable = new TextVariable(ID, Name, DataLength);
 			textVariable.Dimensions = Dimensions;
 			textVariable.IncludeInDataset = IncludeInDataset;
-			return textVariable;
+			yield return textVariable;
 		}
 
 		protected override void AddItemToInputObject(TextVariable item, PSObject inputObject)
@@ -1008,11 +1009,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TimeVariable")]
 	public class NewBreezeTimeVariable : NewNamedItemCmdlet<TimeVariable, int, PSObject>
 	{
-		protected override TimeVariable CreateItem()
+		protected override IEnumerable<TimeVariable> CreateItems()
 		{
 			var timeVariable = new TimeVariable(ID, Name);
 			timeVariable.Dimensions = Dimensions;
-			return timeVariable;
+			yield return timeVariable;
 		}
 
 		protected override void AddItemToInputObject(TimeVariable item, PSObject inputObject)
@@ -1030,11 +1031,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TransactionTypeVariable")]
 	public class NewBreezeTransactionTypeVariable : NewNamedItemCmdlet<TransactionTypeVariable, int, PSObject>
 	{
-		protected override TransactionTypeVariable CreateItem()
+		protected override IEnumerable<TransactionTypeVariable> CreateItems()
 		{
 			var transactionTypeVariable = new TransactionTypeVariable(ID, Name);
 			transactionTypeVariable.Dimensions = Dimensions;
-			return transactionTypeVariable;
+			yield return transactionTypeVariable;
 		}
 
 		protected override void AddItemToInputObject(TransactionTypeVariable item, PSObject inputObject)
@@ -1052,11 +1053,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("VariantVariable")]
 	public class NewBreezeVariantVariable : NewNamedItemCmdlet<VariantVariable, int, PSObject>
 	{
-		protected override VariantVariable CreateItem()
+		protected override IEnumerable<VariantVariable> CreateItems()
 		{
 			var variantVariable = new VariantVariable(ID, Name);
 			variantVariable.Dimensions = Dimensions;
-			return variantVariable;
+			yield return variantVariable;
 		}
 
 		protected override void AddItemToInputObject(VariantVariable item, PSObject inputObject)
@@ -1074,11 +1075,11 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("XmlPortVariable")]
 	public class NewBreezeXmlPortVariable : NewNamedItemCmdlet<XmlPortVariable, int, PSObject>
 	{
-		protected override XmlPortVariable CreateItem()
+		protected override IEnumerable<XmlPortVariable> CreateItems()
 		{
 			var xmlPortVariable = new XmlPortVariable(ID, Name, SubType);
 			xmlPortVariable.Dimensions = Dimensions;
-			return xmlPortVariable;
+			yield return xmlPortVariable;
 		}
 
 		protected override void AddItemToInputObject(XmlPortVariable item, PSObject inputObject)
