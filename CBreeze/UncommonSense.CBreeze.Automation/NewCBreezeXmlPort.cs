@@ -131,10 +131,6 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
-        public SwitchParameter PassThru { get; set; } = true;
-
         [Parameter()]
         public bool? PreserveWhitespace
         {
