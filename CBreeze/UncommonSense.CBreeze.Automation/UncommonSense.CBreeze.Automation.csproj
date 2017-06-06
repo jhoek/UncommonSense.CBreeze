@@ -64,10 +64,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCBreezeParameter.tt</DependentUpon>
     </Compile>
-    <Compile Include="AddCBreezeTableField1.cs">
+    <Compile Include="NewCBreezeTableField.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AddCBreezeTableField.tt</DependentUpon>
+      <DependentUpon>NewCBreezeTableField.tt</DependentUpon>
     </Compile>
     <Compile Include="NewCBreezeXmlPortNode1.cs">
       <AutoGen>True</AutoGen>
@@ -192,9 +192,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeParameter.cs</LastGenOutput>
     </Content>
-    <Content Include="AddCBreezeTableField.tt">
+    <Content Include="NewCBreezeTableField.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AddCBreezeTableField1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeTableField.cs</LastGenOutput>
     </Content>
     <Content Include="NewCBreezeXmlPortNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
