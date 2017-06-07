@@ -28,6 +28,10 @@
 		"ReqFilterHeadingML",
 		"LinkFields"
 	};
+
+	var mandatoryProperties = new List<string>() {
+		"SourceTable"
+	};
 #>
 using System;
 using System.Linq;
@@ -49,7 +53,7 @@ foreach (var @type in types) {
 		.Select(p => new {
 			Name = p.Name,
 			Type = p.PropertyType,
-			Mandatory = false,
+			Mandatory = mandatoryProperties.Contains(p.Name),
 			Assignment = p.PropertyType == typeof(FieldList) ? $"{variableName}.Properties.{p.Name}.AddRange({p.Name});" : $"{variableName}.Properties.{p.Name} = {p.Name};"
 		});
 
@@ -104,7 +108,7 @@ foreach (var @type in types) {
 	[Cmdlet(VerbsCommon.New, "CBreeze<#= @type.Name #>")]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("<#= @type.Name.Replace("XmlPort", "") #>")]
-	public class NewCBreeze<#=@type.Name#> : NewItemWithIDAndName<XmlPortNode, Guid, PSObject>
+	public class NewCBreeze<#=@type.Name#> : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
 	{
 		protected override IEnumerable<XmlPortNode> CreateItems()
 		{
