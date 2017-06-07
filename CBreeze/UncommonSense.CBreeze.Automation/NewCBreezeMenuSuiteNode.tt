@@ -9,6 +9,8 @@
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
 <#@ output extension=".cs" #>
 <#
+	// FIXME: Should we support ChildNodes for MenuSuiteNodes?
+
 	var types = AppDomain
 		.CurrentDomain
 		.GetAssemblies()
