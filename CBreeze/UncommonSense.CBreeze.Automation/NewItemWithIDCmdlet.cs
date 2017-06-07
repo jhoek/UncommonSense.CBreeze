@@ -11,10 +11,14 @@ namespace UncommonSense.CBreeze.Automation
     {
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithID)]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithID)]
-        public TID ID { get; set; }
+        public virtual TID ID { get; set; }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public override TInputObject InputObject { get; set; }
+
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
+        public override SwitchParameter PassThru { get; set; }
     }
 }

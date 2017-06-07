@@ -15,16 +15,24 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            CreateItems()
-                .ForEachIf(i => ParameterSetNames.IsAdd(ParameterSetName), i => AddItemToInputObject(i, InputObject))
-                .ForEachIf(i => ParameterSetNames.IsNew(ParameterSetName) || PassThru, i => WriteObject(i));
+            foreach (var item in CreateItems())
+            {
+                if (ParameterSetNames.IsAdd(ParameterSetName))
+                {
+                    AddItemToInputObject(item, InputObject);
+                }
+
+                if (ParameterSetNames.IsNew(ParameterSetName) || PassThru)
+                {
+                    WriteObject(item);
+                }
+            }
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public virtual TInputObject InputObject { get; set; }
 
-        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
-        public SwitchParameter PassThru { get; set; }
+        public virtual SwitchParameter PassThru { get; set; }
     }
 }

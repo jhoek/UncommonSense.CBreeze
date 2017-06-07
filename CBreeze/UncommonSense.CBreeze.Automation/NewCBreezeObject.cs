@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class NewCBreezeObject<T> : NewNamedItemCmdlet<T, int, Application>
+    public abstract class NewCBreezeObject<T> : NewItemWithIDAndNameCmdlet<T, int, Application>
     {
         protected void SetObjectProperties(Core.Object @object)
         {

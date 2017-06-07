@@ -48,9 +48,9 @@ namespace UncommonSense.CBreeze.Automation
 [Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>")]
 [OutputType(typeof(<#=type.Name#>))]
 [Alias("<#=type.Name#>")]
-public class NewCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, int, PSObject>
+public class NewCBreeze<#=@type.Name#> : NewItemWithIDAndName<<#=@type.Name#>, int, PSObject>
 {
-	protected override IEnumerable<<#=@type.Name#>> CreateItems()
+protected override IEnumerable<<#=@type.Name#>> CreateItems()
 	{
 		var <#= variableName #> = new <#= @type.Name #>(Name<# if (hasSubType) { #>, SubType<# } #>, Var, ID<# if (hasDataLength) { #>, DataLength<# } #>);
 		<#= variableName #>.Dimensions = Dimensions;
