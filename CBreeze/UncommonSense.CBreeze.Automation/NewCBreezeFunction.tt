@@ -1,0 +1,68 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<# 
+var aliases = new Dictionary<string, string[]>() {
+	{ "Function", new [] { "Procedure" } },
+	{ "TestFunction", new [] { "TestFunction" } },
+	{ "UpgradeFunction", new [] { "UpgradeFunction" } },
+	{ "EventSubscriberFunction", new [] { "EventSubscriber" } },
+	{ "BusinessEventPublisherFunction", new [] { "BusinessEvent" } },
+	{ "IntegrationEventPublisherFunction", new [] { "IntegrationEvent" } }
+};
+
+var conditions = new Dictionary<string, string>() {
+	{ "EventSubscriberFunction", "NAV2016" },
+	{ "BusinessEventPublisherFunction", "NAV2016" },
+	{ "IntegrationEventPublisherFunction", "NAV2016" }
+};
+#>
+using System.Management.Automation;
+using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core;
+
+namespace UncommonSense.CBreeze.Automation 
+{
+<# foreach(var functionType in aliases.Keys) { #>
+<# if (conditions.ContainsKey(functionType)) { WriteLine("#if {0}", conditions[functionType]); } #>
+	[Cmdlet(VerbsCommon.New, "CBreeze<#= functionType #>")]
+	[OutputType(typeof(Function))]
+	[Alias(<#= string.Join(", ", aliases[functionType].Select(a => $"\"{a}\"")) #>)]
+	public class NewCBreeze<#= functionType #>FIXME : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
+	{
+		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public string ReturnValueName { get; set; } 
+		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
+		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
+		[Parameter()] public string ReturnValueDimensions { get; set; }
+<# if (functionType == "TestFunction") { #>
+		[Parameter()] public string HandlerFunctions { get; set; }
+		[Parameter()] public TestFunctionType? TestFunctionType { get; set; } 
+		[Parameter()] public TransactionModel? TransactionModel { get; set; }
+<# } #>
+<# if (functionType == "UpgradeFunction") { #>
+#if NAV2015
+		[Parameter()] public UpgradeFunctionType? UpgradeFunctionType { get; set; } 
+#endif
+<# } #>
+<# if (functionType == "EventSubscriberFunction") { #>
+		[Parameter(Mandatory = true)] public ObjectType EventPublisherObjectType { get; set; } 
+		[Parameter(Mandatory = true)] public int EventPublisherObjectID { get; set; } 
+		[Parameter()] public string EventPublisherElement { get; set; } 
+		[Parameter(Mandatory = true)] public string EventFunction { get; set; } 
+<# } #>
+<# if (functionType == "BusinessEventPublisherFunction") { #>
+		[Parameter()] public bool? IncludeSender { get; set; } 
+<# } #>
+<# if (functionType == "IntegrationEventPublisherFunction") { #>
+		[Parameter()] public bool? IncludeSender { get; set; }
+		[Parameter()] public bool? GlobalVarAccess { get; set; } 
+<# } #>
+	}
+<# if (conditions.ContainsKey(functionType)) { WriteLine("#endif"); } #>
+
+<# } #>
+}
