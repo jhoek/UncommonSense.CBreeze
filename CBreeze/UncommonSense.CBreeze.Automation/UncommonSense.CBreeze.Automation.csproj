@@ -102,7 +102,6 @@
     <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
-    <Compile Include="NewCBreezeFunction.cs" />
     <Compile Include="AddCBreezeOrderBy.cs" />
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="AddCBreezeCondition.cs" />
@@ -120,7 +119,6 @@
     <Compile Include="GetCBreezePageControlGroup.cs" />
     <Compile Include="AddCBreezeFilter.cs" />
     <Compile Include="NewBreezeCodeLine.cs" />
-    <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
     <Compile Include="NewCBreezeMenuSuite.cs" />
     <Compile Include="NewCBreezeCodeunit.cs" />
