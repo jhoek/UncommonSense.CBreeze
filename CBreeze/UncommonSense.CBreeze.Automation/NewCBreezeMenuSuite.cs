@@ -23,11 +23,14 @@ namespace UncommonSense.CBreeze.Automation
             var menusuite = new MenuSuite(ID, Name);
             SetObjectProperties(menusuite);
 
-            SubObjects?
-                .Invoke()
-                .Select(o => o.BaseObject)
-                .Cast<MenuSuiteNode>()
-                .ForEach(n => menusuite.Nodes.Add(n));
+            menusuite
+                .Nodes
+                .AddRange(
+                    SubObjects?
+                        .Invoke()
+                        .Select(o => o.BaseObject)
+                        .Cast<MenuSuiteNode>() ?? Enumerable.Empty<MenuSuiteNode>()
+                );
 
             yield return menusuite;
         }
