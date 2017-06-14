@@ -84,7 +84,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCBreezeVariable.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewCBreezeXmlPortNode.cs" />
     <Compile Include="NewCBreezeReportLabel.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
     <Compile Include="NewCBreezePageAction.cs" />
@@ -110,7 +109,6 @@
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
     <Compile Include="AddCBreezeXmlPortLink.cs" />
-    <Compile Include="AddCBreezeXmlPortNode.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
     <Compile Include="AddCBreezePageControl.cs" />
     <Compile Include="GetCBreezePageActionContainer.cs" />
