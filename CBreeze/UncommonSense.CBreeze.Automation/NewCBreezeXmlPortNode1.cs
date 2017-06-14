@@ -40,7 +40,30 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			throw new NotImplementedException(); // FIXME
+			if (InputObject.BaseObject is XmlPort)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNodes)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNode)
+			{
+				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+			}
 		}
 
 		protected int? GetIndentation()
@@ -64,6 +87,9 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
+		public Position? Position { get; set; }
+		
+		[Parameter()]
 		public Nullable<Boolean> AutoCalcField { get; set; }
 
 		[Parameter()]
@@ -76,10 +102,10 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<Occurrence> Occurrence { get; set; }
 
 		[Parameter()]
-		public String SourceFieldName { get; set; }
+		public string SourceFieldName { get; set; }
 
 		[Parameter()]
-		public String SourceFieldTableVariableName { get; set; }
+		public string SourceFieldTableVariableName { get; set; }
 
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
@@ -127,7 +153,30 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			throw new NotImplementedException(); // FIXME
+			if (InputObject.BaseObject is XmlPort)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNodes)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNode)
+			{
+				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+			}
 		}
 
 		protected int? GetIndentation()
@@ -151,6 +200,9 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
+		public Position? Position { get; set; }
+		
+		[Parameter()]
 		public Nullable<Boolean> AutoCalcField { get; set; }
 
 		[Parameter()]
@@ -169,10 +221,10 @@ namespace UncommonSense.CBreeze.Automation
 		public String NamespacePrefix { get; set; }
 
 		[Parameter()]
-		public String SourceFieldName { get; set; }
+		public string SourceFieldName { get; set; }
 
 		[Parameter()]
-		public String SourceFieldTableVariableName { get; set; }
+		public string SourceFieldTableVariableName { get; set; }
 
 		[Parameter()]
 		public Nullable<Boolean> Unbound { get; set; }
@@ -227,7 +279,30 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			throw new NotImplementedException(); // FIXME
+			if (InputObject.BaseObject is XmlPort)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNodes)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNode)
+			{
+				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+			}
 		}
 
 		protected int? GetIndentation()
@@ -251,6 +326,9 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
+		public Position? Position { get; set; }
+		
+		[Parameter()]
 		public Nullable<Boolean> AutoReplace { get; set; }
 
 		[Parameter()]
@@ -260,7 +338,7 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<Boolean> AutoUpdate { get; set; }
 
 		[Parameter()]
-		public FieldList CalcFields { get; set; }
+		public string[] CalcFields { get; set; }
 
 		[Parameter()]
 		public String LinkTable { get; set; }
@@ -272,16 +350,17 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<Occurrence> Occurrence { get; set; }
 
 		[Parameter()]
-		public FieldList ReqFilterFields { get; set; }
+		public string[] ReqFilterFields { get; set; }
 
 		[Parameter(Mandatory = true)]
+		[ValidateRange(1, int.MaxValue)]
 		public Nullable<Int32> SourceTable { get; set; }
 
 		[Parameter()]
-		public String SourceTableViewKey { get; set; }
+		public string SourceTableViewKey { get; set; }
 
 		[Parameter()]
-		public Nullable<Order> SourceTableViewOrder { get; set; }
+		public Order? SourceTableViewOrder { get; set; }
 
 		[Parameter()]
 		public Nullable<Boolean> Temporary { get; set; }
@@ -341,7 +420,30 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			throw new NotImplementedException(); // FIXME
+			if (InputObject.BaseObject is XmlPort)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNodes)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNode)
+			{
+				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+			}
 		}
 
 		protected int? GetIndentation()
@@ -365,6 +467,9 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
+		public Position? Position { get; set; }
+		
+		[Parameter()]
 		public Nullable<Boolean> AutoReplace { get; set; }
 
 		[Parameter()]
@@ -374,7 +479,7 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<Boolean> AutoUpdate { get; set; }
 
 		[Parameter()]
-		public FieldList CalcFields { get; set; }
+		public string[] CalcFields { get; set; }
 
 		[Parameter()]
 		public String LinkTable { get; set; }
@@ -392,16 +497,17 @@ namespace UncommonSense.CBreeze.Automation
 		public String NamespacePrefix { get; set; }
 
 		[Parameter()]
-		public FieldList ReqFilterFields { get; set; }
+		public string[] ReqFilterFields { get; set; }
 
 		[Parameter(Mandatory = true)]
+		[ValidateRange(1, int.MaxValue)]
 		public Nullable<Int32> SourceTable { get; set; }
 
 		[Parameter()]
-		public String SourceTableViewKey { get; set; }
+		public string SourceTableViewKey { get; set; }
 
 		[Parameter()]
-		public Nullable<Order> SourceTableViewOrder { get; set; }
+		public Order? SourceTableViewOrder { get; set; }
 
 		[Parameter()]
 		public Nullable<Boolean> Temporary { get; set; }
@@ -450,7 +556,30 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			throw new NotImplementedException(); // FIXME
+			if (InputObject.BaseObject is XmlPort)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNodes)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNode)
+			{
+				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+			}
 		}
 
 		protected int? GetIndentation()
@@ -473,6 +602,9 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
+		[Parameter()]
+		public Position? Position { get; set; }
+		
 		[Parameter()]
 		public Nullable<XmlPortNodeDataType> DataType { get; set; }
 
@@ -529,7 +661,30 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			throw new NotImplementedException(); // FIXME
+			if (InputObject.BaseObject is XmlPort)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNodes)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNode)
+			{
+				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+			}
 		}
 
 		protected int? GetIndentation()
@@ -552,6 +707,9 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
+		[Parameter()]
+		public Position? Position { get; set; }
+		
 		[Parameter()]
 		public Nullable<XmlPortNodeDataType> DataType { get; set; }
 

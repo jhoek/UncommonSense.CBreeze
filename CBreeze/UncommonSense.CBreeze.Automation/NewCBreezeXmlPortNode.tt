@@ -32,6 +32,14 @@
 	var mandatoryProperties = new List<string>() {
 		"SourceTable"
 	};
+
+	var rangeMin = new Dictionary<string, string>() {
+		{ "SourceTable", "1" }
+	};
+
+	var rangeMax = new Dictionary<string, string>() {
+		{ "SourceTable", "int.MaxValue" }
+	};
 #>
 using System;
 using System.Linq;
@@ -52,9 +60,11 @@ foreach (var @type in types) {
 		.Where(p => !skipProperties.Contains(p.Name))
 		.Select(p => new {
 			Name = p.Name,
-			Type = p.PropertyType,
+			Type = (p.PropertyType == typeof(FieldList) ? "string[]" : GetFullTypeName(p.PropertyType)),
 			Mandatory = mandatoryProperties.Contains(p.Name),
-			Assignment = p.PropertyType == typeof(FieldList) ? $"{variableName}.Properties.{p.Name}.AddRange({p.Name});" : $"{variableName}.Properties.{p.Name} = {p.Name};"
+			Assignment = p.PropertyType == typeof(FieldList) ? $"{variableName}.Properties.{p.Name}.AddRange({p.Name});" : $"{variableName}.Properties.{p.Name} = {p.Name};",
+			RangeMin = (rangeMin.ContainsKey(p.Name) ? rangeMin[p.Name] : null),
+			RangeMax = (rangeMax.ContainsKey(p.Name) ? rangeMax[p.Name] : null)
 		});
 
 	if (relevantProperties.Any(p => p.Name == "SourceField"))
@@ -62,15 +72,19 @@ foreach (var @type in types) {
 		var newProperties = new[] {
 			new {
 				Name = "SourceFieldTableVariableName",
-				Type = typeof(string),
+				Type = "string",
 				Mandatory = false,
-				Assignment = $"{variableName}.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;"
+				Assignment = $"{variableName}.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;",
+				RangeMin = string.Empty,
+				RangeMax = string.Empty
 			},
 			new {
 				Name = "SourceFieldName",
-				Type = typeof(string),
+				Type = "string",
 				Mandatory = false,
-				Assignment = $"{variableName}.Properties.SourceField.FieldName = SourceFieldName;"
+				Assignment = $"{variableName}.Properties.SourceField.FieldName = SourceFieldName;",
+				RangeMin = string.Empty,
+				RangeMax = string.Empty
 			}
 		};
 
@@ -85,15 +99,19 @@ foreach (var @type in types) {
 		var newProperties = new [] {
 			new {
 				Name = "SourceTableViewKey",
-				Type = typeof(string),
+				Type = "string",
 				Mandatory = false,
-				Assignment = $"{variableName}.Properties.SourceTableView.Key = SourceTableViewKey;"
+				Assignment = $"{variableName}.Properties.SourceTableView.Key = SourceTableViewKey;",
+				RangeMin = string.Empty,
+				RangeMax = string.Empty
 			},
 			new {
 				Name = "SourceTableViewOrder",
-				Type = typeof(Order?),
+				Type = "Order?",
 				Mandatory = false, 
-				Assignment = $"{variableName}.Properties.SourceTableView.Order = SourceTableViewOrder;"
+				Assignment = $"{variableName}.Properties.SourceTableView.Order = SourceTableViewOrder;",
+				RangeMin = string.Empty,
+				RangeMax = string.Empty
 			}
 		};
 
@@ -134,7 +152,30 @@ foreach (var @type in types) {
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			throw new NotImplementedException(); // FIXME
+			if (InputObject.BaseObject is XmlPort)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNodes)
+			{
+				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
+				{
+					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
+					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
+				}
+			}
+			else if (InputObject.BaseObject is XmlPortNode)
+			{
+				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+			}
 		}
 
 		protected int? GetIndentation()
@@ -157,9 +198,15 @@ foreach (var @type in types) {
 			}
 		}
 
+		[Parameter()]
+		public Position? Position { get; set; }
+		
 <# foreach(var property in relevantProperties) { #>
 		[Parameter(<# if (property.Mandatory) { #>Mandatory = true<# } #>)]
-		public <#= GetFullTypeName(property.Type) #> <#= property.Name #> { get; set; }
+<# if ((!string.IsNullOrEmpty(property.RangeMin)) || (!string.IsNullOrEmpty(property.RangeMax))) { #>
+		[ValidateRange(<#= property.RangeMin #>, <#= property.RangeMax #>)]
+<# } #>
+		public <#= property.Type #> <#= property.Name #> { get; set; }
 
 <# } #>
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
