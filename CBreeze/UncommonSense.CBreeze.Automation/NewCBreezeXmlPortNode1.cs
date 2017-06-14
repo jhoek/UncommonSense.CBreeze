@@ -66,23 +66,23 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
-		protected int? GetIndentation()
+		protected int GetIndentation()
 		{
 			switch(ParameterSetName)
 			{
 				case ParameterSetNames.AddWithID:
 				case ParameterSetNames.AddWithoutID:
-					if (InputObject.BaseObject is XmlPort) { return null; }
-					if (InputObject.BaseObject is XmlPortNodes) { return null; } 
+					if (InputObject.BaseObject is XmlPort) { return 0; }
+					if (InputObject.BaseObject is XmlPortNodes) { return 0; } 
 					if (InputObject.BaseObject is XmlPortNode) { return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1; };
 	                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int?)GetVariableValue("Indentation", null);
+					return (int)GetVariableValue("Indentation", 0);
 
 				default: 
-					return null;
+					return 0;
 			}
 		}
 
@@ -185,23 +185,23 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
-		protected int? GetIndentation()
+		protected int GetIndentation()
 		{
 			switch(ParameterSetName)
 			{
 				case ParameterSetNames.AddWithID:
 				case ParameterSetNames.AddWithoutID:
-					if (InputObject.BaseObject is XmlPort) { return null; }
-					if (InputObject.BaseObject is XmlPortNodes) { return null; } 
+					if (InputObject.BaseObject is XmlPort) { return 0; }
+					if (InputObject.BaseObject is XmlPortNodes) { return 0; } 
 					if (InputObject.BaseObject is XmlPortNode) { return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1; };
 	                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int?)GetVariableValue("Indentation", null);
+					return (int)GetVariableValue("Indentation", 0);
 
 				default: 
-					return null;
+					return 0;
 			}
 		}
 
@@ -317,23 +317,23 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
-		protected int? GetIndentation()
+		protected int GetIndentation()
 		{
 			switch(ParameterSetName)
 			{
 				case ParameterSetNames.AddWithID:
 				case ParameterSetNames.AddWithoutID:
-					if (InputObject.BaseObject is XmlPort) { return null; }
-					if (InputObject.BaseObject is XmlPortNodes) { return null; } 
+					if (InputObject.BaseObject is XmlPort) { return 0; }
+					if (InputObject.BaseObject is XmlPortNodes) { return 0; } 
 					if (InputObject.BaseObject is XmlPortNode) { return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1; };
 	                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int?)GetVariableValue("Indentation", null);
+					return (int)GetVariableValue("Indentation", 0);
 
 				default: 
-					return null;
+					return 0;
 			}
 		}
 
@@ -461,23 +461,23 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
-		protected int? GetIndentation()
+		protected int GetIndentation()
 		{
 			switch(ParameterSetName)
 			{
 				case ParameterSetNames.AddWithID:
 				case ParameterSetNames.AddWithoutID:
-					if (InputObject.BaseObject is XmlPort) { return null; }
-					if (InputObject.BaseObject is XmlPortNodes) { return null; } 
+					if (InputObject.BaseObject is XmlPort) { return 0; }
+					if (InputObject.BaseObject is XmlPortNodes) { return 0; } 
 					if (InputObject.BaseObject is XmlPortNode) { return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1; };
 	                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int?)GetVariableValue("Indentation", null);
+					return (int)GetVariableValue("Indentation", 0);
 
 				default: 
-					return null;
+					return 0;
 			}
 		}
 
@@ -600,23 +600,23 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
-		protected int? GetIndentation()
+		protected int GetIndentation()
 		{
 			switch(ParameterSetName)
 			{
 				case ParameterSetNames.AddWithID:
 				case ParameterSetNames.AddWithoutID:
-					if (InputObject.BaseObject is XmlPort) { return null; }
-					if (InputObject.BaseObject is XmlPortNodes) { return null; } 
+					if (InputObject.BaseObject is XmlPort) { return 0; }
+					if (InputObject.BaseObject is XmlPortNodes) { return 0; } 
 					if (InputObject.BaseObject is XmlPortNode) { return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1; };
 	                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int?)GetVariableValue("Indentation", null);
+					return (int)GetVariableValue("Indentation", 0);
 
 				default: 
-					return null;
+					return 0;
 			}
 		}
 
@@ -705,23 +705,23 @@ namespace UncommonSense.CBreeze.Automation
 			}
 		}
 
-		protected int? GetIndentation()
+		protected int GetIndentation()
 		{
 			switch(ParameterSetName)
 			{
 				case ParameterSetNames.AddWithID:
 				case ParameterSetNames.AddWithoutID:
-					if (InputObject.BaseObject is XmlPort) { return null; }
-					if (InputObject.BaseObject is XmlPortNodes) { return null; } 
+					if (InputObject.BaseObject is XmlPort) { return 0; }
+					if (InputObject.BaseObject is XmlPortNodes) { return 0; } 
 					if (InputObject.BaseObject is XmlPortNode) { return (InputObject.BaseObject as XmlPortNode).IndentationLevel.GetValueOrDefault(0) + 1; };
 	                throw new ArgumentOutOfRangeException("Cannot determine indentation.");
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int?)GetVariableValue("Indentation", null);
+					return (int)GetVariableValue("Indentation", 0);
 
 				default: 
-					return null;
+					return 0;
 			}
 		}
 
