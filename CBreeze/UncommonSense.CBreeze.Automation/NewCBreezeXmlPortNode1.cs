@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation 
 {
-	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortFieldAttribute")]
+	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortFieldAttribute", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("FieldAttribute")]
 	public class NewCBreezeXmlPortFieldAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
@@ -101,23 +101,29 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public Nullable<Occurrence> Occurrence { get; set; }
 
-		[Parameter()]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 4, ParameterSetName=ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 4, ParameterSetName=ParameterSetNames.AddWithID)]		
 		public string SourceFieldName { get; set; }
 
-		[Parameter()]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithID)]		
 		public string SourceFieldTableVariableName { get; set; }
 
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
 
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 5, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 5, ParameterSetName = ParameterSetNames.NewWithID)]
 		public ScriptBlock ChildNodes { get; set; }
 	}
 
-	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortFieldElement")]
+	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortFieldElement", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("FieldElement")]
 	public class NewCBreezeXmlPortFieldElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
@@ -220,10 +226,16 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public String NamespacePrefix { get; set; }
 
-		[Parameter()]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 4, ParameterSetName=ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 4, ParameterSetName=ParameterSetNames.AddWithID)]		
 		public string SourceFieldName { get; set; }
 
-		[Parameter()]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithID)]		
 		public string SourceFieldTableVariableName { get; set; }
 
 		[Parameter()]
@@ -232,14 +244,14 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
 
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 5, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 5, ParameterSetName = ParameterSetNames.NewWithID)]
 		public ScriptBlock ChildNodes { get; set; }
 	}
 
-	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTableAttribute")]
+	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTableAttribute", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("TableAttribute")]
 	public class NewCBreezeXmlPortTableAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
@@ -352,7 +364,10 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public string[] ReqFilterFields { get; set; }
 
-		[Parameter(Mandatory = true)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithID)]		
 		[ValidateRange(1, int.MaxValue)]
 		public Nullable<Int32> SourceTable { get; set; }
 
@@ -371,14 +386,14 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
 
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.NewWithID)]
 		public ScriptBlock ChildNodes { get; set; }
 	}
 
-	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTableElement")]
+	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTableElement", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("TableElement")]
 	public class NewCBreezeXmlPortTableElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
@@ -499,7 +514,10 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public string[] ReqFilterFields { get; set; }
 
-		[Parameter(Mandatory = true)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithID)]		
 		[ValidateRange(1, int.MaxValue)]
 		public Nullable<Int32> SourceTable { get; set; }
 
@@ -518,14 +536,14 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
 
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.NewWithID)]
 		public ScriptBlock ChildNodes { get; set; }
 	}
 
-	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTextAttribute")]
+	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTextAttribute", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("TextAttribute")]
 	public class NewCBreezeXmlPortTextAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
@@ -627,7 +645,7 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock ChildNodes { get; set; }
 	}
 
-	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTextElement")]
+	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTextElement", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("TextElement")]
 	public class NewCBreezeXmlPortTextElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>

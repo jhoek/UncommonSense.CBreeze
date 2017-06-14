@@ -33,6 +33,12 @@
 		"SourceTable"
 	};
 
+	var positionOffset = new Dictionary<string, int>() {
+		{ "SourceTable", 1 },
+		{ "SourceFieldTableVariableName", 1 },
+		{ "SourceFieldName", 2 }
+	};
+
 	var rangeMin = new Dictionary<string, string>() {
 		{ "SourceTable", "1" }
 	};
@@ -62,6 +68,7 @@ foreach (var @type in types) {
 			Name = p.Name,
 			Type = (p.PropertyType == typeof(FieldList) ? "string[]" : GetFullTypeName(p.PropertyType)),
 			Mandatory = mandatoryProperties.Contains(p.Name),
+			PositionOffset = positionOffset.ContainsKey(p.Name) ? positionOffset[p.Name] : 0,
 			Assignment = p.PropertyType == typeof(FieldList) ? $"{variableName}.Properties.{p.Name}.AddRange({p.Name});" : $"{variableName}.Properties.{p.Name} = {p.Name};",
 			RangeMin = (rangeMin.ContainsKey(p.Name) ? rangeMin[p.Name] : null),
 			RangeMax = (rangeMax.ContainsKey(p.Name) ? rangeMax[p.Name] : null)
@@ -73,7 +80,8 @@ foreach (var @type in types) {
 			new {
 				Name = "SourceFieldTableVariableName",
 				Type = "string",
-				Mandatory = false,
+				Mandatory = true,
+				PositionOffset = 1,
 				Assignment = $"{variableName}.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;",
 				RangeMin = string.Empty,
 				RangeMax = string.Empty
@@ -81,7 +89,8 @@ foreach (var @type in types) {
 			new {
 				Name = "SourceFieldName",
 				Type = "string",
-				Mandatory = false,
+				Mandatory = true,
+				PositionOffset = 2,
 				Assignment = $"{variableName}.Properties.SourceField.FieldName = SourceFieldName;",
 				RangeMin = string.Empty,
 				RangeMax = string.Empty
@@ -101,6 +110,7 @@ foreach (var @type in types) {
 				Name = "SourceTableViewKey",
 				Type = "string",
 				Mandatory = false,
+				PositionOffset = 0,
 				Assignment = $"{variableName}.Properties.SourceTableView.Key = SourceTableViewKey;",
 				RangeMin = string.Empty,
 				RangeMax = string.Empty
@@ -109,6 +119,7 @@ foreach (var @type in types) {
 				Name = "SourceTableViewOrder",
 				Type = "Order?",
 				Mandatory = false, 
+				PositionOffset = 0,
 				Assignment = $"{variableName}.Properties.SourceTableView.Order = SourceTableViewOrder;",
 				RangeMin = string.Empty,
 				RangeMax = string.Empty
@@ -123,7 +134,7 @@ foreach (var @type in types) {
 
 	relevantProperties = relevantProperties.OrderBy(p => p.Name);
 #>
-	[Cmdlet(VerbsCommon.New, "CBreeze<#= @type.Name #>")]
+	[Cmdlet(VerbsCommon.New, "CBreeze<#= @type.Name #>", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
 	[Alias("<#= @type.Name.Replace("XmlPort", "") #>")]
 	public class NewCBreeze<#=@type.Name#> : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
@@ -202,17 +213,25 @@ foreach (var @type in types) {
 		public Position? Position { get; set; }
 		
 <# foreach(var property in relevantProperties) { #>
+<# if (property.PositionOffset == 0) { #>
 		[Parameter(<# if (property.Mandatory) { #>Mandatory = true<# } #>)]
+<# } else { #>
+		[Parameter(<# if (property.Mandatory) { #>Mandatory = true<# } #>, Position = <#= 1 + property.PositionOffset #>, ParameterSetName=ParameterSetNames.NewWithoutID)]
+		[Parameter(<# if (property.Mandatory) { #>Mandatory = true<# } #>, Position = <#= 2 + property.PositionOffset #>, ParameterSetName=ParameterSetNames.NewWithID)]
+		[Parameter(<# if (property.Mandatory) { #>Mandatory = true<# } #>, Position = <#= 1 + property.PositionOffset #>, ParameterSetName=ParameterSetNames.AddWithoutID)]
+		[Parameter(<# if (property.Mandatory) { #>Mandatory = true<# } #>, Position = <#= 2 + property.PositionOffset #>, ParameterSetName=ParameterSetNames.AddWithID)]		
+<# } #>
 <# if ((!string.IsNullOrEmpty(property.RangeMin)) || (!string.IsNullOrEmpty(property.RangeMax))) { #>
 		[ValidateRange(<#= property.RangeMin #>, <#= property.RangeMax #>)]
 <# } #>
 		public <#= property.Type #> <#= property.Name #> { get; set; }
 
 <# } #>
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+<# var positionalProperties = relevantProperties.Where(p => positionOffset.ContainsKey(p.Name)).Count(); #>
+        [Parameter(Position = <#= 2 + positionalProperties #>, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = <#= 2 + positionalProperties #>, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = <#= 3 + positionalProperties #>, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = <#= 3 + positionalProperties #>, ParameterSetName = ParameterSetNames.NewWithID)]
 		public ScriptBlock ChildNodes { get; set; }
 	}
 
