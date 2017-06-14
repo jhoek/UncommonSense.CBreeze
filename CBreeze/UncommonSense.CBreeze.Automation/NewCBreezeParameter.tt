@@ -22,6 +22,7 @@
 	var typesWithQuerySecurityFiltering = new List<string>() { "QueryParameter" };
 #>
 using System;
+using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
 
@@ -47,9 +48,9 @@ namespace UncommonSense.CBreeze.Automation
 [Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>")]
 [OutputType(typeof(<#=type.Name#>))]
 [Alias("<#=type.Name#>")]
-public class NewCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, int, PSObject>
+public class NewCBreeze<#=@type.Name#> : NewItemWithIDAndName<<#=@type.Name#>, int, PSObject>
 {
-	protected override <#=@type.Name#> CreateItem()
+protected override IEnumerable<<#=@type.Name#>> CreateItems()
 	{
 		var <#= variableName #> = new <#= @type.Name #>(Name<# if (hasSubType) { #>, SubType<# } #>, Var, ID<# if (hasDataLength) { #>, DataLength<# } #>);
 		<#= variableName #>.Dimensions = Dimensions;
@@ -58,7 +59,7 @@ public class NewCBreeze<#=@type.Name#> : NewNamedItemCmdlet<<#=@type.Name#>, int
 <# if (hasTemporary)         { #>		<#= variableName #>.Temporary = Temporary; <# } #>
 <# if (hasRunOnClient)       { #>		<#= variableName #>.RunOnClient = RunOnClient; <# } #>
 <# if (hasSuppressDispose)   { #>		<#= variableName #>.SuppressDispose = SuppressDispose; <# } #>
-		return <#= variableName #>;
+		yield return <#= variableName #>;
 	}
 
 	protected override void AddItemToInputObject(<#= @type.Name #> item, PSObject inputObject)

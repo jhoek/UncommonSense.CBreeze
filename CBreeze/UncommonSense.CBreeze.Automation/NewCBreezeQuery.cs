@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.Queries.Add(item);
         }
 
-        protected override Query CreateItem()
+        protected override IEnumerable<Query> CreateItems()
         {
             var query = new Query(ID, Name);
             SetObjectProperties(query);
@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Automation
                 query.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
-            return query;
+            yield return query;
         }
 
         [Parameter()]

@@ -75,14 +75,6 @@ namespace UncommonSense.CBreeze.Automation
             return obj;
         }
 
-        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
-        {
-            foreach (var item in items)
-            {
-                action(item);
-            }
-        }
-
         public static IEnumerable<int> GetParameterIDs(this PSObject inputObject)
         {
             var result = Enumerable.Empty<int>();

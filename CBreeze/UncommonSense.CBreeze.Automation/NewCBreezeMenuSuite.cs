@@ -18,18 +18,21 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.MenuSuites.Add(item);
         }
 
-        protected override MenuSuite CreateItem()
+        protected override IEnumerable<MenuSuite> CreateItems()
         {
             var menusuite = new MenuSuite(ID, Name);
             SetObjectProperties(menusuite);
 
-            SubObjects?
-                .Invoke()
-                .Select(o => o.BaseObject)
-                .Cast<MenuSuiteNode>()
-                .ForEach(n => menusuite.Nodes.Add(n));
+            menusuite
+                .Nodes
+                .AddRange(
+                    SubObjects?
+                        .Invoke()
+                        .Select(o => o.BaseObject)
+                        .Cast<MenuSuiteNode>() ?? Enumerable.Empty<MenuSuiteNode>()
+                );
 
-            return menusuite;
+            yield return menusuite;
         }
     }
 }

@@ -15,6 +15,9 @@ namespace UncommonSense.CBreeze.Core
 
         public void AddRange(IEnumerable<T> values)
         {
+            if (values == null)
+                return;
+
             foreach (var value in values)
             {
                 base.Add(value);

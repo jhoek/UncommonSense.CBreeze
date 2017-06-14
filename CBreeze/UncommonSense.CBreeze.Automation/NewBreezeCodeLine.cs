@@ -17,9 +17,9 @@ namespace UncommonSense.CBreeze.Automation
             (InputObject.BaseObject as IHasCodeLines).CodeLines.Add(item);
         }
 
-        protected override string CreateItem()
+        protected override IEnumerable<string> CreateItems()
         {
-            return ArgumentList == null ?
+            yield return ArgumentList == null ?
                 (Line ?? string.Empty) :
                 string.Format((Line ?? string.Empty), ArgumentList);
         }

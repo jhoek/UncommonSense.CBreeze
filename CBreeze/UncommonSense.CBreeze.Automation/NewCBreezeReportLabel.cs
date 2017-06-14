@@ -10,19 +10,19 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeReportLabel")]
     [OutputType(typeof(ReportLabel))]
     [Alias("ReportLabel")]
-    public class NewCBreezeReportLabel : NewNamedItemCmdlet<ReportLabel, int, Report>
+    public class NewCBreezeReportLabel : NewItemWithIDAndNameCmdlet<ReportLabel, int, Report>
     {
         protected override void AddItemToInputObject(ReportLabel item, Report inputObject)
         {
             inputObject.Labels.Add(item);
         }
 
-        protected override ReportLabel CreateItem()
+        protected override IEnumerable<ReportLabel> CreateItems()
         {
             var reportLabel = new ReportLabel(ID, Name);
             reportLabel.Properties.CaptionML.Set("ENU", Caption);
             reportLabel.Properties.Description = Description;
-            return reportLabel;
+            yield return reportLabel;
         }
 
         [Parameter()]

@@ -11,40 +11,28 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected abstract void AddItemToInputObject(TItem item, TInputObject inputObject);
 
-        protected abstract TItem CreateItem();
+        protected abstract IEnumerable<TItem> CreateItems();
 
         protected override void ProcessRecord()
         {
-            var item = CreateItem();
-
-            switch (ParameterSetName)
+            foreach (var item in CreateItems())
             {
-                case ParameterSetNames.NewWithoutID:
-                case ParameterSetNames.NewWithID:
-                    WriteVerbose($"Creating new item '{item}'");
-                    WriteObject(item);
-                    break;
-
-                case ParameterSetNames.AddWithoutID:
-                case ParameterSetNames.AddWithID:
-                    WriteVerbose($"Adding new item '{item}' to '{InputObject}'");
+                if (ParameterSetNames.IsAdd(ParameterSetName))
+                {
                     AddItemToInputObject(item, InputObject);
+                }
 
-                    if (PassThru)
-                    {
-                        WriteVerbose("Passing through new item");
-                        WriteObject(item);
-                    }
-
-                    break;
+                if (ParameterSetNames.IsNew(ParameterSetName) || PassThru)
+                {
+                    WriteObject(item);
+                }
             }
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public virtual TInputObject InputObject { get; set; }
 
-        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
-        public SwitchParameter PassThru { get; set; }
+        public virtual SwitchParameter PassThru { get; set; }
     }
 }

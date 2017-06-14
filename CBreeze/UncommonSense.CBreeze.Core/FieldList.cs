@@ -20,6 +20,9 @@ namespace UncommonSense.CBreeze.Core
 
         public void AddRange(params string[] fieldNames)
         {
+            if (fieldNames == null)
+                return;
+
             foreach (var item in fieldNames)
             {
                 Add(item);

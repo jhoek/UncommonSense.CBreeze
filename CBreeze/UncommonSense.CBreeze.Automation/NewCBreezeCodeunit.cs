@@ -63,7 +63,7 @@ namespace UncommonSense.CBreeze.Automation
             inputObject.Codeunits.Add(item);
         }
 
-        protected override Codeunit CreateItem()
+        protected override IEnumerable<Codeunit> CreateItems()
         {
             var codeunit = new Codeunit(ID, Name);
             SetObjectProperties(codeunit);
@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Automation
                 codeunit.Code.Events.AddRange(subObjects.OfType<Event>());
             }
 
-            return codeunit;
+            yield return codeunit;
         }
     }
 }

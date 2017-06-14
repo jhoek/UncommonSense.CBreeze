@@ -108,12 +108,12 @@ namespace UncommonSense.CBreeze.Automation
             if (ChildControls != null)
             {
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", pageControl.IndentationLevel + 1) };
+                var childControls = ChildControls.InvokeWithContext(null, variables).Select(o => o.BaseObject).Cast<PageControl>();
 
-                ChildControls
-                    .InvokeWithContext(null, variables)
-                    .Select(o => o.BaseObject)
-                    .Cast<PageControl>()
-                    .ForEach(c => pageControl.AddChildPageControl(c, Core.Position.LastWithinContainer));
+                foreach (var childControl in childControls)
+                {
+                    pageControl.AddChildPageControl(childControl, Core.Position.LastWithinContainer);
+                }
             }
 
             if (PassThru)

@@ -1,0 +1,194 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
+<#@ assembly name="C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="UncommonSense.CBreeze.Automation" #>
+<#@ import namespace="UncommonSense.CBreeze.Core" #>
+<#@ output extension=".cs" #>
+<#
+	// FIXME: Should we support ChildNodes for MenuSuiteNodes?
+
+	var types = AppDomain
+		.CurrentDomain
+		.GetAssemblies()
+		.SelectMany(a => a.GetTypes())
+		.Where(t => typeof(MenuSuiteNode).IsAssignableFrom(t))
+		.Where(t => typeof(MenuSuiteNode) != t);
+
+	var ignoredProperties = new List<string>() {
+		"Node",
+		"WithAValue",
+		"ChildNodes",
+		"ParentNode",
+		"Item",
+		"AccessByPermission",
+		"CaptionML",
+		"RunObjectType",
+		"RunObjectID"
+	};
+
+	var mandatoryProperties = new List<string>() {
+		"DepartmentCategory",
+		"RunObjectType",
+		"RunObjectID"
+	};
+
+	var rangeMin = new Dictionary<string, string>() {
+		{ "Image", "0" }
+	};
+
+	var rangeMax = new Dictionary<string, string>() {
+		{ "Image", "15" }
+	};
+#>
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using UncommonSense.CBreeze.Core;
+using System.Management.Automation;
+
+namespace UncommonSense.CBreeze.Automation 
+{
+<# foreach(var @type in types) { 
+	var propertiesClass = @type.GetProperty("Properties").PropertyType;
+	var cmdletNoun = @type.Name.Replace("Node", "MenuSuiteNode");
+	var variableName = Char.ToLowerInvariant(@type.Name[0]) + @type.Name.Substring(1);
+
+	var allProperties = propertiesClass.GetProperties();
+	var relevantProperties = allProperties
+		.Where(p => !ignoredProperties.Contains(p.Name))
+		.Select(p => new {
+			Name = p.Name,
+			Type = p.PropertyType,
+			Assignment = $"{variableName}.Properties.{p.Name} = {p.Name};",
+			RangeMin = rangeMin.ContainsKey(p.Name) ? rangeMin[p.Name] : "",
+			RangeMax = rangeMax.ContainsKey(p.Name) ? rangeMax[p.Name] : "",
+			Mandatory = mandatoryProperties.Contains(p.Name),
+			RelativePosition = 0
+		}).ToList();
+
+	if (allProperties.Any(p => p.Name == "CaptionML")) 
+	{
+		relevantProperties.Add(new {
+			Name = "Caption",
+			Type = typeof(string),
+			Assignment = $"{variableName}.Properties.CaptionML.Set(\"ENU\", Caption);",
+			RangeMin = "",
+			RangeMax = "",
+			Mandatory = true,
+			RelativePosition = 1
+		});
+	};
+
+	if (allProperties.Any(p => p.Name == "RunObjectType"))
+	{
+		relevantProperties.Add(new {
+			Name = "RunObjectType",
+			Type = typeof(MenuItemRunObjectType?),
+			Assignment = $"{variableName}.Properties.RunObjectType = RunObjectType;",
+			RangeMin = "",
+			RangeMax = "",
+			Mandatory = true,
+			RelativePosition = 2
+		});
+	}
+
+	if (allProperties.Any(p => p.Name == "RunObjectID"))
+	{
+		relevantProperties.Add(new {
+			Name = "RunObjectID",
+			Type = typeof(int?),
+			Assignment = $"{variableName}.Properties.RunObjectID = RunObjectID;",
+			RangeMin = "1",
+			RangeMax = "int.MaxValue",
+			Mandatory = true,
+			RelativePosition = 3
+		});
+	}
+#>
+	[Cmdlet(VerbsCommon.New, "CBreeze<#= cmdletNoun #>", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(<#= type.Name#>))]
+	[Alias("<#= type.Name #>")]
+	public class NewCBreeze<#= cmdletNoun #> : NewItemWithIDCmdlet<<#= @type.Name #>, Guid, MenuSuite>
+	{
+		protected override IEnumerable<<#= type.Name #>> CreateItems() 
+		{
+			var <#= variableName #> = new <#= type.Name #>(ID);	
+<# foreach(var property in relevantProperties) { #>
+			<#= property.Assignment #>
+<# } #>
+			yield return <#= variableName #>;
+		}
+
+		protected override void AddItemToInputObject(<#= @type.Name #> item, MenuSuite inputObject)
+		{
+            if (!inputObject.Nodes.Any())
+            {
+                var deltaNode = inputObject.Nodes.Add(new DeltaNode(Guid.NewGuid()));
+                deltaNode.Properties.NextNodeID = item.ID;
+            }
+
+            inputObject.Nodes.Add(item);
+		}
+
+<# foreach(var property in relevantProperties) { #>
+<# 
+	var parameterAttributes = new List<string>();
+
+	if (property.RelativePosition == 0) 
+	{
+		var parameterArguments = new List<string>();
+		if (property.Mandatory) 
+			{ parameterArguments.Add("Mandatory=true"); }
+		parameterAttributes.Add($"[Parameter({ string.Join(", ", parameterArguments) })]");
+	} 
+	else
+	{
+		foreach(var parameterSetName in ParameterSetNames.Enumerate())
+		{
+			var propertyOffset = ParameterSetNames.WithID(parameterSetName) ? 1 : 0;
+			var parameterArguments = new List<string>();
+			if (property.Mandatory)
+				{ parameterArguments.Add("Mandatory = true"); }
+			parameterArguments.Add($"Position = { propertyOffset + property.RelativePosition}");
+			parameterArguments.Add($"ParameterSetName = ParameterSetNames.{parameterSetName}");
+	
+			parameterAttributes.Add($"[Parameter({ string.Join(", ", parameterArguments) })]");
+		}
+	}
+
+	foreach(var parameterAttribute in parameterAttributes) { #>
+		<#= parameterAttribute #>
+<# } #>
+<# if (property.RangeMin != "" && property.RangeMax != "") { #>		[ValidateRange(<#= property.RangeMin #>, <#= property.RangeMax #>)] 
+<# } #>
+		public <#= GetFullTypeName(property.Type) #> <#= property.Name #> 
+		{
+			get; set;
+		}
+
+<# } #>
+	}
+
+<# } #>
+}
+
+<#+
+	static string GetFullTypeName(Type t)
+	{
+		if (!t.IsGenericType)
+			return t.Name;
+
+		var stringBuilder = new StringBuilder();
+
+		stringBuilder.Append(t.Name.Substring(0, t.Name.LastIndexOf("`")));
+		stringBuilder.Append("<");
+		stringBuilder.Append(string.Join(",", t.GetGenericArguments().Select(a => GetFullTypeName(a))));
+		stringBuilder.Append(">");
+
+		return stringBuilder.ToString();
+	}
+#>

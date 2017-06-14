@@ -12,27 +12,6 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("Event")]
     public class NewCBreezeEvent : Cmdlet
     {
-        protected Event CreateEvent()
-        {
-            var @event = new Event(SourceID, SourceName, ID, Name);
-
-            if (SubObjects != null)
-            {
-                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-
-                subObjects.OfType<Variable>().ForEach(f => @event.Variables.Add(f));
-                subObjects.OfType<Parameter>().ForEach(p => @event.Parameters.Add(p));
-                subObjects.OfType<string>().ForEach(c => @event.CodeLines.Add(c));
-            }
-
-            return @event;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreateEvent());
-        }
-
         [Parameter(Mandatory = true, Position = 2)]
         [ValidateRange(1, int.MaxValue)]
         public int ID
@@ -66,6 +45,27 @@ namespace UncommonSense.CBreeze.Automation
         public ScriptBlock SubObjects
         {
             get; set;
+        }
+
+        protected Event CreateEvent()
+        {
+            var @event = new Event(SourceID, SourceName, ID, Name);
+
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+
+                @event.Variables.AddRange(subObjects.OfType<Variable>());
+                @event.Parameters.AddRange(subObjects.OfType<Parameter>());
+                @event.CodeLines.AddRange(subObjects.OfType<string>());
+            }
+
+            return @event;
+        }
+
+        protected override void ProcessRecord()
+        {
+            WriteObject(CreateEvent());
         }
     }
 }

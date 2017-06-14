@@ -54,20 +54,30 @@
     <Compile Include="AddCBreezePageActionContainer.cs" />
     <Compile Include="AddCBreezePageActionGroup.cs" />
     <Compile Include="AddCBreezePageActionSeparator.cs" />
+    <Compile Include="NewCBreezeFunction1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCBreezeFunction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewCBreezeMenuSuiteNode1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCBreezeMenuSuiteNode.tt</DependentUpon>
+    </Compile>
     <Compile Include="NewCBreezeParameter.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCBreezeParameter.tt</DependentUpon>
     </Compile>
-    <Compile Include="AddCBreezeTableField1.cs">
+    <Compile Include="NewCBreezeTableField.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AddCBreezeTableField.tt</DependentUpon>
+      <DependentUpon>NewCBreezeTableField.tt</DependentUpon>
     </Compile>
-    <Compile Include="AddCBreezeXmlPortNode1.cs">
+    <Compile Include="NewCBreezeXmlPortNode1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AddCBreezeXmlPortNode.tt</DependentUpon>
+      <DependentUpon>NewCBreezeXmlPortNode.tt</DependentUpon>
     </Compile>
     <Compile Include="NewCBreezeVariable1.cs">
       <AutoGen>True</AutoGen>
@@ -77,7 +87,6 @@
     <Compile Include="NewCBreezeXmlPortNode.cs" />
     <Compile Include="NewCBreezeReportLabel.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
-    <Compile Include="NewCBreezeMenuSuiteNode.cs" />
     <Compile Include="NewCBreezePageAction.cs" />
     <Compile Include="NewCBreezePageActionBase.cs" />
     <Compile Include="NewCBreezePageActionContainer.cs" />
@@ -85,7 +94,7 @@
     <Compile Include="NewCBreezePageActionSeparator.cs" />
     <Compile Include="NewItemCmdlet.cs" />
     <Compile Include="NewItemWithIDCmdlet.cs" />
-    <Compile Include="NewNamedItemCmdlet.cs" />
+    <Compile Include="NewItemWithIDAndNameCmdlet.cs" />
     <Compile Include="ParameterSetNames.cs" />
     <Compile Include="PSCmdletWithDynamicParams.cs" />
     <Compile Include="NewCBreezePageControl.cs" />
@@ -93,8 +102,6 @@
     <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
-    <Compile Include="NewCBreezeFunction.cs" />
-    <Compile Include="AddCBreezeMenuSuiteNode.cs" />
     <Compile Include="AddCBreezeOrderBy.cs" />
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="AddCBreezeCondition.cs" />
@@ -112,7 +119,6 @@
     <Compile Include="GetCBreezePageControlGroup.cs" />
     <Compile Include="AddCBreezeFilter.cs" />
     <Compile Include="NewBreezeCodeLine.cs" />
-    <Compile Include="AddCBreezeFunction.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
     <Compile Include="NewCBreezeMenuSuite.cs" />
     <Compile Include="NewCBreezeCodeunit.cs" />
@@ -185,21 +191,29 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NewCBreezeFunction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NewCBreezeFunction1.cs</LastGenOutput>
+    </Content>
     <Content Include="NewCBreezeParameter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeParameter.cs</LastGenOutput>
     </Content>
-    <Content Include="AddCBreezeTableField.tt">
+    <Content Include="NewCBreezeTableField.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AddCBreezeTableField1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeTableField.cs</LastGenOutput>
     </Content>
-    <Content Include="AddCBreezeXmlPortNode.tt">
+    <Content Include="NewCBreezeXmlPortNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AddCBreezeXmlPortNode1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeXmlPortNode1.cs</LastGenOutput>
     </Content>
     <Content Include="NewCBreezeVariable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeVariable1.cs</LastGenOutput>
+    </Content>
+    <Content Include="NewCBreezeMenuSuiteNode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NewCBreezeMenuSuiteNode1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
