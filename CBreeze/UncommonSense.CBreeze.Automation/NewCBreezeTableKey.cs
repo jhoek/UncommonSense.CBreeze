@@ -7,12 +7,17 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeTableKey")]
+    [Cmdlet(VerbsCommon.New, "CBreezeTableKey", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(TableKey))]
     [Alias("Key")]
-    public class NewCBreezeTableKey : Cmdlet
+    public class NewCBreezeTableKey : NewItemCmdlet<TableKey, Table>
     {
-        protected TableKey CreateKey()
+        protected override void AddItemToInputObject(TableKey item, Table inputObject)
+        {
+            inputObject.Keys.Add(item);
+        }
+
+        protected override IEnumerable<TableKey> CreateItems()
         {
             var tableKey = new TableKey(Fields);
 
@@ -24,12 +29,7 @@ namespace UncommonSense.CBreeze.Automation
             tableKey.Properties.SQLIndex.AddRange(SQLIndex ?? new string[] { });
             tableKey.Properties.SumIndexFields.AddRange(SumIndexFields ?? new string[] { });
 
-            return tableKey;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreateKey());
+            yield return tableKey;
         }
 
         [Parameter()]

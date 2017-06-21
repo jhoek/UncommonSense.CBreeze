@@ -128,7 +128,6 @@
     <Compile Include="SetCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />
-    <Compile Include="AddCBreezeTableKey.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />
     <Compile Include="DynamicParameter.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
@@ -212,6 +211,9 @@
     <Content Include="NewCBreezeMenuSuiteNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeMenuSuiteNode1.cs</LastGenOutput>
+    </Content>
+    <Content Include="reference.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
