@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeCodeLine", DefaultParameterSetName = "NewWithoutID")]
     [Alias("CodeLine")]
     [OutputType(typeof(string))]
-    public class NewBreezeCodeLine : NewItemCmdlet<string, PSObject>
+    public class NewCBreezeCodeLine : NewItemCmdlet<string, PSObject>
     {
         protected override void AddItemToInputObject(string item, PSObject inputObject)
         {
