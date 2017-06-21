@@ -108,7 +108,7 @@
     <Compile Include="AddCBreezeQueryElement.cs" />
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
     <Compile Include="AddCBreezeTableRelation.cs" />
-    <Compile Include="AddCBreezeXmlPortLink.cs" />
+    <Compile Include="NewCBreezeXmlPortLink.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
     <Compile Include="AddCBreezePageControl.cs" />
     <Compile Include="GetCBreezePageActionContainer.cs" />
@@ -116,7 +116,7 @@
     <Compile Include="GetCBreezePageControlContainer.cs" />
     <Compile Include="GetCBreezePageControlGroup.cs" />
     <Compile Include="AddCBreezeFilter.cs" />
-    <Compile Include="NewBreezeCodeLine.cs" />
+    <Compile Include="NewCBreezeCodeLine.cs" />
     <Compile Include="NewCBreezeCalcFormula.cs" />
     <Compile Include="NewCBreezeMenuSuite.cs" />
     <Compile Include="NewCBreezeCodeunit.cs" />
@@ -211,9 +211,6 @@
     <Content Include="NewCBreezeMenuSuiteNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeMenuSuiteNode1.cs</LastGenOutput>
-    </Content>
-    <Content Include="reference.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
