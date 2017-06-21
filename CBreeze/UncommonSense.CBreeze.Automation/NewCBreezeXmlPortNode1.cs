@@ -29,9 +29,10 @@ namespace UncommonSense.CBreeze.Automation
 			if (ChildNodes != null)
 			{
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject).Cast<XmlPortNode>();
+				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				foreach(var childNode in childNodes)
+				
+				foreach(var childNode in childNodes.OfType<XmlPortNode>())
 				{
 					yield return childNode;
 				}
@@ -148,9 +149,10 @@ namespace UncommonSense.CBreeze.Automation
 			if (ChildNodes != null)
 			{
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject).Cast<XmlPortNode>();
+				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				foreach(var childNode in childNodes)
+				
+				foreach(var childNode in childNodes.OfType<XmlPortNode>())
 				{
 					yield return childNode;
 				}
@@ -280,9 +282,12 @@ namespace UncommonSense.CBreeze.Automation
 			if (ChildNodes != null)
 			{
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject).Cast<XmlPortNode>();
+				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				foreach(var childNode in childNodes)
+				xmlPortTableAttribute.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());								
+
+				
+				foreach(var childNode in childNodes.OfType<XmlPortNode>())
 				{
 					yield return childNode;
 				}
@@ -424,9 +429,12 @@ namespace UncommonSense.CBreeze.Automation
 			if (ChildNodes != null)
 			{
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject).Cast<XmlPortNode>();
+				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				foreach(var childNode in childNodes)
+				xmlPortTableElement.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());								
+
+				
+				foreach(var childNode in childNodes.OfType<XmlPortNode>())
 				{
 					yield return childNode;
 				}
@@ -563,9 +571,10 @@ namespace UncommonSense.CBreeze.Automation
 			if (ChildNodes != null)
 			{
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject).Cast<XmlPortNode>();
+				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				foreach(var childNode in childNodes)
+				
+				foreach(var childNode in childNodes.OfType<XmlPortNode>())
 				{
 					yield return childNode;
 				}
@@ -668,9 +677,10 @@ namespace UncommonSense.CBreeze.Automation
 			if (ChildNodes != null)
 			{
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject).Cast<XmlPortNode>();
+				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				foreach(var childNode in childNodes)
+				
+				foreach(var childNode in childNodes.OfType<XmlPortNode>())
 				{
 					yield return childNode;
 				}

@@ -152,9 +152,13 @@ foreach (var @type in types) {
 			if (ChildNodes != null)
 			{
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject).Cast<XmlPortNode>();
+				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				foreach(var childNode in childNodes)
+<# if (@type.Name.Contains("Table")) { #>
+				<#= variableName #>.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());								
+
+<# } #>				
+				foreach(var childNode in childNodes.OfType<XmlPortNode>())
 				{
 					yield return childNode;
 				}
