@@ -55,8 +55,30 @@ foreach(var @type in types) {
 			Type = p.PropertyType,
 			FullTypeName = GetFullTypeName(p.PropertyType),
 			Mandatory = mandatoryProperties.Contains(p.Name),
+			SetValues = new[] { "" },
 			Assignment = $"{variableName}.Properties.{p.Name} = {p.Name};" 
 		});
+
+	if (relevantProperties.Any(p => p.Name == "MethodType")) 
+	{
+		var methodProperties = new[] { "MethodType", "DateMethod", "TotalsMethod" };
+
+		var newProperties = new [] {
+			new {
+				Name = "Method",
+				Type = typeof(string),
+				FullTypeName = "string",
+				Mandatory = false,
+				SetValues = new[] { "Day", "Month", "Year", "Sum", "Count", "Average", "Min", "Max"},
+				Assignment = $"FIXME"
+			}
+		};
+
+		relevantProperties = 
+			relevantProperties
+				.Where(p => !methodProperties.Contains(p.Name))
+				.Concat(newProperties);
+	};
 #>
 	[Cmdlet(VerbsCommon.New, "<#=type.Name#>")]
 	[OutputType(typeof(QueryElement))]
@@ -65,8 +87,12 @@ foreach(var @type in types) {
 	{
 		protected override IEnumerable<QueryElement> CreateItems()
 		{
-			// FIXME
-			throw new NotImplementedException();
+			var <#=variableName#> = new <#=type.Name#>();
+
+<# foreach(var property in relevantProperties) { #>
+<# } #>			
+
+			return <#=variableName#>;
 		}
 
 		protected override void AddItemToInputObject(QueryElement item, PSObject InputObject)
@@ -75,10 +101,14 @@ foreach(var @type in types) {
 		}
 
 <# foreach(var property in relevantProperties) { #>
-	[Parameter(<# if (property.Mandatory) { #>Mandatory=true<# } #>)]
+		[Parameter(<# if (property.Mandatory) { #>Mandatory=true<# } #>)]
+	<# if (property.SetValues.Any(v => !string.IsNullOrEmpty(v))) { #>	[ValidateSet(<#= string.Join(", ", property.SetValues.Select(v => $"\"{v}\"")) #>)]
+	<# } #>
 	public <#=property.FullTypeName#> <#=property.Name#> { get; set; }
 
 <# } #>
+		[Parameter()]
+		public string Name { get; set; }
 	}
 
 <# } #>
