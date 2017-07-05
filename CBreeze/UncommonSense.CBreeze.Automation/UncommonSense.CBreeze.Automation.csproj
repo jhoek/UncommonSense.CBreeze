@@ -69,11 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCBreezeParameter.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewCBreezeQueryElement.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCBreezeQueryElement.tt</DependentUpon>
-    </Compile>
+    <Compile Include="NewCBreezeQueryElement.cs" />
     <Compile Include="NewCBreezeTableField.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -200,10 +196,6 @@
     <Content Include="NewCBreezeParameter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeParameter.cs</LastGenOutput>
-    </Content>
-    <Content Include="NewCBreezeQueryElement.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NewCBreezeQueryElement.cs</LastGenOutput>
     </Content>
     <Content Include="NewCBreezeTableField.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
