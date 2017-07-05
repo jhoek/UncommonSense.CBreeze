@@ -92,7 +92,7 @@ foreach(var @type in types) {
 <# foreach(var property in relevantProperties) { #>
 <# } #>			
 
-			return <#=variableName#>;
+			yield return <#=variableName#>;
 		}
 
 		protected override void AddItemToInputObject(QueryElement item, PSObject InputObject)
