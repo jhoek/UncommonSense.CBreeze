@@ -29,6 +29,16 @@ namespace UncommonSense.CBreeze.Automation
             calcFormula.FieldName = FieldName;
             calcFormula.ReverseSign = ReverseSign.IsPresent;
 
+            calcFormula
+                .TableFilter
+                .AddRange(
+                    Filters?
+                        .Invoke()
+                        .Select(o => o.BaseObject)
+                        .Cast<CalcFormulaTableFilterLine>() ??
+                        Enumerable.Empty<CalcFormulaTableFilterLine>()
+                );
+
             WriteObject(calcFormula);
         }
 
@@ -50,12 +60,18 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "Sum", Position = 1)]
-        [Parameter(Mandatory = true, ParameterSetName = "Average", Position = 1)]
-        [Parameter(Mandatory = true, ParameterSetName = "Min", Position = 1)]
-        [Parameter(Mandatory = true, ParameterSetName = "Max", Position = 1)]
-        [Parameter(Mandatory = true, ParameterSetName = "Lookup", Position = 1)]
+        [Parameter(Mandatory = true, ParameterSetName = "Sum", Position = 2)]
+        [Parameter(Mandatory = true, ParameterSetName = "Average", Position = 2)]
+        [Parameter(Mandatory = true, ParameterSetName = "Min", Position = 2)]
+        [Parameter(Mandatory = true, ParameterSetName = "Max", Position = 2)]
+        [Parameter(Mandatory = true, ParameterSetName = "Lookup", Position = 2)]
         public string FieldName
+        {
+            get; set;
+        }
+
+        [Parameter(Position = 3)]
+        public ScriptBlock Filters
         {
             get; set;
         }
@@ -92,7 +108,7 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 1)]
         public string TableName
         {
             get;
