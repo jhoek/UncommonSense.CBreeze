@@ -1,0 +1,102 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Management.Automation" #>
+<#@ assembly name="c:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Management.Automation" #>
+<#@ import namespace="UncommonSense.CBreeze.Core" #>
+<#@ output extension=".cs" #>
+<#
+	var types = AppDomain
+		.CurrentDomain
+		.GetAssemblies()
+		.SelectMany(a => a.GetTypes())
+		.Where(t => typeof(QueryElement).IsAssignableFrom(t))
+		.Where(t => typeof(QueryElement) != t);
+
+	var skipProperties = new[] { 
+		"DataItemQueryElement", 
+		"ColumnQueryElement", 
+		"Element",
+		"Item",
+		"ParentNode", 
+		"ChildNodes", 
+		"CaptionML", 
+		"DataItemLink",
+		"ColumnFilter",
+		"WithAValue"
+	};
+
+	var mandatoryProperties = new[] {
+		"DataItemTable"
+	};
+#>
+using System;
+using System.Collections.Generic;
+using System.Management.Automation;
+using UncommonSense.CBreeze.Core;
+
+namespace UncommonSense.CBreeze.Automation 
+{
+	// FIXME: Combine methods into one property
+
+<# 
+foreach(var @type in types) { 
+	var variableName = Char.ToLowerInvariant(type.Name[0]) + type.Name.Substring(1);
+	var propertiesClass = type.GetProperty("Properties").PropertyType;
+
+	var relevantProperties = propertiesClass
+		.GetProperties()
+		.Where(p => !skipProperties.Contains(p.Name))
+		.Select(p => new {
+			Name = p.Name,
+			Type = p.PropertyType,
+			FullTypeName = GetFullTypeName(p.PropertyType),
+			Mandatory = mandatoryProperties.Contains(p.Name),
+			Assignment = $"{variableName}.Properties.{p.Name} = {p.Name};" 
+		});
+#>
+	[Cmdlet(VerbsCommon.New, "<#=type.Name#>")]
+	[OutputType(typeof(QueryElement))]
+	[Alias("<#= type.Name.Replace("QueryElement", "") #>")]
+	public class NewCBreeze<#= @type.Name #> : NewItemWithIDCmdlet<QueryElement, int, PSObject>
+	{
+		protected override IEnumerable<QueryElement> CreateItems()
+		{
+			// FIXME
+			throw new NotImplementedException();
+		}
+
+		protected override void AddItemToInputObject(QueryElement item, PSObject InputObject)
+		{
+			// FIXME
+		}
+
+<# foreach(var property in relevantProperties) { #>
+	[Parameter(<# if (property.Mandatory) { #>Mandatory=true<# } #>)]
+	public <#=property.FullTypeName#> <#=property.Name#> { get; set; }
+
+<# } #>
+	}
+
+<# } #>
+}
+
+<#+
+	static string GetFullTypeName(Type t)
+	{
+		if (!t.IsGenericType)
+			return t.Name;
+
+		var stringBuilder = new StringBuilder();
+
+		stringBuilder.Append(t.Name.Substring(0, t.Name.LastIndexOf("`")));
+		stringBuilder.Append("<");
+		stringBuilder.Append(string.Join(",", t.GetGenericArguments().Select(a => GetFullTypeName(a))));
+		stringBuilder.Append(">");
+
+		return stringBuilder.ToString();
+	}
+#>
