@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Set, "CBreezeMLValue")]
+    [Alias("MLValue")]
     public class SetCBreezeMLValue : Cmdlet
     {
         public SetCBreezeMLValue()
@@ -15,31 +16,15 @@ namespace UncommonSense.CBreeze.Automation
             Property = "CaptionML";
         }
 
-        [Parameter(Mandatory=true,ValueFromPipeline=true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public PSObject InputObject
         {
             get;
             set;
         }
 
-        [Parameter(Position = 0)]
-        [ValidateNotNullOrEmpty()]
-        [ValidateSet("CaptionML", "OptionCaptionML", "ReqFilterHeadingML", "ToolTipML", "InstructionalTextML", "PromotedActionCategoriesML")] 
-        public string Property
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory=true,Position=1)]
+        [Parameter(Mandatory = true, Position = 1)]
         public string LanguageName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory=true,Position=2)]
-        public string Value
         {
             get;
             set;
@@ -47,6 +32,22 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Position = 0)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet("CaptionML", "OptionCaptionML", "ReqFilterHeadingML", "ToolTipML", "InstructionalTextML", "PromotedActionCategoriesML")]
+        public string Property
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 2)]
+        public string Value
         {
             get;
             set;
