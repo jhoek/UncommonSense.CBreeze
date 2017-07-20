@@ -20,7 +20,9 @@ How would you do similar operations in an XML file? Probably using something lik
 ## FAQ
 <dl>
 <dt>Isn't this the same as https://github.com/Microsoft/AL?</dt>
-<dd>No, not quite, as far as I understand. Microsoft's new AL format is a less fragile, more intuitive to describe C/SIDE objects, but does not include a way to programmatically interact with the code. AL could be "just another import/export format" for C/Breeze applications, of course! :)</dd>
+<dd>No, not quite, as far as I understand. Microsoft's new AL format is a less fragile, more intuitive to describe C/SIDE objects, but does not include a way to programmatically interact with the code, thus limiting e.g. macro building to simple, static snippets.
+
+And of course, AL could be just another future import/export format for C/Breeze applications! :)</dd>
 </dl>
 
 ## Design Goals
