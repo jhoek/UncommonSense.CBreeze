@@ -19,12 +19,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Automation;
-            }
-        }
+        public override ParameterType Type => ParameterType.Automation;
+        public override string TypeName => $"Automation \"{SubType}\"";
     }
 }

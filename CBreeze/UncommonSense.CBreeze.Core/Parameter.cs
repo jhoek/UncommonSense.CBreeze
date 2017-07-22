@@ -32,6 +32,8 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
+        public virtual string TypeName => Type.ToString();
+
         public bool Var
         {
             get;

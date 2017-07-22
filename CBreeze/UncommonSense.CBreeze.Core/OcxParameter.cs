@@ -20,5 +20,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.Ocx;
+        public override string TypeName => $"OCX \"{SubType}\"";
     }
 }

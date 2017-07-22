@@ -19,12 +19,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Page;
-            }
-        }
+        public override ParameterType Type => ParameterType.Page;
+        public override string TypeName => $"Page {SubType}";
     }
 }

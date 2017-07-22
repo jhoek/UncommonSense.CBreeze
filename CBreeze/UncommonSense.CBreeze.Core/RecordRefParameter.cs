@@ -19,5 +19,14 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.RecordRef;
+
+        public override string TypeName
+        {
+            get
+            {
+                var securityFiltering = SecurityFiltering.HasValue ? $" SECURITYFILTERING({SecurityFiltering.Value})" : "";
+                return $"RecordRef{securityFiltering}";
+            }
+        }
     }
 }

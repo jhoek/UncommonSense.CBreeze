@@ -20,5 +20,14 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.Text;
+
+        public override string TypeName
+        {
+            get
+            {
+                var dataLength = DataLength.HasValue ? $"[{DataLength.Value}]" : string.Empty;
+                return $"Text{dataLength}";
+            }
+        }
     }
 }

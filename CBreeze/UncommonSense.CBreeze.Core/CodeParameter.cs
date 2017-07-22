@@ -20,5 +20,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.Code;
+        public override string TypeName => $"Code[{DataLength}]";
     }
 }

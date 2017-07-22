@@ -32,5 +32,16 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.DotNet;
+
+        public override string TypeName
+        {
+            get
+            {
+                var runOnClient = RunOnClient.GetValueOrDefault() ? " RUNONCLIENT" : "";
+                var suppressDispose = SuppressDispose.GetValueOrDefault() ? " SUPPRESSDISPOSE" : "";
+
+                return $"DotNet \"{SubType}\"{runOnClient}{suppressDispose}";
+            }
+        }
     }
 }

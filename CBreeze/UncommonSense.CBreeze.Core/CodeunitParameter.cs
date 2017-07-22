@@ -20,5 +20,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.Codeunit;
+        public override string TypeName => $"Codeunit {SubType}";
     }
 }

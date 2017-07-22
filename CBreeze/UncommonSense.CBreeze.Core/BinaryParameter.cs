@@ -20,5 +20,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.Binary;
+        public override string TypeName => $"Binary[{DataLength}]";
     }
 }

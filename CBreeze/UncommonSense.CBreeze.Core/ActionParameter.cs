@@ -12,12 +12,6 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public override ParameterType Type
-        {
-            get
-            {
-                return ParameterType.Action;
-            }
-        }
+        public override ParameterType Type => ParameterType.Action;
     }
 }

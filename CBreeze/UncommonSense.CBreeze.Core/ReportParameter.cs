@@ -20,5 +20,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.Report;
+        public override string TypeName => $"Report {SubType}";
     }
 }

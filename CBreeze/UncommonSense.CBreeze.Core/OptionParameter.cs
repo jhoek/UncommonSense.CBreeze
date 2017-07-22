@@ -20,6 +20,8 @@ namespace UncommonSense.CBreeze.Core
 
         public override ParameterType Type => ParameterType.Option;
 
+        public override string TypeName => string.IsNullOrEmpty(OptionString) ? "Option" : $"'{OptionString}'";
+
         public string GetOptionString()
         {
             return OptionString;

@@ -20,5 +20,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.XmlPort;
+        public override string TypeName => $"XMLport {SubType}";
     }
 }

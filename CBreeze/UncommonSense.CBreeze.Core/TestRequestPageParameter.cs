@@ -20,5 +20,6 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.TestRequestPage;
+        public override string TypeName => $"TestRequestPage {SubType}";
     }
 }

@@ -26,5 +26,15 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public override ParameterType Type => ParameterType.Query;
+
+        public override string TypeName
+        {
+            get
+            {
+                var securityFiltering = SecurityFiltering.HasValue ? $" SECURITYFILTERING({SecurityFiltering.Value})" : "";
+
+                return $"Query {SubType}{securityFiltering}";
+            }
+        }
     }
 }
