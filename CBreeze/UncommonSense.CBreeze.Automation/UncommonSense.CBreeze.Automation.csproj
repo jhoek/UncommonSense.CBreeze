@@ -108,7 +108,7 @@
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="AddCBreezeQueryElement.cs" />
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
-    <Compile Include="AddCBreezeTableRelation.cs" />
+    <Compile Include="NewCBreezeTableRelation.cs" />
     <Compile Include="NewCBreezeXmlPortLink.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
     <Compile Include="AddCBreezePageControl.cs" />
