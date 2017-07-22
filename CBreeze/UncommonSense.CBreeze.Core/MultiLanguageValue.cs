@@ -14,18 +14,6 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public string this[string languageID]
-        {
-            get
-            {
-                return Get(languageID);
-            }
-            set
-            {
-                Set(languageID, value);
-            }
-        }
-
         public string Get(string languageID)
         {
             try
@@ -56,6 +44,8 @@ namespace UncommonSense.CBreeze.Core
 
         public MultiLanguageValue Set(string languageID, string value)
         {
+            // FIXME: Test validity of language ID
+
             if (value == null)
             {
                 Unset(languageID);
@@ -66,10 +56,34 @@ namespace UncommonSense.CBreeze.Core
             return this;
         }
 
+        public MultiLanguageValue Set(Hashtable hashTable)
+        {
+            hashTable = hashTable ?? new Hashtable();
+
+            foreach (var key in hashTable.Keys)
+            {
+                Set(key.ToString(), hashTable[key].ToString());
+            }
+
+            return this;
+        }
+
         public MultiLanguageValue Unset(string languageID)
         {
             innerList.Remove(languageID);
             return this;
+        }
+
+        public string this[string languageID]
+        {
+            get
+            {
+                return Get(languageID);
+            }
+            set
+            {
+                Set(languageID, value);
+            }
         }
     }
 }
