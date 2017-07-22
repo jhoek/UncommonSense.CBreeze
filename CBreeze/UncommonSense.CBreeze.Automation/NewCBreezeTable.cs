@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -13,6 +14,12 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("Table")]
     public class NewCBreezeTable : NewCBreezeObject<Table>
     {
+        [Parameter()]
+        public Hashtable CaptionML
+        {
+            get; set;
+        }
+
         [Parameter()]
         public string[] DataCaptionFields
         {
@@ -100,6 +107,7 @@ namespace UncommonSense.CBreeze.Automation
             var table = new Table(ID, Name);
             SetObjectProperties(table);
 
+            table.Properties.CaptionML.Set(CaptionML);
             table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
             table.Properties.DataPerCompany = DataPerCompany;
             table.Properties.Description = Description;
