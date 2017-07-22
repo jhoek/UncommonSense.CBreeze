@@ -24,6 +24,7 @@
 	};
 #>
 using System;
+using System.Collections;
 using System.Linq;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
@@ -105,6 +106,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var <#=variableName#> = new <#=@type.Name#>(ID, Name<#if (hasDataLength) {#>, DataLength ?? <#=defaultDataLengths[@type]#><# } #>);
 			<#=variableName#>.Enabled = Enabled;
+			<#=variableName#>.Properties.CaptionML.Set(CaptionML);
             <#=variableName#>.Properties.Description = Description;
 
 <# foreach(var property in relevantProperties) { #>
@@ -137,6 +139,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }

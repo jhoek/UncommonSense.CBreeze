@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
@@ -17,6 +18,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var bigIntegerTableField = new BigIntegerTableField(ID, Name);
 			bigIntegerTableField.Enabled = Enabled;
+			bigIntegerTableField.Properties.CaptionML.Set(CaptionML);
             bigIntegerTableField.Properties.Description = Description;
 
 			bigIntegerTableField.Properties.AltSearchField = AltSearchField;
@@ -72,6 +74,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -176,6 +181,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var binaryTableField = new BinaryTableField(ID, Name, DataLength ?? 4);
 			binaryTableField.Enabled = Enabled;
+			binaryTableField.Properties.CaptionML.Set(CaptionML);
             binaryTableField.Properties.Description = Description;
 
 			binaryTableField.Properties.Description = Description;
@@ -207,6 +213,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
 
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
+
         [Parameter()]
         public bool? Enabled { get; set; }
 
@@ -232,6 +241,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var blobTableField = new BlobTableField(ID, Name);
 			blobTableField.Enabled = Enabled;
+			blobTableField.Properties.CaptionML.Set(CaptionML);
             blobTableField.Properties.Description = Description;
 
 			blobTableField.Properties.Compressed = Compressed;
@@ -269,6 +279,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -316,6 +329,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var booleanTableField = new BooleanTableField(ID, Name);
 			booleanTableField.Enabled = Enabled;
+			booleanTableField.Properties.CaptionML.Set(CaptionML);
             booleanTableField.Properties.Description = Description;
 
 			booleanTableField.Properties.AltSearchField = AltSearchField;
@@ -367,6 +381,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -459,6 +476,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var codeTableField = new CodeTableField(ID, Name, DataLength ?? 10);
 			codeTableField.Enabled = Enabled;
+			codeTableField.Properties.CaptionML.Set(CaptionML);
             codeTableField.Properties.Description = Description;
 
 			codeTableField.Properties.AltSearchField = AltSearchField;
@@ -510,6 +528,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -599,6 +620,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var dateFormulaTableField = new DateFormulaTableField(ID, Name);
 			dateFormulaTableField.Enabled = Enabled;
+			dateFormulaTableField.Properties.CaptionML.Set(CaptionML);
             dateFormulaTableField.Properties.Description = Description;
 
 			dateFormulaTableField.Properties.AltSearchField = AltSearchField;
@@ -645,6 +667,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -719,6 +744,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var dateTableField = new DateTableField(ID, Name);
 			dateTableField.Enabled = Enabled;
+			dateTableField.Properties.CaptionML.Set(CaptionML);
             dateTableField.Properties.Description = Description;
 
 			dateTableField.Properties.AltSearchField = AltSearchField;
@@ -770,6 +796,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -859,6 +888,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var dateTimeTableField = new DateTimeTableField(ID, Name);
 			dateTimeTableField.Enabled = Enabled;
+			dateTimeTableField.Properties.CaptionML.Set(CaptionML);
             dateTimeTableField.Properties.Description = Description;
 
 			dateTimeTableField.Properties.AltSearchField = AltSearchField;
@@ -910,6 +940,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -999,6 +1032,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var decimalTableField = new DecimalTableField(ID, Name);
 			decimalTableField.Enabled = Enabled;
+			decimalTableField.Properties.CaptionML.Set(CaptionML);
             decimalTableField.Properties.Description = Description;
 
 			decimalTableField.Properties.AltSearchField = AltSearchField;
@@ -1053,6 +1087,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -1151,6 +1188,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var durationTableField = new DurationTableField(ID, Name);
 			durationTableField.Enabled = Enabled;
+			durationTableField.Properties.CaptionML.Set(CaptionML);
             durationTableField.Properties.Description = Description;
 
 			durationTableField.Properties.AltSearchField = AltSearchField;
@@ -1203,6 +1241,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -1295,6 +1336,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var guidTableField = new GuidTableField(ID, Name);
 			guidTableField.Enabled = Enabled;
+			guidTableField.Properties.CaptionML.Set(CaptionML);
             guidTableField.Properties.Description = Description;
 
 			guidTableField.Properties.AltSearchField = AltSearchField;
@@ -1341,6 +1383,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -1415,6 +1460,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var integerTableField = new IntegerTableField(ID, Name);
 			integerTableField.Enabled = Enabled;
+			integerTableField.Properties.CaptionML.Set(CaptionML);
             integerTableField.Properties.Description = Description;
 
 			integerTableField.Properties.AltSearchField = AltSearchField;
@@ -1469,6 +1515,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -1567,6 +1616,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var optionTableField = new OptionTableField(ID, Name);
 			optionTableField.Enabled = Enabled;
+			optionTableField.Properties.CaptionML.Set(CaptionML);
             optionTableField.Properties.Description = Description;
 
 			optionTableField.Properties.AltSearchField = AltSearchField;
@@ -1623,6 +1673,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -1721,6 +1774,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var recordIDTableField = new RecordIDTableField(ID, Name);
 			recordIDTableField.Enabled = Enabled;
+			recordIDTableField.Properties.CaptionML.Set(CaptionML);
             recordIDTableField.Properties.Description = Description;
 
 			recordIDTableField.Properties.AltSearchField = AltSearchField;
@@ -1767,6 +1821,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -1841,6 +1898,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var tableFilterTableField = new TableFilterTableField(ID, Name);
 			tableFilterTableField.Enabled = Enabled;
+			tableFilterTableField.Properties.CaptionML.Set(CaptionML);
             tableFilterTableField.Properties.Description = Description;
 
 			tableFilterTableField.Properties.Description = Description;
@@ -1873,6 +1931,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
 
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
+
         [Parameter()]
         public bool? Enabled { get; set; }
 
@@ -1904,6 +1965,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var textTableField = new TextTableField(ID, Name, DataLength ?? 30);
 			textTableField.Enabled = Enabled;
+			textTableField.Properties.CaptionML.Set(CaptionML);
             textTableField.Properties.Description = Description;
 
 			textTableField.Properties.AltSearchField = AltSearchField;
@@ -1955,6 +2017,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
@@ -2044,6 +2109,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var timeTableField = new TimeTableField(ID, Name);
 			timeTableField.Enabled = Enabled;
+			timeTableField.Properties.CaptionML.Set(CaptionML);
             timeTableField.Properties.Description = Description;
 
 			timeTableField.Properties.AltSearchField = AltSearchField;
@@ -2094,6 +2160,9 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public bool? Enabled { get; set; }
