@@ -11,19 +11,20 @@ namespace UncommonSense.CBreeze.Write
     {
         public static void Write(this PageActionBase action, CSideWriter writer)
         {
-            TypeSwitch.Do(
-                action,
-                TypeSwitch.Case<PageActionContainer>(a => a.Write(writer)),
-                TypeSwitch.Case<PageActionGroup>(a => a.Write(writer)),
-                TypeSwitch.Case<PageAction>(a => a.Write(writer)),
-                TypeSwitch.Case<PageActionSeparator>(a => a.Write(writer)));
+            switch (action)
+            {
+                case PageActionContainer c: c.Write(writer); break;
+                case PageActionGroup g: g.Write(writer); break;
+                case PageAction a: a.Write(writer); break;
+                case PageActionSeparator s: s.Write(writer); break;
+            }
         }
 
         public static void Write(this PageActionContainer action, CSideWriter writer)
         {
             var idLength = Math.Max(action.ID.ToString().Length, 8);
             var id = action.ID.ToString().PadRight(idLength);
-            var idAndIndentation = string.Format("{0};{1}", id, action.IndentationLevel.HasValue ? action.IndentationLevel.ToString(): string.Empty);
+            var idAndIndentation = string.Format("{0};{1}", id, action.IndentationLevel.HasValue ? action.IndentationLevel.ToString() : string.Empty);
 
             writer.Write("{{ {0};", idAndIndentation.PadRight(13));
             writer.Indent(writer.Column);
