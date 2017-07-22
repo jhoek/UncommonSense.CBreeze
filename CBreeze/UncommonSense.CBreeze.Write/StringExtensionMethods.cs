@@ -11,6 +11,23 @@ namespace UncommonSense.CBreeze.Write
     {
         private static CultureInfo[] cultures;
 
+        private static CultureInfo[] Cultures
+        {
+            get
+            {
+                cultures = cultures ?? CultureInfo.GetCultures(CultureTypes.AllCultures);
+                return cultures;
+            }
+        }
+
+        public static int GetLCIDFromLanguageCode(this string languageCode)
+        {
+            if (languageCode == "@@@")
+                return 0;
+
+            return Cultures.FirstOrDefault(c => c.ThreeLetterWindowsLanguageName == languageCode).LCID;
+        }
+
         public static string TextConstantValue(this string text, bool isComment, int noOfValues)
         {
             var needsQuotes = (text.Trim() != text) || (text.Contains(';') || text.Contains("=") || text.StartsWith("\""));
@@ -22,20 +39,10 @@ namespace UncommonSense.CBreeze.Write
             {
                 case true:
                     return text.ForceQuoted();
+
                 default:
                     return text;
             }
-        }
-
-        public static int GetLCIDFromLanguageCode(this string languageCode)
-        {
-            if (languageCode == "@@@")
-                return 0;
-
-            if (cultures == null)
-                cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
-
-            return cultures.FirstOrDefault(c => c.ThreeLetterWindowsLanguageName == languageCode).LCID;
         }
     }
 }
