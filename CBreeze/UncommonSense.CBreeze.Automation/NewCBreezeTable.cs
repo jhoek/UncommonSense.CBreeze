@@ -139,7 +139,7 @@ namespace UncommonSense.CBreeze.Automation
             yield return table;
         }
 
-        private void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
+        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
         {
             if (scriptBlock != null)
             {
