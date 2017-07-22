@@ -4,6 +4,7 @@
 <#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Management.Automation" #>
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
@@ -76,6 +77,12 @@ namespace UncommonSense.CBreeze.Automation
 		var crLf = Environment.NewLine;
 
 		var newProperties = new [] {
+			new {
+				Name = "OptionCaptionML",
+				Type = typeof(Hashtable),
+				Mandatory = false,
+				Assignment = $"{variableName}.Properties.OptionCaptionML.Set(OptionCaptionML);"
+			},
 			new {
 				Name = "AutoOptionCaption",
 				Type = typeof(SwitchParameter),

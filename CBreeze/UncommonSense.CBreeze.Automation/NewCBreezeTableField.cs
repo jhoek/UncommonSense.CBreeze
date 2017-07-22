@@ -1643,6 +1643,7 @@ namespace UncommonSense.CBreeze.Automation
 			optionTableField.Properties.TestTableRelation = TestTableRelation;
 			optionTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			optionTableField.Properties.ValuesAllowed = ValuesAllowed;
+			optionTableField.Properties.OptionCaptionML.Set(OptionCaptionML);
 			
 			if (AutoOptionCaption) 
 				optionTableField.AutoOptionCaption();
@@ -1751,6 +1752,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
+
+	[Parameter()]
+	public Hashtable OptionCaptionML { get;set; }
 
 	[Parameter()]
 	public SwitchParameter AutoOptionCaption { get;set; }
