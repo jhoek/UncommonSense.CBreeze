@@ -118,6 +118,7 @@ namespace UncommonSense.CBreeze.Write
                 case true:
                     writer.Write("{0}={1} ", propertyName, propertyValue);
                     break;
+
                 case false:
                     writer.WriteLine("{0}={1};", propertyName, propertyValue);
                     break;
@@ -138,6 +139,7 @@ namespace UncommonSense.CBreeze.Write
                     case true:
                         writer.Write("{0}={1}({2}) ", line.FieldName, line.Type.GetValueOrDefault().AsString(), line.Value);
                         break;
+
                     case false:
                         writer.Write("{0}={1}({2})", line.FieldName, line.Type.GetValueOrDefault().AsString(), line.Value);
                         writer.WriteLineIf(isLastLine, ";");
@@ -217,6 +219,7 @@ namespace UncommonSense.CBreeze.Write
                 case CalcFormulaMethod.Count:
                     writer.Write(property.Value.TableName.QuotedExcept('-', '/', '.'));
                     break;
+
                 case CalcFormulaMethod.Lookup:
                 case CalcFormulaMethod.Average:
                 case CalcFormulaMethod.Max:
@@ -278,6 +281,7 @@ namespace UncommonSense.CBreeze.Write
                     case true:
                         writer.Write("{0} ", component);
                         break;
+
                     case false:
                         writer.Write(component);
                         writer.WriteLineIf(isLastComponent, ";");
@@ -334,6 +338,7 @@ namespace UncommonSense.CBreeze.Write
                 case true:
                     writer.Write("{0}={1} ", property.Name, value);
                     break;
+
                 case false:
                     writer.WriteLine("{0}={1};", property.Name, value);
                     break;
@@ -347,6 +352,7 @@ namespace UncommonSense.CBreeze.Write
                 case true:
                     writer.Write("{0}={1} ", property.Name, property.Value.Value ? "Yes" : "No");
                     break;
+
                 case false:
                     writer.WriteLine("{0}={1};", property.Name, property.Value.Value ? "Yes" : "No");
                     break;
@@ -354,6 +360,7 @@ namespace UncommonSense.CBreeze.Write
         }
 
 #if NAV2016
+
         public static void Write(this XmlPortNamespacesProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
         {
             var requiresBrackets = (property.Value.Count() > 1); // ?
@@ -379,6 +386,7 @@ namespace UncommonSense.CBreeze.Write
                 case PropertiesStyle.Object:
                     writer.WriteLine(";");
                     break;
+
                 case PropertiesStyle.Field:
                     if (!isLastProperty)
                         writer.WriteLine(";");
@@ -387,6 +395,7 @@ namespace UncommonSense.CBreeze.Write
                     break;
             }
         }
+
 #endif
 
         public static void Write(this MultiLanguageProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
@@ -401,10 +410,12 @@ namespace UncommonSense.CBreeze.Write
                 writer.Write("[");
             writer.Indent(writer.Column);
 
-            foreach (var multiLanguageEntry in property.Value.OrderBy(e => e.LanguageID.GetLCIDFromLanguageCode()))
+            var multiLanguageEntries = property.Value.OrderBy(e => e.LanguageID.GetLCIDFromLanguageCode());
+
+            foreach (var multiLanguageEntry in multiLanguageEntries)
             {
                 writer.Write("{0}={1}", multiLanguageEntry.LanguageID, multiLanguageEntry.QuotedValue);
-                writer.WriteLineIf(multiLanguageEntry != property.Value.Last(), ";");
+                writer.WriteLineIf(multiLanguageEntry != multiLanguageEntries.Last(), ";");
             }
 
             writer.Unindent();
@@ -416,6 +427,7 @@ namespace UncommonSense.CBreeze.Write
                 case PropertiesStyle.Object:
                     writer.WriteLine(";");
                     break;
+
                 case PropertiesStyle.Field:
                     if (!isLastProperty)
                         writer.WriteLine(";");
@@ -442,7 +454,7 @@ namespace UncommonSense.CBreeze.Write
                 {
                     writer.Write("IF (");
 
-                    // Only indent if multiple conditions exist. 
+                    // Only indent if multiple conditions exist.
                     // Note that C/SIDE doesn't properly unindent.
                     if (tableRelationLine.Conditions.Count() > 1)
                     {
@@ -493,6 +505,7 @@ namespace UncommonSense.CBreeze.Write
                             case true:
                                 writer.Write(")");
                                 break;
+
                             default:
                                 writer.WriteLine(",");
                                 break;
@@ -532,6 +545,7 @@ namespace UncommonSense.CBreeze.Write
                 case true:
                     writer.Write("{0}=Table{1} ", property.Name, property.Value.Value);
                     break;
+
                 case false:
                     writer.WriteLine("{0}=Table{1};", property.Name, property.Value.Value);
                     break;
@@ -545,6 +559,7 @@ namespace UncommonSense.CBreeze.Write
                 case true:
                     writer.Write("{0}=Page{1} ", property.Name, property.Value.Value);
                     break;
+
                 case false:
                     writer.WriteLine("{0}=Page{1};", property.Name, property.Value.Value);
                     break;
@@ -558,6 +573,7 @@ namespace UncommonSense.CBreeze.Write
                 case true:
                     writer.Write("{0}={1} {2} ", property.Name, FormatRunObjectType(property.Value.Type.Value), property.Value.ID);
                     break;
+
                 case false:
                     writer.WriteLine("{0}={1} {2};", property.Name, FormatRunObjectType(property.Value.Type.Value), property.Value.ID);
                     break;
@@ -570,6 +586,7 @@ namespace UncommonSense.CBreeze.Write
             {
                 case RunObjectType.XmlPort:
                     return "XMLport";
+
                 default:
                     return value.ToString();
             }
@@ -588,6 +605,7 @@ namespace UncommonSense.CBreeze.Write
             {
                 case MenuItemRunObjectType.XmlPort:
                     return "XMLport";
+
                 default:
                     return value.ToString();
             }
@@ -635,7 +653,6 @@ namespace UncommonSense.CBreeze.Write
                         writer.WriteLine(",");
                         break;
                 }
-
             }
 
             writer.Unindent();
@@ -669,6 +686,7 @@ namespace UncommonSense.CBreeze.Write
                     case true:
                         writer.Write("{0}={1}.{2} ", line.Field, line.ReferenceTable, line.ReferenceField);
                         break;
+
                     case false:
                         writer.WriteLine("{0}={1}.{2}{3}", line.Field, line.ReferenceTable, line.ReferenceField, isLastLine ? ";" : ",");
                         break;
@@ -692,6 +710,7 @@ namespace UncommonSense.CBreeze.Write
                     case true:
                         writer.Write("{0}=FIELD({1}) ", line.FieldName, line.ReferenceFieldName);
                         break;
+
                     case false:
                         writer.WriteLine("{0}=FIELD({1}){2}", line.FieldName, line.ReferenceFieldName, isLastLine ? ";" : ",");
                         break;
@@ -727,11 +746,13 @@ namespace UncommonSense.CBreeze.Write
                             case true:
                                 writer.Write("}] ");
                                 break;
+
                             default:
                                 writer.WriteLine("}];");
                                 break;
                         }
                         break;
+
                     default:
                         writer.WriteLine("},");
                         break;
