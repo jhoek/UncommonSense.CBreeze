@@ -80,6 +80,11 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()] public ScriptBlock OnInsert { get; set; }
+        [Parameter()] public ScriptBlock OnModify { get; set; }
+        [Parameter()] public ScriptBlock OnDelete { get; set; }
+        [Parameter()] public ScriptBlock OnRename { get; set; }
+
 #if NAV2016
 
         [Parameter()]
@@ -111,6 +116,11 @@ namespace UncommonSense.CBreeze.Automation
             table.Properties.TableType = TableType;
 #endif
 
+            ProcessTrigger(OnInsert, table.Properties.OnInsert);
+            ProcessTrigger(OnModify, table.Properties.OnModify);
+            ProcessTrigger(OnDelete, table.Properties.OnDelete);
+            ProcessTrigger(OnRename, table.Properties.OnRename);
+
             if (AutoCaption)
                 table.AutoCaption();
 
@@ -127,6 +137,16 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             yield return table;
+        }
+
+        private void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
+        {
+            if (scriptBlock != null)
+            {
+                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
+                trigger.Variables.AddRange(subObjects.OfType<Variable>());
+                trigger.CodeLines.AddRange(subObjects.OfType<string>());
+            }
         }
 
         protected override void AddItemToInputObject(Table item, Application inputObject)
