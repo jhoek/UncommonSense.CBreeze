@@ -11,26 +11,26 @@ namespace UncommonSense.CBreeze.Write
     {
         public static void Write(this QueryElement element, CSideWriter writer)
         {
-            TypeSwitch.Do(
-                element,
-                TypeSwitch.Case<DataItemQueryElement>(e => e.Write(writer)),
-                TypeSwitch.Case<ColumnQueryElement>(e => e.Write(writer)),
-                TypeSwitch.Case<FilterQueryElement>(e => e.Write(writer))
-                );
+            switch (element)
+            {
+                case DataItemQueryElement d: d.Write(writer); break;
+                case ColumnQueryElement c: c.Write(writer); break;
+                case FilterQueryElement f: f.Write(writer); break;
+            }
         }
 
         public static void Write(this DataItemQueryElement element, CSideWriter writer)
         {
-            WriteDeclaration(element.ID, element.IndentationLevel, "DataItem", element.Name,writer);
+            WriteDeclaration(element.ID, element.IndentationLevel, "DataItem", element.Name, writer);
             element.Properties.Where(p => p.HasValue).Write(PropertiesStyle.Field, writer);
             writer.WriteLine("}");
             writer.Unindent();
             writer.InnerWriter.WriteLine();
         }
 
-        public static void Write(this ColumnQueryElement element,CSideWriter writer)
+        public static void Write(this ColumnQueryElement element, CSideWriter writer)
         {
-            WriteDeclaration(element.ID, element.IndentationLevel, "Column", element.Name,writer);
+            WriteDeclaration(element.ID, element.IndentationLevel, "Column", element.Name, writer);
             element.Properties.Where(p => p.HasValue).Write(PropertiesStyle.Field, writer);
             writer.WriteLine("}");
             writer.Unindent();
