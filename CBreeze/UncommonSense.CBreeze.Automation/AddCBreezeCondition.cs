@@ -7,14 +7,17 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeCondition")]
-    public class AddCBreezeCondition : Cmdlet
+    [Cmdlet(VerbsCommon.New, "CBreezeCondition")]
+    public class NewCBreezeCondition : NewItemCmdlet<TableRelationCondition, TableRelationLine>
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public TableRelationLine InputObject
+        protected override void AddItemToInputObject(TableRelationCondition item, TableRelationLine inputObject)
         {
-            get;
-            set;
+            inputObject.Conditions.Add(item);
+        }
+
+        protected override IEnumerable<TableRelationCondition> CreateItems()
+        {
+            yield return new TableRelationCondition(FieldName, Type, Value);
         }
 
         [Parameter(Mandatory = true, Position = 0)]
@@ -24,15 +27,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Const")]
-        public SwitchParameter Const
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Filter")]
-        public SwitchParameter Filter
+        [Parameter(Mandatory = true, Position = 1)]
+        public SimpleTableFilterType Type
         {
             get;
             set;
@@ -45,33 +41,5 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
-
-        [Parameter()]
-        public SwitchParameter PassThru
-        {
-            get;
-            set;
-        }
-
-        protected override void ProcessRecord()
-        {
-            InputObject.Conditions.Add(new TableRelationCondition(FieldName, SimpleTableFilterType, Value));
-
-            if (PassThru)
-                WriteObject(InputObject);
-        }
-
-        protected SimpleTableFilterType SimpleTableFilterType
-        {
-            get
-            {
-                if (Const.IsPresent)
-                    return Core.SimpleTableFilterType.Const;
-                if (Filter.IsPresent)
-                    return Core.SimpleTableFilterType.Filter;
-
-                throw new ArgumentOutOfRangeException("SimpleTableFilterType");
-            }
-        }
-     }
+    }
 }
