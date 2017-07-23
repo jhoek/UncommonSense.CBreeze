@@ -39,8 +39,8 @@ namespace UncommonSense.CBreeze.Automation
 	var propertiesClass = @type.GetProperty("Properties").PropertyType;
 	var skipProperties = new List<string>() { "Field", "ParentNode", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "AccessByPermission", "TableRelation" }; 
 
-	var relevantProperties = propertiesClass
-		.GetProperties()
+	var allProperties = propertiesClass.GetProperties();
+	var relevantProperties = allProperties
 		.Where(p => !skipProperties.Contains(p.Name))
 		.Select(p=> new { 
 			Name = p.Name, 
@@ -123,6 +123,14 @@ namespace UncommonSense.CBreeze.Automation
 			ProcessTrigger(OnValidate, <#=variableName#>.Properties.OnValidate);
 			ProcessTrigger(OnLookup, <#=variableName#>.Properties.OnLookup);
 
+<# if (allProperties.Any(p => p.Name == "TableRelation")) { #>
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				<#=variableName#>.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
+<# } #>
+
 			if (AutoCaption)
                 <#=variableName#>.AutoCaption();
 
@@ -164,6 +172,14 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+<# if (allProperties.Any(p => p.Name == "TableRelation")) { #>
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
+<# } #>
 	}
 
 <# } #>

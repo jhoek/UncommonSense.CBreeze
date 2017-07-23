@@ -51,6 +51,12 @@ namespace UncommonSense.CBreeze.Automation
 			ProcessTrigger(OnValidate, bigIntegerTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, bigIntegerTableField.Properties.OnLookup);
 
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				bigIntegerTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
+
 			if (AutoCaption)
                 bigIntegerTableField.AutoCaption();
 
@@ -165,6 +171,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBinaryTableField")]
@@ -188,6 +200,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, binaryTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, binaryTableField.Properties.OnLookup);
+
 
 			if (AutoCaption)
                 binaryTableField.AutoCaption();
@@ -228,6 +241,7 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBlobTableField")]
@@ -255,6 +269,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, blobTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, blobTableField.Properties.OnLookup);
+
 
 			if (AutoCaption)
                 blobTableField.AutoCaption();
@@ -316,6 +331,7 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBooleanTableField")]
@@ -357,6 +373,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, booleanTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, booleanTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				booleanTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 booleanTableField.AutoCaption();
@@ -460,6 +482,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeCodeTableField")]
@@ -504,6 +532,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, codeTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, codeTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				codeTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 codeTableField.AutoCaption();
@@ -607,6 +641,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateFormulaTableField")]
@@ -643,6 +683,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, dateFormulaTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, dateFormulaTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				dateFormulaTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 dateFormulaTableField.AutoCaption();
@@ -731,6 +777,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateTableField")]
@@ -772,6 +824,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, dateTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, dateTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				dateTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 dateTableField.AutoCaption();
@@ -875,6 +933,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateTimeTableField")]
@@ -916,6 +980,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, dateTimeTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, dateTimeTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				dateTimeTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 dateTimeTableField.AutoCaption();
@@ -1019,6 +1089,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDecimalTableField")]
@@ -1063,6 +1139,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, decimalTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, decimalTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				decimalTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 decimalTableField.AutoCaption();
@@ -1175,6 +1257,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDurationTableField")]
@@ -1217,6 +1305,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, durationTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, durationTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				durationTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 durationTableField.AutoCaption();
@@ -1323,6 +1417,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeGuidTableField")]
@@ -1359,6 +1459,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, guidTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, guidTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				guidTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 guidTableField.AutoCaption();
@@ -1447,6 +1553,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeIntegerTableField")]
@@ -1491,6 +1603,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, integerTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, integerTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				integerTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 integerTableField.AutoCaption();
@@ -1603,6 +1721,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeOptionTableField")]
@@ -1650,6 +1774,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, optionTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, optionTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				optionTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 optionTableField.AutoCaption();
@@ -1765,6 +1895,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeRecordIDTableField")]
@@ -1801,6 +1937,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, recordIDTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, recordIDTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				recordIDTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 recordIDTableField.AutoCaption();
@@ -1889,6 +2031,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTableFilterTableField")]
@@ -1910,6 +2058,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, tableFilterTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, tableFilterTableField.Properties.OnLookup);
+
 
 			if (AutoCaption)
                 tableFilterTableField.AutoCaption();
@@ -1953,6 +2102,7 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTextTableField")]
@@ -1997,6 +2147,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, textTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, textTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				textTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 textTableField.AutoCaption();
@@ -2100,6 +2256,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTimeTableField")]
@@ -2140,6 +2302,12 @@ namespace UncommonSense.CBreeze.Automation
 
 			ProcessTrigger(OnValidate, timeTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, timeTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				timeTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
 
 			if (AutoCaption)
                 timeTableField.AutoCaption();
@@ -2240,6 +2408,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
 	}
 
 }
