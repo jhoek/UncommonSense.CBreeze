@@ -104,7 +104,7 @@
     <Compile Include="NewCBreezeTableKey.cs" />
     <Compile Include="AddCBreezeOrderBy.cs" />
     <Compile Include="AddCBreezePageAction.cs" />
-    <Compile Include="AddCBreezeCondition.cs" />
+    <Compile Include="NewCBreezeCondition.cs" />
     <Compile Include="AddCBreezeLink.cs" />
     <Compile Include="AddCBreezeQueryElement.cs" />
     <Compile Include="AddCBreezeTableFieldGroup.cs" />
