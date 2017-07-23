@@ -12,20 +12,6 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("TableRelation")]
     public class NewCBreezeTableRelation : NewItemCmdlet<TableRelationLine, PSObject>
     {
-        [Parameter(Position = 1)]
-        public string FieldName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 0)]
-        public string TableName
-        {
-            get;
-            set;
-        }
-
         protected override void AddItemToInputObject(TableRelationLine item, PSObject inputObject)
         {
             switch (inputObject.BaseObject)
@@ -38,7 +24,34 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<TableRelationLine> CreateItems()
         {
-            yield return new TableRelationLine(TableName) { FieldName = FieldName };
+            var result = new TableRelationLine(TableName) { FieldName = FieldName };
+
+            var subObjects =
+                SubObjects?
+                    .Invoke()
+                    .Select(o => o.BaseObject)
+                    ?? Enumerable.Empty<object>();
+
+            result.Conditions.AddRange(subObjects.OfType<TableRelationCondition>());
+
+            yield return result;
+        }
+
+        [Parameter(Position = 1)]
+        public string FieldName
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Position = 2)]
+        public ScriptBlock SubObjects { get; set; }
+
+        [Parameter(Mandatory = true, Position = 0)]
+        public string TableName
+        {
+            get;
+            set;
         }
     }
 }
