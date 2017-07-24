@@ -10,7 +10,9 @@ using UncommonSense.CBreeze.Write;
 namespace UncommonSense.CBreeze.Automation
 {
 #if NAV2015
+
     [Cmdlet(VerbsCommon.Set, "CBreezeAccessByPermission")]
+    [Alias("AccessByPermission")]
     public class SetCBreezeAccessByPermission : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -81,45 +83,37 @@ namespace UncommonSense.CBreeze.Automation
             accessByPermission.Modify = Modify;
             accessByPermission.Delete = Delete;
             accessByPermission.Execute = Execute;
+
+            WriteObject(InputObject);
         }
 
         protected AccessByPermission GetAccessByPermission()
         {
-            AccessByPermission result = null;
+            switch (InputObject.BaseObject)
+            {
+                case TableField f:
+                    return (f.AllProperties["AccessByPermission"] as AccessByPermissionProperty).Value;
 
-            TypeSwitch.Do(
-                InputObject.BaseObject,
-                TypeSwitch.Case<BigIntegerTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<BinaryTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<BlobTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<BooleanTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<CodeTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<DateFormulaTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<DateTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<DateTimeTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<DecimalTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<DurationTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<FieldPageControlProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<GuidTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<IntegerTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<MenuSuiteItemNodeProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<OptionTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<PageActionProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<PartPageControlProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<RecordIDTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<TableFilterTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<TextTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Case<TimeTableFieldProperties>(i => result = i.AccessByPermission),
-                TypeSwitch.Default(() => InvalidInputObject())
-            );
+                case FieldPageControl c:
+                    return c.Properties.AccessByPermission;
 
-            return result;
-        }
+                case PageAction a:
+                    return a.Properties.AccessByPermission;
 
-        protected void InvalidInputObject()
-        {
-            throw new ArgumentOutOfRangeException("Don't know how to set the AccessByPermission property for this input object.");
+                case PartPageControl c:
+                    return c.Properties.AccessByPermission;
+
+                case ItemNode n:
+                    return n.Properties.AccessByPermission;
+
+                case Properties p:
+                    return (p["AccessByPermission"] as AccessByPermissionProperty).Value;
+
+                default:
+                    throw new ArgumentOutOfRangeException("Don't know how to set the AccessByPermission property for this input object.");
+            }
         }
     }
+
 #endif
 }
