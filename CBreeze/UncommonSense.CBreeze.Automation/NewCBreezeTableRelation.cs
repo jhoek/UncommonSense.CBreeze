@@ -33,6 +33,7 @@ namespace UncommonSense.CBreeze.Automation
                     ?? Enumerable.Empty<object>();
 
             result.Conditions.AddRange(subObjects.OfType<TableRelationCondition>());
+            result.TableFilter.AddRange(subObjects.OfType<TableRelationTableFilterLine>());
 
             yield return result;
         }
