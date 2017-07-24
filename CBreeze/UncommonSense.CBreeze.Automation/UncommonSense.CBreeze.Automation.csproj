@@ -75,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCBreezeTableField.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewCBreezeTableRelationFilter.cs" />
     <Compile Include="NewCBreezeXmlPortNode1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
