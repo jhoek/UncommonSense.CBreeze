@@ -43,6 +43,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public SwitchParameter PassThru { get; set; }
+
         [Parameter(Mandatory = true, ParameterSetName = "ToPath", Position = 1)]
         public string Path
         {
@@ -119,26 +122,37 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void EndProcessing()
         {
+            Action<string, object> writeVerbose = (targetType, target) => WriteVerbose($"Exporting {CachedObjects.Objects.Count()} object(s) to {targetType} {target}");
+
             switch (ParameterSetName)
             {
                 case "ToPath":
+                    writeVerbose("path", Path);
                     CachedObjects.Write(Path);
                     break;
 
                 case "ToTextWriter":
+                    writeVerbose("TextWriter", "");
                     CachedObjects.Write(TextWriter ?? Console.Out);
                     break;
 
                 case "ToStream":
+                    writeVerbose("Stream", "");
                     CachedObjects.Write(Stream);
                     break;
 
                 case "ToDatabase":
+                    writeVerbose("database", Database);
                     ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database);
 
                     if (AutoCompile)
                         ApplicationCompiler.Compile(CachedObjects, DevClientPath, ServerName, Database);
                     break;
+            }
+
+            if (PassThru)
+            {
+                WriteObject(CachedObjects);
             }
         }
     }
