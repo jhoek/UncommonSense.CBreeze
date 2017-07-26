@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Automation 
@@ -940,6 +941,7 @@ namespace UncommonSense.CBreeze.Automation
 		protected override IEnumerable<TextConstant> CreateItems()
 		{
 			var textConstant = new TextConstant(ID, Name);
+			textConstant.Values.Set(Values);
 			yield return textConstant;
 		}
 
@@ -947,6 +949,12 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			inputObject.GetVariables().Add(item);
 		}
+
+		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
+		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
+		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
+		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
+		public Hashtable Values { get; set; }
 
 	}
 
