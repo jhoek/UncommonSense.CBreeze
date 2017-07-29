@@ -8,10 +8,12 @@ Although their names seem to imply that these cmdlets add only one element (tabl
 
 In some use cases, you're primarily interested in receiving the newly created field as a return value from the cmdlet. In some others, however, you need references to all the objects and subobjects that were created. The `-Manifest` switch parameter can be added to cmdlets to indicate what you would like the cmdlet's return value to be:
 
-- If `-Manifest` is not present, the cmdlet should return only the newly created, primary item. Without `-Manifest`, `New-CBreezeUserIDField` simply returns the User ID that it created;
-- If `-Manifest` is present, the cmdlet should return a structure containing references to all objects and subobjects that it created (or modified #FIXME).
+- If `-Manifest` is not present, the cmdlet should return only the newly created, primary item. Without `-Manifest`, `New-CBreezeUserIDField` simply returns the User ID table field that it created;
+- If `-Manifest` is present, the cmdlet should return a structure containing references to all objects and subobjects that it created (or modified #FIXME). Please see below for returned object's structure.
 
-For consistency's sake, I strongly encourage you to follow this same pattern in any custom pattern cmdlets that you might make. The returned structure should look like this:
+For consistency's sake, I strongly encourage you to follow this same pattern in any custom pattern cmdlets that you might make. 
+
+The returned structure should look like this:
 
 ```powershell
 # Field patterns
