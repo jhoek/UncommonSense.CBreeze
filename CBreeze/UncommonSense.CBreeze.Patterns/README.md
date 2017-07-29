@@ -1,3 +1,7 @@
+# UncommonSense.CBreeze.Patterns
+
+The PowerShell cmdlets in this folders are intended as a demonstration of what is possible with C/Breeze in terms of macroing your C/SIDE development tasks. They are written in PowerShell (as opposed to a compiled .NET language) to encourage user exploration and customization.
+
 ```powershell
 # Field patterns
 $Result = @{}
