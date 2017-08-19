@@ -29,6 +29,8 @@
 . (Join-Path $PSScriptRoot Add-CBreezeDocumentEntityType.ps1)
 . (Join-Path $PSScriptRoot Add-CBreezeSubsidiaryEntityType.ps1)
 
+. (Join-Path $PSScriptRoot New-CBreezeDescriptionField.ps1)
+
 Export-ModuleMember -Function Add-CBreezeNoSeries
 Export-ModuleMember -Function Add-CBreezeAddress
 Export-ModuleMember -Function Add-CBreezeDescription
@@ -54,3 +56,5 @@ Export-ModuleMember -Function Add-CBreezeRegisterEntityType
 Export-ModuleMember -Function Add-CBreezeLedgerEntityType
 Export-ModuleMember -Function Add-CBreezeDocumentEntityType
 Export-ModuleMember -Function Add-CBreezeSubsidiaryEntityType
+
+Export-ModuleMember -Function New-CBreezeDescriptionField
