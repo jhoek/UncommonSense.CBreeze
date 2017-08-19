@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Automation
             DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
 #endif
             ServerName = ".";
-            ImportAction = "Skip";
+            ImportAction = ImportAction.Default;
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)]
@@ -89,8 +89,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = "ToDatabase")]
-        [ValidateSet("Default", "Overwrite", "Skip")]
-        public string ImportAction
+        public ImportAction ImportAction
         {
             get;
             set;
@@ -143,7 +142,7 @@ namespace UncommonSense.CBreeze.Automation
 
                 case "ToDatabase":
                     writeVerbose("database", Database);
-                    ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database);
+                    ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database, ImportAction);
 
                     if (AutoCompile)
                         ApplicationCompiler.Compile(CachedObjects, DevClientPath, ServerName, Database);
