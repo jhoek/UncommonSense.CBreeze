@@ -19,6 +19,14 @@ namespace UncommonSense.CBreeze.IO
             this.Add("ntauthentication", 1);
         }
 
+        public void AddIf(bool condition, string key, object value)
+        {
+            if (condition)
+            {
+                this.Add(key, value);
+            }
+        }
+
         public override string ToString()
         {
             return string.Join(",", this.Where(a => !string.IsNullOrEmpty((a.Value ?? string.Empty).ToString())).Select(a => string.Format("{0}={1}", a.Key, a.Value)));

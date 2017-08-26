@@ -33,6 +33,12 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 
         [Parameter()]
+        public ScriptBlock OnRun
+        {
+            get; set;
+        }
+
+        [Parameter()]
         public bool? SingleInstance
         {
             get;
@@ -78,6 +84,13 @@ namespace UncommonSense.CBreeze.Automation
             codeunit.Properties.Subtype = SubType;
             codeunit.Properties.TableNo = TableNo;
             codeunit.Properties.TestIsolation = TestIsolation;
+
+            if (OnRun != null)
+            {
+                var subObjects = OnRun.Invoke().Select(o => o.BaseObject);
+                codeunit.Properties.OnRun.CodeLines.AddRange(subObjects.OfType<string>());
+                codeunit.Properties.OnRun.Variables.AddRange(subObjects.OfType<Variable>());
+            }
 
             if (SubObjects != null)
             {

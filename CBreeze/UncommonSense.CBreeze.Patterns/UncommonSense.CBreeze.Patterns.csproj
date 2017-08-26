@@ -79,6 +79,8 @@
     <None Include="Add-CBreezeUserID.ps1" />
     <None Include="App.config" />
     <None Include="Demo.ps1" />
+    <None Include="New-CBreezeDescriptionField.ps1" />
+    <None Include="New-UserIDField.ps1" />
     <None Include="Result structure.md" />
     <None Include="Test-CBreezePrimaryKey.ps1" />
     <None Include="UncommonSense.CBreeze.Patterns.psd1" />

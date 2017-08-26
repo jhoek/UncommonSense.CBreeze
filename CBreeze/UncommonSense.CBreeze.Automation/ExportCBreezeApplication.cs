@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Automation
             DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
 #endif
             ServerName = ".";
-            ImportAction = "Skip";
+            ImportAction = ImportAction.Default;
         }
 
         [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)]
@@ -42,6 +42,9 @@ namespace UncommonSense.CBreeze.Automation
             get;
             set;
         }
+
+        [Parameter()]
+        public SwitchParameter PassThru { get; set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ToPath", Position = 1)]
         public string Path
@@ -86,8 +89,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(ParameterSetName = "ToDatabase")]
-        [ValidateSet("Default", "Overwrite", "Skip")]
-        public string ImportAction
+        public ImportAction ImportAction
         {
             get;
             set;
@@ -119,26 +121,37 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void EndProcessing()
         {
+            Action<string, object> writeVerbose = (targetType, target) => WriteVerbose($"Exporting {CachedObjects.Objects.Count()} object(s) to {targetType} {target}");
+
             switch (ParameterSetName)
             {
                 case "ToPath":
+                    writeVerbose("path", Path);
                     CachedObjects.Write(Path);
                     break;
 
                 case "ToTextWriter":
+                    writeVerbose("TextWriter", "");
                     CachedObjects.Write(TextWriter ?? Console.Out);
                     break;
 
                 case "ToStream":
+                    writeVerbose("Stream", "");
                     CachedObjects.Write(Stream);
                     break;
 
                 case "ToDatabase":
-                    ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database);
+                    writeVerbose("database", Database);
+                    ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database, ImportAction);
 
                     if (AutoCompile)
                         ApplicationCompiler.Compile(CachedObjects, DevClientPath, ServerName, Database);
                     break;
+            }
+
+            if (PassThru)
+            {
+                WriteObject(CachedObjects);
             }
         }
     }

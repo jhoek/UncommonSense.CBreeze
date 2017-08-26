@@ -1,0 +1,70 @@
+OBJECT Table 3 Payment Terms
+{
+  OBJECT-PROPERTIES
+  {
+    Date=15-09-15;
+    Time=12:00:00;
+    Version List=NAVW19.00;
+  }
+  PROPERTIES
+  {
+    DataCaptionFields=Code,Description;
+    OnDelete=VAR
+               PaymentTermsTranslation@1000 : Record 462;
+             BEGIN
+               WITH PaymentTermsTranslation DO BEGIN
+                 SETRANGE("Payment Term",Code);
+                 DELETEALL
+               END;
+             END;
+
+    CaptionML=[ENU=Payment Terms;
+               NLD=Betalingscondities];
+    LookupPageID=Page4;
+  }
+  FIELDS
+  {
+    { 1   ;   ;Code                ;Code10        ;CaptionML=[ENU=Code;
+                                                              NLD=Code];
+                                                   NotBlank=Yes }
+    { 2   ;   ;Due Date Calculation;DateFormula   ;CaptionML=[ENU=Due Date Calculation;
+                                                              NLD=Vervaldatumformule] }
+    { 3   ;   ;Discount Date Calculation;DateFormula;
+                                                   CaptionML=[ENU=Discount Date Calculation;
+                                                              NLD=Kortingsvervaldatum] }
+    { 4   ;   ;Discount %          ;Decimal       ;CaptionML=[ENU=Discount %;
+                                                              NLD=Korting %];
+                                                   DecimalPlaces=0:5;
+                                                   MinValue=0;
+                                                   MaxValue=100 }
+    { 5   ;   ;Description         ;Text50        ;CaptionML=[ENU=Description;
+                                                              NLD=Omschrijving] }
+    { 6   ;   ;Calc. Pmt. Disc. on Cr. Memos;Boolean;
+                                                   CaptionML=[ENU=Calc. Pmt. Disc. on Cr. Memos;
+                                                              NLD=Cont.-kort. op creditnota's berekenen] }
+  }
+  KEYS
+  {
+    {    ;Code                                    ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+    { 1   ;DropDown            ;Code,Description,Due Date Calculation    }
+    { 2   ;Brick               ;Code,Description,Due Date Calculation    }
+  }
+  CODE
+  {
+
+    PROCEDURE TranslateDescription@1(VAR PaymentTerms@1000 : Record 3;Language@1001 : Code[10]);
+    VAR
+      PaymentTermsTranslation@1002 : Record 462;
+    BEGIN
+      IF PaymentTermsTranslation.GET(PaymentTerms.Code,Language) THEN
+        PaymentTerms.Description := PaymentTermsTranslation.Description;
+    END;
+
+    BEGIN
+    END.
+  }
+}
+
