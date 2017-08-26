@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ColumnFilter : Collection<ColumnFilterLine>
+    public class ColumnFilter : Collection<ColumnFilterLine>
     {
     }
 }

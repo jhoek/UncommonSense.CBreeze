@@ -18,13 +18,7 @@ namespace UncommonSense.CBreeze.Core
             Properties = new BooleanTableFieldProperties(this);
         }
 
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
+        public override Properties AllProperties => Properties;
 
         public override IEnumerable<INode> ChildNodes
         {
@@ -34,18 +28,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public BooleanTableFieldProperties Properties
-        {
-            get;
-            protected set;
-        }
+        public BooleanTableFieldProperties Properties { get; protected set; }
 
-        public override TableFieldType Type
-        {
-            get
-            {
-                return TableFieldType.Boolean;
-            }
-        }
+        public override TableFieldType Type => TableFieldType.Boolean;
     }
 }

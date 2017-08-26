@@ -34,15 +34,12 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetParentIndentationLevel()
         {
-            var result = 0;
-
-            TypeSwitch.Do(
-                InputObject.BaseObject,
-                TypeSwitch.Case<PageActionContainer>(i => result = i.IndentationLevel.GetValueOrDefault(0)),
-                TypeSwitch.Case<PageActionGroup>(i => result = i.IndentationLevel.GetValueOrDefault(0))
-                );
-
-            return result;
+            switch (InputObject.BaseObject)
+            {
+                case PageActionContainer c: return c.IndentationLevel.GetValueOrDefault(0);
+                case PageActionGroup g: return g.IndentationLevel.GetValueOrDefault(0);
+                default: return 0;
+            }
         }
 
         protected override void ProcessRecord()

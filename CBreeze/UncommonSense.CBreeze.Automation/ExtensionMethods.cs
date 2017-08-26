@@ -77,16 +77,13 @@ namespace UncommonSense.CBreeze.Automation
 
         public static IEnumerable<int> GetParameterIDs(this PSObject inputObject)
         {
-            var result = Enumerable.Empty<int>();
-
-            TypeSwitch.Do(
-                inputObject.BaseObject,
-                TypeSwitch.Case<Parameters>(i => result = i.Select(p => p.ID)),
-                TypeSwitch.Case<Function>(f => result = f.Parameters.Select(p => p.ID)),
-                TypeSwitch.Case<Event>(e => result = e.Parameters.Select(p => p.ID))
-                );
-
-            return result;
+            switch (inputObject.BaseObject)
+            {
+                case Parameters n: return n.Select(p => p.ID);
+                case Function f: return f.Parameters.Select(p => p.ID);
+                case Event e: return e.Parameters.Select(p => p.ID);
+                default: return Enumerable.Empty<int>();
+            }
         }
 
         public static Parameters GetParameters(this PSObject inputObject)

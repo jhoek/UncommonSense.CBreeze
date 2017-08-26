@@ -7,6 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
+    [Obsolete("Use subclasses of NewCBreezeQueryElement instead")]
     [Cmdlet(VerbsCommon.Add, "CBreezeQueryElement")]
     public class AddCBreezeQueryElement : CmdletWithDynamicParams
     {

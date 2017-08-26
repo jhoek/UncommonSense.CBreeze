@@ -17,18 +17,7 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public string Dimensions
-        {
-            get;
-            set;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.BigInteger;
-            }
-        }
+        public string Dimensions { get; set; }
+        public override VariableType Type => VariableType.BigInteger;
     }
 }

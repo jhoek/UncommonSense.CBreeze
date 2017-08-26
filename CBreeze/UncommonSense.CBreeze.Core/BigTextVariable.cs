@@ -8,7 +8,8 @@ namespace UncommonSense.CBreeze.Core
 {
     public class BigTextVariable : Variable
     {
-        public BigTextVariable(string name) : this(0, name)
+        public BigTextVariable(string name)
+            : this(0, name)
         {
         }
 
@@ -17,18 +18,8 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public string Dimensions
-        {
-            get;
-            set;
-        }
+        public string Dimensions { get; set; }
 
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.BigText;
-            }
-        }
+        public override VariableType Type => VariableType.BigText;
     }
 }

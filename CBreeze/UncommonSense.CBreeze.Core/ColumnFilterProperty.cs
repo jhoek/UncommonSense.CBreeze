@@ -5,19 +5,13 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ColumnFilterProperty : ReferenceProperty<ColumnFilter>
+    public class ColumnFilterProperty : ReferenceProperty<ColumnFilter>
     {
         internal ColumnFilterProperty(string name)
             : base(name)
         {
         }
 
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.Any();
-            }
-        }
+        public override bool HasValue => Value.Any();
     }
 }
