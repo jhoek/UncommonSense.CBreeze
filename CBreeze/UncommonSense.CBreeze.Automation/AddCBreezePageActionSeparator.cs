@@ -47,22 +47,17 @@ namespace UncommonSense.CBreeze.Automation
             var pageActionSeparator = CreatePageActionSeparator();
             var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
 
-            TypeSwitch.Do(
-                InputObject.BaseObject,
-                TypeSwitch.Case<PageActionContainer>(i => i.AddChildPageAction(pageActionSeparator, position)),
-                TypeSwitch.Case<PageActionGroup>(i => i.AddChildPageAction(pageActionSeparator, position)),
-                TypeSwitch.Case<ActionList>(i => i.AddPageActionAtPosition(pageActionSeparator, position)),
-                TypeSwitch.Case<IPage>(i => i.AddPageActionAtPosition(pageActionSeparator, position)),
-                TypeSwitch.Default(() => UnknownInputObjectType())
-            );
+            switch (InputObject.BaseObject)
+            {
+                case PageActionContainer c: c.AddChildPageAction(pageActionSeparator, position); break;
+                case PageActionGroup g: g.AddChildPageAction(pageActionSeparator, position); break;
+                case ActionList a: a.AddPageActionAtPosition(pageActionSeparator, position); break;
+                case IPage p: p.AddPageActionAtPosition(pageActionSeparator, position); break;
+                default: throw new ArgumentOutOfRangeException("Don't know how to add a page action to an InputObject of this type.");
+            }
 
             if (PassThru)
                 WriteObject(pageActionSeparator);
-        }
-
-        protected void UnknownInputObjectType()
-        {
-            throw new ArgumentOutOfRangeException("Don't know how to add a page action to an InputObject of this type.");
         }
     }
 }
