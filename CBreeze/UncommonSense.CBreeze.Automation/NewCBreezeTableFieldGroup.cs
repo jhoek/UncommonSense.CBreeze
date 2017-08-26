@@ -7,31 +7,11 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeTableFieldGroup")]
+    [Cmdlet(VerbsCommon.New, "CBreezeTableFieldGroup", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(TableFieldGroup))]
     [Alias("FieldGroup")]
-    public class NewCBreezeTableFieldGroup : Cmdlet
+    public class NewCBreezeTableFieldGroup : NewItemWithIDAndNameCmdlet<TableFieldGroup, int, Table>
     {
-        public NewCBreezeTableFieldGroup()
-        {
-            ID = 1;
-            Name = "DropDown";
-        }
-
-        protected TableFieldGroup CreateTableFieldGroup()
-        {
-            var tableFieldGroup = new TableFieldGroup(ID, Name);
-            tableFieldGroup.Properties.CaptionML.Set("ENU", Caption);
-            tableFieldGroup.Fields.AddRange(FieldNames);
-
-            return tableFieldGroup;
-        }
-
-        protected override void ProcessRecord()
-        {
-            WriteObject(CreateTableFieldGroup());
-        }
-
         [Parameter()]
         public string Caption
         {
@@ -39,27 +19,29 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
         public string[] FieldNames
         {
             get;
             set;
         }
 
-        [Parameter(Position = 0)]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
+        protected override void AddItemToInputObject(TableFieldGroup item, Table inputObject)
         {
-            get;
-            set;
+            inputObject.FieldGroups.Add(item);
         }
 
-        [Parameter(Position = 1)]
-        [ValidateNotNullOrEmpty()]
-        public string Name
+        protected override IEnumerable<TableFieldGroup> CreateItems()
         {
-            get;
-            set;
+            var tableFieldGroup = new TableFieldGroup(ID, Name);
+
+            tableFieldGroup.Properties.CaptionML.Set("ENU", Caption);
+            tableFieldGroup.Fields.AddRange(FieldNames);
+
+            yield return tableFieldGroup;
         }
     }
 }
