@@ -38,11 +38,11 @@ namespace UncommonSense.CBreeze.Automation
             var pageActionContainer = CreatePageActionContainer();
             var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
 
-            TypeSwitch.Do(
-                InputObject.BaseObject,
-                TypeSwitch.Case<IPage>(i => i.AddPageActionAtPosition(pageActionContainer, position)),
-                TypeSwitch.Case<ActionList>(i => i.AddPageActionAtPosition(pageActionContainer, position))
-                );
+            switch (InputObject.BaseObject)
+            {
+                case IPage p: p.AddPageActionAtPosition(pageActionContainer, position); break;
+                case ActionList a: a.AddPageActionAtPosition(pageActionContainer, position); break;
+            }
 
             if (PassThru)
                 WriteObject(pageActionContainer);

@@ -111,11 +111,11 @@ namespace UncommonSense.CBreeze.Automation
         {
             foreach (var item in InputObject)
             {
-                TypeSwitch.Do(
-                    item.BaseObject,
-                    TypeSwitch.Case<Application>(a => CachedObjects.Add(a.Objects)),
-                    TypeSwitch.Case<Core.Object>(o => CachedObjects.Add(o))
-                );
+                switch (item.BaseObject)
+                {
+                    case Application a: CachedObjects.Add(a.Objects); break;
+                    case Core.Object o: CachedObjects.Add(o); break;
+                }
             }
         }
 
