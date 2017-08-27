@@ -1,0 +1,168 @@
+OBJECT Table 405 Change Log Entry
+{
+  OBJECT-PROPERTIES
+  {
+    Date=09-09-14;
+    Time=12:00:00;
+    Version List=NAVW18.00;
+  }
+  PROPERTIES
+  {
+    CaptionML=[ENU=Change Log Entry;
+               NLD=Wijzigingslogbestandregel];
+    LookupPageID=Page595;
+    DrillDownPageID=Page595;
+  }
+  FIELDS
+  {
+    { 1   ;   ;Entry No.           ;BigInteger    ;AutoIncrement=Yes;
+                                                   CaptionML=[ENU=Entry No.;
+                                                              NLD=Volgnummer] }
+    { 2   ;   ;Date and Time       ;DateTime      ;CaptionML=[ENU=Date and Time;
+                                                              NLD=Datum en tijd] }
+    { 3   ;   ;Time                ;Time          ;CaptionML=[ENU=Time;
+                                                              NLD=Tijd] }
+    { 4   ;   ;User ID             ;Code50        ;TableRelation=User."User Name";
+                                                   OnLookup=VAR
+                                                              UserMgt@1000 : Codeunit 418;
+                                                            BEGIN
+                                                              UserMgt.LookupUserID("User ID");
+                                                            END;
+
+                                                   TestTableRelation=No;
+                                                   CaptionML=[ENU=User ID;
+                                                              NLD=Gebruikers-id] }
+    { 5   ;   ;Table No.           ;Integer       ;TableRelation=AllObj."Object ID" WHERE (Object Type=CONST(Table));
+                                                   CaptionML=[ENU=Table No.;
+                                                              NLD=Tabelnr.] }
+    { 6   ;   ;Table Caption       ;Text250       ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(AllObjWithCaption."Object Caption" WHERE (Object Type=CONST(Table),
+                                                                                                                Object ID=FIELD(Table No.)));
+                                                   CaptionML=[ENU=Table Caption;
+                                                              NLD=Tabelbijschrift] }
+    { 7   ;   ;Field No.           ;Integer       ;TableRelation=Field.No. WHERE (TableNo=FIELD(Table No.));
+                                                   CaptionML=[ENU=Field No.;
+                                                              NLD=Veldnr.] }
+    { 8   ;   ;Field Caption       ;Text80        ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(Field."Field Caption" WHERE (TableNo=FIELD(Table No.),
+                                                                                                   No.=FIELD(Field No.)));
+                                                   CaptionML=[ENU=Field Caption;
+                                                              NLD=Veldbijschrift] }
+    { 9   ;   ;Type of Change      ;Option        ;CaptionML=[ENU=Type of Change;
+                                                              NLD=Wijzigingssoort];
+                                                   OptionCaptionML=[ENU=Insertion,Modification,Deletion;
+                                                                    NLD=Invoeging,Wijziging,Verwijdering];
+                                                   OptionString=Insertion,Modification,Deletion }
+    { 10  ;   ;Old Value           ;Text250       ;CaptionML=[ENU=Old Value;
+                                                              NLD=Oude waarde] }
+    { 11  ;   ;New Value           ;Text250       ;CaptionML=[ENU=New Value;
+                                                              NLD=Nieuwe waarde] }
+    { 12  ;   ;Primary Key         ;Text250       ;CaptionML=[ENU=Primary Key;
+                                                              NLD=Primaire sleutel] }
+    { 13  ;   ;Primary Key Field 1 No.;Integer    ;TableRelation=Field.No. WHERE (TableNo=FIELD(Table No.));
+                                                   CaptionML=[ENU=Primary Key Field 1 No.;
+                                                              NLD=Prim. sleutel 1-veldnr.] }
+    { 14  ;   ;Primary Key Field 1 Caption;Text80 ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(Field."Field Caption" WHERE (TableNo=FIELD(Table No.),
+                                                                                                   No.=FIELD(Primary Key Field 1 No.)));
+                                                   CaptionML=[ENU=Primary Key Field 1 Caption;
+                                                              NLD=Bijschrift prim. sleutelveld 1] }
+    { 15  ;   ;Primary Key Field 1 Value;Text50   ;CaptionML=[ENU=Primary Key Field 1 Value;
+                                                              NLD=Prim. sleutel 1-waarde] }
+    { 16  ;   ;Primary Key Field 2 No.;Integer    ;TableRelation=Field.No. WHERE (TableNo=FIELD(Table No.));
+                                                   CaptionML=[ENU=Primary Key Field 2 No.;
+                                                              NLD=Prim. sleutel 2-veldnr.] }
+    { 17  ;   ;Primary Key Field 2 Caption;Text80 ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(Field."Field Caption" WHERE (TableNo=FIELD(Table No.),
+                                                                                                   No.=FIELD(Primary Key Field 2 No.)));
+                                                   CaptionML=[ENU=Primary Key Field 2 Caption;
+                                                              NLD=Bijschrift prim. sleutelveld 2] }
+    { 18  ;   ;Primary Key Field 2 Value;Text50   ;CaptionML=[ENU=Primary Key Field 2 Value;
+                                                              NLD=Prim. sleutel 2-veldwaarde] }
+    { 19  ;   ;Primary Key Field 3 No.;Integer    ;TableRelation=Field.No. WHERE (TableNo=FIELD(Table No.));
+                                                   CaptionML=[ENU=Primary Key Field 3 No.;
+                                                              NLD=Prim. sleutel 3-veldnr.] }
+    { 20  ;   ;Primary Key Field 3 Caption;Text80 ;FieldClass=FlowField;
+                                                   CalcFormula=Lookup(Field."Field Caption" WHERE (TableNo=FIELD(Table No.),
+                                                                                                   No.=FIELD(Primary Key Field 3 No.)));
+                                                   CaptionML=[ENU=Primary Key Field 3 Caption;
+                                                              NLD=Bijschrift prim. sleutelveld 3] }
+    { 21  ;   ;Primary Key Field 3 Value;Text50   ;CaptionML=[ENU=Primary Key Field 3 Value;
+                                                              NLD=Prim. sleutel 3-veldwaarde] }
+    { 22  ;   ;Record ID           ;RecordID      ;CaptionML=[ENU=Record ID;
+                                                              NLD=Record-id] }
+  }
+  KEYS
+  {
+    {    ;Entry No.                               ;Clustered=Yes }
+    {    ;Table No.,Primary Key Field 1 Value      }
+    {    ;Table No.,Date and Time                  }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    PROCEDURE GetPrimaryKeyFriendlyName@1() : Text[250];
+    VAR
+      RecRef@1000 : RecordRef;
+      FriendlyName@1004 : Text[250];
+      p@1001 : Integer;
+    BEGIN
+      IF "Primary Key" = '' THEN
+        EXIT('');
+
+      // Retain existing formatting of old data
+      IF (STRPOS("Primary Key",'CONST(') = 0) AND (STRPOS("Primary Key",'0(') = 0) THEN
+        EXIT("Primary Key");
+
+      RecRef.OPEN("Table No.");
+      RecRef.SETPOSITION("Primary Key");
+      FriendlyName := RecRef.GETPOSITION(TRUE);
+      RecRef.CLOSE;
+
+      FriendlyName := DELCHR(FriendlyName,'=','()');
+      p := STRPOS(FriendlyName,'CONST');
+      WHILE p > 0 DO BEGIN
+        FriendlyName := DELSTR(FriendlyName,p,5);
+        p := STRPOS(FriendlyName,'CONST');
+      END;
+      EXIT(FriendlyName);
+    END;
+
+    PROCEDURE GetLocalOldValue@3() : Text;
+    BEGIN
+      EXIT(GetLocalValue("Old Value"));
+    END;
+
+    PROCEDURE GetLocalNewValue@4() : Text;
+    BEGIN
+      EXIT(GetLocalValue("New Value"));
+    END;
+
+    LOCAL PROCEDURE GetLocalValue@5(Value@1000 : Text) : Text;
+    VAR
+      ChangeLogManagement@1001 : Codeunit 423;
+      RecordRef@1002 : RecordRef;
+      FieldRef@1003 : FieldRef;
+      HasCultureNeutralValues@1004 : Boolean;
+    BEGIN
+      // The culture neutral storage format was added simultaneously with the Record ID field
+      HasCultureNeutralValues := FORMAT("Record ID") <> '';
+
+      IF (Value <> '') AND HasCultureNeutralValues THEN BEGIN
+        RecordRef.OPEN("Table No.");
+        FieldRef := RecordRef.FIELD("Field No.");
+        IF ChangeLogManagement.EvaluateTextToFieldRef(Value,FieldRef) THEN
+          EXIT(FORMAT(FieldRef.VALUE,0,1));
+      END;
+
+      EXIT(Value);
+    END;
+
+    BEGIN
+    END.
+  }
+}
+

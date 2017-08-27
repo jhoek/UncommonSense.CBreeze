@@ -49,6 +49,7 @@
   <ItemGroup>
     <Content Include="tab222.ref.txt" />
     <Content Include="tab3.ref.txt" />
+    <Content Include="tab405.ref.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
