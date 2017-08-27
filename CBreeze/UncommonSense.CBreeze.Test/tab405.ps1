@@ -57,6 +57,12 @@ Application {
                         CalcFormulaFilter 'No.' Field 'Field No.'
                     }
                 )
-            OptionField 9
+            OptionField 9 'Type of Change' `
+                -OptionString 'Insertion,Modification,Deletion' `
+                -CaptionML @{ NLD = 'Wijzigingssoort' } `
+                -OptionCaptionML @{ NLD = 'Invoeging,Wijziging,Verwijdering' }
+            TextField 10 'Old Value' -DataLength 250 -CaptionML @{ NLD = 'Oude waarde' }
+            TextField 11 'New Value' -DataLength 250 -CaptionML @{ NLD = 'Nieuwe waarde' }
+            TextField 12 'Primary Key' -DataLength 250 -CaptionML @{ NLD = 'Primaire sleutel' }
         }
 } | Export -Path C:\Users\jhoek\Desktop\tab405.txt
