@@ -9,13 +9,47 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeFilter", DefaultParameterSetName = ConstParameterSetName)]
+    [Cmdlet(VerbsCommon.Add, "CBreezeFilter")]
     [Alias("_Filter")]
     public class AddCBreezeFilter : Cmdlet
     {
-        private const string ConstParameterSetName = "Const";
-        private const string FieldParameterSetName = "Field";
-        private const string FilterParameterSetName = "Filter";
+        // FIXME: Avoid TypeSwitch
+
+        [Parameter(Mandatory = true, Position = 0)]
+        public string FieldName
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, ValueFromPipeline = true)]
+        public PSObject InputObject
+        {
+            get;
+            set;
+        }
+
+        [Parameter()]
+        public SwitchParameter PassThru
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 1)]
+        public SimpleTableFilterType Type
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Mandatory = true, Position = 2)]
+        [AllowEmptyString]
+        public string Value
+        {
+            get;
+            set;
+        }
 
         protected void InvalidInputObject()
         {
@@ -32,122 +66,18 @@ namespace UncommonSense.CBreeze.Automation
         {
             TypeSwitch.Do(
                 InputObject.BaseObject,
-                TypeSwitch.Case<CalcFormula>(i => i.TableFilter.Add(
-                    new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value)
-                    {
-                        OnlyMaxLimit = OnlyMaxLimit,
-                        ValueIsFilter = ValueIsFilter
-                    })),
-                TypeSwitch.Case<CalcFormulaTableFilter>(i => i.Add(new CalcFormulaTableFilterLine(FieldName, TableFilterType, Value)
-                {
-                    OnlyMaxLimit = OnlyMaxLimit,
-                    ValueIsFilter = ValueIsFilter
-                }
-                )),
-                TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageView.TableFilter.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<TableView>(i => i.TableFilter.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<TableFilter>(i => i.Add(new TableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<DataItemQueryElementTableFilter>(i => i.Add(new DataItemQueryElementTableFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<ColumnQueryElement>(i => i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<ColumnFilter>(i => i.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
-                TypeSwitch.Case<FilterQueryElement>(i => i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, SimpleTableFilterType, Value))),
+                TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageView.TableFilter.Add(new TableFilterLine(FieldName, Type, Value))),
+                TypeSwitch.Case<TableView>(i => i.TableFilter.Add(new TableFilterLine(FieldName, Type, Value))),
+                TypeSwitch.Case<TableFilter>(i => i.Add(new TableFilterLine(FieldName, Type, Value))),
+                TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, Type, Value))),
+                TypeSwitch.Case<DataItemQueryElementTableFilter>(i => i.Add(new DataItemQueryElementTableFilterLine(FieldName, Type, Value))),
+                TypeSwitch.Case<ColumnQueryElement>(i => i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, Type, Value))),
+                TypeSwitch.Case<ColumnFilter>(i => i.Add(new ColumnFilterLine(FieldName, Type, Value))),
+                TypeSwitch.Case<FilterQueryElement>(i => i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, Type, Value))),
                 TypeSwitch.Default(() => InvalidInputObject())
                 );
 
             PassThruInputObject(InputObject);
-        }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ConstParameterSetName)]
-        public SwitchParameter Const
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FieldParameterSetName)]
-        public SwitchParameter Field
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 0)]
-        public string FieldName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = FilterParameterSetName)]
-        public SwitchParameter Filter
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true)]
-        public PSObject InputObject
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter OnlyMaxLimit
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter PassThru
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 2)]
-        [AllowEmptyString]
-        public string Value
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter ValueIsFilter
-        {
-            get;
-            set;
-        }
-
-        protected SimpleTableFilterType SimpleTableFilterType
-        {
-            get
-            {
-                if (Const.IsPresent)
-                    return SimpleTableFilterType.Const;
-                if (Filter.IsPresent)
-                    return Core.SimpleTableFilterType.Filter;
-
-                throw new ArgumentOutOfRangeException("SimpleTableFilterType");
-            }
-        }
-
-        protected TableFilterType TableFilterType
-        {
-            get
-            {
-                if (Const.IsPresent)
-                    return Core.TableFilterType.Const;
-                if (Filter.IsPresent)
-                    return Core.TableFilterType.Filter;
-                if (Field.IsPresent)
-                    return Core.TableFilterType.Field;
-
-                throw new ArgumentOutOfRangeException("ExtendedTableFilterType");
-            }
         }
     }
 }
