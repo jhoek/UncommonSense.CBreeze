@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Script
 {
-    public class Parameter
+    public class Parameter : ParameterBase
     {
-        public Parameter(string name, bool positional, object value)
+        public Parameter(string name, bool positional, object value) : base(name, positional)
         {
-            Name = name;
-            Positional = positional;
             Value = value;
         }
 
-        public string Name { get; protected set; }
-        public bool Positional { get; protected set; }
         public object Value { get; protected set; }
     }
 }

@@ -14,11 +14,14 @@ namespace UncommonSense.CBreeze.Script
             return new Invocation(
                 "New-CBreezeApplication",
                 "Application",
-                application.Tables.Select(t => t.ToInvocation()));
+                new ScriptParameter("Objects", true, application.Tables.Select(t => t.ToInvocation()).ToArray()));
         }
 
         public static Invocation ToInvocation(this Table table)
         {
+            return new Invocation(
+                "New-CBreezeTable",
+                "Table");
         }
     }
 }
