@@ -8,14 +8,18 @@ namespace UncommonSense.CBreeze.Script
 {
     public abstract class ParameterBase
     {
-        public ParameterBase(string name, bool positional)
+        public ParameterBase(string name, bool isPositional)
         {
             Name = name;
-            Positional = positional;
+            IsPositional = isPositional;
         }
 
+        public bool IsPositional { get; protected set; }
         public string Name { get; protected set; }
 
-        public bool Positional { get; protected set; }
+        public IEnumerable<string> ToScript(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false)
+        {
+            yield return (usePositionalParameters && IsPositional ? "" : Name).Indent(indentation);
+        }
     }
 }

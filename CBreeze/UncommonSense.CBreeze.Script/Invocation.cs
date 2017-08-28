@@ -21,11 +21,12 @@ namespace UncommonSense.CBreeze.Script
         public bool HasAlias => !string.IsNullOrEmpty(CmdletAlias);
         public Collection<ParameterBase> Parameters { get; } = new Collection<ParameterBase>();
 
-        public string Indent(string text, int indentation) => indentation == 0 ? text : $"{ new string(' ', indentation * 2) }{text}";
-
         public IEnumerable<string> ToScript(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false)
         {
-            yield return Indent(useAlias && HasAlias ? CmdletAlias : CmdletName, indentation);
+            return
+                (useAlias && HasAlias ? CmdletAlias : CmdletName)
+                    .Indent(indentation)
+                    .Concatenate(Parameters.SelectMany(p => p.ToScript(indentation + 1, useAlias, usePositionalParameters)));
         }
     }
 }

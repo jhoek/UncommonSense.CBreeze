@@ -20,6 +20,23 @@ namespace UncommonSense.CBreeze.Script
             return collection;
         }
 
+        public static IEnumerable<T> Concatenate<T>(this T item, IEnumerable<T> moreItems)
+        {
+            return (new[] { item }).Concat(moreItems);
+        }
+
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            foreach (var item in items)
+            {
+                action(item);
+            }
+
+            return items;
+        }
+
+        public static string Indent(this string text, int indentation) => indentation == 0 ? text : $"{ new string(' ', indentation * 2) }{text}";
+
         public static IEnumerable<T> WriteTo<T>(this IEnumerable<T> items, TextWriter textWriter)
         {
             foreach (var item in items)
