@@ -20,5 +20,12 @@ namespace UncommonSense.CBreeze.Script
         }
 
         public Collection<Invocation> Invocations { get; } = new Collection<Invocation>();
+
+        public override IEnumerable<string> ToScriptLines(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false)
+        {
+            var parameterName = (IsPositional && usePositionalParameters) ? "" : $"-{Name}";
+
+            yield return $"{parameterName}".Indent(indentation);
+        }
     }
 }

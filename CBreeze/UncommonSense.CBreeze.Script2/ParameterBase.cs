@@ -1,0 +1,21 @@
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UncommonSense.CBreeze.Script2
+{
+    public abstract class ParameterBase
+    {
+        public ParameterBase(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; protected set; }
+
+        public abstract void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters);
+    }
+}

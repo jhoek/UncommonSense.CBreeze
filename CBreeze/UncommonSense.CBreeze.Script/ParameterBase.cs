@@ -17,9 +17,6 @@ namespace UncommonSense.CBreeze.Script
         public bool IsPositional { get; protected set; }
         public string Name { get; protected set; }
 
-        public IEnumerable<string> ToScript(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false)
-        {
-            yield return (usePositionalParameters && IsPositional ? "" : Name).Indent(indentation);
-        }
+        public abstract IEnumerable<string> ToScriptLines(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false);
     }
 }

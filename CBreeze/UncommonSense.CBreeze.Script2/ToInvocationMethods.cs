@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
 
-namespace UncommonSense.CBreeze.Script
+namespace UncommonSense.CBreeze.Script2
 {
-    public static class Convert
+    public static class ToInvocationMethods
     {
         public static Invocation ToInvocation(this Application application)
         {
             return new Invocation(
                 "New-CBreezeApplication",
                 "Application",
-                new ScriptParameter("Objects", true, application.Tables.Select(t => t.ToInvocation()).ToArray()));
+                new ScriptBlockParameter("Objects", true, application.Tables.ToInvocation()));
         }
 
         public static Invocation ToInvocation(this Table table)
@@ -22,7 +22,10 @@ namespace UncommonSense.CBreeze.Script
             return new Invocation(
                 "New-CBreezeTable",
                 "Table",
-                new Parameter("DateTime", false, table.ObjectProperties.DateTime));
+                new SimpleParameter("ID", true, table.ID),
+                new SimpleParameter("Name", true, table.Name));
         }
+
+        public static IEnumerable<Invocation> ToInvocation(this Tables tables) => tables.Select(t => t.ToInvocation());
     }
 }

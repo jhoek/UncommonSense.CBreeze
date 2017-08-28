@@ -13,6 +13,13 @@ namespace UncommonSense.CBreeze.Script
             Value = value;
         }
 
+        public override IEnumerable<string> ToScriptLines(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false)
+        {
+            var parameterName = (IsPositional && usePositionalParameters) ? "" : $"-{Name}";
+
+            yield return $"{parameterName} {Value}";
+        }
+
         public object Value { get; protected set; }
     }
 }

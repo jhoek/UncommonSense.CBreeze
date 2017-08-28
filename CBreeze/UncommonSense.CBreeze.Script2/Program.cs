@@ -1,12 +1,12 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using System.CodeDom.Compiler;
 
-namespace UncommonSense.CBreeze.Script
+namespace UncommonSense.CBreeze.Script2
 {
     internal class Program
     {
@@ -16,10 +16,7 @@ namespace UncommonSense.CBreeze.Script
             application.Tables.Add(new Table(50000, "Foo"));
             application.Tables.Add(new Table(50001, "Baz"));
 
-            application
-                .ToInvocation()
-                .ToScriptLines()
-                .WriteTo(Console.Out);
+            application.ScriptTo(new IndentedTextWriter(Console.Out), useAliases: true, usePositionalParameters: true);
         }
     }
 }
