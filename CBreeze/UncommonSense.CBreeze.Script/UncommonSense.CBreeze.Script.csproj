@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Invocation.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Program.cs" />

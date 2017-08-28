@@ -15,7 +15,7 @@ namespace UncommonSense.CBreeze.Script
             application.Tables.Add(new Table(50000, "Foo"));
             application.Tables.Add(new Table(50001, "Baz"));
 
-            Console.WriteLine(application.ToInvocation().ToScript(0, true, true));
+            application.ToInvocation().ToScript().WriteTo(Console.Out);
         }
     }
 }

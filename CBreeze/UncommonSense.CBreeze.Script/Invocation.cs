@@ -13,17 +13,19 @@ namespace UncommonSense.CBreeze.Script
         {
             CmdletName = cmdletName;
             CmdletAlias = cmdletAlias;
-
-            // FIXME: store parameters
+            Parameters.AddRange(parameters);
         }
 
         public string CmdletAlias { get; protected set; }
         public string CmdletName { get; protected set; }
+        public bool HasAlias => !string.IsNullOrEmpty(CmdletAlias);
         public Collection<Parameter> Parameters => new Collection<Parameter>();
 
-        public IEnumerable<string> ToScript(int indentation, bool useAlias, bool usePositionalParameters)
+        public string Indent(string text, int indentation) => indentation == 0 ? text : $"{ new string(' ', indentation * 2) }{text}";
+
+        public IEnumerable<string> ToScript(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false)
         {
-            yield break; // FIXME
+            yield return Indent(useAlias && HasAlias ? CmdletAlias : CmdletName, indentation);
         }
     }
 }

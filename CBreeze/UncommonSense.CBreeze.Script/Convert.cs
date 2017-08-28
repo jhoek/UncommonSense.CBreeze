@@ -11,7 +11,14 @@ namespace UncommonSense.CBreeze.Script
     {
         public static Invocation ToInvocation(this Application application)
         {
-            return new Invocation("New-CBreezeApplication", "Application");
+            return new Invocation(
+                "New-CBreezeApplication",
+                "Application",
+                application.Tables.Select(t => t.ToInvocation()));
+        }
+
+        public static Invocation ToInvocation(this Table table)
+        {
         }
     }
 }
