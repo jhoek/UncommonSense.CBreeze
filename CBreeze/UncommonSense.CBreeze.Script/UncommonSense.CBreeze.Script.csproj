@@ -45,15 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CmdletInfo.cs" />
-    <Compile Include="Cmdlets.cs" />
-    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Invocation.cs" />
+    <Compile Include="Parameter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="ScriptWriter.cs" />
     <Compile Include="Convert.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Script
 {
-    public class CmdletInfo
+    public class Parameter
     {
-        protected internal CmdletInfo(string name, string alias)
+        public Parameter(string name, bool positional)
         {
             Name = name;
-            Alias = alias;
+            Positional = positional;
         }
 
-        public string Alias { get; protected set; }
         public string Name { get; protected set; }
+        public bool Positional { get; protected set; }
     }
 }

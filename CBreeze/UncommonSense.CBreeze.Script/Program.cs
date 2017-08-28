@@ -11,13 +11,11 @@ namespace UncommonSense.CBreeze.Script
     {
         private static void Main(string[] args)
         {
-            var writer = new ScriptWriter(Console.Out);
-
             var application = new Application();
             application.Tables.Add(new Table(50000, "Foo"));
             application.Tables.Add(new Table(50001, "Baz"));
 
-            application.ToScript(writer);
+            Console.WriteLine(application.ToInvocation().ToScript(0, true, true));
         }
     }
 }
