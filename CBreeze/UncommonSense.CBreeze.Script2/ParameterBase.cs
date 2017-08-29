@@ -14,6 +14,7 @@ namespace UncommonSense.CBreeze.Script2
             Name = name;
         }
 
+        public abstract bool HasValue { get; }
         public Invocation Invocation { get; internal set; }
         public string Name { get; protected set; }
         public abstract bool OnCmdletLine { get; }

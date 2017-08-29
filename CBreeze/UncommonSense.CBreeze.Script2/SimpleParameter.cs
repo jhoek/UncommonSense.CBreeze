@@ -16,16 +16,28 @@ namespace UncommonSense.CBreeze.Script2
             Value = value;
         }
 
+        public override bool HasValue => Value != null;
         public bool IsPositional { get; protected set; }
-
         public override bool OnCmdletLine => IsPositional;
 
         public Object Value { get; protected set; }
 
+        public string ValueAsString => Value is string ? $"'{Value}'" : Value.ToString();
+
         public override void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)
         {
             writer.Write(IsPositional && usePositionalParameters ? "" : $"-{Name} ");
-            writer.WriteLine(Value);
+
+            switch (OnCmdletLine)
+            {
+                case true:
+                    writer.Write($"{ValueAsString} ");
+                    break;
+
+                case false:
+                    writer.WriteLine(ValueAsString);
+                    break;
+            }
         }
     }
 }

@@ -21,6 +21,8 @@ namespace UncommonSense.CBreeze.Script2
             Invocations = invocations;
         }
 
+        public override bool HasValue => Invocations.Any();
+
         public IEnumerable<Invocation> Invocations { get; protected set; }
         public bool IsPositional { get; protected set; }
 

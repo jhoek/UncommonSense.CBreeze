@@ -13,8 +13,14 @@ namespace UncommonSense.CBreeze.Script2
         private static void Main(string[] args)
         {
             var application = new Application();
-            application.Tables.Add(new Table(50000, "Foo"));
-            application.Tables.Add(new Table(50001, "Baz"));
+
+            var table = new Table(50000, "Foo");
+            table.ObjectProperties.DateTime = DateTime.Now;
+            table.ObjectProperties.VersionList = "NAVJH1.00";
+            application.Tables.Add(table);
+
+            var table2 = new Table(50001, "Baz");
+            application.Tables.Add(table2);
 
             application.ScriptTo(new IndentedTextWriter(Console.Out), useAliases: true, usePositionalParameters: true);
         }

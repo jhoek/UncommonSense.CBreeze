@@ -23,19 +23,19 @@ namespace UncommonSense.CBreeze.Script2
         public string CmdletAlias { get; protected set; }
         public string CmdletName { get; protected set; }
         public bool HasCmdletAlias => !string.IsNullOrEmpty(CmdletAlias);
-        public bool HasParameters => Parameters.Any();
         public IEnumerable<ParameterBase> Parameters => parameters.AsEnumerable();
+        public IEnumerable<ParameterBase> ParametersWithValue => Parameters.Where(p => p.HasValue);
 
         public void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)
         {
             writer.Write(usePositionalParameters && HasCmdletAlias ? CmdletAlias : CmdletName);
-            writer.WriteIf(HasParameters, " ");
-            Parameters.Where(p => p.OnCmdletLine).ForEach(p => p.ScriptTo(writer, useAliases, usePositionalParameters));
-            writer.WriteIf(Parameters.Any(p => !p.OnCmdletLine), "`");
+            writer.WriteIf(ParametersWithValue.Any(), " ");
+            ParametersWithValue.Where(p => p.OnCmdletLine).ForEach(p => p.ScriptTo(writer, useAliases, usePositionalParameters));
+            writer.WriteIf(ParametersWithValue.Any(p => !p.OnCmdletLine), "`");
             writer.WriteLine();
 
             writer.Indent++;
-            Parameters.ForEach(p => p.ScriptTo(writer, useAliases, usePositionalParameters));
+            ParametersWithValue.Where(p => !p.OnCmdletLine).ForEach(p => p.ScriptTo(writer, useAliases, usePositionalParameters));
             writer.Indent--;
         }
     }
