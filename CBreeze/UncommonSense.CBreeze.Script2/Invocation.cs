@@ -12,6 +12,11 @@ namespace UncommonSense.CBreeze.Script2
         private List<ParameterBase> parameters = new List<ParameterBase>();
 
         internal Invocation(string cmdletName, string cmdletAlias, params ParameterBase[] parameters)
+            : this(cmdletName, cmdletAlias, parameters.AsEnumerable())
+        {
+        }
+
+        internal Invocation(string cmdletName, string cmdletAlias, IEnumerable<ParameterBase> parameters)
         {
             CmdletName = cmdletName;
             CmdletAlias = cmdletAlias;
