@@ -18,6 +18,8 @@ namespace UncommonSense.CBreeze.Script2
 
         public bool IsPositional { get; protected set; }
 
+        public override bool OnCmdletLine => IsPositional;
+
         public Object Value { get; protected set; }
 
         public override void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)

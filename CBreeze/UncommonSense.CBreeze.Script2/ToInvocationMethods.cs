@@ -23,7 +23,8 @@ namespace UncommonSense.CBreeze.Script2
                 "New-CBreezeTable",
                 "Table",
                 new SimpleParameter("ID", true, table.ID),
-                new SimpleParameter("Name", true, table.Name));
+                new SimpleParameter("Name", true, table.Name),
+                new SimpleParameter("DateTime", false, table.ObjectProperties.DateTime?.ToShortDateString() ?? null));
         }
 
         public static IEnumerable<Invocation> ToInvocation(this Tables tables) => tables.Select(t => t.ToInvocation());

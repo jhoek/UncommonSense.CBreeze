@@ -24,6 +24,8 @@ namespace UncommonSense.CBreeze.Script2
         public IEnumerable<Invocation> Invocations { get; protected set; }
         public bool IsPositional { get; protected set; }
 
+        public override bool OnCmdletLine => true;
+
         public override void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)
         {
             writer.Write(IsPositional && usePositionalParameters ? "" : $"-{Name} ");

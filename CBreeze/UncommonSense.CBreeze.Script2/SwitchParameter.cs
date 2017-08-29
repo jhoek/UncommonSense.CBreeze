@@ -14,6 +14,8 @@ namespace UncommonSense.CBreeze.Script2
         {
         }
 
+        public override bool OnCmdletLine => Invocation.Parameters.All(p => OnCmdletLine);
+
         public override void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)
         {
             writer.Write($"-{Name} ");

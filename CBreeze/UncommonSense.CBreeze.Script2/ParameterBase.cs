@@ -14,7 +14,9 @@ namespace UncommonSense.CBreeze.Script2
             Name = name;
         }
 
+        public Invocation Invocation { get; internal set; }
         public string Name { get; protected set; }
+        public abstract bool OnCmdletLine { get; }
 
         public abstract void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters);
     }
