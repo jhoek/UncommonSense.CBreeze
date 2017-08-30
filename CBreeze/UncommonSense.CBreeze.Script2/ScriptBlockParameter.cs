@@ -30,7 +30,7 @@ namespace UncommonSense.CBreeze.Script2
 
             stringBuilder.AppendLine($"{Indentation(indentation)}-{Name} {{");
             Invocations.Select(i => i.ToString(indentation + 1)).ForEach(s => stringBuilder.Append(s));
-            stringBuilder.AppendLine($"{Indentation(indentation)}}}");
+            stringBuilder.Append($"{Indentation(indentation)}}}");
 
             return stringBuilder.ToString();
         }
