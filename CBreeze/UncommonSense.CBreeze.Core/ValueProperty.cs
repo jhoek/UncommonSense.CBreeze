@@ -17,5 +17,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             set;
         }
+
+        public override object GetValue() => Value;
     }
 }
