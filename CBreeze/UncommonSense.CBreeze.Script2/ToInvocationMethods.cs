@@ -26,19 +26,19 @@ namespace UncommonSense.CBreeze.Script2
             IEnumerable<ParameterBase> objectProperties = table
                 .ObjectProperties
                 .Where(p => p.HasValue)
-                .Select(p => new SimpleParameter(p.Name, table.ObjectProperties[p.Name].GetValue()));
+                .SelectMany(p => p.ToParameters());
 
             IEnumerable<ParameterBase> properties = table
                 .Properties
                 .Where(p => p.HasValue)
-                .Select(p => new SimpleParameter(p.Name, table.Properties[p.Name].GetValue()));
+                .SelectMany(p => p.ToParameters());
 
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
                     table.Fields.ToInvocation()
                     .Concat(table.Keys.ToInvocation())
-                    .Concat(table.Code.Functions.ToInvocation())
+                    .Concat(table.Code.Functions.ToInvocation()))
             };
 
             return new Invocation(
@@ -63,12 +63,17 @@ namespace UncommonSense.CBreeze.Script2
             var properties = field
                 .AllProperties
                 .Where(p => p.HasValue)
-                .Select(p => new SimpleParameter(p.Name, field.AllProperties[p.Name].GetValue()));
+                .SelectMany(p => p.ToParameters());
 
             return new Invocation($"New-CBreeze{field.Type}TableField", signature.Concat(properties));
         }
 
         public static IEnumerable<Invocation> ToInvocation(this TableKeys keys) => keys.Select(k => k.ToInvocation());
+
+        public static Invocation ToInvocation(this CalcFormula calcFormula)
+        {
+            return new Invocation("New-CBreezeCalcFormula"); // FIXME
+        }
 
         public static Invocation ToInvocation(this TableKey key)
         {
@@ -79,7 +84,7 @@ namespace UncommonSense.CBreeze.Script2
             var properties = key
                 .Properties
                 .Where(p => p.HasValue)
-                .Select(p => new SimpleParameter(p.Name, key.Properties[p.Name].GetValue()));
+                .SelectMany(p => p.ToParameters());
 
             return new Invocation("New-CBreezeTableKey", fields.Concat(properties));
         }
@@ -88,7 +93,59 @@ namespace UncommonSense.CBreeze.Script2
 
         public static Invocation ToInvocation(this Function function)
         {
+            return new Invocation(
+                $"New-CBreeze{FunctionType(function)}",
+                new SimpleParameter("ID", function.ID),
+                new SimpleParameter("Name", function.Name),
+                new SimpleParameter("Local", function.Local),
+                new SimpleParameter("ReturnValueName", function.ReturnValue.Name),
+                new SimpleParameter("ReturnValueType", function.ReturnValue.Type),
+                new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength),
+                new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions)
+                );
+        }
 
+        public static IEnumerable<ParameterBase> ToParameters(this Property property)
+        {
+            switch (property)
+            {
+                case TriggerProperty t:
+                    yield return new ScriptBlockParameter(t.Name, new Invocation("# FIXME"));
+                    yield break;
+
+                case TableRelationProperty t:
+                    yield return new ScriptBlockParameter("SubObjects", new Invocation("# FIXME"));
+                    yield break;
+
+                case CalcFormulaProperty c:
+                    yield return new SimpleParameter(c.Name, $"({c.Value.ToInvocation()})");
+                    yield break;
+
+                case DecimalPlacesProperty d:
+                    yield return new SimpleParameter("DecimalPlacesAtLeast", d.Value.AtLeast);
+                    yield return new SimpleParameter("DecimalPlacesAtMost", d.Value.AtMost);
+                    yield break;
+
+                default:
+                    yield return new SimpleParameter(property.Name, property.GetValue());
+                    yield break;
+            }
+        }
+
+        private static string FunctionType(Function function)
+        {
+            if (function.TestFunctionType.HasValue)
+                return "TestFunction";
+            if (function.UpgradeFunctionType.HasValue)
+                return "UpgradeFunction";
+            if (!function.Event.HasValue)
+                return "Function";
+            if (function.Event == EventPublisherSubscriber.Subscriber)
+                return "EventSubscriberFunction";
+            if (function.EventType == EventType.Business)
+                return "BusinessEventPublisherFunction";
+
+            return "IntegrationEventPublisherFunction";
         }
     }
 }
