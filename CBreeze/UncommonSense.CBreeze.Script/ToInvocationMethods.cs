@@ -161,18 +161,46 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocation(this Functions functions) => functions.Select(f => f.ToInvocation());
 
-        public static Invocation ToInvocation(this Function function)
+        public static Invocation ToInvocation(this Function function) => new Invocation($"New-CBreeze{FunctionType(function)}", function.Parameters());
+
+        public static IEnumerable<ParameterBase> Parameters(this Function function)
         {
-            return new Invocation(
-                $"New-CBreeze{FunctionType(function)}",
-                new SimpleParameter("ID", function.ID),
-                new SimpleParameter("Name", function.Name),
-                new SimpleParameter("Local", function.Local),
-                new SimpleParameter("ReturnValueName", function.ReturnValue.Name),
-                new SimpleParameter("ReturnValueType", function.ReturnValue.Type),
-                new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength),
-                new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions)
-                );
+            yield return new SimpleParameter("ID", function.ID);
+            yield return new SimpleParameter("Name", function.Name);
+            yield return new SimpleParameter("Local", function.Local);
+            yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
+            yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
+            yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
+            yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
+            yield return new ScriptBlockParameter("SubObjects",
+                function.Parameters.Select(
+                    p => p.ToInvocation())
+                        .Concat(function.CodeLines.Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
+                        .Concat(function.Variables.Select(v => v.ToInvocation()))
+                    );
+        }
+
+        public static Invocation ToInvocation(this Parameter parameter) => new Invocation($"New-CBreeze{parameter.Type}Parameter", parameter.Parameters());
+
+        public static IEnumerable<ParameterBase> Parameters(this Parameter parameter)
+        {
+            yield return new SimpleParameter("ID", parameter.ID);
+            yield return new SimpleParameter("Name", parameter.Name);
+            yield return new SimpleParameter("Dimensions", parameter.Dimensions);
+            yield return new SwitchParameter("Var", parameter.Var);
+
+            switch (parameter)
+            {
+                case CodeParameter c:
+                    yield return new SimpleParameter("DataLength", c.DataLength);
+                    break;
+                case TextParameter t:
+                    yield return new SimpleParameter("DataLength", t.DataLength);
+                    break;
+                case RecordParameter r:
+                    yield return new SimpleParameter("SubType", r.SubType);
+                    break;
+            }
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this Property property)
