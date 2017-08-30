@@ -9,6 +9,55 @@ namespace UncommonSense.CBreeze.Script
 {
     public static class ToInvocationMethods
     {
+        private static string FunctionType(Function function)
+        {
+            if (function.TestFunctionType.HasValue)
+                return "TestFunction";
+            if (function.UpgradeFunctionType.HasValue)
+                return "UpgradeFunction";
+            if (!function.Event.HasValue)
+                return "Function";
+            if (function.Event == EventPublisherSubscriber.Subscriber)
+                return "EventSubscriberFunction";
+            if (function.EventType == EventType.Business)
+                return "BusinessEventPublisherFunction";
+
+            return "IntegrationEventPublisherFunction";
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this TableField field)
+        {
+            yield return new SimpleParameter("ID", field.ID);
+            yield return new SimpleParameter("Name", field.Name);
+
+            switch (field)
+            {
+                case TextTableField t:
+                    yield return new SimpleParameter("DataLength", t.DataLength);
+                    break;
+            }
+
+            foreach (var parameter in field.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this Variable variable)
+        {
+            yield return new SimpleParameter("ID", variable.ID);
+            yield return new SimpleParameter("Name", variable.Name);
+
+            switch (variable)
+            {
+                case RecordVariable r:
+                    yield return new SimpleParameter("SubType", r.SubType);
+                    yield break;
+            }
+
+            // FIXME
+        }
+
         public static Invocation ToInvocation(this Application application)
         {
             return new Invocation(
@@ -37,6 +86,7 @@ namespace UncommonSense.CBreeze.Script
                 new ScriptBlockParameter(
                     "SubObjects",
                     table.Fields.ToInvocation()
+                    .Concat(table.FieldGroups.ToInvocation())
                     .Concat(table.Keys.ToInvocation())
                     .Concat(table.Code.Functions.ToInvocation()))
             };
@@ -53,23 +103,25 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
 
-        public static Invocation ToInvocation(this TableField field)
-        {
-            var signature = new[] {
-                new SimpleParameter("ID", field.ID),
-                new SimpleParameter("Name", field.Name)
-            };
-
-            var properties = field
-                .AllProperties
-                .Where(p => p.HasValue)
-                .SelectMany(p => p.ToParameters());
-
-            return new Invocation($"New-CBreeze{field.Type}TableField", signature.Concat(properties));
-        }
-
+        public static Invocation ToInvocation(this TableField field) => new Invocation($"New-CBreeze{field.Type}TableField", field.Parameters());
         public static IEnumerable<Invocation> ToInvocation(this TableKeys keys) => keys.Select(k => k.ToInvocation());
 
+        public static IEnumerable<Invocation> ToInvocation(this TableFieldGroups fieldGroups) => fieldGroups.Select(g => g.ToInvocation());
+
+        public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.Parameters());
+
+        public static IEnumerable<ParameterBase> Parameters(this TableFieldGroup fieldGroup)
+        {
+            yield return new SimpleParameter("ID", fieldGroup.ID);
+            yield return new SimpleParameter("Name", fieldGroup.Name);
+            yield return new SimpleParameter("FieldNames", fieldGroup.Fields);
+
+            // FIXME: Properties
+        }
+
+        public static IEnumerable<Invocation> ToInvocation(this Variables variables) => variables.Select(v => v.ToInvocation());
+
+        public static Invocation ToInvocation(this Variable variable) => new Invocation($"New-CBreeze{variable.Type}Variable", variable.Parameters());        
         public static Invocation ToInvocation(this CalcFormula calcFormula)
         {
             return new Invocation("New-CBreezeCalcFormula",
@@ -90,7 +142,7 @@ namespace UncommonSense.CBreeze.Script
                 new SwitchParameter("Modify", accessByPermission.Modify),
                 new SwitchParameter("Delete", accessByPermission.Delete),
                 new SwitchParameter("Execute", accessByPermission.Execute))
-            { SuppressTrailingNewLine = true }; // FIXME
+            { SuppressTrailingNewLine = true };
         }
 
         public static Invocation ToInvocation(this TableKey key)
@@ -128,7 +180,10 @@ namespace UncommonSense.CBreeze.Script
             switch (property)
             {
                 case TriggerProperty t:
-                    yield return new ScriptBlockParameter(t.Name, new Invocation("# FIXME"));
+                    yield return new ScriptBlockParameter(
+                        t.Name,
+                        t.Value.Variables.ToInvocation().Concat(
+                            t.Value.CodeLines.Select(c => new Invocation($"'{c.Replace("'", "''")}'"))));
                     yield break;
 
                 case TableRelationProperty t:
@@ -152,22 +207,6 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter(property.Name, property.GetValue());
                     yield break;
             }
-        }
-
-        private static string FunctionType(Function function)
-        {
-            if (function.TestFunctionType.HasValue)
-                return "TestFunction";
-            if (function.UpgradeFunctionType.HasValue)
-                return "UpgradeFunction";
-            if (!function.Event.HasValue)
-                return "Function";
-            if (function.Event == EventPublisherSubscriber.Subscriber)
-                return "EventSubscriberFunction";
-            if (function.EventType == EventType.Business)
-                return "BusinessEventPublisherFunction";
-
-            return "IntegrationEventPublisherFunction";
         }
     }
 }
