@@ -36,7 +36,9 @@ namespace UncommonSense.CBreeze.Script2
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
-                    table.Fields.ToInvocation().Concat(table.Keys.ToInvocation()))
+                    table.Fields.ToInvocation()
+                    .Concat(table.Keys.ToInvocation())
+                    .Concat(table.Code.Functions.ToInvocation())
             };
 
             return new Invocation(
@@ -80,6 +82,13 @@ namespace UncommonSense.CBreeze.Script2
                 .Select(p => new SimpleParameter(p.Name, key.Properties[p.Name].GetValue()));
 
             return new Invocation("New-CBreezeTableKey", fields.Concat(properties));
+        }
+
+        public static IEnumerable<Invocation> ToInvocation(this Functions functions) => functions.Select(f => f.ToInvocation());
+
+        public static Invocation ToInvocation(this Function function)
+        {
+
         }
     }
 }

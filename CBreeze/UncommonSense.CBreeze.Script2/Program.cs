@@ -26,6 +26,10 @@ namespace UncommonSense.CBreeze.Script2
             var key = new TableKey("Code");
             table.Keys.Add(key);
 
+            var function = new Function("Foo");
+            function.Local = true;
+            table.Code.Functions.Add(function);
+
             application.Tables.Add(table);
 
             var table2 = new Table(50001, "Baz");
