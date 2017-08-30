@@ -32,6 +32,9 @@ namespace UncommonSense.CBreeze.Script
 
             switch (field)
             {
+                case CodeTableField c:
+                    yield return new SimpleParameter("DataLength", c.DataLength);
+                    break;
                 case TextTableField t:
                     yield return new SimpleParameter("DataLength", t.DataLength);
                     break;
@@ -88,6 +91,7 @@ namespace UncommonSense.CBreeze.Script
                     table.Fields.ToInvocation()
                     .Concat(table.FieldGroups.ToInvocation())
                     .Concat(table.Keys.ToInvocation())
+                    .Concat(table.Code.Variables.ToInvocation())
                     .Concat(table.Code.Functions.ToInvocation()))
             };
 
@@ -203,6 +207,16 @@ namespace UncommonSense.CBreeze.Script
             }
         }
 
+        public static IEnumerable<Invocation> ToInvocations(this TableRelation tableRelation) => tableRelation.Select(l => l.ToInvocation());
+            
+        public static Invocation ToInvocation(this TableRelationLine tableRelationLine) => new Invocation("New-CBreezeTableRelation", tableRelationLine.Parameters());
+
+        public static IEnumerable<ParameterBase> Parameters(this TableRelationLine tableRelationLine)
+        {
+            yield return new SimpleParameter("TableName", tableRelationLine.TableName);
+            yield return new SimpleParameter("FieldName", tableRelationLine.FieldName);
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this Property property)
         {
             switch (property)
@@ -215,7 +229,7 @@ namespace UncommonSense.CBreeze.Script
                     yield break;
 
                 case TableRelationProperty t:
-                    yield return new ScriptBlockParameter("SubObjects", new Invocation("# FIXME"));
+                    yield return new ScriptBlockParameter("SubObjects", t.Value.ToInvocations());
                     yield break;
 
                 case CalcFormulaProperty c:
