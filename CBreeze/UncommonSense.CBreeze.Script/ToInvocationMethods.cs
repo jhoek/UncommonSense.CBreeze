@@ -72,7 +72,12 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this CalcFormula calcFormula)
         {
-            return new Invocation("New-CBreezeCalcFormula"); // FIXME
+            return new Invocation("New-CBreezeCalcFormula",
+                new SwitchParameter(calcFormula.Method.ToString(), true),
+                new SimpleParameter("TableName", calcFormula.TableName),
+                new SimpleParameter("FieldName", calcFormula.FieldName)
+                )
+            { SuppressTrailingNewLine = true }; // FIXME
         }
 
         public static Invocation ToInvocation(this TableKey key)
@@ -118,7 +123,7 @@ namespace UncommonSense.CBreeze.Script
                     yield break;
 
                 case CalcFormulaProperty c:
-                    yield return new SimpleParameter(c.Name, $"({c.Value.ToInvocation()})");
+                    yield return new SimpleParameter(c.Name, c.Value.ToInvocation());
                     yield break;
 
                 case DecimalPlacesProperty d:

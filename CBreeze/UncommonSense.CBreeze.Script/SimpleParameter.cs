@@ -44,6 +44,9 @@ namespace UncommonSense.CBreeze.Script
                     case DecimalPlaces d:
                         return $"{d.AtLeast}:{d.AtMost}";
 
+                    case Invocation i:
+                        return $"({i.ToString()})";
+
                     default:
                         return Value.ToString();
                 }

@@ -25,6 +25,7 @@ namespace UncommonSense.CBreeze.Script
         public string CmdletName { get; protected set; }
         public IEnumerable<ParameterBase> Parameters => parameters.AsEnumerable();
         public IEnumerable<ParameterBase> ParametersWithValue => Parameters.Where(p => p.HasValue);
+        public bool SuppressTrailingNewLine { get; set; }
 
         public string Indentation(int indentation) => new string(' ', indentation * 2);
 
@@ -37,7 +38,9 @@ namespace UncommonSense.CBreeze.Script
             elements.Add($"{Indentation(indentation)}{CmdletName}");
             elements.AddRange(ParametersWithValue.Select(p => p.ToString(indentation + 1)));
 
-            return $"{string.Join($" `{Environment.NewLine}", elements)}{Environment.NewLine}";
+            var newLine = SuppressTrailingNewLine ? "" : Environment.NewLine;
+
+            return $"{string.Join($" `{Environment.NewLine}", elements)}{newLine}";
         }
     }
 }
