@@ -9,35 +9,29 @@ namespace UncommonSense.CBreeze.Script2
 {
     public class SimpleParameter : ParameterBase
     {
-        public SimpleParameter(string name, bool isPositional, object value)
+        public SimpleParameter(string name, object value)
             : base(name)
         {
-            IsPositional = isPositional;
             Value = value;
         }
 
         public override bool HasValue => Value != null;
-        public bool IsPositional { get; protected set; }
-        public override bool OnCmdletLine => IsPositional;
 
         public Object Value { get; protected set; }
 
-        public string ValueAsString => Value is string ? $"'{Value}'" : Value.ToString();
-
-        public override void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)
-        {
-            writer.Write(IsPositional && usePositionalParameters ? "" : $"-{Name} ");
-
-            switch (OnCmdletLine)
+        public string ValueAsString {
+            get
             {
-                case true:
-                    writer.Write($"{ValueAsString} ");
-                    break;
-
-                case false:
-                    writer.WriteLine(ValueAsString);
-                    break;
+                switch (Value)
+                {
+                    case bool b: return (b ? "$true" : "$false");
+                    case string s: return $"'{s}'";
+                    case DateTime d: return $"'{d}'";
+                    default: return Value.ToString();
+                }
             }
         }
+        
+        public override string ToString(int indentation) => $"{Indentation(indentation)}-{Name} {ValueAsString}";
     }
 }

@@ -16,12 +16,8 @@ namespace UncommonSense.CBreeze.Script2
         }
 
         public override bool HasValue => Value;
-        public override bool OnCmdletLine => Invocation.Parameters.All(p => OnCmdletLine);
         public bool Value { get; set; }
 
-        public override void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)
-        {
-            writer.Write($"-{Name} ");
-        }
+        public override string ToString(int indentation) => $"{Indentation(indentation)}-{Name}";
     }
 }

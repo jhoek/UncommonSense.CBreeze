@@ -15,10 +15,12 @@ namespace UncommonSense.CBreeze.Script2
         }
 
         public abstract bool HasValue { get; }
-        public Invocation Invocation { get; internal set; }
         public string Name { get; protected set; }
-        public abstract bool OnCmdletLine { get; }
 
-        public abstract void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters);
+        public string Indentation(int indentation) => new string(' ', indentation * 2);
+
+        public override string ToString() => ToString(0);
+
+        public abstract string ToString(int indentation);
     }
 }

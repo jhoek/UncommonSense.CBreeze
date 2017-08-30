@@ -46,19 +46,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="IndentedTextWriterMethods.cs" />
     <Compile Include="Invocation.cs" />
     <Compile Include="ParameterBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptBlockParameter.cs" />
-    <Compile Include="ScriptToMethods.cs" />
     <Compile Include="SimpleParameter.cs" />
     <Compile Include="SwitchParameter.cs" />
     <Compile Include="ToInvocationMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

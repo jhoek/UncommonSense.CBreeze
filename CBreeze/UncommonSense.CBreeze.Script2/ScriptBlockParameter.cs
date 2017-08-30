@@ -9,35 +9,30 @@ namespace UncommonSense.CBreeze.Script2
 {
     public class ScriptBlockParameter : ParameterBase
     {
-        public ScriptBlockParameter(string name, bool isPositional, params Invocation[] invocations)
-            : this(name, isPositional, invocations.AsEnumerable())
+        public ScriptBlockParameter(string name, params Invocation[] invocations)
+            : this(name, invocations.AsEnumerable())
         {
         }
 
-        public ScriptBlockParameter(string name, bool isPositional, IEnumerable<Invocation> invocations)
+        public ScriptBlockParameter(string name, IEnumerable<Invocation> invocations)
             : base(name)
         {
-            IsPositional = isPositional;
             Invocations = invocations;
         }
 
         public override bool HasValue => Invocations.Any();
 
         public IEnumerable<Invocation> Invocations { get; protected set; }
-        public bool IsPositional { get; protected set; }
 
-        public override bool OnCmdletLine => true;
-
-        public override void ScriptTo(IndentedTextWriter writer, bool useAliases, bool usePositionalParameters)
+        public override string ToString(int indentation)
         {
-            writer.Write(IsPositional && usePositionalParameters ? "" : $"-{Name} ");
-            writer.WriteLine("{");
-            writer.Indent++;
+            var stringBuilder = new StringBuilder();
 
-            Invocations.ForEach(i => i.ScriptTo(writer, useAliases, usePositionalParameters));
+            stringBuilder.AppendLine($"{Indentation(indentation)}-{Name} {{");
+            Invocations.Select(i => i.ToString(indentation + 1)).ForEach(s => stringBuilder.Append(s));
+            stringBuilder.AppendLine($"{Indentation(indentation)}}}");
 
-            writer.Indent--;
-            writer.WriteLine("}");
+            return stringBuilder.ToString();
         }
     }
 }

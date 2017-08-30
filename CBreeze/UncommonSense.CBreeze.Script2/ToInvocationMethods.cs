@@ -13,25 +13,55 @@ namespace UncommonSense.CBreeze.Script2
         {
             return new Invocation(
                 "New-CBreezeApplication",
-                "Application",
-                new ScriptBlockParameter("Objects", true, application.Tables.ToInvocation()));
+                new ScriptBlockParameter("Objects", application.Tables.ToInvocation()));
         }
 
         public static Invocation ToInvocation(this Table table)
         {
+            IEnumerable<ParameterBase> signature = new[] {
+                new SimpleParameter("ID", table.ID),
+                new SimpleParameter("Name", table.Name)
+            };
+
+            IEnumerable<ParameterBase> objectProperties = table
+                .ObjectProperties
+                .Where(p => p.HasValue)
+                .Select(p => new SimpleParameter(p.Name, table.ObjectProperties[p.Name].GetValue()));
+
+            IEnumerable<ParameterBase> properties = table
+                .Properties
+                .Where(p => p.HasValue)
+                .Select(p => new SimpleParameter(p.Name, table.Properties[p.Name].GetValue()));
+
+            IEnumerable<ParameterBase> subObjects = new[] {
+                new ScriptBlockParameter("Fields", table.Fields.ToInvocation())
+            };
+
             return new Invocation(
                 "New-CBreezeTable",
-                "Table",
-
-                //                new[] {
-                //new SimpleParameter("ID", true, table.ID),
-                //new SimpleParameter("Name", true, table.Name) }.Concat(
-                table
-                    .ObjectProperties
-                    .Where(p => p.HasValue)
-                    .Select(p => new SimpleParameter(p.Name, false, table.ObjectProperties[p.Name])));
+                signature
+                    .Concat(objectProperties)
+                    .Concat(properties)
+                    .Concat(subObjects));
         }
 
         public static IEnumerable<Invocation> ToInvocation(this Tables tables) => tables.Select(t => t.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
+
+        public static Invocation ToInvocation(this TableField field)
+        {
+            var signature = new[] {
+                new SimpleParameter("ID", field.ID),
+                new SimpleParameter("Name", field.Name)
+            };
+
+            var properties = field
+                .AllProperties
+                .Where(p => p.HasValue)
+                .Select(p => new SimpleParameter(p.Name, field.AllProperties[p.Name].GetValue()));
+
+            return new Invocation($"New-CBreeze{field.Type}Field", signature.Concat(properties));
+        }
     }
 }

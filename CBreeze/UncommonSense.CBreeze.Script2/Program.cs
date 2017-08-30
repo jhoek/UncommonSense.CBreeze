@@ -17,12 +17,17 @@ namespace UncommonSense.CBreeze.Script2
             var table = new Table(50000, "Foo");
             table.ObjectProperties.DateTime = DateTime.Now;
             table.ObjectProperties.VersionList = "NAVJH1.00";
+
+            var codeField = new CodeTableField("Code", 20);
+            codeField.Properties.NotBlank = true;
+            table.Fields.Add(codeField);
+
             application.Tables.Add(table);
 
             var table2 = new Table(50001, "Baz");
             application.Tables.Add(table2);
 
-            application.ScriptTo(new IndentedTextWriter(Console.Out), useAliases: true, usePositionalParameters: true);
+            Console.WriteLine(application.ToInvocation().ToString(0));
         }
     }
 }
