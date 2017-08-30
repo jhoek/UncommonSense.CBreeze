@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NAV2013R2 NAV2015 NAV2016 NAV2017</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NAV2013R2;NAV2015;NAV2016;NAV2017</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -127,7 +127,7 @@
     <Compile Include="NewCBreezeQuery.cs" />
     <Compile Include="NewCBreezePage.cs" />
     <Compile Include="NewCBreezeTable.cs" />
-    <Compile Include="SetCBreezeAccessByPermission.cs" />
+    <Compile Include="NewCBreezeAccessByPermission.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />
