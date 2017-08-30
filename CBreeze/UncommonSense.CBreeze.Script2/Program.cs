@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,18 @@ namespace UncommonSense.CBreeze.Script2
             codeField.Properties.NotBlank = true;
             table.Fields.Add(codeField);
 
+            var key = new TableKey("Code");
+            table.Keys.Add(key);
+
             application.Tables.Add(table);
 
             var table2 = new Table(50001, "Baz");
             application.Tables.Add(table2);
 
-            Console.WriteLine(application.ToInvocation().ToString(0));
+            Console.WriteLine(application.ToInvocation().ToString());
+            File.WriteAllText(
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "script.ps1"), 
+                application.ToInvocation().ToString());
         }
     }
 }
