@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{67549888-74AC-4CCD-9402-20853E4B4514}</ProjectGuid>
+    <ProjectGuid>{EFCDE9E3-09C8-42F6-B82F-CE078E702396}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>UncommonSense.CBreeze.Script</RootNamespace>
     <AssemblyName>UncommonSense.CBreeze.Script</AssemblyName>
@@ -47,15 +47,30 @@
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Invocation.cs" />
-    <Compile Include="Parameter.cs" />
     <Compile Include="ParameterBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScriptParameter.cs" />
+    <Compile Include="ScriptBlockParameter.cs" />
+    <Compile Include="SimpleParameter.cs" />
+    <Compile Include="SwitchParameter.cs" />
+    <Compile Include="ToInvocationMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="Convert.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.csproj">
+      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
+      <Name>UncommonSense.CBreeze.Parse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Read\UncommonSense.CBreeze.Read.csproj">
+      <Project>{11bf778b-6524-4845-895d-ccdf90329fb2}</Project>
+      <Name>UncommonSense.CBreeze.Read</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

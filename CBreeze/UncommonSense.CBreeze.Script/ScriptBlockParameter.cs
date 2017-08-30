@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UncommonSense.CBreeze.Script2
+namespace UncommonSense.CBreeze.Script
 {
     public class ScriptBlockParameter : ParameterBase
     {

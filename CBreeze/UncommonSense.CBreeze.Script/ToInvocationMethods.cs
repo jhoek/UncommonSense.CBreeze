@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
 
-namespace UncommonSense.CBreeze.Script2
+namespace UncommonSense.CBreeze.Script
 {
     public static class ToInvocationMethods
     {

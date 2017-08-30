@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,18 @@ namespace UncommonSense.CBreeze.Script
 {
     public abstract class ParameterBase
     {
-        public ParameterBase(string name, bool isPositional)
+        public ParameterBase(string name)
         {
             Name = name;
-            IsPositional = isPositional;
         }
 
-        public bool IsPositional { get; protected set; }
+        public abstract bool HasValue { get; }
         public string Name { get; protected set; }
 
-        public abstract IEnumerable<string> ToScriptLines(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false);
+        public string Indentation(int indentation) => new string(' ', indentation * 2);
+
+        public override string ToString() => ToString(0);
+
+        public abstract string ToString(int indentation);
     }
 }

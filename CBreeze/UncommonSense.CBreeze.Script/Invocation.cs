@@ -1,6 +1,6 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,26 +9,35 @@ namespace UncommonSense.CBreeze.Script
 {
     public class Invocation
     {
-        public Invocation(string cmdletName, string cmdletAlias, params ParameterBase[] parameters)
+        private List<ParameterBase> parameters = new List<ParameterBase>();
+
+        internal Invocation(string cmdletName, params ParameterBase[] parameters)
+            : this(cmdletName, parameters.AsEnumerable())
         {
-            CmdletName = cmdletName;
-            CmdletAlias = cmdletAlias;
-            Parameters.AddRange(parameters);
         }
 
-        public string CmdletAlias { get; protected set; }
-        public string CmdletName { get; protected set; }
-        public bool HasAlias => !string.IsNullOrEmpty(CmdletAlias);
-        public Collection<ParameterBase> Parameters { get; } = new Collection<ParameterBase>();
-
-        public IEnumerable<string> ToScriptLines(int indentation = 0, bool useAlias = false, bool usePositionalParameters = false)
+        internal Invocation(string cmdletName, IEnumerable<ParameterBase> parameters)
         {
-            var cmdletName = useAlias && HasAlias ? CmdletAlias : CmdletName;
+            CmdletName = cmdletName;
+            this.parameters.AddRange(parameters);
+        }
 
-            return
-                ($"{cmdletName}")
-                    .Indent(indentation)
-                    .Concatenate(Parameters.SelectMany(p => p.ToScriptLines(indentation + 1, useAlias, usePositionalParameters)));
+        public string CmdletName { get; protected set; }
+        public IEnumerable<ParameterBase> Parameters => parameters.AsEnumerable();
+        public IEnumerable<ParameterBase> ParametersWithValue => Parameters.Where(p => p.HasValue);
+
+        public string Indentation(int indentation) => new string(' ', indentation * 2);
+
+        public override string ToString() => ToString(0);
+
+        public virtual string ToString(int indentation)
+        {
+            var elements = new List<string>();
+
+            elements.Add($"{Indentation(indentation)}{CmdletName}");
+            elements.AddRange(ParametersWithValue.Select(p => p.ToString(indentation + 1)));
+
+            return $"{string.Join($" `{Environment.NewLine}", elements)}{Environment.NewLine}";
         }
     }
 }

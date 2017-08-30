@@ -1,10 +1,12 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using System.CodeDom.Compiler;
+using UncommonSense.CBreeze.Read;
 
 namespace UncommonSense.CBreeze.Script
 {
@@ -12,14 +14,13 @@ namespace UncommonSense.CBreeze.Script
     {
         private static void Main(string[] args)
         {
-            var application = new Application();
-            application.Tables.Add(new Table(50000, "Foo"));
-            application.Tables.Add(new Table(50001, "Baz"));
+            foreach (var arg in args)
+            {
+                var scriptFileName = Path.ChangeExtension(arg, ".ps1");
+                var application = ApplicationBuilder.FromFile(arg);
 
-            application
-                .ToInvocation()
-                .ToScriptLines()
-                .WriteTo(Console.Out);
+                File.WriteAllText(scriptFileName, application.ToInvocation().ToString());
+            }
         }
     }
 }
