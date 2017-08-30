@@ -28,6 +28,8 @@ namespace UncommonSense.CBreeze.Script2
 
         public string Indentation(int indentation) => new string(' ', indentation * 2);
 
+        public override string ToString() => ToString(0);
+
         public virtual string ToString(int indentation)
         {
             var elements = new List<string>();
