@@ -26,6 +26,20 @@ namespace UncommonSense.CBreeze.Core
 
             return stringBuilder.ToString();
         }
+
+        public void Set(AccessByPermission accessByPermission)
+        {
+            if (accessByPermission != null)
+            {
+                ObjectType = accessByPermission.ObjectType;
+                ObjectID = accessByPermission.ObjectID;
+                Read = accessByPermission.Read;
+                Insert = accessByPermission.Insert;
+                Modify = accessByPermission.Modify;
+                Delete = accessByPermission.Delete;
+                Execute = accessByPermission.Execute;
+            }
+        }
     }
 }
 

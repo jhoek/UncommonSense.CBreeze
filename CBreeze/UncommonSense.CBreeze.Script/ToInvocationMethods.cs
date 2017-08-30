@@ -80,6 +80,19 @@ namespace UncommonSense.CBreeze.Script
             { SuppressTrailingNewLine = true }; // FIXME
         }
 
+        public static Invocation ToInvocation(this AccessByPermission accessByPermission)
+        {
+            return new Invocation("New-CBreezeAccessByPermission",
+                new SimpleParameter("ObjectType", accessByPermission.ObjectType),
+                new SimpleParameter("ObjectID", accessByPermission.ObjectID),
+                new SwitchParameter("Read", accessByPermission.Read),
+                new SwitchParameter("Insert", accessByPermission.Insert),
+                new SwitchParameter("Modify", accessByPermission.Modify),
+                new SwitchParameter("Delete", accessByPermission.Delete),
+                new SwitchParameter("Execute", accessByPermission.Execute))
+            { SuppressTrailingNewLine = true }; // FIXME
+        }
+
         public static Invocation ToInvocation(this TableKey key)
         {
             var fields = new[] {
@@ -124,6 +137,10 @@ namespace UncommonSense.CBreeze.Script
 
                 case CalcFormulaProperty c:
                     yield return new SimpleParameter(c.Name, c.Value.ToInvocation());
+                    yield break;
+
+                case AccessByPermissionProperty a:
+                    yield return new SimpleParameter(a.Name, a.Value.ToInvocation());
                     yield break;
 
                 case DecimalPlacesProperty d:
