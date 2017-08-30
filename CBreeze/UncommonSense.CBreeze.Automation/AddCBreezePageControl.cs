@@ -9,6 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     // FIXME: For fields, allow OptionCaptionML to be set using a hash table, like in New-CBreezeOptionTableField
+    // FIXME: For fields and parts, allow AccessByPermission to be set directly, e.g. using New-CBreezeAccessByPermission
 
     [Cmdlet(VerbsCommon.Add, "CBreezePageControl")]
     public class AddCBreezePageControl : NewCBreezePageControl
