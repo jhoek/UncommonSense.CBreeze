@@ -27,6 +27,7 @@ namespace UncommonSense.CBreeze.Script2
                     case bool b: return (b ? "$true" : "$false");
                     case string s: return $"'{s}'";
                     case DateTime d: return $"'{d}'";
+                    case IEnumerable<string> e: return string.Join(", ", e.Select(s => $"'{s}'"));
                     default: return Value.ToString();
                 }
             }
