@@ -18,15 +18,9 @@ namespace UncommonSense.CBreeze.Core
             Properties = new BigIntegerTableFieldProperties(this);
         }
 
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
+        public override Properties AllProperties => Properties;
 
-        public override IEnumerable<INode> ChildNodes
+        public override IEnumerable<INode> ChildNodes 
         {
             get
             {
