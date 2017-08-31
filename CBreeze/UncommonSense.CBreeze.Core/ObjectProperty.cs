@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ObjectProperty : Property
+    public class ObjectProperty : Property
     {
         internal ObjectProperty(string name)
             : base(name)
@@ -25,6 +25,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             set;
         }
-    }
 
+        public override object GetValue() => Value;
+    }
 }

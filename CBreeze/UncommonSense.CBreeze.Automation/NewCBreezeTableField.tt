@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Automation
 	var variableName = Char.ToLowerInvariant(@type.Name[0]) + @type.Name.Substring(1); 
 	var hasDataLength = @type.GetProperty("DataLength") != null; 
 	var propertiesClass = @type.GetProperty("Properties").PropertyType;
-	var skipProperties = new List<string>() { "Field", "ParentNode", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "AccessByPermission", "TableRelation" }; 
+	var skipProperties = new List<string>() { "Field", "ParentNode", "CaptionML", "OnLookup", "OnValidate", "WithAValue", "ChildNodes", "Item", "TableRelation" }; 
 
 	var allProperties = propertiesClass.GetProperties();
 	var relevantProperties = allProperties
@@ -93,6 +93,22 @@ namespace UncommonSense.CBreeze.Automation
 
 		relevantProperties = relevantProperties
 			.Where(p => p.Name != "OptionCaptionML")
+			.Concat(newProperties);
+	}
+
+	if (relevantProperties.Any(p => p.Name == "AccessByPermission"))
+	{
+		var newProperties = new[] {
+			new {
+				Name = "AccessByPermission",
+				Type= typeof(AccessByPermission),
+				Mandatory = false,
+				Assignment = $"{variableName}.Properties.AccessByPermission.Set(AccessByPermission);"
+			}
+		};
+
+		relevantProperties = relevantProperties
+			.Where(p => p.Name != "AccessByPermission")
 			.Concat(newProperties);
 	}
 

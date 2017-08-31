@@ -7,9 +7,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeCondition", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeTableRelationCondition", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [OutputType(typeof(TableRelationCondition))]
     [Alias("TableRelationCondition")]
-    public class NewCBreezeCondition : NewItemCmdlet<TableRelationCondition, TableRelationLine>
+    public class NewCBreezeTableRelationCondition : NewItemCmdlet<TableRelationCondition, TableRelationLine>
     {
         protected override void AddItemToInputObject(TableRelationCondition item, TableRelationLine inputObject)
         {

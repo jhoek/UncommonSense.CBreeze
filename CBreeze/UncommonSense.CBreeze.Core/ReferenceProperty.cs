@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public abstract class ReferenceProperty<T> : Property where T: new()
+    public abstract class ReferenceProperty<T> : Property where T : new()
     {
         internal ReferenceProperty(string name) : base(name)
         {
@@ -17,5 +17,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public override object GetValue() => Value;
     }
 }

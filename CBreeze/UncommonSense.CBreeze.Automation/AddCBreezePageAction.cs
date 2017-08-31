@@ -9,6 +9,8 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
+    // FIXME: For page actions, allow AccessByPermission to be set directly, e.g. using New-CBreezeAccessByPermission
+
     [Cmdlet(VerbsCommon.Add, "CBreezePageAction")]
     public class AddCBreezePageAction : NewCBreezePageAction
     {

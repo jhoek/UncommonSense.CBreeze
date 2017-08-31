@@ -46,6 +46,8 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public string OptionString { get; set; }
 
+        // FIXME: Allow OptionCaptionML to be set using a hash table, like in New-CBreezeOptionTableField
+
         [Parameter()]
         public ReportElement ParentElement { get; set; }
 

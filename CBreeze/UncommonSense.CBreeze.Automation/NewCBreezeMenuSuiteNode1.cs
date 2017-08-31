@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
 
+// FIXME: For item nodes, allow AccessByPermission to be set directly, e.g. using New-CBreezeAccessByPermission
+
 namespace UncommonSense.CBreeze.Automation 
 {
 	[Cmdlet(VerbsCommon.New, "CBreezeDeltaMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]

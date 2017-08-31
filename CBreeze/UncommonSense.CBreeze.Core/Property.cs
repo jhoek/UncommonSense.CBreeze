@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public abstract class Property
+    public abstract class Property
     {
         internal Property(string name)
         {
@@ -22,5 +22,12 @@ namespace UncommonSense.CBreeze.Core
             get;
             private set;
         }
+
+        /// <summary>
+        /// Returns an object containing the property value.
+        /// For more type-safe operations, use the Value property instead
+        /// </summary>
+        /// <returns></returns>
+        public abstract object GetValue();
     }
 }

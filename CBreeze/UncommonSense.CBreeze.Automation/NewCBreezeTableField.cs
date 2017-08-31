@@ -47,6 +47,7 @@ namespace UncommonSense.CBreeze.Automation
 			bigIntegerTableField.Properties.ValuesAllowed = ValuesAllowed;
 			bigIntegerTableField.Properties.Volatile = Volatile;
 			bigIntegerTableField.Properties.Width = Width;
+			bigIntegerTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, bigIntegerTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, bigIntegerTableField.Properties.OnLookup);
@@ -165,6 +166,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public Nullable<Int32> Width { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -197,6 +201,7 @@ namespace UncommonSense.CBreeze.Automation
             binaryTableField.Properties.Description = Description;
 
 			binaryTableField.Properties.Description = Description;
+			binaryTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, binaryTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, binaryTableField.Properties.OnLookup);
@@ -235,6 +240,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public String Description { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -266,6 +274,7 @@ namespace UncommonSense.CBreeze.Automation
 			blobTableField.Properties.Owner = Owner;
 			blobTableField.Properties.SubType = SubType;
 			blobTableField.Properties.Volatile = Volatile;
+			blobTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, blobTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, blobTableField.Properties.OnLookup);
@@ -325,6 +334,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public Nullable<Boolean> Volatile { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -370,6 +382,7 @@ namespace UncommonSense.CBreeze.Automation
 			booleanTableField.Properties.TestTableRelation = TestTableRelation;
 			booleanTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			booleanTableField.Properties.ValuesAllowed = ValuesAllowed;
+			booleanTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, booleanTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, booleanTableField.Properties.OnLookup);
@@ -476,6 +489,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -529,6 +545,7 @@ namespace UncommonSense.CBreeze.Automation
 			codeTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			codeTableField.Properties.ValuesAllowed = ValuesAllowed;
 			codeTableField.Properties.Width = Width;
+			codeTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, codeTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, codeTableField.Properties.OnLookup);
@@ -635,6 +652,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public Nullable<Int32> Width { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -680,6 +700,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateFormulaTableField.Properties.TestTableRelation = TestTableRelation;
 			dateFormulaTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			dateFormulaTableField.Properties.ValuesAllowed = ValuesAllowed;
+			dateFormulaTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, dateFormulaTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, dateFormulaTableField.Properties.OnLookup);
@@ -771,6 +792,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -821,6 +845,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTableField.Properties.TestTableRelation = TestTableRelation;
 			dateTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			dateTableField.Properties.ValuesAllowed = ValuesAllowed;
+			dateTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, dateTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, dateTableField.Properties.OnLookup);
@@ -927,6 +952,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -977,6 +1005,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTimeTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			dateTimeTableField.Properties.ValuesAllowed = ValuesAllowed;
 			dateTimeTableField.Properties.Volatile = Volatile;
+			dateTimeTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, dateTimeTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, dateTimeTableField.Properties.OnLookup);
@@ -1083,6 +1112,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public Nullable<Boolean> Volatile { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -1136,6 +1168,7 @@ namespace UncommonSense.CBreeze.Automation
 			decimalTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			decimalTableField.Properties.ValuesAllowed = ValuesAllowed;
 			decimalTableField.Properties.Width = Width;
+			decimalTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, decimalTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, decimalTableField.Properties.OnLookup);
@@ -1251,6 +1284,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public Nullable<Int32> Width { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -1302,6 +1338,7 @@ namespace UncommonSense.CBreeze.Automation
 			durationTableField.Properties.TestTableRelation = TestTableRelation;
 			durationTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			durationTableField.Properties.ValuesAllowed = ValuesAllowed;
+			durationTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, durationTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, durationTableField.Properties.OnLookup);
@@ -1411,6 +1448,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -1456,6 +1496,7 @@ namespace UncommonSense.CBreeze.Automation
 			guidTableField.Properties.TestTableRelation = TestTableRelation;
 			guidTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			guidTableField.Properties.ValuesAllowed = ValuesAllowed;
+			guidTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, guidTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, guidTableField.Properties.OnLookup);
@@ -1547,6 +1588,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -1600,6 +1644,7 @@ namespace UncommonSense.CBreeze.Automation
 			integerTableField.Properties.ValuesAllowed = ValuesAllowed;
 			integerTableField.Properties.Volatile = Volatile;
 			integerTableField.Properties.Width = Width;
+			integerTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, integerTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, integerTableField.Properties.OnLookup);
@@ -1715,6 +1760,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public Nullable<Int32> Width { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -1771,6 +1819,7 @@ namespace UncommonSense.CBreeze.Automation
 			
 			if (AutoOptionCaption) 
 				optionTableField.AutoOptionCaption();
+			optionTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, optionTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, optionTableField.Properties.OnLookup);
@@ -1889,6 +1938,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public SwitchParameter AutoOptionCaption { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -1934,6 +1986,7 @@ namespace UncommonSense.CBreeze.Automation
 			recordIDTableField.Properties.TestTableRelation = TestTableRelation;
 			recordIDTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			recordIDTableField.Properties.ValuesAllowed = ValuesAllowed;
+			recordIDTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, recordIDTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, recordIDTableField.Properties.OnLookup);
@@ -2025,6 +2078,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -2055,6 +2111,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			tableFilterTableField.Properties.Description = Description;
 			tableFilterTableField.Properties.TableIDExpr = TableIDExpr;
+			tableFilterTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, tableFilterTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, tableFilterTableField.Properties.OnLookup);
@@ -2095,6 +2152,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String TableIDExpr { get;set; }
+
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
 
 
 		[Parameter()]
@@ -2144,6 +2204,7 @@ namespace UncommonSense.CBreeze.Automation
 			textTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			textTableField.Properties.ValuesAllowed = ValuesAllowed;
 			textTableField.Properties.Width = Width;
+			textTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, textTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, textTableField.Properties.OnLookup);
@@ -2250,6 +2311,9 @@ namespace UncommonSense.CBreeze.Automation
 	[Parameter()]
 	public Nullable<Int32> Width { get;set; }
 
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
 
 		[Parameter()]
 		public ScriptBlock OnValidate {get; set;}
@@ -2299,6 +2363,7 @@ namespace UncommonSense.CBreeze.Automation
 			timeTableField.Properties.TestTableRelation = TestTableRelation;
 			timeTableField.Properties.ValidateTableRelation = ValidateTableRelation;
 			timeTableField.Properties.ValuesAllowed = ValuesAllowed;
+			timeTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
 			ProcessTrigger(OnValidate, timeTableField.Properties.OnValidate);
 			ProcessTrigger(OnLookup, timeTableField.Properties.OnLookup);
@@ -2401,6 +2466,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public String ValuesAllowed { get;set; }
+
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
 
 
 		[Parameter()]
