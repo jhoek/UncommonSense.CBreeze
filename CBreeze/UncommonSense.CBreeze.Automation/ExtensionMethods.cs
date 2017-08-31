@@ -21,16 +21,16 @@ namespace UncommonSense.CBreeze.Automation
 
         public static T Add<T>(this Application application, T obj) where T : Core.Object
         {
-            TypeSwitch.Do(
-                obj,
-                TypeSwitch.Case<Table>(t => application.Tables.Add(t)),
-                TypeSwitch.Case<Page>(p => application.Pages.Add(p)),
-                TypeSwitch.Case<Report>(r => application.Reports.Add(r)),
-                TypeSwitch.Case<Codeunit>(c => application.Codeunits.Add(c)),
-                TypeSwitch.Case<XmlPort>(x => application.XmlPorts.Add(x)),
-                TypeSwitch.Case<Query>(q => application.Queries.Add(q)),
-                TypeSwitch.Case<MenuSuite>(m => application.MenuSuites.Add(m))
-                );
+            switch (obj)
+            {
+                case Table t: application.Tables.Add(t); break;
+                case Page p: application.Pages.Add(p); break;
+                case Report r: application.Reports.Add(r); break;
+                case Codeunit c: application.Codeunits.Add(c); break;
+                case XmlPort x: application.XmlPorts.Add(x); break;
+                case Query q: application.Queries.Add(q); break;
+                case MenuSuite m: application.MenuSuites.Add(m); break;
+            }
 
             return obj;
         }
