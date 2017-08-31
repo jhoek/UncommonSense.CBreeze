@@ -52,8 +52,15 @@ namespace UncommonSense.CBreeze.Script
 
             switch (variable)
             {
+                case CodeunitVariable c:
+                    yield return new SimpleParameter("Dimensions", c.Dimensions); 
+                    yield return new SimpleParameter("SubType", c.SubType);
+                    break;
+
                 case RecordVariable r:
+                    yield return new SimpleParameter("Dimensions", r.Dimensions);
                     yield return new SimpleParameter("SubType", r.SubType);
+                    yield return new SimpleParameter("Temporary", r.Temporary);
                     break;
 
                 case TextConstant t:
