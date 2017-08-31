@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Core", "UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj", "{B17B9C13-574D-413C-BCBC-6C3239E17BE8}"
 EndProject
@@ -24,8 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Patterns", "UncommonSense.CBreeze.Patterns\UncommonSense.CBreeze.Patterns.csproj", "{C26EF547-74DE-451B-95A4-1C47F6632E03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Presentation", "UncommonSense.CBreeze.Presentation\UncommonSense.CBreeze.Presentation.csproj", "{361567E2-AD3B-4995-AE7F-410F3537BDCE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Test", "UncommonSense.CBreeze.Test\UncommonSense.CBreeze.Test.csproj", "{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Script", "UncommonSense.CBreeze.Script\UncommonSense.CBreeze.Script.csproj", "{EFCDE9E3-09C8-42F6-B82F-CE078E702396}"
 EndProject
@@ -160,18 +158,6 @@ Global
 		{361567E2-AD3B-4995-AE7F-410F3537BDCE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{361567E2-AD3B-4995-AE7F-410F3537BDCE}.Release|x86.ActiveCfg = Release|Any CPU
 		{361567E2-AD3B-4995-AE7F-410F3537BDCE}.Release|x86.Build.0 = Release|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Debug|x86.Build.0 = Debug|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Release|x86.ActiveCfg = Release|Any CPU
-		{BA36BAD3-ACD9-4D9A-B0FD-4892954282BA}.Release|x86.Build.0 = Release|Any CPU
 		{EFCDE9E3-09C8-42F6-B82F-CE078E702396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EFCDE9E3-09C8-42F6-B82F-CE078E702396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFCDE9E3-09C8-42F6-B82F-CE078E702396}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
