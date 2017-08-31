@@ -29,27 +29,7 @@ namespace UncommonSense.CBreeze.Write
             var fieldName = BuildFieldPart(field.Name, 20, ref debt);
             var fieldTypeName = BuildFieldPart(field.TypeName(), 14, ref debt);
             var declaration = string.Format("{{ {0};{1};{2};{3}", fieldNo, fieldEnabled, fieldName, fieldTypeName);
-            IEnumerable<Property> properties = null;
-
-            TypeSwitch.Do(
-                field,
-                TypeSwitch.Case<BigIntegerTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<BinaryTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<BlobTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<BooleanTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<CodeTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<DateTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<DateFormulaTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<DateTimeTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<DecimalTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<DurationTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<GuidTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<IntegerTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<OptionTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<RecordIDTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<TableFilterTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<TextTableField>(f => properties = f.Properties),
-                TypeSwitch.Case<TimeTableField>(f => properties = f.Properties));
+            var properties = field.AllProperties;
 
             writer.Write("{0}", declaration.PadRight(46));
             writer.Write(properties.Any(p => p.HasValue) ? ";" : " ");
@@ -78,29 +58,14 @@ namespace UncommonSense.CBreeze.Write
 
         private static string TypeName(this TableField field)
         {
-            string result = null;
-
-            TypeSwitch.Do(
-                field,
-                TypeSwitch.Case<BigIntegerTableField>(f => result = "BigInteger"),
-                TypeSwitch.Case<BinaryTableField>(f => result = string.Format("Binary{0}", f.DataLength)),
-                TypeSwitch.Case<BlobTableField>(f => result = "BLOB"),
-                TypeSwitch.Case<BooleanTableField>(f => result = "Boolean"),
-                TypeSwitch.Case<CodeTableField>(f => result = string.Format("Code{0}", f.DataLength)),
-                TypeSwitch.Case<DateTableField>(f => result = "Date"),
-                TypeSwitch.Case<DateFormulaTableField>(f => result = "DateFormula"),
-                TypeSwitch.Case<DateTimeTableField>(f => result = "DateTime"),
-                TypeSwitch.Case<DecimalTableField>(f => result = "Decimal"),
-                TypeSwitch.Case<DurationTableField>(f => result = "Duration"),
-                TypeSwitch.Case<GuidTableField>(f => result = "GUID"),
-                TypeSwitch.Case<IntegerTableField>(f => result = "Integer"),
-                TypeSwitch.Case<OptionTableField>(f => result = "Option"),
-                TypeSwitch.Case<RecordIDTableField>(f => result = "RecordID"),
-                TypeSwitch.Case<TableFilterTableField>(f => result = "TableFilter"),
-                TypeSwitch.Case<TextTableField>(f => result = string.Format("Text{0}", f.DataLength)),
-                TypeSwitch.Case<TimeTableField>(f => result = "Time"));
-
-            return result;
+            switch (field)
+            {
+                case BinaryTableField binaryTableField: return $"Binary{binaryTableField.DataLength}";
+                case CodeTableField codeTableField: return $"Code{codeTableField.DataLength}";
+                case GuidTableField guidTableField: return "GUID";
+                case TextTableField textTableField: return $"Text{textTableField.DataLength}";
+                default: return field.Type.ToString();
+            }
         }
     }
 }
