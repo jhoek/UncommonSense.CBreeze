@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Script
@@ -35,6 +33,7 @@ namespace UncommonSense.CBreeze.Script
                 case CodeTableField c:
                     yield return new SimpleParameter("DataLength", c.DataLength);
                     break;
+
                 case TextTableField t:
                     yield return new SimpleParameter("DataLength", t.DataLength);
                     break;
@@ -55,10 +54,74 @@ namespace UncommonSense.CBreeze.Script
             {
                 case RecordVariable r:
                     yield return new SimpleParameter("SubType", r.SubType);
-                    yield break;
+                    break;
+
+                case TextConstant t:
+                    yield return new SimpleParameter("Values", t.Values);
+                    break;
             }
 
             // FIXME
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this TableFieldGroup fieldGroup)
+        {
+            yield return new SimpleParameter("ID", fieldGroup.ID);
+            yield return new SimpleParameter("Name", fieldGroup.Name);
+            yield return new SimpleParameter("FieldNames", fieldGroup.Fields);
+
+            // FIXME: Properties
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this Function function)
+        {
+            yield return new SimpleParameter("ID", function.ID);
+            yield return new SimpleParameter("Name", function.Name);
+            yield return new SimpleParameter("Local", function.Local);
+            yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
+            yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
+            yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
+            yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
+            yield return new ScriptBlockParameter("SubObjects",
+                function.Parameters.Select(
+                    p => p.ToInvocation())
+                        .Concat(function.CodeLines.Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
+                        .Concat(function.Variables.Select(v => v.ToInvocation()))
+                    );
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this Parameter parameter)
+        {
+            yield return new SimpleParameter("ID", parameter.ID);
+            yield return new SimpleParameter("Name", parameter.Name);
+            yield return new SimpleParameter("Dimensions", parameter.Dimensions);
+            yield return new SwitchParameter("Var", parameter.Var);
+
+            switch (parameter)
+            {
+                case CodeParameter c:
+                    yield return new SimpleParameter("DataLength", c.DataLength);
+                    break;
+
+                case TextParameter t:
+                    yield return new SimpleParameter("DataLength", t.DataLength);
+                    break;
+
+                case RecordParameter r:
+                    yield return new SimpleParameter("SubType", r.SubType);
+                    break;
+            }
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this TableRelationLine tableRelationLine)
+        {
+            yield return new SimpleParameter("TableName", tableRelationLine.TableName);
+            yield return new SimpleParameter("FieldName", tableRelationLine.FieldName);
+
+            yield return new ScriptBlockParameter(
+               "SubObjects",
+                tableRelationLine.Conditions.ToInvocations()
+                .Concat(tableRelationLine.TableFilter.ToInvocations()));
         }
 
         public static Invocation ToInvocation(this Application application)
@@ -108,32 +171,41 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
 
         public static Invocation ToInvocation(this TableField field) => new Invocation($"New-CBreeze{field.Type}TableField", field.Parameters());
+
         public static IEnumerable<Invocation> ToInvocation(this TableKeys keys) => keys.Select(k => k.ToInvocation());
 
         public static IEnumerable<Invocation> ToInvocation(this TableFieldGroups fieldGroups) => fieldGroups.Select(g => g.ToInvocation());
 
         public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.Parameters());
-
-        public static IEnumerable<ParameterBase> Parameters(this TableFieldGroup fieldGroup)
-        {
-            yield return new SimpleParameter("ID", fieldGroup.ID);
-            yield return new SimpleParameter("Name", fieldGroup.Name);
-            yield return new SimpleParameter("FieldNames", fieldGroup.Fields);
-
-            // FIXME: Properties
-        }
-
         public static IEnumerable<Invocation> ToInvocation(this Variables variables) => variables.Select(v => v.ToInvocation());
 
-        public static Invocation ToInvocation(this Variable variable) => new Invocation($"New-CBreeze{variable.Type}Variable", variable.Parameters());        
+        public static Invocation ToInvocation(this Variable variable) => new Invocation($"New-CBreeze{variable.GetType().Name}", variable.Parameters());
+
         public static Invocation ToInvocation(this CalcFormula calcFormula)
         {
             return new Invocation("New-CBreezeCalcFormula",
                 new SwitchParameter(calcFormula.Method.ToString(), true),
                 new SimpleParameter("TableName", calcFormula.TableName),
-                new SimpleParameter("FieldName", calcFormula.FieldName)
-                )
+                new SimpleParameter("FieldName", calcFormula.FieldName),
+                new SwitchParameter("ReverseSign", calcFormula.ReverseSign),
+                new ScriptBlockParameter("Filters", calcFormula.TableFilter.ToInvocations()))
             { SuppressTrailingNewLine = true }; // FIXME
+        }
+
+        public static IEnumerable<Invocation> ToInvocations(this CalcFormulaTableFilter calcFormulaTableFilter) => calcFormulaTableFilter.Select(l => l.ToInvocation());
+
+        public static Invocation ToInvocation(this CalcFormulaTableFilterLine calcFormulaTableFilterLine)
+        {
+            return new Invocation("New-CBreezeCalcFormulaFilter", calcFormulaTableFilterLine.Parameters());
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this CalcFormulaTableFilterLine calcFormulaTableFilterLine)
+        {
+            yield return new SimpleParameter("FieldName", calcFormulaTableFilterLine.FieldName);
+            yield return new SimpleParameter("Type", calcFormulaTableFilterLine.Type);
+            yield return new SimpleParameter("Value", calcFormulaTableFilterLine.Value);
+            yield return new SwitchParameter("OnlyMaxLimit", calcFormulaTableFilterLine.OnlyMaxLimit);
+            yield return new SwitchParameter("ValueIsFilter", calcFormulaTableFilterLine.ValueIsFilter);
         }
 
         public static Invocation ToInvocation(this AccessByPermission accessByPermission)
@@ -166,55 +238,35 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocation(this Functions functions) => functions.Select(f => f.ToInvocation());
 
         public static Invocation ToInvocation(this Function function) => new Invocation($"New-CBreeze{FunctionType(function)}", function.Parameters());
+        public static Invocation ToInvocation(this Parameter parameter) => new Invocation($"New-CBreeze{parameter.Type}Parameter", parameter.Parameters());
+        public static Invocation ToInvocation(this TableRelationLine tableRelationLine) => new Invocation("New-CBreezeTableRelation", tableRelationLine.Parameters());
 
-        public static IEnumerable<ParameterBase> Parameters(this Function function)
+        public static Invocation ToInvocation(this TableRelationCondition condition)
         {
-            yield return new SimpleParameter("ID", function.ID);
-            yield return new SimpleParameter("Name", function.Name);
-            yield return new SimpleParameter("Local", function.Local);
-            yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
-            yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
-            yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
-            yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
-            yield return new ScriptBlockParameter("SubObjects",
-                function.Parameters.Select(
-                    p => p.ToInvocation())
-                        .Concat(function.CodeLines.Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
-                        .Concat(function.Variables.Select(v => v.ToInvocation()))
-                    );
+            return new Invocation("New-CBreezeTableRelationCondition", condition.Parameters());
         }
 
-        public static Invocation ToInvocation(this Parameter parameter) => new Invocation($"New-CBreeze{parameter.Type}Parameter", parameter.Parameters());
-
-        public static IEnumerable<ParameterBase> Parameters(this Parameter parameter)
+        public static IEnumerable<ParameterBase> Parameters(this TableRelationCondition condition)
         {
-            yield return new SimpleParameter("ID", parameter.ID);
-            yield return new SimpleParameter("Name", parameter.Name);
-            yield return new SimpleParameter("Dimensions", parameter.Dimensions);
-            yield return new SwitchParameter("Var", parameter.Var);
-
-            switch (parameter)
-            {
-                case CodeParameter c:
-                    yield return new SimpleParameter("DataLength", c.DataLength);
-                    break;
-                case TextParameter t:
-                    yield return new SimpleParameter("DataLength", t.DataLength);
-                    break;
-                case RecordParameter r:
-                    yield return new SimpleParameter("SubType", r.SubType);
-                    break;
-            }
+            yield return new SimpleParameter("FieldName", condition.FieldName);
+            yield return new SimpleParameter("Type", condition.Type);
+            yield return new SimpleParameter("Value", condition.Value);
         }
 
         public static IEnumerable<Invocation> ToInvocations(this TableRelation tableRelation) => tableRelation.Select(l => l.ToInvocation());
-            
-        public static Invocation ToInvocation(this TableRelationLine tableRelationLine) => new Invocation("New-CBreezeTableRelation", tableRelationLine.Parameters());
+        public static IEnumerable<Invocation> ToInvocations(this TableRelationConditions conditions) => conditions.Select(c => c.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocations(this TableRelationTableFilter filter) => filter.Select(l => l.ToInvocation());
 
-        public static IEnumerable<ParameterBase> Parameters(this TableRelationLine tableRelationLine)
+        public static Invocation ToInvocation(this TableRelationTableFilterLine tableRelationFilterLine)
         {
-            yield return new SimpleParameter("TableName", tableRelationLine.TableName);
-            yield return new SimpleParameter("FieldName", tableRelationLine.FieldName);
+            return new Invocation("New-CBreezeTableRelationFilter", tableRelationFilterLine.Parameters());
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this TableRelationTableFilterLine tableRelationTableFilterLine)
+        {
+            yield return new SimpleParameter("FieldName", tableRelationTableFilterLine.FieldName);
+            yield return new SimpleParameter("Type", tableRelationTableFilterLine.Type);
+            yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this Property property)
