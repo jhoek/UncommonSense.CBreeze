@@ -145,26 +145,13 @@
     <Compile Include="SetCBreezeXmlPortNamespace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NewCBreezeParameter.Tests.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="NewCBreezeVariable.Tests.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="PREFACE.md" />
     <None Include="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="UncommonSense.CBreeze.Automation.psd1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="UncommonSense.CBreeze.Automation.psm1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="UncommonSense.CBreeze.Automation.Tests.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="UncommonSense.CBreeze.Automation.psd1" />
+    <None Include="UncommonSense.CBreeze.Automation.ps1" />
     <None Include="Update-README.ps1" />
   </ItemGroup>
   <ItemGroup>
@@ -220,11 +207,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>md C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation
-copy $(TargetPath) C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll
-copy $(TargetDir)README.md C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation
-copy $(TargetDir)*.ps?1 C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation
-copy $(TargetDir)*.Tests.ps1 c:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

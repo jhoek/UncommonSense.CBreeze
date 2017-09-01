@@ -74,11 +74,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetDir)*.dll c:\users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Parse.Automation
-
-"C:\Program Files\XmlDoc2CmdletDoc\XmlDoc2CmdletDoc.exe" $(TargetPath)
-
-copy $(TargetDir)*.dll-Help.xml c:\users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Parse.Automation</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
