@@ -130,6 +130,7 @@
     <Compile Include="NewCBreezePage.cs" />
     <Compile Include="NewCBreezeTable.cs" />
     <Compile Include="NewCBreezeAccessByPermission.cs" />
+    <Compile Include="SetCBreezeDefaultRanges.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />
     <Compile Include="CmdletWithDynamicParams.cs" />
