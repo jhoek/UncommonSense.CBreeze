@@ -8,11 +8,10 @@ namespace UncommonSense.CBreeze.Core
 {
     public class PartPageControl : PageControl
     {
-        public PartPageControl(int id = 0, int? indentationLevel = null, PartType partType = PartType.Page)
+        public PartPageControl(int id = 0, int? indentationLevel = null)
             : base(id, indentationLevel)
         {
             Properties = new PartPageControlProperties(this);
-            Properties.PartType = partType;
         }
 
         public override Properties AllProperties
