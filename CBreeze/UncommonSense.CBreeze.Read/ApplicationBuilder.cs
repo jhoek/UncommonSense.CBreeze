@@ -1044,7 +1044,7 @@ namespace UncommonSense.CBreeze.Read
                     filterPageBuilderParameter.Dimensions = parameterDimensions;
                     break;
 #endif
-                case ParameterType.Guid:
+                case ParameterType.GUID:
                     var guidParameter = parameters.Add(new GuidParameter(parameterName, parameterVar, parameterID));
                     guidParameter.Dimensions = parameterDimensions;
                     break;

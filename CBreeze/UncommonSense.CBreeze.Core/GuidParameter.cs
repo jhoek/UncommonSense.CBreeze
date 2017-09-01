@@ -12,6 +12,6 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
-        public override ParameterType Type => ParameterType.Guid;
+        public override ParameterType Type => ParameterType.GUID;
     }
 }

@@ -30,7 +30,7 @@ namespace UncommonSense.CBreeze.Common
 #if NAV2016
         FilterPageBuilder,
 #endif
-        Guid,
+        GUID,
         InStream,
         Integer,
         KeyRef,
