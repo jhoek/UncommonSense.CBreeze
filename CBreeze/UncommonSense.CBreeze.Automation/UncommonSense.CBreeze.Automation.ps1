@@ -1,6 +1,4 @@
-﻿Export-ModuleMember -Alias * -Function *-* -Cmdlet *
-
-function TableNameCompleter {
+﻿function TableNameCompleter {
     param
     (
         $commandName, 
