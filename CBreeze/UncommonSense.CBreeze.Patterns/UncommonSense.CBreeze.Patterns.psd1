@@ -2,7 +2,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'UncommonSense.CBreeze.Patterns.psm1'
+RootModule = Join-Path -Path $PSScriptRoot -ChildPath 'UncommonSense.CBreeze.Patterns.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0'
