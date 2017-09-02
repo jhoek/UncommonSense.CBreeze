@@ -8,14 +8,32 @@ namespace UncommonSense.CBreeze.Script2
 {
     public class SimpleParameter : Parameter
     {
-        public SimpleParameter(string name, object value) : base(name)
+        public SimpleParameter(string name, object value, bool positional = false) : base(name)
         {
             Value = value;
+            Positional = positional;
         }
 
         public override bool HasValue => Value != null;
-        public override bool OnSameLine => Positional;
-        public bool Positional { get; set; }
+        public override bool OnCmdletLine => Positional;
+        public bool Positional { get; protected set; }
         public Object Value { get; protected set; }
+
+        public override IEnumerable<ScriptLine> ToScriptLines(int indentation, bool lastParameter)
+        {
+            yield return new ScriptLine(this.ToString(), indentation, !lastParameter);
+        }
+
+        public override string ToString()
+        {
+            switch (Positional)
+            {
+                case true:
+                    return Value.ToString();
+
+                default:
+                    return $"-{Name} {Value}";
+            }
+        }
     }
 }

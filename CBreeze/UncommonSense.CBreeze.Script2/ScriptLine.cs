@@ -15,12 +15,16 @@ namespace UncommonSense.CBreeze.Script2
             Continuation = continuation;
         }
 
-        public override string ToString() => $"{IndentationText}{Text}{ContinuationText}";
-
         public bool Continuation { get; protected set; }
-        public string ContinuationText => Continuation ? " `" : "";
+
         public int Indentation { get; protected set; }
-        public string IndentationText => new string(' ', Indentation * 2);
+
         public string Text { get; protected set; }
+
+        protected string ContinuationText => Continuation ? " `" : "";
+
+        protected string IndentationText => new string(' ', Indentation * 2);
+
+        public override string ToString() => $"{IndentationText}{Text}{ContinuationText}";
     }
 }

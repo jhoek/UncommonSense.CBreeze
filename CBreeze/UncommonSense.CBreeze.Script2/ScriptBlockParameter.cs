@@ -16,8 +16,22 @@ namespace UncommonSense.CBreeze.Script2
         }
 
         public override bool HasValue => Statements.Any();
-        public override bool OnSameLine => Positional;
-        public bool Positional { get; set; }
+        public override bool OnCmdletLine => false;
         public IEnumerable<Statement> Statements => statements.AsEnumerable();
+
+        public override IEnumerable<ScriptLine> ToScriptLines(int indentation, bool lastParameter)
+        {
+            yield return new ScriptLine($"-{Name} {{", indentation, false);
+
+            foreach (var statement in Statements)
+            {
+                foreach (var scriptLine in statement.ToScriptLines(indentation + 1))
+                {
+                    yield return scriptLine;
+                }
+            }
+
+            yield return new ScriptLine("}", indentation, !lastParameter);
+        }
     }
 }

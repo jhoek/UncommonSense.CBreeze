@@ -12,8 +12,17 @@ namespace UncommonSense.CBreeze.Script2
         {
             Console.WriteLine(
                 new Invocation(
-                    "New-Foo",
-                    new SimpleParameter("Foo", "Baz") { Positional = true }).ToString());
+                    "Table",
+                    new SimpleParameter("ID", 50000, true),
+                    new SimpleParameter("Name", "My Table", true),
+                    new ScriptBlockParameter(
+                        "SubObjects",
+                        new Invocation("IntegerField",
+                            new SimpleParameter("Name", "Entry No.", true)
+                        )
+                    )
+                ).ToString()
+            );
         }
     }
 }

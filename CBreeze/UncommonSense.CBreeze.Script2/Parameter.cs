@@ -15,6 +15,8 @@ namespace UncommonSense.CBreeze.Script2
 
         public abstract bool HasValue { get; }
         public string Name { get; protected set; }
-        public abstract bool OnSameLine { get; }
+        public abstract bool OnCmdletLine { get; }
+
+        public abstract IEnumerable<ScriptLine> ToScriptLines(int indentation, bool lastParameter);
     }
 }

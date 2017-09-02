@@ -8,14 +8,21 @@ namespace UncommonSense.CBreeze.Script2
 {
     public class SwitchParameter : Parameter
     {
-        public SwitchParameter(string name, bool value, bool onSameLine = false) : base(name)
+        public SwitchParameter(string name, bool value, bool onCmdletLine = false) : base(name)
         {
             Value = value;
-            OnSameLine = onSameLine;
+            OnCmdletLine = onCmdletLine;
         }
 
         public override bool HasValue => Value;
-        public override bool OnSameLine { get; }
+        public override bool OnCmdletLine { get; }
         public bool Value { get; protected set; }
+
+        public override IEnumerable<ScriptLine> ToScriptLines(int indentation, bool lastParameter)
+        {
+            yield return new ScriptLine(this.ToString(), indentation, !lastParameter);
+        }
+
+        public override string ToString() => $"-{Name}";
     }
 }
