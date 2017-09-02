@@ -9,6 +9,25 @@ namespace UncommonSense.CBreeze.Write
 {
     public static class ReturnValueWriter
     {
+        public static string GetTypeName(FunctionReturnValue functionReturnValue)
+        {
+            switch (functionReturnValue.Type)
+            {
+                case FunctionReturnValueType.Text:
+                    return functionReturnValue.DataLength.HasValue ? string.Format("{0}[{1}]", functionReturnValue.Type, functionReturnValue.DataLength) : functionReturnValue.Type.ToString();
+
+                case FunctionReturnValueType.Code:
+                case FunctionReturnValueType.Binary:
+                    return $"{functionReturnValue.Type}[{functionReturnValue.DataLength}]";
+
+                case FunctionReturnValueType.Guid:
+                    return "GUID";
+
+                default:
+                    return functionReturnValue.Type.ToString();
+            }
+        }
+
         public static void Write(this FunctionReturnValue functionReturnValue, CSideWriter writer)
         {
             if (!functionReturnValue.Type.HasValue)
@@ -23,20 +42,6 @@ namespace UncommonSense.CBreeze.Write
                 writer.Write("ARRAY [{0}] OF ", functionReturnValue.Dimensions);
 
             writer.Write(GetTypeName(functionReturnValue));
-        }
-
-        public static string GetTypeName(FunctionReturnValue functionReturnValue)
-        {
-            switch (functionReturnValue.Type)
-            {
-                case FunctionReturnValueType.Text:
-                case FunctionReturnValueType.Code:
-                    return functionReturnValue.DataLength.HasValue ? string.Format("{0}[{1}]", functionReturnValue.Type, functionReturnValue.DataLength) : functionReturnValue.Type.ToString();
-                case FunctionReturnValueType.Guid:
-                    return "GUID";
-                default:
-                    return functionReturnValue.Type.ToString();
-            }
         }
     }
 }

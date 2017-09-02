@@ -13,24 +13,12 @@ namespace UncommonSense.CBreeze.Core
             Function = function;
         }
 
-        public Function Function { get; protected set; }
-
-        public string Dimensions
+        public IEnumerable<INode> ChildNodes
         {
-            get;
-            set;
-        }
-
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        public FunctionReturnValueType? Type
-        {
-            get;
-            set;
+            get
+            {
+                yield break;
+            }
         }
 
         public int? DataLength
@@ -39,14 +27,47 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
-        public INode ParentNode => Function;
-
-        public IEnumerable<INode> ChildNodes
+        public int? DefaultDataLength
         {
             get
             {
-                yield break;
+                if (!Type.HasValue)
+                    return null;
+
+                switch (Type.Value)
+                {
+                    case FunctionReturnValueType.Binary:
+                        return 100;
+
+                    case FunctionReturnValueType.Code:
+                        return 10;
+
+                    default:
+                        return null;
+                }
             }
+        }
+
+        public string Dimensions
+        {
+            get;
+            set;
+        }
+
+        public Function Function { get; protected set; }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public INode ParentNode => Function;
+
+        public FunctionReturnValueType? Type
+        {
+            get;
+            set;
         }
     }
 }

@@ -114,7 +114,7 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
-			function.ReturnValue.DataLength = GetReturnValueDataLength();
+			function.ReturnValue.DataLength = ReturnValueDataLength ?? function.ReturnValue.DefaultDataLength;
 			function.ReturnValue.Dimensions = ReturnValueDimensions;
 
 <# if (functionType == "TestFunction") { #>
@@ -162,19 +162,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return function;
 		}		
-
-		protected int? GetReturnValueDataLength()
-		{
-			if (!ReturnValueType.HasValue) return null;
-			if (ReturnValueDataLength.HasValue) return ReturnValueDataLength;
-
-			switch (ReturnValueType.Value)
-			{
-				case FunctionReturnValueType.Text: return 30;
-				case FunctionReturnValueType.Code: return 10;
-				default: return null;
-			}	
-		}
 	}
 <# if (conditions.ContainsKey(functionType)) { WriteLine("#endif"); } #>
 

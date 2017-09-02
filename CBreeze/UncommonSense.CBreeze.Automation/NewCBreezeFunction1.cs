@@ -65,7 +65,7 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
-			function.ReturnValue.DataLength = GetReturnValueDataLength();
+			function.ReturnValue.DataLength = ReturnValueDataLength ?? function.ReturnValue.DefaultDataLength;
 			function.ReturnValue.Dimensions = ReturnValueDimensions;
 
 			
@@ -82,19 +82,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return function;
 		}		
-
-		protected int? GetReturnValueDataLength()
-		{
-			if (!ReturnValueType.HasValue) return null;
-			if (ReturnValueDataLength.HasValue) return ReturnValueDataLength;
-
-			switch (ReturnValueType.Value)
-			{
-				case FunctionReturnValueType.Text: return 30;
-				case FunctionReturnValueType.Code: return 10;
-				default: return null;
-			}	
-		}
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTestFunction")]
@@ -158,7 +145,7 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
-			function.ReturnValue.DataLength = GetReturnValueDataLength();
+			function.ReturnValue.DataLength = ReturnValueDataLength ?? function.ReturnValue.DefaultDataLength;
 			function.ReturnValue.Dimensions = ReturnValueDimensions;
 
 			function.HandlerFunctions = HandlerFunctions;
@@ -178,19 +165,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return function;
 		}		
-
-		protected int? GetReturnValueDataLength()
-		{
-			if (!ReturnValueType.HasValue) return null;
-			if (ReturnValueDataLength.HasValue) return ReturnValueDataLength;
-
-			switch (ReturnValueType.Value)
-			{
-				case FunctionReturnValueType.Text: return 30;
-				case FunctionReturnValueType.Code: return 10;
-				default: return null;
-			}	
-		}
 	}
 
 	[Cmdlet(VerbsCommon.New, "CBreezeUpgradeFunction")]
@@ -254,7 +228,7 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
-			function.ReturnValue.DataLength = GetReturnValueDataLength();
+			function.ReturnValue.DataLength = ReturnValueDataLength ?? function.ReturnValue.DefaultDataLength;
 			function.ReturnValue.Dimensions = ReturnValueDimensions;
 
 #if NAV2015 
@@ -274,19 +248,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return function;
 		}		
-
-		protected int? GetReturnValueDataLength()
-		{
-			if (!ReturnValueType.HasValue) return null;
-			if (ReturnValueDataLength.HasValue) return ReturnValueDataLength;
-
-			switch (ReturnValueType.Value)
-			{
-				case FunctionReturnValueType.Text: return 30;
-				case FunctionReturnValueType.Code: return 10;
-				default: return null;
-			}	
-		}
 	}
 
 #if NAV2016
@@ -354,7 +315,7 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
-			function.ReturnValue.DataLength = GetReturnValueDataLength();
+			function.ReturnValue.DataLength = ReturnValueDataLength ?? function.ReturnValue.DefaultDataLength;
 			function.ReturnValue.Dimensions = ReturnValueDimensions;
 
 			function.Event = EventPublisherSubscriber.Subscriber;
@@ -378,19 +339,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return function;
 		}		
-
-		protected int? GetReturnValueDataLength()
-		{
-			if (!ReturnValueType.HasValue) return null;
-			if (ReturnValueDataLength.HasValue) return ReturnValueDataLength;
-
-			switch (ReturnValueType.Value)
-			{
-				case FunctionReturnValueType.Text: return 30;
-				case FunctionReturnValueType.Code: return 10;
-				default: return null;
-			}	
-		}
 	}
 #endif
 
@@ -454,7 +402,7 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
-			function.ReturnValue.DataLength = GetReturnValueDataLength();
+			function.ReturnValue.DataLength = ReturnValueDataLength ?? function.ReturnValue.DefaultDataLength;
 			function.ReturnValue.Dimensions = ReturnValueDimensions;
 
 			function.Event = EventPublisherSubscriber.Publisher;
@@ -474,19 +422,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return function;
 		}		
-
-		protected int? GetReturnValueDataLength()
-		{
-			if (!ReturnValueType.HasValue) return null;
-			if (ReturnValueDataLength.HasValue) return ReturnValueDataLength;
-
-			switch (ReturnValueType.Value)
-			{
-				case FunctionReturnValueType.Text: return 30;
-				case FunctionReturnValueType.Code: return 10;
-				default: return null;
-			}	
-		}
 	}
 #endif
 
@@ -551,7 +486,7 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
-			function.ReturnValue.DataLength = GetReturnValueDataLength();
+			function.ReturnValue.DataLength = ReturnValueDataLength ?? function.ReturnValue.DefaultDataLength;
 			function.ReturnValue.Dimensions = ReturnValueDimensions;
 
 			function.Event = EventPublisherSubscriber.Publisher;
@@ -573,19 +508,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return function;
 		}		
-
-		protected int? GetReturnValueDataLength()
-		{
-			if (!ReturnValueType.HasValue) return null;
-			if (ReturnValueDataLength.HasValue) return ReturnValueDataLength;
-
-			switch (ReturnValueType.Value)
-			{
-				case FunctionReturnValueType.Text: return 30;
-				case FunctionReturnValueType.Code: return 10;
-				default: return null;
-			}	
-		}
 	}
 #endif
 
