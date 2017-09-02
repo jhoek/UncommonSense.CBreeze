@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="UncommonSense.CBreeze.Script3.Invocation" Collapsed="true">
+    <Position X="1.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Invocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UncommonSense.CBreeze.Script3.Statement" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Statement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UncommonSense.CBreeze.Script3.Literal" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Literal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UncommonSense.CBreeze.Script3.Pipeline" Collapsed="true">
+    <Position X="5.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pipeline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UncommonSense.CBreeze.Script3.Parameter">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UncommonSense.CBreeze.Script3.SwitchParameter">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SwitchParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UncommonSense.CBreeze.Script3.SimpleParameter">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimpleParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UncommonSense.CBreeze.Script3.ScriptBlockParameter">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScriptBlockParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
