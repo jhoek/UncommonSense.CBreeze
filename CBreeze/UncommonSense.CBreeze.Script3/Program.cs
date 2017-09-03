@@ -15,16 +15,15 @@ namespace UncommonSense.CBreeze.Script3
                 new SimpleParameter("ID", 15) { OnCmdletLine = true, Positional = true },
                 new SimpleParameter("Name", "My Table") { OnCmdletLine = true, Positional = true },
                 new SwitchParameter("Modified", true) { OnCmdletLine = true },
+                new SimpleParameter("DataCaptionFields", new[] { "Code", "Description 2" }),
                 new ScriptBlockParameter("SubObjects",
                     new Invocation("Procedure",
                     new SimpleParameter("ID", 1000) { OnCmdletLine = true, Positional = true },
-                    new SimpleParameter("Name", "My Procedure") { OnCmdletLine = true, Positional = true },
-                    new ScriptBlockParameter("SubObjects",
-                        new Invocation("BooleanVariable")
-                    )
+                    new SimpleParameter("Name", "My Procedure") { OnCmdletLine = true, Positional = true }
                 ))
-                { Positional = true, OnCmdletLine = true })
-                .WriteTo(new ScriptWriter(Console.Out));
+                { Positional = true, OnCmdletLine = false },
+                new SimpleParameter("NogEen", "Met een waarde"))
+                .WriteTo(new ScriptWriter(Console.Out), true);
         }
     }
 }

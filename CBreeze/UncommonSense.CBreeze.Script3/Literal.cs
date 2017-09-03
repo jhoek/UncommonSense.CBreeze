@@ -7,9 +7,17 @@ namespace UncommonSense.CBreeze.Script3
 {
     public class Literal : Statement
     {
-        public override void WriteTo(ScriptWriter writer)
+        public Literal(string text)
         {
-            // FIXME
+            Text = text;
+        }
+
+        public string Text { get; }
+
+        public override void WriteTo(ScriptWriter writer, bool lineBreak)
+        {
+            writer.Write(Text);
+            writer.WriteLineIf(lineBreak);
         }
     }
 }

@@ -19,23 +19,37 @@ namespace UncommonSense.CBreeze.Script3
         public string CmdletName { get; }
 
         public IEnumerable<Parameter> Parameters => parameters.AsEnumerable();
-        public IEnumerable<Parameter> ParametersWithValue => Parameters.Where(p => p.HasValue);
 
-        public override void WriteTo(ScriptWriter writer)
+        public override void WriteTo(ScriptWriter writer, bool lineBreak)
         {
             writer.Write($"{CmdletName} ");
 
-            ParametersWithValue
+            Parameters
+                .Where(p => p.HasValue)
                 .Where(p => p.OnCmdletLine)
                 .Where(p => !p.IsMultiLine)
-                .ForEach(p => p.WriteTo(writer));
+                .ForEach(p => p.WriteTo(writer, false, false));
 
-            ParametersWithValue
-                   .Where(p => p.OnCmdletLine)
-                   .SingleOrDefault(p => p.IsMultiLine)?
-                   .WriteTo(writer);
+            Parameters
+                .Where(p => p.HasValue)
+                .Where(p => p.OnCmdletLine)
+                .SingleOrDefault(p => p.IsMultiLine)?
+                .WriteTo(writer, false, false);
+
+            var paramsNotOnCmdletLine = Parameters
+                .Where(p => p.HasValue)
+                .Where(p => !p.OnCmdletLine);
+
+            writer.WriteIf(paramsNotOnCmdletLine.Any(), "`");
 
             writer.WriteLine();
+
+            writer.Indent();
+
+            paramsNotOnCmdletLine
+                .ForEach(p => p.WriteTo(writer, p != paramsNotOnCmdletLine.Last(), true));
+
+            writer.Unindent();
         }
     }
 }

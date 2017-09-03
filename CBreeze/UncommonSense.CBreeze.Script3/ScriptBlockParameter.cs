@@ -19,14 +19,16 @@ namespace UncommonSense.CBreeze.Script3
         public bool Positional { get; set; }
         public IEnumerable<Statement> Statements => statements.AsEnumerable();
 
-        public override void WriteTo(ScriptWriter writer)
+        public override void WriteTo(ScriptWriter writer, bool continuation, bool lineBreak)
         {
             writer.WriteIf(!Positional, $"-{Name} ");
             writer.WriteLine("{");
             writer.Indent();
-            Statements.ForEach(s => s.WriteTo(writer));
+            Statements.ForEach(s => s.WriteTo(writer, true));
             writer.Unindent();
-            writer.WriteLine("}");
+            writer.Write("} ");
+
+            base.WriteTo(writer, continuation, lineBreak);
         }
     }
 }

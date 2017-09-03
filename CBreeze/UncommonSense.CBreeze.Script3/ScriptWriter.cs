@@ -51,6 +51,14 @@ namespace UncommonSense.CBreeze.Script3
             IndentationPending = true;
         }
 
+        public void WriteLineIf(bool condition)
+        {
+            if (condition)
+            {
+                WriteLine();
+            }
+        }
+
         public void WriteLineIf(bool condition, object value)
         {
             if (condition)

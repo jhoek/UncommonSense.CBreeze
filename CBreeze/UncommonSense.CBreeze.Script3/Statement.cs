@@ -8,6 +8,6 @@ namespace UncommonSense.CBreeze.Script3
 {
     public abstract class Statement
     {
-        public abstract void WriteTo(ScriptWriter writer);
+        public abstract void WriteTo(ScriptWriter writer, bool lineBreak);
     }
 }

@@ -7,7 +7,7 @@ namespace UncommonSense.CBreeze.Script3
 {
     public class Pipeline : Statement
     {
-        public override void WriteTo(ScriptWriter writer)
+        public override void WriteTo(ScriptWriter writer, bool lineBreak)
         {
             // FIXME
         }

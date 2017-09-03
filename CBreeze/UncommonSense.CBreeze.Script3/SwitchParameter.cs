@@ -16,9 +16,11 @@ namespace UncommonSense.CBreeze.Script3
         public override bool IsMultiLine => false;
         public bool Value { get; }
 
-        public override void WriteTo(ScriptWriter writer)
+        public override void WriteTo(ScriptWriter writer, bool continuation, bool lineBreak)
         {
             writer.Write($"-{Name} ");
+
+            base.WriteTo(writer, continuation, lineBreak);
         }
     }
 }

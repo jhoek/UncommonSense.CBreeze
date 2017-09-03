@@ -12,6 +12,10 @@
         public string Name { get; }
         public bool OnCmdletLine { get; set; }
 
-        public abstract void WriteTo(ScriptWriter writer);
+        public virtual void WriteTo(ScriptWriter writer, bool continuation, bool lineBreak)
+        {
+            writer.WriteIf(continuation, "`");
+            writer.WriteLineIf(lineBreak);
+        }
     }
 }
