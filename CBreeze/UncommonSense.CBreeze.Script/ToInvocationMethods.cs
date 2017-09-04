@@ -86,6 +86,11 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("Temporary", r.Temporary);
                     break;
 
+                case ReportVariable r:
+                    yield return new SimpleParameter("Dimensions", r.Dimensions);
+                    yield return new SimpleParameter("SubType", r.SubType);
+                    break;
+
                 case TextConstant t:
                     yield return new SimpleParameter("Values", t.Values);
                     break;
