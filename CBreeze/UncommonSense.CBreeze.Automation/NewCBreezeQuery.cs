@@ -13,6 +13,28 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("Query")]
     public class NewCBreezeQuery : NewCBreezeObject<Query>
     {
+        [Parameter()]
+        public string Description
+        {
+            get; set;
+        }
+
+        [Parameter()]
+        public Permission[] Permissions { get; set; }
+
+        [Parameter()]
+        public ReadState? ReadState
+        {
+            get; set;
+        }
+
+        [Parameter()]
+        [ValidateRange(0, int.MaxValue)]
+        public int? TopNoOfRows
+        {
+            get; set;
+        }
+
         protected override void AddItemToInputObject(Query item, Application inputObject)
         {
             inputObject.Queries.Add(item);
@@ -24,6 +46,7 @@ namespace UncommonSense.CBreeze.Automation
             SetObjectProperties(query);
 
             query.Properties.Description = Description;
+            query.Properties.Permissions.Set(Permissions);
             query.Properties.ReadState = ReadState;
             query.Properties.TopNumberOfRows = TopNoOfRows;
 
@@ -42,25 +65,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             yield return query;
-        }
-
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public ReadState? ReadState
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        [ValidateRange(0, int.MaxValue)]
-        public int? TopNoOfRows
-        {
-            get; set;
         }
     }
 }

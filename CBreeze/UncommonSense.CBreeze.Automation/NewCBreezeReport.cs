@@ -73,6 +73,9 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
+        [Parameter()]
+        public Permission[] Permissions { get; set; }
+
 #if NAV2015
 
         [Parameter()]
@@ -150,6 +153,7 @@ namespace UncommonSense.CBreeze.Automation
             report.Properties.PaperSourceDefaultPage = PaperSourceDefaultPage;
             report.Properties.PaperSourceFirstPage = PaperSourceFirstPage;
             report.Properties.PaperSourceLastPage = PaperSourceLastPage;
+            report.Properties.Permissions.Set(Permissions);
 #if NAV2015
             report.Properties.PreviewMode = PreviewMode;
 #endif

@@ -39,6 +39,9 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public Permission[] Permissions { get; set; }
+
+        [Parameter()]
         public bool? SingleInstance
         {
             get;
@@ -80,6 +83,7 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2016
             codeunit.Properties.EventSubscriberInstance = EventSubscriberInstance;
 #endif
+            codeunit.Properties.Permissions.Set(Permissions);
             codeunit.Properties.SingleInstance = SingleInstance;
             codeunit.Properties.Subtype = SubType;
             codeunit.Properties.TableNo = TableNo;

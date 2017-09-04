@@ -37,9 +37,13 @@ namespace UncommonSense.CBreeze.Core
 
         public void Set(Permission[] permissions)
         {
+            if (permissions == null)
+                return;
+
+            innerList.Clear();
+
             foreach (var permission in permissions)
             {
-                Unset(permission.TableID);
                 innerList.Add(permission.TableID, permission);
             }
         }
