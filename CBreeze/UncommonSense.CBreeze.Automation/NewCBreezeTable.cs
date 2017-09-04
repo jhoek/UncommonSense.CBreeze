@@ -80,6 +80,14 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
+        [Parameter()] public ScriptBlock OnDelete { get; set; }
+
+        [Parameter()] public ScriptBlock OnInsert { get; set; }
+
+        [Parameter()] public ScriptBlock OnModify { get; set; }
+
+        [Parameter()] public ScriptBlock OnRename { get; set; }
+
         [Parameter()]
         public bool? PasteIsValid
         {
@@ -87,10 +95,8 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        [Parameter()] public ScriptBlock OnInsert { get; set; }
-        [Parameter()] public ScriptBlock OnModify { get; set; }
-        [Parameter()] public ScriptBlock OnDelete { get; set; }
-        [Parameter()] public ScriptBlock OnRename { get; set; }
+        [Parameter()]
+        public Permission[] Permissions { get; set; }
 
 #if NAV2016
 
@@ -101,6 +107,11 @@ namespace UncommonSense.CBreeze.Automation
         }
 
 #endif
+
+        protected override void AddItemToInputObject(Table item, Application inputObject)
+        {
+            inputObject.Tables.Add(item);
+        }
 
         protected override IEnumerable<Table> CreateItems()
         {
@@ -120,6 +131,7 @@ namespace UncommonSense.CBreeze.Automation
             table.Properties.LinkedObject = LinkedObject;
             table.Properties.LookupPageID = LookupPageID;
             table.Properties.PasteIsValid = PasteIsValid;
+            table.Properties.Permissions.Set(Permissions);
 #if NAV2016
             table.Properties.TableType = TableType;
 #endif
@@ -155,11 +167,6 @@ namespace UncommonSense.CBreeze.Automation
                 trigger.Variables.AddRange(subObjects.OfType<Variable>());
                 trigger.CodeLines.AddRange(subObjects.OfType<string>());
             }
-        }
-
-        protected override void AddItemToInputObject(Table item, Application inputObject)
-        {
-            inputObject.Tables.Add(item);
         }
     }
 }

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Permission
+    public class Permission
     {
-        internal Permission(int tableID, bool readPermission, bool insertPermission, bool modifyPermission, bool deletePermission)
+        public Permission(int tableID, bool readPermission, bool insertPermission, bool modifyPermission, bool deletePermission)
         {
             TableID = tableID;
             ReadPermission = readPermission;
@@ -16,13 +16,7 @@ namespace UncommonSense.CBreeze.Core
             DeletePermission = deletePermission;
         }
 
-        public int TableID
-        {
-            get;
-            protected set;
-        }
-
-        public bool ReadPermission
+        public bool DeletePermission
         {
             get;
             protected set;
@@ -40,7 +34,13 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public bool DeletePermission
+        public bool ReadPermission
+        {
+            get;
+            protected set;
+        }
+
+        public int TableID
         {
             get;
             protected set;
