@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Script
                 var scriptFileName = Path.ChangeExtension(arg, ".ps1");
                 var application = ApplicationBuilder.FromFile(arg);
 
-                File.WriteAllText(scriptFileName, application.ToInvocation().ToString());
+                File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
             }
         }
     }

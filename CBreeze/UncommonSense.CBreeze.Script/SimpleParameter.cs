@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,9 @@ namespace UncommonSense.CBreeze.Script
 
                     case DateTime d:
                         return $"'{d}'";
+
+                    case decimal d:
+                        return d.ToString(CultureInfo.InvariantCulture);
 
                     case IEnumerable<string> e:
                         return string.Join(", ", e.Select(s => $"'{s}'"));
