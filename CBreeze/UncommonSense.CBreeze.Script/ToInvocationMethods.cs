@@ -139,10 +139,12 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("DataLength", c.DataLength);
                     break;
 
+                case CodeunitParameter c:
+                    yield return new SimpleParameter("SubType", c.SubType);
+                    break;
+
                 case OptionParameter o:
-                    yield return new SimpleParameter("Dimensions", o.Dimensions);
                     yield return new SimpleParameter("OptionString", o.OptionString);
-                    yield return new SwitchParameter("Var", o.Var);
                     break;
 
                 case TextParameter t:
