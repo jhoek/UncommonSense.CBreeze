@@ -64,6 +64,11 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("SubType", c.SubType);
                     break;
 
+                case IntegerVariable i:
+                    yield return new SimpleParameter("Dimensions", i.Dimensions);
+                    yield return new SimpleParameter("IncludeInDataset", i.IncludeInDataset);
+                    break;
+
                 case OptionVariable o:
                     yield return new SimpleParameter("Dimensions", o.Dimensions);
                     yield return new SimpleParameter("OptionString", o.OptionString);
@@ -123,6 +128,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
             yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
             yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
+            yield return new SimpleParameter("IncludeSender", function.IncludeSender);
             yield return new ScriptBlockParameter("SubObjects",
                 function.Parameters.Select(
                     p => p.ToInvocation())
@@ -158,6 +164,7 @@ namespace UncommonSense.CBreeze.Script
 
                 case RecordParameter r:
                     yield return new SimpleParameter("SubType", r.SubType);
+                    yield return new SimpleParameter("Temporary", r.Temporary);
                     break;
             }
         }
