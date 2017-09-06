@@ -53,6 +53,10 @@ namespace UncommonSense.CBreeze.Script
 
             switch (variable)
             {
+                case BooleanVariable b:
+                    yield return new SimpleParameter("Dimensions", b.Dimensions);
+                    break;
+
                 case CodeVariable c:
                     yield return new SimpleParameter("DataLength", c.DataLength);
                     yield return new SimpleParameter("Dimensions", c.Dimensions);
@@ -131,7 +135,7 @@ namespace UncommonSense.CBreeze.Script
                     break;
             }
 
-            // FIXME
+            // FIXME : Remaining types
         }
 
         public static IEnumerable<ParameterBase> Parameters(this TableFieldGroup fieldGroup)
@@ -192,6 +196,10 @@ namespace UncommonSense.CBreeze.Script
                 case QueryParameter q:
                     yield return new SimpleParameter("SecurityFiltering", q.SecurityFiltering);
                     yield return new SimpleParameter("SubType", q.SubType);
+                    break;
+
+                case ReportParameter r:
+                    yield return new SimpleParameter("SubType", r.SubType);
                     break;
 
                 case TextParameter t:
@@ -266,11 +274,12 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
-                    table.Fields.ToInvocation()
+                    table.Fields.ToStatements()
                     .Concat(table.FieldGroups.ToInvocation())
                     .Concat(table.Keys.ToInvocation())
                     .Concat(table.Code.Variables.ToInvocation())
-                    .Concat(table.Code.Functions.ToInvocation()))
+                    .Concat(table.Code.Functions.ToInvocation())
+                    .Concat(table.Code.Documentation.CodeLines.ToInvocation()))
             };
 
             return new Invocation(
@@ -282,8 +291,6 @@ namespace UncommonSense.CBreeze.Script
         }
 
         public static IEnumerable<Invocation> ToInvocation(this Tables tables) => tables.Select(t => t.ToInvocation());
-
-        public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
 
         public static Invocation ToInvocation(this TableField field) => new Invocation($"New-CBreeze{field.Type}TableField", field.Parameters());
 
@@ -305,7 +312,7 @@ namespace UncommonSense.CBreeze.Script
                 new SimpleParameter("FieldName", calcFormula.FieldName),
                 new SwitchParameter("ReverseSign", calcFormula.ReverseSign),
                 new ScriptBlockParameter("Filters", calcFormula.TableFilter.ToInvocations()))
-            { SuppressTrailingNewLine = true }; // FIXME
+            { SuppressTrailingNewLine = true };
         }
 
         public static Invocation ToInvocation(this Permission permission)
@@ -369,6 +376,8 @@ namespace UncommonSense.CBreeze.Script
         {
             return new Invocation("New-CBreezeTableRelationFilter", tableRelationFilterLine.Parameters());
         }
+
+        public static IEnumerable<Literal> ToInvocation(this CodeLines codeLines) => codeLines.Select(c => new Literal(c));
 
         public static IEnumerable<Invocation> ToInvocations(this Permissions permissions) => permissions.Select(p => p.ToInvocation());
 
