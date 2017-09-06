@@ -8,12 +8,12 @@ namespace UncommonSense.CBreeze.Script
 {
     public class ArrayParameter : ParameterBase
     {
-        public ArrayParameter(string name, params Invocation[] elements)
+        public ArrayParameter(string name, params Statement[] elements)
             : this(name, elements.AsEnumerable())
         {
         }
 
-        public ArrayParameter(string name, IEnumerable<Invocation> elements)
+        public ArrayParameter(string name, IEnumerable<Statement> elements)
             : base(name)
         {
             Elements = elements;
@@ -29,7 +29,7 @@ namespace UncommonSense.CBreeze.Script
             return stringBuilder.ToString();
         }
 
-        public IEnumerable<Invocation> Elements { get; }
+        public IEnumerable<Statement> Elements { get; }
 
         public override bool HasValue => Elements.Any();
     }

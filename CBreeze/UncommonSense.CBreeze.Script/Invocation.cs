@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Script
 {
-    public class Invocation
+    public class Invocation : Statement
     {
         private List<ParameterBase> parameters = new List<ParameterBase>();
 
@@ -22,16 +22,7 @@ namespace UncommonSense.CBreeze.Script
             this.parameters.AddRange(parameters);
         }
 
-        public string CmdletName { get; protected set; }
-        public IEnumerable<ParameterBase> Parameters => parameters.AsEnumerable();
-        public IEnumerable<ParameterBase> ParametersWithValue => Parameters.Where(p => p.HasValue);
-        public bool SuppressTrailingNewLine { get; set; }
-
-        public string Indentation(int indentation) => new string(' ', indentation * 2);
-
-        public override string ToString() => ToString(0);
-
-        public virtual string ToString(int indentation)
+        public override string ToString(int indentation)
         {
             var elements = new List<string>();
 
@@ -42,5 +33,10 @@ namespace UncommonSense.CBreeze.Script
 
             return $"{string.Join($" `{Environment.NewLine}", elements)}{newLine}";
         }
+
+        public string CmdletName { get; protected set; }
+        public IEnumerable<ParameterBase> Parameters => parameters.AsEnumerable();
+        public IEnumerable<ParameterBase> ParametersWithValue => Parameters.Where(p => p.HasValue);
+        public bool SuppressTrailingNewLine { get; set; }
     }
 }
