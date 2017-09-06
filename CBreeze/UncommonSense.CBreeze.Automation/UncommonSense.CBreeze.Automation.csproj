@@ -73,6 +73,7 @@
       <DependentUpon>NewCBreezeParameter.tt</DependentUpon>
     </Compile>
     <Compile Include="NewCBreezeQueryElement.cs" />
+    <Compile Include="NewCBreezeQueryLink.cs" />
     <Compile Include="NewCBreezeTableField.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,7 +110,7 @@
     <Compile Include="AddCBreezeOrderBy.cs" />
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="NewCBreezeTableRelationCondition.cs" />
-    <Compile Include="AddCBreezeLink.cs" />
+    <Compile Include="NewCBreezeRunObjectLink.cs" />
     <Compile Include="AddCBreezeQueryElement.cs" />
     <Compile Include="NewCBreezeTableRelation.cs" />
     <Compile Include="NewCBreezeXmlPortLink.cs" />
