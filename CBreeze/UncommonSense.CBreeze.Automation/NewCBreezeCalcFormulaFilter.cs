@@ -11,8 +11,22 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeCalcFormulaFilter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(CalcFormulaTableFilterLine))]
     [Alias("CalcFormulaFilter")]
-    public class NewCBreezeCalcFormulaFilter : NewItemCmdlet<CalcFormulaTableFilterLine, PSObject>
+    public class NewCBreezeCalcFormulaFilter : NewItemCmdlet<CalcFormulaTableFilterLine, CalcFormula>
     {
+        protected override void AddItemToInputObject(CalcFormulaTableFilterLine item, CalcFormula calcFormula)
+        {
+            calcFormula.TableFilter.Add(item);
+        }
+
+        protected override IEnumerable<CalcFormulaTableFilterLine> CreateItems()
+        {
+            yield return new CalcFormulaTableFilterLine(FieldName, Type, Value)
+            {
+                OnlyMaxLimit = OnlyMaxLimit,
+                ValueIsFilter = ValueIsFilter
+            };
+        }
+
         [Parameter(Mandatory = true, Position = 1)]
         public string FieldName { get; set; }
 
@@ -28,20 +42,5 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()]
         public SwitchParameter ValueIsFilter { get; set; }
-
-        protected override void AddItemToInputObject(CalcFormulaTableFilterLine item, PSObject inputObject)
-        {
-            switch (InputObject.BaseObject)
-            {
-                case CalcFormula c: c.TableFilter.Add(item); break;
-                case CalcFormulaTableFilter f: f.Add(item); break;
-                default: throw new ArgumentOutOfRangeException("Cannot add a CalcFormula filter to this object.");
-            }
-        }
-
-        protected override IEnumerable<CalcFormulaTableFilterLine> CreateItems()
-        {
-            yield return new CalcFormulaTableFilterLine(FieldName, Type, Value) { OnlyMaxLimit = OnlyMaxLimit, ValueIsFilter = ValueIsFilter };
-        }
     }
 }
