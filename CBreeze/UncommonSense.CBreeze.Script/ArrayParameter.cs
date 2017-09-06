@@ -19,19 +19,18 @@ namespace UncommonSense.CBreeze.Script
             Elements = elements;
         }
 
-        public IEnumerable<Invocation> Elements { get; }
-
-        public override bool HasValue => Elements.Any();
-
         public override string ToString(int indentation)
         {
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append($"{Indentation(indentation)}-{Name} (");
-            stringBuilder.Append(string.Join(", ", Elements.Select(e => e.ToString())));
-            stringBuilder.Append(")");
+            stringBuilder.Append($"{Indentation(indentation)}-{Name} ");
+            stringBuilder.Append(string.Join(", ", Elements.Select(e => $"({e.ToString()})")));
 
             return stringBuilder.ToString();
         }
+
+        public IEnumerable<Invocation> Elements { get; }
+
+        public override bool HasValue => Elements.Any();
     }
 }
