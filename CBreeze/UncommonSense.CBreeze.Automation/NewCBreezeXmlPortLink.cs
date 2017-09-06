@@ -9,11 +9,37 @@ using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.Add, "CBreezeXmlPortLink", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("Link")]
+    [Cmdlet(VerbsCommon.New, "CBreezeXmlPortLink", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Alias("XmlPortLink")]
     [OutputType(typeof(LinkField))]
     public class NewCBreezeXmlPortLink : NewItemCmdlet<LinkField, PSObject>
     {
+        protected override void AddItemToInputObject(LinkField item, PSObject inputObject)
+        {
+            switch (inputObject.BaseObject)
+            {
+                case LinkFields l:
+                    l.Add(item);
+                    break;
+
+                case XmlPortTableElement e:
+                    e.Properties.LinkFields.Add(item);
+                    break;
+
+                case XmlPortTableAttribute a:
+                    a.Properties.LinkFields.Add(item);
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException("Don't know how to add XMLport links to this input object.");
+            }
+        }
+
+        protected override IEnumerable<LinkField> CreateItems()
+        {
+            yield return new LinkField(Field, ReferenceField);
+        }
+
         [Parameter(Mandatory = true, Position = 0)]
         [ValidateRange(1, int.MaxValue)]
         public int Field
@@ -28,22 +54,6 @@ namespace UncommonSense.CBreeze.Automation
         {
             get;
             set;
-        }
-
-        protected override void AddItemToInputObject(LinkField item, PSObject inputObject)
-        {
-            switch (inputObject.BaseObject)
-            {
-                case LinkFields l: l.Add(item); break;
-                case XmlPortTableElement e: e.Properties.LinkFields.Add(item); break;
-                case XmlPortTableAttribute a: a.Properties.LinkFields.Add(item); break;
-                default: throw new ArgumentOutOfRangeException("Don't know how to add XMLport links to this input object.");
-            }
-        }
-
-        protected override IEnumerable<LinkField> CreateItems()
-        {
-            yield return new LinkField(Field, ReferenceField);
         }
     }
 }
