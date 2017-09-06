@@ -64,6 +64,17 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("SubType", c.SubType);
                     break;
 
+                case DecimalVariable d:
+                    yield return new SimpleParameter("Dimensions", d.Dimensions);
+                    break;
+
+                case DotNetVariable d:
+                    yield return new SimpleParameter("Dimensions", d.Dimensions);
+                    yield return new SimpleParameter("RunOnClient", d.RunOnClient);
+                    yield return new SimpleParameter("SubType", d.SubType);
+                    yield return new SimpleParameter("WithEvents", d.WithEvents);
+                    break;
+
                 case IntegerVariable i:
                     yield return new SimpleParameter("Dimensions", i.Dimensions);
                     yield return new SimpleParameter("IncludeInDataset", i.IncludeInDataset);
@@ -152,6 +163,12 @@ namespace UncommonSense.CBreeze.Script
 
                 case CodeunitParameter c:
                     yield return new SimpleParameter("SubType", c.SubType);
+                    break;
+
+                case DotNetParameter d:
+                    yield return new SimpleParameter("RunOnClient", d.RunOnClient);
+                    yield return new SimpleParameter("SubType", d.SubType);
+                    yield return new SimpleParameter("SuppressDispose", d.SuppressDispose);
                     break;
 
                 case OptionParameter o:
