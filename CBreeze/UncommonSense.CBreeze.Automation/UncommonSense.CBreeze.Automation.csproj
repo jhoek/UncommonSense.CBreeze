@@ -111,7 +111,6 @@
     <Compile Include="AddCBreezePageAction.cs" />
     <Compile Include="NewCBreezeTableRelationCondition.cs" />
     <Compile Include="NewCBreezeRunObjectLink.cs" />
-    <Compile Include="AddCBreezeQueryElement.cs" />
     <Compile Include="NewCBreezeTableRelation.cs" />
     <Compile Include="NewCBreezeXmlPortLink.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
