@@ -64,6 +64,10 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("SubType", c.SubType);
                     break;
 
+                case DateVariable d:
+                    yield return new SimpleParameter("Dimensions", d.Dimensions);
+                    break;
+
                 case DecimalVariable d:
                     yield return new SimpleParameter("Dimensions", d.Dimensions);
                     break;
@@ -73,6 +77,10 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("RunOnClient", d.RunOnClient);
                     yield return new SimpleParameter("SubType", d.SubType);
                     yield return new SimpleParameter("WithEvents", d.WithEvents);
+                    break;
+
+                case FieldRefVariable f:
+                    yield return new SimpleParameter("Dimensions", f.Dimensions);
                     break;
 
                 case IntegerVariable i:
@@ -116,6 +124,11 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("Dimensions", t.Dimensions);
                     yield return new SimpleParameter("IncludeInDataset", t.IncludeInDataset);
                     break;
+
+                case XmlPortVariable x:
+                    yield return new SimpleParameter("Dimensions", x.Dimensions);
+                    yield return new SimpleParameter("SubType", x.SubType);
+                    break;
             }
 
             // FIXME
@@ -135,6 +148,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ID", function.ID);
             yield return new SimpleParameter("Name", function.Name);
             yield return new SimpleParameter("Local", function.Local);
+            yield return new SimpleParameter("TryFunction", function.TryFunction);
             yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
             yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
             yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
@@ -173,6 +187,11 @@ namespace UncommonSense.CBreeze.Script
 
                 case OptionParameter o:
                     yield return new SimpleParameter("OptionString", o.OptionString);
+                    break;
+
+                case QueryParameter q:
+                    yield return new SimpleParameter("SecurityFiltering", q.SecurityFiltering);
+                    yield return new SimpleParameter("SubType", q.SubType);
                     break;
 
                 case TextParameter t:
@@ -365,6 +384,10 @@ namespace UncommonSense.CBreeze.Script
         {
             switch (property)
             {
+                case BooleanProperty b:
+                    yield return new SwitchParameter(b.Name, b.Value);
+                    break;
+
                 case TriggerProperty t:
                     yield return new ScriptBlockParameter(
                         t.Name,
