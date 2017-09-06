@@ -121,10 +121,10 @@ namespace UncommonSense.CBreeze.Automation
 			inputObject.GetVariables().Add(item);
 		}
 
-		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
-		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
-		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
+		[Parameter(Position=3, ParameterSetName="AddWithID")]
+		[Parameter(Position=2, ParameterSetName="AddWithoutID")]
+		[Parameter(Position=3, ParameterSetName="NewWithID")]
+		[Parameter(Position=2, ParameterSetName="NewWithoutID")]
 		public Int32 DataLength { get; set; }
 
 		[Parameter()]
@@ -270,11 +270,11 @@ namespace UncommonSense.CBreeze.Automation
 			inputObject.GetVariables().Add(item);
 		}
 
-		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
-		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
-		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
-		public Nullable<Int32> DataLength { get; set; }
+		[Parameter(Position=3, ParameterSetName="AddWithID")]
+		[Parameter(Position=2, ParameterSetName="AddWithoutID")]
+		[Parameter(Position=3, ParameterSetName="NewWithID")]
+		[Parameter(Position=2, ParameterSetName="NewWithoutID")]
+		public Int32 DataLength { get; set; }
 
 		[Parameter()]
 		public String Dimensions { get; set; }

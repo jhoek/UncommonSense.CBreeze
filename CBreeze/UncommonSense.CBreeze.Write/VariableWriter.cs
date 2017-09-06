@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<ByteVariable>(p => DoWrite(p.Name, p.ID, "Byte", p.Dimensions, writer)),
                 TypeSwitch.Case<CharVariable>(p => DoWrite(p.Name, p.ID, "Char", p.Dimensions, writer)),
                 TypeSwitch.Case<CodeunitVariable>(p => DoWrite(p.Name, p.ID, string.Format("Codeunit {0}", p.SubType), p.Dimensions, writer)),
-                TypeSwitch.Case<CodeVariable>(p => DoWrite(p.Name, p.ID, p.DataLength.HasValue ? string.Format("Code[{0}]", p.DataLength) : "Code", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
+                TypeSwitch.Case<CodeVariable>(p => DoWrite(p.Name, p.ID, string.Format("Code[{0}]", p.DataLength), p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<DateFormulaVariable>(p => DoWrite(p.Name, p.ID, "DateFormula", p.Dimensions, writer)),
                 TypeSwitch.Case<DateTimeVariable>(p => DoWrite(p.Name, p.ID, "DateTime", p.Dimensions, writer)),
                 TypeSwitch.Case<DateVariable>(p => DoWrite(p.Name, p.ID, "Date", p.Dimensions, writer)),

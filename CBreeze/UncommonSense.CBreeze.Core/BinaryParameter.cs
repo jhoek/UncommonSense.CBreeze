@@ -8,9 +8,9 @@ namespace UncommonSense.CBreeze.Core
 {
     public class BinaryParameter : Parameter
     {
-        public BinaryParameter(string name, bool var = false, int id = 0, int dataLength = 100) : base(name, var, id)
+        public BinaryParameter(string name, bool var = false, int id = 0, int? dataLength = null) : base(name, var, id)
         {
-            DataLength = dataLength;
+            DataLength = dataLength.Value == 0 ? 100 : dataLength.GetValueOrDefault(100);
         }
 
         public int DataLength

@@ -10,10 +10,10 @@ namespace UncommonSense.CBreeze.Core
     {
         public CodeParameter(string name, bool var = false, int id = 0, int? dataLength = null) : base(name, var, id)
         {
-            DataLength = dataLength;
+            DataLength = dataLength.Value == 0 ? 10 : dataLength.GetValueOrDefault(10);
         }
 
-        public int? DataLength
+        public int DataLength
         {
             get;
             protected set;

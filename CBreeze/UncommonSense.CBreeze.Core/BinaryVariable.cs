@@ -8,14 +8,14 @@ namespace UncommonSense.CBreeze.Core
 {
     public class BinaryVariable : Variable
     {
-        public BinaryVariable(string name, int dataLength = 100) : this(0, name, dataLength)
+        public BinaryVariable(string name, int? dataLength = null) : this(0, name, dataLength)
         {
         }
 
-        public BinaryVariable(int id, string name, int dataLength = 100)
+        public BinaryVariable(int id, string name, int? dataLength = null)
             : base(id, name)
         {
-            DataLength = dataLength;
+            DataLength = dataLength.Value == 0 ? 100 : dataLength.GetValueOrDefault(100);
         }
 
         public int DataLength

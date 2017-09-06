@@ -662,7 +662,7 @@ namespace UncommonSense.CBreeze.Read
                     break;
 
                 case VariableType.Binary:
-                    var binaryVariable = variables.Add(new BinaryVariable(variableID, variableName, variableLength.Value));
+                    var binaryVariable = variables.Add(new BinaryVariable(variableID, variableName, variableLength));
                     binaryVariable.Dimensions = variableDimensions;
                     break;
 

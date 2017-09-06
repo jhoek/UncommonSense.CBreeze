@@ -1,7 +1,7 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="c:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
-<#@ assembly name="C:\Users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll" #>
+<#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Debug\UncommonSense.CBreeze.Automation.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -24,7 +24,6 @@
 
 	var mandatoryProperties = new Dictionary<string, string[]> () {
 		{"SubType", new[] { "DotNetVariable", "AutomationVariable", "OcxVariable", "RecordVariable", "PageVariable", "ReportVariable", "CodeunitVariable", "QueryVariable", "TestPageVariable", "XmlPortVariable"  }},
-		{"DataLength", new[] { "BinaryVariable", "CodeVariable" } },
         {"Values", new[] { "TextConstant" }}
 	};
 
