@@ -1809,7 +1809,7 @@ namespace UncommonSense.CBreeze.Automation
 			optionTableField.Properties.MaxValue = MaxValue;
 			optionTableField.Properties.MinValue = MinValue;
 			optionTableField.Properties.NotBlank = NotBlank;
-			optionTableField.Properties.OptionOrdinalValue = OptionOrdinalValue;
+			optionTableField.Properties.OptionOrdinalValues = OptionOrdinalValues;
 			optionTableField.Properties.OptionString = OptionString;
 			optionTableField.Properties.SignDisplacement = SignDisplacement;
 			optionTableField.Properties.TestTableRelation = TestTableRelation;
@@ -1915,7 +1915,7 @@ namespace UncommonSense.CBreeze.Automation
 	public Nullable<Boolean> NotBlank { get;set; }
 
 	[Parameter()]
-	public String OptionOrdinalValue { get;set; }
+	public String OptionOrdinalValues { get;set; }
 
 	[Parameter(Mandatory=true)]
 	public String OptionString { get;set; }

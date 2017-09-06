@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class OptionTableFieldProperties : Properties
+    public class OptionTableFieldProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
@@ -89,6 +89,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => Field;
 
 #if NAV2015
+
         public AccessByPermission AccessByPermission
         {
             get
@@ -96,6 +97,7 @@ namespace UncommonSense.CBreeze.Core
                 return accessByPermission.Value;
             }
         }
+
 #endif
 
         public string AltSearchField
@@ -223,6 +225,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
+
         public ExternalAccess? ExternalAccess
         {
             get
@@ -258,6 +261,7 @@ namespace UncommonSense.CBreeze.Core
                 this.externalType.Value = value;
             }
         }
+
 #endif
 
         public FieldClass? FieldClass
@@ -345,7 +349,8 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
-        public string OptionOrdinalValue
+
+        public string OptionOrdinalValues
         {
             get
             {
@@ -356,6 +361,7 @@ namespace UncommonSense.CBreeze.Core
                 this.optionOrdinalValues.Value = value;
             }
         }
+
 #endif
 
         public string OptionString
