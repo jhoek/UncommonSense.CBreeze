@@ -16,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void AddItemToInputObject(ColumnReportElement item, DataItemReportElement inputObject)
         {
-            // FIXME: inputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+            inputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
         }
 
         protected override IEnumerable<ColumnReportElement> CreateItems()
@@ -63,10 +63,10 @@ namespace UncommonSense.CBreeze.Automation
 
     [Cmdlet(VerbsCommon.New, "CBreezeDataItemReportElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [Alias("ReportDataItem")]
-    [OutputType(typeof(DataItemReportElement))]
-    public class NewCBreezeDataItemReportElement : NewItemWithIDCmdlet<DataItemReportElement, int, PSObject>
+    [OutputType(typeof(ReportElement))]
+    public class NewCBreezeDataItemReportElement : NewItemWithIDCmdlet<ReportElement, int, PSObject>
     {
-        protected override void AddItemToInputObject(DataItemReportElement item, PSObject inputObject)
+        protected override void AddItemToInputObject(ReportElement item, PSObject inputObject)
         {
             switch (inputObject.BaseObject)
             {
@@ -78,12 +78,8 @@ namespace UncommonSense.CBreeze.Automation
                     r.Elements.Insert(0, item);
                     break;
 
-                case DataItemReportElement e when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
-                    // FIXME: Append to element;
-                    break;
-
-                case DataItemReportElement e when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
-                    // FIXME: Insert in element;
+                case DataItemReportElement e:
+                    e.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
                 default: throw new ArgumentOutOfRangeException("Not sure how to add a report data item to this object.");
@@ -106,7 +102,7 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected override IEnumerable<DataItemReportElement> CreateItems()
+        protected override IEnumerable<ReportElement> CreateItems()
         {
             var element = new DataItemReportElement(DataItemTable, ID, IndentationLevel);
 
@@ -123,6 +119,20 @@ namespace UncommonSense.CBreeze.Automation
 #endif
 
             yield return element;
+
+            var variables = new List<PSVariable>() {
+                new PSVariable("Indentation", element.IndentationLevel + 1) };
+
+            var subObjects = SubObjects?
+                .InvokeWithContext(null, variables)
+                .Select(o => o.BaseObject)
+                .Cast<ColumnReportElement>() ??
+                Enumerable.Empty<ColumnReportElement>();
+
+            foreach (var subObject in subObjects)
+            {
+                yield return subObject;
+            }
         }
 
         [Parameter()]public string[] CalcFields { get; set; }
