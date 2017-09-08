@@ -8,6 +8,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
+    [Obsolete("Use New-CBreezeReportElement instead.")]
     [Cmdlet(VerbsCommon.Add, "CBreezeDataItemReportElement")]
     public class AddCBreezeDataItemReportElement : Cmdlet
     {

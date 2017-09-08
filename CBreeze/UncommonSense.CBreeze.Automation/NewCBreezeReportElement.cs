@@ -21,7 +21,6 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<ColumnReportElement> CreateItems()
         {
-            // FIXME: Should indentation for column be nullable?
             var element = new ColumnReportElement(Name, SourceExpr, ID, IndentationLevel);
 
             element.Properties.AutoCalcField = AutoCalcField;
@@ -69,12 +68,81 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void AddItemToInputObject(DataItemReportElement item, PSObject inputObject)
         {
-            throw new NotImplementedException();
+            switch (inputObject.BaseObject)
+            {
+                case Report r when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+                    r.Elements.Add(item);
+                    break;
+
+                case Report r when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+                    r.Elements.Insert(0, item);
+                    break;
+
+                case DataItemReportElement e when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+                    // FIXME: Append to element;
+                    break;
+
+                case DataItemReportElement e when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+                    // FIXME: Insert in element;
+                    break;
+
+                default: throw new ArgumentOutOfRangeException("Not sure how to add a report data item to this object.");
+            }
+        }
+
+        protected int? IndentationLevel => ParameterSetNames.IsNew(ParameterSetName) ? IndentationFromVariable : IndentationFromInputObject;
+        protected int IndentationFromVariable => (int)GetVariableValue("Indentation", 0);
+
+        protected int IndentationFromInputObject
+        {
+            get
+            {
+                switch (InputObject.BaseObject)
+                {
+                    case Report r: return 0;
+                    case DataItemReportElement e: return e.IndentationLevel.GetValueOrDefault(0) + 1;
+                    default: return 0;
+                }
+            }
         }
 
         protected override IEnumerable<DataItemReportElement> CreateItems()
         {
-            throw new NotImplementedException();
+            var element = new DataItemReportElement(DataItemTable, ID, IndentationLevel);
+
+            element.Properties.CalcFields.AddRange(CalcFields);
+            element.Properties.DataItemLinkReference = DataItemLinkReference;
+            element.Properties.DataItemTableView.Key = DataItemTableViewKey;
+            element.Properties.DataItemTableView.Order = DataItemTableViewOrder;
+            element.Properties.MaxIteration = MaxIteration;
+            element.Properties.PrintOnlyIfDetail = PrintOnlyIfDetail;
+            element.Properties.ReqFilterFields.AddRange(ReqFilterFields);
+            element.Properties.ReqFilterHeadingML.Set("ENU", ReqFilterHeading);
+#if NAV2015
+            element.Properties.Temporary = Temporary;
+#endif
+
+            yield return element;
         }
+
+        [Parameter()]public string[] CalcFields { get; set; }
+        [Parameter(Mandatory =true)][ValidateRange(1, int.MaxValue)]public int DataItemTable { get; set; }
+        [Parameter()]public string DataItemLinkReference { get; set; }
+        [Parameter()]public string DataItemTableViewKey { get; set; }
+        [Parameter()]public Order? DataItemTableViewOrder { get; set; }
+        [Parameter()][ValidateRange(1, int.MaxValue)]public int? MaxIteration { get; set; }
+
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
+        public Position? Position { get; set; }
+
+        [Parameter()] public bool? PrintOnlyIfDetail { get; set; }
+        [Parameter()] public string[] ReqFilterFields { get; set; }
+        [Parameter()] public string ReqFilterHeading { get; set; }
+#if NAV2015
+        [Parameter()] public bool? Temporary { get; set; }
+#endif
+
+        [Parameter()] public ScriptBlock SubObjects { get; set; }
     }
 }
