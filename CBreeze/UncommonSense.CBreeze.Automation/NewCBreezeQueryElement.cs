@@ -106,6 +106,10 @@ namespace UncommonSense.CBreeze.Automation
                 case DataItemQueryElement d:
                     d.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
+
+                default:
+                    base.AddItemToInputObject(item, InputObject);
+                    break;
             }
         }
 

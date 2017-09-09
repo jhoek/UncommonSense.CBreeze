@@ -88,7 +88,8 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException("Not sure how to add a report data item to this object.");
+                    base.AddItemToInputObject(item, inputObject);
+                    break;
             }
         }
 

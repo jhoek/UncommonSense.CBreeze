@@ -9,7 +9,12 @@ namespace UncommonSense.CBreeze.Automation
 {
     public abstract class NewItemCmdlet<TItem, TInputObject> : PSCmdlet
     {
-        protected abstract void AddItemToInputObject(TItem item, TInputObject inputObject);
+        protected virtual void AddItemToInputObject(TItem item, TInputObject inputObject)
+        {
+            var inputObjectTypeName = inputObject is PSObject ? (inputObject as PSObject).BaseObject.GetType().Name : inputObject.GetType().Name;
+
+            throw new ApplicationException($"Don't know how to add this {item.GetType().Name} to this {inputObjectTypeName}.");
+        }
 
         protected abstract IEnumerable<TItem> CreateItems();
 

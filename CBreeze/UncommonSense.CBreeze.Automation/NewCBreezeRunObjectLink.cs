@@ -27,7 +27,8 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 default:
-                    throw new ApplicationException("Cannot add links to this object.");
+                    base.AddItemToInputObject(item, inputObject);
+                    break;
             }
         }
 

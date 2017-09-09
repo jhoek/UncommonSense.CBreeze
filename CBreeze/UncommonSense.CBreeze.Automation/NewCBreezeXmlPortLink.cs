@@ -31,7 +31,8 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException("Don't know how to add XMLport links to this input object.");
+                    base.AddItemToInputObject(item, inputObject);
+                    break;
             }
         }
 

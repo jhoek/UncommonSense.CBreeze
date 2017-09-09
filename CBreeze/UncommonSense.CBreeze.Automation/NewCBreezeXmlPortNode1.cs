@@ -50,29 +50,31 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			if (InputObject.BaseObject is XmlPort)
+			switch(inputObject.BaseObject)
 			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNodes)
-			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNode)
-			{
-				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-			}
-			else
-			{
-				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
+					break;
+
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Add(item); 
+					break;
+
+				case XmlPortNode n:
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+					break;
+
+				default:
+					base.AddItemToInputObject(item, inputObject);
+					break;
 			}
 		}
 
@@ -170,29 +172,31 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			if (InputObject.BaseObject is XmlPort)
+			switch(inputObject.BaseObject)
 			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNodes)
-			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNode)
-			{
-				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-			}
-			else
-			{
-				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
+					break;
+
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Add(item); 
+					break;
+
+				case XmlPortNode n:
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+					break;
+
+				default:
+					base.AddItemToInputObject(item, inputObject);
+					break;
 			}
 		}
 
@@ -305,29 +309,31 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			if (InputObject.BaseObject is XmlPort)
+			switch(inputObject.BaseObject)
 			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNodes)
-			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNode)
-			{
-				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-			}
-			else
-			{
-				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
+					break;
+
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Add(item); 
+					break;
+
+				case XmlPortNode n:
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+					break;
+
+				default:
+					base.AddItemToInputObject(item, inputObject);
+					break;
 			}
 		}
 
@@ -452,29 +458,31 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			if (InputObject.BaseObject is XmlPort)
+			switch(inputObject.BaseObject)
 			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNodes)
-			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNode)
-			{
-				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-			}
-			else
-			{
-				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
+					break;
+
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Add(item); 
+					break;
+
+				case XmlPortNode n:
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+					break;
+
+				default:
+					base.AddItemToInputObject(item, inputObject);
+					break;
 			}
 		}
 
@@ -592,29 +600,31 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			if (InputObject.BaseObject is XmlPort)
+			switch(inputObject.BaseObject)
 			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNodes)
-			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNode)
-			{
-				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-			}
-			else
-			{
-				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
+					break;
+
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Add(item); 
+					break;
+
+				case XmlPortNode n:
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+					break;
+
+				default:
+					base.AddItemToInputObject(item, inputObject);
+					break;
 			}
 		}
 
@@ -698,29 +708,31 @@ namespace UncommonSense.CBreeze.Automation
 
 		protected override void AddItemToInputObject(XmlPortNode item, PSObject inputObject)
 		{
-			if (InputObject.BaseObject is XmlPort)
+			switch(inputObject.BaseObject)
 			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPort).Nodes.Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNodes)
-			{
-				switch(Position.GetValueOrDefault(Core.Position.LastWithinContainer))
-				{
-					case Core.Position.FirstWithinContainer: (InputObject.BaseObject as XmlPortNodes).Insert(0, item); break;
-					case Core.Position.LastWithinContainer: (InputObject.BaseObject as XmlPortNodes).Add(item); break;
-				}
-			}
-			else if (InputObject.BaseObject is XmlPortNode)
-			{
-				(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
-			}
-			else
-			{
-				throw new ArgumentOutOfRangeException("Don't know how to add an XmlPort node to this InputObject.");
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
+					break;
+
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
+					break;
+
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+					(InputObject.BaseObject as XmlPortNodes).Add(item); 
+					break;
+
+				case XmlPortNode n:
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+					break;
+
+				default:
+					base.AddItemToInputObject(item, inputObject);
+					break;
 			}
 		}
 
