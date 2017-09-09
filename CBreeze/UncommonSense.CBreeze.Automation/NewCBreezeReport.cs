@@ -171,6 +171,8 @@ namespace UncommonSense.CBreeze.Automation
 
             if (SubObjects != null)
             {
+                // FIXME: How to define the request page?
+
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
                 report.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());
                 report.Labels.AddRange(subObjects.OfType<ReportLabel>());
