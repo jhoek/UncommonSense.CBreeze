@@ -54,11 +54,16 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Description { get; set; }
         [Parameter()] public bool? IncludeCaption { get; set; }
 
-        [Parameter(ParameterSetName=ParameterSetNames.AddWithID)]
-        [Parameter(ParameterSetName =ParameterSetNames.AddWithoutID)]
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
         public Position? Position { get; set; }
 
-        [Parameter(Mandatory = true)] public string SourceExpr { get; set; }
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Mandatory = true)]
+        public string SourceExpr { get; set; }
     }
 
     [Cmdlet(VerbsCommon.New, "CBreezeDataItemReportElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -82,7 +87,8 @@ namespace UncommonSense.CBreeze.Automation
                     e.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
-                default: throw new ArgumentOutOfRangeException("Not sure how to add a report data item to this object.");
+                default:
+                    throw new ArgumentOutOfRangeException("Not sure how to add a report data item to this object.");
             }
         }
 
@@ -95,9 +101,12 @@ namespace UncommonSense.CBreeze.Automation
             {
                 switch (InputObject.BaseObject)
                 {
-                    case Report r: return 0;
-                    case DataItemReportElement e: return e.IndentationLevel.GetValueOrDefault(0) + 1;
-                    default: return 0;
+                    case Report r:
+                        return 0;
+                    case DataItemReportElement e:
+                        return e.IndentationLevel.GetValueOrDefault(0) + 1;
+                    default:
+                        return 0;
                 }
             }
         }
@@ -126,8 +135,8 @@ namespace UncommonSense.CBreeze.Automation
             var subObjects = SubObjects?
                 .InvokeWithContext(null, variables)
                 .Select(o => o.BaseObject)
-                .Cast<ColumnReportElement>() ??
-                Enumerable.Empty<ColumnReportElement>();
+                .Cast<ReportElement>() ??
+                Enumerable.Empty<ReportElement>();
 
             foreach (var subObject in subObjects)
             {
@@ -135,12 +144,19 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        [Parameter()]public string[] CalcFields { get; set; }
-        [Parameter(Mandatory =true)][ValidateRange(1, int.MaxValue)]public int DataItemTable { get; set; }
-        [Parameter()]public string DataItemLinkReference { get; set; }
-        [Parameter()]public string DataItemTableViewKey { get; set; }
-        [Parameter()]public Order? DataItemTableViewOrder { get; set; }
-        [Parameter()][ValidateRange(1, int.MaxValue)]public int? MaxIteration { get; set; }
+        [Parameter()] public string[] CalcFields { get; set; }
+
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
+        [ValidateRange(1, int.MaxValue)]
+        public int DataItemTable { get; set; }
+
+        [Parameter()] public string DataItemLinkReference { get; set; }
+        [Parameter()] public string DataItemTableViewKey { get; set; }
+        [Parameter()] public Order? DataItemTableViewOrder { get; set; }
+        [Parameter()] [ValidateRange(1, int.MaxValue)] public int? MaxIteration { get; set; }
 
         [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
@@ -153,6 +169,10 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public bool? Temporary { get; set; }
 #endif
 
-        [Parameter()] public ScriptBlock SubObjects { get; set; }
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+        public ScriptBlock SubObjects { get; set; }
     }
 }
