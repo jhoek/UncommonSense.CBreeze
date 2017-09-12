@@ -64,11 +64,15 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
+            // FIXME: Should also work as subobject of PartPageControl, and everything else that has
+            //        a TableView
+
             TypeSwitch.Do(
                 InputObject.BaseObject,
                 TypeSwitch.Case<PartPageControl>(i => i.Properties.SubPageView.TableFilter.Add(new TableFilterLine(FieldName, Type, Value))),
                 TypeSwitch.Case<TableView>(i => i.TableFilter.Add(new TableFilterLine(FieldName, Type, Value))),
                 TypeSwitch.Case<TableFilter>(i => i.Add(new TableFilterLine(FieldName, Type, Value))),
+
                 TypeSwitch.Case<DataItemQueryElement>(i => i.Properties.DataItemTableFilter.Add(new DataItemQueryElementTableFilterLine(FieldName, Type, Value))),
                 TypeSwitch.Case<DataItemQueryElementTableFilter>(i => i.Add(new DataItemQueryElementTableFilterLine(FieldName, Type, Value))),
                 TypeSwitch.Case<ColumnQueryElement>(i => i.Properties.ColumnFilter.Add(new ColumnFilterLine(FieldName, Type, Value))),
