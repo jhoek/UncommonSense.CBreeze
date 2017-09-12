@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -65,7 +61,8 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             // FIXME: Should also work as subobject of PartPageControl, and everything else that has
-            //        a TableView
+            //        a TableView: XmlPortTableAttribute, PartPageControl, PageAction, XmlPortRequestPage,
+            //        ReportRequestPage, XmlPortTableElement, DataItemReportElement,Page
 
             TypeSwitch.Do(
                 InputObject.BaseObject,
