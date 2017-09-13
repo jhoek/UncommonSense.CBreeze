@@ -164,7 +164,8 @@ foreach (var @type in types) {
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 <# if (@type.Name.Contains("Table")) { #>
-				<#= variableName #>.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());								
+				<#= variableName #>.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());				
+				<#= variableName #>.Properties.SourceTableView.TableFilter.AddRange(childNodes.OfType<TableFilterLine>());				
 
 <# } #>				
 				foreach(var childNode in childNodes.OfType<XmlPortNode>())

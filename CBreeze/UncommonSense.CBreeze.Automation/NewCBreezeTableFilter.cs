@@ -36,8 +36,16 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (inputObject.BaseObject)
             {
+                case PageAction a:
+                    a.Properties.RunPageView.TableFilter.Add(item);
+                    break;
+
                 case PartPageControl c:
                     c.Properties.SubPageView.TableFilter.Add(item);
+                    break;
+
+                case DataItemReportElement e:
+                    e.Properties.DataItemTableView.TableFilter.Add(item);
                     break;
 
                 case TableView v:
@@ -48,6 +56,14 @@ namespace UncommonSense.CBreeze.Automation
                     f.Add(item);
                     break;
 
+                case XmlPortTableAttribute a:
+                    a.Properties.SourceTableView.TableFilter.Add(item);
+                    break;
+
+                case XmlPortTableElement e:
+                    e.Properties.SourceTableView.TableFilter.Add(item);
+                    break;
+
                 default:
                     base.AddItemToInputObject(item, inputObject);
                     break;
@@ -56,10 +72,6 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<TableFilterLine> CreateItems()
         {
-            // FIXME: Should also work as subobject of PartPageControl, and everything else that has
-            //        a TableView: XmlPortTableAttribute, PartPageControl, PageAction, XmlPortRequestPage,
-            //        ReportRequestPage, XmlPortTableElement, DataItemReportElement,Page
-
             yield return new TableFilterLine(FieldName, Type, Value);
         }
     }

@@ -104,8 +104,10 @@ namespace UncommonSense.CBreeze.Automation
                 {
                     case Report r:
                         return 0;
+
                     case DataItemReportElement e:
                         return e.IndentationLevel.GetValueOrDefault(0) + 1;
+
                     default:
                         return 0;
                 }
@@ -130,16 +132,12 @@ namespace UncommonSense.CBreeze.Automation
 
             yield return element;
 
-            var variables = new List<PSVariable>() {
-                new PSVariable("Indentation", element.IndentationLevel + 1) };
+            var variables = new List<PSVariable>() { new PSVariable("Indentation", element.IndentationLevel + 1) };
+            var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject);
 
-            var subObjects = SubObjects?
-                .InvokeWithContext(null, variables)
-                .Select(o => o.BaseObject)
-                .Cast<ReportElement>() ??
-                Enumerable.Empty<ReportElement>();
+            element.Properties.DataItemTableView.TableFilter.AddRange(subObjects.OfType<TableFilterLine>());
 
-            foreach (var subObject in subObjects)
+            foreach (var subObject in subObjects.OfType<ReportElement>())
             {
                 yield return subObject;
             }

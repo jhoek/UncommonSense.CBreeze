@@ -297,7 +297,8 @@ namespace UncommonSense.CBreeze.Automation
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				xmlPortTableAttribute.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());								
+				xmlPortTableAttribute.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());				
+				xmlPortTableAttribute.Properties.SourceTableView.TableFilter.AddRange(childNodes.OfType<TableFilterLine>());				
 
 				
 				foreach(var childNode in childNodes.OfType<XmlPortNode>())
@@ -446,7 +447,8 @@ namespace UncommonSense.CBreeze.Automation
                 var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
-				xmlPortTableElement.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());								
+				xmlPortTableElement.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());				
+				xmlPortTableElement.Properties.SourceTableView.TableFilter.AddRange(childNodes.OfType<TableFilterLine>());				
 
 				
 				foreach(var childNode in childNodes.OfType<XmlPortNode>())

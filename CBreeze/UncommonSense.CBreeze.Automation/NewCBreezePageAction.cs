@@ -131,6 +131,9 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
+        [Parameter()]
+        public ScriptBlock SubObjects { get; set; }
+
         protected PageAction CreatePageAction()
         {
             WriteVerbose("Creating page action");
@@ -158,7 +161,13 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.ShortCutKey = ShortcutKey;
             pageAction.Properties.Visible = Visible;
 
-            WriteVerbose("Done creating page action");
+            pageAction.Properties.RunPageView.TableFilter.AddRange(
+                SubObjects?
+                    .Invoke()
+                    .Select(o => o.BaseObject)
+                    .Cast<TableFilterLine>()
+                    ?? Enumerable.Empty<TableFilterLine>()
+                );
 
             return pageAction;
         }
