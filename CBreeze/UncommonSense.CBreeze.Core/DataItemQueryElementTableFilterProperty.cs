@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class DataItemQueryElementTableFilterProperty : ReferenceProperty<DataItemQueryElementTableFilter>
+    public class DataItemQueryElementTableFilterProperty : ReferenceProperty<TableFilter>
     {
         internal DataItemQueryElementTableFilterProperty(string name)
             : base(name)

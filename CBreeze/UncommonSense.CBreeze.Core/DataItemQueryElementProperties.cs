@@ -26,10 +26,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(sQLJoinType);
         }
 
-        public DataItemQueryElement DataItemQueryElement { get; protected set; }
-
-        public override INode ParentNode => DataItemQueryElement;
-
         public QueryDataItemLink DataItemLink
         {
             get
@@ -50,6 +46,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public DataItemQueryElement DataItemQueryElement { get; protected set; }
+
         public int? DataItemTable
         {
             get
@@ -62,7 +60,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public DataItemQueryElementTableFilter DataItemTableFilter
+        public TableFilter DataItemTableFilter
         {
             get
             {
@@ -81,6 +79,8 @@ namespace UncommonSense.CBreeze.Core
                 this.description.Value = value;
             }
         }
+
+        public override INode ParentNode => DataItemQueryElement;
 
         public SqlJoinType? SQLJoinType
         {

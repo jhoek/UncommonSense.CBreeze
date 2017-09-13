@@ -41,6 +41,7 @@ namespace UncommonSense.CBreeze.Read
         }
 
 #if NAV2015
+
         internal static void SetAccessByPermission(this AccessByPermissionProperty property, string propertyValue)
         {
             var match = Patterns.AccessByPermission.Match(propertyValue);
@@ -64,6 +65,7 @@ namespace UncommonSense.CBreeze.Read
                 property.Value.Execute = match.Groups[3].Value.Contains('X');
             }
         }
+
 #endif
 
         internal static void SetLinkFieldsProperty(this LinkFieldsProperty property, string propertyValue)
@@ -92,6 +94,7 @@ namespace UncommonSense.CBreeze.Read
         }
 
 #if NAV2016
+
         internal static void SetNamespacesValue(this XmlPortNamespaces namespaces, string value)
         {
             value = RemoveSurroundingSquareBrackets(value);
@@ -104,6 +107,7 @@ namespace UncommonSense.CBreeze.Read
                 namespaces.Set(prefix, @namespace);
             }
         }
+
 #endif
 
         internal static string GetLanguageValue(ref string value)
@@ -114,6 +118,7 @@ namespace UncommonSense.CBreeze.Read
                     Parsing.MustMatch(ref value, "^\"");
                     // Parsing.MustMatch(ref value, @"\""([^\""]+)\""").Groups[1].Value;
                     return Parsing.MatchUntilSingle(ref value, '"');
+
                 default:
                     return Parsing.MustMatch(ref value, @"([^;]+)").Groups[1].Value;
             }
@@ -201,8 +206,7 @@ namespace UncommonSense.CBreeze.Read
 
         internal static void SetSourceFieldProperty(this SourceFieldProperty property, string propertyValue)
         {
-            Match match;
-            Parsing.TryMatch(ref propertyValue, @"^(.*)::(.*)$", out match);
+            Parsing.TryMatch(ref propertyValue, @"^(.*)::(.*)$", out Match match);
             var tableVariableName = match.Groups[1].Value;
             var fieldName = match.Groups[2].Value;
 
@@ -267,6 +271,7 @@ namespace UncommonSense.CBreeze.Read
             {
                 case true:
                     return Parsing.MustMatch(ref propertyValue, @"\""([^\""]+)\""").Groups[1].Value;
+
                 default:
                     return Parsing.MustMatch(ref propertyValue, @"([^\s\.]+)").Groups[1].Value;
             }
@@ -281,6 +286,7 @@ namespace UncommonSense.CBreeze.Read
             {
                 case true:
                     return Parsing.MustMatch(ref propertyValue, @"\""([^\""]+)\""").Groups[1].Value;
+
                 default:
                     return Parsing.MustMatch(ref propertyValue, @"(\S+)").Groups[1].Value;
             }
@@ -316,10 +322,10 @@ namespace UncommonSense.CBreeze.Read
             // Remove closing bracket at the end of the property value, or
             // "Lookup(Table.Field)" in table 5329 will fail.
             if (propertyValue.EndsWith(")"))
-                propertyValue = propertyValue.Substring(0, propertyValue.Length -1);
+                propertyValue = propertyValue.Substring(0, propertyValue.Length - 1);
 
             var reverseSign = GetCalcFormulaReverseSign(ref propertyValue);
-            var method = GetCalcFormulaMethodText(ref  propertyValue).ToEnum<CalcFormulaMethod>();
+            var method = GetCalcFormulaMethodText(ref propertyValue).ToEnum<CalcFormulaMethod>();
             var tableName = GetCalcFormulaTableName(ref propertyValue);
             var fieldName = GetCalcFormulaFieldName(ref propertyValue);
             var filters = GetCalcFormulaFilters(ref propertyValue);
@@ -375,7 +381,7 @@ namespace UncommonSense.CBreeze.Read
                 var fieldName = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
                 var type = Parsing.MustMatch(ref propertyValue, @"^(CONST|FILTER)").Groups[1].Value.ToEnum<SimpleTableFilterType>();
                 var value = GetCalcFormulaFilterValue(ref propertyValue);
-                property.Value.Add(new DataItemQueryElementTableFilterLine(fieldName, type, value));
+                property.Value.Add(new TableFilterLine(fieldName, type, value));
             }
             while (Parsing.TryMatch(ref propertyValue, @"^,\s?"));
         }
@@ -396,6 +402,7 @@ namespace UncommonSense.CBreeze.Read
             {
                 case true:
                     return Parsing.MustMatch(ref propertyValue, @"\""([^\""]+)\""").Groups[1].Value;
+
                 default:
                     return Parsing.MustMatch(ref propertyValue, @"([^\s\.]+)").Groups[1].Value;
             }
@@ -410,6 +417,7 @@ namespace UncommonSense.CBreeze.Read
             {
                 case true:
                     return Parsing.MustMatch(ref propertyValue, @"\""([^\""]+)\""").Groups[1].Value;
+
                 default:
                     return Parsing.MustMatch(ref propertyValue, @"(\S+)").Groups[1].Value;
             }
@@ -482,8 +490,7 @@ namespace UncommonSense.CBreeze.Read
 
         internal static Order? GetTableViewOrder(ref string propertyValue)
         {
-            Match match;
-            return Parsing.TryMatch(ref propertyValue, @"^\s?ORDER\((Ascending|Descending)?\)", out match) ? match.Groups[1].Value.ToNullableEnum<Order>() : null;
+            return Parsing.TryMatch(ref propertyValue, @"^\s?ORDER\((Ascending|Descending)?\)", out Match match) ? match.Groups[1].Value.ToNullableEnum<Order>() : null;
         }
 
         internal static void SetFromPropertyValue(this TableFilter tableFilter, ref string propertyValue)
@@ -501,9 +508,7 @@ namespace UncommonSense.CBreeze.Read
 
         internal static string RemoveSurroundingSquareBrackets(string value)
         {
-            Match match;
-
-            if (Parsing.TryMatch(ref value, @"^\[(.*)\]$", out match))
+            if (Parsing.TryMatch(ref value, @"^\[(.*)\]$", out Match match))
                 return match.Groups[1].Value;
 
             return value;

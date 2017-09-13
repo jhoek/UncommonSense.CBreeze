@@ -155,8 +155,6 @@
     <Compile Include="DataItemLinkTypeProperty.cs" />
     <Compile Include="DataItemQueryElement.cs" />
     <Compile Include="DataItemQueryElementProperties.cs" />
-    <Compile Include="DataItemQueryElementTableFilter.cs" />
-    <Compile Include="DataItemQueryElementTableFilterLine.cs" />
     <Compile Include="DataItemQueryElementTableFilterProperty.cs" />
     <Compile Include="DataItemReportElement.cs" />
     <Compile Include="DataItemReportElementProperties.cs" />

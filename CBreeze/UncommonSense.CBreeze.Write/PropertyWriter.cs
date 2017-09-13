@@ -633,7 +633,7 @@ namespace UncommonSense.CBreeze.Write
             foreach (var line in property.Value)
             {
                 var isLastLine = (line == property.Value.Last());
-                writer.Write("{0}={1}({2})", line.FieldName, line.Type.Value.AsString(), line.Value);
+                writer.Write("{0}={1}({2})", line.FieldName, line.Type.AsString(), line.Value);
 
                 switch (isLastLine)
                 {

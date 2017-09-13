@@ -48,6 +48,10 @@ namespace UncommonSense.CBreeze.Automation
                     e.Properties.DataItemTableView.TableFilter.Add(item);
                     break;
 
+                case DataItemQueryElement e:
+                    e.Properties.DataItemTableFilter.Add(item);
+                    break;
+
                 case TableView v:
                     v.TableFilter.Add(item);
                     break;
