@@ -121,6 +121,9 @@
     <Compile Include="MissingAction.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="DefaultRanges.cs" />
+    <Compile Include="NotificationParameter.cs" />
+    <Compile Include="NotificationScopeParameter.cs" />
+    <Compile Include="ObjectTypeParameter.cs" />
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="TagList.cs" />
     <Compile Include="TagListProperty.cs" />

@@ -1094,6 +1094,23 @@ namespace UncommonSense.CBreeze.Read
                     keyRefParameter.Dimensions = parameterDimensions;
                     break;
 
+#if NAV2017
+                case ParameterType.Notification:
+                    var notificationParameter = parameters.Add(new NotificationParameter(parameterName, parameterVar, parameterID));
+                    notificationParameter.Dimensions = parameterDimensions;
+                    break;
+
+                case ParameterType.NotificationScope:
+                    var notificationScopeParameter = parameters.Add(new NotificationScopeParameter(parameterName, parameterVar, parameterID));
+                    notificationScopeParameter.Dimensions = parameterDimensions;
+                    break;
+
+                case ParameterType.ObjectType:
+                    var objectTypeParameter = parameters.Add(new ObjectTypeParameter(parameterName, parameterVar, parameterID));
+                    objectTypeParameter.Dimensions = parameterDimensions;
+                    break;
+#endif
+
                 case ParameterType.Ocx:
                     var ocxParameter = parameters.Add(new OcxParameter(parameterName, parameterSubType, parameterVar, parameterID));
                     ocxParameter.Dimensions = parameterDimensions;
