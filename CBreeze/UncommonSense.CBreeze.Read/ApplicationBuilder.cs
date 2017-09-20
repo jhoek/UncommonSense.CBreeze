@@ -242,17 +242,19 @@ namespace UncommonSense.CBreeze.Read
             TypeSwitch.Do(
                 property,
 #if NAV2015
- TypeSwitch.Case<AccessByPermissionProperty>(p => p.SetAccessByPermission(propertyValue)),
+                TypeSwitch.Case<AccessByPermissionProperty>(p => p.SetAccessByPermission(propertyValue)),
                 TypeSwitch.Case<PreviewModeProperty>(p => p.Value = propertyValue.ToEnum<PreviewMode>()),
                 TypeSwitch.Case<PageActionScopeProperty>(p => p.Value = propertyValue.ToEnum<PageActionScope>()),
                 TypeSwitch.Case<UpdatePropagationProperty>(p => p.Value = propertyValue.ToEnum<UpdatePropagation>()),
                 TypeSwitch.Case<DefaultLayoutProperty>(p => p.Value = propertyValue.ToEnum<DefaultLayout>()),
 #endif
-
-#if NAV2016
- TypeSwitch.Case<TableTypeProperty>(p => p.Value = propertyValue.ToEnum<TableType>()),
+#if NAV2017
+                TypeSwitch.Case<TagListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
 #endif
- TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
+#if NAV2016
+                TypeSwitch.Case<TableTypeProperty>(p => p.Value = propertyValue.ToEnum<TableType>()),
+#endif
+                TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
                 TypeSwitch.Case<AutoFormatTypeProperty>(p => p.Value = propertyValue.ToAutoFormatType()),
                 TypeSwitch.Case<BlankNumbersProperty>(p => p.Value = propertyValue.ToEnum<BlankNumbers>()),
                 TypeSwitch.Case<CalcFormulaProperty>(p => p.SetCalcFormulaProperty(propertyValue)),
@@ -991,6 +993,13 @@ namespace UncommonSense.CBreeze.Read
                     charParameter.Dimensions = parameterDimensions;
                     break;
 
+#if NAV2017
+                case ParameterType.ClientType:
+                    var clientTypeParameter = parameters.Add(new ClientTypeParameter(parameterName, parameterVar, parameterID));
+                    clientTypeParameter.Dimensions = parameterDimensions;
+                    break;
+#endif
+
                 case ParameterType.Code:
                     var codeParameter = parameters.Add(new CodeParameter(parameterName, parameterVar, parameterID, parameterLength));
                     codeParameter.Dimensions = parameterDimensions;
@@ -1020,6 +1029,13 @@ namespace UncommonSense.CBreeze.Read
                     var decimalParameter = parameters.Add(new DecimalParameter(parameterName, parameterVar, parameterID));
                     decimalParameter.Dimensions = parameterDimensions;
                     break;
+
+#if NAV2017
+                case ParameterType.DefaultLayout:
+                    var defaultLayoutParameter = parameters.Add(new DefaultLayoutParameter(parameterName, parameterVar, parameterID));
+                    defaultLayoutParameter.Dimensions = parameterDimensions;
+                    break;
+#endif 
 
                 case ParameterType.Dialog:
                     var dialogParameter = parameters.Add(new DialogParameter(parameterName, parameterVar, parameterID));

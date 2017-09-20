@@ -7,21 +7,37 @@ namespace UncommonSense.CBreeze.Common
 {
     public enum FunctionReturnValueType
     {
-        Boolean,
-        Integer,
-        Decimal,
         BigInteger,
+        Binary,
+        Boolean,
+        Byte,
         Char,
-        Text,
+#if NAV2017
+        ClientType, 
+#endif
         Code,
         Date,
-        Time,
-        Duration,
         DateTime,
-        Binary,
+        Decimal,
+#if NAV2017
+        DefaultLayout,
+#endif
+        Duration,
         Guid,
-        Byte,
+        Integer,
+#if NAV2017
+        ObjectType,
+#endif
         Option,
+#if NAV2017
+        ReportFormat,
+        TableConnectionType,
+        TestPermissions,
+#endif
+        Text,
+#if NAV2017
+        TextEncoding,
+#endif
+        Time
     }
-
 }

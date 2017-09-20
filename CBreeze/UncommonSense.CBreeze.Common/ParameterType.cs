@@ -15,12 +15,18 @@ namespace UncommonSense.CBreeze.Common
         Boolean,
         Byte,
         Char,
+#if NAV2017
+        ClientType,
+#endif
         Code,
         Codeunit,
         DateFormula,
         Date,
         DateTime,
         Decimal,
+#if NAV2017
+        DefaultLayout,
+#endif
         Dialog,
         DotNet,
         Duration,
@@ -34,6 +40,11 @@ namespace UncommonSense.CBreeze.Common
         InStream,
         Integer,
         KeyRef,
+#if NAV2017
+        Notification,
+        NotificationScope,
+        ObjectType,
+#endif
         Ocx,
         Option,
         OutStream,
