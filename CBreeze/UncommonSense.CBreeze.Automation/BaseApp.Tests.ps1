@@ -1,2 +1,0 @@
-﻿Import-CBreezeApplication -Path C:\Users\jhoek\Dropbox\BaseAppExports\nl2015.txt | Export-CBreezeApplication -Path C:\users\jhoek\Desktop\output.2015.txt
-Import-CBreezeApplication -Path ~\Dropbox\BaseAppExports\nl2016.txt | Export-CBreezeApplication -Path c:\users\jhoek/Desktop/output.2016.txt
