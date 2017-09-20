@@ -317,7 +317,11 @@ namespace UncommonSense.CBreeze.Read
 
         internal static void SetCalcFormulaProperty(this CalcFormulaProperty property, string propertyValue)
         {
-            // CalcFormula=-Sum("Detailed Vendor Ledg. Entry".Amount WHERE (Vendor No.=FIELD(Vendor Filter), Initial Entry Global Dim. 1=FIELD(Global Dimension 1 Filter), Initial Entry Global Dim. 2=FIELD(Global Dimension 2 Filter), Initial Entry Due Date=FIELD(Date Filter), Posting Date=FIELD(UPPERLIMIT(Date Filter)), Currency Code=FIELD(Code)));
+            // CalcFormula=-Sum("Detailed Vendor Ledg. Entry".Amount WHERE (Vendor No.=FIELD(Vendor Filter), Initial Entry Global Dim. 1=FIELD(Global Dimension 1 Filter), Initial Entry Global Dim. 2=FIELD(Global Dimension 2 Filter), Initial Entry Due Date=FIELD(Date Filter), Posting Date=FIELD(UPPERLIMIT(Date Filter)), Currency Code=FIELD(Code)))
+
+            // In some cases (possibly if it contains curly brackets), the calc formula is surrounded with square brackets - remove those
+            // [Count("User Security Status" WHERE (Reviewed=CONST(No), User Security ID = FILTER(<>{ 00000000 - 0000 - 0000 - 0000 - 000000000000})))]
+            propertyValue = Regex.Replace(propertyValue, @"^\[(.*)\]$", "$1");
 
             // Remove closing bracket at the end of the property value, or
             // "Lookup(Table.Field)" in table 5329 will fail.
