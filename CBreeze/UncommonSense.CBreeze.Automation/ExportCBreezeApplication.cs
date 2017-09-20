@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.PowerShell.Commands;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -126,8 +127,9 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "ToPath":
-                    writeVerbose("path", Path);
-                    CachedObjects.Write(Path);
+                    var path = GetUnresolvedProviderPathFromPSPath(Path);
+                    writeVerbose("path", path);
+                    CachedObjects.Write(path);
                     break;
 
                 case "ToTextWriter":

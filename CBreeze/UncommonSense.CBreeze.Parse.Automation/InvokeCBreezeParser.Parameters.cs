@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Parse.Automation
         /// One or more literal paths to files that you want parsed. 
         /// </summary>
         [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
-        [Alias("FullName")]
+        [Alias("FullName", "PSPath")]
         public string[] LiteralPath
         {
             get; set;

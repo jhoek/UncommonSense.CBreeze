@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Parse.Automation
     /// <para type="description">Uses the UncommonSense.CBreeze.Parser library to parse the objects in the file named <paramref name="LiteralPath">LiteralPath</paramref>. Provide scriptblock parameters to respond to the events that are triggered as (sub)objects are found.</para> 
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "CBreezeParser")]
-    public partial class InvokeCBreezeParser : Cmdlet
+    public partial class InvokeCBreezeParser : PSCmdlet
     {
         protected Parser Parser
         {
@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Parse.Automation
         {
             base.ProcessRecord();
 
-            Parser.ParseFiles(LiteralPath.Select(p => System.IO.Path.GetFullPath(p)));
+            Parser.ParseFiles(LiteralPath.Select(p => GetUnresolvedProviderPathFromPSPath(p)));
         }
     }
 }

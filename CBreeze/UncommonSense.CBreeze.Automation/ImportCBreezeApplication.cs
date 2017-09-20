@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.PowerShell.Commands;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -16,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("Import")]
     public class ImportCBreezeApplication : PSCmdlet
     {
-        protected List<string> CachedFileNames = new List<string>();
+        protected List<string> CachedPaths = new List<string>();
 
         public ImportCBreezeApplication()
         {
@@ -67,31 +68,32 @@ namespace UncommonSense.CBreeze.Automation
             set;
         }
 
-        protected IEnumerable<string> FilesFromPath()
+        protected IEnumerable<string> FilesFromCachedPaths()
         {
-            foreach (var cachedFileName in CachedFileNames)
+            foreach (var cachedPath in CachedPaths)
             {
-                var fullFileSpec = this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(cachedFileName);
-                var directoryName = System.IO.Path.GetDirectoryName(fullFileSpec);
-                var fileName = System.IO.Path.GetFileName(fullFileSpec);
+                var fileNames = GetResolvedProviderPathFromPSPath(cachedPath, out ProviderInfo provider);
 
-                foreach (var item in Directory.EnumerateFiles(directoryName, fileName))
+                if (provider.ImplementingType == typeof(FileSystemProvider))
                 {
-                    yield return item;
+                    foreach (var fileName in fileNames)
+                    {
+                        yield return fileName;
+                    }
                 }
             }
         }
 
         protected override void BeginProcessing()
         {
-            CachedFileNames.Clear();
+            CachedPaths.Clear();
         }
 
         protected override void ProcessRecord()
         {
             foreach (var fileName in Path)
             {
-                CachedFileNames.Add(fileName);
+                CachedPaths.Add(fileName);
             }
         }
 
@@ -100,7 +102,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObject(ApplicationBuilder.FromFiles(FilesFromPath()));
+                    WriteObject(ApplicationBuilder.FromFiles(FilesFromCachedPaths()));
                     break;
 
                 case "FromDatabase":
