@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class FilterQueryElementProperties : Properties
+    public class FilterQueryElementProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private ColumnFilterProperty columnFilter = new ColumnFilterProperty("ColumnFilter");
@@ -22,10 +22,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataSource);
         }
 
-        public FilterQueryElement Element { get; protected set; }
-
-        public override INode ParentNode => Element;
-
         public MultiLanguageValue CaptionML
         {
             get
@@ -34,7 +30,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public ColumnFilter ColumnFilter
+        public TableFilter ColumnFilter
         {
             get
             {
@@ -42,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string DataSource
+        public string DataSource
         {
             get
             {
@@ -54,7 +50,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -65,5 +61,9 @@ namespace UncommonSense.CBreeze.Core
                 this.description.Value = value;
             }
         }
+
+        public FilterQueryElement Element { get; protected set; }
+
+        public override INode ParentNode => Element;
     }
 }

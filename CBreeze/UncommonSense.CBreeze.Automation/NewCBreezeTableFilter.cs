@@ -68,6 +68,14 @@ namespace UncommonSense.CBreeze.Automation
                     e.Properties.SourceTableView.TableFilter.Add(item);
                     break;
 
+                case ColumnQueryElement e:
+                    e.Properties.ColumnFilter.Add(item);
+                    break;
+
+                case FilterQueryElement e:
+                    e.Properties.ColumnFilter.Add(item);
+                    break;
+
                 default:
                     base.AddItemToInputObject(item, inputObject);
                     break;
