@@ -13,6 +13,10 @@ namespace UncommonSense.CBreeze.Core
         EMail,
         Ratio,
         Masked,
+#if NAV2017
+        Person,
+        Resource
+#endif
     }
 
 }

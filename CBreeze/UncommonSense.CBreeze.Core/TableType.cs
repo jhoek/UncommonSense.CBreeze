@@ -10,7 +10,11 @@ namespace UncommonSense.CBreeze.Core
     {
         Normal,
         CRM,
-        ExternalSQL
+        ExternalSQL,
+#if NAV2017
+        Exchange,
+        MicrosoftGraph
+#endif
     }
 #endif
 }

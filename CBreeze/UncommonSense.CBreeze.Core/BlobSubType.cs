@@ -10,6 +10,9 @@ namespace UncommonSense.CBreeze.Core
         UserDefined,
         Bitmap,
         Memo,
+#if NAV2017
+        Json
+#endif
     }
 
 }
