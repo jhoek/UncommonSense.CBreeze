@@ -18,6 +18,7 @@ namespace UncommonSense.CBreeze.Test
             //Console.WriteLine(tagList);
 
             var application = ApplicationBuilder.FromFile(@"c:\users\jhoek\Dropbox\BaseAppExports\w12017.txt");
+            //var application = ApplicationBuilder.FromFile(@"c:\users\jhoek\Desktop\cod455.txt");
         }
     }
 }

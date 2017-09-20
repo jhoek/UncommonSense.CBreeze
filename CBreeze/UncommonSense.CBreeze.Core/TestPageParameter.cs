@@ -13,12 +13,7 @@ namespace UncommonSense.CBreeze.Core
             SubType = subType;
         }
 
-        public int SubType
-        {
-            get;
-            protected set;
-        }
-
+        public int SubType { get; }
         public override ParameterType Type => ParameterType.TestPage;
         public override string TypeName => $"TestPage {SubType}";
     }

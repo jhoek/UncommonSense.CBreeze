@@ -698,6 +698,13 @@ namespace UncommonSense.CBreeze.Read
                     charVariable.Dimensions = variableDimensions;
                     break;
 
+#if NAV2017
+                case VariableType.ClientType:
+                    var clientTypeVariable = variables.Add(new ClientTypeVariable(variableID, variableName));
+                    clientTypeVariable.Dimensions = variableDimensions;
+                    break;
+#endif
+
                 case VariableType.Code:
                     var codeVariable = variables.Add(new CodeVariable(variableID, variableName, variableLength));
                     codeVariable.Dimensions = variableDimensions;
@@ -728,6 +735,13 @@ namespace UncommonSense.CBreeze.Read
                     var decimalVariable = variables.Add(new DecimalVariable(variableID, variableName));
                     decimalVariable.Dimensions = variableDimensions;
                     break;
+
+#if NAV2017
+                case VariableType.DefaultLayout:
+                    var defaultLayoutVariable = variables.Add(new DefaultLayoutVariable(variableID, variableName));
+                    defaultLayoutVariable.Dimensions = variableDimensions;
+                    break;
+#endif
 
                 case VariableType.Dialog:
                     var dialogVariable = variables.Add(new DialogVariable(variableID, variableName));
@@ -786,6 +800,23 @@ namespace UncommonSense.CBreeze.Read
                     var keyrefVariable = variables.Add(new KeyRefVariable(variableID, variableName));
                     keyrefVariable.Dimensions = variableDimensions;
                     break;
+
+#if NAV2017
+                case VariableType.Notification:
+                    var notificationVariable = variables.Add(new NotificationVariable(variableID, variableName));
+                    notificationVariable.Dimensions = variableDimensions;
+                    break;
+
+                case VariableType.NotificationScope:
+                    var notificationScopeVariable = variables.Add(new NotificationScopeVariable(variableID, variableName));
+                    notificationScopeVariable.Dimensions = variableDimensions;
+                    break;
+
+                case VariableType.ObjectType:
+                    var objectTypeVariable = variables.Add(new ObjectTypeVariable(variableID, variableName));
+                    objectTypeVariable.Dimensions = variableDimensions;
+                    break;
+#endif
 
                 case VariableType.Ocx:
                     var ocxVariable = variables.Add(new OcxVariable(variableID, variableName, variableSubType));
@@ -851,6 +882,13 @@ namespace UncommonSense.CBreeze.Read
                     var testPageVariable = variables.Add(new TestPageVariable(variableID, variableName, variableSubType.ToInteger()));
                     testPageVariable.Dimensions = variableDimensions;
                     break;
+
+#if NAV2017
+                case VariableType.TestPermissions:
+                    var testPermissionsVariable = variables.Add(new TestPermissionsVariable(variableID, variableName));
+                    testPermissionsVariable.Dimensions = variableDimensions;
+                    break;
+#endif
 
                 case VariableType.Text:
                     var textVariable = variables.Add(new TextVariable(variableID, variableName, variableLength));
@@ -1175,6 +1213,13 @@ namespace UncommonSense.CBreeze.Read
                     testPageParameter.Dimensions = parameterDimensions;
                     break;
 
+#if NAV2017
+                case ParameterType.TestPermissions:
+                    var testPermissions = parameters.Add(new TestPermissionsParameter(parameterName, parameterVar, parameterID));
+                    testPermissions.Dimensions = parameterDimensions;
+                    break;
+#endif
+
                 case ParameterType.TestRequestPage:
                     var testRequestPageParameter = parameters.Add(new TestRequestPageParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     testRequestPageParameter.Dimensions = parameterDimensions;
@@ -1390,8 +1435,10 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case ReportElementType.DataItem:
-                    var newDataItemElement = new DataItemReportElement(null, elementID, elementIndentation);
-                    newDataItemElement.Name = elementName;
+                    var newDataItemElement = new DataItemReportElement(null, elementID, elementIndentation)
+                    {
+                        Name = elementName
+                    };
                     currentReportElements.Add(newDataItemElement);
                     currentProperties.Push(newDataItemElement.Properties);
                     break;

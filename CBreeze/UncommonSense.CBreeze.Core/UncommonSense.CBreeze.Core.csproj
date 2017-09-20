@@ -96,7 +96,9 @@
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
     <Compile Include="ClientTypeParameter.cs" />
+    <Compile Include="ClientTypeVariable.cs" />
     <Compile Include="DefaultLayoutParameter.cs" />
+    <Compile Include="DefaultLayoutVariable.cs" />
     <Compile Include="EventParameters.cs" />
     <Compile Include="EventPublisherSubscriber.cs" />
     <Compile Include="EventSubscriberInstance.cs" />
@@ -123,10 +125,15 @@
     <Compile Include="DefaultRanges.cs" />
     <Compile Include="NotificationParameter.cs" />
     <Compile Include="NotificationScopeParameter.cs" />
+    <Compile Include="NotificationScopeVariable.cs" />
+    <Compile Include="NotificationVariable.cs" />
     <Compile Include="ObjectTypeParameter.cs" />
+    <Compile Include="ObjectTypeVariable.cs" />
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="TagList.cs" />
     <Compile Include="TagListProperty.cs" />
+    <Compile Include="TestPermissionsParameter.cs" />
+    <Compile Include="TestPermissionsVariable.cs" />
     <Compile Include="TriggerVariables.cs" />
     <Compile Include="XmlPortNamespace.cs" />
     <Compile Include="ObjectReference.cs" />
@@ -535,6 +542,9 @@
       <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
       <Name>UncommonSense.CBreeze.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

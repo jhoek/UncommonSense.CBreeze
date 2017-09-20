@@ -59,6 +59,9 @@ namespace UncommonSense.CBreeze.Common
         TableConnectionType,
 #endif
         TestPage,
+#if NAV2017
+        TestPermissions,
+#endif
         TestRequestPage,
         Text,
 #if NAV2016
