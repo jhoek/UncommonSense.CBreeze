@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public new T Insert(int index, T value)
+        public new virtual T Insert(int index, T value)
         {
             base.Insert(index, value);
             return value;

@@ -9,24 +9,12 @@ namespace UncommonSense.CBreeze.Core
     public class FieldList : Collection<string>
     {
         // Made ctor public so that FieldListProperty can new up an instance
-        public FieldList()
-        {
-        }
+        public FieldList() { }
+        public FieldList(params string[] fieldNames) { AddRange(fieldNames); }
 
-        public FieldList(string[] fieldNames)
+        protected override void InsertItem(int index, string item)
         {
-            AddRange(fieldNames);
-        }
-
-        public void AddRange(params string[] fieldNames)
-        {
-            if (fieldNames == null)
-                return;
-
-            foreach (var item in fieldNames)
-            {
-                Add(item);
-            }
+            base.InsertItem(index, item);
         }
     }
 }

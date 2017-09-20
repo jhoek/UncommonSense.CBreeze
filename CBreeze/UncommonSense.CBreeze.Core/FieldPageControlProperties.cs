@@ -10,6 +10,9 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
 #endif
+#if NAV2017
+        private TagListProperty applicationArea = new TagListProperty("ApplicationArea");
+#endif
         private NullableBooleanProperty assistEdit = new NullableBooleanProperty("AssistEdit");
         private StringProperty autoFormatExpr = new StringProperty("AutoFormatExpr");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");
@@ -80,6 +83,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionML);
             innerList.Add(toolTipML);
             innerList.Add(optionCaptionML);
+#if NAV2017
+            innerList.Add(applicationArea);
+#endif
             innerList.Add(decimalPlaces);
             innerList.Add(notBlank);
             innerList.Add(numeric);
@@ -136,6 +142,10 @@ namespace UncommonSense.CBreeze.Core
                 return this.accessByPermission.Value;
             }
         }
+#endif
+
+#if NAV2017
+        public TagList ApplicationArea => applicationArea.Value;
 #endif
 
         public bool? AssistEdit

@@ -95,6 +95,8 @@
     <Compile Include="CalcFormulaTableFilterLine.cs" />
     <Compile Include="CharParameter.cs" />
     <Compile Include="CharVariable.cs" />
+    <Compile Include="ClientTypeParameter.cs" />
+    <Compile Include="DefaultLayoutParameter.cs" />
     <Compile Include="EventParameters.cs" />
     <Compile Include="EventPublisherSubscriber.cs" />
     <Compile Include="EventSubscriberInstance.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="INode.cs" />
     <Compile Include="DefaultRanges.cs" />
     <Compile Include="RunTime.2016.cs" />
+    <Compile Include="TagList.cs" />
+    <Compile Include="TagListProperty.cs" />
     <Compile Include="TriggerVariables.cs" />
     <Compile Include="XmlPortNamespace.cs" />
     <Compile Include="ObjectReference.cs" />
