@@ -41,6 +41,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<InStreamVariable>(p => DoWrite(p.Name, p.ID, "InStream", p.Dimensions, writer)),
                 TypeSwitch.Case<IntegerVariable>(p => DoWrite(p.Name, p.ID, "Integer", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<KeyRefVariable>(p => DoWrite(p.Name, p.ID, "KeyRef", p.Dimensions, writer)),
+#if NAV2017
+                TypeSwitch.Case<NotificationVariable>(p => DoWrite(p.Name, p.ID, "Notification", p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<OcxVariable>(p => DoWrite(p.Name, p.ID, string.Format("OCX \"{0}\"", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<OptionVariable>(p => DoWrite(p.Name, p.ID, string.IsNullOrEmpty(p.OptionString) ? "Option" : string.Format("'{0}'", p.OptionString), p.Dimensions, writer)),
                 TypeSwitch.Case<OutStreamVariable>(p => DoWrite(p.Name, p.ID, "OutStream", p.Dimensions, writer)),
