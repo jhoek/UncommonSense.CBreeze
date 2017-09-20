@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(description);
         }
 
-        public BinaryTableField Field { get; protected set; }
+        public BinaryTableField Field { get;  }
 
         public override INode ParentNode => Field;
 

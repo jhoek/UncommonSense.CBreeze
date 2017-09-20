@@ -19,6 +19,10 @@ namespace UncommonSense.CBreeze.Common
         Duration,
         Guid,
         Integer,
+#if NAV2017
+        Media,
+        MediaSet,
+#endif
         Option,
         RecordID,
         TableFilter,

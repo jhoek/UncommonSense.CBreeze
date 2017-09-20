@@ -25,7 +25,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NAV2013R2 NAV2015 NAV2016</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NAV2013R2 NAV2015 NAV2016 NAV2017</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -112,6 +112,8 @@
     <Compile Include="IHasCodeLines.cs" />
     <Compile Include="IPageExtensionMethods.cs" />
     <Compile Include="LocalVariables.cs" />
+    <Compile Include="MediaTableField.cs" />
+    <Compile Include="MediaTableFieldProperties.cs" />
     <Compile Include="MissingAction.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="DefaultRanges.cs" />
