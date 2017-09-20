@@ -112,6 +112,8 @@
     <Compile Include="IHasCodeLines.cs" />
     <Compile Include="IPageExtensionMethods.cs" />
     <Compile Include="LocalVariables.cs" />
+    <Compile Include="MediaSetTableField.cs" />
+    <Compile Include="MediaSetTableFieldProperties.cs" />
     <Compile Include="MediaTableField.cs" />
     <Compile Include="MediaTableFieldProperties.cs" />
     <Compile Include="MissingAction.cs" />

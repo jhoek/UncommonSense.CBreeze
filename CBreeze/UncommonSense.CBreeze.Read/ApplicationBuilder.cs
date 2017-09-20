@@ -443,6 +443,20 @@ namespace UncommonSense.CBreeze.Read
                     currentTableField = integerTableField;
                     break;
 
+#if NAV2017
+                case TableFieldType.Media:
+                    var mediaTableField = fields.Add(new MediaTableField(fieldNo, fieldName));
+                    currentProperties.Push(mediaTableField.Properties);
+                    currentTableField = mediaTableField;
+                    break;
+
+                case TableFieldType.MediaSet:
+                    var mediaSetTableField = fields.Add(new MediaSetTableField(fieldNo, fieldName));
+                    currentProperties.Push(mediaSetTableField.Properties);
+                    currentTableField = mediaSetTableField;
+                    break;
+#endif
+
                 case TableFieldType.Option:
                     var optionTableField = fields.Add(new OptionTableField(fieldNo, fieldName));
                     currentProperties.Push(optionTableField.Properties);
