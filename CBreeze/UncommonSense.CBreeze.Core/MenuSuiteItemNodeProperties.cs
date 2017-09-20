@@ -10,6 +10,9 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
 #endif
+#if NAV2017
+        private TagListProperty applicationArea = new TagListProperty("ApplicationArea");
+#endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty deleted = new NullableBooleanProperty("Deleted");
         private MenuItemDepartmentCategoryProperty departmentCategory = new MenuItemDepartmentCategoryProperty("DepartmentCategory");
@@ -30,6 +33,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(accessByPermission);
 #endif
             innerList.Add(captionML);
+#if NAV2017
+            innerList.Add(applicationArea);
+#endif
             innerList.Add(memberOfMenu);
             innerList.Add(runObjectType);
             innerList.Add(runObjectID);
@@ -52,6 +58,10 @@ namespace UncommonSense.CBreeze.Core
                 return this.accessByPermission.Value;
             }
         }
+#endif
+
+#if NAV2017
+        public TagList ApplicationArea => applicationArea.Value;
 #endif
 
         public MultiLanguageValue CaptionML

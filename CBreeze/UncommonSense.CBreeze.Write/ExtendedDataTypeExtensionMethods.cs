@@ -24,6 +24,12 @@ namespace UncommonSense.CBreeze.Write
                     return "Phone No.";
                 case ExtendedDataType.Ratio :
                     return "Ratio";
+#if NAV2017
+                case ExtendedDataType.Person:
+                    return "Person";
+                case ExtendedDataType.Resource:
+                    return "Resource";
+#endif
                 default:
                     throw new ArgumentOutOfRangeException("value");
             }

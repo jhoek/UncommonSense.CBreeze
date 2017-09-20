@@ -61,6 +61,10 @@
       <Project>{11bf778b-6524-4845-895d-ccdf90329fb2}</Project>
       <Name>UncommonSense.CBreeze.Read</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Write\UncommonSense.CBreeze.Write.csproj">
+      <Project>{1233b6b5-8d24-4483-a974-ff921dba85c1}</Project>
+      <Name>UncommonSense.CBreeze.Write</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,12 +19,14 @@ namespace UncommonSense.CBreeze.Core
 
         protected override void InsertItem(int index, string item)
         {
+            item = item.Trim();
             TestTag(item);
             base.InsertItem(index, item);
         }
 
         protected override void SetItem(int index, string item)
         {
+            item = item.Trim();
             TestTag(item);
             base.SetItem(index, item);
         }

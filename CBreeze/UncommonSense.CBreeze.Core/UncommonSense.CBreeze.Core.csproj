@@ -111,6 +111,8 @@
     <Compile Include="FilterPageBuilderVariable.cs" />
     <Compile Include="FunctionParameters.cs" />
     <Compile Include="FunctionVariables.cs" />
+    <Compile Include="Gesture.cs" />
+    <Compile Include="GestureProperty.cs" />
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="IDManagementExtensionMethods.cs" />
     <Compile Include="IHasCodeLines.cs" />

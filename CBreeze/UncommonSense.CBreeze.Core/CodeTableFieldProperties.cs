@@ -47,7 +47,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(calcFormula);
             innerList.Add(initValue);
             innerList.Add(tableRelation);
+#if !NAV2017
             innerList.Add(altSearchField);
+#endif
             innerList.Add(onValidate);
             innerList.Add(onLookup);
             innerList.Add(validateTableRelation);
@@ -61,6 +63,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(externalName);
             innerList.Add(externalType);
             innerList.Add(externalAccess);
+#endif
+#if NAV2017
+            innerList.Add(altSearchField);
 #endif
             innerList.Add(captionML);
             innerList.Add(sQLDataType);

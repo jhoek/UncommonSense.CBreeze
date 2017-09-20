@@ -10,6 +10,9 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
 #endif
+#if NAV2017
+        private TagListProperty applicationArea = new TagListProperty("ApplicationArea");
+#endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty chartPartID = new StringProperty("ChartPartID");
         private StringProperty description = new StringProperty("Description");
@@ -39,6 +42,9 @@ namespace UncommonSense.CBreeze.Core
 #endif
             innerList.Add(captionML);
             innerList.Add(toolTipML);
+#if NAV2017
+            innerList.Add(applicationArea);
+#endif
             innerList.Add(description);
             innerList.Add(subPageView);
             innerList.Add(subPageLink);
@@ -68,6 +74,10 @@ namespace UncommonSense.CBreeze.Core
                 return this.accessByPermission.Value;
             }
         }
+#endif
+
+#if NAV2017
+        public TagList ApplicationArea => applicationArea.Value;
 #endif
 
         public MultiLanguageValue CaptionML

@@ -134,6 +134,10 @@ namespace UncommonSense.CBreeze.Write
                     return "Memo";
                 case BlobSubType.UserDefined:
                     return "User-Defined";
+#if NAV2017
+                case BlobSubType.Json:
+                    return "Json";
+#endif
                 default:
                     throw new ArgumentOutOfRangeException("value");
             }
@@ -274,3 +278,4 @@ namespace UncommonSense.CBreeze.Write
         }
     }
 }
+

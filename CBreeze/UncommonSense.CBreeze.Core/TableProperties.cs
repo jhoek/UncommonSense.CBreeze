@@ -40,15 +40,15 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(dataCaptionFields); // 21105
             innerList.Add(linkedInTransaction); // 4984
             innerList.Add(linkedObject); // 4983
+            innerList.Add(onInsert);
+            innerList.Add(onModify);
+            innerList.Add(onDelete);
+            innerList.Add(onRename);
 #if NAV2016
             innerList.Add(tableType); // 5044
             innerList.Add(externalName); // 5045
             innerList.Add(externalSchema);
 #endif
-            innerList.Add(onInsert);
-            innerList.Add(onModify);
-            innerList.Add(onDelete);
-            innerList.Add(onRename);
             innerList.Add(captionML); // 8629
             innerList.Add(description); // 15386
             innerList.Add(pasteIsValid); // 15423

@@ -277,6 +277,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<FieldClassProperty>(p => p.Value = propertyValue.ToEnum<FieldClass>()),
                 TypeSwitch.Case<FieldListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
                 TypeSwitch.Case<FormatEvaluateProperty>(p => p.Value = propertyValue.ToFormatEvaluate()),
+                TypeSwitch.Case<GestureProperty>(p => p.Value = propertyValue.ToEnum<Gesture>()),
                 TypeSwitch.Case<GroupTypeProperty>(p => p.Value = propertyValue.ToEnum<GroupType>()),
                 TypeSwitch.Case<ImportanceProperty>(p => p.Value = propertyValue.ToEnum<Importance>()),
                 TypeSwitch.Case<GroupPageControlLayoutProperty>(p => p.Value = propertyValue.ToEnum<GroupPageControlLayout>()),

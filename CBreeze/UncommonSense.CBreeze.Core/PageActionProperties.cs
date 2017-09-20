@@ -5,15 +5,21 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class PageActionProperties : Properties
+    public class PageActionProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
+#if NAV2017
+        private TagListProperty applicationArea = new TagListProperty("ApplicationArea");
 #endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
         private NullableBooleanProperty ellipsis = new NullableBooleanProperty("Ellipsis");
         private StringProperty enabled = new StringProperty("Enabled");
+#if NAV2017
+        private GestureProperty gesture = new GestureProperty("Gesture");
+#endif
         private StringProperty image = new StringProperty("Image");
         private NullableBooleanProperty inFooterBar = new NullableBooleanProperty("InFooterBar");
         private StringProperty name = new StringProperty("Name");
@@ -21,6 +27,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty promoted = new NullableBooleanProperty("Promoted");
         private PromotedCategoryProperty promotedCategory = new PromotedCategoryProperty("PromotedCategory");
         private NullableBooleanProperty promotedIsBig = new NullableBooleanProperty("PromotedIsBig");
+#if NAV2017
+        private NullableBooleanProperty promotedOnly = new NullableBooleanProperty("PromotedOnly");
+#endif
         private RunObjectProperty runObject = new RunObjectProperty("RunObject");
         private RunObjectLinkProperty runPageLink = new RunObjectLinkProperty("RunPageLink");
         private RunPageModeProperty runPageMode = new RunPageModeProperty("RunPageMode");
@@ -45,6 +54,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(ellipsis);
             innerList.Add(captionML);
             innerList.Add(toolTipML);
+#if NAV2017
+            innerList.Add(applicationArea);
+#endif
             innerList.Add(description);
             innerList.Add(runObject);
             innerList.Add(runPageOnRec);
@@ -57,11 +69,17 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(promotedIsBig);
             innerList.Add(image);
             innerList.Add(promotedCategory);
+#if NAV2017
+            innerList.Add(promotedOnly);
+#endif
             innerList.Add(runPageMode);
 #if NAV2015
             innerList.Add(scope);
 #endif
             innerList.Add(onAction);
+#if NAV2017
+            innerList.Add(gesture);
+#endif
         }
 
         public PageAction PageAction { get; protected set; }
@@ -78,6 +96,10 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
+#if NAV2017
+        public TagList ApplicationArea => applicationArea.Value;
+#endif
+
         public MultiLanguageValue CaptionML
         {
             get
@@ -86,7 +108,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -98,7 +120,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Ellipsis
+        public bool? Ellipsis
         {
             get
             {
@@ -110,7 +132,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Enabled
+        public string Enabled
         {
             get
             {
@@ -122,7 +144,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Image
+        public Gesture? Gesture
+        {
+            get => gesture.Value;
+            set => gesture.Value = value;
+        }
+
+        public string Image
         {
             get
             {
@@ -134,7 +162,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? InFooterBar
+        public bool? InFooterBar
         {
             get
             {
@@ -146,7 +174,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Name
+        public string Name
         {
             get
             {
@@ -166,7 +194,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Promoted
+        public bool? Promoted
         {
             get
             {
@@ -190,7 +218,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? PromotedIsBig
+        public bool? PromotedIsBig
         {
             get
             {
@@ -200,6 +228,12 @@ namespace UncommonSense.CBreeze.Core
             {
                 this.promotedIsBig.Value = value;
             }
+        }
+
+        public bool? PromotedOnly
+        {
+            get => promotedOnly.Value;
+            set => promotedOnly.Value = value;
         }
 
         public RunObject RunObject
@@ -230,7 +264,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? RunPageOnRec
+        public bool? RunPageOnRec
         {
             get
             {
@@ -264,7 +298,7 @@ namespace UncommonSense.CBreeze.Core
         }
 #endif
 
-      public string ShortCutKey
+        public string ShortCutKey
         {
             get
             {
@@ -284,7 +318,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Visible
+        public string Visible
         {
             get
             {
