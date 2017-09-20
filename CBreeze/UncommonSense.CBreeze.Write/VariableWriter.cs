@@ -12,15 +12,18 @@ namespace UncommonSense.CBreeze.Write
     {
         public static void Write(this Variable variable, CSideWriter writer)
         {
+            // FIXME: Simplify, avoid TypeSwitch
+            // FIXME: First, uniformize, e.g. by using p.TypeName instead of hard-coded type
+
             TypeSwitch.Do(
                 variable,
-                TypeSwitch.Case<ActionVariable>(p => DoWrite(p.Name, p.ID, "Action", p.Dimensions, writer)),
+                TypeSwitch.Case<ActionVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<AutomationVariable>(p => DoWrite(p.Name, p.ID, string.Format("Automation \"{0}\"", p.SubType), p.Dimensions, false, false, p.WithEvents.GetValueOrDefault(false), false, null, writer)),
-                TypeSwitch.Case<BigIntegerVariable>(p => DoWrite(p.Name, p.ID, "BigInteger", p.Dimensions, writer)),
-                TypeSwitch.Case<BigTextVariable>(p => DoWrite(p.Name, p.ID, "BigText", p.Dimensions, writer)),
+                TypeSwitch.Case<BigIntegerVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+                TypeSwitch.Case<BigTextVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<BinaryVariable>(p => DoWrite(p.Name, p.ID, string.Format("Binary[{0}]", p.DataLength), p.Dimensions, writer)),
-                TypeSwitch.Case<BooleanVariable>(p => DoWrite(p.Name, p.ID, "Boolean", p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
-                TypeSwitch.Case<ByteVariable>(p => DoWrite(p.Name, p.ID, "Byte", p.Dimensions, writer)),
+                TypeSwitch.Case<BooleanVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
+                TypeSwitch.Case<ByteVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<CharVariable>(p => DoWrite(p.Name, p.ID, "Char", p.Dimensions, writer)),
                 TypeSwitch.Case<CodeunitVariable>(p => DoWrite(p.Name, p.ID, string.Format("Codeunit {0}", p.SubType), p.Dimensions, writer)),
                 TypeSwitch.Case<CodeVariable>(p => DoWrite(p.Name, p.ID, string.Format("Code[{0}]", p.DataLength), p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
