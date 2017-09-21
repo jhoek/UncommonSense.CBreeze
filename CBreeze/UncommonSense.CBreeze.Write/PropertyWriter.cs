@@ -109,7 +109,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<NullableTimeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString("c"), isLastProperty, writer)),
                 TypeSwitch.Case<XmlPortNodeDataTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #if NAV2017
-                TypeSwitch.Case<TagListProperty>(p => WriteSimpleProperty(p.Name, string.Join(",", p.Value), isLastProperty, writer)),
+                TypeSwitch.Case<TagListProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<GestureProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
                 TypeSwitch.Default(() => throw new ArgumentOutOfRangeException($"Don't know how to write property type {property.GetType().FullName}."))

@@ -30,5 +30,7 @@ namespace UncommonSense.CBreeze.Core
                 return VariableType.Guid;
             }
         }
+
+        public override string TypeName => "GUID";
     }
 }
