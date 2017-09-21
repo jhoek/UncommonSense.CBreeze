@@ -18,6 +18,8 @@ namespace UncommonSense.CBreeze.Core
             SubType = subType;
         }
 
+        public override string TypeName => $"XMLport {SubType}";
+
         public string Dimensions
         {
             get;

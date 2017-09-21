@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override string TypeName => $"Codeunit {SubType}";
+
         public CodeunitVariable(int id, string name, int subType)
             : base(id, name)
         {

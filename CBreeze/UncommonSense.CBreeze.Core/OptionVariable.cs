@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override string TypeName => string.IsNullOrEmpty(OptionString) ? "Option" : $"'{OptionString}'";
+
         public OptionVariable(int id, string name)
             : base(id, name)
         {

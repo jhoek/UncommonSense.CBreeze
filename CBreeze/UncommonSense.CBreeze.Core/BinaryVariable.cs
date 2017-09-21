@@ -30,6 +30,8 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
+        public override string TypeName => $"Binary[{DataLength}]";
+
         public override VariableType Type
         {
             get

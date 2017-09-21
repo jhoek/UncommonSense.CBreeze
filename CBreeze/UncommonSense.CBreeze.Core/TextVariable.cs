@@ -18,30 +18,10 @@ namespace UncommonSense.CBreeze.Core
             DataLength = dataLength;
         }
 
-        public int? DataLength
-        {
-            get;
-            protected set;
-        }
-
-        public string Dimensions
-        {
-            get;
-            set;
-        }
-
-        public bool? IncludeInDataset
-        {
-            get;
-            set;
-        }
-
-        public override VariableType Type
-        {
-            get
-            {
-                return VariableType.Text;
-            }
-        }
+        public override string TypeName => DataLength.HasValue ? $"Text[{DataLength}]" : "Text";
+        public int? DataLength { get; }
+        public string Dimensions { get; set; }
+        public bool? IncludeInDataset { get; set; }
+        public override VariableType Type => VariableType.Text;
     }
 }

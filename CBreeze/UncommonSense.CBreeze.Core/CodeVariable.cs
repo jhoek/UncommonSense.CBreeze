@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override string TypeName => $"Code[{DataLength}]";
+
         public CodeVariable(int id, string name, int? dataLength = null)
             : base(id, name)
         {

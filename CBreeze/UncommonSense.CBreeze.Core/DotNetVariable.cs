@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override string TypeName => $"DotNet \"{SubType}\"";
+
         public DotNetVariable(int id, string name, string subType)
             : base(id, name)
         {
