@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DevClientCmdlet.cs" />
     <Compile Include="NewCBreezeTableFilter.cs" />
     <Compile Include="AddCBreezePageActionContainer.cs" />
     <Compile Include="AddCBreezePageActionGroup.cs" />

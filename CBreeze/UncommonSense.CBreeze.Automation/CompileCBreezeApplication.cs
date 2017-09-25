@@ -10,19 +10,10 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet("Compile", "CBreezeApplication")]
     [Alias("Compile")]
-    public class CompileCBreezeApplication : Cmdlet
+    public class CompileCBreezeApplication : DevClientCmdlet
     {
         public CompileCBreezeApplication()
         {
-#if NAV2016
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\90\RoleTailored Client\finsql.exe";
-#elif NAV2015
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\80\RoleTailored Client\finsql.exe";
-#elif NAV2013R2
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\71\RoleTailored Client\finsql.exe";
-#else
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
-#endif
             ServerName = ".";
         }
 
@@ -56,7 +47,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            ApplicationCompiler.Compile(Application, DevClientPath, ServerName, Database);
+            ApplicationCompiler.Compile(Application, DevClientPath ?? DefaultDevClientPath, ServerName, Database);
         }
     }
 }

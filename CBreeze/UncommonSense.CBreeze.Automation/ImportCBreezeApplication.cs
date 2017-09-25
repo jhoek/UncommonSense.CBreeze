@@ -15,21 +15,12 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsData.Import, "CBreezeApplication", DefaultParameterSetName = "FromPath")]
     [OutputType(typeof(Application))]
     [Alias("Import")]
-    public class ImportCBreezeApplication : PSCmdlet
+    public class ImportCBreezeApplication : DevClientCmdlet
     {
         protected List<string> CachedPaths = new List<string>();
 
         public ImportCBreezeApplication()
         {
-#if NAV2016
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\90\RoleTailored Client\finsql.exe";
-#elif NAV2015
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\80\RoleTailored Client\finsql.exe";
-#elif NAV2013R2
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\71\RoleTailored Client\finsql.exe";
-#else
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
-#endif
             ServerName = ".";
         }
 
@@ -106,7 +97,7 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case "FromDatabase":
-                    WriteObject(ApplicationExporter.Export(DevClientPath, ServerName, Database, Filter));
+                    WriteObject(ApplicationExporter.Export(DevClientPath ?? DefaultDevClientPath, ServerName, Database, Filter));
                     break;
             }
         }

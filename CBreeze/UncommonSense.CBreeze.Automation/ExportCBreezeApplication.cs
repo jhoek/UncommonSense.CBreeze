@@ -15,23 +15,12 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsData.Export, "CBreezeApplication", DefaultParameterSetName = "ToTextWriter")]
     [Alias("Export")]
-    public class ExportCBreezeApplication : PSCmdlet
+    public class ExportCBreezeApplication : DevClientCmdlet
     {
         protected Application CachedObjects = new Application();
 
         public ExportCBreezeApplication()
         {
-#if NAV2017
-            DevClientPath = @"c:\Program Files (x86)\Microsoft Dynamics NAV\100\RoleTailored Client\finsql.exe";
-#elif NAV2016
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\90\RoleTailored Client\finsql.exe";
-#elif NAV2015
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\80\RoleTailored Client\finsql.exe";
-#elif NAV2013R2
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\71\RoleTailored Client\finsql.exe";
-#else
-            DevClientPath = @"C:\Program Files (x86)\Microsoft Dynamics NAV\70\RoleTailored Client\finsql.exe";
-#endif
             ServerName = ".";
             ImportAction = ImportAction.Default;
         }
@@ -144,10 +133,10 @@ namespace UncommonSense.CBreeze.Automation
 
                 case "ToDatabase":
                     writeVerbose("database", Database);
-                    ApplicationImporter.Import(CachedObjects, DevClientPath, ServerName, Database, ImportAction);
+                    ApplicationImporter.Import(CachedObjects, DevClientPath ?? DefaultDevClientPath, ServerName, Database, ImportAction);
 
                     if (AutoCompile)
-                        ApplicationCompiler.Compile(CachedObjects, DevClientPath, ServerName, Database);
+                        ApplicationCompiler.Compile(CachedObjects, DevClientPath ?? DefaultDevClientPath, ServerName, Database);
                     break;
             }
 
