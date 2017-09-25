@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .FromFile(@"c:\users\jhoek\Dropbox\BaseAppExports\nl2016.txt")
+                .FromFile(@"c:\users\jhoek\Dropbox\BaseAppExports\w12017.txt")
                 .Write(@"c:\users\jhoek\Desktop\output.txt");
         }
     }
