@@ -149,6 +149,7 @@
     <None Include="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="UncommonSense.CBreeze.Automation.Format.ps1xml" />
     <None Include="UncommonSense.CBreeze.Automation.psd1" />
     <None Include="UncommonSense.CBreeze.Automation.ps1" />
     <None Include="Update-README.ps1" />
