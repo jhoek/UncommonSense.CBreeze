@@ -515,6 +515,230 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; } 
 	}
 
+	[Cmdlet(VerbsCommon.New, "CBreezeMediaSetTableField")]
+	[OutputType(typeof(MediaSetTableField))]
+	[Alias("MediaSetField")]
+	public class NewCBreezeMediaSetTableField : NewItemWithIDAndNameCmdlet<MediaSetTableField, int, Table>
+	{
+
+
+		protected override IEnumerable<MediaSetTableField> CreateItems()
+		{
+			var mediaSetTableField = new MediaSetTableField(ID, Name);
+			mediaSetTableField.Enabled = Enabled;
+			mediaSetTableField.Properties.CaptionML.Set(CaptionML);
+            mediaSetTableField.Properties.Description = Description;
+
+			mediaSetTableField.Properties.AutoFormatExpr = AutoFormatExpr;
+			mediaSetTableField.Properties.AutoFormatType = AutoFormatType;
+			mediaSetTableField.Properties.CalcFormula.Set(CalcFormula);
+			mediaSetTableField.Properties.CaptionClass = CaptionClass;
+			mediaSetTableField.Properties.Description = Description;
+			mediaSetTableField.Properties.Editable = Editable;
+			mediaSetTableField.Properties.ExtendedDataType = ExtendedDataType;
+			mediaSetTableField.Properties.FieldClass = FieldClass;
+			mediaSetTableField.Properties.NotBlank = NotBlank;
+			mediaSetTableField.Properties.ValidateTableRelation = ValidateTableRelation;
+			mediaSetTableField.Properties.AccessByPermission.Set(AccessByPermission);
+
+			ProcessTrigger(OnValidate, mediaSetTableField.Properties.OnValidate);
+			ProcessTrigger(OnLookup, mediaSetTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				mediaSetTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
+
+			if (AutoCaption)
+                mediaSetTableField.AutoCaption();
+
+			yield return mediaSetTableField;
+		}
+
+        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
+        {
+            if (scriptBlock != null)
+            {
+                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
+                trigger.Variables.AddRange(subObjects.OfType<Variable>());
+                trigger.CodeLines.AddRange(subObjects.OfType<string>());
+            }
+        }
+
+        protected override void AddItemToInputObject(MediaSetTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
+	[Parameter()]
+	public String AutoFormatExpr { get;set; }
+
+	[Parameter()]
+	public Nullable<AutoFormatType> AutoFormatType { get;set; }
+
+	[Parameter()]
+	public CalcFormula CalcFormula { get;set; }
+
+	[Parameter()]
+	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
+
+	[Parameter()]
+	public Nullable<Boolean> Editable { get;set; }
+
+	[Parameter()]
+	public Nullable<ExtendedDataType> ExtendedDataType { get;set; }
+
+	[Parameter()]
+	public Nullable<FieldClass> FieldClass { get;set; }
+
+	[Parameter()]
+	public Nullable<Boolean> NotBlank { get;set; }
+
+	[Parameter()]
+	public Nullable<Boolean> ValidateTableRelation { get;set; }
+
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
+
+		[Parameter()]
+		public ScriptBlock OnValidate {get; set;}
+
+		[Parameter()]
+		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeMediaTableField")]
+	[OutputType(typeof(MediaTableField))]
+	[Alias("MediaField")]
+	public class NewCBreezeMediaTableField : NewItemWithIDAndNameCmdlet<MediaTableField, int, Table>
+	{
+
+
+		protected override IEnumerable<MediaTableField> CreateItems()
+		{
+			var mediaTableField = new MediaTableField(ID, Name);
+			mediaTableField.Enabled = Enabled;
+			mediaTableField.Properties.CaptionML.Set(CaptionML);
+            mediaTableField.Properties.Description = Description;
+
+			mediaTableField.Properties.AutoFormatExpr = AutoFormatExpr;
+			mediaTableField.Properties.AutoFormatType = AutoFormatType;
+			mediaTableField.Properties.CalcFormula.Set(CalcFormula);
+			mediaTableField.Properties.CaptionClass = CaptionClass;
+			mediaTableField.Properties.Description = Description;
+			mediaTableField.Properties.Editable = Editable;
+			mediaTableField.Properties.ExtendedDataType = ExtendedDataType;
+			mediaTableField.Properties.FieldClass = FieldClass;
+			mediaTableField.Properties.NotBlank = NotBlank;
+			mediaTableField.Properties.ValidateTableRelation = ValidateTableRelation;
+			mediaTableField.Properties.AccessByPermission.Set(AccessByPermission);
+
+			ProcessTrigger(OnValidate, mediaTableField.Properties.OnValidate);
+			ProcessTrigger(OnLookup, mediaTableField.Properties.OnLookup);
+
+			if (SubObjects != null) 
+			{
+				var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+				mediaTableField.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+			}
+
+			if (AutoCaption)
+                mediaTableField.AutoCaption();
+
+			yield return mediaTableField;
+		}
+
+        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
+        {
+            if (scriptBlock != null)
+            {
+                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
+                trigger.Variables.AddRange(subObjects.OfType<Variable>());
+                trigger.CodeLines.AddRange(subObjects.OfType<string>());
+            }
+        }
+
+        protected override void AddItemToInputObject(MediaTableField item, Table inputObject)
+        {
+            inputObject.Fields.Add(item);
+        }
+
+        [Parameter()]
+        public SwitchParameter AutoCaption { get; set; }
+
+		[Parameter()]
+		public Hashtable CaptionML { get; set; }
+
+        [Parameter()]
+        public bool? Enabled { get; set; }
+
+	[Parameter()]
+	public String AutoFormatExpr { get;set; }
+
+	[Parameter()]
+	public Nullable<AutoFormatType> AutoFormatType { get;set; }
+
+	[Parameter()]
+	public CalcFormula CalcFormula { get;set; }
+
+	[Parameter()]
+	public String CaptionClass { get;set; }
+
+	[Parameter()]
+	public String Description { get;set; }
+
+	[Parameter()]
+	public Nullable<Boolean> Editable { get;set; }
+
+	[Parameter()]
+	public Nullable<ExtendedDataType> ExtendedDataType { get;set; }
+
+	[Parameter()]
+	public Nullable<FieldClass> FieldClass { get;set; }
+
+	[Parameter()]
+	public Nullable<Boolean> NotBlank { get;set; }
+
+	[Parameter()]
+	public Nullable<Boolean> ValidateTableRelation { get;set; }
+
+	[Parameter()]
+	public AccessByPermission AccessByPermission { get;set; }
+
+
+		[Parameter()]
+		public ScriptBlock OnValidate {get; set;}
+
+		[Parameter()]
+		public ScriptBlock OnLookup { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+		public ScriptBlock SubObjects { get; set; } 
+	}
+
 	[Cmdlet(VerbsCommon.New, "CBreezeCodeTableField")]
 	[OutputType(typeof(CodeTableField))]
 	[Alias("CodeField")]
