@@ -7,12 +7,13 @@ using UncommonSense.CBreeze.Common;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2017
-    public class MediaSetTableField :TableField
+
+    public class MediaSetTableField : TableField
     {
         public MediaSetTableField(int id, string name)
             : base(id, name)
         {
-            Properties = new MediaSetTableFieldProperties(this);     
+            Properties = new MediaSetTableFieldProperties(this);
         }
 
         public override TableFieldType Type => TableFieldType.MediaSet;
@@ -21,7 +22,8 @@ namespace UncommonSense.CBreeze.Core
 
         public override IEnumerable<INode> ChildNodes => new[] { Properties };
 
-        public MediaSetTableFieldProperties Properties { get;  }
+        public MediaSetTableFieldProperties Properties { get; }
     }
+
 #endif
 }
