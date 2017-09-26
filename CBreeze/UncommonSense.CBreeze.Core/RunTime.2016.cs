@@ -7,7 +7,7 @@ namespace UncommonSense.CBreeze.Core
 {
 	public static partial class RunTime
 	{
-#if NAV2016
+#if NAV2016 && !NAV2017
 		public static class Images
 		{
 			public const string _1099Form = "1099Form";
