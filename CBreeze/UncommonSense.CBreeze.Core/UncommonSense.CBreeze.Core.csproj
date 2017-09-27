@@ -65,6 +65,7 @@
     <Compile Include="AutomationVariable.cs" />
     <Compile Include="BaseApp.2015.cs" />
     <Compile Include="BaseApp.2016.cs" />
+    <Compile Include="BaseApp.2017.cs" />
     <Compile Include="BigIntegerParameter.cs" />
     <Compile Include="BigIntegerTableField.cs" />
     <Compile Include="BigIntegerTableFieldProperties.cs" />

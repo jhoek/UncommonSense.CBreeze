@@ -2,7 +2,7 @@ namespace UncommonSense.CBreeze.Core
 {
     public static partial class BaseApp
     {
-#if !NAV2016
+#if NAV2015 && !NAV2016
         public static class TableIDs
         {
             public const int Payment_Terms = 3;
@@ -958,7 +958,6 @@ namespace UncommonSense.CBreeze.Core
             public const int User_Property = 2000000121;
             public const int Device = 2000000130;
             public const int Database_Key_Groups = 2000000203;
-            
         }
         public static class TableNames
         {
@@ -1915,7 +1914,6 @@ namespace UncommonSense.CBreeze.Core
             public const string User_Property = @"User Property";
             public const string Device = @"Device";
             public const string Database_Key_Groups = @"Database Key Groups";
-            
         }
         public static class PageIDs
         {
@@ -3664,7 +3662,6 @@ namespace UncommonSense.CBreeze.Core
             public const int Production_Forecast_Entries = 99000922;
             public const int Order_Promising_Setup = 99000958;
             public const int Order_Promising_Lines = 99000959;
-            
         }
         public static class CodeunitIDs
         {
@@ -4249,8 +4246,7 @@ namespace UncommonSense.CBreeze.Core
             public const int Planning_Transparency = 99000856;
             public const int Capable_to_Promise = 99000886;
             public const int AvailabilityManagement = 99000889;
-            
         }
-#endif        
+#endif
     }
 }

@@ -2,91 +2,111 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
 {
   OBJECT-PROPERTIES
   {
-    Date=11-01-16;
-    Time=20:21:35;
+    Date=27-09-17;
+    Time=11:32:35;
     Modified=Yes;
     Version List=;
   }
   PROPERTIES
   {
-    OnRun=BEGIN
-            WriteBaseApp;
-            MESSAGE('Done.');
+    OnRun=VAR
+            OutputFile@1000 : File;
+          BEGIN
+            OutputFile.TEXTMODE := TRUE;
+            OutputFile.WRITEMODE := TRUE;
+            OutputFile.CREATE('c:\users\jhoek\Desktop\BaseApp.txt');
+
+            OutputFile.WRITE('namespace UncommonSense.CBreeze.Core');
+            OutputFile.WRITE('{');
+            OutputFile.WRITE('  public static partial class BaseApp');
+            OutputFile.WRITE('  {');
+            OutputFile.WRITE('    #if NAV2017');
+
+            WriteTableIDs(OutputFile);
+            WriteTableNames(OutputFile);
+            WritePageIDs(OutputFile);
+            WriteCodeunitIDs(OutputFile);
+
+            OutputFile.WRITE('    #endif');
+            OutputFile.WRITE('  }');
+            OutputFile.WRITE('}');
+            OutputFile.CLOSE;
           END;
 
   }
   CODE
   {
 
-    PROCEDURE WriteBaseApp@1000000000();
+    LOCAL PROCEDURE WriteTableIDs@2(VAR OutputFile@1000 : File);
     VAR
-      AllObj@1000000005 : Record 2000000038;
-      CompilationUnit@1000000000 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.CompilationUnit";
-      Namespace@1000000001 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Namespace";
-      BaseAppClass@1000000002 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
-      TableIDsClass@1000000004 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
-      TableNamesClass@1000000008 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
-      PageIDsClass@1000000010 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
-      CodeunitIDsClass@1000000009 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Class";
-      Constant@1000000006 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Constant";
-      Visibility@1000000003 : DotNet "'UncommonSense.CSharp, Version=1.0.5716.17676, Culture=neutral, PublicKeyToken=null'.UncommonSense.CSharp.Visibility";
-      NormalizedName@1000000007 : Text[30];
+      AllObj@1001 : Record 2000000038;
     BEGIN
-      CompilationUnit := CompilationUnit.CompilationUnit();
-      Namespace := Namespace.Namespace('UncommonSense.CBreeze.Core');
-      BaseAppClass := BaseAppClass.Class(Visibility.Public, 'BaseApp', '');
-      BaseAppClass.Static := TRUE;
-
-      TableIDsClass := TableIDsClass.Class(Visibility.Public, 'TableIDs', '');
-      TableIDsClass.Static := TRUE;
-
-      TableNamesClass := TableNamesClass.Class(Visibility.Public, 'TableNames' ,'');
-      TableNamesClass.Static := TRUE;
-
-      PageIDsClass := PageIDsClass.Class(Visibility.Public, 'PageIDs', '');
-      PageIDsClass.Static := TRUE;
-
-      CodeunitIDsClass := CodeunitIDsClass.Class(Visibility.Public, 'CodeunitIDs', '');
-      CodeunitIDsClass.Static := TRUE;
-
-      AllObj.SETFILTER("Object ID", '<%1|>%2', 50000, 59999);
       AllObj.SETRANGE("Object Type", AllObj."Object Type"::Table);
+      AllObj.SETFILTER("Object ID", '<%1|>%2', 50000, 59999);
+
+      OutputFile.WRITE('    public static class TableIDs');
+      OutputFile.WRITE('    {');
 
       IF AllObj.FINDSET THEN
         REPEAT
-          NormalizedName := NormalizeName(AllObj."Object Name");
-          Constant := Constant.Constant(Visibility.Public, NormalizedName, 'int', FORMAT(AllObj."Object ID"));
-          TableIDsClass.Constants.Add(Constant);
-          Constant := Constant.Constant(Visibility.Public, NormalizedName, 'string', STRSUBSTNO('@"%1"', AllObj."Object Name"));
-          TableNamesClass.Constants.Add(Constant);
+          OutputFile.WRITE(STRSUBSTNO('      public const int %1 = %2;', NormalizeName(AllObj."Object Name"), AllObj."Object ID"));
         UNTIL AllObj.NEXT = 0;
 
+      OutputFile.WRITE('    }');
+    END;
+
+    LOCAL PROCEDURE WriteTableNames@8(VAR OutputFile@1000 : File);
+    VAR
+      AllObj@1001 : Record 2000000038;
+    BEGIN
+      AllObj.SETRANGE("Object Type", AllObj."Object Type"::Table);
+      AllObj.SETFILTER("Object ID", '<%1|>%2', 50000, 59999);
+
+      OutputFile.WRITE('    public static class TableNames');
+      OutputFile.WRITE('    {');
+
+      IF AllObj.FINDSET THEN
+        REPEAT
+          OutputFile.WRITE(STRSUBSTNO('      public const string %1 = @"%2";', NormalizeName(AllObj."Object Name"), AllObj."Object Name"));
+        UNTIL AllObj.NEXT = 0;
+
+      OutputFile.WRITE('    }');
+    END;
+
+    LOCAL PROCEDURE WritePageIDs@5(VAR OutputFile@1000 : File);
+    VAR
+      AllObj@1001 : Record 2000000038;
+    BEGIN
       AllObj.SETRANGE("Object Type", AllObj."Object Type"::Page);
+      AllObj.SETFILTER("Object ID", '<%1|>%2', 50000, 59999);
+
+      OutputFile.WRITE('    public static class PageIDs');
+      OutputFile.WRITE('    {');
 
       IF AllObj.FINDSET THEN
         REPEAT
-          NormalizedName := NormalizeName(AllObj."Object Name");
-          Constant := Constant.Constant(Visibility.Public, NormalizedName, 'int', FORMAT(AllObj."Object ID"));
-          PageIDsClass.Constants.Add(Constant);
+          OutputFile.WRITE(STRSUBSTNO('      public const int %1 = %2;', NormalizeName(AllObj."Object Name"), AllObj."Object ID"));
         UNTIL AllObj.NEXT = 0;
 
+      OutputFile.WRITE('    }');
+    END;
+
+    LOCAL PROCEDURE WriteCodeunitIDs@6(VAR OutputFile@1000 : File);
+    VAR
+      AllObj@1001 : Record 2000000038;
+    BEGIN
       AllObj.SETRANGE("Object Type", AllObj."Object Type"::Codeunit);
+      AllObj.SETFILTER("Object ID", '<%1|>%2', 50000, 59999);
+
+      OutputFile.WRITE('    public static class CodeunitIDs');
+      OutputFile.WRITE('    {');
 
       IF AllObj.FINDSET THEN
         REPEAT
-          NormalizedName := NormalizeName(AllObj."Object Name");
-          Constant := Constant.Constant(Visibility.Public, NormalizedName, 'int', FORMAT(AllObj."Object ID"));
-          CodeunitIDsClass.Constants.Add(Constant);
+          OutputFile.WRITE(STRSUBSTNO('      public const int %1 = %2;', NormalizeName(AllObj."Object Name"), AllObj."Object ID"));
         UNTIL AllObj.NEXT = 0;
 
-      BaseAppClass.NestedClasses.Add(TableIDsClass);
-      BaseAppClass.NestedClasses.Add(TableNamesClass);
-      BaseAppClass.NestedClasses.Add(PageIDsClass);
-      BaseAppClass.NestedClasses.Add(CodeunitIDsClass);
-      Namespace.Types.Add(BaseAppClass);
-      CompilationUnit.Namespaces.Add(Namespace);
-
-      CompilationUnit.WriteTo('C:\Users\jhoek\Desktop\BaseApp.cs');
+      OutputFile.WRITE('    }');
     END;
 
     PROCEDURE NormalizeName@1000000005(ObjectName@1000000000 : Text[30]) NormalizedName : Text[30];
