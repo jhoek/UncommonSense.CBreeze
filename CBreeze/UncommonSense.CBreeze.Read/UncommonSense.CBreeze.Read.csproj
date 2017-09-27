@@ -46,9 +46,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.CBreeze.Parse">
-      <HintPath>..\..\..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse\bin\Debug\UncommonSense.CBreeze.Parse.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationBuilder.cs" />
@@ -68,6 +65,10 @@
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
       <Project>{B17B9C13-574D-413C-BCBC-6C3239E17BE8}</Project>
       <Name>UncommonSense.CBreeze.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.csproj">
+      <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
+      <Name>UncommonSense.CBreeze.Parse</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
