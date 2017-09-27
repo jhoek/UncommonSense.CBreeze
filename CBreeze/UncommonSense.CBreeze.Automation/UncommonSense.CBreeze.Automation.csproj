@@ -78,15 +78,15 @@
       <DependentUpon>NewCBreezeTableField.tt</DependentUpon>
     </Compile>
     <Compile Include="NewCBreezeTableRelationFilter.cs" />
+    <Compile Include="NewCBreezeVariable.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCBreezeVariable.tt</DependentUpon>
+    </Compile>
     <Compile Include="NewCBreezeXmlPortNode1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCBreezeXmlPortNode.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewCBreezeVariable1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCBreezeVariable.tt</DependentUpon>
     </Compile>
     <Compile Include="NewCBreezeReportLabel.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
@@ -199,7 +199,7 @@
     </Content>
     <Content Include="NewCBreezeVariable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NewCBreezeVariable1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeVariable.cs</LastGenOutput>
     </Content>
     <Content Include="NewCBreezeMenuSuiteNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

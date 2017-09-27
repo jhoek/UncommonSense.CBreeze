@@ -51,7 +51,7 @@ namespace UncommonSense.CBreeze.Automation
 	var allProperties = @type.GetProperties();
 	var relevantProperties = allProperties
 		.Where(p => !skipProperties.Contains(p.Name))
-		.Where(p => p.CanWrite)
+		.Where(p => p.CanWrite || p.Name == "SubType" || p.Name == "DataLength")
 		.Select(p => new {
 			Name = p.Name,
 			FullType = p.Name != "Values" ? GetFullTypeName(p.PropertyType) : "Hashtable",
