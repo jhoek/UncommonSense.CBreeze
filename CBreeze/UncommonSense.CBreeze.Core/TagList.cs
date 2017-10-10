@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace UncommonSense.CBreeze.Core
 {
+#if NAV2017
     public class TagList : Collection<string>
     {
         public TagList()
@@ -21,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
 
         public bool IsValidTag(string tag) => Regex.IsMatch(tag, ValidTagPattern);
 
-        public override string ToString() => string.Join(", ", this);
+        public override string ToString() => string.Join(",", this);
 
         protected override void InsertItem(int index, string item)
         {
@@ -43,4 +44,5 @@ namespace UncommonSense.CBreeze.Core
                 throw new ArgumentOutOfRangeException("tag", $"Invalid tag '{tag}'. Valid tags match pattern '{ValidTagPattern}'.");
         }
     }
+#endif
 }

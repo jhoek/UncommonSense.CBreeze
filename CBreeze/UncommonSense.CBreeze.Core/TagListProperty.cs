@@ -5,6 +5,7 @@ using System.Text;
 
 namespace UncommonSense.CBreeze.Core
 {
+#if NAV2017
     public class TagListProperty : ReferenceProperty<TagList>
     {
         internal TagListProperty(string name)
@@ -12,4 +13,5 @@ namespace UncommonSense.CBreeze.Core
 
         public override bool HasValue => Value.Any();
     }
+#endif
 }
