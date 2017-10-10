@@ -216,7 +216,12 @@ namespace UncommonSense.CBreeze.Write
 
         public static void Write(this CalcFormulaProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
         {
-            writer.Write("{0}={1}{2}(", property.Name, property.Value.ReverseSign ? "-" : "", property.Value.Method);
+            var requiresSquareBrackets = property.Value.TableFilter.Any(f => f.Value.Any(c => "{}".Contains(c)));
+            var openingBracket = requiresSquareBrackets ? "[" : "";
+            var closingBracket = requiresSquareBrackets ? "]" : "";
+            var sign = property.Value.ReverseSign ? "-" : "";
+
+            writer.Write($"{property.Name}={openingBracket}{sign}{property.Value.Method}(" );
 
             switch (property.Value.Method.Value)
             {
@@ -256,6 +261,7 @@ namespace UncommonSense.CBreeze.Write
             }
 
             writer.Write(")");
+            writer.Write(closingBracket);
 
             if (!isLastProperty)
                 writer.WriteLine(";");
