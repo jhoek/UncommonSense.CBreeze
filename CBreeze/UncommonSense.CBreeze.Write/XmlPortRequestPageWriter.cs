@@ -12,7 +12,12 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.BeginSection("REQUESTPAGE");
             xmlPortRequestPage.Properties.Write(writer);
-            xmlPortRequestPage.Controls.Write(writer, 16);
+
+#if NAV2017
+            xmlPortRequestPage.Controls.Write(writer, 18);
+#else
+             xmlPortRequestPage.Controls.Write(writer, 16);
+#endif
             writer.EndSection();
         }
     }
