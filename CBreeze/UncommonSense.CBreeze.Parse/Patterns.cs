@@ -44,9 +44,11 @@ namespace UncommonSense.CBreeze.Parse
         public static readonly Regex TryFunctionAttribute = new Regex(@"^\[TryFunction\]$", RegexOptions.Compiled);
         public static readonly Regex BusinessEventPublisherAttribute = new Regex(@"^\[Business(\((FALSE|TRUE)\))?\]$", RegexOptions.Compiled);
         public static readonly Regex IntegrationEventPublisherAttribute = new Regex(@"^\[Integration(\((FALSE|TRUE|DEFAULT)(,(FALSE|TRUE|DEFAULT))?\))?\]$", RegexOptions.Compiled);
-        public static readonly Regex EventSubscriberAttribute = new Regex(@"^\[EventSubscriber\((?<ObjectType>\w+),(?<ObjectID>\d+),(?<Function>\w+)(,(?<Element>(""[^""]*"")|([^""]\w+)))?(,(?<OnMissingLicense>Skip|Error|DEFAULT))?(,(?<OnMissingPermission>Skip|Error))?\)\]$", RegexOptions.Compiled); 
+        public static readonly Regex EventSubscriberAttribute = new Regex(@"^\[EventSubscriber\((?<ObjectType>\w+),(?<ObjectID>\d+),(?<Function>\w+)(,(?<Element>(""[^""]*"")|([^""]\w+)))?(,(?<OnMissingLicense>Skip|Error|DEFAULT))?(,(?<OnMissingPermission>Skip|Error))?\)\]$", RegexOptions.Compiled);
 #endif
-#if NAV2016
+#if NAV2017 
+        public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler|FilterPageHandler|HyperlinkHandler|SendNotificationHandler|RecallNotificationHandler|UpgradePerDatabase|TableSyncSetup|CheckPrecondition|UpgradePerCompany)\]$", RegexOptions.Compiled);
+#elif NAV2016
         public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler|FilterPageHandler|HyperlinkHandler|UpgradePerDatabase|TableSyncSetup|CheckPrecondition|UpgradePerCompany)\]$", RegexOptions.Compiled);
 #elif NAV2015
         public static readonly Regex FunctionTypeAttribute = new Regex(@"^\[(Normal|Test|MessageHandler|ConfirmHandler|StrMenuHandler|PageHandler|ModalPageHandler|ReportHandler|RequestPageHandler|Upgrade|TableSyncSetup|CheckPrecondition)\]$", RegexOptions.Compiled);

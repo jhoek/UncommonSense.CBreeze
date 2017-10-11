@@ -249,7 +249,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<DefaultLayoutProperty>(p => p.Value = propertyValue.ToEnum<DefaultLayout>()),
 #endif
 #if NAV2017
-                TypeSwitch.Case<TagListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
+                TypeSwitch.Case<TagListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()).Where(s=>!string.IsNullOrEmpty(s)))),
 #endif
 #if NAV2016
                 TypeSwitch.Case<TableTypeProperty>(p => p.Value = propertyValue.ToEnum<TableType>()),
@@ -601,6 +601,10 @@ namespace UncommonSense.CBreeze.Read
                 case "ModalPageHandler":
                 case "ReportHandler":
                 case "RequestPageHandler":
+#if NAV2017
+                case "SendNotificationHandler":
+                case "RecallNotificationHandler":
+#endif
                     currentFunction.TestFunctionType = name.ToNullableEnum<TestFunctionType>();
                     break;
 #if NAV2015

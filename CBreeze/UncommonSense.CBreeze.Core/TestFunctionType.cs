@@ -18,8 +18,12 @@ namespace UncommonSense.CBreeze.Core
         RequestPageHandler,
 #if NAV2016
         FilterPageHandler,
-        HyperlinkHandler
+        HyperlinkHandler,
+#endif
+#if NAV2017
+        SendNotificationHandler,
+        RecallNotificationHandler
 #endif
     }
-
+    // 
 }
