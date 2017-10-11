@@ -479,6 +479,8 @@ namespace UncommonSense.CBreeze.Read
             //				WHERE(No. 2=CONST(FOO),
             //					Description=FILTER(<>''));
 
+            propertyValue = RemoveSurroundingSquareBrackets(propertyValue);
+
             property.Value.Key = GetTableViewSorting(ref propertyValue);
             property.Value.Order = GetTableViewOrder(ref propertyValue);
             property.Value.TableFilter.SetFromPropertyValue(ref propertyValue);

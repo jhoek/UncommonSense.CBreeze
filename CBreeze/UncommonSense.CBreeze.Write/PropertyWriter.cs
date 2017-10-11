@@ -269,6 +269,10 @@ namespace UncommonSense.CBreeze.Write
 
         public static void Write(this TableViewProperty property, bool isLastProperty, PropertiesStyle style, CSideWriter writer)
         {
+            var requiresSquareBrackets = property.Value.TableFilter.Any(f => f.Value.Any(c => "{}".Contains(c)));
+            var openingBracket = requiresSquareBrackets ? "[" : "";
+            var closingBracket = requiresSquareBrackets ? "]" : "";
+
             var components = new List<string>();
 
             if (!string.IsNullOrEmpty(property.Value.Key))
@@ -280,7 +284,7 @@ namespace UncommonSense.CBreeze.Write
             if (property.Value.TableFilter.Any())
                 components.AddRange(property.Value.TableFilter.AsStrings());
 
-            writer.Write("{0}=", property.Name);
+            writer.Write("{0}={1}", property.Name, openingBracket);
             writer.Indent(writer.Column);
 
             foreach (var component in components)
@@ -290,12 +294,12 @@ namespace UncommonSense.CBreeze.Write
                 switch (isLastProperty && isLastComponent)
                 {
                     case true:
-                        writer.Write("{0} ", component);
+                        writer.Write("{0}{1} ", component, closingBracket);
                         break;
 
                     case false:
                         writer.Write(component);
-                        writer.WriteLineIf(isLastComponent, ";");
+                        writer.WriteLineIf(isLastComponent, $"{closingBracket};");
                         writer.WriteLineIf(!isLastComponent, string.Empty);
                         break;
                 }
