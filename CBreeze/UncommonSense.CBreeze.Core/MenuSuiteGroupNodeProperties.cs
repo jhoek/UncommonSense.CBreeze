@@ -5,9 +5,10 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class MenuSuiteGroupNodeProperties : Properties
+    public class MenuSuiteGroupNodeProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
+        private NullableBooleanProperty deleted = new NullableBooleanProperty("Deleted");
         private NullableGuidProperty firstChild = new NullableGuidProperty("FirstChild");
         private NullableBooleanProperty isDepartmentPage = new NullableBooleanProperty("IsDepartmentPage");
         private NullableGuidProperty memberOfMenu = new NullableGuidProperty("MemberOfMenu");
@@ -28,6 +29,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(nextNodeID);
             innerList.Add(firstChild);
             innerList.Add(isDepartmentPage);
+            innerList.Add(deleted);
         }
 
         public GroupNode Node { get; protected set; }
@@ -42,7 +44,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? FirstChild
+        public bool? Deleted
+        {
+            get => this.deleted.Value;
+            set => this.deleted.Value = value;
+        }
+
+        public System.Guid? FirstChild
         {
             get
             {
@@ -54,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? IsDepartmentPage
+        public bool? IsDepartmentPage
         {
             get
             {
@@ -66,7 +74,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? MemberOfMenu
+        public System.Guid? MemberOfMenu
         {
             get
             {
@@ -78,7 +86,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Name
+        public string Name
         {
             get
             {
@@ -90,7 +98,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? NextNodeID
+        public System.Guid? NextNodeID
         {
             get
             {
@@ -102,7 +110,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public System.Guid? ParentNodeID
+        public System.Guid? ParentNodeID
         {
             get
             {
@@ -114,7 +122,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Visible
+        public bool? Visible
         {
             get
             {
