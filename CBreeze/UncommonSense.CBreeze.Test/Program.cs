@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,8 +15,8 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .FromFile(@"c:\users\jhoek\Dropbox\BaseAppExports\w12017.txt")
-                .Write(@"c:\users\jhoek\Desktop\output.txt");
+                .FromFolder(@"C:\Users\jhoek\Dropbox\BaseAppExports\w12017")
+                .WriteToFolder(@"c:\users\jhoek\Desktop\output");
         }
     }
 }

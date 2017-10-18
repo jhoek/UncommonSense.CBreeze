@@ -4,6 +4,7 @@ using UncommonSense.CBreeze.Core;
 using System;
 using UncommonSense.CBreeze.Parse;
 using UncommonSense.CBreeze.Common;
+using System.IO;
 
 namespace UncommonSense.CBreeze.Read
 {
@@ -38,12 +39,9 @@ namespace UncommonSense.CBreeze.Read
 
         private Stack<IEnumerable<Property>> currentProperties = new Stack<IEnumerable<Property>>();
 
-        // FIXME: FromFolder(string folderName) ?
+        public static Application FromFolder(string folderName) => FromFiles(Directory.EnumerateFiles(folderName, "*.txt"));
 
-        public static Application FromFile(params string[] fileNames)
-        {
-            return FromFiles(fileNames);
-        }
+        public static Application FromFile(params string[] fileNames) => FromFiles(fileNames);
 
         public static Application FromFiles(IEnumerable<string> fileNames)
         {
