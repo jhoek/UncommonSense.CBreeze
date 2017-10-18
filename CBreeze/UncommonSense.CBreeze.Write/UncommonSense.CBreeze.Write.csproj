@@ -106,6 +106,7 @@
     <Compile Include="TableFieldWriter.cs" />
     <Compile Include="TableKeyWriter.cs" />
     <Compile Include="WordLayoutWriter.cs" />
+    <Compile Include="WriteToFolderExtensionMethods.cs" />
     <Compile Include="XmlPortNodesWriter.cs" />
     <Compile Include="XmlPortPropertiesWriter.cs" />
     <Compile Include="XmlPortRequestPagePropertiesWriter.cs" />
