@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="XmlPortNodeDataType.cs" />
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="MenuSuiteNodeType.cs" />

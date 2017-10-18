@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Invocation.cs" />
     <Compile Include="Literal.cs" />
     <Compile Include="Parameter.cs" />
@@ -58,6 +57,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
+      <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
+      <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
