@@ -38,6 +38,8 @@ namespace UncommonSense.CBreeze.Read
 
         private Stack<IEnumerable<Property>> currentProperties = new Stack<IEnumerable<Property>>();
 
+        // FIXME: FromFolder(string folderName) ?
+
         public static Application FromFile(params string[] fileNames)
         {
             return FromFiles(fileNames);
