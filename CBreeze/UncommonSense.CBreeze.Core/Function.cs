@@ -37,23 +37,10 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
-        public TransactionModel? TransactionModel
-        {
-            get;
-            set;
-        }
-
-        public string HandlerFunctions
-        {
-            get;
-            set;
-        }
-
-        public TestFunctionType? TestFunctionType
-        {
-            get;
-            set;
-        }
+        public TestPermissions? TestPermissions { get; set; }
+        public TransactionModel? TransactionModel { get; set; }
+        public string HandlerFunctions { get; set; } 
+        public TestFunctionType? TestFunctionType { get; set; } 
 
 #if NAV2015
 

@@ -136,7 +136,9 @@
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="TagList.cs" />
     <Compile Include="TagListProperty.cs" />
+    <Compile Include="TestPermissions.cs" />
     <Compile Include="TestPermissionsParameter.cs" />
+    <Compile Include="TestPermissionsProperty.cs" />
     <Compile Include="TestPermissionsVariable.cs" />
     <Compile Include="TriggerVariables.cs" />
     <Compile Include="XmlPortNamespace.cs" />

@@ -21,6 +21,9 @@ namespace UncommonSense.CBreeze.Write
             writer.WriteLineIf(function.TestFunctionType.HasValue, "[{0}]", function.TestFunctionType);
             writer.WriteLineIf(function.HandlerFunctions != null, "[HandlerFunctions({0})]", function.HandlerFunctions);
             writer.WriteLineIf(function.TransactionModel.HasValue, "[TransactionModel({0})]", function.TransactionModel);
+#if NAV2017
+            writer.WriteLineIf(function.TestPermissions.HasValue, "[TestPermissions({0})]", function.TestPermissions);
+#endif
 
             writer.Write("{2}PROCEDURE {0}@{1}(", function.Name, function.ID, function.Local.GetValueOrDefault(false) ? "LOCAL " : "");
             function.Parameters.Write(writer);

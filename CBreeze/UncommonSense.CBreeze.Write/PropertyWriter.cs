@@ -27,8 +27,11 @@ namespace UncommonSense.CBreeze.Write
 #if NAV2016
                 TypeSwitch.Case<ExternalAccessProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
  TypeSwitch.Case<TableTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
-                TypeSwitch.Case<EventSubscriberInstanceProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<EventSubscriberInstanceProperty>(p => WriteSimpleProperty(p.Name, p.ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<XmlPortNamespacesProperty>(p => p.Write(isLastProperty, style, writer)),
+#endif
+#if NAV2017
+                TypeSwitch.Case<TestPermissionsProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
  TypeSwitch.Case<MenuItemRunObjectTypeProperty>(p => p.Write(isLastProperty, style, writer)),
                 TypeSwitch.Case<MenuItemDepartmentCategoryProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().AsString(), isLastProperty, writer)),
@@ -221,7 +224,7 @@ namespace UncommonSense.CBreeze.Write
             var closingBracket = requiresSquareBrackets ? "]" : "";
             var sign = property.Value.ReverseSign ? "-" : "";
 
-            writer.Write($"{property.Name}={openingBracket}{sign}{property.Value.Method}(" );
+            writer.Write($"{property.Name}={openingBracket}{sign}{property.Value.Method}(");
 
             switch (property.Value.Method.Value)
             {

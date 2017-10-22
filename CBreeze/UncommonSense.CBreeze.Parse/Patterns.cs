@@ -57,6 +57,7 @@ namespace UncommonSense.CBreeze.Parse
 #endif
         public static readonly Regex HandlerFunctionsAttribute = new Regex(@"^\[HandlerFunctions\(([^)]*)\)]$", RegexOptions.Compiled);
         public static readonly Regex TransactionModelAttribute = new Regex(@"^\[TransactionModel\(([^)]*)\)]$", RegexOptions.Compiled);
+        public static readonly Regex TestPermissionsAttribute = new Regex(@"^\[TestPermissions\(([^)]*)\)\]$", RegexOptions.Compiled);
         public static readonly Regex ProcedureAttribute = new Regex(@"^\[([^]]+)\]$", RegexOptions.Compiled);
         public static readonly Regex ProcedureSignature = new Regex(@"^\s*(LOCAL\s)?PROCEDURE\s([^@]+)@(\d+)", RegexOptions.Compiled);
         public static readonly Regex ProcedureParameters = new Regex(@"^\((.*)\)", RegexOptions.Compiled);

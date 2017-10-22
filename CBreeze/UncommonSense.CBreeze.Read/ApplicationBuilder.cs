@@ -317,6 +317,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<TableRelationProperty>(p => p.SetTableRelationProperty(propertyValue)),
                 TypeSwitch.Case<TableViewProperty>(p => p.SetTableViewProperty(propertyValue)),
                 TypeSwitch.Case<TestIsolationProperty>(p => p.Value = propertyValue.ToEnum<TestIsolation>()),
+                TypeSwitch.Case<TestPermissionsProperty>(p=> p.Value = propertyValue.ToEnum<TestPermissions>()),
                 TypeSwitch.Case<TextEncodingProperty>(p => p.Value = propertyValue.ToEnum<TextEncoding>()),
                 TypeSwitch.Case<TextTypeProperty>(p => p.Value = propertyValue.ToEnum<TextType>()),
                 TypeSwitch.Case<TotalsMethodProperty>(p => p.Value = propertyValue.ToEnum<TotalsMethod>()),
@@ -574,6 +575,12 @@ namespace UncommonSense.CBreeze.Read
                 case "TransactionModel":
                     currentFunction.TransactionModel = values[0].ToNullableEnum<TransactionModel>();
                     break;
+
+#if NAV2017
+                case "TestPermissions":
+                    currentFunction.TestPermissions = values[0].ToNullableEnum<TestPermissions>();
+                    break;
+#endif
 
                 case "HandlerFunctions":
                     currentFunction.HandlerFunctions = values[0];

@@ -19,6 +19,9 @@ namespace UncommonSense.CBreeze.Core
         private CodeunitSubTypeProperty subtype = new CodeunitSubTypeProperty("Subtype");
         private NullableIntegerProperty tableNo = new NullableIntegerProperty("TableNo");
         private TestIsolationProperty testIsolation = new TestIsolationProperty("TestIsolation");
+#if NAV2017
+        private TestPermissionsProperty testPermissions = new TestPermissionsProperty("TestPermissions");
+#endif
 
         internal CodeunitProperties(Codeunit codeunit)
         {
@@ -35,6 +38,9 @@ namespace UncommonSense.CBreeze.Core
 #endif
             innerList.Add(subtype);
             innerList.Add(testIsolation);
+#if NAV2017
+            innerList.Add(testPermissions);
+#endif
             innerList.Add(onRun);
         }
 
@@ -133,5 +139,13 @@ namespace UncommonSense.CBreeze.Core
                 this.testIsolation.Value = value;
             }
         }
+
+#if NAV2017
+        public TestPermissions? TestPermissions
+        {
+            get => testPermissions.Value;
+            set => testPermissions.Value = value;
+        }
+#endif
     }
 }

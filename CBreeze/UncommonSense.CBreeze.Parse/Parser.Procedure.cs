@@ -20,6 +20,9 @@ namespace UncommonSense.CBreeze.Parse
             Match handlerFunctionsMatch = null;
             Match transactionModelMatch = null;
             Match procedureSignatureMatch = null;
+#if NAV2017
+            Match testPermissionsMatch = null;
+#endif
 
 #if NAV2016
             lines.FirstLineTryMatch(Patterns.TryFunctionAttribute, out tryFunctionMatch);
@@ -32,6 +35,9 @@ namespace UncommonSense.CBreeze.Parse
 
             lines.FirstLineTryMatch(Patterns.HandlerFunctionsAttribute, out handlerFunctionsMatch);
             lines.FirstLineTryMatch(Patterns.TransactionModelAttribute, out transactionModelMatch);
+#if NAV2017
+            lines.FirstLineTryMatch(Patterns.TestPermissionsAttribute, out testPermissionsMatch);
+#endif
 
             if (!lines.FirstLineTryMatch(Patterns.ProcedureSignature, out procedureSignatureMatch))
             {
@@ -88,7 +94,14 @@ namespace UncommonSense.CBreeze.Parse
                 Listener.OnFunctionAttribute("TransactionModel", transactionModelMatch.Groups[1].Value);
             }
 
-            ParseParameters(lines);
+#if NAV2017
+            if (testPermissionsMatch.Success)
+            {
+                Listener.OnFunctionAttribute("TestPermissions", testPermissionsMatch.Groups[1].Value);
+            }
+#endif
+
+                ParseParameters(lines);
             ParseReturnValue(lines);
 
             if (lines.FirstLineTryMatch(Patterns.Variables))
