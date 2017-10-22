@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Write
     {
         public static void WriteToFolder(this Application application, string folderName)
         {
+            Directory.CreateDirectory(folderName);
+
             application.Tables.ForEach(t => t.WriteToFolder(folderName));
             application.Pages.ForEach(p => p.WriteToFolder(folderName));
             application.Reports.ForEach(r => r.WriteToFolder(folderName));
