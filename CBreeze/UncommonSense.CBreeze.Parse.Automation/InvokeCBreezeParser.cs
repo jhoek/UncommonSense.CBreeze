@@ -14,12 +14,14 @@ namespace UncommonSense.CBreeze.Parse.Automation
     [Cmdlet(VerbsLifecycle.Invoke, "CBreezeParser")]
     public partial class InvokeCBreezeParser : PSCmdlet
     {
+        /// <Exclude/>
         protected Parser Parser
         {
             get;
             private set;
         }
 
+        /// <Exclude/>
         protected override void BeginProcessing()
         {
             base.BeginProcessing();
@@ -27,6 +29,7 @@ namespace UncommonSense.CBreeze.Parse.Automation
             Parser = new Parser() { Listener = new Listener(this) };
         }
 
+        /// <Exclude/>
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
