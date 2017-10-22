@@ -12,6 +12,15 @@ namespace UncommonSense.CBreeze.Core
             : base(name)
         {
         }
+
+        public override string ToString()
+        {
+            switch (Value)
+            {
+                case EventSubscriberInstance.StaticAutomatic: return "Static-Automatic";
+                default: return Value.ToString();
+            }   
+        }
     }
 #endif
 }
