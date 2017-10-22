@@ -93,7 +93,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObject(ApplicationBuilder.FromFiles(FilesFromCachedPaths()));
+                    WriteObject(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths()));
                     break;
 
                 case "FromDatabase":

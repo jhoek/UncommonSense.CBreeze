@@ -15,8 +15,8 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .FromFile(@"C:\Users\jhoek\Desktop\testpermissions.txt")
-                .Write(@"c:\users\jhoek\Desktop\output.txt");
+                .ReadFromFile(@"C:\Users\jhoek\Desktop\tables.txt")
+                .WriteToFolder(@"c:\users\jhoek\Desktop\tables");
         }
     }
 }

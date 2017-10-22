@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.IO
 
             try
             {
-                application.Write(fileName);
+                application.WriteToFile(fileName);
                 DevClient.Run(devClient, arguments);
             }
             finally

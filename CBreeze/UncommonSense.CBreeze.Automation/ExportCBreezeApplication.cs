@@ -118,17 +118,17 @@ namespace UncommonSense.CBreeze.Automation
                 case "ToPath":
                     var path = GetUnresolvedProviderPathFromPSPath(Path);
                     writeVerbose("path", path);
-                    CachedObjects.Write(path);
+                    CachedObjects.WriteToFile(path);
                     break;
 
                 case "ToTextWriter":
                     writeVerbose("TextWriter", "");
-                    CachedObjects.Write(TextWriter ?? Console.Out);
+                    CachedObjects.WriteToTextWriter(TextWriter ?? Console.Out);
                     break;
 
                 case "ToStream":
                     writeVerbose("Stream", "");
-                    CachedObjects.Write(Stream);
+                    CachedObjects.WriteToStream(Stream);
                     break;
 
                 case "ToDatabase":

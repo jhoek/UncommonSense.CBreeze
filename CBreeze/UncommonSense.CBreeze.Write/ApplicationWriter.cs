@@ -9,33 +9,33 @@ namespace UncommonSense.CBreeze.Write
 {
     public static class ApplicationWriter
     {
-        public static void Write(this Application application)
+        public static void WriteToStdOut(this Application application)
         {
-            application.Write(Console.Out);
+            application.WriteToTextWriter(Console.Out);
         }
 
-        public static void Write(this Application application, Stream stream)
+        public static void WriteToStream(this Application application, Stream stream)
         {
             using (var streamWriter = new StreamWriter(stream, Encoding.GetEncoding("ibm850")))
             {
-                application.Write(streamWriter);
+                application.WriteToTextWriter(streamWriter);
             }
         }
 
-        public static void Write(this Application application, string fileName)
+        public static void WriteToFile(this Application application, string fileName)
         {
             using (var streamWriter = new StreamWriter(fileName, false, Encoding.GetEncoding("ibm850")))
             {
-                application.Write(streamWriter);
+                application.WriteToTextWriter(streamWriter);
             }
         }
 
-        public static void Write(this Application application, TextWriter textWriter)
+        public static void WriteToTextWriter(this Application application, TextWriter textWriter)
         {
-            application.Write(new CSideWriter(textWriter));
+            application.WriteToCSideWriter(new CSideWriter(textWriter));
         }
 
-        public static void Write(this Application application, CSideWriter writer)
+        public static void WriteToCSideWriter(this Application application, CSideWriter writer)
         {
             application.Tables.Write(writer);
             application.Reports.Write(writer);

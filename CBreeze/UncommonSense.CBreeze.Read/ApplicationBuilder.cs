@@ -39,11 +39,13 @@ namespace UncommonSense.CBreeze.Read
 
         private Stack<IEnumerable<Property>> currentProperties = new Stack<IEnumerable<Property>>();
 
-        public static Application FromFolder(string folderName) => FromFiles(Directory.EnumerateFiles(folderName, "*.txt"));
+        public static Application ReadFromFolder(string folderName) => ReadFromFiles(Directory.EnumerateFiles(folderName, "*.txt"));
 
-        public static Application FromFile(params string[] fileNames) => FromFiles(fileNames);
+        public static Application ReadFromFile(string fileName) => ReadFromFiles(fileName);
 
-        public static Application FromFiles(IEnumerable<string> fileNames)
+        public static Application ReadFromFiles(params string[] fileNames) => ReadFromFiles((IEnumerable<string>)fileNames);
+
+        public static Application ReadFromFiles(IEnumerable<string> fileNames)
         {
             var parser = new Parser();
             var application = new Application();
@@ -55,7 +57,7 @@ namespace UncommonSense.CBreeze.Read
             return application;
         }
 
-        public static Application FromLines(IEnumerable<string> lines)
+        public static Application ReadFromLines(IEnumerable<string> lines)
         {
             var parser = new Parser();
             var application = new Application();

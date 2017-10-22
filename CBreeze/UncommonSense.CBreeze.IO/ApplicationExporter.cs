@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.IO
             try
             {
                 DevClient.Run(devClient, arguments);
-                return ApplicationBuilder.FromFiles(new string[] { fileName });
+                return ApplicationBuilder.ReadFromFiles((IEnumerable<string>)(new string[] { fileName }));
             }
             finally
             {

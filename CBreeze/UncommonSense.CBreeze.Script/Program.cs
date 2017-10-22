@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Script
             foreach (var arg in args)
             {
                 var scriptFileName = Path.ChangeExtension(arg, ".ps1");
-                var application = ApplicationBuilder.FromFile(arg);
+                var application = ApplicationBuilder.ReadFromFiles(arg);
 
                 File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
             }
