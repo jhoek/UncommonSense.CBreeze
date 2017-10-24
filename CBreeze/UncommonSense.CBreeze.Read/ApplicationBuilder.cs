@@ -251,7 +251,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<DefaultLayoutProperty>(p => p.Value = propertyValue.ToEnum<DefaultLayout>()),
 #endif
 #if NAV2017
-                TypeSwitch.Case<TagListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()).Where(s=>!string.IsNullOrEmpty(s)))),
+                TypeSwitch.Case<TagListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()).Where(s => !string.IsNullOrEmpty(s)))),
 #endif
 #if NAV2016
                 TypeSwitch.Case<TableTypeProperty>(p => p.Value = propertyValue.ToEnum<TableType>()),
@@ -319,7 +319,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<TableRelationProperty>(p => p.SetTableRelationProperty(propertyValue)),
                 TypeSwitch.Case<TableViewProperty>(p => p.SetTableViewProperty(propertyValue)),
                 TypeSwitch.Case<TestIsolationProperty>(p => p.Value = propertyValue.ToEnum<TestIsolation>()),
-                TypeSwitch.Case<TestPermissionsProperty>(p=> p.Value = propertyValue.ToEnum<TestPermissions>()),
+                TypeSwitch.Case<TestPermissionsProperty>(p => p.Value = propertyValue.ToEnum<TestPermissions>()),
                 TypeSwitch.Case<TextEncodingProperty>(p => p.Value = propertyValue.ToEnum<TextEncoding>()),
                 TypeSwitch.Case<TextTypeProperty>(p => p.Value = propertyValue.ToEnum<TextType>()),
                 TypeSwitch.Case<TotalsMethodProperty>(p => p.Value = propertyValue.ToEnum<TotalsMethod>()),
@@ -496,6 +496,8 @@ namespace UncommonSense.CBreeze.Read
                 default:
                     throw new ArgumentOutOfRangeException("fieldType");
             }
+
+            currentTableField.Enabled = fieldEnabled;
         }
 
         public override void OnEndTableField()
