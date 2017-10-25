@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Event : IHasCodeLines, INode
+    public class Event : KeyedItem<int>, IHasName, IHasCodeLines, INode
     {
         public Event(int sourceID, string sourceName, int id, string name)
         {
@@ -40,12 +40,6 @@ namespace UncommonSense.CBreeze.Core
             internal set;
         }
 
-        public int ID
-        {
-            get;
-            protected set;
-        }
-
         public string Name
         {
             get;
@@ -77,5 +71,7 @@ namespace UncommonSense.CBreeze.Core
             get;
             protected set;
         }
+
+        public string GetName() => Name;
     }
 }

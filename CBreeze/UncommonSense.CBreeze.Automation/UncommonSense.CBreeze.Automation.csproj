@@ -102,7 +102,6 @@
     <Compile Include="PSCmdletWithDynamicParams.cs" />
     <Compile Include="NewCBreezePageControl.cs" />
     <Compile Include="NewCBreezeEvent.cs" />
-    <Compile Include="AddCBreezeEvent.cs" />
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
     <Compile Include="NewCBreezeQueryOrderBy.cs" />

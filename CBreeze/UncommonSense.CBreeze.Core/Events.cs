@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Events : Collection<Event>, INode
+        public class Events : IntegerKeyedAndNamedContainer<Event>, INode
     {
         internal Events(Code code)
         {
@@ -23,6 +23,8 @@ namespace UncommonSense.CBreeze.Core
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
+        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
+
         protected override void InsertItem(int index, Event item)
         {
             base.InsertItem(index, item);
@@ -35,10 +37,31 @@ namespace UncommonSense.CBreeze.Core
             base.RemoveItem(index);
         }
 
-        public new Event Add(Event item)
+        public override void ValidateName(Event item)
         {
-            base.Add(item);
-            return item;
+            TestNameNotNullOrEmpty(item);
+            TestNameUnique(item);
+        }
+
+        protected override void TestNameNotNullOrEmpty(Event item)
+        {
+            if (string.IsNullOrEmpty(item.Name))
+                throw new ArgumentOutOfRangeException("Collection items must have a name.");
+            if (string.IsNullOrEmpty(item.SourceName))
+                throw new ArgumentOutOfRangeException("Collection items must have a source name.");
+        }
+
+        protected override void TestNameUnique(Event item)
+        {
+            var newName = $"{item.SourceName}::{item.Name}";
+
+            var existingNames = this
+                    .Where(e => !string.IsNullOrEmpty(e.SourceName))
+                    .Where(e => !string.IsNullOrEmpty(e.Name))
+                    .Select(e => $"{e.SourceName}::{e.Name}");
+
+            if (existingNames.Any(n => n.Equals(newName, StringComparison.InvariantCultureIgnoreCase)))
+                throw new ArgumentOutOfRangeException("Collection item names must be unique.");
         }
     }
 }

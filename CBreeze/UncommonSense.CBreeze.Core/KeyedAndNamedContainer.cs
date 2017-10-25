@@ -26,13 +26,13 @@ namespace UncommonSense.CBreeze.Core
             base.InsertItem(index, item);
         }
 
-        protected void TestNameNotNullOrEmpty(TItem item)
+        protected virtual void TestNameNotNullOrEmpty(TItem item)
         {
             if (string.IsNullOrEmpty(item.GetName()))
                 throw new ArgumentOutOfRangeException("Collection items must have a name.");
         }
 
-        protected void TestNameUnique(TItem item)
+        protected virtual void TestNameUnique(TItem item)
         {
             var newName = item.GetName();
 
