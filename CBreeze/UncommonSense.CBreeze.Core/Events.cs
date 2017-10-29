@@ -6,7 +6,10 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class Events : IntegerKeyedAndNamedContainer<Event>, INode
+    // Note: Events are not an IntegerKeyedAndNamedContainer for the following reasons:
+    // - The ID consists of a combination of the Source ID and the (event) ID;
+    // - IDs are not assigned from a range (ID is a well-known event ID; Source ID is an existing variable ID);
+    public class Events : KeyedCollection<Tuple<int, int>, Event>, INode
     {
         internal Events(Code code)
         {
@@ -23,10 +26,24 @@ namespace UncommonSense.CBreeze.Core
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
-        protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
+        public new Event Add(Event @event)
+        {
+            base.Add(@event);
+            return @event;
+        }
+
+        public void AddRange(IEnumerable<Event> events)
+        {
+            foreach (var @event in events)
+            {
+                Add(@event);
+            }
+        }
 
         protected override void InsertItem(int index, Event item)
         {
+            ValidateName(item);
+
             base.InsertItem(index, item);
             item.Container = this;
         }
@@ -37,13 +54,13 @@ namespace UncommonSense.CBreeze.Core
             base.RemoveItem(index);
         }
 
-        public override void ValidateName(Event item)
+        public virtual void ValidateName(Event item)
         {
             TestNameNotNullOrEmpty(item);
             TestNameUnique(item);
         }
 
-        protected override void TestNameNotNullOrEmpty(Event item)
+        protected virtual void TestNameNotNullOrEmpty(Event item)
         {
             if (string.IsNullOrEmpty(item.Name))
                 throw new ArgumentOutOfRangeException("Collection items must have a name.");
@@ -51,17 +68,21 @@ namespace UncommonSense.CBreeze.Core
                 throw new ArgumentOutOfRangeException("Collection items must have a source name.");
         }
 
-        protected override void TestNameUnique(Event item)
+        protected virtual void TestNameUnique(Event item)
         {
-            var newName = $"{item.SourceName}::{item.Name}";
+            var newName = GetNamesForItem(item);
 
             var existingNames = this
                     .Where(e => !string.IsNullOrEmpty(e.SourceName))
                     .Where(e => !string.IsNullOrEmpty(e.Name))
-                    .Select(e => $"{e.SourceName}::{e.Name}");
+                    .Select(e => GetNamesForItem(e));
 
-            if (existingNames.Any(n => n.Equals(newName, StringComparison.InvariantCultureIgnoreCase)))
+            if (existingNames.Any(n => Tuple.Equals(n, newName)))
                 throw new ArgumentOutOfRangeException("Collection item names must be unique.");
         }
+
+        protected Tuple<string, string> GetNamesForItem(Event item) => new Tuple<string, string>(item.SourceName, item.Name);
+
+        protected override Tuple<int, int> GetKeyForItem(Event item) => new Tuple<int, int>(item.SourceID, item.ID);
     }
 }
