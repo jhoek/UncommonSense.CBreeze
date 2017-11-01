@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayParameter.cs" />
-    <Compile Include="CollectionsToStatements.cs" />
     <Compile Include="Invocation.cs" />
     <Compile Include="Literal.cs" />
     <Compile Include="ParameterBase.cs" />
