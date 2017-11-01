@@ -100,9 +100,7 @@ namespace UncommonSense.CBreeze.Automation
 
         public static IEnumerable<int> GetVariableIDs(this PSObject inputObject)
         {
-            Variables variables = null;
-
-            if (TryGetVariables(inputObject, out variables))
+            if (TryGetVariables(inputObject, out Variables variables))
                 return variables.Select(v => v.ID);
 
             return Enumerable.Empty<int>();

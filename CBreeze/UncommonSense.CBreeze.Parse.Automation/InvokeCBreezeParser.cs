@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Parse.Automation
 {
+#pragma warning disable CS1734
     /// <summary>
     /// <para type="synopsis">Parses a Microsoft Dynamics NAV text export and enumerates the objects and subobjects found.</para> 
     /// <para type="description">Uses the UncommonSense.CBreeze.Parser library to parse the objects in the file named <paramref name="LiteralPath">LiteralPath</paramref>. Provide scriptblock parameters to respond to the events that are triggered as (sub)objects are found.</para> 
     /// </summary>
+#pragma warning restore CS1734
     [Cmdlet(VerbsLifecycle.Invoke, "CBreezeParser")]
     public partial class InvokeCBreezeParser : PSCmdlet
     {

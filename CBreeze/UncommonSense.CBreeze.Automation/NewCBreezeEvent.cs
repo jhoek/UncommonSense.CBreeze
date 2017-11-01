@@ -7,47 +7,41 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeEvent")]
+    [Cmdlet(VerbsCommon.New, "CBreezeEvent", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Event))]
     [Alias("Event")]
-    public class NewCBreezeEvent : Cmdlet
+    public class NewCBreezeEvent : NewItemWithIDAndNameCmdlet<Event, int, PSObject>
     {
-        [Parameter(Mandatory = true, Position = 2)]
-        [ValidateRange(1, int.MaxValue)]
-        public int ID
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 3)]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
         public int SourceID
         {
             get;
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = ParameterSetNames.AddWithID)]
         public string SourceName
         {
             get;
             set;
         }
 
-        [Parameter(Position = 4)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 5, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 4, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 5, ParameterSetName = ParameterSetNames.AddWithID)]
         public ScriptBlock SubObjects
         {
             get; set;
         }
 
-        protected Event CreateEvent()
+        protected override IEnumerable<Event> CreateItems()
         {
             var @event = new Event(SourceID, SourceName, ID, Name);
 
@@ -60,12 +54,65 @@ namespace UncommonSense.CBreeze.Automation
                 @event.CodeLines.AddRange(subObjects.OfType<string>());
             }
 
-            return @event;
+            yield return @event;
         }
 
-        protected override void ProcessRecord()
+        protected override void AddItemToInputObject(Event item, PSObject inputObject)
         {
-            WriteObject(CreateEvent());
+            switch (inputObject.BaseObject)
+            {
+                case Table t:
+                    AddItemToInputObject(item, t);
+                    break;
+
+                case Page p:
+                    AddItemToInputObject(item, p);
+                    break;
+
+                case Report r:
+                    AddItemToInputObject(item, r);
+                    break;
+
+                case Codeunit c:
+                    AddItemToInputObject(item, c);
+                    break;
+
+                case Query q:
+                    AddItemToInputObject(item, q);
+                    break;
+
+                case XmlPort x:
+                    AddItemToInputObject(item, x);
+                    break;
+
+                case Code c:
+                    AddItemToInputObject(item, c);
+                    break;
+
+                case Events e:
+                    AddItemToInputObject(item, e);
+                    break;
+
+                default:
+                    base.AddItemToInputObject(item, inputObject);
+                    break;
+            }
         }
+
+        protected void AddItemToInputObject(Event item, Table table) => AddItemToInputObject(item, table.Code);
+
+        protected void AddItemToInputObject(Event item, Page page) => AddItemToInputObject(item, page.Code);
+
+        protected void AddItemToInputObject(Event item, Report report) => AddItemToInputObject(item, report.Code);
+
+        protected void AddItemToInputObject(Event item, Codeunit codeunit) => AddItemToInputObject(item, codeunit.Code);
+
+        protected void AddItemToInputObject(Event item, Query query) => AddItemToInputObject(item, query.Code);
+
+        protected void AddItemToInputObject(Event item, XmlPort xmlPort) => AddItemToInputObject(item, xmlPort.Code);
+
+        protected void AddItemToInputObject(Event item, Code code) => AddItemToInputObject(item, code.Events);
+
+        protected void AddItemToInputObject(Event item, Events events) => events.Add(item);
     }
 }
