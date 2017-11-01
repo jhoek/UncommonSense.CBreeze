@@ -8,8 +8,6 @@
         $fakeBoundParameter
     )
 
-    Write-Host $wordToComplete
-
     [UncommonSense.CBreeze.Core.BaseApp+TableNames].GetFields('Static,Public') | 
         ForEach-Object { $_.GetValue($null) } |
         Where-Object { $_ -like "$WordToComplete*" } |
@@ -17,5 +15,23 @@
         ForEach-Object { "'$_'" }
 }
 
-Register-ArgumentCompleter -CommandName 'New-CBreezeCalcFormula' -ParameterName TableName -ScriptBlock ${function:TableNameCompleter}
-Register-ArgumentCompleter -CommandName 'Add-CBreezeTableRelation' -ParameterName TableName -ScriptBlock ${function:TableNameCompleter}
+function ImageNameCompleter {
+    param
+    (
+        $commandName, 
+        $parameterName, 
+        $wordToComplete, 
+        $commandAst, 
+        $fakeBoundParameter
+    )
+	
+	[UncommonSense.CBreeze.Core.RunTime+Images].GetFields('Static,Public') |
+		ForEach-Object { $_.GetValue($null) } |
+		Where-Object { $_ -like "$wordToComplete*"} |
+		Sort-Object |
+		ForEach-Object { "'$_'" }
+}
+
+Register-ArgumentCompleter -ParameterName TableName -ScriptBlock ${function:TableNameCompleter}
+Register-ArgumentCompleter -CommandName 'New-CBreezePageAction' -ParameterName Image -ScriptBlock ${function:ImageNameCompleter}
+Register-ArgumentCompleter -CommandName 'New-CBreezePageGroup' -ParameterName Image -ScriptBlock ${function:ImageNameCompleter}
