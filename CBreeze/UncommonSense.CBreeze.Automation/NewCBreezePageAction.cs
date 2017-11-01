@@ -8,12 +8,23 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezePageAction")]
+    [Cmdlet(VerbsCommon.New, "CBreezePageAction", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PageAction))]
     [Alias("Action")]
-    public class NewCBreezePageAction : NewCBreezePageActionBase
+    public class NewCBreezePageAction : NewItemWithIDCmdlet<PageAction, int, PSObject>
     {
-        [Parameter(Position = 1)]
+#if NAV2015
+        [Parameter()]
+        public AccessByPermission AccessByPermission
+        {
+            get; set;
+        }
+#endif
+
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
         public string Caption
         {
             get; set;
@@ -37,7 +48,10 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter(Position = 2)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
         public string Image
         {
             get; set;
@@ -53,6 +67,13 @@ namespace UncommonSense.CBreeze.Automation
         public string Name
         {
             get; set;
+        }
+
+        [Parameter()]
+        public Position? Position
+        {
+            get;
+            set;
         }
 
         [Parameter()]
@@ -134,11 +155,12 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public ScriptBlock SubObjects { get; set; }
 
-        protected PageAction CreatePageAction()
+        protected override IEnumerable<PageAction> CreateItems()
         {
-            WriteVerbose("Creating page action");
-
-            var pageAction = new PageAction(GetID(), GetIndentation());
+            var pageAction = new PageAction(ID, GetIndentation());
+#if NAV2015
+            pageAction.Properties.AccessByPermission.Set(AccessByPermission);
+#endif
             pageAction.Properties.CaptionML.Set("ENU", Caption);
             pageAction.Properties.Description = Description;
             pageAction.Properties.Ellipsis = Ellipsis;
@@ -169,12 +191,55 @@ namespace UncommonSense.CBreeze.Automation
                     ?? Enumerable.Empty<TableFilterLine>()
                 );
 
-            return pageAction;
+            yield return pageAction;
         }
 
-        protected override void ProcessRecord()
+        protected override void AddItemToInputObject(PageAction item, PSObject inputObject)
         {
-            WriteObject(CreatePageAction());
+            var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
+
+            switch (InputObject.BaseObject)
+            {
+                case PageActionContainer c:
+                    c.AddChildPageAction(item, position);
+                    break;
+
+                case PageActionGroup g:
+                    g.AddChildPageAction(item, position);
+                    break;
+
+                case ActionList a:
+                    a.AddPageActionAtPosition(item, position);
+                    break;
+
+                case IPage p:
+                    p.AddPageActionAtPosition(item, position);
+                    break;
+
+                default:
+                    base.AddItemToInputObject(item, inputObject);
+                    break;
+            }
+        }
+
+        protected int GetIndentation()
+        {
+            return ParameterSetNames.IsNew(ParameterSetName)
+                ? (int)GetVariableValue("Indentation", 0)
+                : GetParentIndentationLevel() + 1;
+        }
+
+        protected int GetParentIndentationLevel()
+        {
+            switch (InputObject.BaseObject)
+            {
+                case PageActionContainer c:
+                    return c.IndentationLevel.GetValueOrDefault(0);
+                case PageActionGroup g:
+                    return g.IndentationLevel.GetValueOrDefault(0);
+                default:
+                    return 0;
+            }
         }
     }
 }
