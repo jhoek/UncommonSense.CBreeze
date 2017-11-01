@@ -23,13 +23,27 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (obj)
             {
-                case Table t: application.Tables.Add(t); break;
-                case Page p: application.Pages.Add(p); break;
-                case Report r: application.Reports.Add(r); break;
-                case Codeunit c: application.Codeunits.Add(c); break;
-                case XmlPort x: application.XmlPorts.Add(x); break;
-                case Query q: application.Queries.Add(q); break;
-                case MenuSuite m: application.MenuSuites.Add(m); break;
+                case Table t:
+                    application.Tables.Add(t);
+                    break;
+                case Page p:
+                    application.Pages.Add(p);
+                    break;
+                case Report r:
+                    application.Reports.Add(r);
+                    break;
+                case Codeunit c:
+                    application.Codeunits.Add(c);
+                    break;
+                case XmlPort x:
+                    application.XmlPorts.Add(x);
+                    break;
+                case Query q:
+                    application.Queries.Add(q);
+                    break;
+                case MenuSuite m:
+                    application.MenuSuites.Add(m);
+                    break;
             }
 
             return obj;
@@ -79,10 +93,14 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (inputObject.BaseObject)
             {
-                case Parameters n: return n.Select(p => p.ID);
-                case Function f: return f.Parameters.Select(p => p.ID);
-                case Event e: return e.Parameters.Select(p => p.ID);
-                default: return Enumerable.Empty<int>();
+                case Parameters n:
+                    return n.Select(p => p.ID);
+                case Function f:
+                    return f.Parameters.Select(p => p.ID);
+                case Event e:
+                    return e.Parameters.Select(p => p.ID);
+                default:
+                    return Enumerable.Empty<int>();
             }
         }
 
