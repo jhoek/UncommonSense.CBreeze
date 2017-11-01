@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -18,6 +19,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             get; set;
         }
+
+        [Parameter()]
+        public Hashtable CaptionML { get; set; }
 
         [Parameter()]
         public string CardPageID
@@ -85,15 +89,23 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
+        [Parameter()] public ScriptBlock OnAfterGetCurrRecord { get; set; }
+        [Parameter()] public ScriptBlock OnAfterGetRecord { get; set; }
+        [Parameter()] public ScriptBlock OnClosePage { get; set; }
+        [Parameter()] public ScriptBlock OnDeleteRecord { get; set; }
+        [Parameter()] public ScriptBlock OnFindRecord { get; set; }
+        [Parameter()] public ScriptBlock OnInit { get; set; }
+        [Parameter()] public ScriptBlock OnInsertRecord { get; set; }
+        [Parameter()] public ScriptBlock OnModifyRecord { get; set; }
+        [Parameter()] public ScriptBlock OnNewRecord { get; set; }
+        [Parameter()] public ScriptBlock OnNextRecord { get; set; }
+        [Parameter()] public ScriptBlock OnOpenPage { get; set; }
+        [Parameter()] public ScriptBlock OnQueryClosePage { get; set; }
         [Parameter()] public PageType? PageType { get; set; }
         [Parameter()] public Permission[] Permissions { get; set; }
         [Parameter()] public bool? PopulateAllFields { get; set; }
-
-        [Parameter()]
-        public bool? RefreshOnActivate
-        {
-            get; set;
-        }
+        [Parameter()] public Hashtable PromotedActionCategoriesML { get; set; }
+        [Parameter()] public bool? RefreshOnActivate { get; set; }
 
         [Parameter()]
         public bool? SaveValues
@@ -131,6 +143,7 @@ namespace UncommonSense.CBreeze.Automation
             SetObjectProperties(page);
 
             page.Properties.AutoSplitKey = AutoSplitKey;
+            page.Properties.CaptionML.Set(CaptionML);
             page.Properties.CardPageID = CardPageID;
             page.Properties.DataCaptionExpr = DataCaptionExpr;
             page.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
@@ -145,6 +158,7 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.PageType = PageType;
             page.Properties.Permissions.Set(Permissions);
             page.Properties.PopulateAllFields = PopulateAllFields;
+            page.Properties.PromotedActionCategoriesML.Set(PromotedActionCategoriesML);
             page.Properties.RefreshOnActivate = RefreshOnActivate;
             page.Properties.SaveValues = SaveValues;
             page.Properties.ShowFilter = ShowFilter;
@@ -153,6 +167,19 @@ namespace UncommonSense.CBreeze.Automation
 
             if (AutoCaption)
                 page.AutoCaption();
+
+            ProcessTrigger(OnAfterGetCurrRecord, page.Properties.OnAfterGetCurrRecord);
+            ProcessTrigger(OnAfterGetRecord, page.Properties.OnAfterGetRecord);
+            ProcessTrigger(OnClosePage, page.Properties.OnClosePage);
+            ProcessTrigger(OnDeleteRecord, page.Properties.OnDeleteRecord);
+            ProcessTrigger(OnFindRecord, page.Properties.OnFindRecord);
+            ProcessTrigger(OnInit, page.Properties.OnInit);
+            ProcessTrigger(OnInsertRecord, page.Properties.OnInsertRecord);
+            ProcessTrigger(OnModifyRecord, page.Properties.OnModifyRecord);
+            ProcessTrigger(OnNewRecord, page.Properties.OnNewRecord);
+            ProcessTrigger(OnNextRecord, page.Properties.OnNextRecord);
+            ProcessTrigger(OnOpenPage, page.Properties.OnOpenPage);
+            ProcessTrigger(OnQueryClosePage, page.Properties.OnQueryClosePage);
 
             if (SubObjects != null)
             {
@@ -167,6 +194,16 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             yield return page;
+        }
+
+        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
+        {
+            if (scriptBlock != null)
+            {
+                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
+                trigger.Variables.AddRange(subObjects.OfType<Variable>());
+                trigger.CodeLines.AddRange(subObjects.OfType<string>());
+            }
         }
     }
 }
