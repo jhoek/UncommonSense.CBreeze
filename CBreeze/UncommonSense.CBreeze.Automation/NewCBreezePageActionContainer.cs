@@ -54,19 +54,15 @@ namespace UncommonSense.CBreeze.Automation
 
         }
 
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
         public ScriptBlock ChildActions
         {
             get; set;
         }
 
-        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
         public ActionContainerType? ContainerType
         {
             get; set;

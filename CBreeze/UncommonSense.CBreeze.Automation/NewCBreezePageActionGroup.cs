@@ -68,19 +68,15 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
         public string Caption
         {
             get; set;
         }
 
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
         public ScriptBlock ChildActions
         {
             get; set;
@@ -126,7 +122,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetParentIndentationLevel()
         {
-            switch (InputObject.BaseObject)
+            switch (InputObject?.BaseObject)
             {
                 case PageActionContainer c:
                     return c.IndentationLevel.GetValueOrDefault(0);
