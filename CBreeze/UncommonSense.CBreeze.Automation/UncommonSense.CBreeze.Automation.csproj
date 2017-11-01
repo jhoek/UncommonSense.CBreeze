@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\UncommonSense.CBreeze.Automation\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NAV2013R2 NAV2015 NAV2016 NAV2017</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -140,9 +140,13 @@
     <None Include="README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="UncommonSense.CBreeze.Automation.Format.ps1xml" />
-    <None Include="UncommonSense.CBreeze.Automation.psd1" />
-    <None Include="UncommonSense.CBreeze.Automation.ps1" />
+    <None Include="UncommonSense.CBreeze.Automation.Format.ps1xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="manifest.psd1" />
+    <None Include="UncommonSense.CBreeze.Automation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Update-README.ps1" />
   </ItemGroup>
   <ItemGroup>
@@ -202,8 +206,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)manifest.psd1 $(TargetDir)UncommonSense.CBreeze.Automation.psd1</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
