@@ -16,5 +16,14 @@ namespace UncommonSense.CBreeze.Common
 
             return items;
         }
+
+        public static IEnumerable<T> Concat<T>(this T item, IEnumerable<T> otherItems)
+        {
+            return 
+                Enumerable.Concat(
+                    new[] { item },
+                    otherItems
+                );
+        }
     }
 }
