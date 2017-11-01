@@ -34,6 +34,20 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
+        protected virtual IEnumerable<T> CreateIndentedChildItems<T>(ScriptBlock scriptBlock, int indentation)
+        {
+            var variables = new List<PSVariable>()
+            {
+                new PSVariable("Indentation", indentation)
+            };
+
+            return scriptBlock?
+                .InvokeWithContext(null, variables)
+                .Select(o => o.BaseObject)
+                .Cast<T>()
+                ?? Enumerable.Empty<T>();
+        }
+
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public virtual TInputObject InputObject { get; set; }
 
