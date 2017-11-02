@@ -101,7 +101,10 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? PromotedOnly { get; set; }
+        public bool? PromotedOnly
+        {
+            get; set;
+        }
 
         [Parameter()]
         public RunObjectType? RunObjectType
