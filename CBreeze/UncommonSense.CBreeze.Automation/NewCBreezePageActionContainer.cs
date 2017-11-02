@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
@@ -32,9 +33,10 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageActionBase> CreateItems()
         {
-            var pageActionContainer = new PageActionContainer(0, ID, ContainerType.GetValueOrDefault(ActionContainerType.ActionItems));
+            var pageActionContainer = new PageActionContainer(0, ID, ActionContainerType.GetValueOrDefault(Core.ActionContainerType.ActionItems));
             pageActionContainer.Properties.Description = Description;
             pageActionContainer.Properties.Name = Name;
+            pageActionContainer.Properties.ToolTipML.Set(ToolTipML);
 
             yield return pageActionContainer;
 
@@ -63,7 +65,8 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        public ActionContainerType? ContainerType
+        [Parameter()]
+        public ActionContainerType? ActionContainerType
         {
             get; set;
         }
@@ -85,5 +88,8 @@ namespace UncommonSense.CBreeze.Automation
         {
             get; set;
         }
+
+        [Parameter()]
+        public Hashtable ToolTipML { get; set; }
     }
 }

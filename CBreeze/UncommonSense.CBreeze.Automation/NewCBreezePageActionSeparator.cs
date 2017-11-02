@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
 
@@ -33,7 +34,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             var pageActionSeparator = new PageActionSeparator(ID, GetIndentation());
 
-            pageActionSeparator.Properties.CaptionML.Set("ENU", Caption);
+            pageActionSeparator.Properties.CaptionML.Set(CaptionML);
             pageActionSeparator.Properties.IsHeader = IsHeader;
 
             yield return pageActionSeparator;
@@ -70,7 +71,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public string Caption
+        public Hashtable CaptionML
         {
             get; set;
         }

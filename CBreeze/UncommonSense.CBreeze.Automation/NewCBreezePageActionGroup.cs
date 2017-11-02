@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -15,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             var pageActionGroup = new PageActionGroup(ID, GetIndentation());
 
-            pageActionGroup.Properties.CaptionML.Set("ENU", Caption);
+            pageActionGroup.Properties.CaptionML.Set(CaptionML);
             pageActionGroup.Properties.Description = Description;
             pageActionGroup.Properties.Enabled = Enabled;
             pageActionGroup.Properties.Image = Image;
@@ -68,7 +69,8 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        public string Caption
+        [Parameter()]
+        public Hashtable CaptionML
         {
             get; set;
         }

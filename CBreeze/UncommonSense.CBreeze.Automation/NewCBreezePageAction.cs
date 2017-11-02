@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -21,11 +22,16 @@ namespace UncommonSense.CBreeze.Automation
         }
 #endif
 
+#if NAV2017
+        [Parameter()]
+        public string[] ApplicationArea { get; set; }
+#endif
+
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-        public string Caption
+        public Hashtable CaptionML
         {
             get; set;
         }
@@ -95,6 +101,9 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public bool? PromotedOnly { get; set; }
+
+        [Parameter()]
         public RunObjectType? RunObjectType
         {
             get; set;
@@ -147,6 +156,9 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
+        public Hashtable ToolTipML { get; set; }
+
+        [Parameter()]
         public string Visible
         {
             get; set;
@@ -161,7 +173,10 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
             pageAction.Properties.AccessByPermission.Set(AccessByPermission);
 #endif
-            pageAction.Properties.CaptionML.Set("ENU", Caption);
+#if NAV2017
+            pageAction.Properties.ApplicationArea.Set(ApplicationArea);
+#endif
+            pageAction.Properties.CaptionML.Set(CaptionML);
             pageAction.Properties.Description = Description;
             pageAction.Properties.Ellipsis = Ellipsis;
             pageAction.Properties.Enabled = Enabled;
@@ -171,6 +186,9 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.Promoted = Promoted;
             pageAction.Properties.PromotedCategory = PromotedCategory;
             pageAction.Properties.PromotedIsBig = PromotedIsBig;
+#if NAV2017
+            pageAction.Properties.PromotedOnly = PromotedOnly;
+#endif
             pageAction.Properties.RunObject.Type = RunObjectType;
             pageAction.Properties.RunObject.ID = RunObjectID;
             pageAction.Properties.RunPageMode = RunPageMode;
@@ -181,6 +199,7 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.Scope = Scope;
 #endif
             pageAction.Properties.ShortCutKey = ShortcutKey;
+            pageAction.Properties.ToolTipML.Set(ToolTipML);
             pageAction.Properties.Visible = Visible;
 
             pageAction.Properties.RunPageView.TableFilter.AddRange(

@@ -18,6 +18,14 @@ namespace UncommonSense.CBreeze.Core
             AddRange(tags);
         }
 
+        public void Set(string[] values)
+        {
+            Clear();
+
+            if (values != null)
+                AddRange(values);
+        }
+
         public string ValidTagPattern => @"^#[A-Za-z0-9]+$";
 
         public bool IsValidTag(string tag) => Regex.IsMatch(tag, ValidTagPattern);

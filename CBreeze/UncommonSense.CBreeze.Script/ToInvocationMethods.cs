@@ -158,7 +158,17 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("SubObjects", children.ToInvocation(1));
+            yield return new ScriptBlockParameter("ChildActions", children.ToInvocation(1));
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this PageAction pageAction)
+        {
+            yield return new SimpleParameter("ID", pageAction.ID);
+
+            foreach (var parameter in pageAction.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
         }
 
         public static IEnumerable<ParameterBase> Parameters(this Function function)
@@ -392,7 +402,7 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this PageActionGroup pageActionGroup, IEnumerable<PageActionBase> children) => new Invocation("New-CBreezePageActionGroup"); // FIXME: parameters
 
-        public static Invocation ToInvocation(this PageAction pageAction) => new Invocation("New-CBreezePageAction"); // FIXME: parameters
+        public static Invocation ToInvocation(this PageAction pageAction) => new Invocation("New-CBreezePageAction", pageAction.Parameters());
 
         public static Invocation ToInvocation(this PageActionSeparator pageActionSeparator) => new Invocation("New-CBreezePageActionSeparator"); // FIXME: parameters
 
@@ -519,6 +529,11 @@ namespace UncommonSense.CBreeze.Script
                 case DecimalPlacesProperty d:
                     yield return new SimpleParameter("DecimalPlacesAtLeast", d.Value.AtLeast);
                     yield return new SimpleParameter("DecimalPlacesAtMost", d.Value.AtMost);
+                    break;
+
+                case RunObjectProperty r:
+                    yield return new SimpleParameter("RunObjectType", r.Value.Type);
+                    yield return new SimpleParameter("RunObjectID", r.Value.ID);
                     break;
 
                 default:
