@@ -161,6 +161,18 @@ namespace UncommonSense.CBreeze.Script
             yield return new ScriptBlockParameter("ChildActions", children.ToInvocation(1));
         }
 
+        public static IEnumerable<ParameterBase> Parameters(this PageActionGroup pageActionGroup, IEnumerable<PageActionBase> children)
+        {
+            yield return new SimpleParameter("ID", pageActionGroup.ID);
+
+            foreach (var parameter in pageActionGroup.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+
+            yield return new ScriptBlockParameter("ChildActions", children.ToInvocation(pageActionGroup.IndentationLevel.GetValueOrDefault(0) + 1));
+        }
+
         public static IEnumerable<ParameterBase> Parameters(this PageAction pageAction)
         {
             yield return new SimpleParameter("ID", pageAction.ID);
@@ -400,7 +412,7 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this PageActionContainer pageActionContainer, IEnumerable<PageActionBase> children) => new Invocation("New-CBreezePageActionContainer", pageActionContainer.Parameters(children));
 
-        public static Invocation ToInvocation(this PageActionGroup pageActionGroup, IEnumerable<PageActionBase> children) => new Invocation("New-CBreezePageActionGroup"); // FIXME: parameters
+        public static Invocation ToInvocation(this PageActionGroup pageActionGroup, IEnumerable<PageActionBase> children) => new Invocation("New-CBreezePageActionGroup", pageActionGroup.Parameters(children));
 
         public static Invocation ToInvocation(this PageAction pageAction) => new Invocation("New-CBreezePageAction", pageAction.Parameters());
 
