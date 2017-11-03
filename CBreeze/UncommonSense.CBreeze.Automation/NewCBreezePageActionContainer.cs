@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageActionBase> CreateItems()
         {
-            var pageActionContainer = new PageActionContainer(0, ID, ActionContainerType.GetValueOrDefault(Core.ActionContainerType.ActionItems));
+            var pageActionContainer = new PageActionContainer(0, ID, ContainerType.GetValueOrDefault(Core.ActionContainerType.ActionItems));
             pageActionContainer.Properties.Description = Description;
             pageActionContainer.Properties.Name = Name;
             pageActionContainer.Properties.ToolTipML.Set(ToolTipML);
@@ -66,7 +66,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public ActionContainerType? ActionContainerType
+        public ActionContainerType? ContainerType
         {
             get; set;
         }

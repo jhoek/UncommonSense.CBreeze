@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezePageActionGroup", DefaultParameterSetName =ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezePageActionGroup", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PageActionGroup))]
     [Alias("ActionGroup")]
     public class NewCBreezePageActionGroup : NewItemWithIDCmdlet<PageActionBase, int, PSObject>
@@ -17,6 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             var pageActionGroup = new PageActionGroup(ID, GetIndentation());
 
             pageActionGroup.Properties.CaptionML.Set(CaptionML);
+            pageActionGroup.Properties.ActionContainerType = ContainerType;
             pageActionGroup.Properties.Description = Description;
             pageActionGroup.Properties.Enabled = Enabled;
             pageActionGroup.Properties.Image = Image;
@@ -83,6 +84,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             get; set;
         }
+
+        [Parameter()]
+        public ActionContainerType? ContainerType { get; set; }
 
         [Parameter()]
         public string Description
