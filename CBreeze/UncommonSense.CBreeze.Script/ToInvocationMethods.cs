@@ -511,6 +511,10 @@ namespace UncommonSense.CBreeze.Script
         {
             switch (property)
             {
+                case ActionContainerTypeProperty t:
+                    yield return new SimpleParameter("ContainerType", t.Value);
+                    break;
+
                 case BooleanProperty b:
                     yield return new SwitchParameter(b.Name, b.Value);
                     break;
