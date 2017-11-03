@@ -149,7 +149,7 @@ namespace UncommonSense.CBreeze.Script
             // FIXME: Properties
         }
 
-        public static IEnumerable<ParameterBase> Parameters(this PageActionContainer pageActionContainer, IEnumerable<PageActionBase> children)
+        public static IEnumerable<ParameterBase> Parameters(this PageActionContainer pageActionContainer)
         {
             yield return new SimpleParameter("ID", pageActionContainer.ID);
 
@@ -158,10 +158,10 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("ChildActions", children.ToInvocation(1));
+            yield return new ScriptBlockParameter("ChildActions", pageActionContainer.ChildPageActions.Select(a => a.ToInvocation()));
         }
 
-        public static IEnumerable<ParameterBase> Parameters(this PageActionGroup pageActionGroup, IEnumerable<PageActionBase> children)
+        public static IEnumerable<ParameterBase> Parameters(this PageActionGroup pageActionGroup)
         {
             yield return new SimpleParameter("ID", pageActionGroup.ID);
 
@@ -170,7 +170,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("ChildActions", children.ToInvocation(pageActionGroup.IndentationLevel.GetValueOrDefault(0) + 1));
+            yield return new ScriptBlockParameter("ChildActions", pageActionGroup.ChildPageActions.Select(a => a.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> Parameters(this PageAction pageAction)
@@ -178,6 +178,16 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ID", pageAction.ID);
 
             foreach (var parameter in pageAction.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
+        public static IEnumerable<ParameterBase> Parameters(this PageActionSeparator pageActionSeparator)
+        {
+            yield return new SimpleParameter("ID", pageActionSeparator.ID);
+
+            foreach (var parameter in pageActionSeparator.Properties.WithAValue.SelectMany(p => p.ToParameters()))
             {
                 yield return parameter;
             }
@@ -354,6 +364,9 @@ namespace UncommonSense.CBreeze.Script
                 new ScriptBlockParameter(
                     "SubObjects",
                     page.Properties.ActionList.ToInvocation()
+                        .Concat(page.Code.Variables.ToInvocation().Cast<Statement>())
+                        .Concat(page.Code.Functions.ToInvocation().Cast<Statement>())
+                        .Concat(page.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
                 )
             };
 
@@ -378,45 +391,24 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.Parameters());
 
-        public static IEnumerable<Invocation> ToInvocation(this ActionList actionList) => actionList.ToInvocation(0);
+        public static IEnumerable<Invocation> ToInvocation(this ActionList actionList) => actionList.Where(a => a.IndentationLevel == 0).Select(a => a.ToInvocation());
 
-        public static IEnumerable<Invocation> ToInvocation(this IEnumerable<PageActionBase> actionList, int indentation)
-        {
-            return
-                actionList
-                    .Select((a, i) => new
-                    {
-                        Action = a,
-                        Children = actionList.Skip(i + 1).TakeWhile(c => c.IndentationLevel > a.IndentationLevel).Where(c => c.IndentationLevel == a.IndentationLevel + 1)
-                    })
-                    .Where(o => o.Action.IndentationLevel == indentation)
-                    .Select(o => o.Action.ToInvocation(o.Children));
-        }
-
-        public static Invocation ToInvocation(this PageActionBase pageActionBase, IEnumerable<PageActionBase> children)
+        public static Invocation ToInvocation(this PageActionBase pageActionBase)
         {
             switch (pageActionBase)
             {
                 case PageActionContainer c:
-                    return c.ToInvocation(children);
+                    return new Invocation("New-CBreezePageActionContainer", c.Parameters());
                 case PageActionGroup g:
-                    return g.ToInvocation(children);
+                    return new Invocation("New-CBreezePageActionGroup", g.Parameters());
                 case PageAction a:
-                    return a.ToInvocation();
+                    return new Invocation("New-CBreezePageAction", a.Parameters());
                 case PageActionSeparator s:
-                    return s.ToInvocation();
+                    return new Invocation("New-CBreezePageActionSeparator", s.Parameters());
                 default:
                     return null;
             }
         }
-
-        public static Invocation ToInvocation(this PageActionContainer pageActionContainer, IEnumerable<PageActionBase> children) => new Invocation("New-CBreezePageActionContainer", pageActionContainer.Parameters(children));
-
-        public static Invocation ToInvocation(this PageActionGroup pageActionGroup, IEnumerable<PageActionBase> children) => new Invocation("New-CBreezePageActionGroup", pageActionGroup.Parameters(children));
-
-        public static Invocation ToInvocation(this PageAction pageAction) => new Invocation("New-CBreezePageAction", pageAction.Parameters());
-
-        public static Invocation ToInvocation(this PageActionSeparator pageActionSeparator) => new Invocation("New-CBreezePageActionSeparator"); // FIXME: parameters
 
         public static IEnumerable<Invocation> ToInvocation(this Variables variables) => variables.Select(v => v.ToInvocation());
 
