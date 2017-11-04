@@ -124,7 +124,12 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        protected int GetIndentation() => GetParentIndentationLevel() + 1;
+        protected int GetIndentation()
+        {
+            return ParameterSetNames.IsNew(ParameterSetName)
+                ? (int)GetVariableValue("Indentation", 0)
+                : GetParentIndentationLevel() + 1;
+        }
 
         protected int GetParentIndentationLevel()
         {
