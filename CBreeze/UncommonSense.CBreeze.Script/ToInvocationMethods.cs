@@ -8,11 +8,7 @@ namespace UncommonSense.CBreeze.Script
 {
     public static class ToInvocationMethods
     {
-
         public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
-
-
-
 
         public static Invocation ToInvocation(this Application application)
         {
@@ -85,6 +81,7 @@ namespace UncommonSense.CBreeze.Script
                 new ScriptBlockParameter(
                     "SubObjects",
                     page.Properties.ActionList.ToInvocation()
+                        .Concat(page.Controls.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Variables.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Functions.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
@@ -112,6 +109,23 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.ToParameters());
 
+        public static IEnumerable<Invocation> ToInvocation(this PageControls pageControls) => pageControls.Select(c => c.ToInvocation());
+
+        public static Invocation ToInvocation(this PageControl pageControl)
+        {
+            switch (pageControl)
+            {
+                case ContainerPageControl c:
+                    return new Invocation("New-CBreezeContainerPageControl"); //, c.ToParameters());
+                case GroupPageControl g:
+                    return new Invocation("New-CBreezeGroupPageControl"); // , g.Toparameters());
+                case FieldPageControl f:
+                // FIXME:
+                default:
+                    return null;
+            }
+        }
+
         public static IEnumerable<Invocation> ToInvocation(this ActionList actionList) => actionList.Where(a => a.IndentationLevel == 0).Select(a => a.ToInvocation());
 
         public static Invocation ToInvocation(this PageActionBase pageActionBase)
@@ -120,12 +134,16 @@ namespace UncommonSense.CBreeze.Script
             {
                 case PageActionContainer c:
                     return new Invocation("New-CBreezePageActionContainer", c.ToParameters());
+
                 case PageActionGroup g:
                     return new Invocation("New-CBreezePageActionGroup", g.ToParameters());
+
                 case PageAction a:
                     return new Invocation("New-CBreezePageAction", a.ToParameters());
+
                 case PageActionSeparator s:
                     return new Invocation("New-CBreezePageActionSeparator", s.ToParameters());
+
                 default:
                     return null;
             }
@@ -219,6 +237,5 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocations(this TableRelationConditions conditions) => conditions.Select(c => c.ToInvocation());
 
         public static IEnumerable<Invocation> ToInvocations(this TableRelationTableFilter filter) => filter.Select(l => l.ToInvocation());
-
     }
 }
