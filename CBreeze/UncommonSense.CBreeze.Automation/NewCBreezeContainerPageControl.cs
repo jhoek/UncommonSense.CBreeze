@@ -34,21 +34,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected void AddItemToInputObject(PageControl item, IPage page) => AddItemToInputObject(item, page.Controls);
 
-        protected void AddItemToInputObject(PageControl item, PageControls pageControls)
-        {
-            var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
-
-            switch (position)
-            {
-                case Core.Position.FirstWithinContainer:
-                    pageControls.Insert(0, item);
-                    break;
-
-                case Core.Position.LastWithinContainer:
-                    pageControls.Add(item);
-                    break;
-            }
-        }
+        protected void AddItemToInputObject(PageControl item, PageControls pageControls) => pageControls.Add(item, Position);
 
         protected override IEnumerable<PageControl> CreateItems()
         {

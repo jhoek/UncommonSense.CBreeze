@@ -106,6 +106,7 @@
     <Compile Include="EventSubscriberInstanceProperty.cs" />
     <Compile Include="EventType.cs" />
     <Compile Include="EventVariables.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ExternalAccess.cs" />
     <Compile Include="ExternalAccessProperty.cs" />
     <Compile Include="FilterPageBuilderParameter.cs" />
