@@ -16,9 +16,33 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void AddItemToInputObject(PageControl item, PSObject inputObject)
         {
-            // FIXME:
-            //base.AddItemToInputObject(item, inputObject);
+            switch (inputObject.BaseObject)
+            {
+                case ContainerPageControl c:
+                    c.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    break;
+
+                case GroupPageControl g:
+                    g.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    break;
+
+                case PageControls c:
+                    AddItemToInputObject(item, c);
+                    break;
+
+                case IPage p:
+                    AddItemToInputObject(item, p);
+                    break;
+
+                default:
+                    base.AddItemToInputObject(item, inputObject);
+                    break;
+            }
         }
+
+        protected void AddItemToInputObject(PageControl item, IPage page) => AddItemToInputObject(item, page.Controls);
+
+        protected void AddItemToInputObject(PageControl item, PageControls pageControls) => pageControls.Add(item, Position);
 
         protected override IEnumerable<PageControl> CreateItems()
         {
@@ -59,7 +83,9 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetParentIndentation()
         {
-            throw new NotImplementedException(); // FIXME
+            return InputObject.BaseObject is PageControl
+                ? (InputObject.BaseObject as PageControl).IndentationLevel.GetValueOrDefault(0)
+                : 0;
         }
 
         [Parameter()] public SwitchParameter AutoCaption { get; set; }
@@ -80,6 +106,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string[] IndentationControls { get; set; }
         [Parameter()] public GroupPageControlLayout? Layout { get; set; }
         [Parameter()] public string Name { get; set; }
+        [Parameter()] public Position? Position { get; set; }
         [Parameter()] public bool? ShowAsTree { get; set; }
         [Parameter()] public string Visible { get; set; }
     }
