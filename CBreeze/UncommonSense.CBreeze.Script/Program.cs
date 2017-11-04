@@ -22,12 +22,13 @@ namespace UncommonSense.CBreeze.Script
 
                 File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
 
-                var processStartInfo = new ProcessStartInfo() {
+                var processStartInfo = new ProcessStartInfo()
+                {
                     FileName = @"C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe",
-                    Arguments = $"-NoExit -File test.ps1",
+                    Arguments = $"-File test.ps1",
                     WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
                 };
-                
+
                 Process.Start(processStartInfo);
             }
         }
