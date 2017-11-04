@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeContainerPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(ContainerPageControl))]
-    [Alias("Container")]
+    [Alias("ContainerControl")]
     public class NewCBreezeContainerPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControl item, PSObject inputObject)
