@@ -7,22 +7,28 @@ namespace UncommonSense.CBreeze.Core
 {
     public static class AutoCaptionExtensionMethods
     {
-        public static T AutoCaption<T>(this T item) where T : IHasProperties, IHasName
+        public static T AutoCaption<T>(this T item, bool condition = true) where T : IHasProperties, IHasName
         {
-            var captionML = item.AllProperties["CaptionML"];
+            if (condition)
+            {
+                var captionML = item.AllProperties["CaptionML"];
 
-            if (captionML != null)
-                (captionML as MultiLanguageProperty).Value.Set("ENU", item.GetName());
+                if (captionML != null)
+                    (captionML as MultiLanguageProperty).Value.Set("ENU", item.GetName());
+            }
 
             return item;
         }
 
-        public static T AutoOptionCaption<T>(this T item) where T : IHasProperties, IHasOptionString
+        public static T AutoOptionCaption<T>(this T item, bool condition = true) where T : IHasProperties, IHasOptionString
         {
-            var optionCaptionML = item.AllProperties["OptionCaptionML"];
+            if (condition)
+            {
+                var optionCaptionML = item.AllProperties["OptionCaptionML"];
 
-            if (optionCaptionML != null)
-                (optionCaptionML as MultiLanguageProperty).Value.Set("ENU", item.GetOptionString());
+                if (optionCaptionML != null)
+                    (optionCaptionML as MultiLanguageProperty).Value.Set("ENU", item.GetOptionString());
+            }
 
             return item;
         }
