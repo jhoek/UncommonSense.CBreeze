@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DevClientCmdlet.cs" />
+    <Compile Include="NewCBreezeContainerPageControl.cs" />
+    <Compile Include="NewCBreezeGroupPageControl.cs" />
     <Compile Include="NewCBreezeTableFilter.cs" />
     <Compile Include="NewCBreezeCalcFormulaFilter.cs" />
     <Compile Include="NewCBreezeFunction1.cs">
