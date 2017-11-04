@@ -8,290 +8,11 @@ namespace UncommonSense.CBreeze.Script
 {
     public static class ToInvocationMethods
     {
-        private static string FunctionType(Function function)
-        {
-            if (function.TestFunctionType.HasValue)
-                return "TestFunction";
-            if (function.UpgradeFunctionType.HasValue)
-                return "UpgradeFunction";
-            if (!function.Event.HasValue)
-                return "Function";
-            if (function.Event == EventPublisherSubscriber.Subscriber)
-                return "EventSubscriberFunction";
-            if (function.EventType == EventType.Business)
-                return "BusinessEventPublisherFunction";
-
-            return "IntegrationEventPublisherFunction";
-        }
 
         public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
 
-        public static IEnumerable<ParameterBase> Parameters(this TableField field)
-        {
-            yield return new SimpleParameter("ID", field.ID);
-            yield return new SimpleParameter("Name", field.Name);
 
-            switch (field)
-            {
-                case CodeTableField c:
-                    yield return new SimpleParameter("DataLength", c.DataLength);
-                    break;
 
-                case TextTableField t:
-                    yield return new SimpleParameter("DataLength", t.DataLength);
-                    break;
-            }
-
-            foreach (var parameter in field.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
-            {
-                yield return parameter;
-            }
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this Variable variable)
-        {
-            yield return new SimpleParameter("ID", variable.ID);
-            yield return new SimpleParameter("Name", variable.Name);
-
-            switch (variable)
-            {
-                case BooleanVariable b:
-                    yield return new SimpleParameter("Dimensions", b.Dimensions);
-                    break;
-
-                case CodeVariable c:
-                    yield return new SimpleParameter("DataLength", c.DataLength);
-                    yield return new SimpleParameter("Dimensions", c.Dimensions);
-                    yield return new SimpleParameter("IncludeInDataset", c.IncludeInDataset);
-                    break;
-
-                case CodeunitVariable c:
-                    yield return new SimpleParameter("Dimensions", c.Dimensions);
-                    yield return new SimpleParameter("SubType", c.SubType);
-                    break;
-
-                case DateVariable d:
-                    yield return new SimpleParameter("Dimensions", d.Dimensions);
-                    break;
-
-                case DecimalVariable d:
-                    yield return new SimpleParameter("Dimensions", d.Dimensions);
-                    break;
-
-                case DotNetVariable d:
-                    yield return new SimpleParameter("Dimensions", d.Dimensions);
-                    yield return new SimpleParameter("RunOnClient", d.RunOnClient);
-                    yield return new SimpleParameter("SubType", d.SubType);
-                    yield return new SimpleParameter("WithEvents", d.WithEvents);
-                    break;
-
-                case FieldRefVariable f:
-                    yield return new SimpleParameter("Dimensions", f.Dimensions);
-                    break;
-
-                case IntegerVariable i:
-                    yield return new SimpleParameter("Dimensions", i.Dimensions);
-                    yield return new SimpleParameter("IncludeInDataset", i.IncludeInDataset);
-                    break;
-
-                case OptionVariable o:
-                    yield return new SimpleParameter("Dimensions", o.Dimensions);
-                    yield return new SimpleParameter("OptionString", o.OptionString);
-                    break;
-
-                case PageVariable p:
-                    yield return new SimpleParameter("Dimensions", p.Dimensions);
-                    yield return new SimpleParameter("SubType", p.SubType);
-                    break;
-
-                case QueryVariable q:
-                    yield return new SimpleParameter("Dimensions", q.Dimensions);
-                    yield return new SimpleParameter("SecurityFiltering", q.SecurityFiltering);
-                    yield return new SimpleParameter("SubType", q.SubType);
-                    break;
-
-                case RecordVariable r:
-                    yield return new SimpleParameter("Dimensions", r.Dimensions);
-                    yield return new SimpleParameter("SubType", r.SubType);
-                    yield return new SimpleParameter("Temporary", r.Temporary);
-                    break;
-
-                case ReportVariable r:
-                    yield return new SimpleParameter("Dimensions", r.Dimensions);
-                    yield return new SimpleParameter("SubType", r.SubType);
-                    break;
-
-                case TextConstant t:
-                    yield return new SimpleParameter("Values", t.Values);
-                    break;
-
-                case TextVariable t:
-                    yield return new SimpleParameter("DataLength", t.DataLength);
-                    yield return new SimpleParameter("Dimensions", t.Dimensions);
-                    yield return new SimpleParameter("IncludeInDataset", t.IncludeInDataset);
-                    break;
-
-                case XmlPortVariable x:
-                    yield return new SimpleParameter("Dimensions", x.Dimensions);
-                    yield return new SimpleParameter("SubType", x.SubType);
-                    break;
-            }
-
-            // FIXME : Remaining types
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this TableFieldGroup fieldGroup)
-        {
-            yield return new SimpleParameter("ID", fieldGroup.ID);
-            yield return new SimpleParameter("Name", fieldGroup.Name);
-            yield return new SimpleParameter("FieldNames", fieldGroup.Fields);
-
-            // FIXME: Properties
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this PageActionContainer pageActionContainer)
-        {
-            yield return new SimpleParameter("ID", pageActionContainer.ID);
-
-            foreach (var parameter in pageActionContainer.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
-            {
-                yield return parameter;
-            }
-
-            yield return new ScriptBlockParameter("ChildActions", pageActionContainer.ChildPageActions.Select(a => a.ToInvocation()));
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this PageActionGroup pageActionGroup)
-        {
-            yield return new SimpleParameter("ID", pageActionGroup.ID);
-
-            foreach (var parameter in pageActionGroup.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
-            {
-                yield return parameter;
-            }
-
-            yield return new ScriptBlockParameter("ChildActions", pageActionGroup.ChildPageActions.Select(a => a.ToInvocation()));
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this PageAction pageAction)
-        {
-            yield return new SimpleParameter("ID", pageAction.ID);
-
-            foreach (var parameter in pageAction.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
-            {
-                yield return parameter;
-            }
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this PageActionSeparator pageActionSeparator)
-        {
-            yield return new SimpleParameter("ID", pageActionSeparator.ID);
-
-            foreach (var parameter in pageActionSeparator.Properties.WithAValue.SelectMany(p => p.ToParameters()))
-            {
-                yield return parameter;
-            }
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this Function function)
-        {
-            yield return new SimpleParameter("ID", function.ID);
-            yield return new SimpleParameter("Name", function.Name);
-            yield return new SimpleParameter("Local", function.Local);
-            yield return new SimpleParameter("TryFunction", function.TryFunction);
-            yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
-            yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
-            yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
-            yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
-            yield return new SimpleParameter("IncludeSender", function.IncludeSender);
-            yield return new ScriptBlockParameter("SubObjects",
-                function.Parameters.Select(
-                    p => p.ToInvocation())
-                        .Concat(function.CodeLines.Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
-                        .Concat(function.Variables.Select(v => v.ToInvocation()))
-                    );
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this Parameter parameter)
-        {
-            yield return new SimpleParameter("ID", parameter.ID);
-            yield return new SimpleParameter("Name", parameter.Name);
-            yield return new SimpleParameter("Dimensions", parameter.Dimensions);
-            yield return new SwitchParameter("Var", parameter.Var);
-
-            switch (parameter)
-            {
-                case CodeParameter c:
-                    yield return new SimpleParameter("DataLength", c.DataLength);
-                    break;
-
-                case CodeunitParameter c:
-                    yield return new SimpleParameter("SubType", c.SubType);
-                    break;
-
-                case DotNetParameter d:
-                    yield return new SimpleParameter("RunOnClient", d.RunOnClient);
-                    yield return new SimpleParameter("SubType", d.SubType);
-                    yield return new SimpleParameter("SuppressDispose", d.SuppressDispose);
-                    break;
-
-                case OptionParameter o:
-                    yield return new SimpleParameter("OptionString", o.OptionString);
-                    break;
-
-                case QueryParameter q:
-                    yield return new SimpleParameter("SecurityFiltering", q.SecurityFiltering);
-                    yield return new SimpleParameter("SubType", q.SubType);
-                    break;
-
-                case ReportParameter r:
-                    yield return new SimpleParameter("SubType", r.SubType);
-                    break;
-
-                case TextParameter t:
-                    yield return new SimpleParameter("DataLength", t.DataLength);
-                    break;
-
-                case RecordParameter r:
-                    yield return new SimpleParameter("SubType", r.SubType);
-                    yield return new SimpleParameter("Temporary", r.Temporary);
-                    break;
-            }
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this TableRelationLine tableRelationLine)
-        {
-            yield return new SimpleParameter("TableName", tableRelationLine.TableName);
-            yield return new SimpleParameter("FieldName", tableRelationLine.FieldName);
-
-            yield return new ScriptBlockParameter(
-               "SubObjects",
-                tableRelationLine.Conditions.ToInvocations()
-                .Concat(tableRelationLine.TableFilter.ToInvocations()));
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this CalcFormulaTableFilterLine calcFormulaTableFilterLine)
-        {
-            yield return new SimpleParameter("FieldName", calcFormulaTableFilterLine.FieldName);
-            yield return new SimpleParameter("Type", calcFormulaTableFilterLine.Type);
-            yield return new SimpleParameter("Value", calcFormulaTableFilterLine.Value);
-            yield return new SwitchParameter("OnlyMaxLimit", calcFormulaTableFilterLine.OnlyMaxLimit);
-            yield return new SwitchParameter("ValueIsFilter", calcFormulaTableFilterLine.ValueIsFilter);
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this TableRelationCondition condition)
-        {
-            yield return new SimpleParameter("FieldName", condition.FieldName);
-            yield return new SimpleParameter("Type", condition.Type);
-            yield return new SimpleParameter("Value", condition.Value);
-        }
-
-        public static IEnumerable<ParameterBase> Parameters(this TableRelationTableFilterLine tableRelationTableFilterLine)
-        {
-            yield return new SimpleParameter("FieldName", tableRelationTableFilterLine.FieldName);
-            yield return new SimpleParameter("Type", tableRelationTableFilterLine.Type);
-            yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
-        }
 
         public static Invocation ToInvocation(this Application application)
         {
@@ -383,13 +104,13 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocation(this Pages pages) => pages.Select(p => p.ToInvocation());
 
-        public static Invocation ToInvocation(this TableField field) => new Invocation($"New-CBreeze{field.Type}TableField", field.Parameters());
+        public static Invocation ToInvocation(this TableField field) => new Invocation($"New-CBreeze{field.Type}TableField", field.ToParameters());
 
         public static IEnumerable<Invocation> ToInvocation(this TableKeys keys) => keys.Select(k => k.ToInvocation());
 
         public static IEnumerable<Invocation> ToInvocation(this TableFieldGroups fieldGroups) => fieldGroups.Select(g => g.ToInvocation());
 
-        public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.Parameters());
+        public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.ToParameters());
 
         public static IEnumerable<Invocation> ToInvocation(this ActionList actionList) => actionList.Where(a => a.IndentationLevel == 0).Select(a => a.ToInvocation());
 
@@ -398,13 +119,13 @@ namespace UncommonSense.CBreeze.Script
             switch (pageActionBase)
             {
                 case PageActionContainer c:
-                    return new Invocation("New-CBreezePageActionContainer", c.Parameters());
+                    return new Invocation("New-CBreezePageActionContainer", c.ToParameters());
                 case PageActionGroup g:
-                    return new Invocation("New-CBreezePageActionGroup", g.Parameters());
+                    return new Invocation("New-CBreezePageActionGroup", g.ToParameters());
                 case PageAction a:
-                    return new Invocation("New-CBreezePageAction", a.Parameters());
+                    return new Invocation("New-CBreezePageAction", a.ToParameters());
                 case PageActionSeparator s:
-                    return new Invocation("New-CBreezePageActionSeparator", s.Parameters());
+                    return new Invocation("New-CBreezePageActionSeparator", s.ToParameters());
                 default:
                     return null;
             }
@@ -412,7 +133,7 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocation(this Variables variables) => variables.Select(v => v.ToInvocation());
 
-        public static Invocation ToInvocation(this Variable variable) => new Invocation($"New-CBreeze{variable.GetType().Name}", variable.Parameters());
+        public static Invocation ToInvocation(this Variable variable) => new Invocation($"New-CBreeze{variable.GetType().Name}", variable.ToParameters());
 
         public static Invocation ToInvocation(this CalcFormula calcFormula)
         {
@@ -438,7 +159,7 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this CalcFormulaTableFilterLine calcFormulaTableFilterLine)
         {
-            return new Invocation("New-CBreezeCalcFormulaFilter", calcFormulaTableFilterLine.Parameters());
+            return new Invocation("New-CBreezeCalcFormulaFilter", calcFormulaTableFilterLine.ToParameters());
         }
 
         public static Invocation ToInvocation(this AccessByPermission accessByPermission)
@@ -471,20 +192,20 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocation(this Functions functions) => functions.Select(f => f.ToInvocation());
 
-        public static Invocation ToInvocation(this Function function) => new Invocation($"New-CBreeze{FunctionType(function)}", function.Parameters());
+        public static Invocation ToInvocation(this Function function) => new Invocation($"New-CBreeze{function.FunctionType()}", function.ToParameters());
 
-        public static Invocation ToInvocation(this Parameter parameter) => new Invocation($"New-CBreeze{parameter.Type}Parameter", parameter.Parameters());
+        public static Invocation ToInvocation(this Parameter parameter) => new Invocation($"New-CBreeze{parameter.Type}Parameter", parameter.ToParameters());
 
-        public static Invocation ToInvocation(this TableRelationLine tableRelationLine) => new Invocation("New-CBreezeTableRelation", tableRelationLine.Parameters());
+        public static Invocation ToInvocation(this TableRelationLine tableRelationLine) => new Invocation("New-CBreezeTableRelation", tableRelationLine.ToParameters());
 
         public static Invocation ToInvocation(this TableRelationCondition condition)
         {
-            return new Invocation("New-CBreezeTableRelationCondition", condition.Parameters());
+            return new Invocation("New-CBreezeTableRelationCondition", condition.ToParameters());
         }
 
         public static Invocation ToInvocation(this TableRelationTableFilterLine tableRelationFilterLine)
         {
-            return new Invocation("New-CBreezeTableRelationFilter", tableRelationFilterLine.Parameters());
+            return new Invocation("New-CBreezeTableRelationFilter", tableRelationFilterLine.ToParameters());
         }
 
         public static IEnumerable<Literal> ToInvocation(this CodeLines codeLines) => codeLines.Select(c => new Literal(c));
@@ -499,55 +220,5 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocations(this TableRelationTableFilter filter) => filter.Select(l => l.ToInvocation());
 
-        public static IEnumerable<ParameterBase> ToParameters(this Property property)
-        {
-            switch (property)
-            {
-                case ActionContainerTypeProperty t:
-                    yield return new SimpleParameter("ContainerType", t.Value);
-                    break;
-
-                case BooleanProperty b:
-                    yield return new SwitchParameter(b.Name, b.Value);
-                    break;
-
-                case TriggerProperty t:
-                    yield return new ScriptBlockParameter(
-                        t.Name,
-                        t.Value.Variables.ToInvocation().Concat(
-                            t.Value.CodeLines.Select(c => new Invocation($"'{c.Replace("'", "''")}'"))));
-                    break;
-
-                case TableRelationProperty t:
-                    yield return new ScriptBlockParameter("SubObjects", t.Value.ToInvocations());
-                    break;
-
-                case CalcFormulaProperty c:
-                    yield return new SimpleParameter(c.Name, c.Value.ToInvocation());
-                    break;
-
-                case PermissionsProperty p:
-                    yield return new ArrayParameter(p.Name, p.Value.ToInvocations());
-                    break;
-
-                case AccessByPermissionProperty a:
-                    yield return new SimpleParameter(a.Name, a.Value.ToInvocation());
-                    break;
-
-                case DecimalPlacesProperty d:
-                    yield return new SimpleParameter("DecimalPlacesAtLeast", d.Value.AtLeast);
-                    yield return new SimpleParameter("DecimalPlacesAtMost", d.Value.AtMost);
-                    break;
-
-                case RunObjectProperty r:
-                    yield return new SimpleParameter("RunObjectType", r.Value.Type);
-                    yield return new SimpleParameter("RunObjectID", r.Value.ID);
-                    break;
-
-                default:
-                    yield return new SimpleParameter(property.Name, property.GetValue());
-                    break;
-            }
-        }
     }
 }
