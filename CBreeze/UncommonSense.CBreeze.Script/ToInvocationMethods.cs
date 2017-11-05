@@ -116,13 +116,15 @@ namespace UncommonSense.CBreeze.Script
             switch (pageControl)
             {
                 case ContainerPageControl c:
-                    return new Invocation("New-CBreezeContainerPageControl"); //, c.ToParameters());
+                    return new Invocation("New-CBreezeContainerPageControl"); // FIXME: , c.ToParameters());
                 case GroupPageControl g:
-                    return new Invocation("New-CBreezeGroupPageControl"); // , g.Toparameters());
+                    return new Invocation("New-CBreezeGroupPageControl"); // FIXME: , g.Toparameters());
+                case PartPageControl p:
+                    return new Invocation("New-CBreezePartPageControl"); // FIXME: p.ToParameters());
                 case FieldPageControl f:
-                // FIXME:
+                    return new Invocation("New-CBreezeFieldPageControl"); // FIXME: f.ToParameters());
                 default:
-                    return null;
+                    throw new ArgumentOutOfRangeException("pageControl");
             }
         }
 
