@@ -101,7 +101,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public Position? Position { get; set; }
         [Parameter()] public int? PagePartID { get; set; }
         [Parameter()] public int? ProviderID { get; set; }
-        [Parameter()] public bool ShowFilter { get; set; }
+        [Parameter()] public bool? ShowFilter { get; set; }
         [Parameter()] public string SubPageViewKey { get; set; }
         [Parameter()] public Order? SubPageViewOrder { get; set; }
         [Parameter()] public SystemPartID? SystemPartID { get; set; }
