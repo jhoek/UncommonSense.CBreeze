@@ -40,6 +40,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override IEnumerable<PageControl> CreateItems()
         {
             var partPageControl = new PartPageControl(ID, GetIndentation());
+            partPageControl.Properties.AccessByPermission.Set(AccessByPermission);
             partPageControl.Properties.CaptionML.Set(CaptionML);
             partPageControl.Properties.Description = Description;
             partPageControl.Properties.Editable = Editable;
@@ -89,6 +90,7 @@ namespace UncommonSense.CBreeze.Automation
                 : 0;
         }
 
+        [Parameter()] public AccessByPermission AccessByPermission { get; set; }
         [Parameter()] public SwitchParameter AutoCaption { get; set; }
         [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public string ChartPartID { get; set; }

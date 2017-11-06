@@ -8,37 +8,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    // FIXME: For fields, allow OptionCaptionML to be set using a hash table, like in New-CBreezeOptionTableField
-    // FIXME: For fields and parts, allow AccessByPermission to be set directly, e.g. using New-CBreezeAccessByPermission
-
-    [Cmdlet(VerbsCommon.New, "CBreezePageControl")]
-    [OutputType(typeof(PageControl))]
-    [Alias("Control")]
     public class NewCBreezePageControl : PSCmdletWithDynamicParams
     {
         public NewCBreezePageControl()
         {
-            AssistEdit = new DynamicParameter<bool?>("AssistEdit");
-            AutoFormatExpr = new DynamicParameter<string>("AutoFormatExpr");
-            AutoFormatType = new DynamicParameter<Core.AutoFormatType?>("AutoFormatType");
-            BlankNumbers = new DynamicParameter<Core.BlankNumbers?>("BlankNumbers");
-            BlankZero = new DynamicParameter<bool?>("BlankZero");
-            Caption = new DynamicParameter<string>("Caption");
-            CaptionClass = new DynamicParameter<string>("CaptionClass");
-            CharAllowed = new DynamicParameter<string>("CharAllowed");
-            ChartPartID = new DynamicParameter<string>("ChartPartID", parameterSetNames: new string[] { "ChartPart" });
-            ClosingDates = new DynamicParameter<bool?>("ClosingDates");
-            ColumnSpan = new DynamicParameter<int?>("ColumnSpan");
-            ContainerType = new DynamicParameter<ContainerType?>("ContainerType", defaultValue: Core.ContainerType.ContentArea);
-            ControlAddIn = new DynamicParameter<string>("ControlAddIn");
-            DateFormula = new DynamicParameter<bool?>("DateFormula");
-            DecimalPlacesAtLeast = new DynamicParameter<int?>("DecimalPlacesAtLeast", minRange: 0, maxRange: int.MaxValue);
-            DecimalPlacesAtMost = new DynamicParameter<int?>("DecimalPlacesAtMost", minRange: 0, maxRange: int.MaxValue);
-            DrillDown = new DynamicParameter<bool?>("DrillDown");
-            DrillDownPageID = new DynamicParameter<string>("DrillDownPageID");
-            Editable = new DynamicParameter<string>("Editable");
-            Enabled = new DynamicParameter<string>("Enabled");
-            ExtendedDataType = new DynamicParameter<Core.ExtendedDataType?>("ExtendedDataType");
             FreezeColumnID = new DynamicParameter<string>("FreezeColumnID");
             GroupType = new DynamicParameter<Core.GroupType?>("GroupType", defaultValue: Core.GroupType.Group);
             HideValue = new DynamicParameter<string>("HideValue");
@@ -67,7 +40,6 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
             ShowMandatory = new DynamicParameter<string>("ShowMandatory");
 #endif
-            SourceExpr = new DynamicParameter<string>("SourceExpr", true);
             Style = new DynamicParameter<Core.Style?>("Style");
             StyleExpr = new DynamicParameter<string>("StyleExpr");
             SubPageViewKey = new DynamicParameter<string>("SubPageViewKey");
