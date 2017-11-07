@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ControlList : Collection<string>
+    public class ControlList : Collection<string>
     {
         // Ctor made public to allow ControlListProperty to new up an instance
         public ControlList()
@@ -15,10 +15,16 @@ namespace UncommonSense.CBreeze.Core
 
         public void AddRange(params string[] controlNames)
         {
-            foreach(var item in controlNames)
+            foreach (var item in controlNames)
             {
-               Add(item);
-             }
+                Add(item);
+            }
+        }
+
+        public void Set(string[] values)
+        {
+            Clear();
+            AddRange(values ?? new string[] { });
         }
     }
 }

@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\UncommonSense.CBreeze.Automation\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NAV2013R2 NAV2015 NAV2016 NAV2017</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NAV2013R2;NAV2015;NAV2016;NAV2017</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -49,6 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DevClientCmdlet.cs" />
+    <Compile Include="NewCBreezeContainerPageControl.cs" />
+    <Compile Include="NewCBreezeFieldPageControl.cs" />
+    <Compile Include="NewCBreezeGroupPageControl.cs" />
+    <Compile Include="NewCBreezePartPageControl.cs" />
     <Compile Include="NewCBreezeTableFilter.cs" />
     <Compile Include="NewCBreezeCalcFormulaFilter.cs" />
     <Compile Include="NewCBreezeFunction1.cs">
@@ -95,8 +99,6 @@
     <Compile Include="NewItemWithIDCmdlet.cs" />
     <Compile Include="NewItemWithIDAndNameCmdlet.cs" />
     <Compile Include="ParameterSetNames.cs" />
-    <Compile Include="PSCmdletWithDynamicParams.cs" />
-    <Compile Include="NewCBreezePageControl.cs" />
     <Compile Include="NewCBreezeEvent.cs" />
     <Compile Include="NewCBreezeTableFieldGroup.cs" />
     <Compile Include="NewCBreezeTableKey.cs" />
@@ -106,7 +108,6 @@
     <Compile Include="NewCBreezeTableRelation.cs" />
     <Compile Include="NewCBreezeXmlPortLink.cs" />
     <Compile Include="CompileCBreezeApplication.cs" />
-    <Compile Include="AddCBreezePageControl.cs" />
     <Compile Include="GetCBreezePageActionContainer.cs" />
     <Compile Include="GetCBreezePageActionGroup.cs" />
     <Compile Include="GetCBreezePageControlContainer.cs" />
@@ -124,7 +125,6 @@
     <Compile Include="SetCBreezeDefaultRanges.cs" />
     <Compile Include="SetCBreezeMLValue.cs" />
     <Compile Include="NewCBreezeObject.cs" />
-    <Compile Include="DynamicParameter.cs" />
     <Compile Include="ExportCBreezeApplication.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ImportCBreezeApplication.cs" />
