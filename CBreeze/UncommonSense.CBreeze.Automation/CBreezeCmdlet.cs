@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     public abstract class CBreezeCmdlet : PSCmdlet
     {
-        public bool? InterpretSwitch(string switchParameterName)
+        protected bool? InterpretSwitch(string switchParameterName)
         {
             if (!MyInvocation.BoundParameters.ContainsKey(switchParameterName))
             {
