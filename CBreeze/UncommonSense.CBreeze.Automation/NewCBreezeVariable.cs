@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var automationVariable = new AutomationVariable(ID, Name, SubType);
 			automationVariable.Dimensions = Dimensions;
-			automationVariable.WithEvents = WithEvents;
+			automationVariable.WithEvents = NullableBooleanFromSwitch(nameof(WithEvents));
 			yield return automationVariable;
 		}
 
@@ -65,7 +65,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String SubType { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> WithEvents { get; set; }
+		public SwitchParameter WithEvents { get; set; }
 
 	}
 
@@ -150,7 +150,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var booleanVariable = new BooleanVariable(ID, Name);
 			booleanVariable.Dimensions = Dimensions;
-			booleanVariable.IncludeInDataset = IncludeInDataset;
+			booleanVariable.IncludeInDataset = NullableBooleanFromSwitch(nameof(IncludeInDataset));
 			yield return booleanVariable;
 		}
 
@@ -163,7 +163,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String Dimensions { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; }
 
 	}
 
@@ -402,7 +402,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var codeVariable = new CodeVariable(ID, Name, DataLength);
 			codeVariable.Dimensions = Dimensions;
-			codeVariable.IncludeInDataset = IncludeInDataset;
+			codeVariable.IncludeInDataset = NullableBooleanFromSwitch(nameof(IncludeInDataset));
 			yield return codeVariable;
 		}
 
@@ -421,7 +421,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String Dimensions { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; }
 
 	}
 
@@ -544,8 +544,8 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var dotNetVariable = new DotNetVariable(ID, Name, SubType);
 			dotNetVariable.Dimensions = Dimensions;
-			dotNetVariable.RunOnClient = RunOnClient;
-			dotNetVariable.WithEvents = WithEvents;
+			dotNetVariable.RunOnClient = NullableBooleanFromSwitch(nameof(RunOnClient));
+			dotNetVariable.WithEvents = NullableBooleanFromSwitch(nameof(WithEvents));
 			yield return dotNetVariable;
 		}
 
@@ -558,7 +558,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String Dimensions { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> RunOnClient { get; set; }
+		public SwitchParameter RunOnClient { get; set; }
 
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
@@ -567,7 +567,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String SubType { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> WithEvents { get; set; }
+		public SwitchParameter WithEvents { get; set; }
 
 	}
 
@@ -756,7 +756,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var integerVariable = new IntegerVariable(ID, Name);
 			integerVariable.Dimensions = Dimensions;
-			integerVariable.IncludeInDataset = IncludeInDataset;
+			integerVariable.IncludeInDataset = NullableBooleanFromSwitch(nameof(IncludeInDataset));
 			yield return integerVariable;
 		}
 
@@ -769,7 +769,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String Dimensions { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; }
 
 	}
 
@@ -992,7 +992,7 @@ namespace UncommonSense.CBreeze.Automation
 			var recordVariable = new RecordVariable(ID, Name, SubType);
 			recordVariable.Dimensions = Dimensions;
 			recordVariable.SecurityFiltering = SecurityFiltering;
-			recordVariable.Temporary = Temporary;
+			recordVariable.Temporary = NullableBooleanFromSwitch(nameof(Temporary));
 			yield return recordVariable;
 		}
 
@@ -1014,7 +1014,7 @@ namespace UncommonSense.CBreeze.Automation
 		public Int32 SubType { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> Temporary { get; set; }
+		public SwitchParameter Temporary { get; set; }
 
 	}
 
@@ -1130,7 +1130,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var textVariable = new TextVariable(ID, Name, DataLength);
 			textVariable.Dimensions = Dimensions;
-			textVariable.IncludeInDataset = IncludeInDataset;
+			textVariable.IncludeInDataset = NullableBooleanFromSwitch(nameof(IncludeInDataset));
 			yield return textVariable;
 		}
 
@@ -1149,7 +1149,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String Dimensions { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; }
 
 	}
 

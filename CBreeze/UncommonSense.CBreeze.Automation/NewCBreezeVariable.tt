@@ -4,6 +4,7 @@
 <#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Debug\UncommonSense.CBreeze.Automation.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UncommonSense.CBreeze.Automation" #>
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
@@ -56,7 +57,7 @@ namespace UncommonSense.CBreeze.Automation
 			Name = p.Name,
 			FullType = p.Name != "Values" ? GetFullTypeName(p.PropertyType) : "Hashtable",
 			Mandatory = mandatoryProperties.ContainsKey(p.Name) ? mandatoryProperties[p.Name].Contains(@type.Name) : false,
-			Assignment = (p.Name != "Values" ? $"{variableName}.{p.Name} = {p.Name};" : $"{variableName}.{p.Name}.Set({p.Name});")
+			Assignment = $"{variableName}.{GetAssignment(p)};"
 		});
 	var hasSubType = allProperties.Any(p => p.Name == "SubType");
 	var hasDataLength = allProperties.Any(p => p.Name == "DataLength");
@@ -120,6 +121,9 @@ if (hasDataLength) { arguments.Add("DataLength"); }
 		if (!t.IsGenericType)
 			return t.Name;
 
+		if (t == typeof(bool?))
+			return "SwitchParameter";
+
 		var stringBuilder = new StringBuilder();
 
 		stringBuilder.Append(t.Name.Substring(0, t.Name.LastIndexOf("`")));
@@ -128,5 +132,15 @@ if (hasDataLength) { arguments.Add("DataLength"); }
 		stringBuilder.Append(">");
 
 		return stringBuilder.ToString();
+	}
+
+	static string GetAssignment(PropertyInfo property)
+	{
+		switch(property)
+		{
+			case PropertyInfo p when p.Name == "Values": return $"{p.Name}.Set({p.Name})";
+			case PropertyInfo p when p.PropertyType == typeof(bool?): return $"{p.Name} = NullableBooleanFromSwitch(nameof({p.Name}))";
+			default: return $"{property.Name} = {property.Name}";
+        }
 	}
 #>

@@ -2703,7 +2703,6 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public AccessByPermission AccessByPermission { get; set; }
 
-
         [Parameter()]
         public ScriptBlock OnValidate { get; set; }
 
