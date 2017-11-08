@@ -14,98 +14,26 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("Table")]
     public class NewCBreezeTable : NewCBreezeObject<Table>
     {
-        [Parameter()]
-        public Hashtable CaptionML
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string[] DataCaptionFields
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? DataPerCompany
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        [ValidateRange(1, int.MaxValue)]
-        public int? DrillDownPageID
-        {
-            get; set;
-        }
-
+        [Parameter()] public Hashtable CaptionML { get; set; }
+        [Parameter()] public string[] DataCaptionFields { get; set; }
+        [Parameter()] public SwitchParameter DataPerCompany { get; set; }
+        [Parameter()] public string Description { get; set; }
+        [Parameter()] [ValidateRange(1, int.MaxValue)] public int? DrillDownPageID { get; set; }
 #if NAV2016
-
-        [Parameter()]
-        public string ExternalName
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string ExternalSchema
-        {
-            get; set;
-        }
-
+        [Parameter()] public string ExternalName { get; set; }
+        [Parameter()] public string ExternalSchema { get; set; }
 #endif
-
-        [Parameter()]
-        public bool? LinkedInTransaction
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? LinkedObject
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        [ValidateRange(1, int.MaxValue)]
-        public int? LookupPageID
-        {
-            get; set;
-        }
-
+        [Parameter()] public SwitchParameter LinkedInTransaction { get; set; }
+        [Parameter()] public SwitchParameter LinkedObject { get; set; }
+        [Parameter()] [ValidateRange(1, int.MaxValue)] public int? LookupPageID { get; set; }
         [Parameter()] public ScriptBlock OnDelete { get; set; }
-
         [Parameter()] public ScriptBlock OnInsert { get; set; }
-
         [Parameter()] public ScriptBlock OnModify { get; set; }
-
         [Parameter()] public ScriptBlock OnRename { get; set; }
-
-        [Parameter()]
-        public bool? PasteIsValid
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public Permission[] Permissions { get; set; }
-
+        [Parameter()] public SwitchParameter PasteIsValid { get; set; }
+        [Parameter()] public Permission[] Permissions { get; set; }
 #if NAV2016
-
-        [Parameter()]
-        public TableType? TableType
-        {
-            get; set;
-        }
-
+        [Parameter()] public TableType? TableType { get; set; }
 #endif
 
         protected override void AddItemToInputObject(Table item, Application inputObject)
@@ -120,17 +48,17 @@ namespace UncommonSense.CBreeze.Automation
 
             table.Properties.CaptionML.Set(CaptionML);
             table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
-            table.Properties.DataPerCompany = DataPerCompany;
+            table.Properties.DataPerCompany = InterpretSwitch(nameof(DataPerCompany));
             table.Properties.Description = Description;
             table.Properties.DrillDownPageID = DrillDownPageID;
 #if NAV2016
             table.Properties.ExternalName = ExternalName;
             table.Properties.ExternalSchema = ExternalSchema;
 #endif
-            table.Properties.LinkedInTransaction = LinkedInTransaction;
-            table.Properties.LinkedObject = LinkedObject;
+            table.Properties.LinkedInTransaction = InterpretSwitch(nameof(LinkedInTransaction));
+            table.Properties.LinkedObject = InterpretSwitch(nameof(LinkedObject));
             table.Properties.LookupPageID = LookupPageID;
-            table.Properties.PasteIsValid = PasteIsValid;
+            table.Properties.PasteIsValid = InterpretSwitch(nameof(PasteIsValid));
             table.Properties.Permissions.Set(Permissions);
 #if NAV2016
             table.Properties.TableType = TableType;

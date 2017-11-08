@@ -14,123 +14,27 @@ namespace UncommonSense.CBreeze.Automation
     public class NewCBreezeReport : NewCBreezeObject<Report>
     {
 #if NAV2015
-
-        [Parameter()]
-        public DefaultLayout? DefaultLayout
-        {
-            get;
-            set;
-        }
-
+        [Parameter()] public DefaultLayout? DefaultLayout { get; set; }
 #endif
 
-        [Parameter()]
-        public string Description
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? EnableExternalAssemblies
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? EnableExternalImages
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? EnableHyperlinks
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public PaperSource? PaperSourceDefaultPage
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public PaperSource? PaperSourceFirstPage
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public PaperSource? PaperSourceLastPage
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public Permission[] Permissions { get; set; }
-
+        [Parameter()] public string Description { get; set; }
+        [Parameter()] public SwitchParameter EnableExternalAssemblies { get; set; }
+        [Parameter()] public SwitchParameter EnableExternalImages { get; set; }
+        [Parameter()] public SwitchParameter EnableHyperlinks { get; set; }
+        [Parameter()] public PaperSource? PaperSourceDefaultPage { get; set; }
+        [Parameter()] public PaperSource? PaperSourceFirstPage { get; set; }
+        [Parameter()] public PaperSource? PaperSourceLastPage { get; set; }
+        [Parameter()] public Permission[] Permissions { get; set; }
 #if NAV2015
-
-        [Parameter()]
-        public PreviewMode? PreviewMode
-        {
-            get;
-            set;
-        }
-
+        [Parameter()] public PreviewMode? PreviewMode { get; set; }
 #endif
-
-        [Parameter()]
-        public bool? ProcessingOnly
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? ShowPrintStatus
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public TransactionType? TransactionType
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? UseRequestPage
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public bool? UseSystemPrinter
-        {
-            get;
-            set;
-        }
-
+        [Parameter()] public SwitchParameter ProcessingOnly { get; set; } 
+        [Parameter()] public SwitchParameter ShowPrintStatus { get; set; } 
+        [Parameter()] public TransactionType? TransactionType { get; set; } 
+        [Parameter()] public SwitchParameter UseRequestPage { get; set; } 
+        [Parameter()] public SwitchParameter UseSystemPrinter { get; set; } 
 #if NAV2015
-
-        [Parameter()]
-        public string WordMergeDataItem
-        {
-            get;
-            set;
-        }
-
+        [Parameter()] public string WordMergeDataItem { get; set; } 
 #endif
 
         protected override void AddItemToInputObject(Report item, Application inputObject)
@@ -147,9 +51,9 @@ namespace UncommonSense.CBreeze.Automation
             report.Properties.DefaultLayout = DefaultLayout;
 #endif
             report.Properties.Description = Description;
-            report.Properties.EnableExternalAssemblies = EnableExternalAssemblies;
-            report.Properties.EnableExternalImages = EnableExternalImages;
-            report.Properties.EnableHyperlinks = EnableHyperlinks;
+            report.Properties.EnableExternalAssemblies = InterpretSwitch(nameof(EnableExternalAssemblies));
+            report.Properties.EnableExternalImages = InterpretSwitch(nameof(EnableExternalImages));
+            report.Properties.EnableHyperlinks = InterpretSwitch(nameof(EnableHyperlinks));
             report.Properties.PaperSourceDefaultPage = PaperSourceDefaultPage;
             report.Properties.PaperSourceFirstPage = PaperSourceFirstPage;
             report.Properties.PaperSourceLastPage = PaperSourceLastPage;
@@ -157,11 +61,11 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
             report.Properties.PreviewMode = PreviewMode;
 #endif
-            report.Properties.ProcessingOnly = ProcessingOnly;
-            report.Properties.ShowPrintStatus = ShowPrintStatus;
+            report.Properties.ProcessingOnly = InterpretSwitch(nameof(ProcessingOnly));
+            report.Properties.ShowPrintStatus = InterpretSwitch(nameof(ShowPrintStatus));
             report.Properties.TransactionType = TransactionType;
-            report.Properties.UseRequestPage = UseRequestPage;
-            report.Properties.UseSystemPrinter = UseSystemPrinter;
+            report.Properties.UseRequestPage = InterpretSwitch(nameof(UseRequestPage));
+            report.Properties.UseSystemPrinter = InterpretSwitch(nameof(UseSystemPrinter));
 #if NAV2015
             report.Properties.WordMergeDataItem = WordMergeDataItem;
 #endif
