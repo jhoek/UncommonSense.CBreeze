@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    public abstract class NewItemCmdlet<TItem, TInputObject> : PSCmdlet
+    public abstract class NewItemCmdlet<TItem, TInputObject> : CBreezeCmdlet
     {
         protected virtual void AddItemToInputObject(TItem item, TInputObject inputObject)
         {

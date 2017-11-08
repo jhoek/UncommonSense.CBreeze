@@ -14,58 +14,19 @@ namespace UncommonSense.CBreeze.Automation
     public class NewCBreezeCodeunit : NewCBreezeObject<Codeunit>
     {
 #if !NAV2016
-        [Parameter()]
-        public bool? CFrontMayUsePermissions
-        {
-            get; set;
-        }
+        [Parameter()] public SwitchParameter CFrontMayUsePermissions { get; set; } 
 #endif
 
 #if NAV2016
-
-        [Parameter()]
-        public EventSubscriberInstance? EventSubscriberInstance
-        {
-            get;
-            set;
-        }
-
+        [Parameter()] public EventSubscriberInstance? EventSubscriberInstance { get; set; }
 #endif
 
-        [Parameter()]
-        public ScriptBlock OnRun
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Permission[] Permissions { get; set; }
-
-        [Parameter()]
-        public bool? SingleInstance
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public CodeunitSubType? SubType
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        [ValidateRange(1, int.MaxValue)]
-        public int? TableNo
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public TestIsolation? TestIsolation
-        {
-            get; set;
-        }
+        [Parameter()] public ScriptBlock OnRun { get; set; }
+        [Parameter()] public Permission[] Permissions { get; set; }
+        [Parameter()] public SwitchParameter SingleInstance { get; set; }
+        [Parameter()] public CodeunitSubType? SubType { get; set; }
+        [Parameter()] [ValidateRange(1, int.MaxValue)] public int? TableNo { get; set; }
+        [Parameter()] public TestIsolation? TestIsolation { get; set; }
 
         protected override void AddItemToInputObject(Codeunit item, Application inputObject)
         {
@@ -78,13 +39,13 @@ namespace UncommonSense.CBreeze.Automation
             SetObjectProperties(codeunit);
 
 #if !NAV2016
-            codeunit.Properties.CFRONTMayUsePermissions = CFrontMayUsePermissions;
+            codeunit.Properties.CFRONTMayUsePermissions = InterpretSwitch(nameof(CFrontMayUsePermissions));
 #endif
 #if NAV2016
             codeunit.Properties.EventSubscriberInstance = EventSubscriberInstance;
 #endif
             codeunit.Properties.Permissions.Set(Permissions);
-            codeunit.Properties.SingleInstance = SingleInstance;
+            codeunit.Properties.SingleInstance = InterpretSwitch(nameof(SingleInstance));
             codeunit.Properties.Subtype = SubType;
             codeunit.Properties.TableNo = TableNo;
             codeunit.Properties.TestIsolation = TestIsolation;
