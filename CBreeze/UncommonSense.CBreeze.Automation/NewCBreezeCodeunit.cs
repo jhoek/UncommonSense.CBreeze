@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Automation
             codeunit.Properties.EventSubscriberInstance = EventSubscriberInstance;
 #endif
             codeunit.Properties.Permissions.Set(Permissions);
-            codeunit.Properties.SingleInstance = InterpretSwitch(nameof(SingleInstance));
+            codeunit.Properties.SingleInstance = NullableBooleanFromSwitch(nameof(SingleInstance));
             codeunit.Properties.Subtype = SubType;
             codeunit.Properties.TableNo = TableNo;
             codeunit.Properties.TestIsolation = TestIsolation;

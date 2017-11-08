@@ -65,9 +65,9 @@ protected override IEnumerable<<#=@type.Name#>> CreateItems()
 		<#= variableName #>.Dimensions = Dimensions;
 <# if (hasOptionString)      { #>		<#= variableName #>.OptionString = OptionString; <# } #>
 <# if (hasSecurityFiltering) { #>		<#= variableName #>.SecurityFiltering = SecurityFiltering; <# } #>
-<# if (hasTemporary)         { #>		<#= variableName #>.Temporary = Temporary; <# } #>
-<# if (hasRunOnClient)       { #>		<#= variableName #>.RunOnClient = RunOnClient; <# } #>
-<# if (hasSuppressDispose)   { #>		<#= variableName #>.SuppressDispose = SuppressDispose; <# } #>
+<# if (hasTemporary)         { #>		<#= variableName #>.Temporary = NullableBooleanFromSwitch(nameof(Temporary)); <# } #>
+<# if (hasRunOnClient)       { #>		<#= variableName #>.RunOnClient = NullableBooleanFromSwitch(nameof(RunOnClient)); <# } #>
+<# if (hasSuppressDispose)   { #>		<#= variableName #>.SuppressDispose = NullableBooleanFromSwitch(nameof(SuppressDispose)); <# } #>
 		yield return <#= variableName #>;
 	}
 
@@ -105,7 +105,7 @@ protected override IEnumerable<<#=@type.Name#>> CreateItems()
 <# if (hasRunOnClient) { #>
 
 	[Parameter()]
-	public bool? RunOnClient { get; set; }
+	public SwitchParameter RunOnClient { get; set; }
 <# } #>
 <# if (hasIntegerSubType) { #>
 
@@ -121,12 +121,12 @@ protected override IEnumerable<<#=@type.Name#>> CreateItems()
 <# if (hasSuppressDispose) { #>
 
 	[Parameter()]
-	public bool? SuppressDispose { get; set; } 
+	public SwitchParameter SuppressDispose { get; set; } 
 <# } #>
 <# if (hasTemporary) { #>
 
 	[Parameter()]
-	public bool? Temporary { get; set; }
+	public SwitchParameter Temporary { get; set; }
 <# } #>
 }
 

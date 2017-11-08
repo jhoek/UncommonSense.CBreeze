@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
-using System.Text;
-using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
@@ -15,16 +12,20 @@ namespace UncommonSense.CBreeze.Automation
     public class NewCBreezePageAction : NewItemWithIDCmdlet<PageAction, int, PSObject>
     {
 #if NAV2015
+
         [Parameter()]
         public AccessByPermission AccessByPermission
         {
             get; set;
         }
+
 #endif
 
 #if NAV2017
+
         [Parameter()]
         public string[] ApplicationArea { get; set; }
+
 #endif
 
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -43,7 +44,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? Ellipsis
+        public SwitchParameter Ellipsis
         {
             get; set;
         }
@@ -64,7 +65,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? InFooterBar
+        public SwitchParameter InFooterBar
         {
             get; set;
         }
@@ -83,7 +84,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? Promoted
+        public SwitchParameter Promoted
         {
             get; set;
         }
@@ -95,13 +96,13 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? PromotedIsBig
+        public SwitchParameter PromotedIsBig
         {
             get; set;
         }
 
         [Parameter()]
-        public bool? PromotedOnly
+        public SwitchParameter PromotedOnly
         {
             get; set;
         }
@@ -125,7 +126,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public bool? RunPageOnRec
+        public SwitchParameter RunPageOnRec
         {
             get; set;
         }
@@ -181,21 +182,21 @@ namespace UncommonSense.CBreeze.Automation
 #endif
             pageAction.Properties.CaptionML.Set(CaptionML);
             pageAction.Properties.Description = Description;
-            pageAction.Properties.Ellipsis = Ellipsis;
+            pageAction.Properties.Ellipsis = NullableBooleanFromSwitch(nameof(Ellipsis));
             pageAction.Properties.Enabled = Enabled;
             pageAction.Properties.Image = Image;
-            pageAction.Properties.InFooterBar = InFooterBar;
+            pageAction.Properties.InFooterBar = NullableBooleanFromSwitch(nameof(InFooterBar));
             pageAction.Properties.Name = Name;
-            pageAction.Properties.Promoted = Promoted;
+            pageAction.Properties.Promoted = NullableBooleanFromSwitch(nameof(Promoted));
             pageAction.Properties.PromotedCategory = PromotedCategory;
-            pageAction.Properties.PromotedIsBig = PromotedIsBig;
+            pageAction.Properties.PromotedIsBig = NullableBooleanFromSwitch(nameof(PromotedIsBig));
 #if NAV2017
-            pageAction.Properties.PromotedOnly = PromotedOnly;
+            pageAction.Properties.PromotedOnly = NullableBooleanFromSwitch(nameof(PromotedOnly));
 #endif
             pageAction.Properties.RunObject.Type = RunObjectType;
             pageAction.Properties.RunObject.ID = RunObjectID;
             pageAction.Properties.RunPageMode = RunPageMode;
-            pageAction.Properties.RunPageOnRec = RunPageOnRec;
+            pageAction.Properties.RunPageOnRec = NullableBooleanFromSwitch(nameof(RunPageOnRec));
             pageAction.Properties.RunPageView.Key = RunPageViewKey;
             pageAction.Properties.RunPageView.Order = RunPageViewOrder;
 #if NAV2015
@@ -257,8 +258,10 @@ namespace UncommonSense.CBreeze.Automation
             {
                 case PageActionContainer c:
                     return c.IndentationLevel.GetValueOrDefault(0);
+
                 case PageActionGroup g:
                     return g.IndentationLevel.GetValueOrDefault(0);
+
                 default:
                     return 0;
             }

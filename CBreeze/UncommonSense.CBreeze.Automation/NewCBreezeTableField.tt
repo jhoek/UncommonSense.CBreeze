@@ -137,7 +137,7 @@ namespace UncommonSense.CBreeze.Automation
 		protected override IEnumerable<<#=@type.Name#>> CreateItems()
 		{
 			var <#=variableName#> = new <#=@type.Name#>(ID, Name<#if (hasDataLength) {#>, DataLength ?? <#=defaultDataLengths[@type]#><# } #>);
-			<#=variableName#>.Enabled = Enabled;
+			<#=variableName#>.Enabled = NullableBooleanFromSwitch(nameof(Enabled));
 			<#=variableName#>.Properties.CaptionML.Set(CaptionML);
             <#=variableName#>.Properties.Description = Description;
 
@@ -184,7 +184,7 @@ namespace UncommonSense.CBreeze.Automation
 		public Hashtable CaptionML { get; set; }
 
         [Parameter()]
-        public bool? Enabled { get; set; }
+        public SwitchParameter Enabled { get; set; }
 
 <# foreach(var property in relevantProperties) { #>
 	[Parameter(<# if (property.Mandatory) { #>Mandatory=true<# } #>)]

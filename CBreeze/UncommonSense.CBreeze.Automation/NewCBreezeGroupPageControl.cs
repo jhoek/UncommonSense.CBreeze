@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Automation
             groupPageControl.Properties.IndentationColumnName = IndentationColumnName;
             groupPageControl.Properties.IndentationControls.Set(IndentationControls);
             groupPageControl.Properties.Layout = Layout;
-            groupPageControl.Properties.ShowAsTree = ShowAsTree;
+            groupPageControl.Properties.ShowAsTree = NullableBooleanFromSwitch(nameof(ShowAsTree));
             groupPageControl.Properties.Visible = Visible;
             groupPageControl.AutoCaption(AutoCaption);
             yield return groupPageControl;
@@ -107,7 +107,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public GroupPageControlLayout? Layout { get; set; }
         [Parameter()] public string Name { get; set; }
         [Parameter()] public Position? Position { get; set; }
-        [Parameter()] public bool? ShowAsTree { get; set; }
+        [Parameter()] public SwitchParameter ShowAsTree { get; set; }
         [Parameter()] public string Visible { get; set; }
     }
 }

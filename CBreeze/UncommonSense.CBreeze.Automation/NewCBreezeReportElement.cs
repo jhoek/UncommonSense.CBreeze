@@ -23,13 +23,13 @@ namespace UncommonSense.CBreeze.Automation
         {
             var element = new ColumnReportElement(Name, SourceExpr, ID, IndentationLevel);
 
-            element.Properties.AutoCalcField = AutoCalcField;
+            element.Properties.AutoCalcField = NullableBooleanFromSwitch(nameof(AutoCalcField));
             element.Properties.AutoFormatExpr = AutoFormatExpr;
             element.Properties.AutoFormatType = AutoFormatType;
             element.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;
             element.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;
             element.Properties.Description = Description;
-            element.Properties.IncludeCaption = IncludeCaption;
+            element.Properties.IncludeCaption = NullableBooleanFromSwitch(nameof(IncludeCaption));
             element.Properties.OptionString = OptionString;
             element.Properties.OptionCaptionML.Set(OptionCaptionML);
 
@@ -45,14 +45,14 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()] public Hashtable OptionCaptionML { get; set; }
         [Parameter()] public string OptionString { get; set; }
-        [Parameter()] public bool? AutoCalcField { get; set; }
+        [Parameter()] public SwitchParameter AutoCalcField { get; set; }
         [Parameter()] public string AutoFormatExpr { get; set; }
         [Parameter()] public AutoFormatType? AutoFormatType { get; set; }
         [Parameter()] public SwitchParameter AutoOptionCaption { get; set; }
         [Parameter()] [ValidateRange(0, int.MaxValue)] public int? DecimalPlacesAtLeast { get; set; }
         [Parameter()] [ValidateRange(0, int.MaxValue)] public int? DecimalPlacesAtMost { get; set; }
         [Parameter()] public string Description { get; set; }
-        [Parameter()] public bool? IncludeCaption { get; set; }
+        [Parameter()] public SwitchParameter IncludeCaption { get; set; }
 
         [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
@@ -123,11 +123,11 @@ namespace UncommonSense.CBreeze.Automation
             element.Properties.DataItemTableView.Key = DataItemTableViewKey;
             element.Properties.DataItemTableView.Order = DataItemTableViewOrder;
             element.Properties.MaxIteration = MaxIteration;
-            element.Properties.PrintOnlyIfDetail = PrintOnlyIfDetail;
+            element.Properties.PrintOnlyIfDetail = NullableBooleanFromSwitch(nameof(PrintOnlyIfDetail));
             element.Properties.ReqFilterFields.AddRange(ReqFilterFields);
             element.Properties.ReqFilterHeadingML.Set("ENU", ReqFilterHeading);
 #if NAV2015
-            element.Properties.Temporary = Temporary;
+            element.Properties.Temporary = NullableBooleanFromSwitch(nameof(Temporary));
 #endif
 
             yield return element;
@@ -161,11 +161,11 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
         public Position? Position { get; set; }
 
-        [Parameter()] public bool? PrintOnlyIfDetail { get; set; }
+        [Parameter()] public SwitchParameter PrintOnlyIfDetail { get; set; }
         [Parameter()] public string[] ReqFilterFields { get; set; }
         [Parameter()] public string ReqFilterHeading { get; set; }
 #if NAV2015
-        [Parameter()] public bool? Temporary { get; set; }
+        [Parameter()] public SwitchParameter Temporary { get; set; }
 #endif
 
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]

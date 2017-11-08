@@ -586,7 +586,7 @@ protected override IEnumerable<DotNetParameter> CreateItems()
 	{
 		var dotNetParameter = new DotNetParameter(Name, SubType, Var, ID);
 		dotNetParameter.Dimensions = Dimensions;
-		dotNetParameter.RunOnClient = RunOnClient; 		dotNetParameter.SuppressDispose = SuppressDispose; 		yield return dotNetParameter;
+		dotNetParameter.RunOnClient = NullableBooleanFromSwitch(nameof(RunOnClient)); 		dotNetParameter.SuppressDispose = NullableBooleanFromSwitch(nameof(SuppressDispose)); 		yield return dotNetParameter;
 	}
 
 	protected override void AddItemToInputObject(DotNetParameter item, PSObject inputObject)
@@ -602,13 +602,13 @@ protected override IEnumerable<DotNetParameter> CreateItems()
 	public string Dimensions { get; set; }
 
 	[Parameter()]
-	public bool? RunOnClient { get; set; }
+	public SwitchParameter RunOnClient { get; set; }
 
 	[Parameter(Mandatory=true)]
 	public string SubType { get; set; }
 
 	[Parameter()]
-	public bool? SuppressDispose { get; set; } 
+	public SwitchParameter SuppressDispose { get; set; } 
 }
 
 [Cmdlet(VerbsCommon.New, "CBreezeDurationParameter")]
@@ -1037,7 +1037,7 @@ protected override IEnumerable<RecordParameter> CreateItems()
 	{
 		var recordParameter = new RecordParameter(Name, SubType, Var, ID);
 		recordParameter.Dimensions = Dimensions;
-		recordParameter.SecurityFiltering = SecurityFiltering; 		recordParameter.Temporary = Temporary; 		yield return recordParameter;
+		recordParameter.SecurityFiltering = SecurityFiltering; 		recordParameter.Temporary = NullableBooleanFromSwitch(nameof(Temporary)); 		yield return recordParameter;
 	}
 
 	protected override void AddItemToInputObject(RecordParameter item, PSObject inputObject)
@@ -1060,7 +1060,7 @@ protected override IEnumerable<RecordParameter> CreateItems()
 	public int SubType { get; set; }
 
 	[Parameter()]
-	public bool? Temporary { get; set; }
+	public SwitchParameter Temporary { get; set; }
 }
 
 [Cmdlet(VerbsCommon.New, "CBreezeRecordRefParameter")]

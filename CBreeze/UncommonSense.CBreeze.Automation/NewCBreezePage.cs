@@ -14,124 +14,6 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("Page")]
     public class NewCBreezePage : NewCBreezeObject<Page>
     {
-        [Parameter()]
-        public bool? AutoSplitKey
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Hashtable CaptionML { get; set; }
-
-        [Parameter()]
-        public string CardPageID
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string DataCaptionExpr
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string[] DataCaptionFields
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? DelayedInsert
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? DeleteAllowed
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? Editable
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? InsertAllowed
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? LinksAllowed
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? ModifyAllowed
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? MultipleNewLines
-        {
-            get; set;
-        }
-
-        [Parameter()] public ScriptBlock OnAfterGetCurrRecord { get; set; }
-        [Parameter()] public ScriptBlock OnAfterGetRecord { get; set; }
-        [Parameter()] public ScriptBlock OnClosePage { get; set; }
-        [Parameter()] public ScriptBlock OnDeleteRecord { get; set; }
-        [Parameter()] public ScriptBlock OnFindRecord { get; set; }
-        [Parameter()] public ScriptBlock OnInit { get; set; }
-        [Parameter()] public ScriptBlock OnInsertRecord { get; set; }
-        [Parameter()] public ScriptBlock OnModifyRecord { get; set; }
-        [Parameter()] public ScriptBlock OnNewRecord { get; set; }
-        [Parameter()] public ScriptBlock OnNextRecord { get; set; }
-        [Parameter()] public ScriptBlock OnOpenPage { get; set; }
-        [Parameter()] public ScriptBlock OnQueryClosePage { get; set; }
-        [Parameter()] public PageType? PageType { get; set; }
-        [Parameter()] public Permission[] Permissions { get; set; }
-        [Parameter()] public bool? PopulateAllFields { get; set; }
-        [Parameter()] public Hashtable PromotedActionCategoriesML { get; set; }
-        [Parameter()] public bool? RefreshOnActivate { get; set; }
-
-        [Parameter()]
-        public bool? SaveValues
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? ShowFilter
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        [ValidateRange(1, int.MaxValue)]
-        public int? SourceTable
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public bool? SourceTableTemporary
-        {
-            get; set;
-        }
-
         protected override void AddItemToInputObject(Page item, Application inputObject)
         {
             inputObject.Pages.Add(item);
@@ -142,28 +24,28 @@ namespace UncommonSense.CBreeze.Automation
             var page = new Page(ID, Name);
             SetObjectProperties(page);
 
-            page.Properties.AutoSplitKey = AutoSplitKey;
+            page.Properties.AutoSplitKey = NullableBooleanFromSwitch(nameof(AutoSplitKey));
             page.Properties.CaptionML.Set(CaptionML);
             page.Properties.CardPageID = CardPageID;
             page.Properties.DataCaptionExpr = DataCaptionExpr;
             page.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
-            page.Properties.DelayedInsert = DelayedInsert;
-            page.Properties.DeleteAllowed = DeleteAllowed;
+            page.Properties.DelayedInsert = NullableBooleanFromSwitch(nameof(DelayedInsert));
+            page.Properties.DeleteAllowed = NullableBooleanFromSwitch(nameof(DeleteAllowed));
             page.Properties.Description = Description;
-            page.Properties.Editable = Editable;
-            page.Properties.InsertAllowed = InsertAllowed;
-            page.Properties.LinksAllowed = LinksAllowed;
-            page.Properties.ModifyAllowed = ModifyAllowed;
-            page.Properties.MultipleNewLines = MultipleNewLines;
+            page.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
+            page.Properties.InsertAllowed = NullableBooleanFromSwitch(nameof(InsertAllowed));
+            page.Properties.LinksAllowed = NullableBooleanFromSwitch(nameof(LinksAllowed));
+            page.Properties.ModifyAllowed = NullableBooleanFromSwitch(nameof(ModifyAllowed));
+            page.Properties.MultipleNewLines = NullableBooleanFromSwitch(nameof(MultipleNewLines));
             page.Properties.PageType = PageType;
             page.Properties.Permissions.Set(Permissions);
-            page.Properties.PopulateAllFields = PopulateAllFields;
+            page.Properties.PopulateAllFields = NullableBooleanFromSwitch(nameof(PopulateAllFields));
             page.Properties.PromotedActionCategoriesML.Set(PromotedActionCategoriesML);
-            page.Properties.RefreshOnActivate = RefreshOnActivate;
-            page.Properties.SaveValues = SaveValues;
-            page.Properties.ShowFilter = ShowFilter;
+            page.Properties.RefreshOnActivate = NullableBooleanFromSwitch(nameof(RefreshOnActivate));
+            page.Properties.SaveValues = NullableBooleanFromSwitch(nameof(SaveValues));
+            page.Properties.ShowFilter = NullableBooleanFromSwitch(nameof(ShowFilter));
             page.Properties.SourceTable = SourceTable;
-            page.Properties.SourceTableTemporary = SourceTableTemporary;
+            page.Properties.SourceTableTemporary = NullableBooleanFromSwitch(nameof(SourceTableTemporary));
 
             if (AutoCaption)
                 page.AutoCaption();
@@ -205,5 +87,40 @@ namespace UncommonSense.CBreeze.Automation
                 trigger.CodeLines.AddRange(subObjects.OfType<string>());
             }
         }
+
+        [Parameter()] public SwitchParameter AutoSplitKey { get; set; }
+        [Parameter()] public Hashtable CaptionML { get; set; }
+        [Parameter()] public string CardPageID { get; set; }
+        [Parameter()] public string DataCaptionExpr { get; set; }
+        [Parameter()] public string[] DataCaptionFields { get; set; }
+        [Parameter()] public SwitchParameter DelayedInsert { get; set; }
+        [Parameter()] public SwitchParameter DeleteAllowed { get; set; }
+        [Parameter()] public string Description { get; set; }
+        [Parameter()] public SwitchParameter Editable { get; set; }
+        [Parameter()] public SwitchParameter InsertAllowed { get; set; }
+        [Parameter()] public SwitchParameter LinksAllowed { get; set; }
+        [Parameter()] public SwitchParameter ModifyAllowed { get; set; }
+        [Parameter()] public SwitchParameter MultipleNewLines { get; set; }
+        [Parameter()] public ScriptBlock OnAfterGetCurrRecord { get; set; }
+        [Parameter()] public ScriptBlock OnAfterGetRecord { get; set; }
+        [Parameter()] public ScriptBlock OnClosePage { get; set; }
+        [Parameter()] public ScriptBlock OnDeleteRecord { get; set; }
+        [Parameter()] public ScriptBlock OnFindRecord { get; set; }
+        [Parameter()] public ScriptBlock OnInit { get; set; }
+        [Parameter()] public ScriptBlock OnInsertRecord { get; set; }
+        [Parameter()] public ScriptBlock OnModifyRecord { get; set; }
+        [Parameter()] public ScriptBlock OnNewRecord { get; set; }
+        [Parameter()] public ScriptBlock OnNextRecord { get; set; }
+        [Parameter()] public ScriptBlock OnOpenPage { get; set; }
+        [Parameter()] public ScriptBlock OnQueryClosePage { get; set; }
+        [Parameter()] public PageType? PageType { get; set; }
+        [Parameter()] public Permission[] Permissions { get; set; }
+        [Parameter()] public SwitchParameter PopulateAllFields { get; set; }
+        [Parameter()] public Hashtable PromotedActionCategoriesML { get; set; }
+        [Parameter()] public SwitchParameter RefreshOnActivate { get; set; }
+        [Parameter()] public SwitchParameter SaveValues { get; set; }
+        [Parameter()] public SwitchParameter ShowFilter { get; set; }
+        [Parameter()] [ValidateRange(1, int.MaxValue)] public int? SourceTable { get; set; }
+        [Parameter()] public SwitchParameter SourceTableTemporary { get; set; }
     }
 }

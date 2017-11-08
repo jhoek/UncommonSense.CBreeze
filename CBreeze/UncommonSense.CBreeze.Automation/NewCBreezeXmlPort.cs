@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Automation
             var xmlPort = new XmlPort(ID, Name);
             SetObjectProperties(xmlPort);
 
-            xmlPort.Properties.DefaultFieldsValidation = InterpretSwitch(nameof(DefaultFieldsValidation));
+            xmlPort.Properties.DefaultFieldsValidation = NullableBooleanFromSwitch(nameof(DefaultFieldsValidation));
             xmlPort.Properties.DefaultNamespace = DefaultNamespace;
             xmlPort.Properties.Direction = Direction;
             xmlPort.Properties.Encoding = Encoding;
@@ -55,16 +55,16 @@ namespace UncommonSense.CBreeze.Automation
             xmlPort.Properties.FileName = FileName;
             xmlPort.Properties.Format = Format;
             xmlPort.Properties.FormatEvaluate = FormatEvaluate;
-            xmlPort.Properties.InlineSchema = InterpretSwitch(nameof(InlineSchema));
+            xmlPort.Properties.InlineSchema = NullableBooleanFromSwitch(nameof(InlineSchema));
             xmlPort.Properties.Permissions.Set(Permissions);
-            xmlPort.Properties.PreserveWhiteSpace = InterpretSwitch(nameof(PreserveWhitespace));
+            xmlPort.Properties.PreserveWhiteSpace = NullableBooleanFromSwitch(nameof(PreserveWhitespace));
             xmlPort.Properties.RecordSeparator = RecordSeparator;
             xmlPort.Properties.TableSeparator = TableSeparator;
             xmlPort.Properties.TextEncoding = TextEncoding;
             xmlPort.Properties.TransactionType = TransactionType;
-            xmlPort.Properties.UseDefaultNamespace = InterpretSwitch(nameof(UseDefaultNamespace));
-            xmlPort.Properties.UseLax = InterpretSwitch(nameof(UseLax));
-            xmlPort.Properties.UseRequestPage = InterpretSwitch(nameof(UseRequestPage));
+            xmlPort.Properties.UseDefaultNamespace = NullableBooleanFromSwitch(nameof(UseDefaultNamespace));
+            xmlPort.Properties.UseLax = NullableBooleanFromSwitch(nameof(UseLax));
+            xmlPort.Properties.UseRequestPage = NullableBooleanFromSwitch(nameof(UseRequestPage));
             xmlPort.Properties.XmlVersionNo = XmlVersionNo;
 
             if (AutoCaption)

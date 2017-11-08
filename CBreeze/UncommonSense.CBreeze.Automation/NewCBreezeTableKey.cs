@@ -21,11 +21,11 @@ namespace UncommonSense.CBreeze.Automation
         {
             var tableKey = new TableKey(Fields);
 
-            tableKey.Enabled = InterpretSwitch(nameof(Enabled));
-            tableKey.Properties.Clustered = InterpretSwitch(nameof(Clustered));
+            tableKey.Enabled = NullableBooleanFromSwitch(nameof(Enabled));
+            tableKey.Properties.Clustered = NullableBooleanFromSwitch(nameof(Clustered));
             tableKey.Properties.KeyGroups = KeyGroups;
-            tableKey.Properties.MaintainSIFTIndex = InterpretSwitch(nameof(MaintainSIFTIndex));
-            tableKey.Properties.MaintainSQLIndex = InterpretSwitch(nameof(MaintainSQLIndex));
+            tableKey.Properties.MaintainSIFTIndex = NullableBooleanFromSwitch(nameof(MaintainSIFTIndex));
+            tableKey.Properties.MaintainSQLIndex = NullableBooleanFromSwitch(nameof(MaintainSQLIndex));
             tableKey.Properties.SQLIndex.AddRange(SQLIndex ?? new string[] { });
             tableKey.Properties.SumIndexFields.AddRange(SumIndexFields ?? new string[] { });
 

@@ -51,9 +51,9 @@ namespace UncommonSense.CBreeze.Automation
             report.Properties.DefaultLayout = DefaultLayout;
 #endif
             report.Properties.Description = Description;
-            report.Properties.EnableExternalAssemblies = InterpretSwitch(nameof(EnableExternalAssemblies));
-            report.Properties.EnableExternalImages = InterpretSwitch(nameof(EnableExternalImages));
-            report.Properties.EnableHyperlinks = InterpretSwitch(nameof(EnableHyperlinks));
+            report.Properties.EnableExternalAssemblies = NullableBooleanFromSwitch(nameof(EnableExternalAssemblies));
+            report.Properties.EnableExternalImages = NullableBooleanFromSwitch(nameof(EnableExternalImages));
+            report.Properties.EnableHyperlinks = NullableBooleanFromSwitch(nameof(EnableHyperlinks));
             report.Properties.PaperSourceDefaultPage = PaperSourceDefaultPage;
             report.Properties.PaperSourceFirstPage = PaperSourceFirstPage;
             report.Properties.PaperSourceLastPage = PaperSourceLastPage;
@@ -61,11 +61,11 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
             report.Properties.PreviewMode = PreviewMode;
 #endif
-            report.Properties.ProcessingOnly = InterpretSwitch(nameof(ProcessingOnly));
-            report.Properties.ShowPrintStatus = InterpretSwitch(nameof(ShowPrintStatus));
+            report.Properties.ProcessingOnly = NullableBooleanFromSwitch(nameof(ProcessingOnly));
+            report.Properties.ShowPrintStatus = NullableBooleanFromSwitch(nameof(ShowPrintStatus));
             report.Properties.TransactionType = TransactionType;
-            report.Properties.UseRequestPage = InterpretSwitch(nameof(UseRequestPage));
-            report.Properties.UseSystemPrinter = InterpretSwitch(nameof(UseSystemPrinter));
+            report.Properties.UseRequestPage = NullableBooleanFromSwitch(nameof(UseRequestPage));
+            report.Properties.UseSystemPrinter = NullableBooleanFromSwitch(nameof(UseSystemPrinter));
 #if NAV2015
             report.Properties.WordMergeDataItem = WordMergeDataItem;
 #endif

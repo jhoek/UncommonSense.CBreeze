@@ -48,17 +48,17 @@ namespace UncommonSense.CBreeze.Automation
 
             table.Properties.CaptionML.Set(CaptionML);
             table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
-            table.Properties.DataPerCompany = InterpretSwitch(nameof(DataPerCompany));
+            table.Properties.DataPerCompany = NullableBooleanFromSwitch(nameof(DataPerCompany));
             table.Properties.Description = Description;
             table.Properties.DrillDownPageID = DrillDownPageID;
 #if NAV2016
             table.Properties.ExternalName = ExternalName;
             table.Properties.ExternalSchema = ExternalSchema;
 #endif
-            table.Properties.LinkedInTransaction = InterpretSwitch(nameof(LinkedInTransaction));
-            table.Properties.LinkedObject = InterpretSwitch(nameof(LinkedObject));
+            table.Properties.LinkedInTransaction = NullableBooleanFromSwitch(nameof(LinkedInTransaction));
+            table.Properties.LinkedObject = NullableBooleanFromSwitch(nameof(LinkedObject));
             table.Properties.LookupPageID = LookupPageID;
-            table.Properties.PasteIsValid = InterpretSwitch(nameof(PasteIsValid));
+            table.Properties.PasteIsValid = NullableBooleanFromSwitch(nameof(PasteIsValid));
             table.Properties.Permissions.Set(Permissions);
 #if NAV2016
             table.Properties.TableType = TableType;
