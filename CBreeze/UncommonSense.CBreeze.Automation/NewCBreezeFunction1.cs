@@ -21,7 +21,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("Procedure")]
 	public class NewCBreezeFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
-		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public SwitchParameter Local { get;set; }
 		[Parameter()] public string ReturnValueName { get; set; } 
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
@@ -34,7 +34,7 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; }
 
 #if NAV2016
-		[Parameter()] public bool? TryFunction { get; set; }
+		[Parameter()] public SwitchParameter TryFunction { get; set; }
 #endif 
 
 		protected override void AddItemToInputObject(Function item, PSObject inputObject)
@@ -68,9 +68,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = Local;
+			function.Local = InterpretSwitch(nameof(Local));
 #if NAV2016
-			function.TryFunction = TryFunction;
+			function.TryFunction = InterpretSwitch(nameof(TryFunction));
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
@@ -98,7 +98,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("TestFunction")]
 	public class NewCBreezeTestFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
-		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public SwitchParameter Local { get;set; }
 		[Parameter()] public string ReturnValueName { get; set; } 
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
@@ -111,7 +111,7 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; }
 
 #if NAV2016
-		[Parameter()] public bool? TryFunction { get; set; }
+		[Parameter()] public SwitchParameter TryFunction { get; set; }
 #endif 
 		[Parameter()] public string HandlerFunctions { get; set; }
 		[Parameter()] public TestFunctionType? TestFunctionType { get; set; } 
@@ -148,9 +148,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = Local;
+			function.Local = InterpretSwitch(nameof(Local));
 #if NAV2016
-			function.TryFunction = TryFunction;
+			function.TryFunction = InterpretSwitch(nameof(TryFunction));
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
@@ -181,7 +181,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("UpgradeFunction")]
 	public class NewCBreezeUpgradeFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
-		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public SwitchParameter Local { get;set; }
 		[Parameter()] public string ReturnValueName { get; set; } 
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
@@ -194,7 +194,7 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; }
 
 #if NAV2016
-		[Parameter()] public bool? TryFunction { get; set; }
+		[Parameter()] public SwitchParameter TryFunction { get; set; }
 #endif 
 #if NAV2015
 		[Parameter()] public UpgradeFunctionType? UpgradeFunctionType { get; set; } 
@@ -231,9 +231,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = Local;
+			function.Local = InterpretSwitch(nameof(Local));
 #if NAV2016
-			function.TryFunction = TryFunction;
+			function.TryFunction = InterpretSwitch(nameof(TryFunction));
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
@@ -265,7 +265,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("EventSubscriber")]
 	public class NewCBreezeEventSubscriberFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
-		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public SwitchParameter Local { get;set; }
 		[Parameter()] public string ReturnValueName { get; set; } 
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
@@ -278,7 +278,7 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; }
 
 #if NAV2016
-		[Parameter()] public bool? TryFunction { get; set; }
+		[Parameter()] public SwitchParameter TryFunction { get; set; }
 #endif 
 		[Parameter(Mandatory = true)] public ObjectType EventPublisherObjectType { get; set; } 
 		[Parameter(Mandatory = true)] public int EventPublisherObjectID { get; set; } 
@@ -318,9 +318,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = Local;
+			function.Local = InterpretSwitch(nameof(Local));
 #if NAV2016
-			function.TryFunction = TryFunction;
+			function.TryFunction = InterpretSwitch(nameof(TryFunction));
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
@@ -357,7 +357,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("BusinessEvent")]
 	public class NewCBreezeBusinessEventPublisherFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
-		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public SwitchParameter Local { get;set; }
 		[Parameter()] public string ReturnValueName { get; set; } 
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
@@ -370,9 +370,9 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; }
 
 #if NAV2016
-		[Parameter()] public bool? TryFunction { get; set; }
+		[Parameter()] public SwitchParameter TryFunction { get; set; }
 #endif 
-		[Parameter()] public bool? IncludeSender { get; set; } 
+		[Parameter()] public SwitchParameter IncludeSender { get; set; } 
 
 		protected override void AddItemToInputObject(Function item, PSObject inputObject)
 		{
@@ -405,9 +405,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = Local;
+			function.Local = InterpretSwitch(nameof(Local));
 #if NAV2016
-			function.TryFunction = TryFunction;
+			function.TryFunction = InterpretSwitch(nameof(TryFunction));
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
@@ -416,7 +416,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			function.Event = EventPublisherSubscriber.Publisher;
 			function.EventType = EventType.Business;
-			function.IncludeSender = IncludeSender;
+			function.IncludeSender = InterpretSwitch(nameof(IncludeSender));
 			
 			if (SubObjects != null)
 			{
@@ -440,7 +440,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias("IntegrationEvent")]
 	public class NewCBreezeIntegrationEventPublisherFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
-		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public SwitchParameter Local { get;set; }
 		[Parameter()] public string ReturnValueName { get; set; } 
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
@@ -453,10 +453,10 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; }
 
 #if NAV2016
-		[Parameter()] public bool? TryFunction { get; set; }
+		[Parameter()] public SwitchParameter TryFunction { get; set; }
 #endif 
-		[Parameter()] public bool? IncludeSender { get; set; }
-		[Parameter()] public bool? GlobalVarAccess { get; set; } 
+		[Parameter()] public SwitchParameter IncludeSender { get; set; }
+		[Parameter()] public SwitchParameter GlobalVarAccess { get; set; } 
 
 		protected override void AddItemToInputObject(Function item, PSObject inputObject)
 		{
@@ -489,9 +489,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = Local;
+			function.Local = InterpretSwitch(nameof(Local));
 #if NAV2016
-			function.TryFunction = TryFunction;
+			function.TryFunction = InterpretSwitch(nameof(TryFunction));
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
@@ -500,8 +500,8 @@ namespace UncommonSense.CBreeze.Automation
 
 			function.Event = EventPublisherSubscriber.Publisher;
 			function.EventType = EventType.Integration;
-			function.IncludeSender = IncludeSender;
-			function.GlobalVarAccess = GlobalVarAccess;
+			function.IncludeSender = InterpretSwitch(nameof(IncludeSender));
+			function.GlobalVarAccess = InterpretSwitch(nameof(GlobalVarAccess));
 
 			
 			if (SubObjects != null)

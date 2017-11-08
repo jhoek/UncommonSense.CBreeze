@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Automation
 	[Alias(<#= string.Join(", ", aliases[functionType].Select(a => $"\"{a}\"")) #>)]
 	public class NewCBreeze<#= functionType #> : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
-		[Parameter()] public bool? Local { get;set; }
+		[Parameter()] public SwitchParameter Local { get;set; }
 		[Parameter()] public string ReturnValueName { get; set; } 
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
@@ -58,7 +58,7 @@ namespace UncommonSense.CBreeze.Automation
 		public ScriptBlock SubObjects { get; set; }
 
 #if NAV2016
-		[Parameter()] public bool? TryFunction { get; set; }
+		[Parameter()] public SwitchParameter TryFunction { get; set; }
 #endif 
 <# if (functionType == "TestFunction") { #>
 		[Parameter()] public string HandlerFunctions { get; set; }
@@ -79,11 +79,11 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public MissingAction? OnMissingPermission { get; set; }
 <# } #>
 <# if (functionType == "BusinessEventPublisherFunction") { #>
-		[Parameter()] public bool? IncludeSender { get; set; } 
+		[Parameter()] public SwitchParameter IncludeSender { get; set; } 
 <# } #>
 <# if (functionType == "IntegrationEventPublisherFunction") { #>
-		[Parameter()] public bool? IncludeSender { get; set; }
-		[Parameter()] public bool? GlobalVarAccess { get; set; } 
+		[Parameter()] public SwitchParameter IncludeSender { get; set; }
+		[Parameter()] public SwitchParameter GlobalVarAccess { get; set; } 
 <# } #>
 
 		protected override void AddItemToInputObject(Function item, PSObject inputObject)
@@ -117,9 +117,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = Local;
+			function.Local = InterpretSwitch(nameof(Local));
 #if NAV2016
-			function.TryFunction = TryFunction;
+			function.TryFunction = InterpretSwitch(nameof(TryFunction));
 #endif
 			function.ReturnValue.Name = ReturnValueName;
 			function.ReturnValue.Type = ReturnValueType;
@@ -143,14 +143,14 @@ namespace UncommonSense.CBreeze.Automation
 <# if (functionType == "IntegrationEventPublisherFunction") { #>
 			function.Event = EventPublisherSubscriber.Publisher;
 			function.EventType = EventType.Integration;
-			function.IncludeSender = IncludeSender;
-			function.GlobalVarAccess = GlobalVarAccess;
+			function.IncludeSender = InterpretSwitch(nameof(IncludeSender));
+			function.GlobalVarAccess = InterpretSwitch(nameof(GlobalVarAccess));
 
 <# } #>
 <# if (functionType == "BusinessEventPublisherFunction") { #>
 			function.Event = EventPublisherSubscriber.Publisher;
 			function.EventType = EventType.Business;
-			function.IncludeSender = IncludeSender;
+			function.IncludeSender = InterpretSwitch(nameof(IncludeSender));
 <# } #>
 <# if (functionType == "UpgradeFunction") { #>
 #if NAV2015 
