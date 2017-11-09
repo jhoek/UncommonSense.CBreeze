@@ -9,6 +9,7 @@
 
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Common;
@@ -25,9 +26,9 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var xmlPortFieldAttribute = new XmlPortFieldAttribute(Name, GetIndentation(), ID);
 
-			xmlPortFieldAttribute.Properties.AutoCalcField = AutoCalcField;
+			xmlPortFieldAttribute.Properties.AutoCalcField = NullableBooleanFromSwitch(nameof(AutoCalcField));
 			xmlPortFieldAttribute.Properties.DataType = DataType;
-			xmlPortFieldAttribute.Properties.FieldValidate = FieldValidate;
+			xmlPortFieldAttribute.Properties.FieldValidate = NullableBooleanFromSwitch(nameof(FieldValidate));
 			xmlPortFieldAttribute.Properties.Occurrence = Occurrence;
 			xmlPortFieldAttribute.Properties.SourceField.FieldName = SourceFieldName;
 			xmlPortFieldAttribute.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
@@ -102,13 +103,13 @@ namespace UncommonSense.CBreeze.Automation
 		public Position? Position { get; set; }
 		
 		[Parameter()]
-		public Nullable<Boolean> AutoCalcField { get; set; }
+		public SwitchParameter AutoCalcField { get; set; }
 
 		[Parameter()]
 		public Nullable<XmlPortNodeDataType> DataType { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> FieldValidate { get; set; }
+		public SwitchParameter FieldValidate { get; set; }
 
 		[Parameter()]
 		public Nullable<Occurrence> Occurrence { get; set; }
@@ -144,15 +145,15 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var xmlPortFieldElement = new XmlPortFieldElement(Name, GetIndentation(), ID);
 
-			xmlPortFieldElement.Properties.AutoCalcField = AutoCalcField;
+			xmlPortFieldElement.Properties.AutoCalcField = NullableBooleanFromSwitch(nameof(AutoCalcField));
 			xmlPortFieldElement.Properties.DataType = DataType;
-			xmlPortFieldElement.Properties.FieldValidate = FieldValidate;
+			xmlPortFieldElement.Properties.FieldValidate = NullableBooleanFromSwitch(nameof(FieldValidate));
 			xmlPortFieldElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortFieldElement.Properties.MinOccurs = MinOccurs;
 			xmlPortFieldElement.Properties.NamespacePrefix = NamespacePrefix;
 			xmlPortFieldElement.Properties.SourceField.FieldName = SourceFieldName;
 			xmlPortFieldElement.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
-			xmlPortFieldElement.Properties.Unbound = Unbound;
+			xmlPortFieldElement.Properties.Unbound = NullableBooleanFromSwitch(nameof(Unbound));
 			xmlPortFieldElement.Properties.Width = Width;
 
 			yield return xmlPortFieldElement;
@@ -224,13 +225,13 @@ namespace UncommonSense.CBreeze.Automation
 		public Position? Position { get; set; }
 		
 		[Parameter()]
-		public Nullable<Boolean> AutoCalcField { get; set; }
+		public SwitchParameter AutoCalcField { get; set; }
 
 		[Parameter()]
 		public Nullable<XmlPortNodeDataType> DataType { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> FieldValidate { get; set; }
+		public SwitchParameter FieldValidate { get; set; }
 
 		[Parameter()]
 		public Nullable<MaxOccurs> MaxOccurs { get; set; }
@@ -254,7 +255,7 @@ namespace UncommonSense.CBreeze.Automation
 		public string SourceFieldTableVariableName { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> Unbound { get; set; }
+		public SwitchParameter Unbound { get; set; }
 
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
@@ -275,18 +276,18 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var xmlPortTableAttribute = new XmlPortTableAttribute(Name, GetIndentation(), ID);
 
-			xmlPortTableAttribute.Properties.AutoReplace = AutoReplace;
-			xmlPortTableAttribute.Properties.AutoSave = AutoSave;
-			xmlPortTableAttribute.Properties.AutoUpdate = AutoUpdate;
+			xmlPortTableAttribute.Properties.AutoReplace = NullableBooleanFromSwitch(nameof(AutoReplace));
+			xmlPortTableAttribute.Properties.AutoSave = NullableBooleanFromSwitch(nameof(AutoSave));
+			xmlPortTableAttribute.Properties.AutoUpdate = NullableBooleanFromSwitch(nameof(AutoUpdate));
 			xmlPortTableAttribute.Properties.CalcFields.AddRange(CalcFields);
 			xmlPortTableAttribute.Properties.LinkTable = LinkTable;
-			xmlPortTableAttribute.Properties.LinkTableForceInsert = LinkTableForceInsert;
+			xmlPortTableAttribute.Properties.LinkTableForceInsert = NullableBooleanFromSwitch(nameof(LinkTableForceInsert));
 			xmlPortTableAttribute.Properties.Occurrence = Occurrence;
 			xmlPortTableAttribute.Properties.ReqFilterFields.AddRange(ReqFilterFields);
 			xmlPortTableAttribute.Properties.SourceTable = SourceTable;
 			xmlPortTableAttribute.Properties.SourceTableView.Key = SourceTableViewKey;
 			xmlPortTableAttribute.Properties.SourceTableView.Order = SourceTableViewOrder;
-			xmlPortTableAttribute.Properties.Temporary = Temporary;
+			xmlPortTableAttribute.Properties.Temporary = NullableBooleanFromSwitch(nameof(Temporary));
 			xmlPortTableAttribute.Properties.VariableName = VariableName;
 			xmlPortTableAttribute.Properties.Width = Width;
 
@@ -362,13 +363,13 @@ namespace UncommonSense.CBreeze.Automation
 		public Position? Position { get; set; }
 		
 		[Parameter()]
-		public Nullable<Boolean> AutoReplace { get; set; }
+		public SwitchParameter AutoReplace { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> AutoSave { get; set; }
+		public SwitchParameter AutoSave { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> AutoUpdate { get; set; }
+		public SwitchParameter AutoUpdate { get; set; }
 
 		[Parameter()]
 		public string[] CalcFields { get; set; }
@@ -377,7 +378,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String LinkTable { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> LinkTableForceInsert { get; set; }
+		public SwitchParameter LinkTableForceInsert { get; set; }
 
 		[Parameter()]
 		public Nullable<Occurrence> Occurrence { get; set; }
@@ -399,7 +400,7 @@ namespace UncommonSense.CBreeze.Automation
 		public Order? SourceTableViewOrder { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> Temporary { get; set; }
+		public SwitchParameter Temporary { get; set; }
 
 		[Parameter()]
 		public String VariableName { get; set; }
@@ -423,12 +424,12 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var xmlPortTableElement = new XmlPortTableElement(Name, GetIndentation(), ID);
 
-			xmlPortTableElement.Properties.AutoReplace = AutoReplace;
-			xmlPortTableElement.Properties.AutoSave = AutoSave;
-			xmlPortTableElement.Properties.AutoUpdate = AutoUpdate;
+			xmlPortTableElement.Properties.AutoReplace = NullableBooleanFromSwitch(nameof(AutoReplace));
+			xmlPortTableElement.Properties.AutoSave = NullableBooleanFromSwitch(nameof(AutoSave));
+			xmlPortTableElement.Properties.AutoUpdate = NullableBooleanFromSwitch(nameof(AutoUpdate));
 			xmlPortTableElement.Properties.CalcFields.AddRange(CalcFields);
 			xmlPortTableElement.Properties.LinkTable = LinkTable;
-			xmlPortTableElement.Properties.LinkTableForceInsert = LinkTableForceInsert;
+			xmlPortTableElement.Properties.LinkTableForceInsert = NullableBooleanFromSwitch(nameof(LinkTableForceInsert));
 			xmlPortTableElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortTableElement.Properties.MinOccurs = MinOccurs;
 			xmlPortTableElement.Properties.NamespacePrefix = NamespacePrefix;
@@ -436,7 +437,7 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTableElement.Properties.SourceTable = SourceTable;
 			xmlPortTableElement.Properties.SourceTableView.Key = SourceTableViewKey;
 			xmlPortTableElement.Properties.SourceTableView.Order = SourceTableViewOrder;
-			xmlPortTableElement.Properties.Temporary = Temporary;
+			xmlPortTableElement.Properties.Temporary = NullableBooleanFromSwitch(nameof(Temporary));
 			xmlPortTableElement.Properties.VariableName = VariableName;
 			xmlPortTableElement.Properties.Width = Width;
 
@@ -512,13 +513,13 @@ namespace UncommonSense.CBreeze.Automation
 		public Position? Position { get; set; }
 		
 		[Parameter()]
-		public Nullable<Boolean> AutoReplace { get; set; }
+		public SwitchParameter AutoReplace { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> AutoSave { get; set; }
+		public SwitchParameter AutoSave { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> AutoUpdate { get; set; }
+		public SwitchParameter AutoUpdate { get; set; }
 
 		[Parameter()]
 		public string[] CalcFields { get; set; }
@@ -527,7 +528,7 @@ namespace UncommonSense.CBreeze.Automation
 		public String LinkTable { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> LinkTableForceInsert { get; set; }
+		public SwitchParameter LinkTableForceInsert { get; set; }
 
 		[Parameter()]
 		public Nullable<MaxOccurs> MaxOccurs { get; set; }
@@ -555,7 +556,7 @@ namespace UncommonSense.CBreeze.Automation
 		public Order? SourceTableViewOrder { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> Temporary { get; set; }
+		public SwitchParameter Temporary { get; set; }
 
 		[Parameter()]
 		public String VariableName { get; set; }
@@ -689,7 +690,7 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTextElement.Properties.MinOccurs = MinOccurs;
 			xmlPortTextElement.Properties.NamespacePrefix = NamespacePrefix;
 			xmlPortTextElement.Properties.TextType = TextType;
-			xmlPortTextElement.Properties.Unbound = Unbound;
+			xmlPortTextElement.Properties.Unbound = NullableBooleanFromSwitch(nameof(Unbound));
 			xmlPortTextElement.Properties.VariableName = VariableName;
 			xmlPortTextElement.Properties.Width = Width;
 
@@ -777,7 +778,7 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<TextType> TextType { get; set; }
 
 		[Parameter()]
-		public Nullable<Boolean> Unbound { get; set; }
+		public SwitchParameter Unbound { get; set; }
 
 		[Parameter()]
 		public String VariableName { get; set; }
