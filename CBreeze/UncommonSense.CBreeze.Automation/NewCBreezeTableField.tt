@@ -4,6 +4,7 @@
 <#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Management.Automation" #>
@@ -53,9 +54,10 @@ namespace UncommonSense.CBreeze.Automation
 		.Where(p => !skipProperties.Contains(p.Name))
 		.Select(p=> new { 
 			Name = p.Name, 
-			Type = p.PropertyType,
+			Type = p.PropertyType == typeof(bool?) ? typeof(SwitchParameter) : p.PropertyType,
 			Mandatory = p.Name == "OptionString",
-			Assignment = (p.Name == "CalcFormula" ? $"{variableName}.Properties.{p.Name}.Set({p.Name});" : $"{variableName}.Properties.{p.Name} = {p.Name};") }); 
+			Assignment = $"{variableName}.Properties.{p.Name}{GetAssignment(p)};"
+        });
 
 	if (relevantProperties.Any(p => p.Name == "DecimalPlaces"))
 	{
@@ -223,5 +225,15 @@ namespace UncommonSense.CBreeze.Automation
 		stringBuilder.Append(">");
 
 		return stringBuilder.ToString();
+	}
+
+	static string GetAssignment(PropertyInfo propertyInfo)
+	{
+		switch(propertyInfo)
+		{
+			case PropertyInfo p when p.Name == "CalcFormula": return $".Set({p.Name})";
+			case PropertyInfo p when p.PropertyType == typeof(bool?): return $" = NullableBooleanFromSwitch(nameof({p.Name}))";
+			default: return $" = {propertyInfo.Name}";
+		}
 	}
 #>
