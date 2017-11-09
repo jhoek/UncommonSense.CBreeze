@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Automation
         public Position? Position { get; set; }
 
         [Parameter()]
-        public Nullable<Boolean> ReverseSign { get; set; }
+        public SwitchParameter ReverseSign { get; set; }
 
         protected override void AddItemToInputObject(QueryElement item, DataItemQueryElement InputObject)
         {
@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Automation
             var columnQueryElement = new ColumnQueryElement(DataSource, ID, Name, GetIndentation());
 
             columnQueryElement.Properties.Description = Description;
-            columnQueryElement.Properties.ReverseSign = ReverseSign;
+            columnQueryElement.Properties.ReverseSign = NullableBooleanFromSwitch(nameof(ReverseSign));
             columnQueryElement.Properties.DateMethod = GetDateMethod();
             columnQueryElement.Properties.TotalsMethod = GetTotalsMethod();
             columnQueryElement.Properties.MethodType = GetMethodType(columnQueryElement.Properties.DateMethod, columnQueryElement.Properties.TotalsMethod);
