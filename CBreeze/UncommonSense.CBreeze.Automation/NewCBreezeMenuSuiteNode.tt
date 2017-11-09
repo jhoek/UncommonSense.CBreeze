@@ -4,6 +4,7 @@
 <#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Debug\UncommonSense.CBreeze.Automation.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="UncommonSense.CBreeze.Automation" #>
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
@@ -26,6 +27,7 @@
 		"Item",
 		"AccessByPermission",
 		"CaptionML",
+		"ApplicationArea",
 		"RunObjectType",
 		"RunObjectID"
 	};
@@ -55,6 +57,7 @@
 
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
@@ -74,7 +77,7 @@ namespace UncommonSense.CBreeze.Automation
 		.Select(p => new {
 			Name = p.Name,
 			Type = p.PropertyType,
-			Assignment = $"{variableName}.Properties.{p.Name} = {p.Name};",
+			Assignment = p.PropertyType == typeof(bool?) ? $"{variableName}.Properties.{p.Name} = NullableBooleanFromSwitch(nameof({p.Name}));" : $"{variableName}.Properties.{p.Name} = {p.Name};",
 			RangeMin = rangeMin.ContainsKey(p.Name) ? rangeMin[p.Name] : "",
 			RangeMax = rangeMax.ContainsKey(p.Name) ? rangeMax[p.Name] : "",
 			Mandatory = mandatoryProperties.Contains(p.Name),
@@ -84,15 +87,28 @@ namespace UncommonSense.CBreeze.Automation
 	if (allProperties.Any(p => p.Name == "CaptionML")) 
 	{
 		relevantProperties.Add(new {
-			Name = "Caption",
-			Type = typeof(string),
-			Assignment = $"{variableName}.Properties.CaptionML.Set(\"ENU\", Caption);",
+			Name = "CaptionML",
+			Type = typeof(Hashtable),
+			Assignment = $"{variableName}.Properties.CaptionML.Set(CaptionML);",
 			RangeMin = "",
 			RangeMax = "",
 			Mandatory = true,
 			RelativePosition = 1
 		});
 	};
+
+	if (allProperties.Any(p => p.Name == "ApplicationArea"))
+    {
+		relevantProperties.Add(new {
+			Name = "ApplicationArea",
+			Type = typeof(string[]),
+			Assignment = $"{variableName}.Properties.ApplicationArea.Set(ApplicationArea);",
+			RangeMin = "",
+			RangeMax = "",
+			Mandatory = true,
+			RelativePosition = 1
+		});
+	}
 
 	if (allProperties.Any(p => p.Name == "RunObjectType"))
 	{
@@ -192,6 +208,9 @@ namespace UncommonSense.CBreeze.Automation
 	{
 		if (!t.IsGenericType)
 			return t.Name;
+
+		if (t == typeof(bool?))
+			return "SwitchParameter";
 
 		var stringBuilder = new StringBuilder();
 

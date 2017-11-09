@@ -9,6 +9,7 @@
 
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
@@ -25,7 +26,7 @@ namespace UncommonSense.CBreeze.Automation
 		protected override IEnumerable<DeltaNode> CreateItems() 
 		{
 			var deltaNode = new DeltaNode(ID);	
-			deltaNode.Properties.Deleted = Deleted;
+			deltaNode.Properties.Deleted = NullableBooleanFromSwitch(nameof(Deleted));
 			deltaNode.Properties.NextNodeID = NextNodeID;
 			yield return deltaNode;
 		}
@@ -42,7 +43,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> Deleted 
+		public SwitchParameter Deleted 
 		{
 			get; set;
 		}
@@ -63,14 +64,15 @@ namespace UncommonSense.CBreeze.Automation
 		protected override IEnumerable<GroupNode> CreateItems() 
 		{
 			var groupNode = new GroupNode(ID);	
+			groupNode.Properties.Deleted = NullableBooleanFromSwitch(nameof(Deleted));
 			groupNode.Properties.FirstChild = FirstChild;
-			groupNode.Properties.IsDepartmentPage = IsDepartmentPage;
+			groupNode.Properties.IsDepartmentPage = NullableBooleanFromSwitch(nameof(IsDepartmentPage));
 			groupNode.Properties.MemberOfMenu = MemberOfMenu;
 			groupNode.Properties.Name = Name;
 			groupNode.Properties.NextNodeID = NextNodeID;
 			groupNode.Properties.ParentNodeID = ParentNodeID;
-			groupNode.Properties.Visible = Visible;
-			groupNode.Properties.CaptionML.Set("ENU", Caption);
+			groupNode.Properties.Visible = NullableBooleanFromSwitch(nameof(Visible));
+			groupNode.Properties.CaptionML.Set(CaptionML);
 			yield return groupNode;
 		}
 
@@ -86,13 +88,19 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
+		public SwitchParameter Deleted 
+		{
+			get; set;
+		}
+
+		[Parameter()]
 		public Nullable<Guid> FirstChild 
 		{
 			get; set;
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> IsDepartmentPage 
+		public SwitchParameter IsDepartmentPage 
 		{
 			get; set;
 		}
@@ -122,7 +130,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> Visible 
+		public SwitchParameter Visible 
 		{
 			get; set;
 		}
@@ -131,7 +139,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-		public String Caption 
+		public Hashtable CaptionML 
 		{
 			get; set;
 		}
@@ -146,14 +154,15 @@ namespace UncommonSense.CBreeze.Automation
 		protected override IEnumerable<ItemNode> CreateItems() 
 		{
 			var itemNode = new ItemNode(ID);	
-			itemNode.Properties.Deleted = Deleted;
+			itemNode.Properties.Deleted = NullableBooleanFromSwitch(nameof(Deleted));
 			itemNode.Properties.DepartmentCategory = DepartmentCategory;
 			itemNode.Properties.MemberOfMenu = MemberOfMenu;
 			itemNode.Properties.Name = Name;
 			itemNode.Properties.NextNodeID = NextNodeID;
 			itemNode.Properties.ParentNodeID = ParentNodeID;
-			itemNode.Properties.Visible = Visible;
-			itemNode.Properties.CaptionML.Set("ENU", Caption);
+			itemNode.Properties.Visible = NullableBooleanFromSwitch(nameof(Visible));
+			itemNode.Properties.CaptionML.Set(CaptionML);
+			itemNode.Properties.ApplicationArea.Set(ApplicationArea);
 			itemNode.Properties.RunObjectType = RunObjectType;
 			itemNode.Properties.RunObjectID = RunObjectID;
 			yield return itemNode;
@@ -171,7 +180,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> Deleted 
+		public SwitchParameter Deleted 
 		{
 			get; set;
 		}
@@ -207,7 +216,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> Visible 
+		public SwitchParameter Visible 
 		{
 			get; set;
 		}
@@ -216,7 +225,16 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-		public String Caption 
+		public Hashtable CaptionML 
+		{
+			get; set;
+		}
+
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
+		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+		public String[] ApplicationArea 
 		{
 			get; set;
 		}
@@ -250,16 +268,16 @@ namespace UncommonSense.CBreeze.Automation
 		protected override IEnumerable<MenuNode> CreateItems() 
 		{
 			var menuNode = new MenuNode(ID);	
-			menuNode.Properties.Enabled = Enabled;
+			menuNode.Properties.Enabled = NullableBooleanFromSwitch(nameof(Enabled));
 			menuNode.Properties.FirstChild = FirstChild;
 			menuNode.Properties.Image = Image;
-			menuNode.Properties.IsShortcut = IsShortcut;
+			menuNode.Properties.IsShortcut = NullableBooleanFromSwitch(nameof(IsShortcut));
 			menuNode.Properties.MemberOfMenu = MemberOfMenu;
 			menuNode.Properties.Name = Name;
 			menuNode.Properties.NextNodeID = NextNodeID;
 			menuNode.Properties.ParentNodeID = ParentNodeID;
-			menuNode.Properties.Visible = Visible;
-			menuNode.Properties.CaptionML.Set("ENU", Caption);
+			menuNode.Properties.Visible = NullableBooleanFromSwitch(nameof(Visible));
+			menuNode.Properties.CaptionML.Set(CaptionML);
 			yield return menuNode;
 		}
 
@@ -275,7 +293,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> Enabled 
+		public SwitchParameter Enabled 
 		{
 			get; set;
 		}
@@ -294,7 +312,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> IsShortcut 
+		public SwitchParameter IsShortcut 
 		{
 			get; set;
 		}
@@ -324,7 +342,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public Nullable<Boolean> Visible 
+		public SwitchParameter Visible 
 		{
 			get; set;
 		}
@@ -333,7 +351,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-		public String Caption 
+		public Hashtable CaptionML 
 		{
 			get; set;
 		}
