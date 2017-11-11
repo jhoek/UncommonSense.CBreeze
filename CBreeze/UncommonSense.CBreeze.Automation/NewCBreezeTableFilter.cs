@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeFilter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("TableFilter")]
+    [Alias("TableFilter", "Add-CBreezeFilter")]
     public class NewCBreezeTableFilter : NewItemCmdlet<TableFilterLine, PSObject>
     {
         [Parameter(Mandatory = true, Position = 1)]

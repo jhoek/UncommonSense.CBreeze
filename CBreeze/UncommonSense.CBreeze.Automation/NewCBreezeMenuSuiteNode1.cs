@@ -20,8 +20,9 @@ namespace UncommonSense.CBreeze.Automation
 {
 	[Cmdlet(VerbsCommon.New, "CBreezeDeltaMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DeltaNode))]
-	[Alias("DeltaNode")]
-	public class NewCBreezeDeltaMenuSuiteNode : NewItemWithIDCmdlet<DeltaNode, Guid, MenuSuite>
+	[Alias("DeltaNode", "Add-CBreezeDeltaMenuSuiteNode")]
+
+    public class NewCBreezeDeltaMenuSuiteNode : NewItemWithIDCmdlet<DeltaNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<DeltaNode> CreateItems() 
 		{
@@ -58,8 +59,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeGroupMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(GroupNode))]
-	[Alias("GroupNode")]
-	public class NewCBreezeGroupMenuSuiteNode : NewItemWithIDCmdlet<GroupNode, Guid, MenuSuite>
+	[Alias("GroupNode", "Add-CBreezeGroupMenuSuiteNode")]
+    public class NewCBreezeGroupMenuSuiteNode : NewItemWithIDCmdlet<GroupNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<GroupNode> CreateItems() 
 		{
@@ -148,8 +149,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeItemMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ItemNode))]
-	[Alias("ItemNode")]
-	public class NewCBreezeItemMenuSuiteNode : NewItemWithIDCmdlet<ItemNode, Guid, MenuSuite>
+	[Alias("ItemNode", "Add-CBreezeItemMenuSuiteNode")]
+    public class NewCBreezeItemMenuSuiteNode : NewItemWithIDCmdlet<ItemNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<ItemNode> CreateItems() 
 		{
@@ -262,8 +263,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeMenuMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(MenuNode))]
-	[Alias("MenuNode")]
-	public class NewCBreezeMenuMenuSuiteNode : NewItemWithIDCmdlet<MenuNode, Guid, MenuSuite>
+	[Alias("MenuNode", "Add-CBreezeMenuMenuSuiteNode")]
+    public class NewCBreezeMenuMenuSuiteNode : NewItemWithIDCmdlet<MenuNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<MenuNode> CreateItems() 
 		{
@@ -360,8 +361,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeRootMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(RootNode))]
-	[Alias("RootNode")]
-	public class NewCBreezeRootMenuSuiteNode : NewItemWithIDCmdlet<RootNode, Guid, MenuSuite>
+	[Alias("RootNode", "Add-CBreezeRootMenuSuiteNode")]
+    public class NewCBreezeRootMenuSuiteNode : NewItemWithIDCmdlet<RootNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<RootNode> CreateItems() 
 		{

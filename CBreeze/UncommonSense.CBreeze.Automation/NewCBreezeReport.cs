@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeReport", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Report))]
-    [Alias("Report")]
+    [Alias("Report", "Add-CBreezeReport")]
     public class NewCBreezeReport : NewCBreezeObject<Report>
     {
 #if NAV2015

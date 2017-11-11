@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeMenuSuite", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(MenuSuite))]
-    [Alias("MenuSuite")]
+    [Alias("MenuSuite", "Add-CBreezeMenuSuite")]
     public class NewCBreezeMenuSuite : NewCBreezeObject<MenuSuite>
     {
         protected override void AddItemToInputObject(MenuSuite item, Application inputObject)

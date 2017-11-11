@@ -10,7 +10,7 @@ using UncommonSense.CBreeze.Write;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeXmlPortLink", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("XmlPortLink")]
+    [Alias("XmlPortLink", "Add-CBreezeXmlPortLink")]
     [OutputType(typeof(LinkField))]
     public class NewCBreezeXmlPortLink : NewItemCmdlet<LinkField, PSObject>
     {

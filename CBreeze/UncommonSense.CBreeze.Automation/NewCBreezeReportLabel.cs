@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeReportLabel")]
     [OutputType(typeof(ReportLabel))]
-    [Alias("ReportLabel")]
+    [Alias("ReportLabel", "Add-CBreezeReportLabel")]
     public class NewCBreezeReportLabel : NewItemWithIDAndNameCmdlet<ReportLabel, int, Report>
     {
         protected override void AddItemToInputObject(ReportLabel item, Report inputObject)

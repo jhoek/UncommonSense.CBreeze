@@ -9,7 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeQueryLink", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("QueryLink")]
+    [Alias("QueryLink", "Add-CBreezeQueryLink")]
     [OutputType(typeof(QueryDataItemLinkLine))]
     public class NewCBreezeQueryLink : NewItemCmdlet<QueryDataItemLinkLine, DataItemQueryElement>
     {

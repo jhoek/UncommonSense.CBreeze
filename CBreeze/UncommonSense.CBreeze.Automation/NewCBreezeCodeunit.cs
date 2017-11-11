@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeCodeunit", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Codeunit))]
-    [Alias("Codeunit")]
+    [Alias("Codeunit", "Add-CBreezeCodeunit")]
     public class NewCBreezeCodeunit : NewCBreezeObject<Codeunit>
     {
 #if !NAV2016

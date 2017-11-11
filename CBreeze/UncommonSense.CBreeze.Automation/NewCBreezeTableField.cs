@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
 {
 	[Cmdlet(VerbsCommon.New, "CBreezeBigIntegerTableField")]
 	[OutputType(typeof(BigIntegerTableField))]
-	[Alias("BigIntegerField")]
+	[Alias("BigIntegerField", "Add-CBreezeBigIntegerTableField")]
 	public class NewCBreezeBigIntegerTableField : NewItemWithIDAndNameCmdlet<BigIntegerTableField, int, Table>
 	{
 
@@ -194,7 +194,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBinaryTableField")]
 	[OutputType(typeof(BinaryTableField))]
-	[Alias("BinaryField")]
+	[Alias("BinaryField", "Add-CBreezeBinaryTableField")]
 	public class NewCBreezeBinaryTableField : NewItemWithIDAndNameCmdlet<BinaryTableField, int, Table>
 	{
 
@@ -263,7 +263,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBlobTableField")]
 	[OutputType(typeof(BlobTableField))]
-	[Alias("BlobField")]
+	[Alias("BlobField", "Add-CBreezeBlobTableField")]
 	public class NewCBreezeBlobTableField : NewItemWithIDAndNameCmdlet<BlobTableField, int, Table>
 	{
 
@@ -357,7 +357,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBooleanTableField")]
 	[OutputType(typeof(BooleanTableField))]
-	[Alias("BooleanField")]
+	[Alias("BooleanField", "Add-CBreezeBooleanTableField")]
 	public class NewCBreezeBooleanTableField : NewItemWithIDAndNameCmdlet<BooleanTableField, int, Table>
 	{
 
@@ -517,7 +517,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeMediaSetTableField")]
 	[OutputType(typeof(MediaSetTableField))]
-	[Alias("MediaSetField")]
+	[Alias("MediaSetField", "Add-CBreezeMediaSetTableField")]
 	public class NewCBreezeMediaSetTableField : NewItemWithIDAndNameCmdlet<MediaSetTableField, int, Table>
 	{
 
@@ -629,7 +629,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeMediaTableField")]
 	[OutputType(typeof(MediaTableField))]
-	[Alias("MediaField")]
+	[Alias("MediaField", "Add-CBreezeMediaTableField")]
 	public class NewCBreezeMediaTableField : NewItemWithIDAndNameCmdlet<MediaTableField, int, Table>
 	{
 
@@ -741,7 +741,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeCodeTableField")]
 	[OutputType(typeof(CodeTableField))]
-	[Alias("CodeField")]
+	[Alias("CodeField", "Add-CBreezeCodeTableField")]
 	public class NewCBreezeCodeTableField : NewItemWithIDAndNameCmdlet<CodeTableField, int, Table>
 	{
 
@@ -904,7 +904,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateFormulaTableField")]
 	[OutputType(typeof(DateFormulaTableField))]
-	[Alias("DateFormulaField")]
+	[Alias("DateFormulaField", "Add-CBreezeDateFormulaTableField")]
 	public class NewCBreezeDateFormulaTableField : NewItemWithIDAndNameCmdlet<DateFormulaTableField, int, Table>
 	{
 
@@ -1044,7 +1044,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateTableField")]
 	[OutputType(typeof(DateTableField))]
-	[Alias("DateField")]
+	[Alias("DateField", "Add-CBreezeDateTableField")]
 	public class NewCBreezeDateTableField : NewItemWithIDAndNameCmdlet<DateTableField, int, Table>
 	{
 
@@ -1204,7 +1204,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateTimeTableField")]
 	[OutputType(typeof(DateTimeTableField))]
-	[Alias("DateTimeField")]
+	[Alias("DateTimeField", "Add-CBreezeDateTimeTableField")]
 	public class NewCBreezeDateTimeTableField : NewItemWithIDAndNameCmdlet<DateTimeTableField, int, Table>
 	{
 
@@ -1364,7 +1364,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDecimalTableField")]
 	[OutputType(typeof(DecimalTableField))]
-	[Alias("DecimalField")]
+	[Alias("DecimalField", "Add-CBreezeDecimalTableField")]
 	public class NewCBreezeDecimalTableField : NewItemWithIDAndNameCmdlet<DecimalTableField, int, Table>
 	{
 
@@ -1536,7 +1536,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDurationTableField")]
 	[OutputType(typeof(DurationTableField))]
-	[Alias("DurationField")]
+	[Alias("DurationField", "Add-CBreezeDurationTableField")]
 	public class NewCBreezeDurationTableField : NewItemWithIDAndNameCmdlet<DurationTableField, int, Table>
 	{
 
@@ -1700,7 +1700,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeGuidTableField")]
 	[OutputType(typeof(GuidTableField))]
-	[Alias("GuidField")]
+	[Alias("GuidField", "Add-CBreezeGuidTableField")]
 	public class NewCBreezeGuidTableField : NewItemWithIDAndNameCmdlet<GuidTableField, int, Table>
 	{
 
@@ -1840,7 +1840,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeIntegerTableField")]
 	[OutputType(typeof(IntegerTableField))]
-	[Alias("IntegerField")]
+	[Alias("IntegerField", "Add-CBreezeIntegerTableField")]
 	public class NewCBreezeIntegerTableField : NewItemWithIDAndNameCmdlet<IntegerTableField, int, Table>
 	{
 
@@ -2012,7 +2012,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeOptionTableField")]
 	[OutputType(typeof(OptionTableField))]
-	[Alias("OptionField")]
+	[Alias("OptionField", "Add-CBreezeOptionTableField")]
 	public class NewCBreezeOptionTableField : NewItemWithIDAndNameCmdlet<OptionTableField, int, Table>
 	{
 
@@ -2190,7 +2190,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeRecordIDTableField")]
 	[OutputType(typeof(RecordIDTableField))]
-	[Alias("RecordIDField")]
+	[Alias("RecordIDField", "Add-CBreezeRecordIDTableField")]
 	public class NewCBreezeRecordIDTableField : NewItemWithIDAndNameCmdlet<RecordIDTableField, int, Table>
 	{
 
@@ -2330,7 +2330,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTableFilterTableField")]
 	[OutputType(typeof(TableFilterTableField))]
-	[Alias("FilterField")]
+	[Alias("FilterField", "Add-CBreezeTableFilterTableField")]
 	public class NewCBreezeTableFilterTableField : NewItemWithIDAndNameCmdlet<TableFilterTableField, int, Table>
 	{
 
@@ -2400,7 +2400,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTextTableField")]
 	[OutputType(typeof(TextTableField))]
-	[Alias("TextField")]
+	[Alias("TextField", "Add-CBreezeTextTableField")]
 	public class NewCBreezeTextTableField : NewItemWithIDAndNameCmdlet<TextTableField, int, Table>
 	{
 
@@ -2563,7 +2563,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTimeTableField")]
 	[OutputType(typeof(TimeTableField))]
-	[Alias("TimeField")]
+	[Alias("TimeField", "Add-CBreezeTimeTableField")]
 	public class NewCBreezeTimeTableField : NewItemWithIDAndNameCmdlet<TimeTableField, int, Table>
 	{
 

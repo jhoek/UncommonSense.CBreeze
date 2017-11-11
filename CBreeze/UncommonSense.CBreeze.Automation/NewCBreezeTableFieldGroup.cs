@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableFieldGroup", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(TableFieldGroup))]
-    [Alias("FieldGroup")]
+    [Alias("FieldGroup", "Add-CBreezeTableFieldGroup")]
     public class NewCBreezeTableFieldGroup : NewItemWithIDAndNameCmdlet<TableFieldGroup, int, Table>
     {
         [Parameter()]

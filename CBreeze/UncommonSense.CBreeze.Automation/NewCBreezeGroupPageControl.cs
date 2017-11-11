@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeGroupPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(GroupPageControl))]
-    [Alias("GroupControl")]
+    [Alias("GroupControl", "Add-CBreezeGroupPageControl")]
     public class NewCBreezeGroupPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControl item, PSObject inputObject)

@@ -10,7 +10,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeColumnReportElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("ReportColumn")]
+    [Alias("ReportColumn", "Add-CBreezeColumnReportElement")]
     [OutputType(typeof(ColumnReportElement))]
     public class NewCBreezeColumnReportElement : NewItemWithIDAndNameCmdlet<ColumnReportElement, int, DataItemReportElement>
     {
@@ -67,7 +67,7 @@ namespace UncommonSense.CBreeze.Automation
     }
 
     [Cmdlet(VerbsCommon.New, "CBreezeDataItemReportElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("ReportDataItem")]
+    [Alias("ReportDataItem", "Add-CBreezeDataItemReportElement")]
     [OutputType(typeof(ReportElement))]
     public class NewCBreezeDataItemReportElement : NewItemWithIDCmdlet<ReportElement, int, PSObject>
     {

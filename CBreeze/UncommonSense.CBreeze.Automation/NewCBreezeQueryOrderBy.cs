@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeQueryOrderBy", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(QueryOrderByLine))]
-    [Alias("OrderBy")]
+    [Alias("OrderBy", "Add-CBreezeQueryOrderBy")]
     public class NewCBreezeQueryOrderBy : NewItemCmdlet<QueryOrderByLine, Query>
     {
         protected override void AddItemToInputObject(QueryOrderByLine item, Query inputObject)

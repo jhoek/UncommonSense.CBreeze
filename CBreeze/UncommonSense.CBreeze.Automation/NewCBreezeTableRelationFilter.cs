@@ -9,7 +9,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableRelationFilter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("TableRelationFilter")]
+    [Alias("TableRelationFilter", "Add-CBreezeTableRelationFilter")]
     [OutputType(typeof(TableRelationTableFilterLine))]
     public class NewCBreezeTableRelationFilter : NewItemCmdlet<TableRelationTableFilterLine, TableRelationLine>
     {

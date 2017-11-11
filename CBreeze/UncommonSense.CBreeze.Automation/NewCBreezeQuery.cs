@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeQuery", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Query))]
-    [Alias("Query")]
+    [Alias("Query", "Add-CBreezeQuery")]
     public class NewCBreezeQuery : NewCBreezeObject<Query>
     {
         [Parameter()]

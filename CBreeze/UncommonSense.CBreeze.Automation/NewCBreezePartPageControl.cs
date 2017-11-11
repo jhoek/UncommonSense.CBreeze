@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeNewPartPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezePartPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PartPageControl))]
-    [Alias("PartControl")]
+    [Alias("PartControl", "Add-CBreezePartPageControl")]
     public class NewCBreezePartPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControl item, PSObject inputObject)

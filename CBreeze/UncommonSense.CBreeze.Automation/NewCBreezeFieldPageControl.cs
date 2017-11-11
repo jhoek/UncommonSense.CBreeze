@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 
     [Cmdlet(VerbsCommon.New, "CBreezeFieldPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(FieldPageControl))]
-    [Alias("FieldControl")]
+    [Alias("FieldControl", "CBreezeFieldPageControl")]
     public class NewCBreezeFieldPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControl item, PSObject inputObject)

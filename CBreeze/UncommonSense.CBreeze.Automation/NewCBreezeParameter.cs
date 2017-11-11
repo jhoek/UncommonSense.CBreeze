@@ -16,7 +16,7 @@ namespace UncommonSense.CBreeze.Automation
 {
 [Cmdlet(VerbsCommon.New, "CBreezeActionParameter")]
 [OutputType(typeof(ActionParameter))]
-[Alias("ActionParameter")]
+[Alias("ActionParameter", "Add-CBreezeActionParameter")]
 public class NewCBreezeActionParameter : NewItemWithIDAndNameCmdlet<ActionParameter, int, PSObject>
 {
 protected override IEnumerable<ActionParameter> CreateItems()
@@ -41,7 +41,7 @@ protected override IEnumerable<ActionParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeAutomationParameter")]
 [OutputType(typeof(AutomationParameter))]
-[Alias("AutomationParameter")]
+[Alias("AutomationParameter", "Add-CBreezeAutomationParameter")]
 public class NewCBreezeAutomationParameter : NewItemWithIDAndNameCmdlet<AutomationParameter, int, PSObject>
 {
 protected override IEnumerable<AutomationParameter> CreateItems()
@@ -69,7 +69,7 @@ protected override IEnumerable<AutomationParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeBigIntegerParameter")]
 [OutputType(typeof(BigIntegerParameter))]
-[Alias("BigIntegerParameter")]
+[Alias("BigIntegerParameter", "Add-CBreezeBigIntegerParameter")]
 public class NewCBreezeBigIntegerParameter : NewItemWithIDAndNameCmdlet<BigIntegerParameter, int, PSObject>
 {
 protected override IEnumerable<BigIntegerParameter> CreateItems()
@@ -94,7 +94,7 @@ protected override IEnumerable<BigIntegerParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeBigTextParameter")]
 [OutputType(typeof(BigTextParameter))]
-[Alias("BigTextParameter")]
+[Alias("BigTextParameter", "Add-CBreezeBigTextParameter")]
 public class NewCBreezeBigTextParameter : NewItemWithIDAndNameCmdlet<BigTextParameter, int, PSObject>
 {
 protected override IEnumerable<BigTextParameter> CreateItems()
@@ -119,7 +119,7 @@ protected override IEnumerable<BigTextParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeBinaryParameter")]
 [OutputType(typeof(BinaryParameter))]
-[Alias("BinaryParameter")]
+[Alias("BinaryParameter", "Add-CBreezeBinaryParameter")]
 public class NewCBreezeBinaryParameter : NewItemWithIDAndNameCmdlet<BinaryParameter, int, PSObject>
 {
 protected override IEnumerable<BinaryParameter> CreateItems()
@@ -147,7 +147,7 @@ protected override IEnumerable<BinaryParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeBooleanParameter")]
 [OutputType(typeof(BooleanParameter))]
-[Alias("BooleanParameter")]
+[Alias("BooleanParameter", "Add-CBreezeBooleanParameter")]
 public class NewCBreezeBooleanParameter : NewItemWithIDAndNameCmdlet<BooleanParameter, int, PSObject>
 {
 protected override IEnumerable<BooleanParameter> CreateItems()
@@ -172,7 +172,7 @@ protected override IEnumerable<BooleanParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeByteParameter")]
 [OutputType(typeof(ByteParameter))]
-[Alias("ByteParameter")]
+[Alias("ByteParameter", "Add-CBreezeByteParameter")]
 public class NewCBreezeByteParameter : NewItemWithIDAndNameCmdlet<ByteParameter, int, PSObject>
 {
 protected override IEnumerable<ByteParameter> CreateItems()
@@ -197,7 +197,7 @@ protected override IEnumerable<ByteParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeCharParameter")]
 [OutputType(typeof(CharParameter))]
-[Alias("CharParameter")]
+[Alias("CharParameter", "Add-CBreezeCharParameter")]
 public class NewCBreezeCharParameter : NewItemWithIDAndNameCmdlet<CharParameter, int, PSObject>
 {
 protected override IEnumerable<CharParameter> CreateItems()
@@ -222,7 +222,7 @@ protected override IEnumerable<CharParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeClientTypeParameter")]
 [OutputType(typeof(ClientTypeParameter))]
-[Alias("ClientTypeParameter")]
+[Alias("ClientTypeParameter", "Add-CBreezeClientTypeParameter")]
 public class NewCBreezeClientTypeParameter : NewItemWithIDAndNameCmdlet<ClientTypeParameter, int, PSObject>
 {
 protected override IEnumerable<ClientTypeParameter> CreateItems()
@@ -247,7 +247,7 @@ protected override IEnumerable<ClientTypeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDefaultLayoutParameter")]
 [OutputType(typeof(DefaultLayoutParameter))]
-[Alias("DefaultLayoutParameter")]
+[Alias("DefaultLayoutParameter", "Add-CBreezeDefaultLayoutParameter")]
 public class NewCBreezeDefaultLayoutParameter : NewItemWithIDAndNameCmdlet<DefaultLayoutParameter, int, PSObject>
 {
 protected override IEnumerable<DefaultLayoutParameter> CreateItems()
@@ -272,7 +272,7 @@ protected override IEnumerable<DefaultLayoutParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeFilterPageBuilderParameter")]
 [OutputType(typeof(FilterPageBuilderParameter))]
-[Alias("FilterPageBuilderParameter")]
+[Alias("FilterPageBuilderParameter", "Add-CBreezeFilterPageBuilderParameter")]
 public class NewCBreezeFilterPageBuilderParameter : NewItemWithIDAndNameCmdlet<FilterPageBuilderParameter, int, PSObject>
 {
 protected override IEnumerable<FilterPageBuilderParameter> CreateItems()
@@ -297,7 +297,7 @@ protected override IEnumerable<FilterPageBuilderParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeNotificationParameter")]
 [OutputType(typeof(NotificationParameter))]
-[Alias("NotificationParameter")]
+[Alias("NotificationParameter", "Add-CBreezeNotificationParameter")]
 public class NewCBreezeNotificationParameter : NewItemWithIDAndNameCmdlet<NotificationParameter, int, PSObject>
 {
 protected override IEnumerable<NotificationParameter> CreateItems()
@@ -322,7 +322,7 @@ protected override IEnumerable<NotificationParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeNotificationScopeParameter")]
 [OutputType(typeof(NotificationScopeParameter))]
-[Alias("NotificationScopeParameter")]
+[Alias("NotificationScopeParameter", "Add-CBreezeNotificationScopeParameter")]
 public class NewCBreezeNotificationScopeParameter : NewItemWithIDAndNameCmdlet<NotificationScopeParameter, int, PSObject>
 {
 protected override IEnumerable<NotificationScopeParameter> CreateItems()
@@ -347,7 +347,7 @@ protected override IEnumerable<NotificationScopeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeObjectTypeParameter")]
 [OutputType(typeof(ObjectTypeParameter))]
-[Alias("ObjectTypeParameter")]
+[Alias("ObjectTypeParameter", "Add-CBreezeObjectTypeParameter")]
 public class NewCBreezeObjectTypeParameter : NewItemWithIDAndNameCmdlet<ObjectTypeParameter, int, PSObject>
 {
 protected override IEnumerable<ObjectTypeParameter> CreateItems()
@@ -372,7 +372,7 @@ protected override IEnumerable<ObjectTypeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTestPermissionsParameter")]
 [OutputType(typeof(TestPermissionsParameter))]
-[Alias("TestPermissionsParameter")]
+[Alias("TestPermissionsParameter", "Add-CBreezeTestPermissionsParameter")]
 public class NewCBreezeTestPermissionsParameter : NewItemWithIDAndNameCmdlet<TestPermissionsParameter, int, PSObject>
 {
 protected override IEnumerable<TestPermissionsParameter> CreateItems()
@@ -397,7 +397,7 @@ protected override IEnumerable<TestPermissionsParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeCodeParameter")]
 [OutputType(typeof(CodeParameter))]
-[Alias("CodeParameter")]
+[Alias("CodeParameter", "Add-CBreezeCodeParameter")]
 public class NewCBreezeCodeParameter : NewItemWithIDAndNameCmdlet<CodeParameter, int, PSObject>
 {
 protected override IEnumerable<CodeParameter> CreateItems()
@@ -425,7 +425,7 @@ protected override IEnumerable<CodeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeCodeunitParameter")]
 [OutputType(typeof(CodeunitParameter))]
-[Alias("CodeunitParameter")]
+[Alias("CodeunitParameter", "Add-CBreezeCodeunitParameter")]
 public class NewCBreezeCodeunitParameter : NewItemWithIDAndNameCmdlet<CodeunitParameter, int, PSObject>
 {
 protected override IEnumerable<CodeunitParameter> CreateItems()
@@ -454,7 +454,7 @@ protected override IEnumerable<CodeunitParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDateFormulaParameter")]
 [OutputType(typeof(DateFormulaParameter))]
-[Alias("DateFormulaParameter")]
+[Alias("DateFormulaParameter", "Add-CBreezeDateFormulaParameter")]
 public class NewCBreezeDateFormulaParameter : NewItemWithIDAndNameCmdlet<DateFormulaParameter, int, PSObject>
 {
 protected override IEnumerable<DateFormulaParameter> CreateItems()
@@ -479,7 +479,7 @@ protected override IEnumerable<DateFormulaParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDateParameter")]
 [OutputType(typeof(DateParameter))]
-[Alias("DateParameter")]
+[Alias("DateParameter", "Add-CBreezeDateParameter")]
 public class NewCBreezeDateParameter : NewItemWithIDAndNameCmdlet<DateParameter, int, PSObject>
 {
 protected override IEnumerable<DateParameter> CreateItems()
@@ -504,7 +504,7 @@ protected override IEnumerable<DateParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDateTimeParameter")]
 [OutputType(typeof(DateTimeParameter))]
-[Alias("DateTimeParameter")]
+[Alias("DateTimeParameter", "Add-CBreezeDateTimeParameter")]
 public class NewCBreezeDateTimeParameter : NewItemWithIDAndNameCmdlet<DateTimeParameter, int, PSObject>
 {
 protected override IEnumerable<DateTimeParameter> CreateItems()
@@ -529,7 +529,7 @@ protected override IEnumerable<DateTimeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDecimalParameter")]
 [OutputType(typeof(DecimalParameter))]
-[Alias("DecimalParameter")]
+[Alias("DecimalParameter", "Add-CBreezeDecimalParameter")]
 public class NewCBreezeDecimalParameter : NewItemWithIDAndNameCmdlet<DecimalParameter, int, PSObject>
 {
 protected override IEnumerable<DecimalParameter> CreateItems()
@@ -554,7 +554,7 @@ protected override IEnumerable<DecimalParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDialogParameter")]
 [OutputType(typeof(DialogParameter))]
-[Alias("DialogParameter")]
+[Alias("DialogParameter", "Add-CBreezeDialogParameter")]
 public class NewCBreezeDialogParameter : NewItemWithIDAndNameCmdlet<DialogParameter, int, PSObject>
 {
 protected override IEnumerable<DialogParameter> CreateItems()
@@ -579,7 +579,7 @@ protected override IEnumerable<DialogParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDotNetParameter")]
 [OutputType(typeof(DotNetParameter))]
-[Alias("DotNetParameter")]
+[Alias("DotNetParameter", "Add-CBreezeDotNetParameter")]
 public class NewCBreezeDotNetParameter : NewItemWithIDAndNameCmdlet<DotNetParameter, int, PSObject>
 {
 protected override IEnumerable<DotNetParameter> CreateItems()
@@ -613,7 +613,7 @@ protected override IEnumerable<DotNetParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeDurationParameter")]
 [OutputType(typeof(DurationParameter))]
-[Alias("DurationParameter")]
+[Alias("DurationParameter", "Add-CBreezeDurationParameter")]
 public class NewCBreezeDurationParameter : NewItemWithIDAndNameCmdlet<DurationParameter, int, PSObject>
 {
 protected override IEnumerable<DurationParameter> CreateItems()
@@ -638,7 +638,7 @@ protected override IEnumerable<DurationParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeExecutionModeParameter")]
 [OutputType(typeof(ExecutionModeParameter))]
-[Alias("ExecutionModeParameter")]
+[Alias("ExecutionModeParameter", "Add-CBreezeExecutionModeParameter")]
 public class NewCBreezeExecutionModeParameter : NewItemWithIDAndNameCmdlet<ExecutionModeParameter, int, PSObject>
 {
 protected override IEnumerable<ExecutionModeParameter> CreateItems()
@@ -663,7 +663,7 @@ protected override IEnumerable<ExecutionModeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeFieldRefParameter")]
 [OutputType(typeof(FieldRefParameter))]
-[Alias("FieldRefParameter")]
+[Alias("FieldRefParameter", "Add-CBreezeFieldRefParameter")]
 public class NewCBreezeFieldRefParameter : NewItemWithIDAndNameCmdlet<FieldRefParameter, int, PSObject>
 {
 protected override IEnumerable<FieldRefParameter> CreateItems()
@@ -688,7 +688,7 @@ protected override IEnumerable<FieldRefParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeFileParameter")]
 [OutputType(typeof(FileParameter))]
-[Alias("FileParameter")]
+[Alias("FileParameter", "Add-CBreezeFileParameter")]
 public class NewCBreezeFileParameter : NewItemWithIDAndNameCmdlet<FileParameter, int, PSObject>
 {
 protected override IEnumerable<FileParameter> CreateItems()
@@ -713,7 +713,7 @@ protected override IEnumerable<FileParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeReportFormatParameter")]
 [OutputType(typeof(ReportFormatParameter))]
-[Alias("ReportFormatParameter")]
+[Alias("ReportFormatParameter", "Add-CBreezeReportFormatParameter")]
 public class NewCBreezeReportFormatParameter : NewItemWithIDAndNameCmdlet<ReportFormatParameter, int, PSObject>
 {
 protected override IEnumerable<ReportFormatParameter> CreateItems()
@@ -738,7 +738,7 @@ protected override IEnumerable<ReportFormatParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTableConnectionTypeParameter")]
 [OutputType(typeof(TableConnectionTypeParameter))]
-[Alias("TableConnectionTypeParameter")]
+[Alias("TableConnectionTypeParameter", "Add-CBreezeTableConnectionTypeParameter")]
 public class NewCBreezeTableConnectionTypeParameter : NewItemWithIDAndNameCmdlet<TableConnectionTypeParameter, int, PSObject>
 {
 protected override IEnumerable<TableConnectionTypeParameter> CreateItems()
@@ -763,7 +763,7 @@ protected override IEnumerable<TableConnectionTypeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeGuidParameter")]
 [OutputType(typeof(GuidParameter))]
-[Alias("GuidParameter")]
+[Alias("GuidParameter", "Add-CBreezeGuidParameter")]
 public class NewCBreezeGuidParameter : NewItemWithIDAndNameCmdlet<GuidParameter, int, PSObject>
 {
 protected override IEnumerable<GuidParameter> CreateItems()
@@ -788,7 +788,7 @@ protected override IEnumerable<GuidParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeInStreamParameter")]
 [OutputType(typeof(InStreamParameter))]
-[Alias("InStreamParameter")]
+[Alias("InStreamParameter", "Add-CBreezeInStreamParameter")]
 public class NewCBreezeInStreamParameter : NewItemWithIDAndNameCmdlet<InStreamParameter, int, PSObject>
 {
 protected override IEnumerable<InStreamParameter> CreateItems()
@@ -813,7 +813,7 @@ protected override IEnumerable<InStreamParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeIntegerParameter")]
 [OutputType(typeof(IntegerParameter))]
-[Alias("IntegerParameter")]
+[Alias("IntegerParameter", "Add-CBreezeIntegerParameter")]
 public class NewCBreezeIntegerParameter : NewItemWithIDAndNameCmdlet<IntegerParameter, int, PSObject>
 {
 protected override IEnumerable<IntegerParameter> CreateItems()
@@ -838,7 +838,7 @@ protected override IEnumerable<IntegerParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeKeyRefParameter")]
 [OutputType(typeof(KeyRefParameter))]
-[Alias("KeyRefParameter")]
+[Alias("KeyRefParameter", "Add-CBreezeKeyRefParameter")]
 public class NewCBreezeKeyRefParameter : NewItemWithIDAndNameCmdlet<KeyRefParameter, int, PSObject>
 {
 protected override IEnumerable<KeyRefParameter> CreateItems()
@@ -863,7 +863,7 @@ protected override IEnumerable<KeyRefParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeOcxParameter")]
 [OutputType(typeof(OcxParameter))]
-[Alias("OcxParameter")]
+[Alias("OcxParameter", "Add-CBreezeOcxParameter")]
 public class NewCBreezeOcxParameter : NewItemWithIDAndNameCmdlet<OcxParameter, int, PSObject>
 {
 protected override IEnumerable<OcxParameter> CreateItems()
@@ -891,7 +891,7 @@ protected override IEnumerable<OcxParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeOptionParameter")]
 [OutputType(typeof(OptionParameter))]
-[Alias("OptionParameter")]
+[Alias("OptionParameter", "Add-CBreezeOptionParameter")]
 public class NewCBreezeOptionParameter : NewItemWithIDAndNameCmdlet<OptionParameter, int, PSObject>
 {
 protected override IEnumerable<OptionParameter> CreateItems()
@@ -919,7 +919,7 @@ protected override IEnumerable<OptionParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeOutStreamParameter")]
 [OutputType(typeof(OutStreamParameter))]
-[Alias("OutStreamParameter")]
+[Alias("OutStreamParameter", "Add-CBreezeOutStreamParameter")]
 public class NewCBreezeOutStreamParameter : NewItemWithIDAndNameCmdlet<OutStreamParameter, int, PSObject>
 {
 protected override IEnumerable<OutStreamParameter> CreateItems()
@@ -944,7 +944,7 @@ protected override IEnumerable<OutStreamParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezePageParameter")]
 [OutputType(typeof(PageParameter))]
-[Alias("PageParameter")]
+[Alias("PageParameter", "Add-CBreezePageParameter")]
 public class NewCBreezePageParameter : NewItemWithIDAndNameCmdlet<PageParameter, int, PSObject>
 {
 protected override IEnumerable<PageParameter> CreateItems()
@@ -973,7 +973,7 @@ protected override IEnumerable<PageParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeQueryParameter")]
 [OutputType(typeof(QueryParameter))]
-[Alias("QueryParameter")]
+[Alias("QueryParameter", "Add-CBreezeQueryParameter")]
 public class NewCBreezeQueryParameter : NewItemWithIDAndNameCmdlet<QueryParameter, int, PSObject>
 {
 protected override IEnumerable<QueryParameter> CreateItems()
@@ -1005,7 +1005,7 @@ protected override IEnumerable<QueryParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeRecordIDParameter")]
 [OutputType(typeof(RecordIDParameter))]
-[Alias("RecordIDParameter")]
+[Alias("RecordIDParameter", "Add-CBreezeRecordIDParameter")]
 public class NewCBreezeRecordIDParameter : NewItemWithIDAndNameCmdlet<RecordIDParameter, int, PSObject>
 {
 protected override IEnumerable<RecordIDParameter> CreateItems()
@@ -1030,7 +1030,7 @@ protected override IEnumerable<RecordIDParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeRecordParameter")]
 [OutputType(typeof(RecordParameter))]
-[Alias("RecordParameter")]
+[Alias("RecordParameter", "Add-CBreezeRecordParameter")]
 public class NewCBreezeRecordParameter : NewItemWithIDAndNameCmdlet<RecordParameter, int, PSObject>
 {
 protected override IEnumerable<RecordParameter> CreateItems()
@@ -1065,7 +1065,7 @@ protected override IEnumerable<RecordParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeRecordRefParameter")]
 [OutputType(typeof(RecordRefParameter))]
-[Alias("RecordRefParameter")]
+[Alias("RecordRefParameter", "Add-CBreezeRecordRefParameter")]
 public class NewCBreezeRecordRefParameter : NewItemWithIDAndNameCmdlet<RecordRefParameter, int, PSObject>
 {
 protected override IEnumerable<RecordRefParameter> CreateItems()
@@ -1093,7 +1093,7 @@ protected override IEnumerable<RecordRefParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeReportParameter")]
 [OutputType(typeof(ReportParameter))]
-[Alias("ReportParameter")]
+[Alias("ReportParameter", "Add-CBreezeReportParameter")]
 public class NewCBreezeReportParameter : NewItemWithIDAndNameCmdlet<ReportParameter, int, PSObject>
 {
 protected override IEnumerable<ReportParameter> CreateItems()
@@ -1122,7 +1122,7 @@ protected override IEnumerable<ReportParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTestPageParameter")]
 [OutputType(typeof(TestPageParameter))]
-[Alias("TestPageParameter")]
+[Alias("TestPageParameter", "Add-CBreezeTestPageParameter")]
 public class NewCBreezeTestPageParameter : NewItemWithIDAndNameCmdlet<TestPageParameter, int, PSObject>
 {
 protected override IEnumerable<TestPageParameter> CreateItems()
@@ -1151,7 +1151,7 @@ protected override IEnumerable<TestPageParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTestRequestPageParameter")]
 [OutputType(typeof(TestRequestPageParameter))]
-[Alias("TestRequestPageParameter")]
+[Alias("TestRequestPageParameter", "Add-CBreezeTestRequestPageParameter")]
 public class NewCBreezeTestRequestPageParameter : NewItemWithIDAndNameCmdlet<TestRequestPageParameter, int, PSObject>
 {
 protected override IEnumerable<TestRequestPageParameter> CreateItems()
@@ -1180,7 +1180,7 @@ protected override IEnumerable<TestRequestPageParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTextEncodingParameter")]
 [OutputType(typeof(TextEncodingParameter))]
-[Alias("TextEncodingParameter")]
+[Alias("TextEncodingParameter", "Add-CBreezeTextEncodingParameter")]
 public class NewCBreezeTextEncodingParameter : NewItemWithIDAndNameCmdlet<TextEncodingParameter, int, PSObject>
 {
 protected override IEnumerable<TextEncodingParameter> CreateItems()
@@ -1205,7 +1205,7 @@ protected override IEnumerable<TextEncodingParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTextParameter")]
 [OutputType(typeof(TextParameter))]
-[Alias("TextParameter")]
+[Alias("TextParameter", "Add-CBreezeTextParameter")]
 public class NewCBreezeTextParameter : NewItemWithIDAndNameCmdlet<TextParameter, int, PSObject>
 {
 protected override IEnumerable<TextParameter> CreateItems()
@@ -1233,7 +1233,7 @@ protected override IEnumerable<TextParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTimeParameter")]
 [OutputType(typeof(TimeParameter))]
-[Alias("TimeParameter")]
+[Alias("TimeParameter", "Add-CBreezeTimeParameter")]
 public class NewCBreezeTimeParameter : NewItemWithIDAndNameCmdlet<TimeParameter, int, PSObject>
 {
 protected override IEnumerable<TimeParameter> CreateItems()
@@ -1258,7 +1258,7 @@ protected override IEnumerable<TimeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeTransactionTypeParameter")]
 [OutputType(typeof(TransactionTypeParameter))]
-[Alias("TransactionTypeParameter")]
+[Alias("TransactionTypeParameter", "Add-CBreezeTransactionTypeParameter")]
 public class NewCBreezeTransactionTypeParameter : NewItemWithIDAndNameCmdlet<TransactionTypeParameter, int, PSObject>
 {
 protected override IEnumerable<TransactionTypeParameter> CreateItems()
@@ -1283,7 +1283,7 @@ protected override IEnumerable<TransactionTypeParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeVariantParameter")]
 [OutputType(typeof(VariantParameter))]
-[Alias("VariantParameter")]
+[Alias("VariantParameter", "Add-CBreezeVariantParameter")]
 public class NewCBreezeVariantParameter : NewItemWithIDAndNameCmdlet<VariantParameter, int, PSObject>
 {
 protected override IEnumerable<VariantParameter> CreateItems()
@@ -1308,7 +1308,7 @@ protected override IEnumerable<VariantParameter> CreateItems()
 
 [Cmdlet(VerbsCommon.New, "CBreezeXmlPortParameter")]
 [OutputType(typeof(XmlPortParameter))]
-[Alias("XmlPortParameter")]
+[Alias("XmlPortParameter", "Add-CBreezeXmlPortParameter")]
 public class NewCBreezeXmlPortParameter : NewItemWithIDAndNameCmdlet<XmlPortParameter, int, PSObject>
 {
 protected override IEnumerable<XmlPortParameter> CreateItems()

@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
 {
 	[Cmdlet(VerbsCommon.New, "CBreezeFunction")]
 	[OutputType(typeof(Function))]
-	[Alias("Procedure")]
+	[Alias("Procedure", "Add-CBreezeFunction")]
 	public class NewCBreezeFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
 		[Parameter()] public SwitchParameter Local { get;set; }
@@ -95,7 +95,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTestFunction")]
 	[OutputType(typeof(Function))]
-	[Alias("TestFunction")]
+	[Alias("TestFunction", "Add-CBreezeTestFunction")]
 	public class NewCBreezeTestFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
 		[Parameter()] public SwitchParameter Local { get;set; }
@@ -178,7 +178,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeUpgradeFunction")]
 	[OutputType(typeof(Function))]
-	[Alias("UpgradeFunction")]
+	[Alias("UpgradeFunction", "Add-CBreezeUpgradeFunction")]
 	public class NewCBreezeUpgradeFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
 		[Parameter()] public SwitchParameter Local { get;set; }
@@ -262,7 +262,7 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2016
 	[Cmdlet(VerbsCommon.New, "CBreezeEventSubscriberFunction")]
 	[OutputType(typeof(Function))]
-	[Alias("EventSubscriber")]
+	[Alias("EventSubscriber", "Add-CBreezeEventSubscriberFunction")]
 	public class NewCBreezeEventSubscriberFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
 		[Parameter()] public SwitchParameter Local { get;set; }
@@ -354,7 +354,7 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2016
 	[Cmdlet(VerbsCommon.New, "CBreezeBusinessEventPublisherFunction")]
 	[OutputType(typeof(Function))]
-	[Alias("BusinessEvent")]
+	[Alias("BusinessEvent", "Add-CBreezeBusinessEventPublisherFunction")]
 	public class NewCBreezeBusinessEventPublisherFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
 		[Parameter()] public SwitchParameter Local { get;set; }
@@ -437,7 +437,7 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2016
 	[Cmdlet(VerbsCommon.New, "CBreezeIntegrationEventPublisherFunction")]
 	[OutputType(typeof(Function))]
-	[Alias("IntegrationEvent")]
+	[Alias("IntegrationEvent", "Add-CBreezeIntegrationEventPublisherFunction")]
 	public class NewCBreezeIntegrationEventPublisherFunction : NewItemWithIDAndNameCmdlet<Function, int, PSObject>
 	{
 		[Parameter()] public SwitchParameter Local { get;set; }

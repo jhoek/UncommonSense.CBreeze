@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageAction", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PageAction))]
-    [Alias("Action")]
+    [Alias("Action", "Add-CBreezePageAction")]
     public class NewCBreezePageAction : NewItemWithIDCmdlet<PageAction, int, PSObject>
     {
 #if NAV2015

@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeCodeLine", DefaultParameterSetName = "NewWithoutID")]
-    [Alias("CodeLine")]
+    [Alias("CodeLine", "Add-CBreezeCodeLine")]
     [OutputType(typeof(string))]
     public class NewCBreezeCodeLine : NewItemCmdlet<string, PSObject>
     {

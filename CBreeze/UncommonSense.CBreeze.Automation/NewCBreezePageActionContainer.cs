@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageActionContainer", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PageActionContainer))]
-    [Alias("ActionContainer")]
+    [Alias("ActionContainer", "Add-CBreezePageActionContainer")]
     public class NewCBreezePageActionContainer : NewItemWithIDCmdlet<PageActionBase, int, PSObject>
     {
         protected override void AddItemToInputObject(PageActionBase item, PSObject inputObject)

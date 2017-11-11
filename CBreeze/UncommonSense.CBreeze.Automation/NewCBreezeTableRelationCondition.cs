@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableRelationCondition", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(TableRelationCondition))]
-    [Alias("TableRelationCondition")]
+    [Alias("TableRelationCondition", "Add-CBreezeTableRelationCondition")]
     public class NewCBreezeTableRelationCondition : NewItemCmdlet<TableRelationCondition, TableRelationLine>
     {
         protected override void AddItemToInputObject(TableRelationCondition item, TableRelationLine inputObject)

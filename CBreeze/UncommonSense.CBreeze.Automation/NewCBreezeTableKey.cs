@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableKey", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(TableKey))]
-    [Alias("Key")]
+    [Alias("Key", "Add-CBreezeTableKey")]
     public class NewCBreezeTableKey : NewItemCmdlet<TableKey, Table>
     {
         protected override void AddItemToInputObject(TableKey item, Table inputObject)

@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePage", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Page))]
-    [Alias("Page")]
+    [Alias("Page", "Add-CBreezePage")]
     public class NewCBreezePage : NewCBreezeObject<Page>
     {
         protected override void AddItemToInputObject(Page item, Application inputObject)

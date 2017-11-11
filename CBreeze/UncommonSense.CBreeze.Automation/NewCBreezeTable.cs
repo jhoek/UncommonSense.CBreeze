@@ -11,7 +11,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTable", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Table))]
-    [Alias("Table")]
+    [Alias("Table", "Add-CBreezeTable")]
     public class NewCBreezeTable : NewCBreezeObject<Table>
     {
         [Parameter()] public Hashtable CaptionML { get; set; }

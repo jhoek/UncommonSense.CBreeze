@@ -10,7 +10,7 @@ using UncommonSense.CBreeze.Write;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeRunObjectLink", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("RunObjectLink")]
+    [Alias("RunObjectLink", "Add-CBreezeRunObjectLink")]
     [OutputType(typeof(RunObjectLinkLine))]
     public class NewCBreezeRunObjectLink : NewItemCmdlet<RunObjectLinkLine, PSObject>
     {

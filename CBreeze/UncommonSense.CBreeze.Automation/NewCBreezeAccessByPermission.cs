@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
     [Cmdlet(VerbsCommon.New, "CBreezeAccessByPermission")]
     [OutputType(typeof(AccessByPermission))]
-    [Alias("AccessByPermission")]
+    [Alias("AccessByPermission", "Add-CBreezeAccessByPermission")]
     public class NewCBreezeAccessByPermission : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 1)]

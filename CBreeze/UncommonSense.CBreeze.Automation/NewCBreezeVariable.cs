@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
 {
 	[Cmdlet(VerbsCommon.New, "CBreezeActionVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ActionVariable))]
-	[Alias("ActionVariable")]
+	[Alias("ActionVariable", "Add-CBreezeActionVariable")]
 	public class NewBreezeActionVariable : NewItemWithIDAndNameCmdlet<ActionVariable, int, PSObject>
 	{
 		protected override IEnumerable<ActionVariable> CreateItems()
@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeAutomationVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(AutomationVariable))]
-	[Alias("AutomationVariable")]
+	[Alias("AutomationVariable", "Add-CBreezeAutomationVariable")]
 	public class NewBreezeAutomationVariable : NewItemWithIDAndNameCmdlet<AutomationVariable, int, PSObject>
 	{
 		protected override IEnumerable<AutomationVariable> CreateItems()
@@ -71,7 +71,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBigIntegerVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(BigIntegerVariable))]
-	[Alias("BigIntegerVariable")]
+	[Alias("BigIntegerVariable", "Add-CBreezeBigIntegerVariable")]
 	public class NewBreezeBigIntegerVariable : NewItemWithIDAndNameCmdlet<BigIntegerVariable, int, PSObject>
 	{
 		protected override IEnumerable<BigIntegerVariable> CreateItems()
@@ -93,7 +93,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBigTextVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(BigTextVariable))]
-	[Alias("BigTextVariable")]
+	[Alias("BigTextVariable", "Add-CBreezeBigTextVariable")]
 	public class NewBreezeBigTextVariable : NewItemWithIDAndNameCmdlet<BigTextVariable, int, PSObject>
 	{
 		protected override IEnumerable<BigTextVariable> CreateItems()
@@ -115,7 +115,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBinaryVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(BinaryVariable))]
-	[Alias("BinaryVariable")]
+	[Alias("BinaryVariable", "Add-CBreezeBinaryVariable")]
 	public class NewBreezeBinaryVariable : NewItemWithIDAndNameCmdlet<BinaryVariable, int, PSObject>
 	{
 		protected override IEnumerable<BinaryVariable> CreateItems()
@@ -143,7 +143,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeBooleanVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(BooleanVariable))]
-	[Alias("BooleanVariable")]
+	[Alias("BooleanVariable", "Add-CBreezeBooleanVariable")]
 	public class NewBreezeBooleanVariable : NewItemWithIDAndNameCmdlet<BooleanVariable, int, PSObject>
 	{
 		protected override IEnumerable<BooleanVariable> CreateItems()
@@ -169,7 +169,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeByteVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ByteVariable))]
-	[Alias("ByteVariable")]
+	[Alias("ByteVariable", "Add-CBreezeByteVariable")]
 	public class NewBreezeByteVariable : NewItemWithIDAndNameCmdlet<ByteVariable, int, PSObject>
 	{
 		protected override IEnumerable<ByteVariable> CreateItems()
@@ -191,7 +191,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeCharVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(CharVariable))]
-	[Alias("CharVariable")]
+	[Alias("CharVariable", "Add-CBreezeCharVariable")]
 	public class NewBreezeCharVariable : NewItemWithIDAndNameCmdlet<CharVariable, int, PSObject>
 	{
 		protected override IEnumerable<CharVariable> CreateItems()
@@ -213,7 +213,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeClientTypeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ClientTypeVariable))]
-	[Alias("ClientTypeVariable")]
+	[Alias("ClientTypeVariable", "Add-CBreezeClientTypeVariable")]
 	public class NewBreezeClientTypeVariable : NewItemWithIDAndNameCmdlet<ClientTypeVariable, int, PSObject>
 	{
 		protected override IEnumerable<ClientTypeVariable> CreateItems()
@@ -235,7 +235,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDefaultLayoutVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DefaultLayoutVariable))]
-	[Alias("DefaultLayoutVariable")]
+	[Alias("DefaultLayoutVariable", "Add-CBreezeDefaultLayoutVariable")]
 	public class NewBreezeDefaultLayoutVariable : NewItemWithIDAndNameCmdlet<DefaultLayoutVariable, int, PSObject>
 	{
 		protected override IEnumerable<DefaultLayoutVariable> CreateItems()
@@ -257,7 +257,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeFilterPageBuilderVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(FilterPageBuilderVariable))]
-	[Alias("FilterPageBuilderVariable")]
+	[Alias("FilterPageBuilderVariable", "Add-CBreezeFilterPageBuilderVariable")]
 	public class NewBreezeFilterPageBuilderVariable : NewItemWithIDAndNameCmdlet<FilterPageBuilderVariable, int, PSObject>
 	{
 		protected override IEnumerable<FilterPageBuilderVariable> CreateItems()
@@ -279,7 +279,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeNotificationScopeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(NotificationScopeVariable))]
-	[Alias("NotificationScopeVariable")]
+	[Alias("NotificationScopeVariable", "Add-CBreezeNotificationScopeVariable")]
 	public class NewBreezeNotificationScopeVariable : NewItemWithIDAndNameCmdlet<NotificationScopeVariable, int, PSObject>
 	{
 		protected override IEnumerable<NotificationScopeVariable> CreateItems()
@@ -301,7 +301,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeNotificationVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(NotificationVariable))]
-	[Alias("NotificationVariable")]
+	[Alias("NotificationVariable", "Add-CBreezeNotificationVariable")]
 	public class NewBreezeNotificationVariable : NewItemWithIDAndNameCmdlet<NotificationVariable, int, PSObject>
 	{
 		protected override IEnumerable<NotificationVariable> CreateItems()
@@ -323,7 +323,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeObjectTypeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ObjectTypeVariable))]
-	[Alias("ObjectTypeVariable")]
+	[Alias("ObjectTypeVariable", "Add-CBreezeObjectTypeVariable")]
 	public class NewBreezeObjectTypeVariable : NewItemWithIDAndNameCmdlet<ObjectTypeVariable, int, PSObject>
 	{
 		protected override IEnumerable<ObjectTypeVariable> CreateItems()
@@ -345,7 +345,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTestPermissionsVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TestPermissionsVariable))]
-	[Alias("TestPermissionsVariable")]
+	[Alias("TestPermissionsVariable", "Add-CBreezeTestPermissionsVariable")]
 	public class NewBreezeTestPermissionsVariable : NewItemWithIDAndNameCmdlet<TestPermissionsVariable, int, PSObject>
 	{
 		protected override IEnumerable<TestPermissionsVariable> CreateItems()
@@ -367,7 +367,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeCodeunitVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(CodeunitVariable))]
-	[Alias("CodeunitVariable")]
+	[Alias("CodeunitVariable", "Add-CBreezeCodeunitVariable")]
 	public class NewBreezeCodeunitVariable : NewItemWithIDAndNameCmdlet<CodeunitVariable, int, PSObject>
 	{
 		protected override IEnumerable<CodeunitVariable> CreateItems()
@@ -395,7 +395,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeCodeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(CodeVariable))]
-	[Alias("CodeVariable")]
+	[Alias("CodeVariable", "Add-CBreezeCodeVariable")]
 	public class NewBreezeCodeVariable : NewItemWithIDAndNameCmdlet<CodeVariable, int, PSObject>
 	{
 		protected override IEnumerable<CodeVariable> CreateItems()
@@ -427,7 +427,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateFormulaVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DateFormulaVariable))]
-	[Alias("DateFormulaVariable")]
+	[Alias("DateFormulaVariable", "Add-CBreezeDateFormulaVariable")]
 	public class NewBreezeDateFormulaVariable : NewItemWithIDAndNameCmdlet<DateFormulaVariable, int, PSObject>
 	{
 		protected override IEnumerable<DateFormulaVariable> CreateItems()
@@ -449,7 +449,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateTimeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DateTimeVariable))]
-	[Alias("DateTimeVariable")]
+	[Alias("DateTimeVariable", "Add-CBreezeDateTimeVariable")]
 	public class NewBreezeDateTimeVariable : NewItemWithIDAndNameCmdlet<DateTimeVariable, int, PSObject>
 	{
 		protected override IEnumerable<DateTimeVariable> CreateItems()
@@ -471,7 +471,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDateVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DateVariable))]
-	[Alias("DateVariable")]
+	[Alias("DateVariable", "Add-CBreezeDateVariable")]
 	public class NewBreezeDateVariable : NewItemWithIDAndNameCmdlet<DateVariable, int, PSObject>
 	{
 		protected override IEnumerable<DateVariable> CreateItems()
@@ -493,7 +493,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDecimalVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DecimalVariable))]
-	[Alias("DecimalVariable")]
+	[Alias("DecimalVariable", "Add-CBreezeDecimalVariable")]
 	public class NewBreezeDecimalVariable : NewItemWithIDAndNameCmdlet<DecimalVariable, int, PSObject>
 	{
 		protected override IEnumerable<DecimalVariable> CreateItems()
@@ -515,7 +515,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDialogVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DialogVariable))]
-	[Alias("DialogVariable")]
+	[Alias("DialogVariable", "Add-CBreezeDialogVariable")]
 	public class NewBreezeDialogVariable : NewItemWithIDAndNameCmdlet<DialogVariable, int, PSObject>
 	{
 		protected override IEnumerable<DialogVariable> CreateItems()
@@ -537,7 +537,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDotNetVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DotNetVariable))]
-	[Alias("DotNetVariable")]
+	[Alias("DotNetVariable", "Add-CBreezeDotNetVariable")]
 	public class NewBreezeDotNetVariable : NewItemWithIDAndNameCmdlet<DotNetVariable, int, PSObject>
 	{
 		protected override IEnumerable<DotNetVariable> CreateItems()
@@ -573,7 +573,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeDurationVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DurationVariable))]
-	[Alias("DurationVariable")]
+	[Alias("DurationVariable", "Add-CBreezeDurationVariable")]
 	public class NewBreezeDurationVariable : NewItemWithIDAndNameCmdlet<DurationVariable, int, PSObject>
 	{
 		protected override IEnumerable<DurationVariable> CreateItems()
@@ -595,7 +595,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeExecutionModeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ExecutionModeVariable))]
-	[Alias("ExecutionModeVariable")]
+	[Alias("ExecutionModeVariable", "Add-CBreezeExecutionModeVariable")]
 	public class NewBreezeExecutionModeVariable : NewItemWithIDAndNameCmdlet<ExecutionModeVariable, int, PSObject>
 	{
 		protected override IEnumerable<ExecutionModeVariable> CreateItems()
@@ -617,7 +617,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeFieldRefVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(FieldRefVariable))]
-	[Alias("FieldRefVariable")]
+	[Alias("FieldRefVariable", "Add-CBreezeFieldRefVariable")]
 	public class NewBreezeFieldRefVariable : NewItemWithIDAndNameCmdlet<FieldRefVariable, int, PSObject>
 	{
 		protected override IEnumerable<FieldRefVariable> CreateItems()
@@ -639,7 +639,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeFileVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(FileVariable))]
-	[Alias("FileVariable")]
+	[Alias("FileVariable", "Add-CBreezeFileVariable")]
 	public class NewBreezeFileVariable : NewItemWithIDAndNameCmdlet<FileVariable, int, PSObject>
 	{
 		protected override IEnumerable<FileVariable> CreateItems()
@@ -661,7 +661,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeReportFormatVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ReportFormatVariable))]
-	[Alias("ReportFormatVariable")]
+	[Alias("ReportFormatVariable", "Add-CBreezeReportFormatVariable")]
 	public class NewBreezeReportFormatVariable : NewItemWithIDAndNameCmdlet<ReportFormatVariable, int, PSObject>
 	{
 		protected override IEnumerable<ReportFormatVariable> CreateItems()
@@ -683,7 +683,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTableConnectionTypeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TableConnectionTypeVariable))]
-	[Alias("TableConnectionTypeVariable")]
+	[Alias("TableConnectionTypeVariable", "Add-CBreezeTableConnectionTypeVariable")]
 	public class NewBreezeTableConnectionTypeVariable : NewItemWithIDAndNameCmdlet<TableConnectionTypeVariable, int, PSObject>
 	{
 		protected override IEnumerable<TableConnectionTypeVariable> CreateItems()
@@ -705,7 +705,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeGuidVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(GuidVariable))]
-	[Alias("GuidVariable")]
+	[Alias("GuidVariable", "Add-CBreezeGuidVariable")]
 	public class NewBreezeGuidVariable : NewItemWithIDAndNameCmdlet<GuidVariable, int, PSObject>
 	{
 		protected override IEnumerable<GuidVariable> CreateItems()
@@ -727,7 +727,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeInStreamVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(InStreamVariable))]
-	[Alias("InStreamVariable")]
+	[Alias("InStreamVariable", "Add-CBreezeInStreamVariable")]
 	public class NewBreezeInStreamVariable : NewItemWithIDAndNameCmdlet<InStreamVariable, int, PSObject>
 	{
 		protected override IEnumerable<InStreamVariable> CreateItems()
@@ -749,7 +749,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeIntegerVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(IntegerVariable))]
-	[Alias("IntegerVariable")]
+	[Alias("IntegerVariable", "Add-CBreezeIntegerVariable")]
 	public class NewBreezeIntegerVariable : NewItemWithIDAndNameCmdlet<IntegerVariable, int, PSObject>
 	{
 		protected override IEnumerable<IntegerVariable> CreateItems()
@@ -775,7 +775,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeKeyRefVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(KeyRefVariable))]
-	[Alias("KeyRefVariable")]
+	[Alias("KeyRefVariable", "Add-CBreezeKeyRefVariable")]
 	public class NewBreezeKeyRefVariable : NewItemWithIDAndNameCmdlet<KeyRefVariable, int, PSObject>
 	{
 		protected override IEnumerable<KeyRefVariable> CreateItems()
@@ -797,7 +797,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeOcxVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(OcxVariable))]
-	[Alias("OcxVariable")]
+	[Alias("OcxVariable", "Add-CBreezeOcxVariable")]
 	public class NewBreezeOcxVariable : NewItemWithIDAndNameCmdlet<OcxVariable, int, PSObject>
 	{
 		protected override IEnumerable<OcxVariable> CreateItems()
@@ -825,7 +825,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeOptionVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(OptionVariable))]
-	[Alias("OptionVariable")]
+	[Alias("OptionVariable", "Add-CBreezeOptionVariable")]
 	public class NewBreezeOptionVariable : NewItemWithIDAndNameCmdlet<OptionVariable, int, PSObject>
 	{
 		protected override IEnumerable<OptionVariable> CreateItems()
@@ -854,7 +854,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeOutStreamVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(OutStreamVariable))]
-	[Alias("OutStreamVariable")]
+	[Alias("OutStreamVariable", "Add-CBreezeOutStreamVariable")]
 	public class NewBreezeOutStreamVariable : NewItemWithIDAndNameCmdlet<OutStreamVariable, int, PSObject>
 	{
 		protected override IEnumerable<OutStreamVariable> CreateItems()
@@ -876,7 +876,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezePageVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(PageVariable))]
-	[Alias("PageVariable")]
+	[Alias("PageVariable", "Add-CBreezePageVariable")]
 	public class NewBreezePageVariable : NewItemWithIDAndNameCmdlet<PageVariable, int, PSObject>
 	{
 		protected override IEnumerable<PageVariable> CreateItems()
@@ -904,7 +904,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeQueryVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(QueryVariable))]
-	[Alias("QueryVariable")]
+	[Alias("QueryVariable", "Add-CBreezeQueryVariable")]
 	public class NewBreezeQueryVariable : NewItemWithIDAndNameCmdlet<QueryVariable, int, PSObject>
 	{
 		protected override IEnumerable<QueryVariable> CreateItems()
@@ -936,7 +936,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeRecordIDVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(RecordIDVariable))]
-	[Alias("RecordIDVariable")]
+	[Alias("RecordIDVariable", "Add-CBreezeRecordIDVariable")]
 	public class NewBreezeRecordIDVariable : NewItemWithIDAndNameCmdlet<RecordIDVariable, int, PSObject>
 	{
 		protected override IEnumerable<RecordIDVariable> CreateItems()
@@ -958,7 +958,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeRecordRefVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(RecordRefVariable))]
-	[Alias("RecordRefVariable")]
+	[Alias("RecordRefVariable", "Add-CBreezeRecordRefVariable")]
 	public class NewBreezeRecordRefVariable : NewItemWithIDAndNameCmdlet<RecordRefVariable, int, PSObject>
 	{
 		protected override IEnumerable<RecordRefVariable> CreateItems()
@@ -984,7 +984,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeRecordVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(RecordVariable))]
-	[Alias("RecordVariable")]
+	[Alias("RecordVariable", "Add-CBreezeRecordVariable")]
 	public class NewBreezeRecordVariable : NewItemWithIDAndNameCmdlet<RecordVariable, int, PSObject>
 	{
 		protected override IEnumerable<RecordVariable> CreateItems()
@@ -1020,7 +1020,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeReportVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ReportVariable))]
-	[Alias("ReportVariable")]
+	[Alias("ReportVariable", "Add-CBreezeReportVariable")]
 	public class NewBreezeReportVariable : NewItemWithIDAndNameCmdlet<ReportVariable, int, PSObject>
 	{
 		protected override IEnumerable<ReportVariable> CreateItems()
@@ -1048,7 +1048,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTestPageVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TestPageVariable))]
-	[Alias("TestPageVariable")]
+	[Alias("TestPageVariable", "Add-CBreezeTestPageVariable")]
 	public class NewBreezeTestPageVariable : NewItemWithIDAndNameCmdlet<TestPageVariable, int, PSObject>
 	{
 		protected override IEnumerable<TestPageVariable> CreateItems()
@@ -1076,7 +1076,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTextConstant", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TextConstant))]
-	[Alias("TextConstant")]
+	[Alias("TextConstant", "Add-CBreezeTextConstant")]
 	public class NewBreezeTextConstant : NewItemWithIDAndNameCmdlet<TextConstant, int, PSObject>
 	{
 		protected override IEnumerable<TextConstant> CreateItems()
@@ -1101,7 +1101,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTextEncodingVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TextEncodingVariable))]
-	[Alias("TextEncodingVariable")]
+	[Alias("TextEncodingVariable", "Add-CBreezeTextEncodingVariable")]
 	public class NewBreezeTextEncodingVariable : NewItemWithIDAndNameCmdlet<TextEncodingVariable, int, PSObject>
 	{
 		protected override IEnumerable<TextEncodingVariable> CreateItems()
@@ -1123,7 +1123,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTextVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TextVariable))]
-	[Alias("TextVariable")]
+	[Alias("TextVariable", "Add-CBreezeTextVariable")]
 	public class NewBreezeTextVariable : NewItemWithIDAndNameCmdlet<TextVariable, int, PSObject>
 	{
 		protected override IEnumerable<TextVariable> CreateItems()
@@ -1155,7 +1155,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTimeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TimeVariable))]
-	[Alias("TimeVariable")]
+	[Alias("TimeVariable", "Add-CBreezeTimeVariable")]
 	public class NewBreezeTimeVariable : NewItemWithIDAndNameCmdlet<TimeVariable, int, PSObject>
 	{
 		protected override IEnumerable<TimeVariable> CreateItems()
@@ -1177,7 +1177,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeTransactionTypeVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TransactionTypeVariable))]
-	[Alias("TransactionTypeVariable")]
+	[Alias("TransactionTypeVariable", "Add-CBreezeTransactionTypeVariable")]
 	public class NewBreezeTransactionTypeVariable : NewItemWithIDAndNameCmdlet<TransactionTypeVariable, int, PSObject>
 	{
 		protected override IEnumerable<TransactionTypeVariable> CreateItems()
@@ -1199,7 +1199,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeVariantVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(VariantVariable))]
-	[Alias("VariantVariable")]
+	[Alias("VariantVariable", "Add-CBreezeVariantVariable")]
 	public class NewBreezeVariantVariable : NewItemWithIDAndNameCmdlet<VariantVariable, int, PSObject>
 	{
 		protected override IEnumerable<VariantVariable> CreateItems()
@@ -1221,7 +1221,7 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(XmlPortVariable))]
-	[Alias("XmlPortVariable")]
+	[Alias("XmlPortVariable", "Add-CBreezeXmlPortVariable")]
 	public class NewBreezeXmlPortVariable : NewItemWithIDAndNameCmdlet<XmlPortVariable, int, PSObject>
 	{
 		protected override IEnumerable<XmlPortVariable> CreateItems()

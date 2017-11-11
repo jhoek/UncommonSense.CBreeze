@@ -10,7 +10,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeCalcFormulaFilter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(CalcFormulaTableFilterLine))]
-    [Alias("CalcFormulaFilter")]
+    [Alias("CalcFormulaFilter", "Add-CBreezeCalcFormulaFilter")]
     public class NewCBreezeCalcFormulaFilter : NewItemCmdlet<CalcFormulaTableFilterLine, CalcFormula>
     {
         protected override void AddItemToInputObject(CalcFormulaTableFilterLine item, CalcFormula calcFormula)

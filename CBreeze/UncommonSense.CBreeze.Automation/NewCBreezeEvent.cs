@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeEvent", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Event))]
-    [Alias("Event")]
+    [Alias("Event", "Add-CBreezeEvent")]
     public class NewCBreezeEvent : NewItemWithIDAndNameCmdlet<Event, int, PSObject>
     {
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]

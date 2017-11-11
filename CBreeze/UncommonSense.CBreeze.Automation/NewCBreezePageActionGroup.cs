@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezePageActionGroup", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PageActionGroup))]
-    [Alias("ActionGroup")]
+    [Alias("ActionGroup", "Add-CBreezePageActionGroup")]
     public class NewCBreezePageActionGroup : NewItemWithIDCmdlet<PageActionBase, int, PSObject>
     {
         protected override IEnumerable<PageActionBase> CreateItems()

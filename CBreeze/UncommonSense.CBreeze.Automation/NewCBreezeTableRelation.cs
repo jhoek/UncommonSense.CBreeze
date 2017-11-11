@@ -9,7 +9,7 @@ using UncommonSense.CBreeze.Write;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeTableRelation", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [Alias("TableRelation")]
+    [Alias("TableRelation", "Add-CBreezeTableRelation")]
     public class NewCBreezeTableRelation : NewItemCmdlet<TableRelationLine, PSObject>
     {
         protected override void AddItemToInputObject(TableRelationLine item, PSObject inputObject)

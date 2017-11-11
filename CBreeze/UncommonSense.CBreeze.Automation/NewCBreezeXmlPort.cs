@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.New, "CBreezeXmlPort", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(XmlPort))]
-    [Alias("XmlPort")]
+    [Alias("XmlPort", "Add-CBreezeXmlPort")]
     public class NewCBreezeXmlPort : NewCBreezeObject<XmlPort>
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
