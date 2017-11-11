@@ -51,7 +51,6 @@
     <None Include="Demo DSL.ps1" />
     <None Include="Introduction.ps1" />
     <None Include="NoSeriesDemo.ps1" />
-    <None Include="Patterns First.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
