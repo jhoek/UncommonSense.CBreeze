@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class PartTypeProperty : NullableValueProperty<PartType>
+        public class PageControlPartTypeProperty : NullableValueProperty<PageControlPartType>
     {
-        internal PartTypeProperty(string name)
+        internal PageControlPartTypeProperty(string name)
             : base(name)
         {
         }

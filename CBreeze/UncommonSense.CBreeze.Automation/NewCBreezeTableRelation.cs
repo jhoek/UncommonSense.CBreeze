@@ -17,7 +17,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (inputObject.BaseObject)
             {
                 case TableField f: (f.AllProperties["TableRelation"] as TableRelationProperty).Value.Add(item); break;
-                case FieldPageControl c: c.Properties.TableRelation.Add(item); break;
+                case PageControl c: c.Properties.TableRelation.Add(item); break;
                 default: throw new ArgumentOutOfRangeException("Don't know how to add a table relation to this InputObject."); ;
             }
         }

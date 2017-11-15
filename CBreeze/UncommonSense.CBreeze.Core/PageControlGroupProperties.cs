@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class GroupPageControlProperties : Properties
+        public class PageControlGroupProperties : Properties
     {
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
@@ -13,16 +13,16 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty editable = new StringProperty("Editable");
         private StringProperty enabled = new StringProperty("Enabled");
         private StringProperty freezeColumnID = new StringProperty("FreezeColumnID");
-        private GroupTypeProperty groupType = new GroupTypeProperty("GroupType");
+        private PageControlGroupTypeProperty groupType = new PageControlGroupTypeProperty("GroupType");
         private StringProperty indentationColumnName = new StringProperty("IndentationColumnName");
         private ControlListProperty indentationControls = new ControlListProperty("IndentationControls");
         private MultiLanguageProperty instructionalTextML = new MultiLanguageProperty("InstructionalTextML");
-        private GroupPageControlLayoutProperty layout = new GroupPageControlLayoutProperty("Layout");
+        private PageControlGroupLayoutProperty layout = new PageControlGroupLayoutProperty("Layout");
         private StringProperty name = new StringProperty("Name");
         private NullableBooleanProperty showAsTree = new NullableBooleanProperty("ShowAsTree");
         private StringProperty visible = new StringProperty("Visible");
 
-        internal GroupPageControlProperties(GroupPageControl control)
+        internal PageControlGroupProperties(PageControlGroup control)
         {
             Control = control;
 
@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(actionList);
         }
 
-        public GroupPageControl Control { get; protected set; }
+        public PageControlGroup Control { get; protected set; }
 
         public override INode ParentNode => Control;
 
@@ -110,7 +110,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public GroupType? GroupType
+        public PageControlGroupType? GroupType
         {
             get
             {
@@ -150,7 +150,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public GroupPageControlLayout? Layout
+        public PageControlGroupLayout? Layout
         {
             get
             {

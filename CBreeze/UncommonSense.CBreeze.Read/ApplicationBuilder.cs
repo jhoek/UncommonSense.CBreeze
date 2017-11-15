@@ -256,13 +256,13 @@ namespace UncommonSense.CBreeze.Read
 #if NAV2016
                 TypeSwitch.Case<TableTypeProperty>(p => p.Value = propertyValue.ToEnum<TableType>()),
 #endif
-                TypeSwitch.Case<ActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ActionContainerType>()),
+                TypeSwitch.Case<PageActionContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<PageActionContainerType>()),
                 TypeSwitch.Case<AutoFormatTypeProperty>(p => p.Value = propertyValue.ToAutoFormatType()),
                 TypeSwitch.Case<BlankNumbersProperty>(p => p.Value = propertyValue.ToEnum<BlankNumbers>()),
                 TypeSwitch.Case<CalcFormulaProperty>(p => p.SetCalcFormulaProperty(propertyValue)),
                 TypeSwitch.Case<CodeunitSubTypeProperty>(p => p.Value = propertyValue.ToEnum<CodeunitSubType>()),
                 TypeSwitch.Case<ColumnFilterProperty>(p => p.SetColumnFilterProperty(propertyValue)),
-                TypeSwitch.Case<ContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<ContainerType>()),
+                TypeSwitch.Case<PageControlContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<PageControlContainerType>()),
                 TypeSwitch.Case<ControlListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
                 TypeSwitch.Case<QueryDataItemLinkProperty>(p => p.SetDataItemLinkProperty(propertyValue)),
                 TypeSwitch.Case<DataItemLinkTypeProperty>(p => p.Value = propertyValue.ToEnum<DataItemLinkType>()),
@@ -280,9 +280,9 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<FieldListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
                 TypeSwitch.Case<FormatEvaluateProperty>(p => p.Value = propertyValue.ToFormatEvaluate()),
                 TypeSwitch.Case<GestureProperty>(p => p.Value = propertyValue.ToEnum<Gesture>()),
-                TypeSwitch.Case<GroupTypeProperty>(p => p.Value = propertyValue.ToEnum<GroupType>()),
+                TypeSwitch.Case<PageControlGroupTypeProperty>(p => p.Value = propertyValue.ToEnum<PageControlGroupType>()),
                 TypeSwitch.Case<ImportanceProperty>(p => p.Value = propertyValue.ToEnum<Importance>()),
-                TypeSwitch.Case<GroupPageControlLayoutProperty>(p => p.Value = propertyValue.ToEnum<GroupPageControlLayout>()),
+                TypeSwitch.Case<PageControlGroupLayoutProperty>(p => p.Value = propertyValue.ToEnum<PageControlGroupLayout>()),
                 TypeSwitch.Case<LinkFieldsProperty>(p => p.SetLinkFieldsProperty(propertyValue)),
                 TypeSwitch.Case<MethodTypeProperty>(p => p.Value = propertyValue.ToEnum<MethodType>()),
                 TypeSwitch.Case<MaxOccursProperty>(p => p.Value = propertyValue.ToEnum<MaxOccurs>()),
@@ -299,7 +299,7 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<PageReferenceProperty>(p => p.Value = propertyValue.ToPageReference()),
                 TypeSwitch.Case<PageTypeProperty>(p => p.Value = propertyValue.ToEnum<PageType>()),
                 TypeSwitch.Case<PaperSourceProperty>(p => p.Value = propertyValue.ToEnum<PaperSource>()),
-                TypeSwitch.Case<PartTypeProperty>(p => p.Value = propertyValue.ToEnum<PartType>()),
+                TypeSwitch.Case<PageControlPartTypeProperty>(p => p.Value = propertyValue.ToEnum<PageControlPartType>()),
                 TypeSwitch.Case<PermissionsProperty>(p => p.SetPermissionProperty(propertyValue)),
                 TypeSwitch.Case<PromotedCategoryProperty>(p => p.Value = propertyValue.ToEnum<PromotedCategory>()),
                 TypeSwitch.Case<QueryOrderByLinesProperty>(p => p.SetQueryOrderByLinesProperty(propertyValue)),
@@ -1328,23 +1328,23 @@ namespace UncommonSense.CBreeze.Read
             switch (controlType)
             {
                 case PageControlType.Container:
-                    var newContainerPageControl = currentPageControls.Add(new ContainerPageControl(controlID, controlIndentation));
+                    var newContainerPageControl = currentPageControls.Add(new PageControlContainer(controlID, controlIndentation));
                     currentProperties.Push(newContainerPageControl.Properties);
                     break;
 
                 case PageControlType.Group:
-                    var newGroupPageControl = currentPageControls.Add(new GroupPageControl(controlID, controlIndentation));
+                    var newGroupPageControl = currentPageControls.Add(new PageControlGroup(controlID, controlIndentation));
                     currentPageActionList = newGroupPageControl.Properties.ActionList;
                     currentProperties.Push(newGroupPageControl.Properties);
                     break;
 
                 case PageControlType.Field:
-                    var newFieldPageControl = currentPageControls.Add(new FieldPageControl(null, controlID, controlIndentation));
+                    var newFieldPageControl = currentPageControls.Add(new PageControl(null, controlID, controlIndentation));
                     currentProperties.Push(newFieldPageControl.Properties);
                     break;
 
                 case PageControlType.Part:
-                    var newPartPageControl = currentPageControls.Add(new PartPageControl(controlID, controlIndentation));
+                    var newPartPageControl = currentPageControls.Add(new PageControlPart(controlID, controlIndentation));
                     currentProperties.Push(newPartPageControl.Properties);
                     break;
 

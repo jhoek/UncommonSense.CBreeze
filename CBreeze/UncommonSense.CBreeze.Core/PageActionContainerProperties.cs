@@ -7,7 +7,7 @@ namespace UncommonSense.CBreeze.Core
 {
         public class PageActionContainerProperties : Properties
     {
-        private ActionContainerTypeProperty actionContainerType = new ActionContainerTypeProperty("ActionContainerType");
+        private PageActionContainerTypeProperty actionContainerType = new PageActionContainerTypeProperty("ActionContainerType");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 #if NAV2016
         private MultiLanguageProperty tooltipML = new MultiLanguageProperty("ToolTipML");
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
 
         public override INode ParentNode => PageActionContainer;
 
-        public ActionContainerType? ActionContainerType
+        public PageActionContainerType? ActionContainerType
         {
             get
             {

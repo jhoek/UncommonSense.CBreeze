@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ContainerTypeProperty : NullableValueProperty<ContainerType>
+    public class PageControlContainerTypeProperty : NullableValueProperty<PageControlContainerType>
     {
-        internal ContainerTypeProperty(string name)
+        internal PageControlContainerTypeProperty(string name)
             : base(name)
         {
         }

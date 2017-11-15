@@ -6,10 +6,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezePartPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [OutputType(typeof(PartPageControl))]
-    [Alias("PartControl", "Add-CBreezePartPageControl")]
-    public class NewCBreezePartPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
+    [Cmdlet(VerbsCommon.New, "CBreezePageControlPart", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [OutputType(typeof(PageControlPart))]
+    [Alias("PartControl", "Add-CBreezePageControlPart")]
+    public class NewCBreezePageControlPart : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
@@ -19,11 +19,11 @@ namespace UncommonSense.CBreeze.Automation
                     p.Controls.Add(item, Position);
                     break;
 
-                case ContainerPageControl c:
+                case PageControlContainer c:
                     c.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
-                case GroupPageControl g:
+                case PageControlGroup g:
                     g.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageControlBase> CreateItems()
         {
-            var partPageControl = new PartPageControl(ID, GetIndentation());
+            var partPageControl = new PageControlPart(ID, GetIndentation());
             partPageControl.Properties.AccessByPermission.Set(AccessByPermission);
             partPageControl.Properties.CaptionML.Set(CaptionML);
             partPageControl.Properties.Description = Description;
@@ -49,17 +49,17 @@ namespace UncommonSense.CBreeze.Automation
 
             if (ChartPartID != null)
             {
-                partPageControl.Properties.PartType = PartType.Chart;
+                partPageControl.Properties.PartType = PageControlPartType.Chart;
                 partPageControl.Properties.ChartPartID = ChartPartID;
             }
             else if (PagePartID != null)
             {
-                partPageControl.Properties.PartType = PartType.Page;
+                partPageControl.Properties.PartType = PageControlPartType.Page;
                 partPageControl.Properties.PagePartID = PagePartID;
             }
             else if (SystemPartID != null)
             {
-                partPageControl.Properties.PartType = PartType.System;
+                partPageControl.Properties.PartType = PageControlPartType.System;
                 partPageControl.Properties.SystemPartID = SystemPartID;
             }
 

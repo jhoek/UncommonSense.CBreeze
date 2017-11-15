@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class GroupPageControlLayoutProperty : NullableValueProperty<GroupPageControlLayout>
+        public class PageActionContainerTypeProperty : NullableValueProperty<PageActionContainerType>
     {
-        internal GroupPageControlLayoutProperty(string name)
+        internal PageActionContainerTypeProperty(string name)
             : base(name)
         {
         }

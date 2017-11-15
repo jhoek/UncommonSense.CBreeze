@@ -50,10 +50,10 @@
   <ItemGroup>
     <Compile Include="CBreezeCmdlet.cs" />
     <Compile Include="DevClientCmdlet.cs" />
-    <Compile Include="NewCBreezeContainerPageControl.cs" />
-    <Compile Include="NewCBreezeFieldPageControl.cs" />
-    <Compile Include="NewCBreezeGroupPageControl.cs" />
-    <Compile Include="NewCBreezePartPageControl.cs" />
+    <Compile Include="NewCBreezePageControlContainer.cs" />
+    <Compile Include="NewCBreezePageControl.cs" />
+    <Compile Include="NewCBreezePageControlGroup.cs" />
+    <Compile Include="NewCBreezePageControlPart.cs" />
     <Compile Include="NewCBreezeTableFilter.cs" />
     <Compile Include="NewCBreezeCalcFormulaFilter.cs" />
     <Compile Include="NewCBreezeFunction1.cs">

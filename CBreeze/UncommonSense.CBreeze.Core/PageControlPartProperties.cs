@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class PartPageControlProperties : Properties
+        public class PageControlPartProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty enabled = new StringProperty("Enabled");
         private StringProperty name = new StringProperty("Name");
         private PageReferenceProperty pagePartID = new PageReferenceProperty("PagePartID");
-        private PartTypeProperty partType = new PartTypeProperty("PartType");
+        private PageControlPartTypeProperty partType = new PageControlPartTypeProperty("PartType");
         private NullableIntegerProperty providerID = new NullableIntegerProperty("ProviderID");
         private NullableBooleanProperty showFilter = new NullableBooleanProperty("ShowFilter");
         private RunObjectLinkProperty subPageLink = new RunObjectLinkProperty("SubPageLink");
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
 #endif
         private StringProperty visible = new StringProperty("Visible");
 
-        internal PartPageControlProperties(PartPageControl partPageControl)
+        internal PageControlPartProperties(PageControlPart partPageControl)
         {
             PartPageControl = partPageControl;
 
@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
 #endif
         }
 
-        public PartPageControl PartPageControl { get; protected set; }
+        public PageControlPart PartPageControl { get; protected set; }
 
         public override INode ParentNode => PartPageControl;
 
@@ -160,7 +160,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public PartType? PartType
+        public PageControlPartType? PartType
         {
             get
             {

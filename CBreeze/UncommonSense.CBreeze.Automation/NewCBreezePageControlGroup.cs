@@ -9,20 +9,20 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeGroupPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [OutputType(typeof(GroupPageControl))]
-    [Alias("GroupControl", "Add-CBreezeGroupPageControl")]
-    public class NewCBreezeGroupPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
+    [Cmdlet(VerbsCommon.New, "CBreezePageControlGroup", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [OutputType(typeof(PageControlGroup))]
+    [Alias("GroupControl", "Add-CBreezePageControlGroup")]
+    public class NewCBreezePageControlGroup : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
             switch (inputObject.BaseObject)
             {
-                case ContainerPageControl c:
+                case PageControlContainer c:
                     c.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
-                case GroupPageControl g:
+                case PageControlGroup g:
                     g.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageControlBase> CreateItems()
         {
-            var groupPageControl = new GroupPageControl(ID, GetIndentation(), GroupType.GetValueOrDefault(Core.GroupType.Group));
+            var groupPageControl = new PageControlGroup(ID, GetIndentation(), GroupType.GetValueOrDefault(Core.PageControlGroupType.Group));
             groupPageControl.Properties.CaptionML.Set(CaptionML);
             groupPageControl.Properties.Description = Description;
             groupPageControl.Properties.Name = Name;
@@ -101,10 +101,10 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Editable { get; set; }
         [Parameter()] public string Enabled { get; set; }
         [Parameter()] public string FreezeColumnID { get; set; }
-        [Parameter()] public GroupType? GroupType { get; set; }
+        [Parameter()] public PageControlGroupType? GroupType { get; set; }
         [Parameter()] public string IndentationColumnName { get; set; }
         [Parameter()] public string[] IndentationControls { get; set; }
-        [Parameter()] public GroupPageControlLayout? Layout { get; set; }
+        [Parameter()] public PageControlGroupLayout? Layout { get; set; }
         [Parameter()] public string Name { get; set; }
         [Parameter()] public Position? Position { get; set; }
         [Parameter()] public SwitchParameter ShowAsTree { get; set; }

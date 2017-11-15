@@ -40,7 +40,7 @@ namespace UncommonSense.CBreeze.Automation
                     a.Properties.RunPageView.TableFilter.Add(item);
                     break;
 
-                case PartPageControl c:
+                case PageControlPart c:
                     c.Properties.SubPageView.TableFilter.Add(item);
                     break;
 

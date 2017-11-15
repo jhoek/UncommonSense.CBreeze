@@ -7,7 +7,7 @@ namespace UncommonSense.CBreeze.Core
 {
         public class PageActionGroupProperties : Properties
     {
-        private ActionContainerTypeProperty actionContainerType = new ActionContainerTypeProperty("ActionContainerType");
+        private PageActionContainerTypeProperty actionContainerType = new PageActionContainerTypeProperty("ActionContainerType");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
         private StringProperty enabled = new StringProperty("Enabled");
@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => PageActionGroup;
 
         // See also: http://www.uncommonsense.nl/zen/?p=29
-        public ActionContainerType? ActionContainerType
+        public PageActionContainerType? ActionContainerType
         {
             get
             {

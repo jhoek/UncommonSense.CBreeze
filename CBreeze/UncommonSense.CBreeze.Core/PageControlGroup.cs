@@ -6,11 +6,11 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class GroupPageControl : PageControlBase
+    public class PageControlGroup : PageControlBase
     {
-        public GroupPageControl(int id = 0, int? indentationLevel = null, GroupType? groupType = null) : base(id, indentationLevel)
+        public PageControlGroup(int id = 0, int? indentationLevel = null, PageControlGroupType? groupType = null) : base(id, indentationLevel)
         {
-            Properties = new GroupPageControlProperties(this);
+            Properties = new PageControlGroupProperties(this);
             Properties.GroupType = groupType;
 
             // Cannot set ActionList.Page from here; Container has not been set yet. Note that this
@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public GroupPageControlProperties Properties
+        public PageControlGroupProperties Properties
         {
             get;
             protected set;

@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Get, "CBreezePageControlContainer")]
-    [OutputType(typeof(ContainerPageControl))]
+    [OutputType(typeof(PageControlContainer))]
     public class GetCBreezePageControlContainer : Cmdlet
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true)]
-        public ContainerType Type
+        public PageControlContainerType Type
         {
             get;
             set;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class FieldPageControlProperties : Properties
+        public class PageControlProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
@@ -67,7 +67,7 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty visible = new StringProperty("Visible");
         private NullableIntegerProperty width = new NullableIntegerProperty("Width");
 
-        internal FieldPageControlProperties(FieldPageControl control)
+        internal PageControlProperties(PageControl control)
         {
             Control = control;
 
@@ -130,7 +130,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(quickEntry);
         }
 
-        public FieldPageControl Control { get; protected set; }
+        public PageControl Control { get; protected set; }
 
         public override INode ParentNode => Control;
 

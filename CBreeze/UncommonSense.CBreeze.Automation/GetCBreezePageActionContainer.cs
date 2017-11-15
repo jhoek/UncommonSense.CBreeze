@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true)]
-        public ActionContainerType Type
+        public PageActionContainerType Type
         {
             get;
             set;

@@ -24,13 +24,13 @@ namespace UncommonSense.CBreeze.Write
         {
             TypeSwitch.Do(
                 pageControl,
-                TypeSwitch.Case<ContainerPageControl>(c => c.Write(writer, propertyIndentation)),
-                TypeSwitch.Case<GroupPageControl>(c => c.Write(writer, propertyIndentation)),
-                TypeSwitch.Case<PartPageControl>(c => c.Write(writer, propertyIndentation)),
-                TypeSwitch.Case<FieldPageControl>(c => c.Write(writer, propertyIndentation)));
+                TypeSwitch.Case<PageControlContainer>(c => c.Write(writer, propertyIndentation)),
+                TypeSwitch.Case<PageControlGroup>(c => c.Write(writer, propertyIndentation)),
+                TypeSwitch.Case<PageControlPart>(c => c.Write(writer, propertyIndentation)),
+                TypeSwitch.Case<PageControl>(c => c.Write(writer, propertyIndentation)));
         }
 
-        public static void Write(this ContainerPageControl containerPageControl, CSideWriter writer, int propertyIndentation)
+        public static void Write(this PageControlContainer containerPageControl, CSideWriter writer, int propertyIndentation)
         {
             var debt = 0;
             var controlID = BuildControlPart(containerPageControl.ID.ToString(), 4, ref debt);
@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Write
             writer.InnerWriter.WriteLine();
         }
 
-        public static void Write(this GroupPageControl groupPageControl, CSideWriter writer, int propertyIndentation)
+        public static void Write(this PageControlGroup groupPageControl, CSideWriter writer, int propertyIndentation)
         {
             var debt = 0;
             var controlID = BuildControlPart(groupPageControl.ID.ToString(), 4, ref debt);
@@ -83,7 +83,7 @@ namespace UncommonSense.CBreeze.Write
             writer.InnerWriter.WriteLine();
         }
 
-        public static void Write(this PartPageControl partPageControl, CSideWriter writer, int propertyIndentation)
+        public static void Write(this PageControlPart partPageControl, CSideWriter writer, int propertyIndentation)
         {
             var debt = 0;
             var controlID = BuildControlPart(partPageControl.ID.ToString(), 4, ref debt);
@@ -107,7 +107,7 @@ namespace UncommonSense.CBreeze.Write
             writer.InnerWriter.WriteLine();
         }
 
-        public static void Write(this FieldPageControl fieldPageControl, CSideWriter writer, int propertyIndentation)
+        public static void Write(this PageControl fieldPageControl, CSideWriter writer, int propertyIndentation)
         {
             var debt = 0;
             var controlID = BuildControlPart(fieldPageControl.ID.ToString(), 4, ref debt);

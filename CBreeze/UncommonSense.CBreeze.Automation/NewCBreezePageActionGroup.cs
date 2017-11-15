@@ -86,7 +86,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()]
-        public ActionContainerType? ContainerType { get; set; }
+        public PageActionContainerType? ContainerType { get; set; }
 
         [Parameter()]
         public string Description

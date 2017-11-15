@@ -281,7 +281,7 @@ namespace UncommonSense.CBreeze.Script
         {
             switch (property)
             {
-                case ActionContainerTypeProperty t:
+                case PageActionContainerTypeProperty t:
                     yield return new SimpleParameter("ContainerType", t.Value);
                     break;
 

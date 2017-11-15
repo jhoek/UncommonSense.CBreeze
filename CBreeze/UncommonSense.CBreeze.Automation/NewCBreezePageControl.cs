@@ -7,10 +7,10 @@ namespace UncommonSense.CBreeze.Automation
 {
     // FIXME: Scriptblock for table relation
 
-    [Cmdlet(VerbsCommon.New, "CBreezeFieldPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [OutputType(typeof(FieldPageControl))]
-    [Alias("FieldControl", "CBreezeFieldPageControl")]
-    public class NewCBreezeFieldPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
+    [Cmdlet(VerbsCommon.New, "CBreezePageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [OutputType(typeof(PageControl))]
+    [Alias("FieldControl", "Add-CBreezePageControl")]
+    public class NewCBreezePageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
@@ -74,7 +74,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageControlBase> CreateItems()
         {
-            var fieldPageControl = new FieldPageControl(SourceExpr, ID, GetIndentation());
+            var fieldPageControl = new PageControl(SourceExpr, ID, GetIndentation());
 
             fieldPageControl.Properties.AccessByPermission.Set(AccessByPermission);
             fieldPageControl.Properties.AssistEdit = NullableBooleanFromSwitch(nameof(AssistEdit));
@@ -144,10 +144,10 @@ namespace UncommonSense.CBreeze.Automation
                 case PageControls pageControls:
                     return 0;
 
-                case ContainerPageControl containerPageControl:
+                case PageControlContainer containerPageControl:
                     return containerPageControl.IndentationLevel.GetValueOrDefault(0);
 
-                case GroupPageControl groupPageControl:
+                case PageControlGroup groupPageControl:
                     return groupPageControl.IndentationLevel.GetValueOrDefault(0);
 
                 default:

@@ -9,10 +9,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "CBreezeContainerPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
-    [OutputType(typeof(ContainerPageControl))]
-    [Alias("ContainerControl", "Add-CBreezeContainerPageControl")]
-    public class NewCBreezeContainerPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
+    [Cmdlet(VerbsCommon.New, "CBreezePageControlContainer", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [OutputType(typeof(PageControlContainer))]
+    [Alias("ContainerControl", "Add-CBreezePageControlContainer")]
+    public class NewCBreezePageControlContainer : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
         protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageControlBase> CreateItems()
         {
-            var containerPageControl = new ContainerPageControl(ID, 0, ContainerType.GetValueOrDefault(Core.ContainerType.ContentArea));
+            var containerPageControl = new PageControlContainer(ID, 0, ContainerType.GetValueOrDefault(Core.PageControlContainerType.ContentArea));
             containerPageControl.Properties.CaptionML.Set(CaptionML);
             containerPageControl.Properties.Description = Description;
             containerPageControl.Properties.Name = Name;
@@ -67,7 +67,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
         public ScriptBlock ChildControls { get; set; }
 
-        [Parameter()] public ContainerType? ContainerType { get; set; }
+        [Parameter()] public PageControlContainerType? ContainerType { get; set; }
         [Parameter()] public string Description { get; set; }
         [Parameter()] public string Name { get; set; }
 

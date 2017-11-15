@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class ContainerPageControlProperties : Properties
+        public class PageControlContainerProperties : Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
-        private ContainerTypeProperty containerType = new ContainerTypeProperty("ContainerType");
+        private PageControlContainerTypeProperty containerType = new PageControlContainerTypeProperty("ContainerType");
         private StringProperty description = new StringProperty("Description");
         private StringProperty name = new StringProperty("Name");
 
-        internal ContainerPageControlProperties(ContainerPageControl containerPageControl)
+        internal PageControlContainerProperties(PageControlContainer containerPageControl)
         {
             ContainerPageControl = containerPageControl;
 
@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(containerType);
         }
 
-        public ContainerPageControl ContainerPageControl { get; protected set; }
+        public PageControlContainer ContainerPageControl { get; protected set; }
 
         public MultiLanguageValue CaptionML
         {
@@ -32,7 +32,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public ContainerType? ContainerType
+        public PageControlContainerType? ContainerType
         {
             get
             {

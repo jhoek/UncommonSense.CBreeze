@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public enum ActionContainerType
+    public enum PageActionContainerType
     {
         NewDocumentItems,
         ActionItems,

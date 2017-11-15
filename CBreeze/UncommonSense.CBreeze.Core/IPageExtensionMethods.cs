@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
     public static class IPageExtensionMethods
     {
-        public static PageActionContainer GetPageActionContainer(this IPage page, ActionContainerType type)
+        public static PageActionContainer GetPageActionContainer(this IPage page, PageActionContainerType type)
         {
             return
                 page
@@ -20,9 +20,9 @@ namespace UncommonSense.CBreeze.Core
                         .Insert(0, new PageActionContainer(0, containerType: type));
         }
 
-        public static ContainerPageControl GetPageControlContainer(this IPage page, ContainerType type)
+        public static PageControlContainer GetPageControlContainer(this IPage page, PageControlContainerType type)
         {
-            var result = page.Controls.OfType<ContainerPageControl>().FirstOrDefault(c => c.Properties.ContainerType == type) ?? page.Controls.Insert(0, new ContainerPageControl(indentationLevel: 0));
+            var result = page.Controls.OfType<PageControlContainer>().FirstOrDefault(c => c.Properties.ContainerType == type) ?? page.Controls.Insert(0, new PageControlContainer(indentationLevel: 0));
             result.Properties.ContainerType = type;
             return result;
         }

@@ -6,11 +6,11 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class ContainerPageControl : PageControlBase
+    public class PageControlContainer : PageControlBase
     {
-        public ContainerPageControl(int id = 0, int? indentationLevel = null, ContainerType containerType = ContainerType.ContentArea) : base(id, indentationLevel)
+        public PageControlContainer(int id = 0, int? indentationLevel = null, PageControlContainerType containerType = PageControlContainerType.ContentArea) : base(id, indentationLevel)
         {
-            Properties = new ContainerPageControlProperties(this);
+            Properties = new PageControlContainerProperties(this);
             Properties.ContainerType = containerType;
         }
 
@@ -30,7 +30,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public ContainerPageControlProperties Properties
+        public PageControlContainerProperties Properties
         {
             get;
             protected set;
@@ -44,13 +44,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public GroupPageControl GetGroupByCaption(string caption, Position position)
+        public PageControlGroup GetGroupByCaption(string caption, Position position)
         {
-            var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
+            var groupPageControl = ChildPageControls.OfType<PageControlGroup>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
 
             if (groupPageControl == null)
             {
-                groupPageControl = new GroupPageControl(indentationLevel: 1);
+                groupPageControl = new PageControlGroup(indentationLevel: 1);
                 groupPageControl.Properties.CaptionML.Set("ENU", caption);
                 this.AddChildPageControl(groupPageControl, position);
             }
@@ -58,13 +58,13 @@ namespace UncommonSense.CBreeze.Core
             return groupPageControl;
         }
 
-        public GroupPageControl GetGroupByType(GroupType type, Position position)
+        public PageControlGroup GetGroupByType(PageControlGroupType type, Position position)
         {
-            var groupPageControl = ChildPageControls.OfType<GroupPageControl>().FirstOrDefault(g => g.Properties.GroupType == type);
+            var groupPageControl = ChildPageControls.OfType<PageControlGroup>().FirstOrDefault(g => g.Properties.GroupType == type);
 
             if (groupPageControl == null)
             {
-                groupPageControl = new GroupPageControl(indentationLevel: 1);
+                groupPageControl = new PageControlGroup(indentationLevel: 1);
                 groupPageControl.Properties.GroupType = type;
                 AddChildPageControl(groupPageControl, position);
             }

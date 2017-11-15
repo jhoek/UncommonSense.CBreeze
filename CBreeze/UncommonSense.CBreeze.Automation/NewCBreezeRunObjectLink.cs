@@ -22,7 +22,7 @@ namespace UncommonSense.CBreeze.Automation
                     a.Properties.RunPageLink.Add(item);
                     break;
 
-                case PartPageControl c:
+                case PageControlPart c:
                     c.Properties.SubPageLink.Add(item);
                     break;
 

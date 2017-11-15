@@ -5,11 +5,13 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public enum ContainerType
+    public enum PageControlGroupType
     {
-        ContentArea,
-        FactBoxArea,
-        RoleCenterArea,
+        Group,
+        Repeater,
+        CueGroup,
+        FixedLayout,
+        GridLayout,
     }
 
 }

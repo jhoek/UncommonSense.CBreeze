@@ -6,12 +6,12 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class PartPageControl : PageControlBase
+    public class PageControl : PageControlBase
     {
-        public PartPageControl(int id = 0, int? indentationLevel = null)
-            : base(id, indentationLevel)
+        public PageControl(string sourceExpr, int id = 0, int? indentationLevel = null) : base(id, indentationLevel)
         {
-            Properties = new PartPageControlProperties(this);
+            Properties = new PageControlProperties(this);
+            Properties.SourceExpr = sourceExpr;
         }
 
         public override Properties AllProperties
@@ -24,13 +24,10 @@ namespace UncommonSense.CBreeze.Core
 
         public override IEnumerable<INode> ChildNodes
         {
-            get
-            {
-                yield return Properties;
-            }
+            get { yield return Properties; }
         }
 
-        public PartPageControlProperties Properties
+        public PageControlProperties Properties
         {
             get;
             protected set;
@@ -40,7 +37,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return PageControlType.Part;
+                return PageControlType.Field;
             }
         }
 

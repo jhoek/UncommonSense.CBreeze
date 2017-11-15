@@ -8,7 +8,7 @@ using UncommonSense.CBreeze.Core;
 namespace UncommonSense.CBreeze.Automation
 {
     [Cmdlet(VerbsCommon.Get, "CBreezePageControlGroup")]
-    [OutputType(typeof(GroupPageControl))]
+    [OutputType(typeof(PageControlGroup))]
     public class GetCBreezePageControlGroup : PSCmdlet
     {
         [Parameter(Mandatory = true, ParameterSetName = "ByGroupCaption")]
@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter(Mandatory = true, ParameterSetName = "ByGroupType")]
-        public GroupType GroupType
+        public PageControlGroupType GroupType
         {
             get;
             set;
@@ -41,7 +41,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void ProcessRecord()
         {
-            var contentArea = Page.GetPageControlContainer(ContainerType.ContentArea);
+            var contentArea = Page.GetPageControlContainer(PageControlContainerType.ContentArea);
 
             switch (ParameterSetName)
             {

@@ -5,13 +5,10 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public enum GroupType
+    public enum PageControlGroupLayout
     {
-        Group,
-        Repeater,
-        CueGroup,
-        FixedLayout,
-        GridLayout,
+        Rows,
+        Columns,
     }
 
 }
