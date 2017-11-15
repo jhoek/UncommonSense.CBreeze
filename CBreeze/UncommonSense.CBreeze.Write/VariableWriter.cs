@@ -52,7 +52,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<OutStreamVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<PageVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<QueryVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, false, false, false, false, p.SecurityFiltering.HasValue ? p.SecurityFiltering.Value.ToString() : null, writer)),
-                TypeSwitch.Case<RecordVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, p.Temporary.GetValueOrDefault(false), false, false, false, p.SecurityFiltering.HasValue ? p.SecurityFiltering.Value.ToString() : null, writer)),
+                TypeSwitch.Case<RecordVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, p.Temporary, false, false, false, p.SecurityFiltering.HasValue ? p.SecurityFiltering.Value.ToString() : null, writer)),
                 TypeSwitch.Case<RecordIDVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<RecordRefVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, false, false, false, false, p.SecurityFiltering.HasValue ? p.SecurityFiltering.Value.ToString() : null, writer)),
                 TypeSwitch.Case<ReportVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),

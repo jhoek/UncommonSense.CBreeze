@@ -992,7 +992,7 @@ namespace UncommonSense.CBreeze.Automation
 			var recordVariable = new RecordVariable(ID, Name, SubType);
 			recordVariable.Dimensions = Dimensions;
 			recordVariable.SecurityFiltering = SecurityFiltering;
-			recordVariable.Temporary = NullableBooleanFromSwitch(nameof(Temporary));
+			recordVariable.Temporary = Temporary;
 			yield return recordVariable;
 		}
 

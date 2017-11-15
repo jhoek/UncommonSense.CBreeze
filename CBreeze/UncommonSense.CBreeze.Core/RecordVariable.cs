@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public bool? Temporary
+        public bool Temporary
         {
             get;
             set;
