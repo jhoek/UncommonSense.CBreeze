@@ -54,7 +54,7 @@ namespace UncommonSense.CBreeze.Automation
 		var hasRunOnClient = (@type.Name == "DotNetParameter");
 		var hasSuppressDispose = (@type.Name == "DotNetParameter");
 #>
-[Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>")]
+[Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
 [OutputType(typeof(<#=type.Name#>))]
 [Alias("<#=type.Name#>", "Add-CBreeze<#=type.Name#>")]
 public class NewCBreeze<#=@type.Name#> : NewItemWithIDAndNameCmdlet<<#=@type.Name#>, int, PSObject>
@@ -77,7 +77,10 @@ protected override IEnumerable<<#=@type.Name#>> CreateItems()
 	}
 
 <# if (hasDataLength) { #>
-	[Parameter(Mandatory=<#=dataLengthMandatory.ToString().ToLowerInvariant()#>)]
+	[Parameter(Mandatory=<#=dataLengthMandatory.ToString().ToLowerInvariant()#>, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+	[Parameter(Mandatory=<#=dataLengthMandatory.ToString().ToLowerInvariant()#>, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+	[Parameter(Mandatory=<#=dataLengthMandatory.ToString().ToLowerInvariant()#>, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+	[Parameter(Mandatory=<#=dataLengthMandatory.ToString().ToLowerInvariant()#>, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
 	[ValidateRange(1, int.MaxValue)]
 	public int? DataLength { get; set; }
 <# } #>
@@ -89,7 +92,10 @@ protected override IEnumerable<<#=@type.Name#>> CreateItems()
 	public string Dimensions { get; set; }
 <# if (hasOptionString) { #>
 
-	[Parameter()]
+	[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+	[Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+	[Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+	[Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
 	public string OptionString { get;set; } 
 <# } #>
 <# if (hasRecordSecurityFiltering) { #>
@@ -109,13 +115,19 @@ protected override IEnumerable<<#=@type.Name#>> CreateItems()
 <# } #>
 <# if (hasIntegerSubType) { #>
 
-	[Parameter(Mandatory=true)]
+	[Parameter(Mandatory=true, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+	[Parameter(Mandatory=true, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+	[Parameter(Mandatory=true, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+	[Parameter(Mandatory=true, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
 	[ValidateRange(1, int.MaxValue)]
 	public int SubType { get; set; }
 <# } #>
 <# if (hasStringSubType) { #>
 
-	[Parameter(Mandatory=true)]
+	[Parameter(Mandatory=true, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+	[Parameter(Mandatory=true, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+	[Parameter(Mandatory=true, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+	[Parameter(Mandatory=true, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
 	public string SubType { get; set; }
 <# } #>
 <# if (hasSuppressDispose) { #>
