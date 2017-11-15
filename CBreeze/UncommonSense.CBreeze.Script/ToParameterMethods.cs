@@ -40,13 +40,13 @@ namespace UncommonSense.CBreeze.Script
             {
                 case BooleanVariable b:
                     yield return new SimpleParameter("Dimensions", b.Dimensions);
-                    yield return new SimpleParameter("IncludeInDataset", b.IncludeInDataset);
+                    yield return new SwitchParameter("IncludeInDataset", b.IncludeInDataset);
                     break;
 
                 case CodeVariable c:
                     yield return new SimpleParameter("DataLength", c.DataLength);
                     yield return new SimpleParameter("Dimensions", c.Dimensions);
-                    yield return new SimpleParameter("IncludeInDataset", c.IncludeInDataset);
+                    yield return new SwitchParameter("IncludeInDataset", c.IncludeInDataset);
                     break;
 
                 case CodeunitVariable c:
@@ -64,9 +64,9 @@ namespace UncommonSense.CBreeze.Script
 
                 case DotNetVariable d:
                     yield return new SimpleParameter("Dimensions", d.Dimensions);
-                    yield return new SimpleParameter("RunOnClient", d.RunOnClient);
+                    yield return new SwitchParameter("RunOnClient", d.RunOnClient);
                     yield return new SimpleParameter("SubType", d.SubType);
-                    yield return new SimpleParameter("WithEvents", d.WithEvents);
+                    yield return new SwitchParameter("WithEvents", d.WithEvents);
                     break;
 
                 case FieldRefVariable f:
@@ -75,7 +75,7 @@ namespace UncommonSense.CBreeze.Script
 
                 case IntegerVariable i:
                     yield return new SimpleParameter("Dimensions", i.Dimensions);
-                    yield return new SimpleParameter("IncludeInDataset", i.IncludeInDataset);
+                    yield return new SwitchParameter("IncludeInDataset", i.IncludeInDataset);
                     break;
 
                 case OptionVariable o:
@@ -97,7 +97,7 @@ namespace UncommonSense.CBreeze.Script
                 case RecordVariable r:
                     yield return new SimpleParameter("Dimensions", r.Dimensions);
                     yield return new SimpleParameter("SubType", r.SubType);
-                    yield return new SimpleParameter("Temporary", r.Temporary);
+                    yield return new SwitchParameter("Temporary", r.Temporary);
                     break;
 
                 case ReportVariable r:
@@ -112,7 +112,7 @@ namespace UncommonSense.CBreeze.Script
                 case TextVariable t:
                     yield return new SimpleParameter("DataLength", t.DataLength);
                     yield return new SimpleParameter("Dimensions", t.Dimensions);
-                    yield return new SimpleParameter("IncludeInDataset", t.IncludeInDataset);
+                    yield return new SwitchParameter("IncludeInDataset", t.IncludeInDataset);
                     break;
 
                 case XmlPortVariable x:
@@ -181,7 +181,7 @@ namespace UncommonSense.CBreeze.Script
         {
             yield return new SimpleParameter("ID", function.ID);
             yield return new SimpleParameter("Name", function.Name);
-            yield return new SimpleParameter("Local", function.Local);
+            yield return new SwitchParameter("Local", function.Local);
             yield return new SimpleParameter("TryFunction", function.TryFunction);
             yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
             yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
@@ -214,9 +214,9 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case DotNetParameter d:
-                    yield return new SimpleParameter("RunOnClient", d.RunOnClient);
+                    yield return new SwitchParameter("RunOnClient", d.RunOnClient);
                     yield return new SimpleParameter("SubType", d.SubType);
-                    yield return new SimpleParameter("SuppressDispose", d.SuppressDispose);
+                    yield return new SwitchParameter("SuppressDispose", d.SuppressDispose);
                     break;
 
                 case OptionParameter o:
@@ -238,7 +238,7 @@ namespace UncommonSense.CBreeze.Script
 
                 case RecordParameter r:
                     yield return new SimpleParameter("SubType", r.SubType);
-                    yield return new SimpleParameter("Temporary", r.Temporary);
+                    yield return new SwitchParameter("Temporary", r.Temporary);
                     break;
             }
         }
@@ -283,6 +283,10 @@ namespace UncommonSense.CBreeze.Script
             {
                 case PageActionContainerTypeProperty t:
                     yield return new SimpleParameter("ContainerType", t.Value);
+                    break;
+
+                case NullableBooleanProperty b:
+                    yield return new SwitchParameter(b.Name, b.Value);
                     break;
 
                 case BooleanProperty b:

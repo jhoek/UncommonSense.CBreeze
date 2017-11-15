@@ -9,14 +9,14 @@ namespace UncommonSense.CBreeze.Script
 {
     public class SwitchParameter : ParameterBase
     {
-        public SwitchParameter(string name, bool value)
+        public SwitchParameter(string name, bool? value)
             : base(name)
         {
             Value = value;
         }
 
-        public override bool HasValue => Value;
-        public bool Value { get; set; }
+        public override bool HasValue => Value.HasValue;
+        public bool? Value { get; set; }
 
         public override string ToString(int indentation) => $"{Indentation(indentation)}-{Name}";
     }
