@@ -24,5 +24,10 @@ namespace UncommonSense.CBreeze.Script
 
             return "IntegrationEventPublisherFunction";
         }
+
+        public static string Escape(this string text)
+        {
+            return text.Replace("'", "''"); 
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Script
             Text = text;
         }
 
-        public override string ToString(int indentation) => $"{Indentation(indentation)}'{Text}'{Environment.NewLine}";
+        public override string ToString(int indentation) => $"{Indentation(indentation)}'{Text.Escape()}'{Environment.NewLine}";
 
         public string Text { get; }
     }
