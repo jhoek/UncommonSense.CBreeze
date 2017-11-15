@@ -31,7 +31,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public bool? Local
+        public bool Local
         {
             get;
             set;

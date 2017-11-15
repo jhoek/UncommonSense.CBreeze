@@ -25,7 +25,7 @@ namespace UncommonSense.CBreeze.Write
             writer.WriteLineIf(function.TestPermissions.HasValue, "[TestPermissions({0})]", function.TestPermissions);
 #endif
 
-            writer.Write("{2}PROCEDURE {0}@{1}(", function.Name, function.ID, function.Local.GetValueOrDefault(false) ? "LOCAL " : "");
+            writer.Write("{2}PROCEDURE {0}@{1}(", function.Name, function.ID, function.Local ? "LOCAL " : "");
             function.Parameters.Write(writer);
             writer.Write(")");
             function.ReturnValue.Write(writer);

@@ -68,7 +68,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = NullableBooleanFromSwitch(nameof(Local));
+			function.Local = Local;
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -148,7 +148,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = NullableBooleanFromSwitch(nameof(Local));
+			function.Local = Local;
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -231,7 +231,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = NullableBooleanFromSwitch(nameof(Local));
+			function.Local = Local;
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -318,7 +318,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = NullableBooleanFromSwitch(nameof(Local));
+			function.Local = Local;
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -405,7 +405,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = NullableBooleanFromSwitch(nameof(Local));
+			function.Local = Local;
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -489,7 +489,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var function = new Function(ID, Name);
 
-			function.Local = NullableBooleanFromSwitch(nameof(Local));
+			function.Local = Local;
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
