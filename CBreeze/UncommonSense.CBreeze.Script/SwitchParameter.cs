@@ -9,6 +9,19 @@ namespace UncommonSense.CBreeze.Script
 {
     public class SwitchParameter : ParameterBase
     {
+        public SwitchParameter(string name, bool value) : base(name)
+        {
+            switch (value)
+            {
+                case true:
+                    Value = true;
+                    break;
+                default:
+                    Value = null;
+                    break;
+            }
+        }
+
         public SwitchParameter(string name, bool? value)
             : base(name)
         {
