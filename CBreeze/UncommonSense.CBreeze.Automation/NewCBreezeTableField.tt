@@ -124,7 +124,7 @@ namespace UncommonSense.CBreeze.Automation
 	}
 
 #>
-	[Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>")]
+	[Cmdlet(VerbsCommon.New, "CBreeze<#=@type.Name#>", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(<#=type.Name#>))]
 	[Alias("<#=@type.Name.Replace("Table", "")#>", "Add-CBreeze<#=@type.Name#>")]
 	public class NewCBreeze<#=@type.Name#> : NewItemWithIDAndNameCmdlet<<#=@type.Name#>, int, Table>
