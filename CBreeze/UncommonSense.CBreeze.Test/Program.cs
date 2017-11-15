@@ -15,8 +15,8 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .ReadFromFile(@"C: \Users\jhoek\Dropbox\BaseAppExports\iabe plus iadf.txt")
-                .WriteToFile(@"c:\users\jhoek\Desktop\be.txt");
+                .ReadFromFolder(@"C:\Users\jhoek\Dropbox\BaseAppExports\w12017")
+                .WriteToFolder(@"c:\users\jhoek\Desktop\w12017");
         }
     }
 }
