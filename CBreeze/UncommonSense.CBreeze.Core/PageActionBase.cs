@@ -28,7 +28,7 @@ namespace UncommonSense.CBreeze.Core
 			internal set;
 		}
 
-		public abstract PageActionBaseType Type
+		public abstract PageActionType Type
 		{
 			get;
 		}

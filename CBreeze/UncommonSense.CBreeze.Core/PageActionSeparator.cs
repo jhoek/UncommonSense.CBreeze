@@ -36,11 +36,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override PageActionBaseType Type
+        public override PageActionType Type
         {
             get
             {
-                return PageActionBaseType.Separator;
+                return PageActionType.Separator;
             }
         }
 

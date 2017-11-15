@@ -1359,26 +1359,26 @@ namespace UncommonSense.CBreeze.Read
             currentProperties.Pop();
         }
 
-        public override void OnBeginPageAction(int actionID, int? actionIndentation, PageActionBaseType actionType)
+        public override void OnBeginPageAction(int actionID, int? actionIndentation, PageActionType actionType)
         {
             switch (actionType)
             {
-                case PageActionBaseType.ActionContainer:
+                case PageActionType.ActionContainer:
                     var newPageActionContainer = currentPageActionList.Add(new PageActionContainer(actionIndentation, actionID));
                     currentProperties.Push(newPageActionContainer.Properties);
                     break;
 
-                case PageActionBaseType.ActionGroup:
+                case PageActionType.ActionGroup:
                     var newPageActionGroup = currentPageActionList.Add(new PageActionGroup(actionID, actionIndentation));
                     currentProperties.Push(newPageActionGroup.Properties);
                     break;
 
-                case PageActionBaseType.Action:
+                case PageActionType.Action:
                     var newPageAction = currentPageActionList.Add(new PageAction(actionID, actionIndentation));
                     currentProperties.Push(newPageAction.Properties);
                     break;
 
-                case PageActionBaseType.Separator:
+                case PageActionType.Separator:
                     var newPageActionSeparator = currentPageActionList.Add(new PageActionSeparator(actionID, actionIndentation));
                     currentProperties.Push(newPageActionSeparator.Properties);
                     break;

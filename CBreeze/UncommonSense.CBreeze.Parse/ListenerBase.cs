@@ -87,7 +87,7 @@ namespace UncommonSense.CBreeze.Parse
         {
         }
 
-        public virtual void OnBeginPageAction(int actionID, int? actionIndentation, Common.PageActionBaseType actionType)
+        public virtual void OnBeginPageAction(int actionID, int? actionIndentation, Common.PageActionType actionType)
         {
         }
 

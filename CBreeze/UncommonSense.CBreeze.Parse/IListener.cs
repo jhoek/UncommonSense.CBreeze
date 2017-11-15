@@ -50,7 +50,7 @@ namespace UncommonSense.CBreeze.Parse
         void OnEndPageControl();
 
         // Page actions
-        void OnBeginPageAction(int actionID, int? actionIndentation, PageActionBaseType actionType);
+        void OnBeginPageAction(int actionID, int? actionIndentation, PageActionType actionType);
         void OnEndPageAction();
 
         // Query elements

@@ -37,11 +37,11 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public override PageActionBaseType Type
+        public override PageActionType Type
         {
             get
             {
-                return PageActionBaseType.Action;
+                return PageActionType.Action;
             }
         }
 

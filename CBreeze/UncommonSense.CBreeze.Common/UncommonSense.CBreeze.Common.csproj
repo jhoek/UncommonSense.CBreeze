@@ -44,7 +44,7 @@
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="MenuSuiteNodeType.cs" />
     <Compile Include="ObjectType.cs" />
-    <Compile Include="PageActionBaseType.cs" />
+    <Compile Include="PageActionType.cs" />
     <Compile Include="PageControlType.cs" />
     <Compile Include="ParameterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

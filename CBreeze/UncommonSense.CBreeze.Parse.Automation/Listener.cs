@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Parse.Automation
         public override void OnBeginTableFieldGroup(int fieldGroupID, string fieldGroupName, string[] fieldGroupFields) => InvokeCBreezeParser.OnBeginTableFieldGroup?.Invoke(fieldGroupID, fieldGroupName, fieldGroupFields);
         public override void OnEndTableFieldGroup() => InvokeCBreezeParser.OnEndTableFieldGroup?.Invoke();
 
-        public override void OnBeginPageAction(int actionID, int? actionIndentation, PageActionBaseType actionType) => InvokeCBreezeParser.OnBeginPageAction?.Invoke(actionID, actionIndentation, actionType);
+        public override void OnBeginPageAction(int actionID, int? actionIndentation, PageActionType actionType) => InvokeCBreezeParser.OnBeginPageAction?.Invoke(actionID, actionIndentation, actionType);
         public override void OnEndPageAction() => InvokeCBreezeParser.OnEndPageAction?.Invoke();
 
         public override void OnBeginPageControl(int controlID, int? controlIndentation, PageControlType controlType) => InvokeCBreezeParser.OnBeginPageControl?.Invoke(controlID, controlIndentation, controlType);
