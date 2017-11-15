@@ -10,9 +10,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeFieldPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(FieldPageControl))]
     [Alias("FieldControl", "CBreezeFieldPageControl")]
-    public class NewCBreezeFieldPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
+    public class NewCBreezeFieldPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
-        protected override void AddItemToInputObject(PageControl item, PSObject inputObject)
+        protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
             base.AddItemToInputObject(item, inputObject);
         }
@@ -72,7 +72,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Visible { get; set; }
         [Parameter()] [ValidateRange(0, int.MaxValue)] public int? Width { get; set; }
 
-        protected override IEnumerable<PageControl> CreateItems()
+        protected override IEnumerable<PageControlBase> CreateItems()
         {
             var fieldPageControl = new FieldPageControl(SourceExpr, ID, GetIndentation());
 

@@ -66,7 +66,7 @@ namespace UncommonSense.CBreeze.Automation
             if (SubObjects != null)
             {
                 var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
-                page.Controls.AddRange(subObjects.OfType<PageControl>());
+                page.Controls.AddRange(subObjects.OfType<PageControlBase>());
                 page.Properties.ActionList.AddRange(subObjects.OfType<PageActionBase>());
                 page.Properties.SourceTableView.TableFilter.AddRange(subObjects.OfType<TableFilterLine>());
                 page.Code.Documentation.CodeLines.AddRange(subObjects.OfType<string>());

@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class FieldPageControl : PageControl
+    public class FieldPageControl : PageControlBase
     {
         public FieldPageControl(string sourceExpr, int id = 0, int? indentationLevel = null) : base(id, indentationLevel)
         {

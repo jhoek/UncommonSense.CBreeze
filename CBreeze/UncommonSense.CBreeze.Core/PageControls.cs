@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class PageControls : IntegerKeyedAndNamedContainer<PageControl>, INode
+    public class PageControls : IntegerKeyedAndNamedContainer<PageControlBase>, INode
     {
         internal PageControls(IPage page)
         {
@@ -26,12 +26,12 @@ namespace UncommonSense.CBreeze.Core
 
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
-        public override void ValidateName(PageControl item)
+        public override void ValidateName(PageControlBase item)
         {
             TestNameUnique(item);
         }
 
-        protected override void InsertItem(int index, PageControl item)
+        protected override void InsertItem(int index, PageControlBase item)
         {
             base.InsertItem(index, item);
             item.Container = this;

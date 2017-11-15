@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class PartPageControl : PageControl
+    public class PartPageControl : PageControlBase
     {
         public PartPageControl(int id = 0, int? indentationLevel = null)
             : base(id, indentationLevel)

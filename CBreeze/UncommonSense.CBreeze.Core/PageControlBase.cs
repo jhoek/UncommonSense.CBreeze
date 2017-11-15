@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public abstract class PageControl : KeyedItem<int>, IHasName, IHasProperties, INode
+    public abstract class PageControlBase : KeyedItem<int>, IHasName, IHasProperties, INode
     {
-        internal PageControl(int id, int? indentationLevel)
+        internal PageControlBase(int id, int? indentationLevel)
         {
             ID = id;
             IndentationLevel = indentationLevel;
@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public IEnumerable<PageControl> ChildPageControls
+        public IEnumerable<PageControlBase> ChildPageControls
         {
             get
             {
@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             internal set;
         }
 
-        public IEnumerable<PageControl> DescendantPageControls
+        public IEnumerable<PageControlBase> DescendantPageControls
         {
             get
             {
@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
 
         public INode ParentNode => Container;
 
-        public PageControl ParentPageControl
+        public PageControlBase ParentPageControl
         {
             get
             {
@@ -75,7 +75,7 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public T AddChildPageControl<T>(T child, Position position) where T : PageControl
+        public T AddChildPageControl<T>(T child, Position position) where T : PageControlBase
         {
             switch (position)
             {

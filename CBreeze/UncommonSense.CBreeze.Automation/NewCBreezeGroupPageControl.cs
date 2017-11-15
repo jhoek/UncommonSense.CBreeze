@@ -12,9 +12,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeGroupPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(GroupPageControl))]
     [Alias("GroupControl", "Add-CBreezeGroupPageControl")]
-    public class NewCBreezeGroupPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
+    public class NewCBreezeGroupPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
-        protected override void AddItemToInputObject(PageControl item, PSObject inputObject)
+        protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
             switch (inputObject.BaseObject)
             {
@@ -40,11 +40,11 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected void AddItemToInputObject(PageControl item, IPage page) => AddItemToInputObject(item, page.Controls);
+        protected void AddItemToInputObject(PageControlBase item, IPage page) => AddItemToInputObject(item, page.Controls);
 
-        protected void AddItemToInputObject(PageControl item, PageControls pageControls) => pageControls.Add(item, Position);
+        protected void AddItemToInputObject(PageControlBase item, PageControls pageControls) => pageControls.Add(item, Position);
 
-        protected override IEnumerable<PageControl> CreateItems()
+        protected override IEnumerable<PageControlBase> CreateItems()
         {
             var groupPageControl = new GroupPageControl(ID, GetIndentation(), GroupType.GetValueOrDefault(Core.GroupType.Group));
             groupPageControl.Properties.CaptionML.Set(CaptionML);
@@ -65,8 +65,8 @@ namespace UncommonSense.CBreeze.Automation
             var childControls = ChildControls?
                 .InvokeWithContext(null, variables)
                 .Select(o => o.BaseObject)
-                .Cast<PageControl>()
-                ?? Enumerable.Empty<PageControl>();
+                .Cast<PageControlBase>()
+                ?? Enumerable.Empty<PageControlBase>();
 
             foreach (var childControl in childControls)
             {
@@ -83,8 +83,8 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetParentIndentation()
         {
-            return InputObject.BaseObject is PageControl
-                ? (InputObject.BaseObject as PageControl).IndentationLevel.GetValueOrDefault(0)
+            return InputObject.BaseObject is PageControlBase
+                ? (InputObject.BaseObject as PageControlBase).IndentationLevel.GetValueOrDefault(0)
                 : 0;
         }
 

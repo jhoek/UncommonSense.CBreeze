@@ -12,9 +12,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeContainerPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(ContainerPageControl))]
     [Alias("ContainerControl", "Add-CBreezeContainerPageControl")]
-    public class NewCBreezeContainerPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
+    public class NewCBreezeContainerPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
-        protected override void AddItemToInputObject(PageControl item, PSObject inputObject)
+        protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
             switch (inputObject.BaseObject)
             {
@@ -32,11 +32,11 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected void AddItemToInputObject(PageControl item, IPage page) => AddItemToInputObject(item, page.Controls);
+        protected void AddItemToInputObject(PageControlBase item, IPage page) => AddItemToInputObject(item, page.Controls);
 
-        protected void AddItemToInputObject(PageControl item, PageControls pageControls) => pageControls.Add(item, Position);
+        protected void AddItemToInputObject(PageControlBase item, PageControls pageControls) => pageControls.Add(item, Position);
 
-        protected override IEnumerable<PageControl> CreateItems()
+        protected override IEnumerable<PageControlBase> CreateItems()
         {
             var containerPageControl = new ContainerPageControl(ID, 0, ContainerType.GetValueOrDefault(Core.ContainerType.ContentArea));
             containerPageControl.Properties.CaptionML.Set(CaptionML);
@@ -49,8 +49,8 @@ namespace UncommonSense.CBreeze.Automation
             var childControls = ChildControls?
                 .InvokeWithContext(null, variables)
                 .Select(o => o.BaseObject)
-                .Cast<PageControl>()
-                ?? Enumerable.Empty<PageControl>();
+                .Cast<PageControlBase>()
+                ?? Enumerable.Empty<PageControlBase>();
 
             foreach (var childControl in childControls)
             {

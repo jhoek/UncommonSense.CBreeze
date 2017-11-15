@@ -9,9 +9,9 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezePartPageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PartPageControl))]
     [Alias("PartControl", "Add-CBreezePartPageControl")]
-    public class NewCBreezePartPageControl : NewItemWithIDCmdlet<PageControl, int, PSObject>
+    public class NewCBreezePartPageControl : NewItemWithIDCmdlet<PageControlBase, int, PSObject>
     {
-        protected override void AddItemToInputObject(PageControl item, PSObject inputObject)
+        protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
             switch (inputObject.BaseObject)
             {
@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected override IEnumerable<PageControl> CreateItems()
+        protected override IEnumerable<PageControlBase> CreateItems()
         {
             var partPageControl = new PartPageControl(ID, GetIndentation());
             partPageControl.Properties.AccessByPermission.Set(AccessByPermission);
@@ -85,8 +85,8 @@ namespace UncommonSense.CBreeze.Automation
 
         protected int GetParentIndentation()
         {
-            return InputObject.BaseObject is PageControl
-                ? (InputObject.BaseObject as PageControl).IndentationLevel.GetValueOrDefault(0)
+            return InputObject.BaseObject is PageControlBase
+                ? (InputObject.BaseObject as PageControlBase).IndentationLevel.GetValueOrDefault(0)
                 : 0;
         }
 

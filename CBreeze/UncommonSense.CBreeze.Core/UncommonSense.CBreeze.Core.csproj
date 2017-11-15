@@ -342,7 +342,7 @@
     <Compile Include="PageActionScopeProperty.cs" />
     <Compile Include="PageActionSeparator.cs" />
     <Compile Include="PageActionSeparatorProperties.cs" />
-    <Compile Include="PageControl.cs" />
+    <Compile Include="PageControlBase.cs" />
     <Compile Include="PageControls.cs" />
     <Compile Include="PageParameter.cs" />
     <Compile Include="PageProperties.cs" />

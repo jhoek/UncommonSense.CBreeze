@@ -7,7 +7,7 @@ namespace UncommonSense.CBreeze.Core
 {
     public static class ExtensionMethods
     {
-        public static void Add(this PageControls pageControls, PageControl item, Position? position)
+        public static void Add(this PageControls pageControls, PageControlBase item, Position? position)
         {
             switch (position.GetValueOrDefault(Position.LastWithinContainer))
             {

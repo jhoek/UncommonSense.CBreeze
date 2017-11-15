@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Write
             return value.PadRight(length);
         }
 
-        public static void Write(this PageControl pageControl, CSideWriter writer, int propertyIndentation)
+        public static void Write(this PageControlBase pageControl, CSideWriter writer, int propertyIndentation)
         {
             TypeSwitch.Do(
                 pageControl,

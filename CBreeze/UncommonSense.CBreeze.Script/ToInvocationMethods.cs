@@ -111,7 +111,7 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocation(this PageControls pageControls) => pageControls.Select(c => c.ToInvocation());
 
-        public static Invocation ToInvocation(this PageControl pageControl)
+        public static Invocation ToInvocation(this PageControlBase pageControl)
         {
             switch (pageControl)
             {
