@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Configuration>
+  <!--
   <DefaultSettings>
     <EnumerableExpansions>
       <EnumerableExpansion>
@@ -9,10 +10,11 @@
             System.Collections.Generic.IEnumerable[UncommonSense.CBreeze.Core.Object]
           </TypeName>
         </EntrySelectedBy>
-        <Expand>EnumOnly</Expand>
+        <Expand>Both</Expand>
       </EnumerableExpansion>
     </EnumerableExpansions>
   </DefaultSettings>
+  -->
   <ViewDefinitions>
     <View>
       <Name>Default</Name>
@@ -30,7 +32,7 @@
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <PropertyName>Objects</PropertyName>
+                <ScriptBlock>$_.Objects</ScriptBlock>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
