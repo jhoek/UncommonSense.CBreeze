@@ -1,86 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Configuration>
-  <!--
-  <DefaultSettings>
-    <EnumerableExpansions>
-      <EnumerableExpansion>
-        <EntrySelectedBy>
-          <TypeName>
-            System.Collections.Generic.IEnumerable[UncommonSense.CBreeze.Core.Object]
-          </TypeName>
-        </EntrySelectedBy>
-        <Expand>Both</Expand>
-      </EnumerableExpansion>
-    </EnumerableExpansions>
-  </DefaultSettings>
-  -->
   <ViewDefinitions>
     <View>
       <Name>Default</Name>
       <ViewSelectedBy>
         <TypeName>UncommonSense.CBreeze.Core.Application</TypeName>
       </ViewSelectedBy>
-      <TableControl>
-        <TableHeaders>
-          <TableColumnHeader>
-            <Width>10</Width>
-            <Label>My Label</Label>
-          </TableColumnHeader>
-        </TableHeaders>
-        <TableRowEntries>
-          <TableRowEntry>
-            <TableColumnItems>
-              <TableColumnItem>
-                <ScriptBlock>$_.Objects</ScriptBlock>
-              </TableColumnItem>
-            </TableColumnItems>
-          </TableRowEntry>
-        </TableRowEntries>
-      </TableControl>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>$_ | Export-CBreezeApplication</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
     </View>
     <View>
       <Name>Default</Name>
       <ViewSelectedBy>
         <TypeName>UncommonSense.CBreeze.Core.Object</TypeName>
       </ViewSelectedBy>
-      <TableControl>
-        <TableHeaders>
-          <TableColumnHeader>
-            <Width>10</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Alignment>Right</Alignment>
-            <Width>8</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Width>30</Width>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Label>Date/Time</Label>
-            <Width>20</Width>
-            <Alignment>Right</Alignment>
-          </TableColumnHeader>
-        </TableHeaders>
-        <TableRowEntries>
-          <TableRowEntry>
-            <TableColumnItems>
-              <TableColumnItem>
-                <PropertyName>Type</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>ID</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>Name</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <ScriptBlock>$_.ObjectProperties.DateTime</ScriptBlock>
-              </TableColumnItem>
-            </TableColumnItems>
-          </TableRowEntry>
-        </TableRowEntries>
-      </TableControl>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>$_ | Export-CBreezeApplication</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
     </View>
   </ViewDefinitions>
 </Configuration>
