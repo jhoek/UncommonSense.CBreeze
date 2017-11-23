@@ -3,7 +3,41 @@
 <Configuration>
   <ViewDefinitions>
     <View>
-      <Name>Default</Name>
+      <Name>AsCode</Name>
+      <ViewSelectedBy>
+        <TypeName>UncommonSense.CBreeze.Core.Application</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>$_ | Export-CBreezeApplication</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>AsCode</Name>
+      <ViewSelectedBy>
+        <TypeName>UncommonSense.CBreeze.Core.Object</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <ExpressionBinding>
+                <ScriptBlock>$_ | Export-CBreezeApplication</ScriptBlock>
+              </ExpressionBinding>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
+    <View>
+      <Name>AsList</Name>
       <ViewSelectedBy>
         <TypeName>UncommonSense.CBreeze.Core.Object</TypeName>
       </ViewSelectedBy>
@@ -17,7 +51,21 @@
             <Width>8</Width>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Width>30</Width>
+            <Width>20</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>DateTime</Label>
+            <Width>20</Width>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Modified</Label>
+            <Width>8</Width>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>VersionList</Label>
+            <Width>20</Width>
           </TableColumnHeader>
         </TableHeaders>
         <TableRowEntries>
@@ -31,6 +79,15 @@
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>$_.ObjectProperties.DateTime</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>$_.ObjectProperties.Modified</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>$_.ObjectProperties.VersionList</ScriptBlock>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
