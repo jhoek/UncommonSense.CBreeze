@@ -26,21 +26,27 @@ namespace UncommonSense.CBreeze.Automation
                 case Table t:
                     application.Tables.Add(t);
                     break;
+
                 case Page p:
                     application.Pages.Add(p);
                     break;
+
                 case Report r:
                     application.Reports.Add(r);
                     break;
+
                 case Codeunit c:
                     application.Codeunits.Add(c);
                     break;
+
                 case XmlPort x:
                     application.XmlPorts.Add(x);
                     break;
+
                 case Query q:
                     application.Queries.Add(q);
                     break;
+
                 case MenuSuite m:
                     application.MenuSuites.Add(m);
                     break;
@@ -81,6 +87,8 @@ namespace UncommonSense.CBreeze.Automation
             return pageAction;
         }
 
+        public static IEnumerable<T> AsEnumerable<T>(this T item) => new[] { item };
+
         public static object DoIf<T>(this T obj, bool condition, Action<T> action)
         {
             if (condition)
@@ -95,10 +103,13 @@ namespace UncommonSense.CBreeze.Automation
             {
                 case Parameters n:
                     return n.Select(p => p.ID);
+
                 case Function f:
                     return f.Parameters.Select(p => p.ID);
+
                 case Event e:
                     return e.Parameters.Select(p => p.ID);
+
                 default:
                     return Enumerable.Empty<int>();
             }
@@ -163,6 +174,14 @@ namespace UncommonSense.CBreeze.Automation
             {
                 variables = null;
                 return false;
+            }
+        }
+
+        public static void WriteObjectIf(this Cmdlet cmdlet, bool condition, object value)
+        {
+            if (condition)
+            {
+                cmdlet.WriteObject(value);
             }
         }
     }

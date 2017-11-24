@@ -19,94 +19,9 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected Application CachedObjects = new Application();
 
-        public ExportCBreezeApplication()
-        {
-            ServerName = ".";
-            ImportAction = ImportAction.Default;
-        }
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)]
-        [Alias("Application")]
-        public PSObject[] InputObject
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter PassThru { get; set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ToPath", Position = 1)]
-        public string Path
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "ToTextWriter", Position = 1)]
-        public TextWriter TextWriter
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ToStream", Position = 1)]
-        public Stream Stream
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "ToDatabase")]
-        public string DevClientPath
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "ToDatabase")]
-        public string ServerName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ToDatabase")]
-        public string Database
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "ToDatabase")]
-        public ImportAction ImportAction
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "ToDatabase")]
-        public SwitchParameter AutoCompile
-        {
-            get;
-            set;
-        }
-
         protected override void BeginProcessing()
         {
             CachedObjects.Clear();
-        }
-
-        protected override void ProcessRecord()
-        {
-            foreach (var item in InputObject)
-            {
-                switch (item.BaseObject)
-                {
-                    case Application a: CachedObjects.Add(a.Objects); break;
-                    case Core.Object o: CachedObjects.Add(o); break;
-                }
-            }
         }
 
         protected override void EndProcessing()
@@ -118,17 +33,22 @@ namespace UncommonSense.CBreeze.Automation
                 case "ToPath":
                     var path = GetUnresolvedProviderPathFromPSPath(Path);
                     writeVerbose("path", path);
-                    CachedObjects.WriteToFile(path);
+
+                    this.WriteObjectIf(!PassThru, Directory ? CachedObjects.WriteToFolder(path) : CachedObjects.WriteToFile(path).AsEnumerable());
+                    this.WriteObjectIf(PassThru, CachedObjects);
+
                     break;
 
                 case "ToTextWriter":
                     writeVerbose("TextWriter", "");
                     CachedObjects.WriteToTextWriter(TextWriter ?? Console.Out);
+                    this.WriteObjectIf(PassThru, CachedObjects);
                     break;
 
                 case "ToStream":
                     writeVerbose("Stream", "");
                     CachedObjects.WriteToStream(Stream);
+                    this.WriteObjectIf(PassThru, CachedObjects);
                     break;
 
                 case "ToDatabase":
@@ -137,13 +57,39 @@ namespace UncommonSense.CBreeze.Automation
 
                     if (AutoCompile)
                         ApplicationCompiler.Compile(CachedObjects, DevClientPath ?? DefaultDevClientPath, ServerName, Database);
+
+                    this.WriteObjectIf(PassThru, CachedObjects);
                     break;
             }
+        }
 
-            if (PassThru)
+        protected override void ProcessRecord()
+        {
+            foreach (var item in InputObject)
             {
-                WriteObject(CachedObjects);
+                switch (item.BaseObject)
+                {
+                    case Application a:
+                        CachedObjects.Add(a.Objects);
+                        break;
+
+                    case Core.Object o:
+                        CachedObjects.Add(o);
+                        break;
+                }
             }
         }
+
+        [Parameter(ParameterSetName = "ToDatabase")] public SwitchParameter AutoCompile { get; set; }
+        [Parameter(Mandatory = true, ParameterSetName = "ToDatabase")] public string Database { get; set; }
+        [Parameter(ParameterSetName = "ToDatabase")] public string DevClientPath { get; set; }
+        [Parameter(ParameterSetName = "ToPath")] public SwitchParameter Directory { get; set; }
+        [Parameter(ParameterSetName = "ToDatabase")] public ImportAction ImportAction { get; set; } = ImportAction.Default;
+        [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)] [Alias("Application")] public PSObject[] InputObject { get; set; }
+        [Parameter()] public SwitchParameter PassThru { get; set; }
+        [Parameter(Mandatory = true, ParameterSetName = "ToPath", Position = 1)] public string Path { get; set; }
+        [Parameter(ParameterSetName = "ToDatabase")] public string ServerName { get; set; } = ".";
+        [Parameter(Mandatory = true, ParameterSetName = "ToStream", Position = 1)] public Stream Stream { get; set; }
+        [Parameter(ParameterSetName = "ToTextWriter", Position = 1)] public TextWriter TextWriter { get; set; }
     }
 }
