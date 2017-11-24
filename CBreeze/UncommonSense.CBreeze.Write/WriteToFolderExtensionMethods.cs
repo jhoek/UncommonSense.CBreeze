@@ -98,16 +98,31 @@ namespace UncommonSense.CBreeze.Write
         {
             Directory.CreateDirectory(folderName);
 
-            return application.Tables.Select(t => t.WriteToFolder(folderName))
+            foreach (var table in application.Tables)
+            {
+                yield return table.WriteToFolder(folderName);
+            }
+
+            yield break;
+
+            /*
+            return application.Tables.Select(t => t.WriteToFolder(folderName));
+
+            return
+                application.Tables.Select(t => t.WriteToFolder(folderName))
                 .Concat(application.Pages.Select(p => p.WriteToFolder(folderName)))
                 .Concat(application.Reports.Select(r => r.WriteToFolder(folderName)))
                 .Concat(application.Codeunits.Select(c => c.WriteToFolder(folderName)))
                 .Concat(application.Queries.Select(q => q.WriteToFolder(folderName)))
                 .Concat(application.XmlPorts.Select(x => x.WriteToFolder(folderName)))
                 .Concat(application.MenuSuites.Select(m => m.WriteToFolder(folderName)));
+                */
         }
 
-        public static FileInfo WriteToFolder(this Table table, string folderName) => table.Write(Path.Combine(folderName, $"tab{table.ID}.txt"));
+        public static FileInfo WriteToFolder(this Table table, string folderName)
+        {
+            return table.Write(Path.Combine(folderName, $"tab{table.ID}.txt"));
+        }
 
         public static FileInfo WriteToFolder(this Page page, string folderName) => page.Write(Path.Combine(folderName, $"pag{page.ID}.txt"));
 
