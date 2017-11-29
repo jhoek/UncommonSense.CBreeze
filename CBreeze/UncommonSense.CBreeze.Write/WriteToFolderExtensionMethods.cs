@@ -98,25 +98,16 @@ namespace UncommonSense.CBreeze.Write
         {
             Directory.CreateDirectory(folderName);
 
-            foreach (var table in application.Tables)
-            {
-                yield return table.WriteToFolder(folderName);
-            }
+            var result = new List<FileInfo>();
+            result.AddRange(application.Tables.Select(t => t.WriteToFolder(folderName)));
+            result.AddRange(application.Pages.Select(p => p.WriteToFolder(folderName)));
+            result.AddRange(application.Reports.Select(r => r.WriteToFolder(folderName)));
+            result.AddRange(application.Codeunits.Select(c => c.WriteToFolder(folderName)));
+            result.AddRange(application.Queries.Select(q => q.WriteToFolder(folderName)));
+            result.AddRange(application.XmlPorts.Select(x => x.WriteToFolder(folderName)));
+            result.AddRange(application.MenuSuites.Select(m => m.Write(folderName)));
 
-            yield break;
-
-            /*
-            return application.Tables.Select(t => t.WriteToFolder(folderName));
-
-            return
-                application.Tables.Select(t => t.WriteToFolder(folderName))
-                .Concat(application.Pages.Select(p => p.WriteToFolder(folderName)))
-                .Concat(application.Reports.Select(r => r.WriteToFolder(folderName)))
-                .Concat(application.Codeunits.Select(c => c.WriteToFolder(folderName)))
-                .Concat(application.Queries.Select(q => q.WriteToFolder(folderName)))
-                .Concat(application.XmlPorts.Select(x => x.WriteToFolder(folderName)))
-                .Concat(application.MenuSuites.Select(m => m.WriteToFolder(folderName)));
-                */
+            return result;
         }
 
         public static FileInfo WriteToFolder(this Table table, string folderName)
