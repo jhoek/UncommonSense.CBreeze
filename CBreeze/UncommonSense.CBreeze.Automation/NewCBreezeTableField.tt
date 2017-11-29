@@ -147,8 +147,8 @@ namespace UncommonSense.CBreeze.Automation
 			<#=property.Assignment#>
 <# } #>
 
-			ProcessTrigger(OnValidate, <#=variableName#>.Properties.OnValidate);
-			ProcessTrigger(OnLookup, <#=variableName#>.Properties.OnLookup);
+			<#=variableName#>.Properties.OnValidate.Set(OnValidate);
+			<#=variableName#>.Properties.OnLookup.Set(OnLookup);
 
 <# if (allProperties.Any(p => p.Name == "TableRelation")) { #>
 			if (SubObjects != null) 
@@ -163,16 +163,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return <#=variableName#>;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(<#= @type.Name #> item, Table inputObject)
         {
