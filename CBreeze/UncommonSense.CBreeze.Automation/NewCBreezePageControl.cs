@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
 
@@ -17,7 +18,12 @@ namespace UncommonSense.CBreeze.Automation
             base.AddItemToInputObject(item, inputObject);
         }
 
+#if NAV2015
         [Parameter()] public AccessByPermission AccessByPermission { get; set; }
+#endif
+#if NAV2017
+        [Parameter()] public string[] ApplicationArea { get; set; }
+#endif
         [Parameter()] public SwitchParameter AssistEdit { get; set; }
         [Parameter()] public SwitchParameter AutoCaption { get; set; }
         [Parameter()] public string AutoFormatExpr { get; set; }
@@ -25,6 +31,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public BlankNumbers? BlankNumbers { get; set; }
         [Parameter()] public SwitchParameter BlankZero { get; set; }
         [Parameter()] public string CaptionClass { get; set; }
+        [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public string CharAllowed { get; set; }
         [Parameter()] public SwitchParameter ClosingDates { get; set; }
         [Parameter()] public int? ColumnSpan { get; set; }
@@ -51,6 +58,11 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Name { get; set; }
         [Parameter()] public SwitchParameter NotBlank { get; set; }
         [Parameter()] public SwitchParameter Numeric { get; set; }
+        [Parameter()] public ScriptBlock OnAssistEdit { get; set; }
+        [Parameter()] public ScriptBlock OnControlAddIn { get; set; }
+        [Parameter()] public ScriptBlock OnDrillDown { get; set; }
+        [Parameter()] public ScriptBlock OnLookup { get; set; }
+        [Parameter()] public ScriptBlock OnValidate { get; set; }
         [Parameter()] public Hashtable OptionCaptionML { get; set; }
         [Parameter()] public string QuickEntry { get; set; }
         [Parameter()] public int? RowSpan { get; set; }
@@ -68,63 +80,76 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public Style? Style { get; set; }
         [Parameter()] public string StyleExpr { get; set; }
         [Parameter()] public SwitchParameter Title { get; set; }
+        [Parameter()] public Hashtable ToolTipML { get; set; }
         [Parameter()] public string ValuesAllowed { get; set; }
         [Parameter()] public string Visible { get; set; }
         [Parameter()] [ValidateRange(0, int.MaxValue)] public int? Width { get; set; }
 
         protected override IEnumerable<PageControlBase> CreateItems()
         {
-            var fieldPageControl = new PageControl(SourceExpr, ID, GetIndentation());
+            var pageControl = new PageControl(SourceExpr, ID, GetIndentation());
 
-            fieldPageControl.Properties.AccessByPermission.Set(AccessByPermission);
-            fieldPageControl.Properties.AssistEdit = NullableBooleanFromSwitch(nameof(AssistEdit));
-            fieldPageControl.Properties.AutoFormatExpr = AutoFormatExpr;
-            fieldPageControl.Properties.AutoFormatType = AutoFormatType;
-            fieldPageControl.Properties.BlankNumbers = BlankNumbers;
-            fieldPageControl.Properties.BlankZero = NullableBooleanFromSwitch(nameof(BlankZero));
-            fieldPageControl.Properties.CaptionClass = CaptionClass;
-            fieldPageControl.Properties.CharAllowed = CharAllowed;
-            fieldPageControl.Properties.ClosingDates = NullableBooleanFromSwitch(nameof(ClosingDates));
-            fieldPageControl.Properties.ColumnSpan = ColumnSpan;
-            fieldPageControl.Properties.ControlAddIn = ControlAddIn;
-            fieldPageControl.Properties.DateFormula = NullableBooleanFromSwitch(nameof(DateFormula));
-            fieldPageControl.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;
-            fieldPageControl.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;
-            fieldPageControl.Properties.Description = Description;
-            fieldPageControl.Properties.DrillDown = NullableBooleanFromSwitch(nameof(DrillDown));
-            fieldPageControl.Properties.DrillDownPageID = DrillDownPageID;
-            fieldPageControl.Properties.Editable = Editable;
-            fieldPageControl.Properties.Enabled = Enabled;
-            fieldPageControl.Properties.ExtendedDatatype = ExtendedDataType;
-            fieldPageControl.Properties.HideValue = HideValue;
 #if NAV2015
-            fieldPageControl.Properties.Image = Image;
+            pageControl.Properties.AccessByPermission.Set(AccessByPermission);
 #endif
-            fieldPageControl.Properties.Importance = Importance;
-            fieldPageControl.Properties.Lookup = NullableBooleanFromSwitch(nameof(Lookup));
-            fieldPageControl.Properties.LookupPageID = LookupPageID;
-            fieldPageControl.Properties.MaxValue = MaxValue;
-            fieldPageControl.Properties.MinValue = MinValue;
-            fieldPageControl.Properties.MultiLine = NullableBooleanFromSwitch(nameof(MultiLine));
-            fieldPageControl.Properties.Name = Name;
-            fieldPageControl.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
-            fieldPageControl.Properties.Numeric = NullableBooleanFromSwitch(nameof(Numeric));
-            fieldPageControl.Properties.OptionCaptionML.Set(OptionCaptionML);
-            fieldPageControl.Properties.QuickEntry = QuickEntry;
-            fieldPageControl.Properties.RowSpan = RowSpan;
-            fieldPageControl.Properties.ShowCaption = NullableBooleanFromSwitch(nameof(ShowCaption));
+#if NAV2017
+            pageControl.Properties.ApplicationArea.Set(ApplicationArea);
+#endif
+            pageControl.Properties.AssistEdit = NullableBooleanFromSwitch(nameof(AssistEdit));
+            pageControl.Properties.AutoFormatExpr = AutoFormatExpr;
+            pageControl.Properties.AutoFormatType = AutoFormatType;
+            pageControl.Properties.BlankNumbers = BlankNumbers;
+            pageControl.Properties.BlankZero = NullableBooleanFromSwitch(nameof(BlankZero));
+            pageControl.Properties.CaptionClass = CaptionClass;
+            pageControl.Properties.CaptionML.Set(CaptionML);
+            pageControl.Properties.CharAllowed = CharAllowed;
+            pageControl.Properties.ClosingDates = NullableBooleanFromSwitch(nameof(ClosingDates));
+            pageControl.Properties.ColumnSpan = ColumnSpan;
+            pageControl.Properties.ControlAddIn = ControlAddIn;
+            pageControl.Properties.DateFormula = NullableBooleanFromSwitch(nameof(DateFormula));
+            pageControl.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;
+            pageControl.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;
+            pageControl.Properties.Description = Description;
+            pageControl.Properties.DrillDown = NullableBooleanFromSwitch(nameof(DrillDown));
+            pageControl.Properties.DrillDownPageID = DrillDownPageID;
+            pageControl.Properties.Editable = Editable;
+            pageControl.Properties.Enabled = Enabled;
+            pageControl.Properties.ExtendedDatatype = ExtendedDataType;
+            pageControl.Properties.HideValue = HideValue;
 #if NAV2015
-            fieldPageControl.Properties.ShowMandatory = ShowMandatory;
+            pageControl.Properties.Image = Image;
 #endif
-            fieldPageControl.Properties.Style = Style;
-            fieldPageControl.Properties.StyleExpr = StyleExpr;
-            fieldPageControl.Properties.Title = NullableBooleanFromSwitch(nameof(Title));
-            fieldPageControl.Properties.ValuesAllowed = ValuesAllowed;
-            fieldPageControl.Properties.Visible = Visible;
-            fieldPageControl.Properties.Width = Width;
-            fieldPageControl.AutoCaption(AutoCaption);
+            pageControl.Properties.Importance = Importance;
+            pageControl.Properties.Lookup = NullableBooleanFromSwitch(nameof(Lookup));
+            pageControl.Properties.LookupPageID = LookupPageID;
+            pageControl.Properties.MaxValue = MaxValue;
+            pageControl.Properties.MinValue = MinValue;
+            pageControl.Properties.MultiLine = NullableBooleanFromSwitch(nameof(MultiLine));
+            pageControl.Properties.Name = Name;
+            pageControl.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+            pageControl.Properties.Numeric = NullableBooleanFromSwitch(nameof(Numeric));
+            pageControl.Properties.OnAssistEdit.Set(OnAssistEdit);
+            pageControl.Properties.OnControlAddIn.Set(OnControlAddIn);
+            pageControl.Properties.OnDrillDown.Set(OnDrillDown);
+            pageControl.Properties.OnLookup.Set(OnLookup);
+            pageControl.Properties.OnValidate.Set(OnValidate);
+            pageControl.Properties.OptionCaptionML.Set(OptionCaptionML);
+            pageControl.Properties.QuickEntry = QuickEntry;
+            pageControl.Properties.RowSpan = RowSpan;
+            pageControl.Properties.ShowCaption = NullableBooleanFromSwitch(nameof(ShowCaption));
+#if NAV2015
+            pageControl.Properties.ShowMandatory = ShowMandatory;
+#endif
+            pageControl.Properties.Style = Style;
+            pageControl.Properties.StyleExpr = StyleExpr;
+            pageControl.Properties.Title = NullableBooleanFromSwitch(nameof(Title));
+            pageControl.Properties.ToolTipML.Set(ToolTipML);
+            pageControl.Properties.ValuesAllowed = ValuesAllowed;
+            pageControl.Properties.Visible = Visible;
+            pageControl.Properties.Width = Width;
+            pageControl.AutoCaption(AutoCaption);
 
-            yield return fieldPageControl;
+            yield return pageControl;
         }
 
         protected int GetIndentation()
