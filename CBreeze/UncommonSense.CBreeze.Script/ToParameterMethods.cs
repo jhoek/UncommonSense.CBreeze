@@ -177,6 +177,40 @@ namespace UncommonSense.CBreeze.Script
             }
         }
 
+        public static IEnumerable<ParameterBase> ToParameters(this PageControlContainer pageControlContainer)
+        {
+            yield return new SimpleParameter("ID", pageControlContainer.ID);
+
+            foreach (var parameter in pageControlContainer.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+
+            yield return new ScriptBlockParameter("ChildControls", pageControlContainer.ChildPageControls.Select(c => c.ToInvocation()));
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this PageControlGroup pageControlGroup)
+        {
+            yield return new SimpleParameter("ID", pageControlGroup.ID);
+
+            foreach (var parameter in pageControlGroup.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+
+            yield return new ScriptBlockParameter("ChildControls", pageControlGroup.ChildPageControls.Select(c => c.ToInvocation()));
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this PageControlBase pageControlBase)
+        {
+            yield return new SimpleParameter("ID", pageControlBase.ID);
+
+            foreach (var parameter in pageControlBase.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this Function function)
         {
             yield return new SimpleParameter("ID", function.ID);
