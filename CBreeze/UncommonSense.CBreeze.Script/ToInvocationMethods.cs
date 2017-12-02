@@ -109,20 +109,24 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.ToParameters());
 
-        public static IEnumerable<Invocation> ToInvocation(this PageControls pageControls) => pageControls.Select(c => c.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocation(this PageControls pageControls) => pageControls.Where(c => c.IndentationLevel == 0).Select(c => c.ToInvocation());
 
         public static Invocation ToInvocation(this PageControlBase pageControl)
         {
             switch (pageControl)
             {
                 case PageControlContainer c:
-                    return new Invocation("New-CBreezePageControlContainer"); // FIXME: , c.ToParameters());
+                    return new Invocation("New-CBreezePageControlContainer", c.ToParameters());
+
                 case PageControlGroup g:
-                    return new Invocation("New-CBreezePageControlGroup"); // FIXME: , g.Toparameters());
+                    return new Invocation("New-CBreezePageControlGroup", g.ToParameters());
+
                 case PageControlPart p:
-                    return new Invocation("New-CBreezePageControlPart"); // FIXME: p.ToParameters());
+                    return new Invocation("New-CBreezePageControlPart", p.ToParameters());
+
                 case PageControl f:
-                    return new Invocation("New-CBreezePageControl"); // FIXME: f.ToParameters());
+                    return new Invocation("New-CBreezePageControl", f.ToParameters());
+
                 default:
                     throw new ArgumentOutOfRangeException("pageControl");
             }

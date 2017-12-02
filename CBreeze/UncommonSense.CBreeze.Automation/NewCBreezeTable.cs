@@ -58,16 +58,15 @@ namespace UncommonSense.CBreeze.Automation
             table.Properties.LinkedInTransaction = NullableBooleanFromSwitch(nameof(LinkedInTransaction));
             table.Properties.LinkedObject = NullableBooleanFromSwitch(nameof(LinkedObject));
             table.Properties.LookupPageID = LookupPageID;
+            table.Properties.OnInsert.Set(OnInsert);
+            table.Properties.OnModify.Set(OnModify);
+            table.Properties.OnDelete.Set(OnDelete);
+            table.Properties.OnRename.Set(OnRename);
             table.Properties.PasteIsValid = NullableBooleanFromSwitch(nameof(PasteIsValid));
             table.Properties.Permissions.Set(Permissions);
 #if NAV2016
             table.Properties.TableType = TableType;
 #endif
-
-            ProcessTrigger(OnInsert, table.Properties.OnInsert);
-            ProcessTrigger(OnModify, table.Properties.OnModify);
-            ProcessTrigger(OnDelete, table.Properties.OnDelete);
-            ProcessTrigger(OnRename, table.Properties.OnRename);
 
             if (AutoCaption)
                 table.AutoCaption();
@@ -85,16 +84,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             yield return table;
-        }
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
         }
     }
 }

@@ -58,8 +58,8 @@ namespace UncommonSense.CBreeze.Automation
 			bigIntegerTableField.Properties.Width = Width;
 			bigIntegerTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, bigIntegerTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, bigIntegerTableField.Properties.OnLookup);
+			bigIntegerTableField.Properties.OnValidate.Set(OnValidate);
+			bigIntegerTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -72,16 +72,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return bigIntegerTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(BigIntegerTableField item, Table inputObject)
         {
@@ -212,8 +202,8 @@ namespace UncommonSense.CBreeze.Automation
 			binaryTableField.Properties.Description = Description;
 			binaryTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, binaryTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, binaryTableField.Properties.OnLookup);
+			binaryTableField.Properties.OnValidate.Set(OnValidate);
+			binaryTableField.Properties.OnLookup.Set(OnLookup);
 
 
 			if (AutoCaption)
@@ -221,16 +211,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return binaryTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(BinaryTableField item, Table inputObject)
         {
@@ -285,8 +265,8 @@ namespace UncommonSense.CBreeze.Automation
 			blobTableField.Properties.Volatile = NullableBooleanFromSwitch(nameof(Volatile));
 			blobTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, blobTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, blobTableField.Properties.OnLookup);
+			blobTableField.Properties.OnValidate.Set(OnValidate);
+			blobTableField.Properties.OnLookup.Set(OnLookup);
 
 
 			if (AutoCaption)
@@ -294,16 +274,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return blobTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(BlobTableField item, Table inputObject)
         {
@@ -393,8 +363,8 @@ namespace UncommonSense.CBreeze.Automation
 			booleanTableField.Properties.ValuesAllowed = ValuesAllowed;
 			booleanTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, booleanTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, booleanTableField.Properties.OnLookup);
+			booleanTableField.Properties.OnValidate.Set(OnValidate);
+			booleanTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -407,16 +377,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return booleanTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(BooleanTableField item, Table inputObject)
         {
@@ -541,8 +501,8 @@ namespace UncommonSense.CBreeze.Automation
 			mediaSetTableField.Properties.ValidateTableRelation = NullableBooleanFromSwitch(nameof(ValidateTableRelation));
 			mediaSetTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, mediaSetTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, mediaSetTableField.Properties.OnLookup);
+			mediaSetTableField.Properties.OnValidate.Set(OnValidate);
+			mediaSetTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -555,16 +515,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return mediaSetTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(MediaSetTableField item, Table inputObject)
         {
@@ -653,8 +603,8 @@ namespace UncommonSense.CBreeze.Automation
 			mediaTableField.Properties.ValidateTableRelation = NullableBooleanFromSwitch(nameof(ValidateTableRelation));
 			mediaTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, mediaTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, mediaTableField.Properties.OnLookup);
+			mediaTableField.Properties.OnValidate.Set(OnValidate);
+			mediaTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -667,16 +617,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return mediaTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(MediaTableField item, Table inputObject)
         {
@@ -780,8 +720,8 @@ namespace UncommonSense.CBreeze.Automation
 			codeTableField.Properties.Width = Width;
 			codeTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, codeTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, codeTableField.Properties.OnLookup);
+			codeTableField.Properties.OnValidate.Set(OnValidate);
+			codeTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -794,16 +734,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return codeTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(CodeTableField item, Table inputObject)
         {
@@ -935,8 +865,8 @@ namespace UncommonSense.CBreeze.Automation
 			dateFormulaTableField.Properties.ValuesAllowed = ValuesAllowed;
 			dateFormulaTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, dateFormulaTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, dateFormulaTableField.Properties.OnLookup);
+			dateFormulaTableField.Properties.OnValidate.Set(OnValidate);
+			dateFormulaTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -949,16 +879,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return dateFormulaTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(DateFormulaTableField item, Table inputObject)
         {
@@ -1080,8 +1000,8 @@ namespace UncommonSense.CBreeze.Automation
 			dateTableField.Properties.ValuesAllowed = ValuesAllowed;
 			dateTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, dateTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, dateTableField.Properties.OnLookup);
+			dateTableField.Properties.OnValidate.Set(OnValidate);
+			dateTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -1094,16 +1014,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return dateTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(DateTableField item, Table inputObject)
         {
@@ -1240,8 +1150,8 @@ namespace UncommonSense.CBreeze.Automation
 			dateTimeTableField.Properties.Volatile = NullableBooleanFromSwitch(nameof(Volatile));
 			dateTimeTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, dateTimeTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, dateTimeTableField.Properties.OnLookup);
+			dateTimeTableField.Properties.OnValidate.Set(OnValidate);
+			dateTimeTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -1254,16 +1164,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return dateTimeTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(DateTimeTableField item, Table inputObject)
         {
@@ -1403,8 +1303,8 @@ namespace UncommonSense.CBreeze.Automation
 			decimalTableField.Properties.Width = Width;
 			decimalTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, decimalTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, decimalTableField.Properties.OnLookup);
+			decimalTableField.Properties.OnValidate.Set(OnValidate);
+			decimalTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -1417,16 +1317,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return decimalTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(DecimalTableField item, Table inputObject)
         {
@@ -1573,8 +1463,8 @@ namespace UncommonSense.CBreeze.Automation
 			durationTableField.Properties.ValuesAllowed = ValuesAllowed;
 			durationTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, durationTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, durationTableField.Properties.OnLookup);
+			durationTableField.Properties.OnValidate.Set(OnValidate);
+			durationTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -1587,16 +1477,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return durationTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(DurationTableField item, Table inputObject)
         {
@@ -1731,8 +1611,8 @@ namespace UncommonSense.CBreeze.Automation
 			guidTableField.Properties.ValuesAllowed = ValuesAllowed;
 			guidTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, guidTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, guidTableField.Properties.OnLookup);
+			guidTableField.Properties.OnValidate.Set(OnValidate);
+			guidTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -1745,16 +1625,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return guidTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(GuidTableField item, Table inputObject)
         {
@@ -1879,8 +1749,8 @@ namespace UncommonSense.CBreeze.Automation
 			integerTableField.Properties.Width = Width;
 			integerTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, integerTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, integerTableField.Properties.OnLookup);
+			integerTableField.Properties.OnValidate.Set(OnValidate);
+			integerTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -1893,16 +1763,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return integerTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(IntegerTableField item, Table inputObject)
         {
@@ -2054,8 +1914,8 @@ namespace UncommonSense.CBreeze.Automation
 				optionTableField.AutoOptionCaption();
 			optionTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, optionTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, optionTableField.Properties.OnLookup);
+			optionTableField.Properties.OnValidate.Set(OnValidate);
+			optionTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -2068,16 +1928,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return optionTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(OptionTableField item, Table inputObject)
         {
@@ -2221,8 +2071,8 @@ namespace UncommonSense.CBreeze.Automation
 			recordIDTableField.Properties.ValuesAllowed = ValuesAllowed;
 			recordIDTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, recordIDTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, recordIDTableField.Properties.OnLookup);
+			recordIDTableField.Properties.OnValidate.Set(OnValidate);
+			recordIDTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -2235,16 +2085,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return recordIDTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(RecordIDTableField item, Table inputObject)
         {
@@ -2346,8 +2186,8 @@ namespace UncommonSense.CBreeze.Automation
 			tableFilterTableField.Properties.TableIDExpr = TableIDExpr;
 			tableFilterTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, tableFilterTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, tableFilterTableField.Properties.OnLookup);
+			tableFilterTableField.Properties.OnValidate.Set(OnValidate);
+			tableFilterTableField.Properties.OnLookup.Set(OnLookup);
 
 
 			if (AutoCaption)
@@ -2355,16 +2195,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return tableFilterTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(TableFilterTableField item, Table inputObject)
         {
@@ -2439,8 +2269,8 @@ namespace UncommonSense.CBreeze.Automation
 			textTableField.Properties.Width = Width;
 			textTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, textTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, textTableField.Properties.OnLookup);
+			textTableField.Properties.OnValidate.Set(OnValidate);
+			textTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -2453,16 +2283,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return textTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(TextTableField item, Table inputObject)
         {
@@ -2598,8 +2418,8 @@ namespace UncommonSense.CBreeze.Automation
 			timeTableField.Properties.ValuesAllowed = ValuesAllowed;
 			timeTableField.Properties.AccessByPermission.Set(AccessByPermission);
 
-			ProcessTrigger(OnValidate, timeTableField.Properties.OnValidate);
-			ProcessTrigger(OnLookup, timeTableField.Properties.OnLookup);
+			timeTableField.Properties.OnValidate.Set(OnValidate);
+			timeTableField.Properties.OnLookup.Set(OnLookup);
 
 			if (SubObjects != null) 
 			{
@@ -2612,16 +2432,6 @@ namespace UncommonSense.CBreeze.Automation
 
 			yield return timeTableField;
 		}
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
-        }
 
         protected override void AddItemToInputObject(TimeTableField item, Table inputObject)
         {

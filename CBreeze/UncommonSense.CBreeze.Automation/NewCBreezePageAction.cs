@@ -70,30 +70,11 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter()]
-        public string Name
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Position? Position
-        {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SwitchParameter Promoted
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public PromotedCategory? PromotedCategory
-        {
-            get; set;
-        }
+        [Parameter()] public string Name { get; set; }
+        [Parameter()] public ScriptBlock OnAction { get; set; }
+        [Parameter()] public Position? Position { get; set; }
+        [Parameter()] public SwitchParameter Promoted { get; set; }
+        [Parameter()] public PromotedCategory? PromotedCategory { get; set; }
 
         [Parameter()]
         public SwitchParameter PromotedIsBig
@@ -187,6 +168,7 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.Image = Image;
             pageAction.Properties.InFooterBar = NullableBooleanFromSwitch(nameof(InFooterBar));
             pageAction.Properties.Name = Name;
+            pageAction.Properties.OnAction.Set(OnAction);
             pageAction.Properties.Promoted = NullableBooleanFromSwitch(nameof(Promoted));
             pageAction.Properties.PromotedCategory = PromotedCategory;
             pageAction.Properties.PromotedIsBig = NullableBooleanFromSwitch(nameof(PromotedIsBig));

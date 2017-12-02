@@ -37,6 +37,18 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.LinksAllowed = NullableBooleanFromSwitch(nameof(LinksAllowed));
             page.Properties.ModifyAllowed = NullableBooleanFromSwitch(nameof(ModifyAllowed));
             page.Properties.MultipleNewLines = NullableBooleanFromSwitch(nameof(MultipleNewLines));
+            page.Properties.OnAfterGetCurrRecord.Set(OnAfterGetCurrRecord);
+            page.Properties.OnAfterGetRecord.Set(OnAfterGetRecord);
+            page.Properties.OnClosePage.Set(OnClosePage);
+            page.Properties.OnDeleteRecord.Set(OnDeleteRecord);
+            page.Properties.OnFindRecord.Set(OnFindRecord);
+            page.Properties.OnInit.Set(OnInit);
+            page.Properties.OnInsertRecord.Set(OnInsertRecord);
+            page.Properties.OnModifyRecord.Set(OnModifyRecord);
+            page.Properties.OnNewRecord.Set(OnNewRecord);
+            page.Properties.OnNextRecord.Set(OnNextRecord);
+            page.Properties.OnOpenPage.Set(OnOpenPage);
+            page.Properties.OnQueryClosePage.Set(OnQueryClosePage);
             page.Properties.PageType = PageType;
             page.Properties.Permissions.Set(Permissions);
             page.Properties.PopulateAllFields = NullableBooleanFromSwitch(nameof(PopulateAllFields));
@@ -49,19 +61,6 @@ namespace UncommonSense.CBreeze.Automation
 
             if (AutoCaption)
                 page.AutoCaption();
-
-            ProcessTrigger(OnAfterGetCurrRecord, page.Properties.OnAfterGetCurrRecord);
-            ProcessTrigger(OnAfterGetRecord, page.Properties.OnAfterGetRecord);
-            ProcessTrigger(OnClosePage, page.Properties.OnClosePage);
-            ProcessTrigger(OnDeleteRecord, page.Properties.OnDeleteRecord);
-            ProcessTrigger(OnFindRecord, page.Properties.OnFindRecord);
-            ProcessTrigger(OnInit, page.Properties.OnInit);
-            ProcessTrigger(OnInsertRecord, page.Properties.OnInsertRecord);
-            ProcessTrigger(OnModifyRecord, page.Properties.OnModifyRecord);
-            ProcessTrigger(OnNewRecord, page.Properties.OnNewRecord);
-            ProcessTrigger(OnNextRecord, page.Properties.OnNextRecord);
-            ProcessTrigger(OnOpenPage, page.Properties.OnOpenPage);
-            ProcessTrigger(OnQueryClosePage, page.Properties.OnQueryClosePage);
 
             if (SubObjects != null)
             {
@@ -76,16 +75,6 @@ namespace UncommonSense.CBreeze.Automation
             }
 
             yield return page;
-        }
-
-        protected void ProcessTrigger(ScriptBlock scriptBlock, Trigger trigger)
-        {
-            if (scriptBlock != null)
-            {
-                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
-                trigger.Variables.AddRange(subObjects.OfType<Variable>());
-                trigger.CodeLines.AddRange(subObjects.OfType<string>());
-            }
         }
 
         [Parameter()] public SwitchParameter AutoSplitKey { get; set; }

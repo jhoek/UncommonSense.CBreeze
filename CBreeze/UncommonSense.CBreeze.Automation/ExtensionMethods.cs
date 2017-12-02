@@ -163,6 +163,19 @@ namespace UncommonSense.CBreeze.Automation
             throw new ApplicationException("Cannot add variables to this object.");
         }
 
+        public static void Set(this Trigger trigger, ScriptBlock scriptBlock)
+        {
+            trigger.Variables.Clear();
+            trigger.CodeLines.Clear();
+
+            if (scriptBlock != null)
+            {
+                var subObjects = scriptBlock.Invoke().Select(o => o.BaseObject);
+                trigger.Variables.AddRange(subObjects.OfType<Variable>());
+                trigger.CodeLines.AddRange(subObjects.OfType<string>());
+            }
+        }
+
         public static bool TryGetVariables(this PSObject inputObject, out Variables variables)
         {
             try
