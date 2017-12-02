@@ -1,0 +1,192 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+div {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.menu li
+{
+	list-style-type:none;
+	display: inline;
+	padding-left: 2em; 
+}
+
+.container {
+    width: 70%;
+    margin: 0px auto;
+}
+
+.blue {
+    color: #fff;
+    background-color: #4baad3;
+}
+
+.white {
+    color: #333;
+    background-color: #fff;
+}
+
+.lightgray {
+    background-color: #eee;
+    color: #333;
+}
+
+.darkgray {
+    background-color: #444;
+    color: #fff;
+}
+
+.masthead {
+    text-align: left;
+    padding-left: 5em;
+	padding-right: 5em;
+	padding-top: 0;
+	padding-bottom: 0;
+    color: #bbb;
+}
+
+.masthead a
+{
+	text-decoration: none;
+}
+
+.masthead table
+{
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.masthead td
+{
+	vertical-align: middle;	
+}
+
+.introducing {
+    padding-bottom: 0;
+}
+
+.introducing h2 {
+    padding-bottom: 1em;
+}
+
+.whatisit .container 
+{
+	background-image:  url(images/script.png);
+	background-position-y: 50%;
+	background-repeat: no-repeat;
+}
+
+.whatisit .container .text
+{
+	width: 70%;
+	margin-left: 30%;
+}
+
+.wheretostart .container
+{
+	background-image: url(images/steps.png);
+	background-position-y: 50%;
+	background-position-x: 100%;
+	background-repeat: no-repeat;	
+}
+
+.wheretostart .container .text
+{
+	width: 70%;
+	margin-right: 30%;
+}
+
+.faq .container .text
+{
+	text-align: left;
+}
+
+.samples .container
+{
+	text-align:left;
+}
+
+.copyright p
+{
+	font-size: .7em;	
+}
+
+.super
+{
+	vertical-align: super;
+	font-size: 0.4em;
+}
+
+.warning
+{
+	background-color: #990000;
+	color: #ffffff;
+	padding: 0 0.5em 0 0.5em;
+	border-radius: 3px;	
+}
+
+a {
+    color: inherit;
+}
+
+p {
+    line-height: 2em;
+    padding-bottom: 1.5em;
+}
+
+h1 {
+    padding-top: 1em;
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 1.8em;
+    padding-bottom: 0.75em;
+}
+
+h3 
+{
+	font-size: 1.4em;	
+}
+
+h6 {
+    font-size: 1.5em;
+	display: inline;
+}
+
+pre {
+    padding: 1em;
+    border: solid 1px #ccc;
+    background-color: #eee;
+    text-align: left;
+    margin-bottom: 1.5em;
+}
+
+code
+{
+	font-family: Monaco, Consolas, monospace;
+	color: #333;	
+}
+
+table
+{
+	text-align:left;	
+	border-collapse: collapse;	
+	margin-bottom: 1.5em;
+}
+
+td
+{
+	vertical-align: top;
+	padding-right: 2em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
