@@ -11,6 +11,8 @@ How would you do similar operations in an XML file? Probably using something lik
 
 *That's why we need a DOM for the NAV object text format.*
 
+Think of C/Breeze as an API for interacting with NAV object text files. Each and every aspect of your application's objects, represented by an in-memory tree structure much like e.g. the XMLDOM or HTMLDOM, can be queried and manipulated through C/Breeze Core's members. Any change you can make to your application from NAV's Development Environment can also be made from C/Breeze, but without the manual actions, and therefore completely repeatable.
+
 ## Why use C/Breeze?
 - Script your development work as much as possible
 - Avoid the friction caused by an outdated development environment
