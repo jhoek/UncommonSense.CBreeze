@@ -31,6 +31,6 @@ namespace UncommonSense.CBreeze.Script
         public override bool HasValue => Value.HasValue;
         public bool? Value { get; set; }
 
-        public override string ToString(int indentation) => $"{Indentation(indentation)}-{Name}";
+        public override string ToString(int indentation) => Value.Value ? $"{Indentation(indentation)}-{Name}" : $"{Indentation(indentation)}-{Name}:$false";
     }
 }
