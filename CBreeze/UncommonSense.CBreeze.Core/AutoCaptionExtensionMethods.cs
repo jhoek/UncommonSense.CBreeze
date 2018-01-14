@@ -11,10 +11,13 @@ namespace UncommonSense.CBreeze.Core
         {
             if (condition)
             {
-                var captionML = item.AllProperties["CaptionML"];
+                var property = item.AllProperties["CaptionML"];
 
-                if (captionML != null)
-                    (captionML as MultiLanguageProperty).Value.Set("ENU", item.GetName());
+                if (property != null)
+                {
+                    var typedProperty = (property as MultiLanguageProperty);
+                    typedProperty.Value.Set("ENU", typedProperty.Value["ENU"] ?? item.GetName());
+                }
             }
 
             return item;
@@ -24,10 +27,13 @@ namespace UncommonSense.CBreeze.Core
         {
             if (condition)
             {
-                var optionCaptionML = item.AllProperties["OptionCaptionML"];
+                var property = item.AllProperties["OptionCaptionML"];
 
-                if (optionCaptionML != null)
-                    (optionCaptionML as MultiLanguageProperty).Value.Set("ENU", item.GetOptionString());
+                if (property != null)
+                {
+                    var typedProperty = (property as MultiLanguageProperty);
+                    typedProperty.Value.Set("ENU", typedProperty.Value["ENU"] ?? item.GetOptionString());
+                }
             }
 
             return item;
