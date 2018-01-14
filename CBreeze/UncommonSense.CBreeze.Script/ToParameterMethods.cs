@@ -216,12 +216,12 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ID", function.ID);
             yield return new SimpleParameter("Name", function.Name);
             yield return new SwitchParameter("Local", function.Local);
-            yield return new SimpleParameter("TryFunction", function.TryFunction);
+            yield return new SwitchParameter("TryFunction", function.TryFunction);
             yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
             yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
             yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
             yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
-            yield return new SimpleParameter("IncludeSender", function.IncludeSender);
+            yield return new SwitchParameter("IncludeSender", function.IncludeSender);
             yield return new ScriptBlockParameter("SubObjects",
                 function.Parameters.Select(
                     p => p.ToInvocation())
@@ -272,7 +272,9 @@ namespace UncommonSense.CBreeze.Script
 
                 case RecordParameter r:
                     yield return new SimpleParameter("SubType", r.SubType);
-                    yield return new SwitchParameter("Temporary", r.Temporary);
+
+                    if (r.Temporary.GetValueOrDefault(false))
+                        yield return new SwitchParameter("Temporary", r.Temporary);
                     break;
             }
         }
