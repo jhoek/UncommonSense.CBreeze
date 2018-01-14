@@ -201,8 +201,8 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this TableKey key)
         {
-            var fields = new[] {
-                new SimpleParameter("Enabled", key.Enabled),
+            var fields = new ParameterBase[] {
+                new SwitchParameter("Enabled", key.Enabled),
                 new SimpleParameter("Fields", key.Fields)
             };
 
