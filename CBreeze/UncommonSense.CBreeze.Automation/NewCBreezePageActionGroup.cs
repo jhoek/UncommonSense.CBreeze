@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -12,35 +11,22 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("ActionGroup", "Add-CBreezePageActionGroup")]
     public class NewCBreezePageActionGroup : NewItemWithIDCmdlet<PageActionBase, int, PSObject>
     {
-        protected override IEnumerable<PageActionBase> CreateItems()
-        {
-            var pageActionGroup = new PageActionGroup(ID, GetIndentation());
+        [Parameter()] public Hashtable CaptionML { get; set; } 
 
-            pageActionGroup.Properties.CaptionML.Set(CaptionML);
-            pageActionGroup.Properties.ActionContainerType = ContainerType;
-            pageActionGroup.Properties.Description = Description;
-            pageActionGroup.Properties.Enabled = Enabled;
-            pageActionGroup.Properties.Image = Image;
-            pageActionGroup.Properties.Name = Name;
-            pageActionGroup.Properties.Visible = Visible;
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
+        public ScriptBlock ChildActions { get; set; } 
 
-            yield return pageActionGroup;
-
-            if (ChildActions != null)
-            {
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
-
-                var childActions = ChildActions
-                    .InvokeWithContext(null, variables)
-                    .Select(o => o.BaseObject)
-                    .Cast<PageActionBase>();
-
-                foreach (var childAction in childActions)
-                {
-                    yield return childAction;
-                }
-            }
-        }
+        [Parameter()] public PageActionContainerType? ContainerType { get; set; }
+        [Parameter()] public string Description { get; set; }
+        [Parameter()] public string Enabled { get; set; }
+        [Parameter()] public string Image { get; set; }
+        [Parameter()] public string Name { get; set; }
+        [Parameter()] public Position? Position { get; set; }
+        [Parameter()] public Hashtable ToolTipML { get; set; }
+        [Parameter()] public string Visible { get; set; }
 
         protected override void AddItemToInputObject(PageActionBase item, PSObject inputObject)
         {
@@ -70,58 +56,35 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        [Parameter()]
-        public Hashtable CaptionML
+        protected override IEnumerable<PageActionBase> CreateItems()
         {
-            get; set;
-        }
+            var pageActionGroup = new PageActionGroup(ID, GetIndentation());
 
-        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-        public ScriptBlock ChildActions
-        {
-            get; set;
-        }
+            pageActionGroup.Properties.CaptionML.Set(CaptionML);
+            pageActionGroup.Properties.ActionContainerType = ContainerType;
+            pageActionGroup.Properties.Description = Description;
+            pageActionGroup.Properties.Enabled = Enabled;
+            pageActionGroup.Properties.Image = Image;
+            pageActionGroup.Properties.Name = Name;
+            pageActionGroup.Properties.ToolTipML.Set(ToolTipML);
+            pageActionGroup.Properties.Visible = Visible;
 
-        [Parameter()]
-        public PageActionContainerType? ContainerType { get; set; }
+            yield return pageActionGroup;
 
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
+            if (ChildActions != null)
+            {
+                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
 
-        [Parameter()]
-        public string Enabled
-        {
-            get; set;
-        }
+                var childActions = ChildActions
+                    .InvokeWithContext(null, variables)
+                    .Select(o => o.BaseObject)
+                    .Cast<PageActionBase>();
 
-        [Parameter()]
-        public string Image
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string Name
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string Visible
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Position? Position
-        {
-            get; set;
+                foreach (var childAction in childActions)
+                {
+                    yield return childAction;
+                }
+            }
         }
 
         protected int GetIndentation()
