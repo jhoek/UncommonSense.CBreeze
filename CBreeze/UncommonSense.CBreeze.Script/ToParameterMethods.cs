@@ -229,7 +229,7 @@ namespace UncommonSense.CBreeze.Script
 
             yield return new ScriptBlockParameter("SubObjects", pageControlPart.Properties.SubPageLink.ToInvocations());
 
-            foreach (var parameter in pageControlPart.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            foreach (var parameter in pageControlPart.AllProperties.WithAValue.SelectMany(p => p.ToParameters("SubPage")))
             {
                 yield return parameter;
             }
