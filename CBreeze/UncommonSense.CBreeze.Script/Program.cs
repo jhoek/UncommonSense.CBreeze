@@ -24,7 +24,7 @@ namespace UncommonSense.CBreeze.Script
                 File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
                 File.WriteAllText(
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.ps1"),
-                    $"{scriptFileName} | Out-File {outputFileName}");
+                    $"& {scriptFileName} | Export-CBreezeApplication -Path {outputFileName}");
 
                 var processStartInfo = new ProcessStartInfo()
                 {
@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Script
                     WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
                 };
 
-                Process.Start(processStartInfo);
+                Process.Start(processStartInfo).WaitForExit();
             }
         }
     }
