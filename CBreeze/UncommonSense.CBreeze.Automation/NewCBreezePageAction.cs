@@ -188,13 +188,9 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.ToolTipML.Set(ToolTipML);
             pageAction.Properties.Visible = Visible;
 
-            pageAction.Properties.RunPageView.TableFilter.AddRange(
-                SubObjects?
-                    .Invoke()
-                    .Select(o => o.BaseObject)
-                    .Cast<TableFilterLine>()
-                    ?? Enumerable.Empty<TableFilterLine>()
-                );
+            var subObjects = SubObjects?.Invoke().Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
+            pageAction.Properties.RunPageView.TableFilter.AddRange(subObjects.OfType<TableFilterLine>());
+            pageAction.Properties.RunPageLink.AddRange(subObjects.OfType<RunObjectLinkLine>());
 
             yield return pageAction;
         }
