@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
 
@@ -41,6 +42,9 @@ namespace UncommonSense.CBreeze.Automation
         {
             var partPageControl = new PageControlPart(ID, GetIndentation());
             partPageControl.Properties.AccessByPermission.Set(AccessByPermission);
+#if NAV2017
+            partPageControl.Properties.ApplicationArea.Set( ApplicationArea);
+#endif
             partPageControl.Properties.CaptionML.Set(CaptionML);
             partPageControl.Properties.Description = Description;
             partPageControl.Properties.Editable = Editable;
@@ -73,6 +77,10 @@ namespace UncommonSense.CBreeze.Automation
             partPageControl.Properties.Visible = Visible;
             partPageControl.AutoCaption(AutoCaption);
 
+            var subObjects = SubObjects?.Invoke().Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
+
+            partPageControl.Properties.SubPageLink.AddRange(subObjects.OfType<RunObjectLinkLine>());
+
             yield return partPageControl;
         }
 
@@ -91,6 +99,9 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         [Parameter()] public AccessByPermission AccessByPermission { get; set; }
+#if NAV2017
+        [Parameter()] public string[] ApplicationArea { get; set; }
+#endif
         [Parameter()] public SwitchParameter AutoCaption { get; set; }
         [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public string ChartPartID { get; set; }
@@ -102,6 +113,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public int? PagePartID { get; set; }
         [Parameter()] public int? ProviderID { get; set; }
         [Parameter()] public SwitchParameter ShowFilter { get; set; }
+        [Parameter()] public ScriptBlock SubObjects { get; set; }
         [Parameter()] public string SubPageViewKey { get; set; }
         [Parameter()] public Order? SubPageViewOrder { get; set; }
         [Parameter()] public SystemPartID? SystemPartID { get; set; }
