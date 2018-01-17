@@ -43,7 +43,7 @@ namespace UncommonSense.CBreeze.Automation
             var partPageControl = new PageControlPart(ID, GetIndentation());
             partPageControl.Properties.AccessByPermission.Set(AccessByPermission);
 #if NAV2017
-            partPageControl.Properties.ApplicationArea.Set( ApplicationArea);
+            partPageControl.Properties.ApplicationArea.Set(ApplicationArea);
 #endif
             partPageControl.Properties.CaptionML.Set(CaptionML);
             partPageControl.Properties.Description = Description;
