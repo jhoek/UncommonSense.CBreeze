@@ -46,13 +46,13 @@ namespace UncommonSense.CBreeze.Automation
             yield return containerPageControl;
 
             var variables = new List<PSVariable>() { new PSVariable("Indentation", 1) };
-            var childControls = ChildControls?
+            var subObjects = SubObjects?
                 .InvokeWithContext(null, variables)
                 .Select(o => o.BaseObject)
                 .Cast<PageControlBase>()
                 ?? Enumerable.Empty<PageControlBase>();
 
-            foreach (var childControl in childControls)
+            foreach (var childControl in subObjects)
             {
                 yield return childControl;
             }
@@ -65,7 +65,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-        public ScriptBlock ChildControls { get; set; }
+        public ScriptBlock SubObjects { get; set; }
 
         [Parameter()] public PageControlContainerType? ContainerType { get; set; }
         [Parameter()] public string Description { get; set; }

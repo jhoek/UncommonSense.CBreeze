@@ -47,6 +47,10 @@ namespace UncommonSense.CBreeze.Automation
         protected override IEnumerable<PageControlBase> CreateItems()
         {
             var groupPageControl = new PageControlGroup(ID, GetIndentation(), GroupType);
+            var variables = new List<PSVariable>() { new PSVariable("Indentation", groupPageControl.IndentationLevel + 1) };
+            var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
+
+            groupPageControl.Properties.ActionList.AddRange(subObjects.OfType<PageActionBase>());
             groupPageControl.Properties.CaptionML.Set(CaptionML);
             groupPageControl.Properties.Description = Description;
             groupPageControl.Properties.Name = Name;
@@ -60,16 +64,10 @@ namespace UncommonSense.CBreeze.Automation
             groupPageControl.Properties.ShowAsTree = NullableBooleanFromSwitch(nameof(ShowAsTree));
             groupPageControl.Properties.Visible = Visible;
             groupPageControl.AutoCaption(AutoCaption);
+
             yield return groupPageControl;
 
-            var variables = new List<PSVariable>() { new PSVariable("Indentation", groupPageControl.IndentationLevel + 1) };
-            var childControls = ChildControls?
-                .InvokeWithContext(null, variables)
-                .Select(o => o.BaseObject)
-                .Cast<PageControlBase>()
-                ?? Enumerable.Empty<PageControlBase>();
-
-            foreach (var childControl in childControls)
+            foreach (var childControl in subObjects.OfType<PageControlBase>())
             {
                 yield return childControl;
             }
@@ -96,7 +94,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-        public ScriptBlock ChildControls { get; set; }
+        public ScriptBlock SubObjects { get; set; }
 
         [Parameter()] public string Description { get; set; }
         [Parameter()] public string Editable { get; set; }

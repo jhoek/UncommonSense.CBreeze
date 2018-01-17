@@ -208,7 +208,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("ChildControls", pageControlContainer.ChildPageControls.Select(c => c.ToInvocation()));
+            yield return new ScriptBlockParameter("SubObjects", pageControlContainer.ChildPageControls.Select(c => c.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageControlGroup pageControlGroup)
@@ -220,7 +220,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("ChildControls", pageControlGroup.ChildPageControls.Select(c => c.ToInvocation()));
+            yield return new ScriptBlockParameter("SubObjects", pageControlGroup.ChildPageControls.Select(c => c.ToInvocation()).Concat(pageControlGroup.Properties.ActionList.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageControlPart pageControlPart)
@@ -354,6 +354,10 @@ namespace UncommonSense.CBreeze.Script
 
             switch (property)
             {
+                case ActionListProperty a:
+                    // Yielded elsewhere as part of SubObjects
+                    yield break;
+
                 case BooleanProperty b:
                     yield return new SwitchParameter(b.Name, b.Value);
                     break;
