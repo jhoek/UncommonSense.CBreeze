@@ -6,8 +6,6 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    // FIXME: Scriptblock for table relation
-
     [Cmdlet(VerbsCommon.New, "CBreezePageControl", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(PageControl))]
     [Alias("FieldControl", "Add-CBreezePageControl")]
@@ -85,6 +83,8 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Visible { get; set; }
         [Parameter()] [ValidateRange(0, int.MaxValue)] public int? Width { get; set; }
 
+        [Parameter()] public ScriptBlock SubObjects { get; set; }
+
         protected override IEnumerable<PageControlBase> CreateItems()
         {
             var pageControl = new PageControl(SourceExpr, ID, GetIndentation());
@@ -148,6 +148,12 @@ namespace UncommonSense.CBreeze.Automation
             pageControl.Properties.Visible = Visible;
             pageControl.Properties.Width = Width;
             pageControl.AutoCaption(AutoCaption);
+
+            if (SubObjects != null)
+            {
+                var subObjects = SubObjects.Invoke().Select(o => o.BaseObject);
+                pageControl.Properties.TableRelation.AddRange(subObjects.OfType<TableRelationLine>());
+            }
 
             yield return pageControl;
         }
