@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Common;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2017
-    public class NotificationVariable : Variable
+    public class NotificationVariable : Variable,IHasDimensions
     {
         public NotificationVariable(string name) : this(0, name) { }
         public NotificationVariable(int id, string name) : base(id, name) { }

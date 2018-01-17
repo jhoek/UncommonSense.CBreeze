@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class FileVariable : Variable
+    public class FileVariable : Variable,IHasDimensions
     {
         public FileVariable(string name) : this(0, name)
         {

@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class QueryVariable : Variable
+    public class QueryVariable : Variable,IHasDimensions
     {
         public QueryVariable(string name, int subType) : this(0, name, subType)
         {

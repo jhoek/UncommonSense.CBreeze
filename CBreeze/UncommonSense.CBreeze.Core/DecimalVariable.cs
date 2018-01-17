@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class DecimalVariable : Variable
+    public class DecimalVariable : Variable,IHasDimensions
     {
         public DecimalVariable(string name) : this(0, name)
         {

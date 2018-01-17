@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class FieldRefVariable : Variable
+    public class FieldRefVariable : Variable,IHasDimensions
     {
         public FieldRefVariable(string name) : this(0, name)
         {

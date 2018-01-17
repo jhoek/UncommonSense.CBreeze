@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class TransactionTypeVariable : Variable
+    public class TransactionTypeVariable : Variable,IHasDimensions
     {
         public TransactionTypeVariable(string name) : this(0, name)
         {

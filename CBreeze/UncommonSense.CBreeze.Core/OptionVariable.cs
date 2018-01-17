@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class OptionVariable : Variable, IHasOptionString
+    public class OptionVariable : Variable, IHasOptionString,IHasDimensions
     {
         public OptionVariable(string name) : this(0, name)
         {

@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class TextVariable : Variable
+    public class TextVariable : Variable,IHasDimensions
     {
         public TextVariable(string name, int? dataLength = null) : this(0, name, dataLength)
         {

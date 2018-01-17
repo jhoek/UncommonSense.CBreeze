@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class ByteVariable : Variable
+    public class ByteVariable : Variable, IHasDimensions
     {
         public ByteVariable(string name) : this(0, name)
         {

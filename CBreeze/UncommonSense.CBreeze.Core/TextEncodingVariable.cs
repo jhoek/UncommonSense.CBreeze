@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
 
-    public class TextEncodingVariable : Variable
+    public class TextEncodingVariable : Variable,IHasDimensions
     {
         public TextEncodingVariable(string name) : this(0, name)
         {

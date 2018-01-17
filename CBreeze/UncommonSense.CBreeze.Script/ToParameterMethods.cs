@@ -55,72 +55,78 @@ namespace UncommonSense.CBreeze.Script
 
             switch (variable)
             {
+                case IHasDimensions d:
+                    yield return new SimpleParameter("Dimensions", d.Dimensions);
+                    break;
+            }
+
+            switch (variable)
+            {
+                case AutomationVariable a:
+                    yield return new SimpleParameter("SubType", a.SubType);
+                    yield return new SwitchParameter("WithEvents", a.WithEvents);
+                    break;
+
+                case BinaryVariable b:
+                    yield return new SimpleParameter("DataLength", b.DataLength);
+                    break;
+
                 case BooleanVariable b:
-                    yield return new SimpleParameter("Dimensions", b.Dimensions);
                     yield return new SwitchParameter("IncludeInDataset", b.IncludeInDataset);
                     break;
 
                 case CodeVariable c:
                     yield return new SimpleParameter("DataLength", c.DataLength);
-                    yield return new SimpleParameter("Dimensions", c.Dimensions);
                     yield return new SwitchParameter("IncludeInDataset", c.IncludeInDataset);
                     break;
 
                 case CodeunitVariable c:
-                    yield return new SimpleParameter("Dimensions", c.Dimensions);
                     yield return new SimpleParameter("SubType", c.SubType);
                     break;
 
-                case DateVariable d:
-                    yield return new SimpleParameter("Dimensions", d.Dimensions);
-                    break;
-
-                case DecimalVariable d:
-                    yield return new SimpleParameter("Dimensions", d.Dimensions);
-                    break;
-
                 case DotNetVariable d:
-                    yield return new SimpleParameter("Dimensions", d.Dimensions);
                     yield return new SwitchParameter("RunOnClient", d.RunOnClient);
                     yield return new SimpleParameter("SubType", d.SubType);
                     yield return new SwitchParameter("WithEvents", d.WithEvents);
                     break;
 
-                case FieldRefVariable f:
-                    yield return new SimpleParameter("Dimensions", f.Dimensions);
-                    break;
-
                 case IntegerVariable i:
-                    yield return new SimpleParameter("Dimensions", i.Dimensions);
                     yield return new SwitchParameter("IncludeInDataset", i.IncludeInDataset);
                     break;
 
+                case OcxVariable o:
+                    yield return new SimpleParameter("SubType", o.SubType);
+                    break;
+
                 case OptionVariable o:
-                    yield return new SimpleParameter("Dimensions", o.Dimensions);
                     yield return new SimpleParameter("OptionString", o.OptionString);
                     break;
 
                 case PageVariable p:
-                    yield return new SimpleParameter("Dimensions", p.Dimensions);
                     yield return new SimpleParameter("SubType", p.SubType);
                     break;
 
                 case QueryVariable q:
-                    yield return new SimpleParameter("Dimensions", q.Dimensions);
                     yield return new SimpleParameter("SecurityFiltering", q.SecurityFiltering);
                     yield return new SimpleParameter("SubType", q.SubType);
                     break;
 
                 case RecordVariable r:
-                    yield return new SimpleParameter("Dimensions", r.Dimensions);
                     yield return new SimpleParameter("SubType", r.SubType);
                     yield return new SwitchParameter("Temporary", r.Temporary);
                     yield return new SimpleParameter("SecurityFiltering", r.SecurityFiltering);
                     break;
 
+                case RecordRefVariable r:
+                    yield return new SimpleParameter("SecurityFiltering", r.SecurityFiltering);
+                    break;
+                
                 case ReportVariable r:
-                    yield return new SimpleParameter("Dimensions", r.Dimensions);
                     yield return new SimpleParameter("SubType", r.SubType);
+                    break;
+
+                case TestPageVariable t:
+                    yield return new SimpleParameter("SubType", t.SubType);
                     break;
 
                 case TextConstant t:
@@ -129,17 +135,13 @@ namespace UncommonSense.CBreeze.Script
 
                 case TextVariable t:
                     yield return new SimpleParameter("DataLength", t.DataLength);
-                    yield return new SimpleParameter("Dimensions", t.Dimensions);
                     yield return new SwitchParameter("IncludeInDataset", t.IncludeInDataset);
                     break;
 
                 case XmlPortVariable x:
-                    yield return new SimpleParameter("Dimensions", x.Dimensions);
                     yield return new SimpleParameter("SubType", x.SubType);
                     break;
             }
-
-            // FIXME : Remaining types
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this TableFieldGroup fieldGroup)
@@ -228,7 +230,7 @@ namespace UncommonSense.CBreeze.Script
         {
             yield return new SimpleParameter("ID", pageControlPart.ID);
 
-            yield return new ScriptBlockParameter("SubObjects", 
+            yield return new ScriptBlockParameter("SubObjects",
                 pageControlPart.Properties.SubPageLink.ToInvocations()
                 .Concat(pageControlPart.Properties.SubPageView.TableFilter.ToInvocations()));
 

@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
 
-    public class ReportFormatVariable : Variable
+    public class ReportFormatVariable : Variable,IHasDimensions
     {
         public ReportFormatVariable(string name) : this(0, name)
         {

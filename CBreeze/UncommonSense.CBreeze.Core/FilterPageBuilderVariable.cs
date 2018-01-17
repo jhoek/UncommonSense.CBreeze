@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
 
-    public class FilterPageBuilderVariable : Variable
+    public class FilterPageBuilderVariable : Variable,IHasDimensions
     {
         public FilterPageBuilderVariable(string name) : this(0, name)
         {

@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class OutStreamVariable : Variable
+    public class OutStreamVariable : Variable,IHasDimensions
     {
         public OutStreamVariable(string name) : this(0, name)
         {

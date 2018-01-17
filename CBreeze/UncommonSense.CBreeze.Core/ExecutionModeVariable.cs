@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class ExecutionModeVariable : Variable
+    public class ExecutionModeVariable : Variable,IHasDimensions
     {
         public ExecutionModeVariable(string name) : this(0, name)
         {

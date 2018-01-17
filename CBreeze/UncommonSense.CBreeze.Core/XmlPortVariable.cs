@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class XmlPortVariable : Variable
+    public class XmlPortVariable : Variable,IHasDimensions
     {
         public XmlPortVariable(string name, int subType) : this(0, name, subType)
         {

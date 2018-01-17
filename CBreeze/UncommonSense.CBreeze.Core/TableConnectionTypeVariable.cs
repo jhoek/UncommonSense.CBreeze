@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Core
 {
 #if NAV2016
 
-    public class TableConnectionTypeVariable : Variable
+    public class TableConnectionTypeVariable : Variable,IHasDimensions
     {
         public TableConnectionTypeVariable(string name) : this(0, name)
         {

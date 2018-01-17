@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class BooleanVariable : Variable
+    public class BooleanVariable : Variable,IHasDimensions
     {
         public BooleanVariable(string name) : this(0, name)
         {

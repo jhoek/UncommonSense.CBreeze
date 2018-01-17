@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class RecordVariable : Variable
+    public class RecordVariable : Variable,IHasDimensions
     {
         public RecordVariable(string name, int subType) : this(0, name, subType)
         {

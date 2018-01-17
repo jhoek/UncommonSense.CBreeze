@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Common;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2017
-    public class TestPermissionsVariable : Variable
+    public class TestPermissionsVariable : Variable,IHasDimensions
     {
         public TestPermissionsVariable(string name) : this(0, name) { }
         public TestPermissionsVariable(int id, string name) : base(id, name) { }

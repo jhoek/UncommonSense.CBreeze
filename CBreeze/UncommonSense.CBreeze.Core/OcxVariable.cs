@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class OcxVariable : Variable
+    public class OcxVariable : Variable,IHasDimensions
     {
         public OcxVariable(string name, string subType) : this(0, name, subType)
         {

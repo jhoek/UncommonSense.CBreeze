@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class DialogVariable : Variable
+    public class DialogVariable : Variable,IHasDimensions
     {
         public DialogVariable(string name) : this(0, name)
         {

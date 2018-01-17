@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class TestPageVariable : Variable
+    public class TestPageVariable : Variable,IHasDimensions
     {
         public TestPageVariable(string name, int subType) : this(0, name, subType)
         {

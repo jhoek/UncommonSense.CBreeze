@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Common;
 namespace UncommonSense.CBreeze.Core
 {
 #if NAV2017
-    public class ClientTypeVariable : Variable
+    public class ClientTypeVariable : Variable,IHasDimensions
     {
         public ClientTypeVariable(string name) : this(0, name) { }
         public ClientTypeVariable(int id, string name) : base(id, name) { }

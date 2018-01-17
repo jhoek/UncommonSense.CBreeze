@@ -51,6 +51,7 @@
     <Compile Include="AccessByPermission.cs" />
     <Compile Include="AccessByPermissionObjectType.cs" />
     <Compile Include="AccessByPermissionProperty.cs" />
+    <Compile Include="IHasDimensions.cs" />
     <Compile Include="PageActionContainerType.cs" />
     <Compile Include="PageActionContainerTypeProperty.cs" />
     <Compile Include="ActionList.cs" />

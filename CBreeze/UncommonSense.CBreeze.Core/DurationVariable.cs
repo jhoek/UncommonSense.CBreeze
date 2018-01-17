@@ -6,7 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class DurationVariable : Variable
+    public class DurationVariable : Variable,IHasDimensions
     {
         public DurationVariable(string name) : this(0, name)
         {
