@@ -47,6 +47,8 @@ namespace UncommonSense.CBreeze.Automation
         protected override IEnumerable<PageControlBase> CreateItems()
         {
             var groupPageControl = new PageControlGroup(ID, GetIndentation(), GroupType);
+
+            // FIXME: Problem: SubObjects can contain both controls and actions. The indentation variable below should apply only to controls.
             var variables = new List<PSVariable>() { new PSVariable("Indentation", groupPageControl.IndentationLevel + 1) };
             var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
 
