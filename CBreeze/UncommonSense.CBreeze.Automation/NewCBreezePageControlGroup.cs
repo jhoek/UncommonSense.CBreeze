@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageControlBase> CreateItems()
         {
-            var groupPageControl = new PageControlGroup(ID, GetIndentation(), GroupType.GetValueOrDefault(Core.PageControlGroupType.Group));
+            var groupPageControl = new PageControlGroup(ID, GetIndentation(), GroupType);
             groupPageControl.Properties.CaptionML.Set(CaptionML);
             groupPageControl.Properties.Description = Description;
             groupPageControl.Properties.Name = Name;
