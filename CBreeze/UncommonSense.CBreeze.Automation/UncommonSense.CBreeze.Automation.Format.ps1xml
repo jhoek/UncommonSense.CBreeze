@@ -39,6 +39,60 @@
     <View>
       <Name>AsList</Name>
       <ViewSelectedBy>
+        <TypeName>UncommonSense.CBreeze.Core.PageControlBase</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Type</Label>
+            <Width>12</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Width>10</Width>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Name</Label>
+            <Width>20</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Subtype/SourceExpr</Label>
+            <Width>40</Width>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <ScriptBlock>"$(' ' * $_.IndentationLevel)$($_.Type)"</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>ID</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>$_.Properties.Name</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>
+                  $Current = $_
+                  
+                  switch($Current.Type)
+                  {
+                    'Container' { "$($Current.Properties.ContainerType)" } 
+                    'Group'     { "$($Current.Properties.GroupType)" } 
+                    'Part'      { "$($Current.Properties.PartType)" }
+                    'Field'     { "$($Current.Properties.SourceExpr)" } 
+                  }
+                </ScriptBlock>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>AsList</Name>
+      <ViewSelectedBy>
         <TypeName>UncommonSense.CBreeze.Core.Object</TypeName>
       </ViewSelectedBy>
       <TableControl>
