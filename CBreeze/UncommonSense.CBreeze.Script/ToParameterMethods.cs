@@ -9,6 +9,23 @@ namespace UncommonSense.CBreeze.Script
 {
     public static class ToParameterMethods
     {
+        public static IEnumerable<ParameterBase> ToParameters(this RunObjectLinkLine runObjectLinkLine)
+        {
+            yield return new SimpleParameter("FieldName", runObjectLinkLine.FieldName);
+            yield return new SimpleParameter("Type", runObjectLinkLine.Type);
+            yield return new SimpleParameter("Value", runObjectLinkLine.Value);
+
+            yield return new SwitchParameter("ValueIsFilter", runObjectLinkLine.ValueIsFilter);
+            yield return new SwitchParameter("OnlyMaxLimit", runObjectLinkLine.OnlyMaxLimit);
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this TableFilterLine tableFilterLine)
+        {
+            yield return new SimpleParameter("FieldName", tableFilterLine.FieldName);
+            yield return new SimpleParameter("Type", tableFilterLine.Type);
+            yield return new SimpleParameter("Value", tableFilterLine.Value);
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this TableField field)
         {
             yield return new SimpleParameter("ID", field.ID);
@@ -161,7 +178,12 @@ namespace UncommonSense.CBreeze.Script
         {
             yield return new SimpleParameter("ID", pageAction.ID);
 
-            foreach (var parameter in pageAction.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            yield return new ScriptBlockParameter(
+                "SubObjects", 
+                pageAction.Properties.RunPageLink.ToInvocations().Concat(
+                    pageAction.Properties.RunPageView.TableFilter.ToInvocations()));
+
+            foreach (var parameter in pageAction.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters("RunPage")))
             {
                 yield return parameter;
             }
@@ -199,6 +221,18 @@ namespace UncommonSense.CBreeze.Script
             }
 
             yield return new ScriptBlockParameter("ChildControls", pageControlGroup.ChildPageControls.Select(c => c.ToInvocation()));
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this PageControlPart pageControlPart)
+        {
+            yield return new SimpleParameter("ID", pageControlPart.ID);
+
+            yield return new ScriptBlockParameter("SubObjects", pageControlPart.Properties.SubPageLink.ToInvocations());
+
+            foreach (var parameter in pageControlPart.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageControlBase pageControlBase)
@@ -313,18 +347,13 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
         }
 
-        public static IEnumerable<ParameterBase> ToParameters(this Property property)
+        public static IEnumerable<ParameterBase> ToParameters(this Property property, string prefix = null)
         {
+            // Note: SubObject parameters should not be rendered here, since they may contain
+            // values from more than one property. 
+
             switch (property)
             {
-                case PageActionContainerTypeProperty t:
-                    yield return new SimpleParameter("ContainerType", t.Value);
-                    break;
-
-                case NullableBooleanProperty b:
-                    yield return new SwitchParameter(b.Name, b.Value);
-                    break;
-
                 case BooleanProperty b:
                     yield return new SwitchParameter(b.Name, b.Value);
                     break;
@@ -357,13 +386,31 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("DecimalPlacesAtMost", d.Value.AtMost);
                     break;
 
+                case NullableBooleanProperty b:
+                    yield return new SwitchParameter(b.Name, b.Value);
+                    break;
+
+                case PageActionContainerTypeProperty t:
+                    yield return new SimpleParameter("ContainerType", t.Value);
+                    break;
+
+                case PageControlPartTypeProperty p:
+                    // No parameter should be yielded for the part type
+                    break;
+
                 case RunObjectProperty r:
                     yield return new SimpleParameter("RunObjectType", r.Value.Type);
                     yield return new SimpleParameter("RunObjectID", r.Value.ID);
                     break;
 
-                case PageControlPartTypeProperty p:
-                    // No parameter should be yielded for the part type
+                case RunObjectLinkProperty r:
+                    // Rendered elsewhere as part of SubObjects
+                    break;
+
+                case TableViewProperty t:
+                    yield return new SimpleParameter($"{prefix}ViewKey", t.Value.Key);
+                    yield return new SimpleParameter($"{prefix}ViewOrder", t.Value.Order);
+                    // TableFilter rendered elsewhere as part of SubObjects
                     break;
 
                 default:
