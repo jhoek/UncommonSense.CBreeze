@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Script
                     WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
                 };
 
-                Process.Start(processStartInfo).WaitForExit();
+                Process.Start(processStartInfo);
             }
         }
     }
