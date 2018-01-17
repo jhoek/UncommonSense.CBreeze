@@ -12,20 +12,11 @@ namespace UncommonSense.CBreeze.Automation
     public class NewCBreezePageAction : NewItemWithIDCmdlet<PageAction, int, PSObject>
     {
 #if NAV2015
-
-        [Parameter()]
-        public AccessByPermission AccessByPermission
-        {
-            get; set;
-        }
-
+        [Parameter()] public AccessByPermission AccessByPermission { get; set; }
 #endif
 
 #if NAV2017
-
-        [Parameter()]
-        public string[] ApplicationArea { get; set; }
-
+        [Parameter()] public string[] ApplicationArea { get; set; }
 #endif
 
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -37,23 +28,10 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter Ellipsis
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string Enabled
-        {
-            get; set;
-        }
+        [Parameter()] public string Description { get; set; }
+        [Parameter()] public SwitchParameter Ellipsis { get; set; }
+        [Parameter()] public string Enabled { get; set; }
+        [Parameter()] public Gesture? Gesture { get; set; }
 
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -64,93 +42,27 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter()]
-        public SwitchParameter InFooterBar
-        {
-            get; set;
-        }
-
+        [Parameter()] public SwitchParameter InFooterBar { get; set; }
         [Parameter()] public string Name { get; set; }
         [Parameter()] public ScriptBlock OnAction { get; set; }
         [Parameter()] public Position? Position { get; set; }
         [Parameter()] public SwitchParameter Promoted { get; set; }
         [Parameter()] public PromotedCategory? PromotedCategory { get; set; }
-
-        [Parameter()]
-        public SwitchParameter PromotedIsBig
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter PromotedOnly
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public RunObjectType? RunObjectType
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public int? RunObjectID
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public RunPageMode? RunPageMode
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public SwitchParameter RunPageOnRec
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string RunPageViewKey
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Order? RunPageViewOrder
-        {
-            get; set;
-        }
-
+        [Parameter()] public SwitchParameter PromotedIsBig { get; set; }
+        [Parameter()] public SwitchParameter PromotedOnly { get; set; }
+        [Parameter()] public RunObjectType? RunObjectType { get; set; }
+        [Parameter()] public int? RunObjectID { get; set; }
+        [Parameter()] public RunPageMode? RunPageMode { get; set; }
+        [Parameter()] public SwitchParameter RunPageOnRec { get; set; }
+        [Parameter()] public string RunPageViewKey { get; set; }
+        [Parameter()] public Order? RunPageViewOrder { get; set; }
 #if NAV2015
-
-        [Parameter()]
-        public PageActionScope? Scope
-        {
-            get; set;
-        }
-
+        [Parameter()] public PageActionScope? Scope { get; set; }
 #endif
-
-        [Parameter()]
-        public string ShortcutKey
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Hashtable ToolTipML { get; set; }
-
-        [Parameter()]
-        public string Visible
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public ScriptBlock SubObjects { get; set; }
+        [Parameter()] public string ShortcutKey { get; set; } 
+        [Parameter()] public Hashtable ToolTipML { get; set; } 
+        [Parameter()] public string Visible { get; set; }
+        [Parameter()] public ScriptBlock SubObjects { get; set; }
 
         protected override IEnumerable<PageAction> CreateItems()
         {
@@ -165,6 +77,7 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.Description = Description;
             pageAction.Properties.Ellipsis = NullableBooleanFromSwitch(nameof(Ellipsis));
             pageAction.Properties.Enabled = Enabled;
+            pageAction.Properties.Gesture = Gesture;
             pageAction.Properties.Image = Image;
             pageAction.Properties.InFooterBar = NullableBooleanFromSwitch(nameof(InFooterBar));
             pageAction.Properties.Name = Name;
