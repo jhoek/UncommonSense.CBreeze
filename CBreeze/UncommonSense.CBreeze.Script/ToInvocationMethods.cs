@@ -132,7 +132,7 @@ namespace UncommonSense.CBreeze.Script
             }
         }
 
-        public static IEnumerable<Invocation> ToInvocation(this ActionList actionList) => actionList.Where(a => a.IndentationLevel == 0).Select(a => a.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocation(this ActionList actionList) => actionList.Where(a => a.IndentationLevel.GetValueOrDefault(0) == 0).Select(a => a.ToInvocation());
 
         public static Invocation ToInvocation(this PageActionBase pageActionBase)
         {
