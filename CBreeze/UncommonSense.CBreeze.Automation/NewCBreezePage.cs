@@ -58,6 +58,8 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.ShowFilter = NullableBooleanFromSwitch(nameof(ShowFilter));
             page.Properties.SourceTable = SourceTable;
             page.Properties.SourceTableTemporary = NullableBooleanFromSwitch(nameof(SourceTableTemporary));
+            page.Properties.SourceTableView.Key = SourceTableViewKey;
+            page.Properties.SourceTableView.Order = SourceTableViewOrder;
 
             if (AutoCaption)
                 page.AutoCaption();
@@ -111,5 +113,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public SwitchParameter ShowFilter { get; set; }
         [Parameter()] [ValidateRange(1, int.MaxValue)] public int? SourceTable { get; set; }
         [Parameter()] public SwitchParameter SourceTableTemporary { get; set; }
+        [Parameter()] public string SourceTableViewKey { get; set; }
+        [Parameter()] public Order? SourceTableViewOrder { get; set;}
     }
 }
