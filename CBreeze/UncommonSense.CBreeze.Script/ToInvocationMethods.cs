@@ -81,6 +81,7 @@ namespace UncommonSense.CBreeze.Script
                 new ScriptBlockParameter(
                     "SubObjects",
                     page.Properties.ActionList.ToInvocation()
+                        .Concat(page.Properties.SourceTableView.TableFilter.ToInvocations())
                         .Concat(page.Controls.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Variables.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Functions.ToInvocation().Cast<Statement>())
@@ -234,7 +235,7 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this RunObjectLinkLine runObjectLinkLine) => new Invocation("New-CBreezeRunObjectLink", runObjectLinkLine.ToParameters());
 
-        public static Invocation ToInvocation(this TableFilterLine tableFilterLine) => new Invocation("New-CBreezeTableFilter", tableFilterLine.ToParameters());
+        public static Invocation ToInvocation(this TableFilterLine tableFilterLine) => new Invocation("New-CBreezeFilter", tableFilterLine.ToParameters());
 
         public static IEnumerable<Literal> ToInvocation(this CodeLines codeLines) => codeLines.Select(c => new Literal(c));
 
