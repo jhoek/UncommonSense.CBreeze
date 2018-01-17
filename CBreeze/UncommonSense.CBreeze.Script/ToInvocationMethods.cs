@@ -110,7 +110,7 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.ToParameters());
 
-        public static IEnumerable<Invocation> ToInvocation(this PageControls pageControls) => pageControls.Where(c => c.IndentationLevel == 0).Select(c => c.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocation(this PageControls pageControls) => pageControls.Where(c => c.IndentationLevel.GetValueOrDefault(0) == 0).Select(c => c.ToInvocation());
 
         public static Invocation ToInvocation(this PageControlBase pageControl)
         {
