@@ -75,7 +75,7 @@ namespace UncommonSense.CBreeze.Script
                 .Properties
                 .Where(p => p.HasValue)
                 .Where(p => p.GetType() != typeof(ActionListProperty))
-                .SelectMany(p => p.ToParameters());
+                .SelectMany(p => p.ToParameters("SourceTable"));
 
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
@@ -232,6 +232,10 @@ namespace UncommonSense.CBreeze.Script
             return new Invocation("New-CBreezeTableRelationFilter", tableRelationFilterLine.ToParameters());
         }
 
+        public static Invocation ToInvocation(this RunObjectLinkLine runObjectLinkLine) => new Invocation("New-CBreezeRunObjectLink", runObjectLinkLine.ToParameters());
+
+        public static Invocation ToInvocation(this TableFilterLine tableFilterLine) => new Invocation("New-CBreezeTableFilter", tableFilterLine.ToParameters());
+
         public static IEnumerable<Literal> ToInvocation(this CodeLines codeLines) => codeLines.Select(c => new Literal(c));
 
         public static IEnumerable<Invocation> ToInvocations(this Permissions permissions) => permissions.Select(p => p.ToInvocation());
@@ -243,5 +247,9 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocations(this TableRelationConditions conditions) => conditions.Select(c => c.ToInvocation());
 
         public static IEnumerable<Invocation> ToInvocations(this TableRelationTableFilter filter) => filter.Select(l => l.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocations(this RunObjectLink runObjectLink) => runObjectLink.Select(l => l.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocations(this TableFilter tableFilter) => tableFilter.Select(f => f.ToInvocation());
     }
 }
