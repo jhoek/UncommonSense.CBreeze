@@ -71,6 +71,7 @@ namespace UncommonSense.CBreeze.Automation
             partPageControl.Properties.ShowFilter = NullableBooleanFromSwitch(nameof(ShowFilter));
             partPageControl.Properties.SubPageView.Key = SubPageViewKey;
             partPageControl.Properties.SubPageView.Order = SubPageViewOrder;
+            partPageControl.Properties.ToolTipML.Set(ToolTipML);
 #if NAV2015
             partPageControl.Properties.UpdatePropagation = UpdatePropagation;
 #endif
@@ -117,6 +118,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string SubPageViewKey { get; set; }
         [Parameter()] public Order? SubPageViewOrder { get; set; }
         [Parameter()] public SystemPartID? SystemPartID { get; set; }
+        [Parameter()]public Hashtable ToolTipML { get; set; }
 #if NAV2015
         [Parameter()] public UpdatePropagation? UpdatePropagation { get; set; }
 #endif
