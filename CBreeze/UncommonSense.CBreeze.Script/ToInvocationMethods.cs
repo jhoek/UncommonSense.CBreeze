@@ -47,6 +47,7 @@ namespace UncommonSense.CBreeze.Script
                         .Concat(table.Keys.ToInvocation().Cast<Statement>())
                         .Concat(table.Code.Variables.ToInvocation().Cast<Statement>())
                         .Concat(table.Code.Functions.ToInvocation().Cast<Statement>())
+                        .Concat(table.Code.Events.ToInvocation().Cast<Statement>())
                         .Concat(table.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
                 )
             };
@@ -85,6 +86,7 @@ namespace UncommonSense.CBreeze.Script
                         .Concat(page.Controls.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Variables.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Functions.ToInvocation().Cast<Statement>())
+                        .Concat(page.Code.Events.ToInvocation().Cast<Statement>())
                         .Concat(page.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
                 )
             };
@@ -156,6 +158,8 @@ namespace UncommonSense.CBreeze.Script
             }
         }
 
+        public static IEnumerable<Invocation> ToInvocation(this Parameters parameters) => parameters.Select(p => p.ToInvocation());
+
         public static IEnumerable<Invocation> ToInvocation(this Variables variables) => variables.Select(v => v.ToInvocation());
 
         public static Invocation ToInvocation(this Variable variable) => new Invocation($"New-CBreeze{variable.GetType().Name}", variable.ToParameters());
@@ -215,9 +219,13 @@ namespace UncommonSense.CBreeze.Script
             return new Invocation("New-CBreezeTableKey", fields.Concat(properties));
         }
 
+        public static IEnumerable<Invocation> ToInvocation(this Events events) => events.Select(e => e.ToInvocation());
+
         public static IEnumerable<Invocation> ToInvocation(this Functions functions) => functions.Select(f => f.ToInvocation());
 
         public static Invocation ToInvocation(this Function function) => new Invocation($"New-CBreeze{function.FunctionType()}", function.ToParameters());
+
+        public static Invocation ToInvocation(this Event @event) => new Invocation("New-CBreezeEvent", @event.ToParameters());
 
         public static Invocation ToInvocation(this Parameter parameter) => new Invocation($"New-CBreeze{parameter.Type}Parameter", parameter.ToParameters());
 

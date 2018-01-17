@@ -115,6 +115,7 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("Dimensions", r.Dimensions);
                     yield return new SimpleParameter("SubType", r.SubType);
                     yield return new SwitchParameter("Temporary", r.Temporary);
+                    yield return new SimpleParameter("SecurityFiltering", r.SecurityFiltering);
                     break;
 
                 case ReportVariable r:
@@ -179,7 +180,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ID", pageAction.ID);
 
             yield return new ScriptBlockParameter(
-                "SubObjects", 
+                "SubObjects",
                 pageAction.Properties.RunPageLink.ToInvocations().Concat(
                     pageAction.Properties.RunPageView.TableFilter.ToInvocations()));
 
@@ -227,7 +228,9 @@ namespace UncommonSense.CBreeze.Script
         {
             yield return new SimpleParameter("ID", pageControlPart.ID);
 
-            yield return new ScriptBlockParameter("SubObjects", pageControlPart.Properties.SubPageLink.ToInvocations());
+            yield return new ScriptBlockParameter("SubObjects", 
+                pageControlPart.Properties.SubPageLink.ToInvocations()
+                .Concat(pageControlPart.Properties.SubPageView.TableFilter.ToInvocations()));
 
             foreach (var parameter in pageControlPart.AllProperties.WithAValue.SelectMany(p => p.ToParameters("SubPage")))
             {
@@ -245,6 +248,18 @@ namespace UncommonSense.CBreeze.Script
             }
         }
 
+        public static IEnumerable<ParameterBase> ToParameters(this Event @event)
+        {
+            yield return new SimpleParameter("ID", @event.ID);
+            yield return new SimpleParameter("SourceID", @event.SourceID);
+            yield return new SimpleParameter("Name", @event.Name);
+            yield return new SimpleParameter("SourceName", @event.SourceName);
+            yield return new ScriptBlockParameter("SubObjects",
+                @event.Parameters.ToInvocation().Cast<Statement>()
+                .Concat(@event.Variables.ToInvocation())
+                .Concat(@event.CodeLines.ToInvocation()));
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this Function function)
         {
             yield return new SimpleParameter("ID", function.ID);
@@ -256,12 +271,11 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
             yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
             yield return new SwitchParameter("IncludeSender", function.IncludeSender);
+            yield return new SwitchParameter("GlobalVarAccess", function.GlobalVarAccess);
             yield return new ScriptBlockParameter("SubObjects",
-                function.Parameters.Select(
-                    p => p.ToInvocation())
-                        .Concat(function.CodeLines.Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
-                        .Concat(function.Variables.Select(v => v.ToInvocation()))
-                    );
+                function.Parameters.ToInvocation().Cast<Statement>()
+                        .Concat(function.CodeLines.ToInvocation()) // Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
+                        .Concat(function.Variables.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this Parameter parameter)
@@ -306,9 +320,8 @@ namespace UncommonSense.CBreeze.Script
 
                 case RecordParameter r:
                     yield return new SimpleParameter("SubType", r.SubType);
-
-                    if (r.Temporary.GetValueOrDefault(false))
-                        yield return new SwitchParameter("Temporary", r.Temporary);
+                    yield return new SwitchParameter("Temporary", r.Temporary.GetValueOrDefault(false));
+                    yield return new SimpleParameter("SecurityFiltering", r.SecurityFiltering);
                     break;
             }
         }
