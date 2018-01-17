@@ -34,6 +34,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override IEnumerable<PageActionBase> CreateItems()
         {
             var pageActionContainer = new PageActionContainer(0, ID, ContainerType.GetValueOrDefault(Core.PageActionContainerType.ActionItems));
+            pageActionContainer.Properties.CaptionML.Set(CaptionML);
             pageActionContainer.Properties.Description = Description;
             pageActionContainer.Properties.Name = Name;
             pageActionContainer.Properties.ToolTipML.Set(ToolTipML);
@@ -56,6 +57,8 @@ namespace UncommonSense.CBreeze.Automation
 
         }
 
+        [Parameter()] public Hashtable CaptionML { get; set; }
+
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
@@ -65,31 +68,10 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter()]
-        public PageActionContainerType? ContainerType
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public string Name
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Position? Position
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Hashtable ToolTipML { get; set; }
+        [Parameter()] public PageActionContainerType? ContainerType { get; set; } 
+        [Parameter()] public string Description { get; set; } 
+        [Parameter()] public string Name { get; set; } 
+        [Parameter()] public Position? Position { get; set; } 
+        [Parameter()] public Hashtable ToolTipML { get; set; }
     }
 }
