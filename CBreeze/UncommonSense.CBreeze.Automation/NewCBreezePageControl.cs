@@ -69,10 +69,10 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string ShowMandatory { get; set; }
 #endif
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
         public string SourceExpr { get; set; }
 
         [Parameter()] public Style? Style { get; set; }
