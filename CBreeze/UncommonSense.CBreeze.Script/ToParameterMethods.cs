@@ -362,6 +362,10 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("RunObjectID", r.Value.ID);
                     break;
 
+                case PageControlPartTypeProperty p:
+                    // No parameter should be yielded for the part type
+                    break;
+
                 default:
                     yield return new SimpleParameter(property.Name, property.GetValue());
                     break;
