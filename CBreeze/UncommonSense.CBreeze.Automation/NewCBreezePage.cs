@@ -34,6 +34,7 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.Description = Description;
             page.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
             page.Properties.InsertAllowed = NullableBooleanFromSwitch(nameof(InsertAllowed));
+            page.Properties.InstructionalTextML.Set(InstructionalTextML);
             page.Properties.LinksAllowed = NullableBooleanFromSwitch(nameof(LinksAllowed));
             page.Properties.ModifyAllowed = NullableBooleanFromSwitch(nameof(ModifyAllowed));
             page.Properties.MultipleNewLines = NullableBooleanFromSwitch(nameof(MultipleNewLines));
@@ -89,6 +90,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Description { get; set; }
         [Parameter()] public SwitchParameter Editable { get; set; }
         [Parameter()] public SwitchParameter InsertAllowed { get; set; }
+        [Parameter()] public Hashtable InstructionalTextML { get; set; }
         [Parameter()] public SwitchParameter LinksAllowed { get; set; }
         [Parameter()] public SwitchParameter ModifyAllowed { get; set; }
         [Parameter()] public SwitchParameter MultipleNewLines { get; set; }

@@ -55,6 +55,7 @@ namespace UncommonSense.CBreeze.Automation
             groupPageControl.Properties.FreezeColumnID = FreezeColumnID;
             groupPageControl.Properties.IndentationColumnName = IndentationColumnName;
             groupPageControl.Properties.IndentationControls.Set(IndentationControls);
+            groupPageControl.Properties.InstructionalTextML.Set(InstructionalTextML);
             groupPageControl.Properties.Layout = Layout;
             groupPageControl.Properties.ShowAsTree = NullableBooleanFromSwitch(nameof(ShowAsTree));
             groupPageControl.Properties.Visible = Visible;
@@ -104,6 +105,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public PageControlGroupType? GroupType { get; set; }
         [Parameter()] public string IndentationColumnName { get; set; }
         [Parameter()] public string[] IndentationControls { get; set; }
+        [Parameter()] public Hashtable InstructionalTextML { get; set; }
         [Parameter()] public PageControlGroupLayout? Layout { get; set; }
         [Parameter()] public string Name { get; set; }
         [Parameter()] public Position? Position { get; set; }
