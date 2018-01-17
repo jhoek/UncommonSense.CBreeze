@@ -18,9 +18,13 @@ namespace UncommonSense.CBreeze.Script
             foreach (var arg in args)
             {
                 var scriptFileName = Path.ChangeExtension(arg, ".ps1");
+                var outputFileName = Path.ChangeExtension(arg, ".output.txt");
                 var application = ApplicationBuilder.ReadFromFiles(arg);
 
                 File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
+                File.WriteAllText(
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.ps1"),
+                    $"{scriptFileName} | Out-File {outputFileName}");
 
                 var processStartInfo = new ProcessStartInfo()
                 {
