@@ -2,53 +2,44 @@
 # FIXME: Test all NAV versions; perhaps from outside? ~InvokePester BaseAppRoundTrip.Tests.ps1 -Parameters @{Version=2017}
 # FIXME: Path to dlls (AppVeyor vs. local)
 
-function Split-TextFile 
-{
-    param
-    (
-        [Parameter(Mandatory)][string]$Path,
-        [string]$Destination
-    )
-
-    if (-not $Destination)
-    {
-        $Destination = Join-Path -Path (Get-Item -Path $Path).DirectoryName -ChildPath (Get-Item -Path $Path).BaseName
-    }
-
-    if (-not (Test-Path $Destination -PathType Container))
-    {
-        New-Item -Path $Destination -ItemType Directory | Out-Null
-    }
-}
-
 Describe "Base App Roundtrip" {
     BeforeAll {
-        Invoke-WebRequest -Uri https://www.dropbox.com/s/41zo30tllnu8nw0/nl2017_tables.txt?dl=1 -OutFile TestDrive:\nl2017_tables.txt
-        Invoke-WebRequest -Uri https://www.dropbox.com/s/s6a8u9keo41ovkd/nl2017_pages.txt?dl=1 -OutFile TestDrive:\nl2017_pages.txt
+        Write-Host 'Loading System.IO.Compression.FileSystem assembly'
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-        Split-TextFile -Path TestDrive:\nl2017_tables.txt
-        Split-TextFile -Path TestDrive:\nl2017_pages.txt
-
+        Write-Host 'Loading C/Breeze assemblies'
         Add-Type -Path C:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Read\bin\Debug\UncommonSense.CBreeze.Common.dll
         Add-Type -Path C:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Read\bin\Debug\UncommonSense.CBreeze.Core.dll
         Add-Type -Path C:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Read\bin\Debug\UncommonSense.CBreeze.Parse.dll
         Add-Type -Path C:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Read\bin\Debug\UncommonSense.CBreeze.Read.dll
         Add-Type -Path C:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Write\bin\Debug\UncommonSense.CBreeze.Write.dll
+
+        Write-Host 'Creating folders in test drive'
+        New-Item -Path $TestDrive -Name nl2017_tables -ItemType Directory | Out-Null
+
+        Write-Host 'Downloading zipped objects'
+        Invoke-WebRequest -Uri https://www.dropbox.com/s/wx0yhvgryul3mh9/nl2017_tables.zip?dl=1 -OutFile TestDrive:\nl2017_tables.zip
+
+        Write-Host 'Unzipping objects'
+        [System.IO.Compression.ZipFile]::ExtractToDirectory((Join-Path -Path $TestDrive -ChildPath nl2017_tables.zip), (Join-Path -Path $TestDrive -ChildPath nl2017_tables))
     }
 
-    It "Tables C#" -Skip {
-        
-
+    It "Tables C#" {
         $InputPath = Join-Path -Path $TestDrive -ChildPath nl2017_tables
         $OutputPath = Join-Path -Path $TestDrive -ChildPath nl2017_tables_output
         $Application = [UncommonSense.CBreeze.Read.ApplicationBuilder]::ReadFromFolder($InputPath)
-        [UncommonSense.CBreeze.Write.ApplicationWriter]::WriteToFolder($Application, $OutputPath)
+        [UncommonSense.CBreeze.Write.WriteToFolderExtensionMethods]::WriteToFolder($Application, $OutputPath)
 
-        $Differences = Compare-Object `
-            -ReferenceObject (Get-Content -Path $InputPath -Raw) `
-            -DifferenceObject (Get-Content -Path $OutputPath -Raw)
+        Get-ChildItem -Path $OutputPath | ForEach-Object {
+            Write-Host
 
-        $Differences.Length | Should Be 0
+            $Differences = Compare-Object `
+                -ReferenceObject (Get-Content -Path $InputPath -Raw) `
+                -DifferenceObject (Get-Content -Path $OutputPath -Raw)
+
+            $Differences.Length | Should Be 0
+        }
+
     }
 
     It "Pages C#" {
