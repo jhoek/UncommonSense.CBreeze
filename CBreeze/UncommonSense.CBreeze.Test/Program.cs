@@ -15,8 +15,8 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .ReadFromFolder(@"C:\Users\jhoek\Dropbox\BaseAppExports\w12017")
-                .WriteToFolder(@"c:\users\jhoek\Desktop\w12017");
+                .ReadFromFolder(@"C:\Users\jhoek\Dropbox\BaseAppExports\Corrected\nl2017_tables")
+                .WriteToFolder(@"c:\users\jhoek\Desktop\nl2017_tables");
         }
     }
 }
