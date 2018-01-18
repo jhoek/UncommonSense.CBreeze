@@ -18,28 +18,35 @@ Describe "Base App Roundtrip" {
         New-Item -Path $TestDrive -Name nl2017_tables -ItemType Directory | Out-Null
 
         Write-Host 'Downloading zipped objects'
-        Invoke-WebRequest -Uri https://www.dropbox.com/s/wx0yhvgryul3mh9/nl2017_tables.zip?dl=1 -OutFile TestDrive:\nl2017_tables.zip
+        Invoke-WebRequest -Uri https://www.dropbox.com/s/n36284b86rgxpcq/nl2017_tables.zip?dl=1 -OutFile TestDrive:\nl2017_tables.zip
 
         Write-Host 'Unzipping objects'
-        [System.IO.Compression.ZipFile]::ExtractToDirectory((Join-Path -Path $TestDrive -ChildPath nl2017_tables.zip), (Join-Path -Path $TestDrive -ChildPath nl2017_tables))
+        [System.IO.Compression.ZipFile]::ExtractToDirectory((Join-Path -Path $TestDrive -ChildPath nl2017_tables.zip), $TestDrive)
     }
 
     It "Tables C#" {
         $InputPath = Join-Path -Path $TestDrive -ChildPath nl2017_tables
         $OutputPath = Join-Path -Path $TestDrive -ChildPath nl2017_tables_output
+
+        Write-Host "Reading application from folder $InputPath"
         $Application = [UncommonSense.CBreeze.Read.ApplicationBuilder]::ReadFromFolder($InputPath)
+
+        Write-Host "Writing application to folder $OutputPath"
         [UncommonSense.CBreeze.Write.WriteToFolderExtensionMethods]::WriteToFolder($Application, $OutputPath)
 
-        Get-ChildItem -Path $OutputPath | ForEach-Object {
-            Write-Host
+        Get-ChildItem -Path $InputPath | ForEach-Object {
+            $InputFile = $_
 
+            $InputFileName = $InputFile.FullName
+            $OutputFileName = Join-Path -Path $OutputPath -ChildPath $InputFile.Name
+
+            Write-Host "Comparing $InputFileName and $OutputFileName"
             $Differences = Compare-Object `
-                -ReferenceObject (Get-Content -Path $InputPath -Raw) `
-                -DifferenceObject (Get-Content -Path $OutputPath -Raw)
+                -ReferenceObject (Get-Content -Path $InputFileName -Raw) `
+                -DifferenceObject (Get-Content -Path $OutputFileName -Raw)
 
-            $Differences.Length | Should Be 0
+            $Differences | Should Be $null
         }
-
     }
 
     It "Pages C#" {
