@@ -1,6 +1,8 @@
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("UncommonSense.CBreeze.Read")]
 [assembly: AssemblyTitle("C/Breeze Core Library")]
 [assembly: AssemblyDescription("C/Breeze Core Library")]
 [assembly: AssemblyCompany("Jan Hoek")]

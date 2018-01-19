@@ -497,6 +497,7 @@ namespace UncommonSense.CBreeze.Read
                     throw new ArgumentOutOfRangeException("fieldType");
             }
 
+            currentTableField.Container = currentTableFields;
             currentTableField.Enabled = fieldEnabled;
         }
 
