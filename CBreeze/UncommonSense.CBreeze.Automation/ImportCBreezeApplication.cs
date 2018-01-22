@@ -19,45 +19,12 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected List<string> CachedPaths = new List<string>();
 
-        public ImportCBreezeApplication()
-        {
-            ServerName = ".";
-        }
-
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "FromPath")]
-        public string[] Path
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "FromDatabase")]
-        public string DevClientPath
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "FromDatabase")]
-        public string ServerName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "FromDatabase")]
-        public string Database
-        {
-            get;
-            set;
-        }
-
-        [Parameter(ParameterSetName = "FromDatabase")]
-        public string Filter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "FromPath")] public string[] Path { get; set; }
+        [Parameter(ParameterSetName = "FromDatabase")] public string DevClientPath { get; set; }
+        [Parameter(ParameterSetName = "FromDatabase")] public string ServerName { get; set; } = ".";
+        [Parameter(Mandatory = true, ParameterSetName = "FromDatabase")] public string Database { get; set; }
+        [Parameter(ParameterSetName = "FromDatabase")] public string Filter { get; set; }
+        [Parameter()] public SwitchParameter Objects { get; set; }
 
         protected IEnumerable<string> FilesFromCachedPaths()
         {
@@ -93,12 +60,24 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObject(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths()));
+                    WriteObjects(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths()));
                     break;
 
                 case "FromDatabase":
-                    WriteObject(ApplicationExporter.Export(DevClientPath ?? DefaultDevClientPath, ServerName, Database, Filter));
+                    WriteObjects(ApplicationExporter.Export(DevClientPath ?? DefaultDevClientPath, ServerName, Database, Filter));
                     break;
+            }
+        }
+
+        protected void WriteObjects(Application application)
+        {
+            if (Objects)
+            {
+                WriteObject(application.Objects, true);
+            }
+            else
+            {
+                WriteObject(application);
             }
         }
     }
