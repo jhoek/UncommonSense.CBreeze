@@ -172,7 +172,7 @@ namespace UncommonSense.CBreeze.Automation
             dataItemQueryElement.Properties.SQLJoinType = SQLJoinType;
             yield return dataItemQueryElement;
 
-            var variables = new List<PSVariable>() { new PSVariable("Indentation", indentation + 1) };
+            var variables = new List<PSVariable>() { new PSVariable("ElementIndentation", indentation + 1) };
             var childElements = ChildElements?.InvokeWithContext(null, variables).Select(o => o.BaseObject);
 
             dataItemQueryElement.Properties.DataItemTableFilter.AddRange(childElements.OfType<TableFilterLine>());
@@ -238,6 +238,6 @@ namespace UncommonSense.CBreeze.Automation
 
         protected abstract int GetIndentationFromInputObject();
 
-        protected int GetIndentationFromVariable() => (int)GetVariableValue("Indentation", 0);
+        protected int GetIndentationFromVariable() => (int)GetVariableValue("ElementIndentation", 0);
     }
 }

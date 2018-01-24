@@ -136,10 +136,10 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        protected int GetIndentation()
+        protected int? GetIndentation()
         {
             return ParameterSetNames.IsNew(ParameterSetName)
-                ? (int)GetVariableValue("Indentation", 0)
+                ? (int?)GetVariableValue("ActionIndentation", null)
                 : GetParentIndentationLevel() + 1;
         }
 

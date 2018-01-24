@@ -48,8 +48,7 @@ namespace UncommonSense.CBreeze.Automation
         {
             var groupPageControl = new PageControlGroup(ID, GetIndentation(), GroupType);
 
-            // FIXME: Problem: SubObjects can contain both controls and actions. The indentation variable below should apply only to controls.
-            var variables = new List<PSVariable>() { new PSVariable("Indentation", groupPageControl.IndentationLevel + 1) };
+            var variables = new List<PSVariable>() { new PSVariable("ControlIndentation", groupPageControl.IndentationLevel + 1) };
             var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
 
             groupPageControl.Properties.ActionList.AddRange(subObjects.OfType<PageActionBase>());
@@ -78,7 +77,7 @@ namespace UncommonSense.CBreeze.Automation
         protected int GetIndentation()
         {
             return ParameterSetNames.IsNew(ParameterSetName)
-                ? (int)GetVariableValue("Indentation", 0)
+                ? (int)GetVariableValue("ControlIndentation", 0)
                 : GetParentIndentation() + 1;
         }
 

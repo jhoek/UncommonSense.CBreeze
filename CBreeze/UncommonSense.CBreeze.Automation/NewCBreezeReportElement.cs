@@ -40,7 +40,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected int? IndentationLevel => ParameterSetNames.IsNew(ParameterSetName) ? IndentationFromVariable : IndentationFromInputObject;
-        protected int IndentationFromVariable => (int)GetVariableValue("Indentation", 0);
+        protected int IndentationFromVariable => (int)GetVariableValue("ElementIndentation", 0);
         protected int IndentationFromInputObject => InputObject.IndentationLevel.GetValueOrDefault(0) + 1;
 
         [Parameter()] public Hashtable OptionCaptionML { get; set; }
@@ -94,7 +94,7 @@ namespace UncommonSense.CBreeze.Automation
         }
 
         protected int? IndentationLevel => ParameterSetNames.IsNew(ParameterSetName) ? IndentationFromVariable : IndentationFromInputObject;
-        protected int IndentationFromVariable => (int)GetVariableValue("Indentation", 0);
+        protected int IndentationFromVariable => (int)GetVariableValue("ElementIndentation", 0);
 
         protected int IndentationFromInputObject
         {
@@ -132,7 +132,7 @@ namespace UncommonSense.CBreeze.Automation
 
             yield return element;
 
-            var variables = new List<PSVariable>() { new PSVariable("Indentation", element.IndentationLevel + 1) };
+            var variables = new List<PSVariable>() { new PSVariable("ElementIndentation", element.IndentationLevel + 1) };
             var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject);
 
             element.Properties.DataItemTableView.TableFilter.AddRange(subObjects.OfType<TableFilterLine>());

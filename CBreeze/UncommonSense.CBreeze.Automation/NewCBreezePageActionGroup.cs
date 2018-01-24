@@ -73,7 +73,7 @@ namespace UncommonSense.CBreeze.Automation
 
             if (ChildActions != null)
             {
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("ActionIndentation", GetIndentation() + 1) };
 
                 var childActions = ChildActions
                     .InvokeWithContext(null, variables)
@@ -90,7 +90,7 @@ namespace UncommonSense.CBreeze.Automation
         protected int GetIndentation()
         {
             return ParameterSetNames.IsNew(ParameterSetName)
-                ? (int)GetVariableValue("Indentation", 0)
+                ? (int)GetVariableValue("ActionIndentation", 0)
                 : GetParentIndentationLevel() + 1;
         }
 

@@ -43,7 +43,7 @@ namespace UncommonSense.CBreeze.Automation
 
             if (ChildActions != null)
             {
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", 1) };
+                var variables = new List<PSVariable>() { new PSVariable("ActionIndentation", 1) };
                 var childActions = ChildActions
                     .InvokeWithContext(null, variables)
                     .Select(o => o.BaseObject)

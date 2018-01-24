@@ -162,7 +162,7 @@ foreach (var @type in types) {
 
 			if (ChildNodes != null)
 			{
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("NodeIndentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 <# if (@type.Name.Contains("Table")) { #>
@@ -220,7 +220,7 @@ foreach (var @type in types) {
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int)GetVariableValue("Indentation", 0);
+					return (int)GetVariableValue("NodeIndentation", 0);
 
 				default: 
 					return 0;

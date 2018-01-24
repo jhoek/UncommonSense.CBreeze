@@ -49,7 +49,7 @@ namespace UncommonSense.CBreeze.Automation
         protected virtual int GetIndentation()
         {
             return ParameterSetNames.IsNew(ParameterSetName)
-                ? (int)GetVariableValue("Indentation", 0)
+                ? (int)GetVariableValue("ActionIndentation", 0)
                 : GetParentIndentation() + 1;
         }
 

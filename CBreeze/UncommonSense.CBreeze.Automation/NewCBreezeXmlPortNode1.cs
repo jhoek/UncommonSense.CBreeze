@@ -19,9 +19,8 @@ namespace UncommonSense.CBreeze.Automation
 {
 	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortFieldAttribute", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
-	[Alias("FieldAttribute", "Add-CBreezeXmlPortFieldAttribute")]
-
-    public class NewCBreezeXmlPortFieldAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
+	[Alias("FieldAttribute")]
+	public class NewCBreezeXmlPortFieldAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
 	{
 		protected override IEnumerable<XmlPortNode> CreateItems()
 		{
@@ -39,7 +38,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			if (ChildNodes != null)
 			{
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("NodeIndentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 				
@@ -93,7 +92,7 @@ namespace UncommonSense.CBreeze.Automation
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int)GetVariableValue("Indentation", 0);
+					return (int)GetVariableValue("NodeIndentation", 0);
 
 				default: 
 					return 0;
@@ -139,8 +138,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortFieldElement", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
-	[Alias("FieldElement", "Add-CBreezeXmlPortFieldElement")]
-    public class NewCBreezeXmlPortFieldElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
+	[Alias("FieldElement")]
+	public class NewCBreezeXmlPortFieldElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
 	{
 		protected override IEnumerable<XmlPortNode> CreateItems()
 		{
@@ -161,7 +160,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			if (ChildNodes != null)
 			{
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("NodeIndentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 				
@@ -215,7 +214,7 @@ namespace UncommonSense.CBreeze.Automation
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int)GetVariableValue("Indentation", 0);
+					return (int)GetVariableValue("NodeIndentation", 0);
 
 				default: 
 					return 0;
@@ -270,8 +269,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTableAttribute", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
-	[Alias("TableAttribute", "Add-CBreezeXmlPortTableAttribute")]
-    public class NewCBreezeXmlPortTableAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
+	[Alias("TableAttribute")]
+	public class NewCBreezeXmlPortTableAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
 	{
 		protected override IEnumerable<XmlPortNode> CreateItems()
 		{
@@ -296,7 +295,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			if (ChildNodes != null)
 			{
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("NodeIndentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 				xmlPortTableAttribute.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());				
@@ -353,7 +352,7 @@ namespace UncommonSense.CBreeze.Automation
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int)GetVariableValue("Indentation", 0);
+					return (int)GetVariableValue("NodeIndentation", 0);
 
 				default: 
 					return 0;
@@ -418,8 +417,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTableElement", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
-	[Alias("TableElement", "Add-CBreezeXmlPortTableElement")]
-    public class NewCBreezeXmlPortTableElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
+	[Alias("TableElement")]
+	public class NewCBreezeXmlPortTableElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
 	{
 		protected override IEnumerable<XmlPortNode> CreateItems()
 		{
@@ -446,7 +445,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			if (ChildNodes != null)
 			{
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("NodeIndentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 				xmlPortTableElement.Properties.LinkFields.AddRange(childNodes.OfType<LinkField>());				
@@ -503,7 +502,7 @@ namespace UncommonSense.CBreeze.Automation
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int)GetVariableValue("Indentation", 0);
+					return (int)GetVariableValue("NodeIndentation", 0);
 
 				default: 
 					return 0;
@@ -574,8 +573,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTextAttribute", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
-	[Alias("TextAttribute", "Add-CBreezeXmlPortTextAttribute")]
-    public class NewCBreezeXmlPortTextAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
+	[Alias("TextAttribute")]
+	public class NewCBreezeXmlPortTextAttribute : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
 	{
 		protected override IEnumerable<XmlPortNode> CreateItems()
 		{
@@ -591,7 +590,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			if (ChildNodes != null)
 			{
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("NodeIndentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 				
@@ -645,7 +644,7 @@ namespace UncommonSense.CBreeze.Automation
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int)GetVariableValue("Indentation", 0);
+					return (int)GetVariableValue("NodeIndentation", 0);
 
 				default: 
 					return 0;
@@ -679,8 +678,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeXmlPortTextElement", DefaultParameterSetName=ParameterSetNames.NewWithoutID)]
 	[OutputType(typeof(XmlPortNode))]
-	[Alias("TextElement", "Add-CBreezeXmlPortTextElement")]
-    public class NewCBreezeXmlPortTextElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
+	[Alias("TextElement")]
+	public class NewCBreezeXmlPortTextElement : NewItemWithIDAndNameCmdlet<XmlPortNode, Guid, PSObject>
 	{
 		protected override IEnumerable<XmlPortNode> CreateItems()
 		{
@@ -699,7 +698,7 @@ namespace UncommonSense.CBreeze.Automation
 
 			if (ChildNodes != null)
 			{
-                var variables = new List<PSVariable>() { new PSVariable("Indentation", GetIndentation() + 1) };
+                var variables = new List<PSVariable>() { new PSVariable("NodeIndentation", GetIndentation() + 1) };
 				var childNodes = ChildNodes.InvokeWithContext(null, variables).Select(c => c.BaseObject);
 
 				
@@ -753,7 +752,7 @@ namespace UncommonSense.CBreeze.Automation
 					
 				case ParameterSetNames.NewWithID:
 				case ParameterSetNames.NewWithoutID:
-					return (int)GetVariableValue("Indentation", 0);
+					return (int)GetVariableValue("NodeIndentation", 0);
 
 				default: 
 					return 0;

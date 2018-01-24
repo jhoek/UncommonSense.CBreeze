@@ -88,7 +88,7 @@ namespace UncommonSense.CBreeze.Automation
         protected int GetIndentation()
         {
             return ParameterSetNames.IsNew(ParameterSetName)
-                ? (int)GetVariableValue("Indentation", 0)
+                ? (int)GetVariableValue("ControlIndentation", 0)
                 : GetParentIndentation() + 1;
         }
 

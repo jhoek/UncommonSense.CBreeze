@@ -45,7 +45,7 @@ namespace UncommonSense.CBreeze.Automation
             containerPageControl.AutoCaption(AutoCaption);
             yield return containerPageControl;
 
-            var variables = new List<PSVariable>() { new PSVariable("Indentation", 1) };
+            var variables = new List<PSVariable>() { new PSVariable("ControlIndentation", 1) };
             var subObjects = SubObjects?
                 .InvokeWithContext(null, variables)
                 .Select(o => o.BaseObject)
