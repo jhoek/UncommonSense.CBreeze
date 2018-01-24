@@ -79,8 +79,8 @@ namespace UncommonSense.CBreeze.Automation
             partPageControl.AutoCaption(AutoCaption);
 
             var subObjects = SubObjects?.Invoke().Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
-
             partPageControl.Properties.SubPageLink.AddRange(subObjects.OfType<RunObjectLinkLine>());
+            partPageControl.Properties.SubPageView.TableFilter.AddRange(subObjects.OfType<TableFilterLine>());
 
             yield return partPageControl;
         }
@@ -118,7 +118,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string SubPageViewKey { get; set; }
         [Parameter()] public Order? SubPageViewOrder { get; set; }
         [Parameter()] public SystemPartID? SystemPartID { get; set; }
-        [Parameter()]public Hashtable ToolTipML { get; set; }
+        [Parameter()] public Hashtable ToolTipML { get; set; }
 #if NAV2015
         [Parameter()] public UpdatePropagation? UpdatePropagation { get; set; }
 #endif
