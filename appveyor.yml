@@ -1,0 +1,23 @@
+version: 0.9.{build}
+
+skip_commits:
+  files:
+    - README.md
+
+image: Visual Studio 2017
+
+# FIXME: Enabled assembly info patching
+
+configuration:
+  - Debug
+  - Release
+
+build:
+  project: CBreeze\UncommonSense.CBreeze.sln
+
+test: off 
+
+artifacts:
+  - path: CBreeze\UncommonSense.CBreeze.Automation\bin\Debug
+
+deploy: off
