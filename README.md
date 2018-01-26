@@ -25,6 +25,10 @@ Think of C/Breeze as an API for interacting with NAV object text files. Each and
 <dd>No, not quite, as far as I understand. Microsoft's new AL format is a less fragile, more intuitive to describe C/SIDE objects, but does not include a way to programmatically interact with the code, thus limiting e.g. macro building to simple, static snippets.
 
 And of course, AL could be just another future import/export format for C/Breeze applications! :)</dd>
+<dt>What is the current status of the project?</dt>
+<dd>I want to use AppVeyor or a similar service to automatically test the C# and PowerShell interface on each check-in. The tests should import the NAV base app using the C# and PowerShell interfaces, export it again and compare the exported objects against their original counterparts. A 100% match means that all C/SIDE features used by the NAV base app are implemented correctly in C/CBreeze.
+
+In order to use AppVeyor, C/Breeze needed to be a public repo first.</dd>
 </dl>
 
 ## Design Goals
