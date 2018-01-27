@@ -2,7 +2,7 @@ version: 0.9.0.{build}
 
 init:
   - ps: Get-Module -Name Pester -ListAvailable
-  - ps: Get-Module -Name psake -ListAvaible
+  - ps: Get-Module -Name psake -ListAvailable
 
 skip_commits:
   files:
