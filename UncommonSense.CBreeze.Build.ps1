@@ -1,13 +1,10 @@
-Framework "4.6"
+# Framework "4.6"
 
-# FIXME: Call Update-README.ps1 for Automation project
+Task Default -Depends NAV2017
 
-FormatTaskName {
-    param($TaskName)
-    Write-Host "*** $TaskName" -ForegroundColor Cyan
+Task NAV2017 {
+    
 }
-
-Task default -depends Common, Parse, CopyToModule
 
 Task Common {
     Exec { msbuild C:\users\jhoek\GitHub\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.sln /nologo /m /verbosity:minimal }       
@@ -15,7 +12,6 @@ Task Common {
 
 Task Parse {
     Exec { msbuild C:\users\jhoek\GitHub\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.sln /nologo /m /verbosity:minimal /p:PreBuildEvent= /p:PostBuildEvent= }
-    Exec { & 'C:\Program Files\XmlDoc2CmdletDoc\XmlDoc2CmdletDoc.exe' 'C:\users\jhoek\GitHub\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.Automation\bin\Debug\UncommonSense.CBreeze.Parse.Automation.dll' }
 }
 
 Task CopyToModule {
