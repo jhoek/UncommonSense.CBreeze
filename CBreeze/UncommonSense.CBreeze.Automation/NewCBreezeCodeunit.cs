@@ -27,6 +27,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public CodeunitSubType? SubType { get; set; }
         [Parameter()] [ValidateRange(1, int.MaxValue)] public int? TableNo { get; set; }
         [Parameter()] public TestIsolation? TestIsolation { get; set; }
+#if NAV2017
+        [Parameter()] public TestPermissions? TestPermissions { get; set; }
+#endif
 
         protected override void AddItemToInputObject(Codeunit item, Application inputObject)
         {
@@ -49,6 +52,9 @@ namespace UncommonSense.CBreeze.Automation
             codeunit.Properties.Subtype = SubType;
             codeunit.Properties.TableNo = TableNo;
             codeunit.Properties.TestIsolation = TestIsolation;
+#if NAV2017
+            codeunit.Properties.TestPermissions = TestPermissions;
+#endif
 
             if (OnRun != null)
             {
