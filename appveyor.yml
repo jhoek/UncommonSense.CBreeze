@@ -14,7 +14,8 @@ image: Visual Studio 2017
 configuration:
   - Debug
 
-build_script: ps: Invoke-Psake build1.ps1
+build_script: 
+  - ps: Invoke-Psake build1.ps1
 
 test: off 
 
