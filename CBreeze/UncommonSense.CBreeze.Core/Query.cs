@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
 
@@ -20,13 +17,8 @@ namespace UncommonSense.CBreeze.Core
             Code = new Code(this);
         }
 
-        public override Properties AllProperties
-        {
-            get
-            {
-                return Properties;
-            }
-        }
+        public override Properties AllProperties => Properties;
+        public Application Application => Container?.Application;
 
         public override IEnumerable<INode> ChildNodes
         {
@@ -38,34 +30,11 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
-        {
-            get;
-            protected set;
-        }
-
+        public Code Code { get; protected set; }
         public Queries Container { get; internal set; }
-
-        public QueryElements Elements
-        {
-            get;
-            protected set;
-        }
-
+        public QueryElements Elements { get; protected set; }
         public override INode ParentNode => Container;
-
-        public QueryProperties Properties
-        {
-            get;
-            protected set;
-        }
-
-        public override ObjectType Type
-        {
-            get
-            {
-                return ObjectType.Query;
-            }
-        }
+        public QueryProperties Properties { get; protected set; }
+        public override ObjectType Type => ObjectType.Query;
     }
 }

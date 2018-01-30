@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
 
@@ -23,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
 
         public ActionList Actions => Properties.ActionList;
         public override Properties AllProperties => Properties;
-        public Application Application => Container.Application;
+        public Application Application => Container?.Application;
 
         public override IEnumerable<INode> ChildNodes
         {

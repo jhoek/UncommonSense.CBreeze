@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
 
@@ -8,6 +5,8 @@ namespace UncommonSense.CBreeze.Core
 {
     public class Report : Object, IHasCode
     {
+        public Application Application => Container?.Application;
+
         public Report(string name) : this(0, name)
         {
         }

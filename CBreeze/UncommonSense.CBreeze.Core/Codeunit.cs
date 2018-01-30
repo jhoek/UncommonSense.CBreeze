@@ -24,6 +24,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public Application Application => Container?.Application;
+
         public override IEnumerable<INode> ChildNodes
         {
             get
