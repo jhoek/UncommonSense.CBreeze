@@ -123,6 +123,9 @@ namespace UncommonSense.CBreeze.Automation
             element.Properties.DataItemTableView.Key = DataItemTableViewKey;
             element.Properties.DataItemTableView.Order = DataItemTableViewOrder;
             element.Properties.MaxIteration = MaxIteration;
+            element.Properties.OnPreDataItem.Set(OnPreDataItem);
+            element.Properties.OnAfterGetRecord.Set(OnAfterGetRecord);
+            element.Properties.OnPostDataItem.Set(OnPostDataItem);
             element.Properties.PrintOnlyIfDetail = NullableBooleanFromSwitch(nameof(PrintOnlyIfDetail));
             element.Properties.ReqFilterFields.AddRange(ReqFilterFields);
             element.Properties.ReqFilterHeadingML.Set("ENU", ReqFilterHeading);
@@ -133,7 +136,7 @@ namespace UncommonSense.CBreeze.Automation
             yield return element;
 
             var variables = new List<PSVariable>() { new PSVariable("ElementIndentation", element.IndentationLevel + 1) };
-            var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject);
+            var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
 
             element.Properties.DataItemTableView.TableFilter.AddRange(subObjects.OfType<TableFilterLine>());
 
@@ -156,6 +159,10 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string DataItemTableViewKey { get; set; }
         [Parameter()] public Order? DataItemTableViewOrder { get; set; }
         [Parameter()] [ValidateRange(1, int.MaxValue)] public int? MaxIteration { get; set; }
+
+        [Parameter()] public ScriptBlock OnPreDataItem { get; set; }
+        [Parameter()] public ScriptBlock OnAfterGetRecord { get; set; }
+        [Parameter()] public ScriptBlock OnPostDataItem { get; set; }
 
         [Parameter(ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
