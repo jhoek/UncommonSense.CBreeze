@@ -20,10 +20,9 @@ namespace UncommonSense.CBreeze.Read
         private ActionList currentPageActionList;
         private QueryElements currentQueryElements;
         private XmlPortNodes currentXmlPortNodes;
-        private XmlPortRequestPage currentXmlPortRequestPage;
         private ReportElements currentReportElements;
         private ReportLabels currentReportLabels;
-        private ReportRequestPage currentReportRequestPage;
+        private RequestPage currentRequestPage;
         private RdlData currentRdlData;
 #if NAV2015
         private WordLayout currentWordLayout;
@@ -107,7 +106,7 @@ namespace UncommonSense.CBreeze.Read
                     currentProperties.Push(newReport.Properties);
                     currentReportElements = newReport.Elements;
                     currentReportLabels = newReport.Labels;
-                    currentReportRequestPage = newReport.RequestPage;
+                    currentRequestPage = newReport.RequestPage;
                     currentCode = newReport.Code;
                     currentRdlData = newReport.RdlData;
 #if NAV2015
@@ -128,7 +127,7 @@ namespace UncommonSense.CBreeze.Read
                 case ObjectType.XmlPort:
                     var newXmlPort = application.XmlPorts.Add(new XmlPort(objectID, objectName));
                     currentProperties.Push(newXmlPort.Properties);
-                    currentXmlPortRequestPage = newXmlPort.RequestPage;
+                    currentRequestPage = newXmlPort.RequestPage;
                     currentCode = newXmlPort.Code;
                     currentXmlPortNodes = newXmlPort.Nodes;
                     currentObject = newXmlPort;
@@ -168,8 +167,7 @@ namespace UncommonSense.CBreeze.Read
             currentXmlPortNodes = null;
             currentReportElements = null;
             currentReportLabels = null;
-            currentReportRequestPage = null;
-            currentXmlPortRequestPage = null;
+            currentRequestPage = null;
             currentCode = null;
             currentRdlData = null;
 #if NAV2015
@@ -1475,20 +1473,9 @@ namespace UncommonSense.CBreeze.Read
 
         public override void OnBeginRequestPage()
         {
-            TypeSwitch.Do(
-                currentObject,
-                TypeSwitch.Case<Report>(r =>
-                {
-                    currentProperties.Push(currentReportRequestPage.Properties);
-                    currentPageControls = currentReportRequestPage.Controls;
-                    currentPageActionList = currentReportRequestPage.Actions;
-                }),
-                TypeSwitch.Case<XmlPort>(x =>
-                {
-                    currentProperties.Push(currentXmlPortRequestPage.Properties);
-                    currentPageControls = currentXmlPortRequestPage.Controls;
-                    currentPageActionList = currentXmlPortRequestPage.Actions;
-                }));
+            currentProperties.Push(currentRequestPage.Properties);
+            currentPageControls = currentRequestPage.Controls;
+            currentPageActionList = currentRequestPage.Actions;
         }
 
         public override void OnEndRequestPage()

@@ -1,6 +1,6 @@
 namespace UncommonSense.CBreeze.Core
 {
-    public class XmlPortRequestPageProperties : Properties
+    public class RequestPageProperties : Properties
     {
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");
@@ -32,13 +32,13 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty populateAllFields = new NullableBooleanProperty("PopulateAllFields");
         private NullableBooleanProperty saveValues = new NullableBooleanProperty("SaveValues");
         private NullableBooleanProperty showFilter = new NullableBooleanProperty("ShowFilter");
-        private NullableIntegerProperty sourceTable = new NullableIntegerProperty("SourceTable");
+        private TableReferenceProperty sourceTable = new TableReferenceProperty("SourceTable");
         private NullableBooleanProperty sourceTableTemporary = new NullableBooleanProperty("SourceTableTemporary");
         private TableViewProperty sourceTableView = new TableViewProperty("SourceTableView");
 
-        internal XmlPortRequestPageProperties(XmlPortRequestPage xmlPortRequestPage)
+        internal RequestPageProperties(RequestPage requestPage)
         {
-            XmlPortRequestPage = xmlPortRequestPage;
+            RequestPage = requestPage;
 
             innerList.Add(permissions);
             innerList.Add(editable);
@@ -323,7 +323,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public override INode ParentNode => XmlPortRequestPage;
+        public override INode ParentNode => RequestPage;
 
         public Permissions Permissions
         {
@@ -344,6 +344,8 @@ namespace UncommonSense.CBreeze.Core
                 this.populateAllFields.Value = value;
             }
         }
+
+        public RequestPage RequestPage { get; protected set; }
 
         public bool? SaveValues
         {
@@ -399,11 +401,6 @@ namespace UncommonSense.CBreeze.Core
             {
                 return this.sourceTableView.Value;
             }
-        }
-
-        public XmlPortRequestPage XmlPortRequestPage
-        {
-            get; protected set;
         }
     }
 }

@@ -3,7 +3,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class Report : Object, IHasCode
+    public class Report : Object, IHasCode, IHasRequestPage
     {
         public Application Application => Container?.Application;
 
@@ -16,7 +16,7 @@ namespace UncommonSense.CBreeze.Core
         {
             Properties = new ReportProperties(this);
             Elements = new ReportElements(this);
-            RequestPage = new ReportRequestPage(this);
+            RequestPage = new RequestPage(this);
             Labels = new ReportLabels(this);
             Code = new Code(this);
             RdlData = new RdlData(this);
@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public ReportRequestPage RequestPage
+        public RequestPage RequestPage
         {
             get;
             protected set;

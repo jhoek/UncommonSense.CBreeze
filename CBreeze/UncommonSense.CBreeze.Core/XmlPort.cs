@@ -3,7 +3,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class XmlPort : Object, IHasCode
+    public class XmlPort : Object, IHasCode, IHasRequestPage
     {
         public XmlPort(string name) : this(0, name)
         {
@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Core
         {
             Properties = new XmlPortProperties(this);
             Nodes = new XmlPortNodes(this);
-            RequestPage = new XmlPortRequestPage(this);
+            RequestPage = new RequestPage(this);
             Code = new Code(this);
         }
 
@@ -61,7 +61,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public XmlPortRequestPage RequestPage
+        public RequestPage RequestPage
         {
             get;
             protected set;

@@ -109,13 +109,11 @@
     <Compile Include="WriteToFolderExtensionMethods.cs" />
     <Compile Include="XmlPortNodesWriter.cs" />
     <Compile Include="XmlPortPropertiesWriter.cs" />
-    <Compile Include="XmlPortRequestPagePropertiesWriter.cs" />
-    <Compile Include="XmlPortRequestPageWriter.cs" />
+    <Compile Include="RequestPageWriter.cs" />
     <Compile Include="XmlPortWriter.cs" />
     <Compile Include="ReportPropertiesWriter.cs" />
     <Compile Include="ReportElementsWriter.cs" />
-    <Compile Include="ReportRequestPageWriter.cs" />
-    <Compile Include="ReportRequestPagePropertiesWriter.cs" />
+    <Compile Include="RequestPagePropertiesWriter.cs" />
     <Compile Include="ReportLabelsWriter.cs" />
     <Compile Include="MenuSuitePropertiesWriter.cs" />
     <Compile Include="MenuSuiteNodesWriter.cs" />

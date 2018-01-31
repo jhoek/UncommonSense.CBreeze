@@ -32,42 +32,12 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
-        {
-            get;
-            protected set;
-        }
-
+        public Code Code { get; }
         public Pages Container { get; internal set; }
-
-        public PageControls Controls
-        {
-            get;
-            protected set;
-        }
-
-        public int ObjectID
-        {
-            get
-            {
-                return ID;
-            }
-        }
-
+        public PageControls Controls { get; }
+        public int ObjectID => ID;
         public override INode ParentNode => Container;
-
-        public PageProperties Properties
-        {
-            get;
-            protected set;
-        }
-
-        public override ObjectType Type
-        {
-            get
-            {
-                return ObjectType.Page;
-            }
-        }
+        public PageProperties Properties { get; }
+        public override ObjectType Type => ObjectType.Page;
     }
 }

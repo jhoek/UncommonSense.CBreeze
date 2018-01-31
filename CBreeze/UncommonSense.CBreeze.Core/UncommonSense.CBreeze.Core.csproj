@@ -52,6 +52,7 @@
     <Compile Include="AccessByPermissionObjectType.cs" />
     <Compile Include="AccessByPermissionProperty.cs" />
     <Compile Include="IHasDimensions.cs" />
+    <Compile Include="IHasRequestPage.cs" />
     <Compile Include="PageActionContainerType.cs" />
     <Compile Include="PageActionContainerTypeProperty.cs" />
     <Compile Include="ActionList.cs" />
@@ -409,8 +410,8 @@
     <Compile Include="ReportLabels.cs" />
     <Compile Include="ReportParameter.cs" />
     <Compile Include="ReportProperties.cs" />
-    <Compile Include="ReportRequestPage.cs" />
-    <Compile Include="ReportRequestPageProperties.cs" />
+    <Compile Include="RequestPage.cs" />
+    <Compile Include="RequestPageProperties.cs" />
     <Compile Include="Reports.cs" />
     <Compile Include="ReportVariable.cs" />
     <Compile Include="RootNode.cs" />
@@ -526,8 +527,6 @@
     <Compile Include="XmlPortNodeAndSourceType.cs" />
     <Compile Include="XmlPortParameter.cs" />
     <Compile Include="XmlPortProperties.cs" />
-    <Compile Include="XmlPortRequestPage.cs" />
-    <Compile Include="XmlPortRequestPageProperties.cs" />
     <Compile Include="XmlPorts.cs" />
     <Compile Include="XmlPortTableAttribute.cs" />
     <Compile Include="XmlPortTableAttributeProperties.cs" />
