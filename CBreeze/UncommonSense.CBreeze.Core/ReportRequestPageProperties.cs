@@ -1,8 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace UncommonSense.CBreeze.Core
 {
     public class ReportRequestPageProperties : Properties
@@ -79,10 +74,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAfterGetCurrRecord);
             innerList.Add(actionList);
         }
-
-        public ReportRequestPage ReportRequestPage { get; protected set; }
-
-        public override INode ParentNode => ReportRequestPage;
 
         public ActionList ActionList
         {
@@ -332,6 +323,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public override INode ParentNode => ReportRequestPage;
+
         public Permissions Permissions
         {
             get
@@ -351,6 +344,8 @@ namespace UncommonSense.CBreeze.Core
                 this.populateAllFields.Value = value;
             }
         }
+
+        public ReportRequestPage ReportRequestPage { get; protected set; }
 
         public bool? SaveValues
         {

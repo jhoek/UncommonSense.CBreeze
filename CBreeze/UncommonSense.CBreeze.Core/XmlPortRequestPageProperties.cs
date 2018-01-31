@@ -1,11 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace UncommonSense.CBreeze.Core
 {
-        public class XmlPortRequestPageProperties : Properties
+    public class XmlPortRequestPageProperties : Properties
     {
         private ActionListProperty actionList = new ActionListProperty("ActionList");
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");
@@ -80,12 +75,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(actionList);
         }
 
-        public XmlPortRequestPage XmlPortRequestPage
-        {get; protected set;
-        }
-
-        public override INode ParentNode => XmlPortRequestPage;
-
         public ActionList ActionList
         {
             get
@@ -94,7 +83,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? AutoSplitKey
+        public bool? AutoSplitKey
         {
             get
             {
@@ -114,7 +103,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string CardPageID
+        public string CardPageID
         {
             get
             {
@@ -126,7 +115,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string DataCaptionExpr
+        public string DataCaptionExpr
         {
             get
             {
@@ -146,7 +135,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? DeleteAllowed
+        public bool? DeleteAllowed
         {
             get
             {
@@ -158,7 +147,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -170,7 +159,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Editable
+        public bool? Editable
         {
             get
             {
@@ -182,7 +171,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? InsertAllowed
+        public bool? InsertAllowed
         {
             get
             {
@@ -202,7 +191,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? LinksAllowed
+        public bool? LinksAllowed
         {
             get
             {
@@ -214,7 +203,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? ModifyAllowed
+        public bool? ModifyAllowed
         {
             get
             {
@@ -226,7 +215,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? MultipleNewLines
+        public bool? MultipleNewLines
         {
             get
             {
@@ -334,6 +323,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public override INode ParentNode => XmlPortRequestPage;
+
         public Permissions Permissions
         {
             get
@@ -342,7 +333,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? PopulateAllFields
+        public bool? PopulateAllFields
         {
             get
             {
@@ -354,7 +345,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? SaveValues
+        public bool? SaveValues
         {
             get
             {
@@ -366,7 +357,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? ShowFilter
+        public bool? ShowFilter
         {
             get
             {
@@ -378,7 +369,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public int? SourceTable
+        public int? SourceTable
         {
             get
             {
@@ -390,7 +381,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? SourceTableTemporary
+        public bool? SourceTableTemporary
         {
             get
             {
@@ -408,6 +399,11 @@ namespace UncommonSense.CBreeze.Core
             {
                 return this.sourceTableView.Value;
             }
+        }
+
+        public XmlPortRequestPage XmlPortRequestPage
+        {
+            get; protected set;
         }
     }
 }
