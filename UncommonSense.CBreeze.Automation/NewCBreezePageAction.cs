@@ -59,8 +59,8 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
         [Parameter()] public PageActionScope? Scope { get; set; }
 #endif
-        [Parameter()] public string ShortcutKey { get; set; } 
-        [Parameter()] public Hashtable ToolTipML { get; set; } 
+        [Parameter()] public string ShortcutKey { get; set; }
+        [Parameter()] public Hashtable ToolTipML { get; set; }
         [Parameter()] public string Visible { get; set; }
         [Parameter()] public ScriptBlock SubObjects { get; set; }
 
@@ -77,7 +77,9 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.Description = Description;
             pageAction.Properties.Ellipsis = NullableBooleanFromSwitch(nameof(Ellipsis));
             pageAction.Properties.Enabled = Enabled;
+#if NAV2017
             pageAction.Properties.Gesture = Gesture;
+#endif
             pageAction.Properties.Image = Image;
             pageAction.Properties.InFooterBar = NullableBooleanFromSwitch(nameof(InFooterBar));
             pageAction.Properties.Name = Name;

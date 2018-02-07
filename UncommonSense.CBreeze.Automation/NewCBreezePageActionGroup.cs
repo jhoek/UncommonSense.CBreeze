@@ -11,13 +11,13 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("ActionGroup", "Add-CBreezePageActionGroup")]
     public class NewCBreezePageActionGroup : NewItemWithIDCmdlet<PageActionBase, int, PSObject>
     {
-        [Parameter()] public Hashtable CaptionML { get; set; } 
+        [Parameter()] public Hashtable CaptionML { get; set; }
 
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
         [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-        public ScriptBlock ChildActions { get; set; } 
+        public ScriptBlock ChildActions { get; set; }
 
         [Parameter()] public PageActionContainerType? ContainerType { get; set; }
         [Parameter()] public string Description { get; set; }
@@ -66,7 +66,9 @@ namespace UncommonSense.CBreeze.Automation
             pageActionGroup.Properties.Enabled = Enabled;
             pageActionGroup.Properties.Image = Image;
             pageActionGroup.Properties.Name = Name;
+#if NAV2016
             pageActionGroup.Properties.ToolTipML.Set(ToolTipML);
+#endif
             pageActionGroup.Properties.Visible = Visible;
 
             yield return pageActionGroup;

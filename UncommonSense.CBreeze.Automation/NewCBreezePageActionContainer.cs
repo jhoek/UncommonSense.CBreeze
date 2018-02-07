@@ -37,7 +37,9 @@ namespace UncommonSense.CBreeze.Automation
             pageActionContainer.Properties.CaptionML.Set(CaptionML);
             pageActionContainer.Properties.Description = Description;
             pageActionContainer.Properties.Name = Name;
+#if NAV2016
             pageActionContainer.Properties.ToolTipML.Set(ToolTipML);
+#endif
 
             yield return pageActionContainer;
 
@@ -68,10 +70,10 @@ namespace UncommonSense.CBreeze.Automation
             get; set;
         }
 
-        [Parameter()] public PageActionContainerType? ContainerType { get; set; } 
-        [Parameter()] public string Description { get; set; } 
-        [Parameter()] public string Name { get; set; } 
-        [Parameter()] public Position? Position { get; set; } 
+        [Parameter()] public PageActionContainerType? ContainerType { get; set; }
+        [Parameter()] public string Description { get; set; }
+        [Parameter()] public string Name { get; set; }
+        [Parameter()] public Position? Position { get; set; }
         [Parameter()] public Hashtable ToolTipML { get; set; }
     }
 }

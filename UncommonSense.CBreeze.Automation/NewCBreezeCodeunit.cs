@@ -14,7 +14,7 @@ namespace UncommonSense.CBreeze.Automation
     public class NewCBreezeCodeunit : NewCBreezeObject<Codeunit>
     {
 #if !NAV2016
-        [Parameter()] public SwitchParameter CFrontMayUsePermissions { get; set; } 
+        [Parameter()] public SwitchParameter CFrontMayUsePermissions { get; set; }
 #endif
 
 #if NAV2016
@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Automation
             SetObjectProperties(codeunit);
 
 #if !NAV2016
-            codeunit.Properties.CFRONTMayUsePermissions = InterpretSwitch(nameof(CFrontMayUsePermissions));
+            codeunit.Properties.CFRONTMayUsePermissions = NullableBooleanFromSwitch(nameof(CFrontMayUsePermissions));
 #endif
 #if NAV2016
             codeunit.Properties.EventSubscriberInstance = EventSubscriberInstance;
