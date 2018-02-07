@@ -6,13 +6,15 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-    public class DefaultLayoutParameter : Parameter
+#if NAV2017
+    public class ObjectTypeParameter : Parameter
     {
-        public DefaultLayoutParameter(string name, bool var = false, int id = 0)
+        public ObjectTypeParameter(string name, bool var = false, int id = 0)
             : base(name, var, id)
         {
         }
 
-        public override ParameterType Type => ParameterType.DefaultLayout;
+        public override ParameterType Type => ParameterType.ObjectType;
     }
+#endif
 }
