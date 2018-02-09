@@ -24,6 +24,11 @@ namespace UncommonSense.CBreeze.Core
         }
 
         /// <summary>
+        /// Resets the property to its uninitialized value.
+        /// </summary>
+        public abstract void Reset();
+
+        /// <summary>
         /// Returns an object containing the property value.
         /// For more type-safe operations, use the Value property instead
         /// </summary>

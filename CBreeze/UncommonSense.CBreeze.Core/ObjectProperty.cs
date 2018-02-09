@@ -26,6 +26,8 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
+        public override void Reset() => Value = null;
+
         public override object GetValue() => Value;
     }
 }

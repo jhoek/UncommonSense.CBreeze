@@ -18,6 +18,8 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public override void Reset() => Value = new T();
+
         public override object GetValue() => Value;
     }
 }

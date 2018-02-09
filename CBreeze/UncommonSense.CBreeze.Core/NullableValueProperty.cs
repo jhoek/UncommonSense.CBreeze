@@ -12,6 +12,8 @@ namespace UncommonSense.CBreeze.Core
         {
         }
 
+        public override void Reset() => Value = null;
+
         public override bool HasValue
         {
             get
