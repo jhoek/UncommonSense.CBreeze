@@ -42,6 +42,18 @@ namespace UncommonSense.CBreeze.Core
             return this;
         }
 
+        public Hashtable AsHashtable()
+        {
+            var result = new Hashtable();
+
+            foreach (var item in innerList)
+            {
+                result.Add(item.Value.LanguageID, item.Value.Value);
+            }
+
+            return result;
+        }
+
         public MultiLanguageValue Set(string languageID, string value)
         {
             // FIXME: Test validity of language ID
