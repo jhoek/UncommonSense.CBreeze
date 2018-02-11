@@ -51,7 +51,5 @@ function ImageNameCompleter {
 
 Register-ArgumentCompleter -ParameterName TableName -ScriptBlock ${function:TableNameCompleter}
 Register-ArgumentCompleter -ParameterName CardPageID -ScriptBlock ${function:PageNameCompleter}
-Register-ArgumentCompleter -ParameterName DrillDownPageID -ScriptBlock ${function:PageNameCompleter}
-Register-ArgumentCompleter -ParameterName LookupPageID -ScriptBlock ${function:PageNameCompleter}
 Register-ArgumentCompleter -CommandName 'New-CBreezePageAction' -ParameterName Image -ScriptBlock ${function:ImageNameCompleter}
 Register-ArgumentCompleter -CommandName 'New-CBreezePageGroup' -ParameterName Image -ScriptBlock ${function:ImageNameCompleter}
