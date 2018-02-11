@@ -2,8 +2,8 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
 {
   OBJECT-PROPERTIES
   {
-    Date=27-09-17;
-    Time=11:32:35;
+    Date=11-02-18;
+    Time=11:48:48;
     Modified=Yes;
     Version List=;
   }
@@ -14,7 +14,7 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
           BEGIN
             OutputFile.TEXTMODE := TRUE;
             OutputFile.WRITEMODE := TRUE;
-            OutputFile.CREATE('c:\users\jhoek\Desktop\BaseApp.txt');
+            OutputFile.CREATE('c:\users\jhoek\Desktop\BaseApp.2017.cs');
 
             OutputFile.WRITE('namespace UncommonSense.CBreeze.Core');
             OutputFile.WRITE('{');
@@ -25,6 +25,7 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
             WriteTableIDs(OutputFile);
             WriteTableNames(OutputFile);
             WritePageIDs(OutputFile);
+            WritePageNames(OutputFile);
             WriteCodeunitIDs(OutputFile);
 
             OutputFile.WRITE('    #endif');
@@ -86,6 +87,24 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
       IF AllObj.FINDSET THEN
         REPEAT
           OutputFile.WRITE(STRSUBSTNO('      public const int %1 = %2;', NormalizeName(AllObj."Object Name"), AllObj."Object ID"));
+        UNTIL AllObj.NEXT = 0;
+
+      OutputFile.WRITE('    }');
+    END;
+
+    LOCAL PROCEDURE WritePageNames@1000000000(VAR OutputFile@1000000000 : File);
+    VAR
+      AllObj@1000000001 : Record 2000000038;
+    BEGIN
+      AllObj.SETRANGE("Object Type", AllObj."Object Type"::Page);
+      AllObj.SETFILTER("Object ID", '<%1|%2', 50000, 59999);
+
+      OutputFile.WRITE('    public static class PageNames');
+      OutputFile.WRITE('    {');
+
+      IF AllObj.FINDSET THEN
+        REPEAT
+          OutputFile.WRITE(STRSUBSTNO('      public const string %1 = @"%2";', NormalizeName(AllObj."Object Name"), AllObj."Object Name"));
         UNTIL AllObj.NEXT = 0;
 
       OutputFile.WRITE('    }');
