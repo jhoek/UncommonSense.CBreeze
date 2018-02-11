@@ -1,4 +1,6 @@
-﻿function TableNameCompleter {
+﻿Add-Type -Path ./UncommonSense.CBreeze.Core.dll
+
+function TableNameCompleter {
     param
     (
         $commandName, 
