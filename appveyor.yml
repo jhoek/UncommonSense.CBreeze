@@ -12,7 +12,7 @@ image: Visual Studio 2017
 # FIXME: Enabled assembly info patching
 
 build_script:
-  - ps: Invoke-Psake build1.ps1
+  - ps: Invoke-Psake build.ps1
 
 test: off
 

@@ -14,3 +14,15 @@ Task -Name Build2017 {
 Task -Name Build2016 {
     Exec { msbuild $SolutionFileName /t:Build /p:"Configuration=$Configuration;DefineConstants="NAV2016; NAV2015; NAV2013R2; NAV2013";PreBuildEvent=;PostBuildEvent=" /v:minimal }
 }
+
+Task -Name Build2015 {
+    Exec { msbuild $SolutionFileName /t:Build /p:"Configuration=$Configuration;DefineConstants="NAV2015; NAV2013R2; NAV2013";PreBuildEvent=;PostBuildEvent=" /v:minimal }
+}
+
+Task -Name Build2013R2 {
+    Exec { msbuild $SolutionFileName /t:Build /p:"Configuration=$Configuration;DefineConstants="NAV2013R2; NAV2013";PreBuildEvent=;PostBuildEvent=" /v:minimal }
+}
+
+Task -Name Build2013 {
+    Exec { msbuild $SolutionFileName /t:Build /p:"Configuration=$Configuration;DefineConstants="NAV2013";PreBuildEvent=;PostBuildEvent=" /v:minimal }
+}
