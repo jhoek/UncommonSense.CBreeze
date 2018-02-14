@@ -12,12 +12,13 @@ image: Visual Studio 2017
 # FIXME: Enabled assembly info patching
 
 configuration:
-  - Debug
+  - Debug,NAV2013
+  - Debug,NAV2013,NAV2013R2
 
-build_script: 
-  - ps: Invoke-Psake build1.ps1
+#build_script:
+#  - ps: Invoke-Psake build1.ps1
 
-test: off 
+test: off
 
 artifacts: off
 
