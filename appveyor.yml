@@ -16,6 +16,7 @@ build_script:
 
 test: off
 
-artifacts: off
+artifacts:
+  - path: UncommonSense.CBreeze.Common\obj\Debug\UncommonSense.CBreeze.Common.NAV2017.dll
 
 deploy: off
