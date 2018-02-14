@@ -31,7 +31,7 @@ function Invoke-MSBuild
     }
 
     Exec { 
-        msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:AssemblyName=$AssemblyFileName /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /verbosity:$Verbosity $ProjectFilePath
+        msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:AssemblyName=$AssemblyFileName /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /property:OutputPath="./Output" /verbosity:$Verbosity $ProjectFilePath
     }
 }
 
