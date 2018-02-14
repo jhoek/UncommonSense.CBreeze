@@ -17,6 +17,6 @@ build_script:
 test: off
 
 artifacts:
-  - path: Output
+  - path: ./CBreeze/Output
 
 deploy: off
