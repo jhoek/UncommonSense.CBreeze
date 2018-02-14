@@ -18,6 +18,6 @@ build_script:
 test: off
 
 artifacts:
-  - path: CBreeze\UncommonSense.CBreeze.Common\obj\Debug\UncommonSense.CBreeze.Common.NAV2017.dll
+  - path: .\Output
 
 deploy: off
