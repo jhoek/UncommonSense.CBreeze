@@ -13,11 +13,10 @@ image: Visual Studio 2017
 
 build_script:
   - ps: Invoke-Psake build.ps1
-  - ps: Get-ChildItem -Recurse
 
 test: off
 
 artifacts:
-  - path: .\Output
+  - path: Output
 
 deploy: off
