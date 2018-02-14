@@ -1,210 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>C/Breeze</title>
-    <link rel="stylesheet" href="cbreeze.css" />
-    <link rel="stylesheet" href="shCore.css" />
-    <link rel="stylesheet" href="shThemeDefault.css"/>
-    <link rel="stylesheet" href="shCBreeze.css"/>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
-    <script src="shCore.js"></script>
-    <script src="shBrushCSharp.js"></script>
-</head>
 <body>
-    <div class="darkgray masthead">
-		<table>
-			<tr>
-				<td>
-			        <h6>uncommon|sense</h6>
-				</td>
-				<td style="text-align: right">
-					<ul class="menu">
-						<li><a href="#core">CBreeze.Core</a></li>
-						<li><a href="#write">CBreeze.Write</a></li>
-						<li><a href="#read">CBreeze.Read</a></li>
-						<li><a href="#downloads">Downloads</a></li>
-						<li><a href="#faq">FAQ</a></li>
-					</ul>
-				</td>
-			</tr>
-		</table>
-    </div>
-
-    <div class="white introducing">
-        <h1>Introducing C/Breeze <span class="warning super">BETA</span></h1>
-        <h2>C/SIDE development will never be the same again</h2>
-        <img src="images/cbreeze.png" style="margin: 0 auto; display: block; border-bottom: 1px solid #eee;" />
-    </div>
-
-    <div class="blue">
-        <div class="container">
-        	<div class="text">
-				<a name="core">
-        		<h3>What if you could script your NAV development work?</h3>
-	            <h2>Introducing the C/Breeze Core library</h2>
-	            	            
-				<p>Think of C/Breeze as an API for interacting with NAV object text files. Each and every aspect of your application's objects, represented by an in-memory tree structure much like e.g. the XMLDOM or HTMLDOM, can be queried and manipulated through C/Breeze Core's members. Any change you can make to your application from NAV's Development Environment can also be made from C/Breeze, but without the manual actions, and therefore completely repeatable.</p></a>
-				
-<pre class="brush: csharp">static void CBreezeCoreDemo()
-{
-	// An instance of the Application class is the root of your C/Breeze application. 
-	// It's the only class you will need to instantiate, and acts as both a container
-	// and a factory for your objects. 
-	var application = new Application();
-	var table = application.Tables.Add(50000, "My Demo Table");
-				
-	var codeField = table.Fields.AddCodeTableField(1, "Code", 10);
-	codeField.Properties.NotBlank = true;
-	codeField.Properties.CaptionML.Add("ENU", codeField.Name);
-				
-	var descriptionField = table.Fields.AddTextTableField(10, "Description", 30);
-	descriptionField.Properties.CaptionML.Add("ENU", descriptionField.Name);
-				
-	table.Properties.DataCaptionFields.AddRange(codeField.Name, descriptionField.Name);
-}</pre>
-					
-            </div>
-        </div>
-    </div>
-
-    <div class="white">
-        <div class="container">
-        	<div class="text">
-				<a name="write">
-				<h3>Sweet. But how will the objects I generated end up in my database?</h3>
-				<h2>Introducing the C/Breeze Write library</h2>
-				
-				<p>Your C/Breeze Core application, clever as it may be, is only a tree of .NET objects in the memory of your computer. In order to enjoy the fruits of your labour, you will need to write the NAV application you've designed to an object text file on disk, so that it can be imported into a NAV database. C/Breeze Write will let you do just that, formatted exactly according to the NAV object text format.</p></a>
-				
-<pre class="brush: csharp">static void CBreezeWriteDemo(string outputFileName)
-{
-	var application = new Application();
-	// ... add objects to your application here ...
-	application.Write(outputFileName);
-}</pre>
-
-          	</div>
-        </div>
-    </div>
-
-	<div class="darkgray">
-    	<div class="container">
-    		<div class="text">
-				<a name="read">
-    			<h3>And what if you don't want to start from scratch?</h3>    			
-    			<h2>Introducing the C/Breeze Read library</h2>
-    			<p>Building a NAV application in C/Breeze from scratch is one thing, but what if you need to make changes to an existing set of objects, e.g. the NAV base application? C/Breeze Read analyses any existing NAV 2013 object text export and builds the C/Breeze Core in-memory tree from it - ready for you to make your changes or run your queries.</p></a>
-    			
-<pre class="brush: csharp">static void CBreezeReaderDemo(string inputFileName, string outputFileName)
-{
-	var application = ApplicationBuilder.FromFile(inputFileName);
-
-    // Now that we've read the objects from our input file, we could do things like:
-	foreach (var table in application.Tables)
-	{
-		// No ENU caption present? Add it!
-		if (!table.Properties.CaptionML.Any(e =&gt; e.LanguageID == "ENU"))
-			table.Properties.CaptionML.Add("ENU", table.Name);
-	}
-
-    // ...and finally write our results back to disk, ready for importing in C/SIDE.
-	application.Write(outputFileName);
-}</pre>
-    			
-    		</div>
-    	</div>
-    </div>
-
-	<div class="white">
+	<div class="blue faq">
 		<div class="container">
 			<div class="text">
-				<a name="downloads">
-				<h2>Downloads</h2>
-				
-				<p>The downloads have been removed temporarily. Building the beta version of C/Breeze has taught me a lot, and I'm working hard on a new version of C/Breeze that will make good use of that newly acquired knowledge. Please check back soon for more info! 
-				
-				<!--
-				<table>
-				<thead>
-				<tr>
-				<th>Name</th>
-				<th>Used for</th>
-				<th>Version</th>
-				<th>Last Updated</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-				<td><a href="UncommonSense.CBreeze.Core.zip">UncommonSense.CBreeze.Core</a></td>
-				<td>Manipulating and querying the in-memory tree representing your application</td>
-				<td>1.00</td>
-				<td>2014.08.10</td>
-				</tr>
-				<tr>
-				<td><a href="UncommonSense.CBreeze.Write.zip">UncommonSense.CBreeze.Write</a></td>
-				<td>Writing a C/Breeze Core in-memory tree to an object text file</td>
-				<td>1.00</td>
-				<td>2014.08.10</td>
-				</tr>
-				<tr>
-				<td><a href="UncommonSense.CBreeze.Read.zip">UncommonSense.CBreeze.Read</a></td>
-				<td>Reading a C/Breeze Core in-memory tree from an object text file</td>
-				<td>1.00 </td>
-				<td>2014.08.10</td>
-				</tr>
-				</tbody>
-				</table>
-				
-				<p><span class="warning">Important note</span> In some Windows versions, you may need to unblock your downloaded dll files before you can use them. In order to do so, open the Properties window for the file in question, and press the Unblock button in the lower right corner of the General tab.</p>
-				-->				
+				<a name="faq">
+					<h2>Frequently Asked Questions</h2>
+
+					<h3>What do I need to be able to use C/Breeze?</h3>
+					<p>What you need is a development or scripting environment that can work with .NET objects. Popular examples include: Microsoft
+						Visual Studio (any edition), Xamarin Studio, Microsoft Windows PowerShell and ScriptCS. Simply reference the appropriate
+						DLLs and you're good to go. If you have some experience in C/SIDE development, the concepts and hierarchy of C/Breeze
+						should be familiar from the very start - they map directly to what you see in Microsoft Dynamics NAV's IDE.</p>
+
+					<h3>Which NAV versions is C/Breeze designed for?</h3>
+					<p>C/Breeze's object model is based on NAV 2013. We intend to further stabilise C/Breeze before adding any NAV 2013 R2
+						features.
+					</p>
+
+					<h3>What else are you working on?</h3>
+					<p>
+						<ul>
+							<li>The UncommonSense.CBreeze.Meta library will provide macros for common development scenarios, such as adding a number
+								series based primary key to a table.</li>
+							<li>The UncommonSense.CBreeze.Model library will allow developers and consultants to build a high-level model of an application,
+								and render that model as a C/SIDE application.</li>
+							<li>The UncommonSense.CBreeze.Fluent library will add a layer on top of C/Breeze Core that will make your application
+								scripts
+								<a href="http://en.wikipedia.org/wiki/Fluent_interface">fluent</a>, i.e. read (almost) like natural English.</li>
+						</ul>
+					</p>
+
+					<h3>How is C/Breeze licensed?</h3>
+					<p>For now, C/Breeze is licensed under the
+						<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial- NoDerivs 3.0 Unported</a> license. If that doesn't work for you, let me
+						know via @uncommonsensenl on Twitter and we'll figure something out.</p>
+
+					<h3>How can I contribute to the C/Breeze project?</h3>
+					<p>If you feel your contribution, in whatever form, could make C/Breeze even better, our Twitter handle is
+						<a href="https://twitter.com/uncommonsensenl">@uncommonsensenl</a>. Let's get in touch! :)</p>
+
+					<h3>Who is this "we" behind C/Breeze?</h3>
+					<p>Well, I guess "we" is really just "
+						<a href="https://www.linkedin.com/in/jhoek">me</a>" :). Navision/Microsoft Dynamics NAV has been my job and hobby for a long time now, and the idea of a scripting
+						API for building C/SIDE applications has been haunting my poor brain for many years. C/Breeze has had many incarnations
+						during that time (in just as many programming languages) - none, however, as elegant, complete and definitive as this
+						one.
+					</p>
+
+					<h3>When I let C/Breeze parse, then write, the W1 2013 application objects, the result is not 100% the same as the original
+						file?
+					</h3>
+					<p>You're right, I noticed it, too. In C/Breeze, like in C/SIDE, each property type has a default value associated with
+						it. If a property has that default value, it will
+						<strong>not</strong> be included when writing the application objects. For most property types, that default value is
+						<em>null</em>: if a string property's value is null, the property will be skipped when exporting the containing object.</p>
+					<p>When I designed C/Breeze, I thought an empty collection would make a sensible default value for collection type properties,
+						such as Permissions (which is a collection of Permission objects). However, it turns out that C/SIDE differentiaties
+						between an uninitialized collection, and an empty collection.</p>
 				</a>
 			</div>
 		</div>
 	</div>
 
-    <div class="blue faq">
-        <div class="container">
-        	<div class="text">
-				<a name="faq">
-	            <h2>Frequently Asked Questions</h2>
-	            
-	            <h3>What do I need to be able to use C/Breeze?</h3>
-	            <p>What you need is a development or scripting environment that can work with .NET objects. Popular examples include: Microsoft Visual Studio (any edition), Xamarin Studio, Microsoft Windows PowerShell and ScriptCS. Simply reference the appropriate DLLs and you're good to go. If you have some experience in C/SIDE development, the concepts and hierarchy of C/Breeze should be familiar from the very start - they map directly to what you see in Microsoft Dynamics NAV's IDE.</p>
-	            	            
-	            <h3>Which NAV versions is C/Breeze designed for?</h3>
-	            <p>C/Breeze's object model is based on NAV 2013. We intend to further stabilise C/Breeze before adding any NAV 2013 R2 features.</p>
-
-				<h3>What else are you working on?</h3>
-				<p>
-				<ul>
-					<li>The UncommonSense.CBreeze.Meta library will provide macros for common development scenarios, such as adding a number series based primary key to a table.</li>
-					<li>The UncommonSense.CBreeze.Model library will allow developers and consultants to build a high-level model of an application, and render that model as a C/SIDE application.</li>
-					<li>The UncommonSense.CBreeze.Fluent library will add a layer on top of C/Breeze Core that will make your application scripts <a href="http://en.wikipedia.org/wiki/Fluent_interface">fluent</a>, i.e. read (almost) like natural English.</li>
-				</ul>
-				</p>
-	            	            
-				<h3>How is C/Breeze licensed?</h3>	                
-	            <p>For now, C/Breeze is licensed under the <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial- NoDerivs 3.0 Unported</a> license. If that doesn't work for you, let me know via @uncommonsensenl on Twitter and we'll figure something out.</p>
-	            
-	            <h3>How can I contribute to the C/Breeze project?</h3>
-	            <p>If you feel your contribution, in whatever form, could make C/Breeze even better, our Twitter handle is <a href="https://twitter.com/uncommonsensenl">@uncommonsensenl</a>. Let's get in touch! :)</p>
-	            
-	            <h3>Who is this "we" behind C/Breeze?</h3>
-	            <p>Well, I guess "we" is really just "<a href="https://www.linkedin.com/in/jhoek">me</a>" :). Navision/Microsoft Dynamics NAV has been my job and hobby for a long time now, and the idea of a scripting API for building C/SIDE applications has been haunting my poor brain for many years. C/Breeze has had many incarnations during that time (in just as many programming languages) - none, however, as elegant, complete and definitive as this one.</p>       
-	            
-	            <h3>When I let C/Breeze parse, then write, the W1 2013 application objects, the result is not 100% the same as the original file?</h3>
-	            <p>You're right, I noticed it, too. In C/Breeze, like in C/SIDE, each property type has a default value associated with it. If a property has that default value, it will <strong>not</strong> be included when writing the application objects. For most property types, that default value is <em>null</em>: if a string property's value is null, the property will be skipped when exporting the containing object.</p>
-	            <p>When I designed C/Breeze, I thought an empty collection would make a sensible default value for collection type properties, such as Permissions (which is a collection of Permission objects). However, it turns out that C/SIDE differentiaties between an uninitialized collection, and an empty collection.</p></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright darkgray">
-    <p>Copyright &copy; 2014 Jan Hoek. All trademarks and registered trademarks are the property of their respective owners.</p>
-    </div>
-    <script type="text/javascript">
-    	SyntaxHighlighter.all();
-    </script>
+	<div class="copyright darkgray">
+		<p>Copyright &copy; 2014 Jan Hoek. All trademarks and registered trademarks are the property of their respective owners.</p>
+	</div>
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>
 </body>
+
 </html>

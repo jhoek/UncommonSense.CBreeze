@@ -1,27 +1,28 @@
 # UncommonSense.CBreeze
+*C# and PowerShell API for the Microsoft Dynamics NAV C/AL object text format*
 
 ## Introduction
 How would you go about changing all present instances of a certain table property in an object text file? Maybe using regular expressions?
 
-Now, how would you go about changing a certain property in all tables in an object text file, but currently the property doesn't have a value? More difficult, but still probably regular expressions!
+Now, how would you go about changing a certain property in all tables in an object text file, but currently the property doesn't have a value? More difficult, but still probably regular expressions, right?
 
-What if that property needs to be set to the value of another property, e.g. the ENU CaptionML must be set equal to the Name?
+What if that property needs to be set to the value of another property, e.g. the ENU CaptionML must be set equal to the Name? Not so easy, eh? 
 
 How would you do similar operations in an XML file? Probably using something like the XMLDOM, right?
 
-*That's why we need a DOM for the NAV object text format.*
+*That's why we need a DOM for the NAV (C/AL) object text format!*
 
-Think of C/Breeze as an API for interacting with NAV object text files. Each and every aspect of your application's objects, represented by an in-memory tree structure much like e.g. the XMLDOM or HTMLDOM, can be queried and manipulated through C/Breeze Core's members. Any change you can make to your application from NAV's Development Environment can also be made from C/Breeze, but without the manual actions, and therefore completely repeatable.
+Think of C/Breeze as an API for interacting with NAV object text files. Each and every aspect of your application's object definitions, represented by an in-memory tree structure much like e.g. the XMLDOM or HTMLDOM, can be queried and manipulated through C/Breeze Core's members. Any design-time change you can make to your application from NAV's Development Environment can also be made from C/Breeze, but without the error-prone manual actions, and therefore completely repeatable.
 
 ## Why use C/Breeze?
-- Script your development work as much as possible
-- Avoid the friction caused by an outdated development environment
-- Focus on the semantics; leave the syntax to C/Breeze
+- Script your development work as much as possible;
+- Avoid the friction caused by a development environment designed over 20 years ago;
+- Focus on the semantics; leave the syntax to C/Breeze;
 - Don't just apply design patterns - automate them!
 
 ## FAQ
 <dl>
-<dt>Isn't this the same as https://github.com/Microsoft/AL?</dt>
+<dt>Wait! Isn't this the same as https://github.com/Microsoft/AL?</dt>
 <dd>No, not quite, as far as I understand. Microsoft's new AL format is a less fragile, more intuitive to describe C/SIDE objects, but does not include a way to programmatically interact with the code, thus limiting e.g. macro building to simple, static snippets.
 And of course, AL could be just another future import/export format for C/Breeze applications! :)</dd>
 
@@ -64,3 +65,6 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 ## Known issues
 ### Objects with a time and no date
 Objects with a time and no date will have 01-01-01 as their date after an import/export cycle. In order to add the object time to the non-existent object date (which are stored together in a single property of type DateTime), the date is initialised to DateTime.MinValue.Date. Separating the Date and Time object properties would probably resolve this.
+
+## Trademarks
+Microsoft, C/SIDE, Microsoft Dynamics, Navision, SQL Server, Visual Studio, Windows, Windows Server, Windows Vista, and/or other Microsoft products or services mentioned herein are trademarks of the Microsoft group of companies.
