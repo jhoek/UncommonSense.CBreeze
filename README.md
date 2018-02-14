@@ -6,7 +6,7 @@ How would you go about changing all present instances of a certain table propert
 
 Now, how would you go about changing a certain property in all tables in an object text file, but currently the property doesn't have a value? More difficult, but still probably regular expressions, right?
 
-What if that property needs to be set to the value of another property, e.g. the ENU CaptionML must be set equal to the Name? Not so easy, eh? 
+What if that property needs to be set to the value of another property, e.g. the ENU CaptionML must be set equal to the Name? Not so easy, eh?
 
 How would you do similar operations in an XML file? Probably using something like the XMLDOM, right?
 
@@ -26,9 +26,17 @@ Think of C/Breeze as an API for interacting with NAV object text files. Each and
 <dd>No, not quite, as far as I understand. Microsoft's new AL format is a less fragile, more intuitive to describe C/SIDE objects, but does not include a way to programmatically interact with the code, thus limiting e.g. macro building to simple, static snippets.
 And of course, AL could be just another future import/export format for C/Breeze applications! :)</dd>
 
+<dt>What do I need to be able to use C/Breeze?</dt>
+<dd>What you need is a development or scripting environment that can work with .NET objects. Popular examples include: Microsoft
+Visual Studio (any edition), Microsoft Windows PowerShell and ScriptCS. In a compiled language, simply reference the appropriate DLLs and you're good to go. In PowerShell, import the UncommonSense.CBreeze.Automation module.
+If you have some experience in C/SIDE development, the concepts and hierarchy of C/Breeze should be familiar from the very start - they map directly to what you see in Microsoft Dynamics NAV's IDE.</dd>
+
 <dt>What is the current status of the project?</dt>
 <dd>I want to use AppVeyor or a similar service to automatically test the C# and PowerShell interface on each check-in. The tests should import the NAV base app using the C# and PowerShell interfaces, export it again and compare the exported objects against their original counterparts. A 100% match means that all C/SIDE features used by the NAV base app are implemented correctly in C/CBreeze.
 In order to use AppVeyor, C/Breeze needed to be a public repo first. Manual tests of the NAV W1 tables went OK. I'm currently working the pages.</dd>
+
+<dt>Which Microsoft Dynamics NAV versions are supported?<dt>
+<dd>Right now, C/Breeze supports versions 2013, 2013 R2, 2015, 2016 and 2017.</dd>
 </dl>
 
 ## Design Goals
@@ -57,7 +65,7 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 - Pester tests for PowerShell functions
 - Automation: make dynamic parameters protected fields instead of properties; combine declaration with initialization
 - Eliminate types derived from e.g. NullableValueProperty; use NullableValueProperty<T> directly
-- See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8. 
+- See https://gist.github.com/jhoek/059f1bafe28d1ee24cb8.
 - A pattern for adding dimension support
 - Leave reading and writing to model.dll
 - DSL for defining application objects
@@ -67,4 +75,4 @@ If type AB and AC derive from type A, type A should have an abstract read-only p
 Objects with a time and no date will have 01-01-01 as their date after an import/export cycle. In order to add the object time to the non-existent object date (which are stored together in a single property of type DateTime), the date is initialised to DateTime.MinValue.Date. Separating the Date and Time object properties would probably resolve this.
 
 ## Trademarks
-Microsoft, C/SIDE, Microsoft Dynamics, Navision, SQL Server, Visual Studio, Windows, Windows Server, Windows Vista, and/or other Microsoft products or services mentioned herein are trademarks of the Microsoft group of companies.
+All trademarks and registered trademarks are the property of their respective owners.
