@@ -49,14 +49,8 @@ Between NAV 2013 and NAV 2013 R2, the KeyGroups property was removed from table 
 
 In other words: the ability to declare properties obsolete may not be as important as it first seems. The C/Breeze Core library should still expose the obsolete property, the parser should still report it, the application builder should still set it, and the writer should still write it. It seems that conditional compilation will be primarily important for *introducing*, not for removing features.
 
-### Keep UncommonSense.CBreeze.Core lean and mean
-Any cleverness like auto-captioning, auto-objectproperties or even auto-assigning (U)IDs (see also below) would unnecessarily complexify UncommonSense.CBreeze.Core, and could always be implemented later as extension methods.
-### Auto-assigned (U)IDs
-(U)IDs are mandatory for items, and should be tested when adding an item to a collection. Auto-assigning (U)IDs complexifies the container code too much. We could aways introduce a (set of) extension method(s) later that will add container items with auto-assigned (U)IDs.
 ### Type property for derived types
 If type AB and AC derive from type A, type A should have an abstract read-only property of an enum type that has B and C as its values. AB and AC should implement the abstract property and return the correct enum value.
-### Why not use hashtable parameters for e.g. multilanguage properties?
-Giving cmdlet `Add-CBreeze{SubObject}` properties of type HashTable for e.g. multilanguage properties would make perfect sense (so: `Add-CBreeze{SubObject} -CaptionML @{'ENU'='Foo';'NLD'='Baz'}`). However, adding multilanguage values to existing *{subobjects}* would still require a call to `Set-CBreezeMLValue`. For consistency's sake, I have decided to require the use of `Set-BreezeMLValue` in both scenarios.
 
 ## To dos and Roadmap
 - Pester tests for PowerShell functions
