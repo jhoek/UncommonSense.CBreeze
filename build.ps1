@@ -21,6 +21,13 @@ function Invoke-MSBuild
     $SolutionFileName = Join-Path -Path $SolutionFolder -ChildPath 'UncommonSense.CBreeze.sln'
     $OutputFolderPath = Join-Path -Path $SolutionFolder -ChildPath "Output/$NAVVersion"
 
+    if (Test-Path -Path $OutputFolderPath) 
+    {
+        Remove-Item -Path $OutputFolderPath -Force -Recurse
+    }
+
+    New-Item -Path $OutputFolderPath -ItemType Directory | Out-Null
+
     $DefineConstants = switch ($NAVVersion)
     {
         'NAV2017' { 'NAV2017 NAV2016 NAV2015 NAV2013R2 NAV2013' }
@@ -31,7 +38,9 @@ function Invoke-MSBuild
     }
 
     Exec {         
-        msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:OutputPath=$OutputFolderPath /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /verbosity:$Verbosity $SolutionFileName
+        # /property:OutputPath=$OutputFolderPath
+        msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /verbosity:$Verbosity $SolutionFileName
+        Copy-Item -Path (Join-Path -Path $SolutionFolder -ChildPath "UncommonSense.CBreeze.Automation/bin/$Configuration/UncommonSense.CBreeze.Automation/*") -Destination $OutputFolderPath -Container
     }
 }
 
