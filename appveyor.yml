@@ -11,14 +11,12 @@ image: Visual Studio 2017
 
 # FIXME: Enabled assembly info patching
 
-configuration:
-  - Debug
+build_script:
+  - ps: Invoke-Psake build.ps1
 
-build_script: 
-  - ps: Invoke-Psake build1.ps1
+test: off
 
-test: off 
-
-artifacts: off
+artifacts:
+  - path: ./CBreeze/Output
 
 deploy: off

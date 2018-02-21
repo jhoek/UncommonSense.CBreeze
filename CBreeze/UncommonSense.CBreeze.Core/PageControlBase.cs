@@ -77,6 +77,8 @@ namespace UncommonSense.CBreeze.Core
 
         public T AddChildPageControl<T>(T child, Position position) where T : PageControlBase
         {
+            child.IndentationLevel = child.IndentationLevel ?? IndentationLevel.GetValueOrDefault(0) + 1;
+
             switch (position)
             {
                 case Position.FirstWithinContainer:

@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Core
 
         public void Insert(int index, string format, params object[] args)
         {
-            Insert(index, string.Format(format, args));
+            base.Insert(index, string.Format(format, args));
         }
     }
 }
