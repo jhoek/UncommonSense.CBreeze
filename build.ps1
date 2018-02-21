@@ -19,7 +19,7 @@ function Invoke-MSBuild
     )   
     
     $SolutionFileName = Join-Path -Path $SolutionFolder -ChildPath 'UncommonSense.CBreeze.sln'
-    $OutputFolderPath = Join-Path -Path $SolutionFolder -ChildPath "Output/$NAVVersion"
+    $OutputFolderPath = Join-Path -Path $SolutionFolder -ChildPath "Output/$NAVVersion/$Configuration"
 
     if (Test-Path -Path $OutputFolderPath) 
     {
