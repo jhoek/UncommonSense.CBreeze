@@ -37,7 +37,9 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
+#if NAV2017
         public TestPermissions? TestPermissions { get; set; }
+#endif
         public TransactionModel? TransactionModel { get; set; }
         public string HandlerFunctions { get; set; } 
         public TestFunctionType? TestFunctionType { get; set; } 

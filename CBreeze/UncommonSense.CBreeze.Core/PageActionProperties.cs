@@ -144,11 +144,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2017
         public Gesture? Gesture
         {
             get => gesture.Value;
             set => gesture.Value = value;
         }
+#endif
 
         public string Image
         {
@@ -230,11 +232,13 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2017
         public bool? PromotedOnly
         {
             get => promotedOnly.Value;
             set => promotedOnly.Value = value;
         }
+#endif
 
         public RunObject RunObject
         {

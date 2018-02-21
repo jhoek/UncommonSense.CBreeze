@@ -6,6 +6,7 @@ using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
+#if NAV2017
     public class DefaultLayoutParameter : Parameter
     {
         public DefaultLayoutParameter(string name, bool var = false, int id = 0)
@@ -15,4 +16,5 @@ namespace UncommonSense.CBreeze.Core
 
         public override ParameterType Type => ParameterType.DefaultLayout;
     }
+#endif
 }
