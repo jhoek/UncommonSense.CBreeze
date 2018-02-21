@@ -18,6 +18,6 @@ build_script:
 test: off
 
 artifacts:
-  - path: ./CBreeze/UncommonSense.CBreeze.Automation/Output
+  - path: ./CBreeze/Output
 
 deploy: off
