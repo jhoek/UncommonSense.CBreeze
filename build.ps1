@@ -23,9 +23,11 @@ function Invoke-MSBuild
 
     if (Test-Path -Path $OutputFolderPath) 
     {
+        Write-Information "Removing output folder $OutputFolderPath"
         Remove-Item -Path $OutputFolderPath -Force -Recurse
     }
 
+    Write-Information "Creating output folder $OutputFolderPath"
     New-Item -Path $OutputFolderPath -ItemType Directory | Out-Null
 
     $DefineConstants = switch ($NAVVersion)
