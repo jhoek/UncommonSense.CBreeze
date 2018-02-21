@@ -200,3 +200,4 @@ UncommonSense.CBreeze.DomBuilder/UncommonSense.CBreeze.DomBuilder.userprefs
 /CBreeze/.vs/UncommonSense.CBreeze/v15/sqlite3/storage.ide
 /CBreeze/.vs/UncommonSense.CBreeze/v15
 *.sqlite
+/CBreeze/Output
