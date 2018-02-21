@@ -226,6 +226,56 @@ protected override IEnumerable<CharParameter> CreateItems()
 	public string Dimensions { get; set; }
 }
 
+[Cmdlet(VerbsCommon.New, "CBreezeClientTypeParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+[OutputType(typeof(ClientTypeParameter))]
+[Alias("ClientTypeParameter", "Add-CBreezeClientTypeParameter")]
+public class NewCBreezeClientTypeParameter : NewItemWithIDAndNameCmdlet<ClientTypeParameter, int, PSObject>
+{
+protected override IEnumerable<ClientTypeParameter> CreateItems()
+	{
+		var clientTypeParameter = new ClientTypeParameter(Name, Var, ID);
+		clientTypeParameter.Dimensions = Dimensions;
+		yield return clientTypeParameter;
+	}
+
+	protected override void AddItemToInputObject(ClientTypeParameter item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+}
+
+[Cmdlet(VerbsCommon.New, "CBreezeDefaultLayoutParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+[OutputType(typeof(DefaultLayoutParameter))]
+[Alias("DefaultLayoutParameter", "Add-CBreezeDefaultLayoutParameter")]
+public class NewCBreezeDefaultLayoutParameter : NewItemWithIDAndNameCmdlet<DefaultLayoutParameter, int, PSObject>
+{
+protected override IEnumerable<DefaultLayoutParameter> CreateItems()
+	{
+		var defaultLayoutParameter = new DefaultLayoutParameter(Name, Var, ID);
+		defaultLayoutParameter.Dimensions = Dimensions;
+		yield return defaultLayoutParameter;
+	}
+
+	protected override void AddItemToInputObject(DefaultLayoutParameter item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+}
+
 [Cmdlet(VerbsCommon.New, "CBreezeFilterPageBuilderParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
 [OutputType(typeof(FilterPageBuilderParameter))]
 [Alias("FilterPageBuilderParameter", "Add-CBreezeFilterPageBuilderParameter")]
@@ -239,6 +289,106 @@ protected override IEnumerable<FilterPageBuilderParameter> CreateItems()
 	}
 
 	protected override void AddItemToInputObject(FilterPageBuilderParameter item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+}
+
+[Cmdlet(VerbsCommon.New, "CBreezeNotificationParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+[OutputType(typeof(NotificationParameter))]
+[Alias("NotificationParameter", "Add-CBreezeNotificationParameter")]
+public class NewCBreezeNotificationParameter : NewItemWithIDAndNameCmdlet<NotificationParameter, int, PSObject>
+{
+protected override IEnumerable<NotificationParameter> CreateItems()
+	{
+		var notificationParameter = new NotificationParameter(Name, Var, ID);
+		notificationParameter.Dimensions = Dimensions;
+		yield return notificationParameter;
+	}
+
+	protected override void AddItemToInputObject(NotificationParameter item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+}
+
+[Cmdlet(VerbsCommon.New, "CBreezeNotificationScopeParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+[OutputType(typeof(NotificationScopeParameter))]
+[Alias("NotificationScopeParameter", "Add-CBreezeNotificationScopeParameter")]
+public class NewCBreezeNotificationScopeParameter : NewItemWithIDAndNameCmdlet<NotificationScopeParameter, int, PSObject>
+{
+protected override IEnumerable<NotificationScopeParameter> CreateItems()
+	{
+		var notificationScopeParameter = new NotificationScopeParameter(Name, Var, ID);
+		notificationScopeParameter.Dimensions = Dimensions;
+		yield return notificationScopeParameter;
+	}
+
+	protected override void AddItemToInputObject(NotificationScopeParameter item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+}
+
+[Cmdlet(VerbsCommon.New, "CBreezeObjectTypeParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+[OutputType(typeof(ObjectTypeParameter))]
+[Alias("ObjectTypeParameter", "Add-CBreezeObjectTypeParameter")]
+public class NewCBreezeObjectTypeParameter : NewItemWithIDAndNameCmdlet<ObjectTypeParameter, int, PSObject>
+{
+protected override IEnumerable<ObjectTypeParameter> CreateItems()
+	{
+		var objectTypeParameter = new ObjectTypeParameter(Name, Var, ID);
+		objectTypeParameter.Dimensions = Dimensions;
+		yield return objectTypeParameter;
+	}
+
+	protected override void AddItemToInputObject(ObjectTypeParameter item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+}
+
+[Cmdlet(VerbsCommon.New, "CBreezeTestPermissionsParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+[OutputType(typeof(TestPermissionsParameter))]
+[Alias("TestPermissionsParameter", "Add-CBreezeTestPermissionsParameter")]
+public class NewCBreezeTestPermissionsParameter : NewItemWithIDAndNameCmdlet<TestPermissionsParameter, int, PSObject>
+{
+protected override IEnumerable<TestPermissionsParameter> CreateItems()
+	{
+		var testPermissionsParameter = new TestPermissionsParameter(Name, Var, ID);
+		testPermissionsParameter.Dimensions = Dimensions;
+		yield return testPermissionsParameter;
+	}
+
+	protected override void AddItemToInputObject(TestPermissionsParameter item, PSObject inputObject)
 	{
 		inputObject.GetParameters().Add(item);	
 	}

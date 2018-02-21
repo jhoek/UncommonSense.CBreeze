@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+﻿<#@ template debug="false" hostspecific="false" language="C#"#>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Management.Automation" #>
 <#@ assembly name="$(Core)\UncommonSense.CBreeze.Core.dll" #>
@@ -56,7 +56,7 @@ namespace UncommonSense.CBreeze.Automation
 			Name = p.Name, 
 			Type = p.PropertyType == typeof(bool?) ? typeof(SwitchParameter) : p.PropertyType,
 			Mandatory = p.Name == "OptionString",
-			Assignment = $"{variableName}.Properties.{p.Name}{GetAssignment(p)};"
+			Assignment = string.Format("{0}.Properties.{1}{2};", variableName, p.Name, GetAssignment(p))
         });
 
 	if (relevantProperties.Any(p => p.Name == "DecimalPlaces"))
@@ -66,13 +66,13 @@ namespace UncommonSense.CBreeze.Automation
 				Name = "DecimalPlacesAtLeast", 
 				Type = typeof(int?),
 				Mandatory = false,
-				Assignment = $"{variableName}.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;"
+				Assignment = string.Format("{0}.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;", variableName)
 			},
 			new {
 				Name = "DecimalPlacesAtMost", 
 				Type = typeof(int?),
 				Mandatory = false,
-				Assignment = $"{variableName}.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;"
+				Assignment = string.Format("{0}.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;", variableName)
 			}
 		};
 
@@ -92,13 +92,13 @@ namespace UncommonSense.CBreeze.Automation
 				Name = "OptionCaptionML",
 				Type = typeof(Hashtable),
 				Mandatory = false,
-				Assignment = $"{variableName}.Properties.OptionCaptionML.Set(OptionCaptionML);"
+				Assignment = string.Format("{0}.Properties.OptionCaptionML.Set(OptionCaptionML);", variableName)
 			},
 			new {
 				Name = "AutoOptionCaption",
 				Type = typeof(SwitchParameter),
 				Mandatory = false,
-				Assignment = $"{crLf}			if (AutoOptionCaption) {crLf}				{variableName}.AutoOptionCaption();"
+				Assignment = string.Format("{0}			if (AutoOptionCaption) {0}				{1}.AutoOptionCaption();", crLf, variableName)
 			}
 		};
 
@@ -114,7 +114,7 @@ namespace UncommonSense.CBreeze.Automation
 				Name = "AccessByPermission",
 				Type= typeof(AccessByPermission),
 				Mandatory = false,
-				Assignment = $"{variableName}.Properties.AccessByPermission.Set(AccessByPermission);"
+				Assignment = string.Format("{0}.Properties.AccessByPermission.Set(AccessByPermission);", variableName)
 			}
 		};
 
