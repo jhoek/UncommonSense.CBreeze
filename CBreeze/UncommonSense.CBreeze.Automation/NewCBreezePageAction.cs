@@ -31,7 +31,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Description { get; set; }
         [Parameter()] public SwitchParameter Ellipsis { get; set; }
         [Parameter()] public string Enabled { get; set; }
+#if NAV2017
         [Parameter()] public Gesture? Gesture { get; set; }
+#endif
 
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -77,7 +79,9 @@ namespace UncommonSense.CBreeze.Automation
             pageAction.Properties.Description = Description;
             pageAction.Properties.Ellipsis = NullableBooleanFromSwitch(nameof(Ellipsis));
             pageAction.Properties.Enabled = Enabled;
+#if NAV2017
             pageAction.Properties.Gesture = Gesture;
+#endif
             pageAction.Properties.Image = Image;
             pageAction.Properties.InFooterBar = NullableBooleanFromSwitch(nameof(InFooterBar));
             pageAction.Properties.Name = Name;

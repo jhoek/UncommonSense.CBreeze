@@ -1,12 +1,10 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
-<#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Debug\UncommonSense.CBreeze.Automation.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="UncommonSense.CBreeze.Automation" #>
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
 <#@ output extension=".cs" #>
 <#
@@ -174,9 +172,9 @@ namespace UncommonSense.CBreeze.Automation
 	} 
 	else
 	{
-		foreach(var parameterSetName in ParameterSetNames.Enumerate())
+		foreach(var parameterSetName in new string[] {"NewWithoutID", "NewWithID", "AddWithoutID", "AddWithID"})
 		{
-			var propertyOffset = ParameterSetNames.WithID(parameterSetName) ? 1 : 0;
+			var propertyOffset = parameterSetName.EndsWith("WithID") ? 1 : 0;
 			var parameterArguments = new List<string>();
 			if (property.Mandatory)
 				{ parameterArguments.Add("Mandatory = true"); }

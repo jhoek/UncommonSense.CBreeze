@@ -50,22 +50,18 @@
   <ItemGroup>
     <Compile Include="CBreezeCmdlet.cs" />
     <Compile Include="DevClientCmdlet.cs" />
+    <Compile Include="NewCBreezeFunction.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCBreezeFunction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewCBreezeMenuSuiteNode.cs" />
     <Compile Include="NewCBreezePageControlContainer.cs" />
     <Compile Include="NewCBreezePageControl.cs" />
     <Compile Include="NewCBreezePageControlGroup.cs" />
     <Compile Include="NewCBreezePageControlPart.cs" />
     <Compile Include="NewCBreezeTableFilter.cs" />
     <Compile Include="NewCBreezeCalcFormulaFilter.cs" />
-    <Compile Include="NewCBreezeFunction1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCBreezeFunction.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewCBreezeMenuSuiteNode1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCBreezeMenuSuiteNode.tt</DependentUpon>
-    </Compile>
     <Compile Include="NewCBreezeParameter.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,17 +81,17 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="NewCBreezeXmlPortNode1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NewCBreezeXmlPortNode.tt</DependentUpon>
-    </Compile>
     <Compile Include="NewCBreezeReportLabel.cs" />
     <Compile Include="NewCBreezeOrderBy.cs" />
     <Compile Include="NewCBreezePageAction.cs" />
     <Compile Include="NewCBreezePageActionContainer.cs" />
     <Compile Include="NewCBreezePageActionGroup.cs" />
     <Compile Include="NewCBreezePageActionSeparator.cs" />
+    <Compile Include="NewCBreezeXmlPortNode.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCBreezeXmlPortNode.tt</DependentUpon>
+    </Compile>
     <Compile Include="NewItemCmdlet.cs" />
     <Compile Include="NewItemWithIDCmdlet.cs" />
     <Compile Include="NewItemWithIDAndNameCmdlet.cs" />
@@ -182,7 +178,7 @@
   <ItemGroup>
     <Content Include="NewCBreezeFunction.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NewCBreezeFunction1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeFunction.cs</LastGenOutput>
     </Content>
     <Content Include="NewCBreezeParameter.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -198,11 +194,13 @@
     </Content>
     <Content Include="NewCBreezeXmlPortNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NewCBreezeXmlPortNode1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeXmlPortNode.cs</LastGenOutput>
     </Content>
     <Content Include="NewCBreezeMenuSuiteNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NewCBreezeMenuSuiteNode1.cs</LastGenOutput>
+      <LastGenOutput>NewCBreezeMenuSuiteNode.cs</LastGenOutput>
+      <Parameters>&lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;
+&lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -219,10 +217,8 @@
     <TransformOnBuild>True</TransformOnBuild>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
-
   <!-- add AFTER import for $(MSBuildToolsPath)\Microsoft.CSharp.targets -->
   <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
-  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

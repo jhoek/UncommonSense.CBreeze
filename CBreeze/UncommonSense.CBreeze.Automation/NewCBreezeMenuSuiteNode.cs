@@ -20,9 +20,8 @@ namespace UncommonSense.CBreeze.Automation
 {
 	[Cmdlet(VerbsCommon.New, "CBreezeDeltaMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(DeltaNode))]
-	[Alias("DeltaNode", "Add-CBreezeDeltaMenuSuiteNode")]
-
-    public class NewCBreezeDeltaMenuSuiteNode : NewItemWithIDCmdlet<DeltaNode, Guid, MenuSuite>
+	[Alias("DeltaNode")]
+	public class NewCBreezeDeltaMenuSuiteNode : NewItemWithIDCmdlet<DeltaNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<DeltaNode> CreateItems() 
 		{
@@ -59,8 +58,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeGroupMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(GroupNode))]
-	[Alias("GroupNode", "Add-CBreezeGroupMenuSuiteNode")]
-    public class NewCBreezeGroupMenuSuiteNode : NewItemWithIDCmdlet<GroupNode, Guid, MenuSuite>
+	[Alias("GroupNode")]
+	public class NewCBreezeGroupMenuSuiteNode : NewItemWithIDCmdlet<GroupNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<GroupNode> CreateItems() 
 		{
@@ -136,10 +135,10 @@ namespace UncommonSense.CBreeze.Automation
 			get; set;
 		}
 
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
 		public Hashtable CaptionML 
 		{
 			get; set;
@@ -149,8 +148,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeItemMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ItemNode))]
-	[Alias("ItemNode", "Add-CBreezeItemMenuSuiteNode")]
-    public class NewCBreezeItemMenuSuiteNode : NewItemWithIDCmdlet<ItemNode, Guid, MenuSuite>
+	[Alias("ItemNode")]
+	public class NewCBreezeItemMenuSuiteNode : NewItemWithIDCmdlet<ItemNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<ItemNode> CreateItems() 
 		{
@@ -222,37 +221,37 @@ namespace UncommonSense.CBreeze.Automation
 			get; set;
 		}
 
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
 		public Hashtable CaptionML 
 		{
 			get; set;
 		}
 
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
 		public String[] ApplicationArea 
 		{
 			get; set;
 		}
 
-		[Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-		[Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
 		public Nullable<MenuItemRunObjectType> RunObjectType 
 		{
 			get; set;
 		}
 
-		[Parameter(Mandatory = true, Position = 4, ParameterSetName = ParameterSetNames.AddWithID)]
-		[Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithoutID)]
-		[Parameter(Mandatory = true, Position = 4, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 4, ParameterSetName = ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 3, ParameterSetName = ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 4, ParameterSetName = ParameterSetNames.AddWithID)]
 		[ValidateRange(1, int.MaxValue)] 
 		public Nullable<Int32> RunObjectID 
 		{
@@ -263,8 +262,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeMenuMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(MenuNode))]
-	[Alias("MenuNode", "Add-CBreezeMenuMenuSuiteNode")]
-    public class NewCBreezeMenuMenuSuiteNode : NewItemWithIDCmdlet<MenuNode, Guid, MenuSuite>
+	[Alias("MenuNode")]
+	public class NewCBreezeMenuMenuSuiteNode : NewItemWithIDCmdlet<MenuNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<MenuNode> CreateItems() 
 		{
@@ -348,10 +347,10 @@ namespace UncommonSense.CBreeze.Automation
 			get; set;
 		}
 
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
-		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
 		public Hashtable CaptionML 
 		{
 			get; set;
@@ -361,8 +360,8 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Cmdlet(VerbsCommon.New, "CBreezeRootMenuSuiteNode", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(RootNode))]
-	[Alias("RootNode", "Add-CBreezeRootMenuSuiteNode")]
-    public class NewCBreezeRootMenuSuiteNode : NewItemWithIDCmdlet<RootNode, Guid, MenuSuite>
+	[Alias("RootNode")]
+	public class NewCBreezeRootMenuSuiteNode : NewItemWithIDCmdlet<RootNode, Guid, MenuSuite>
 	{
 		protected override IEnumerable<RootNode> CreateItems() 
 		{
