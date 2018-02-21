@@ -1,12 +1,10 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="c:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll" #>
-<#@ assembly name="C:\Users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Debug\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.dll" #> 
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="UncommonSense.CBreeze.Automation" #>
 <#@ import namespace="UncommonSense.CBreeze.Core" #>
 <#@ output extension=".cs" #>
 <#
@@ -96,9 +94,9 @@ if (hasDataLength) { arguments.Add("DataLength"); }
 <#	}
 	else
 	{
-		foreach(var parameterSetName in ParameterSetNames.Enumerate())
+		foreach(var parameterSetName in new string[] { "NewWithoutID", "NewWithID", "AddWithoutID", "AddWithID"})
 		{
-			var position = ParameterSetNames.WithID(parameterSetName) ? 3 : 2;
+			var position = parameterSetName.EndsWith("WithID") ? 3 : 2;
 			arguments = new List<string>();
 			if (property.Mandatory) { arguments.Add("Mandatory=true"); } 
 			arguments.Add($"Position={position}");
