@@ -19,7 +19,7 @@ function Invoke-MSBuild
     
     $ProjectFolderPath = Join-Path -Path $SolutionFolder -ChildPath $ProjectName
     $ProjectFilePath = Join-Path -Path $ProjectFolderPath -ChildPath "$ProjectName.csproj"
-    $OutputFolderPath = Join-Path -Path $SolutionFolder -ChildPath Output
+    $OutputFolderPath = Join-Path -Path $SolutionFolder -ChildPath "Output/$NAVVersion"
     $AssemblyFileName = "$ProjectName.$NAVVersion"
 
     $DefineConstants = switch ($NAVVersion)
@@ -31,19 +31,21 @@ function Invoke-MSBuild
         'NAV2013' { 'NAV2013'}
     }
 
-    Exec { 
-        msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:AssemblyName=$AssemblyFileName /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /property:OutputPath=$OutputFolderPath /verbosity:$Verbosity $ProjectFilePath
+    Exec {         
+        msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:AssemblyName=$AssemblyFileName /property:OutputPath=$OutputFolderPath /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /verbosity:$Verbosity $ProjectFilePath
     }
+
+    Copy-Item 
 }
 
 Task -Name Default -Depends Build2017, Build2016
 
 Task -Name Build2017 {
-    Invoke-MSBuild UncommonSense.CBreeze.Common NAV2017
+    Invoke-MSBuild UncommonSense.CBreeze.Automation NAV2017
 }
 
 Task -Name Build2016 {
-    Invoke-MSBuild UncommonSense.CBreeze.Common NAV2016
+    Invoke-MSBuild UncommonSense.CBreeze.Automation NAV2016
 }
 
 <#
