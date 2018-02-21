@@ -80,6 +80,11 @@
       <DependentUpon>NewCBreezeTableField.tt</DependentUpon>
     </Compile>
     <Compile Include="NewCBreezeTableRelationFilter.cs" />
+    <Compile Include="NewCBreezeVariable.cs">
+      <DependentUpon>NewCBreezeVariable.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="NewCBreezeXmlPortNode1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -187,6 +192,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeTableField.cs</LastGenOutput>
     </Content>
+    <Content Include="NewCBreezeVariable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NewCBreezeVariable.cs</LastGenOutput>
+    </Content>
     <Content Include="NewCBreezeXmlPortNode.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCBreezeXmlPortNode1.cs</LastGenOutput>
@@ -200,6 +209,20 @@
   <PropertyGroup>
     <PostBuildEvent>copy $(ProjectDir)manifest.psd1 $(TargetDir)UncommonSense.CBreeze.Automation.psd1</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TransformOnBuild>True</TransformOnBuild>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+  </PropertyGroup>
+
+  <!-- add AFTER import for $(MSBuildToolsPath)\Microsoft.CSharp.targets -->
+  <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
+  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
