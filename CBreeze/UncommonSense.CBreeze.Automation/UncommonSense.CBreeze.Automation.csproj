@@ -221,6 +221,7 @@
 <ItemGroup>  
     <T4ParameterValues Include="core">  
       <Value>$(core)</Value>  
+      <Visible>False</Visible>
     </T4ParameterValues>  
   </ItemGroup>  
   <PropertyGroup>
