@@ -201,3 +201,7 @@ UncommonSense.CBreeze.DomBuilder/UncommonSense.CBreeze.DomBuilder.userprefs
 /CBreeze/.vs/UncommonSense.CBreeze/v15
 *.sqlite
 /CBreeze/Output
+CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeVariable.cs
+CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeMenuSuiteNode.cs
+CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeParameter.cs
+CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeTableField.cs
