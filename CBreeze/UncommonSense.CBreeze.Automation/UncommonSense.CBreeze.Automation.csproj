@@ -217,8 +217,8 @@
   </PropertyGroup>
   <PropertyGroup>  
     <core>$(MSBuildProjectDirectory)\..\UncommonSense.CBreeze.Core\bin\Debug</core>  
-</PropertyGroup> 
-<ItemGroup>  
+  </PropertyGroup> 
+  <ItemGroup>  
     <T4ParameterValues Include="core">  
       <Value>$(core)</Value>  
       <Visible>False</Visible>
