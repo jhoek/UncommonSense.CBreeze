@@ -9,8 +9,8 @@ using UncommonSense.CBreeze.Meta.PageDefinitions;
 namespace UncommonSense.CBreeze.Meta.Cmdlets
 {
     [Cmdlet(VerbsCommon.New, "CardPageDefinition")]
-    [Alias("CardPage")]
-    [OutputType(typeof(CardPageDefinition))]
+    [Alias(new string[] {"CardPage"})]
+    [OutputType(new Type[] {typeof(CardPageDefinition)})]
     public class NewCardPageDefinitionCmdlet : NewPageDefinitionCmdlet<CardPageDefinition>
     {
         protected override void EndProcessing()

@@ -15,7 +15,6 @@ namespace UncommonSense.CBreeze.Meta.PageDefinitions
         {
             var page = new Page(Name ?? entityType.Name);
             page.Properties.PageType = PageType.Card;
-            page.
             // FIXME: page.Properties.CaptionML.Set()
 
                 return page;

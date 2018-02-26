@@ -13,7 +13,6 @@ namespace UncommonSense.CBreeze.Meta.PageDefinitions
         public override Page Render(EntityType entityType)
         {
             var page = new Page(Name ?? entityType.PluralName);
-            page.
 
             return page;
         }

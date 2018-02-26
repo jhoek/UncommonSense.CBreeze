@@ -10,7 +10,7 @@ using UncommonSense.CBreeze.Meta.PageDefinitions;
 namespace UncommonSense.CBreeze.Meta.Cmdlets
 {
     [Cmdlet(VerbsCommon.New, "MasterEntityType")]
-    [Alias("MasterEntityType")]
+    [Alias(new string[] { "MasterEntityType" })]
     public class NewMasterEntityTypeCmdlet : NewSingleTableEntityTypeCmdlet
     {
         protected override void EndProcessing()

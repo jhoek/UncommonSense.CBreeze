@@ -29,7 +29,7 @@ namespace UncommonSense.CBreeze.Meta
             if (scriptBlock == null)
                 return null;
 
-            return new Collection<T>(scriptBlock.Invoke().Select(o => o.BaseObject).Cast<T>().ToList());
+            return new Collection<T>(scriptBlock.Invoke(null).Select(o => o.BaseObject).Cast<T>().ToList());
         }
     }
 }
