@@ -2,7 +2,7 @@ version: 0.9.0.{build}
 
 install:
   - ps: Install-Module psake -Scope CurrentUser -Force
-  - ps: Install-Module VSSetup -Scope CurrentUser -Force
+#  - ps: Install-Module VSSetup -Scope CurrentUser -Force
 
 skip_commits:
   files:
