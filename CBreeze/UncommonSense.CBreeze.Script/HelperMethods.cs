@@ -13,8 +13,11 @@ namespace UncommonSense.CBreeze.Script
         {
             if (function.TestFunctionType.HasValue)
                 return "TestFunction";
+#if NAV2015
             if (function.UpgradeFunctionType.HasValue)
                 return "UpgradeFunction";
+#endif
+#if NAV2016
             if (!function.Event.HasValue)
                 return "Function";
             if (function.Event == EventPublisherSubscriber.Subscriber)
@@ -23,6 +26,9 @@ namespace UncommonSense.CBreeze.Script
                 return "BusinessEventPublisherFunction";
 
             return "IntegrationEventPublisherFunction";
+#else
+            return "Function";
+#endif
         }
 
         public static string Escape(this string text)
