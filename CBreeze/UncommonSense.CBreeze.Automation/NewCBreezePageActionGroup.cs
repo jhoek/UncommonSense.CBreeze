@@ -25,7 +25,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Image { get; set; }
         [Parameter()] public string Name { get; set; }
         [Parameter()] public Position? Position { get; set; }
+#if NAV2016
         [Parameter()] public Hashtable ToolTipML { get; set; }
+#endif
         [Parameter()] public string Visible { get; set; }
 
         protected override void AddItemToInputObject(PageActionBase item, PSObject inputObject)
@@ -66,7 +68,9 @@ namespace UncommonSense.CBreeze.Automation
             pageActionGroup.Properties.Enabled = Enabled;
             pageActionGroup.Properties.Image = Image;
             pageActionGroup.Properties.Name = Name;
+#if NAV2016
             pageActionGroup.Properties.ToolTipML.Set(ToolTipML);
+#endif
             pageActionGroup.Properties.Visible = Visible;
 
             yield return pageActionGroup;
