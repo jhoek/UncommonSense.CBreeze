@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("C/Breeze Read Library")]
-[assembly: AssemblyDescription("C/Breeze Read Library")]
+[assembly: AssemblyTitle("UncommonSense.CBreeze.Read")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan Hoek")]
-[assembly: AssemblyProduct("C/Breeze")]
-[assembly: AssemblyCopyright("Copyright \u00a9 2013 Jan Hoek")]
+[assembly: AssemblyCompany("uncommonsense.nl")]
+[assembly: AssemblyProduct("UncommonSense.CBreeze.Read")]
+[assembly: AssemblyCopyright("Copyright © 2018 Jan Hoek")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

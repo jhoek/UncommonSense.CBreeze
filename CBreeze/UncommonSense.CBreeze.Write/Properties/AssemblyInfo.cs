@@ -2,12 +2,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("C/Breeze Write Library")]
-[assembly: AssemblyDescription("C/Breeze Write Library")]
+[assembly: AssemblyTitle("UncommonSense.CBreeze.Write")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan Hoek")]
-[assembly: AssemblyProduct("C/Breeze")]
-[assembly: AssemblyCopyright("Copyright \u00a9 2013 Jan Hoek")]
+[assembly: AssemblyCompany("uncommonsense.nl")]
+[assembly: AssemblyProduct("UncommonSense.CBreeze.Write")]
+[assembly: AssemblyCopyright("Copyright © 2018 Jan Hoek")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("UncommonSense.CBreeze.Parse.Automation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("uncommonsense.nl")]
 [assembly: AssemblyProduct("UncommonSense.CBreeze.Parse.Automation")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright © 2018 Jan Hoek")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

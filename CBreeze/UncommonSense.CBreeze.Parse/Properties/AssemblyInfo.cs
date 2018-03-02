@@ -3,12 +3,12 @@ using System.Runtime.CompilerServices;
 
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
-[assembly: AssemblyTitle("C/Breeze Parser Library")]
-[assembly: AssemblyDescription("C/Breeze Parser Library")]
+[assembly: AssemblyTitle("UncommonSense.CBreeze.Parse")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan Hoek")]
-[assembly: AssemblyProduct("C/Breeze")]
-[assembly: AssemblyCopyright("Copyright \u00a9 2013 Jan Hoek")]
+[assembly: AssemblyCompany("uncommonsense.nl")]
+[assembly: AssemblyProduct("UncommonSense.CBreeze.Parse")]
+[assembly: AssemblyCopyright("Copyright © 2018 Jan Hoek")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
