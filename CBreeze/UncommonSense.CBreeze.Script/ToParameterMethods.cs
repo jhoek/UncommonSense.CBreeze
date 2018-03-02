@@ -267,13 +267,17 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ID", function.ID);
             yield return new SimpleParameter("Name", function.Name);
             yield return new SwitchParameter("Local", function.Local);
+#if NAV2016
             yield return new SwitchParameter("TryFunction", function.TryFunction);
+#endif
             yield return new SimpleParameter("ReturnValueName", function.ReturnValue.Name);
             yield return new SimpleParameter("ReturnValueType", function.ReturnValue.Type);
             yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
             yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
+#if NAV2016
             yield return new SwitchParameter("IncludeSender", function.IncludeSender);
             yield return new SwitchParameter("GlobalVarAccess", function.GlobalVarAccess);
+#endif
             yield return new ScriptBlockParameter("SubObjects",
                 function.Parameters.ToInvocation().Cast<Statement>()
                         .Concat(function.CodeLines.ToInvocation()) // Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
