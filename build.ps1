@@ -58,7 +58,7 @@ function Invoke-MSBuild
     Move-Item -Path (Join-Path -Path $SolutionFolder -ChildPath "UncommonSense.CBreeze.Automation/bin/$Configuration/UncommonSense.CBreeze.Automation/*") -Destination $OutputFolderPath
 }
 
-Task -Name Default -Depends Build2017, Build2016
+Task -Name Default -Depends Build2017, Build2016, Build2015, Build2013R2, Build2013
 
 Task -Name Build2017 {
     Invoke-MSBuild NAV2017
