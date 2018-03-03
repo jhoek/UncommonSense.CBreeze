@@ -112,7 +112,8 @@ namespace UncommonSense.CBreeze.Automation
 		var newProperties = new[] {
 			new {
 				Name = "AccessByPermission",
-				Type= typeof(AccessByPermission), // FIXME: Hide this from pre-2015 code
+				Type = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a=>a.GetTypes()).Single(t => t.FullName == "UncommonSense.CBreeze.Core.AccessByPermission"),
+				// Type= typeof(AccessByPermission), // FIXME: Hide this from pre-2015 code
 				Mandatory = false,
 				Assignment = string.Format("{0}.Properties.AccessByPermission.Set(AccessByPermission);", variableName)
 			}
