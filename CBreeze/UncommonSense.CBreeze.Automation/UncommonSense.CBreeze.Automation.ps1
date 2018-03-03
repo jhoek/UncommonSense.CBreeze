@@ -1,4 +1,4 @@
-﻿Add-Type -Path ./UncommonSense.CBreeze.Core.dll
+﻿Add-Type -Path (Join-Path -Path $PSScriptRoot -ChildPath UncommonSense.CBreeze.Core.dll)
 
 function TableNameCompleter {
     param
