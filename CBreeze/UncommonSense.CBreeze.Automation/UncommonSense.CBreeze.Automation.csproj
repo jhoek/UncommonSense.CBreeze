@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>7.1</LangVersion>
+    <DocumentationFile>bin\Debug\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -215,15 +216,15 @@
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
-  <PropertyGroup>  
-    <core>$(MSBuildProjectDirectory)\..\UncommonSense.CBreeze.Core\bin\Debug</core>  
-  </PropertyGroup> 
-  <ItemGroup>  
-    <T4ParameterValues Include="core">  
-      <Value>$(core)</Value>  
+  <PropertyGroup>
+    <core>$(MSBuildProjectDirectory)\..\UncommonSense.CBreeze.Core\bin\Debug</core>
+  </PropertyGroup>
+  <ItemGroup>
+    <T4ParameterValues Include="core">
+      <Value>$(core)</Value>
       <Visible>False</Visible>
-    </T4ParameterValues>  
-  </ItemGroup>  
+    </T4ParameterValues>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
