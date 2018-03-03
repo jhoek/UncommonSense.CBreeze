@@ -11,7 +11,6 @@ function Invoke-MSBuild
     param
     (
         [ValidateNotNullOrEmpty()][string]$Target = 'Rebuild',
-        [ValidateNotNullOrEmpty()][string]$Configuration = 'Debug',
         [Parameter(Mandatory, Position = 1)][ValidateSet('NAV2017', 'NAV2016', 'NAV2015', 'NAV2013R2', 'NAV2013')][string]$NAVVersion,
         [Parameter()][string]$PreBuildEvent = '',
         [Parameter()][string]$PostBuildEvent = '',
