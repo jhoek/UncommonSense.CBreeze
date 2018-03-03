@@ -54,7 +54,7 @@ function Invoke-MSBuild
         }
     }
 
-    Exec { msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /verbosity:$Verbosity $SolutionFileName }
+    Exec { msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /p:NoWarn=1591 /verbosity:$Verbosity $SolutionFileName }
     Move-Item -Path (Join-Path -Path $SolutionFolder -ChildPath "UncommonSense.CBreeze.Automation/bin/$Configuration/UncommonSense.CBreeze.Automation/*") -Destination $OutputFolderPath
 }
 
