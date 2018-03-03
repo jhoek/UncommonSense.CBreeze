@@ -41,7 +41,9 @@ namespace UncommonSense.CBreeze.Automation
         protected override IEnumerable<PageControlBase> CreateItems()
         {
             var partPageControl = new PageControlPart(ID, GetIndentation());
+#if NAV2015
             partPageControl.Properties.AccessByPermission.Set(AccessByPermission);
+#endif
 #if NAV2017
             partPageControl.Properties.ApplicationArea.Set(ApplicationArea);
 #endif
@@ -99,7 +101,9 @@ namespace UncommonSense.CBreeze.Automation
                 : 0;
         }
 
+#if NAV2015
         [Parameter()] public AccessByPermission AccessByPermission { get; set; }
+#endif
 #if NAV2017
         [Parameter()] public string[] ApplicationArea { get; set; }
 #endif

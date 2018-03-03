@@ -191,6 +191,7 @@ namespace UncommonSense.CBreeze.Script
             return new Invocation("New-CBreezeCalcFormulaFilter", calcFormulaTableFilterLine.ToParameters());
         }
 
+#if NAV2015
         public static Invocation ToInvocation(this AccessByPermission accessByPermission)
         {
             return new Invocation("New-CBreezeAccessByPermission",
@@ -203,6 +204,7 @@ namespace UncommonSense.CBreeze.Script
                 new SwitchParameter("Execute", accessByPermission.Execute))
             { SuppressTrailingNewLine = true };
         }
+#endif
 
         public static Invocation ToInvocation(this TableKey key)
         {
