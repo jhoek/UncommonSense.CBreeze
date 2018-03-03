@@ -1,7 +1,7 @@
 Framework 4.7
 
 Properties {
-    $Configuration = "Debug"
+    $Configuration = "Release"
     $RootFolder = $psake.build_script_dir
     $SolutionFolder = Join-Path -Path $RootFolder -ChildPath CBreeze
 }
