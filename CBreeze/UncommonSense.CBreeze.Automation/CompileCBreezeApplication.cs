@@ -16,14 +16,26 @@ namespace UncommonSense.CBreeze.Automation
     public class CompileCBreezeApplication : DevClientCmdlet
     {
         /// <summary>
-        /// <para type="description">Defines the set of objects to be compiled</para>
+        /// <para type="description">Sets the set of objects to be compiled</para>
         /// </summary>
         [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0)] public Application Application { get; set; }
 
+        /// <summary>
+        /// <para type="description">Sets the path to the Microsoft Dynamics NAV client (finsql.exe)</para>
+        /// </summary>
         [Parameter()] public string DevClientPath { get; set; }
+
+        /// <summary>
+        /// <para type="description">Sets the Microsoft Dynamics NAV server name</para>
+        /// </summary>
         [Parameter()] public string ServerName { get; set; } = ".";
+
+        /// <summary>
+        /// <para type="description">Sets the Microsoft Dynamics NAV database name</para>
+        /// </summary>
         [Parameter(Mandatory = true)] public string Database { get; set; }
 
+        /// <exlude/>
         protected override void ProcessRecord()
         {
             ApplicationCompiler.Compile(Application, DevClientPath ?? DefaultDevClientPath, ServerName, Database);
