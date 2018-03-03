@@ -26,3 +26,5 @@ artifacts:
   - path: ./CBreeze/Output
 
 deploy: off
+
+on_finish:
