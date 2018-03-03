@@ -28,3 +28,4 @@ artifacts:
 deploy: off
 
 on_finish:
+  - ps: Get-ChildItem . -Recurse
