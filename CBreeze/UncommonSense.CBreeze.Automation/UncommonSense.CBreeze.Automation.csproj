@@ -28,12 +28,13 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\UncommonSense.CBreeze.Automation\</OutputPath>
     <DefineConstants>TRACE;NAV2013R2;NAV2015;NAV2016;NAV2017</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>7.1</LangVersion>
+    <DocumentationFile>bin\Release\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
