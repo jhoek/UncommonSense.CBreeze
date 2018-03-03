@@ -217,7 +217,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <core>$(MSBuildProjectDirectory)\..\UncommonSense.CBreeze.Core\bin\Debug</core>
+    <core>$(MSBuildProjectDirectory)\..\UncommonSense.CBreeze.Core\bin\$(Configuration)</core>
   </PropertyGroup>
   <ItemGroup>
     <T4ParameterValues Include="core">
