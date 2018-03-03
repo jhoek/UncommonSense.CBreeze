@@ -12,8 +12,6 @@ function Invoke-MSBuild
     (
         [ValidateNotNullOrEmpty()][string]$Target = 'Rebuild',
         [Parameter(Mandatory, Position = 1)][ValidateSet('NAV2017', 'NAV2016', 'NAV2015', 'NAV2013R2', 'NAV2013')][string]$NAVVersion,
-        [Parameter()][string]$PreBuildEvent = '',
-        [Parameter()][string]$PostBuildEvent = '',
         [ValidateSet('quiet', 'minimal', 'normal', 'detailed', 'diagnostic')]$Verbosity = 'minimal'
     )
 
@@ -53,7 +51,7 @@ function Invoke-MSBuild
         }
     }
 
-    Exec { msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /property:PreBuildEvent=$PreBuildEvent /property:PostBuildEvent=$PostBuildEvent /p:NoWarn=1591 /verbosity:$Verbosity $SolutionFileName }
+    Exec { msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /p:NoWarn=1591 /verbosity:$Verbosity $SolutionFileName }
     Move-Item -Path (Join-Path -Path $SolutionFolder -ChildPath "UncommonSense.CBreeze.Automation/bin/$Configuration/UncommonSense.CBreeze.Automation/*") -Destination $OutputFolderPath
 }
 
