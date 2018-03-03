@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Core", "UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj", "{B17B9C13-574D-413C-BCBC-6C3239E17BE8}"
 EndProject
@@ -104,8 +104,8 @@ Global
 		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Debug|x86.ActiveCfg = Debug|x86
 		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Debug|x86.Build.0 = Debug|x86
 		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Any CPU.ActiveCfg = Release|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Mixed Platforms.Build.0 = Release|x86
+		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|x86.ActiveCfg = Release|x86
 		{36FFE616-5167-4BB4-AF46-AB69606CBAA5}.Release|x86.Build.0 = Release|x86
 		{BECAB978-D8C6-434F-9701-12E534B78097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
