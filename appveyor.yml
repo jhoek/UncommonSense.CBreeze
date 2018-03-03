@@ -1,7 +1,7 @@
 version: 0.9.0.{build}
 
 install:
-  - ps: Install-Package XmlDoc2CmdletDoc -Version 0.2.10
+  - ps: Install-Package XmlDoc2CmdletDoc -RequiredVersion 0.2.10
   - ps: Install-Module psake -Scope CurrentUser -Force
   - ps: Install-Module VSSetup -Scope CurrentUser -Force
 
