@@ -39,9 +39,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UncommonSense.CBreeze.Core">
-      <HintPath>..\UncommonSense.CBreeze.Core\bin\Debug\UncommonSense.CBreeze.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayParameter.cs" />
@@ -65,6 +62,10 @@
     <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
       <Project>{ade7d762-7efd-4867-8b34-926d64793335}</Project>
       <Name>UncommonSense.CBreeze.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
+      <Project>{b17b9c13-574d-413c-bcbc-6c3239e17be8}</Project>
+      <Name>UncommonSense.CBreeze.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\UncommonSense.CBreeze.Parse\UncommonSense.CBreeze.Parse.csproj">
       <Project>{36ffe616-5167-4bb4-af46-ab69606cbaa5}</Project>
