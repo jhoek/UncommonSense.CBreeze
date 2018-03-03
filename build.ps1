@@ -10,7 +10,7 @@ function Invoke-MSBuild
 {
     param
     (
-        [ValidateNotNullOrEmpty()][string]$Target = 'Rebuild',
+        [ValidateNotNullOrEmpty()][string]$Target = 'Restore,Rebuild',
         [Parameter(Mandatory, Position = 1)][ValidateSet('NAV2017', 'NAV2016', 'NAV2015', 'NAV2013R2', 'NAV2013')][string]$NAVVersion,
         [ValidateSet('quiet', 'minimal', 'normal', 'detailed', 'diagnostic')]$Verbosity = 'minimal'
     )
