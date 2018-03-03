@@ -400,9 +400,11 @@ namespace UncommonSense.CBreeze.Script
                     yield return new ArrayParameter(p.Name, p.Value.ToInvocations());
                     break;
 
+#if NAV2015
                 case AccessByPermissionProperty a:
                     yield return new SimpleParameter(a.Name, a.Value.ToInvocation());
                     break;
+#endif
 
                 case DecimalPlacesProperty d:
                     yield return new SimpleParameter("DecimalPlacesAtLeast", d.Value.AtLeast);
