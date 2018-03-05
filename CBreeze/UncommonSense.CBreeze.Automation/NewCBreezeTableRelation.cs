@@ -16,9 +16,15 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (inputObject.BaseObject)
             {
-                case TableField f: (f.AllProperties["TableRelation"] as TableRelationProperty).Value.Add(item); break;
-                case PageControl c: c.Properties.TableRelation.Add(item); break;
-                default: throw new ArgumentOutOfRangeException("Don't know how to add a table relation to this InputObject."); ;
+                case TableField f:
+                    (f.AllProperties["TableRelation"] as TableRelationProperty).Value.Add(item);
+                    break;
+                case PageControl c:
+                    c.Properties.TableRelation.Add(item);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("Don't know how to add a table relation to this InputObject.");
+                    ;
             }
         }
 
@@ -38,21 +44,8 @@ namespace UncommonSense.CBreeze.Automation
             yield return result;
         }
 
-        [Parameter(Position = 1)]
-        public string FieldName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position = 2)]
-        public ScriptBlock SubObjects { get; set; }
-
-        [Parameter(Mandatory = true, Position = 0)]
-        public string TableName
-        {
-            get;
-            set;
-        }
+        [Parameter(Position = 2)] public string FieldName { get; set; }
+        [Parameter(Position = 3)] public ScriptBlock SubObjects { get; set; }
+        [Parameter(Mandatory = true, Position = 1)] public string TableName { get; set; }
     }
 }
