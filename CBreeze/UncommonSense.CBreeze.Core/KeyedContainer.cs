@@ -30,6 +30,9 @@ namespace UncommonSense.CBreeze.Core
 
         public void AddRange(IEnumerable<TItem> items)
         {
+            if (items == null)
+                return;
+
             foreach (var item in items)
             {
                 Add(item);
