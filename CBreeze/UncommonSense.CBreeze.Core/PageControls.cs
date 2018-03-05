@@ -22,6 +22,8 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
+        public PageControl BySourceExpr(string sourceExpr) => this.OfType<PageControl>().FirstOrDefault(c => c.Properties.SourceExpr == sourceExpr);
+
         public INode ParentNode => Page;
 
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
