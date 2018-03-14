@@ -9,6 +9,35 @@ namespace UncommonSense.CBreeze.Script
 {
     public static class ToParameterMethods
     {
+        public static IEnumerable<ParameterBase> ToParameters(this DataItemReportElement dataItemReportElement)
+        {
+            yield return new SimpleParameter("ID", dataItemReportElement.ID);
+
+            if (!string.IsNullOrEmpty(dataItemReportElement.Name))
+                yield return new SimpleParameter("Name", dataItemReportElement.Name);
+
+            yield break;
+
+            // FIXME: More properties, child elements
+
+            foreach (var parameter in dataItemReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this ColumnReportElement columnReportElement)
+        {
+            yield return new SimpleParameter("ID", columnReportElement.ID);
+            yield return new SimpleParameter("Name", columnReportElement.Name);
+            yield break;
+
+            foreach (var parameter in columnReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this RunObjectLinkLine runObjectLinkLine)
         {
             yield return new SimpleParameter("FieldName", runObjectLinkLine.FieldName);

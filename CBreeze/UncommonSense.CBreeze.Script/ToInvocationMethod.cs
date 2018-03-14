@@ -6,59 +6,10 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Script
 {
-    public static class ToInvocationMethods
+    public static partial class ToInvocationMethod
     {
         public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
 
-        public static Invocation ToInvocation(this Application application)
-        {
-            return new Invocation(
-                "New-CBreezeApplication",
-                new ScriptBlockParameter(
-                    "Objects",
-                    application.Tables.ToInvocation()
-                        .Concat(application.Pages.ToInvocation())
-                )
-            );
-        }
-
-        public static Invocation ToInvocation(this Table table)
-        {
-            IEnumerable<ParameterBase> signature = new[] {
-                new SimpleParameter("ID", table.ID),
-                new SimpleParameter("Name", table.Name)
-            };
-
-            IEnumerable<ParameterBase> objectProperties = table
-                .ObjectProperties
-                .Where(p => p.HasValue)
-                .SelectMany(p => p.ToParameters());
-
-            IEnumerable<ParameterBase> properties = table
-                .Properties
-                .Where(p => p.HasValue)
-                .SelectMany(p => p.ToParameters());
-
-            IEnumerable<ParameterBase> subObjects = new[] {
-                new ScriptBlockParameter(
-                    "SubObjects",
-                    table.Fields.ToInvocation().Cast<Statement>()
-                        .Concat(table.FieldGroups.ToInvocation().Cast<Statement>())
-                        .Concat(table.Keys.ToInvocation().Cast<Statement>())
-                        .Concat(table.Code.Variables.ToInvocation().Cast<Statement>())
-                        .Concat(table.Code.Functions.ToInvocation().Cast<Statement>())
-                        .Concat(table.Code.Events.ToInvocation().Cast<Statement>())
-                        .Concat(table.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
-                )
-            };
-
-            return new Invocation(
-                "New-CBreezeTable",
-                signature
-                    .Concat(objectProperties)
-                    .Concat(properties)
-                    .Concat(subObjects));
-        }
 
         public static Invocation ToInvocation(this Page page)
         {
@@ -99,10 +50,6 @@ namespace UncommonSense.CBreeze.Script
                     .Concat(subObjects)
             );
         }
-
-        public static IEnumerable<Invocation> ToInvocation(this Tables tables) => tables.Select(t => t.ToInvocation());
-
-        public static IEnumerable<Invocation> ToInvocation(this Pages pages) => pages.Select(p => p.ToInvocation());
 
         public static Invocation ToInvocation(this TableField field) => new Invocation($"New-CBreeze{field.Type}TableField", field.ToParameters());
 

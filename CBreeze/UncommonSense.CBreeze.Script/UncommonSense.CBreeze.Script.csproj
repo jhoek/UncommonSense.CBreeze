@@ -44,6 +44,7 @@
     <Compile Include="ArrayParameter.cs" />
     <Compile Include="HelperMethods.cs" />
     <Compile Include="Invocation.cs" />
+    <Compile Include="ToInvocationMethod.Report.cs" />
     <Compile Include="Literal.cs" />
     <Compile Include="ParameterBase.cs" />
     <Compile Include="Program.cs" />
@@ -52,7 +53,9 @@
     <Compile Include="SimpleParameter.cs" />
     <Compile Include="Statement.cs" />
     <Compile Include="SwitchParameter.cs" />
-    <Compile Include="ToInvocationMethods.cs" />
+    <Compile Include="ToInvocationMethod.Application.cs" />
+    <Compile Include="ToInvocationMethod.cs" />
+    <Compile Include="ToInvocationMethod.Table.cs" />
     <Compile Include="ToParameterMethods.cs" />
   </ItemGroup>
   <ItemGroup>
