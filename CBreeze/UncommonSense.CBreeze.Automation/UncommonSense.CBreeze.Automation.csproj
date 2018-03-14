@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCBreezeMenuSuiteNode.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewCBreezeObjectWithRequestPage.cs" />
     <Compile Include="NewCBreezePageControlContainer.cs" />
     <Compile Include="NewCBreezePageControl.cs" />
     <Compile Include="NewCBreezePageControlGroup.cs" />

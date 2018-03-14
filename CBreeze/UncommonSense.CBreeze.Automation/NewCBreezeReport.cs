@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeReport", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(Report))]
     [Alias("Report", "Add-CBreezeReport")]
-    public class NewCBreezeReport : NewCBreezeObject<Report>
+    public class NewCBreezeReport : NewCBreezeObjectWithRequestPage<Report>
     {
 #if NAV2015
         [Parameter()] public DefaultLayout? DefaultLayout { get; set; }
@@ -77,6 +77,8 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
             report.Properties.WordMergeDataItem = WordMergeDataItem;
 #endif
+
+            ProcessRequestPage(report);
 
             if (AutoCaption)
                 report.AutoCaption();

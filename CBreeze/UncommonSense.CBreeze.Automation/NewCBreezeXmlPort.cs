@@ -9,7 +9,7 @@ namespace UncommonSense.CBreeze.Automation
     [Cmdlet(VerbsCommon.New, "CBreezeXmlPort", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(XmlPort))]
     [Alias("XmlPort", "Add-CBreezeXmlPort")]
-    public class NewCBreezeXmlPort : NewCBreezeObject<XmlPort>
+    public class NewCBreezeXmlPort : NewCBreezeObjectWithRequestPage<XmlPort>
     {
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
@@ -66,6 +66,8 @@ namespace UncommonSense.CBreeze.Automation
             xmlPort.Properties.UseLax = NullableBooleanFromSwitch(nameof(UseLax));
             xmlPort.Properties.UseRequestPage = NullableBooleanFromSwitch(nameof(UseRequestPage));
             xmlPort.Properties.XmlVersionNo = XmlVersionNo;
+
+            ProcessRequestPage(xmlPort);
 
             if (AutoCaption)
                 xmlPort.AutoCaption();
