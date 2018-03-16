@@ -33,7 +33,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -56,16 +56,16 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public String SubType { get; set; }
+		public String SubType { get; set; } 
 
 		[Parameter()]
-		public SwitchParameter WithEvents { get; set; }
+		public SwitchParameter WithEvents { get; set; } 
 
 	}
 
@@ -87,7 +87,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -109,7 +109,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -134,10 +134,10 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Position=3, ParameterSetName="AddWithID")]
-		public Int32 DataLength { get; set; }
+		public Int32 DataLength { get; set; } 
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -160,10 +160,10 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public SwitchParameter IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; } 
 
 	}
 
@@ -185,7 +185,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -207,7 +207,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -229,7 +229,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -251,7 +251,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -273,7 +273,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -295,7 +295,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -317,7 +317,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -339,7 +339,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -361,7 +361,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -383,13 +383,13 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Int32 SubType { get; set; }
+		public Int32 SubType { get; set; } 
 
 	}
 
@@ -415,13 +415,13 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Position=3, ParameterSetName="AddWithID")]
-		public Int32 DataLength { get; set; }
+		public Int32 DataLength { get; set; } 
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public SwitchParameter IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; } 
 
 	}
 
@@ -443,7 +443,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -465,7 +465,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -487,7 +487,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -509,7 +509,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -531,7 +531,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -555,19 +555,19 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public SwitchParameter RunOnClient { get; set; }
+		public SwitchParameter RunOnClient { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public String SubType { get; set; }
+		public String SubType { get; set; } 
 
 		[Parameter()]
-		public SwitchParameter WithEvents { get; set; }
+		public SwitchParameter WithEvents { get; set; } 
 
 	}
 
@@ -589,7 +589,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -611,7 +611,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -633,7 +633,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -655,7 +655,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -677,7 +677,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -699,7 +699,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -721,7 +721,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -743,7 +743,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -766,10 +766,10 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public SwitchParameter IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; } 
 
 	}
 
@@ -791,7 +791,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -813,13 +813,13 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public String SubType { get; set; }
+		public String SubType { get; set; } 
 
 	}
 
@@ -842,13 +842,13 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Position=3, ParameterSetName="AddWithID")]
-		public String OptionString { get; set; }
+		public String OptionString { get; set; } 
 
 	}
 
@@ -870,7 +870,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -892,13 +892,13 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Int32 SubType { get; set; }
+		public Int32 SubType { get; set; } 
 
 	}
 
@@ -921,16 +921,16 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public Nullable<QuerySecurityFiltering> SecurityFiltering { get; set; }
+		public Nullable<QuerySecurityFiltering> SecurityFiltering { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Int32 SubType { get; set; }
+		public Int32 SubType { get; set; } 
 
 	}
 
@@ -952,7 +952,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -975,10 +975,10 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public Nullable<RecordSecurityFiltering> SecurityFiltering { get; set; }
+		public Nullable<RecordSecurityFiltering> SecurityFiltering { get; set; } 
 
 	}
 
@@ -1002,19 +1002,19 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public Nullable<RecordSecurityFiltering> SecurityFiltering { get; set; }
+		public Nullable<RecordSecurityFiltering> SecurityFiltering { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Int32 SubType { get; set; }
+		public Int32 SubType { get; set; } 
 
 		[Parameter()]
-		public Boolean Temporary { get; set; }
+		public SwitchParameter Temporary { get; set; } 
 
 	}
 
@@ -1036,13 +1036,13 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Int32 SubType { get; set; }
+		public Int32 SubType { get; set; } 
 
 	}
 
@@ -1064,13 +1064,13 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Int32 SubType { get; set; }
+		public Int32 SubType { get; set; } 
 
 	}
 
@@ -1095,7 +1095,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Hashtable Values { get; set; }
+		public Hashtable Values { get; set; } 
 
 	}
 
@@ -1117,7 +1117,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -1143,13 +1143,13 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Position=3, ParameterSetName="AddWithID")]
-		public Nullable<Int32> DataLength { get; set; }
+		public Nullable<Int32> DataLength { get; set; } 
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter()]
-		public SwitchParameter IncludeInDataset { get; set; }
+		public SwitchParameter IncludeInDataset { get; set; } 
 
 	}
 
@@ -1171,7 +1171,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -1193,7 +1193,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -1215,7 +1215,7 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 	}
 
@@ -1237,13 +1237,13 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		[Parameter()]
-		public String Dimensions { get; set; }
+		public String Dimensions { get; set; } 
 
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="NewWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="NewWithID")]
 		[Parameter(Mandatory=true, Position=2, ParameterSetName="AddWithoutID")]
 		[Parameter(Mandatory=true, Position=3, ParameterSetName="AddWithID")]
-		public Int32 SubType { get; set; }
+		public Int32 SubType { get; set; } 
 
 	}
 

@@ -105,7 +105,7 @@ if (hasDataLength) { arguments.Add("DataLength"); }
 <#		}
 	}
 #>
-		public <#= property.FullType #> <#= property.Name #> { get; set; }
+		public <#= property.FullType #> <#= property.Name #> { get; set; } 
 
 <# } #>
 	}
@@ -116,11 +116,14 @@ if (hasDataLength) { arguments.Add("DataLength"); }
 <#+
 	static string GetFullTypeName(Type t)
 	{
-		if (!t.IsGenericType)
-			return t.Name;
-
 		if (t == typeof(bool?))
 			return "SwitchParameter";
+
+		if (t == typeof(bool))
+			return "SwitchParameter";
+
+		if (!t.IsGenericType)
+			return t.Name;
 
 		var stringBuilder = new StringBuilder();
 
