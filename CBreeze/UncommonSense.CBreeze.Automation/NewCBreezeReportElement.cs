@@ -117,6 +117,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override IEnumerable<ReportElement> CreateItems()
         {
             var element = new DataItemReportElement(DataItemTable, ID, IndentationLevel);
+            element.Name = Name;
 
             element.Properties.CalcFields.AddRange(CalcFields);
             element.Properties.DataItemLinkReference = DataItemLinkReference;
@@ -159,7 +160,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string DataItemTableViewKey { get; set; }
         [Parameter()] public Order? DataItemTableViewOrder { get; set; }
         [Parameter()] [ValidateRange(1, int.MaxValue)] public int? MaxIteration { get; set; }
-
+        [Parameter()] public string Name { get; set; }
         [Parameter()] public ScriptBlock OnPreDataItem { get; set; }
         [Parameter()] public ScriptBlock OnAfterGetRecord { get; set; }
         [Parameter()] public ScriptBlock OnPostDataItem { get; set; }
