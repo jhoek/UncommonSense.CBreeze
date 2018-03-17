@@ -66,5 +66,8 @@
       <Name>UncommonSense.CBreeze.Write</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="report.ps1" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
