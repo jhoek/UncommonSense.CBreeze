@@ -26,30 +26,37 @@ namespace UncommonSense.CBreeze.Script
                 .Where(p => p.HasValue)
                 .SelectMany(p => p.ToParameters());
 
+            IEnumerable<ParameterBase> requestPageProperties = report
+                .RequestPage
+                .Properties
+                .Where(p => p.HasValue)
+                .SelectMany(p => p.ToParameters("RequestPage"));
+
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
                         report.Elements.ToInvocation().Cast<Statement>()
+                            .Concat(report.Code.Variables.ToInvocation().Cast<Statement>())
+                            .Concat(report.Code.Functions.ToInvocation().Cast<Statement>())
+                            .Concat(report.Code.Events.ToInvocation().Cast<Statement>())
+                            .Concat(report.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
 
 
-                    //report.Code
-                    //report.Elements
                     //report.Labels
                     //report.ObjectProperties
                     //report.Properties
                     //report.RdlData
                     //report.RequestPage
                     //report.WordLayout
+                    
+                    
+                )
+            };
 
-                    //report.Fields.ToInvocation().Cast<Statement>()
-                        
-
-                    //    .Concat(report.FieldGroups.ToInvocation().Cast<Statement>())
-                    //    .Concat(report.Keys.ToInvocation().Cast<Statement>())
-                    //    .Concat(report.Code.Variables.ToInvocation().Cast<Statement>())
-                    //    .Concat(report.Code.Functions.ToInvocation().Cast<Statement>())
-                    //    .Concat(report.Code.Events.ToInvocation().Cast<Statement>())
-                    //    .Concat(report.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
+            IEnumerable<ParameterBase> requestPageSubObjects = new[] {
+                new ScriptBlockParameter(
+                    "RequestPageSubObjects",
+                        report.RequestPage.Controls.ToInvocation().Cast<Statement>()
                 )
             };
 
@@ -58,10 +65,13 @@ namespace UncommonSense.CBreeze.Script
                 signature
                     .Concat(objectProperties)
                     .Concat(properties)
+                    .Concat(requestPageProperties)
+                    .Concat(requestPageSubObjects)
                     .Concat(subObjects));
         }
 
-        public static IEnumerable<Invocation> ToInvocation(this ReportElements reportElements) => reportElements.Select(e => e.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocation(this ReportElements reportElements) => 
+            reportElements.Where(e => e.IndentationLevel.GetValueOrDefault(0) == 0).Select(e => e.ToInvocation());
 
         public static Invocation ToInvocation(this ReportElement reportElement)
         {

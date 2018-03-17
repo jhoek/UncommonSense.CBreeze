@@ -16,11 +16,15 @@ namespace UncommonSense.CBreeze.Script
             if (!string.IsNullOrEmpty(dataItemReportElement.Name))
                 yield return new SimpleParameter("Name", dataItemReportElement.Name);
 
-            yield break;
+            yield return new ScriptBlockParameter(
+                "SubObjects",
+                dataItemReportElement.Properties.DataItemTableView.TableFilter.ToInvocations()
+                    .Concat(dataItemReportElement.ChildElements.Select(e=>e.ToInvocation()))
+            );
 
             // FIXME: More properties, child elements
 
-            foreach (var parameter in dataItemReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            foreach (var parameter in dataItemReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters("DataItemTable")))
             {
                 yield return parameter;
             }
@@ -30,7 +34,7 @@ namespace UncommonSense.CBreeze.Script
         {
             yield return new SimpleParameter("ID", columnReportElement.ID);
             yield return new SimpleParameter("Name", columnReportElement.Name);
-            yield break;
+            //yield break;
 
             foreach (var parameter in columnReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
             {
@@ -411,8 +415,10 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case TriggerProperty t:
+                    var myPrefix = prefix == "RequestPage" ? prefix : "";
+
                     yield return new ScriptBlockParameter(
-                        t.Name,
+                        $"{myPrefix}{t.Name}",
                         t.Value.Variables.ToInvocation().Concat(
                             t.Value.CodeLines.Select(c => new Invocation($"'{c.Replace("'", "''")}'"))));
                     break;
@@ -441,7 +447,7 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case NullableBooleanProperty b:
-                    yield return new SwitchParameter(b.Name, b.Value);
+                    yield return new SwitchParameter($"{prefix}{b.Name}", b.Value);
                     break;
 
                 case PageActionContainerTypeProperty t:
