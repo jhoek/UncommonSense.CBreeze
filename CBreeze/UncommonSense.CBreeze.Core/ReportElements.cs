@@ -29,5 +29,17 @@ namespace UncommonSense.CBreeze.Core
 
             TestNameUnique(item);
         }
+
+        protected override void InsertItem(int index, ReportElement item)
+        {
+            base.InsertItem(index, item);
+            item.Container = this;
+        }
+
+        protected override void RemoveItem(int index)
+        {
+            this.ElementAt(index).Container = null;
+            base.RemoveItem(index);
+        }
     }
 }
