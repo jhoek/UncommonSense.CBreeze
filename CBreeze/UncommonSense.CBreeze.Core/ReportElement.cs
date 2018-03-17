@@ -27,13 +27,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public IEnumerable<ReportElement> DescendantElements
-        {
-            get
-            {
-                return Container.Skip(Index + 1).TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
-            }
-        }
+        public IEnumerable<ReportElement> DescendantElements => Container.Skip(Index + 1).TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
+        public IEnumerable<ReportElement> ChildElements => DescendantElements.Where(e => e.IndentationLevel == this.IndentationLevel.GetValueOrDefault(0) + 1);
 
         public T AddChildNode<T>(T child, Position position) where T : ReportElement
         {
