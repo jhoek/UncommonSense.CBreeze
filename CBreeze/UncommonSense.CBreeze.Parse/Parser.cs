@@ -11,12 +11,13 @@ namespace UncommonSense.CBreeze.Parse
         private static NullListener nullListener = new NullListener();
         private IListener listener;
 
-        public void ParseFiles(IEnumerable<string> fileNames)
+        public void ParseFiles(IEnumerable<string> fileNames, Action<string> reportProgress = null)
         {
             Listener.OnBeginApplication();
 
             foreach (var fileName in fileNames ?? new string[] { })
             {
+                reportProgress.Invoke(fileName);
                 Listener.OnBeginFile(fileName);
                 ParseApplication(new Lines(File.ReadLines(fileName, Encoding.GetEncoding("ibm850"))));
                 Listener.OnEndFile();

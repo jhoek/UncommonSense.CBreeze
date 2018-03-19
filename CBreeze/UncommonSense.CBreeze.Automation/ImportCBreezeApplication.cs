@@ -60,7 +60,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObjects(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths()));
+                    WriteObjects(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths(), p=> WriteProgress(new ProgressRecord(0, "Importing application objects", p))));
                     break;
 
                 case "FromDatabase":

@@ -11,6 +11,7 @@ namespace UncommonSense.CBreeze.Read
     public partial class ApplicationBuilder : ListenerBase
     {
         private Application application;
+        private string currentFileName;
         private UncommonSense.CBreeze.Core.Object currentObject;
         private SectionType? currentSectionType;
         private TableFields currentTableFields;
@@ -44,14 +45,14 @@ namespace UncommonSense.CBreeze.Read
 
         public static Application ReadFromFiles(params string[] fileNames) => ReadFromFiles((IEnumerable<string>)fileNames);
 
-        public static Application ReadFromFiles(IEnumerable<string> fileNames)
+        public static Application ReadFromFiles(IEnumerable<string> fileNames, Action<string> reportProgress = null)
         {
             var parser = new Parser();
             var application = new Application();
             var applicationBuilder = new ApplicationBuilder(application);
 
             parser.Listener = applicationBuilder;
-            parser.ParseFiles(fileNames);
+            parser.ParseFiles(fileNames, reportProgress);
 
             return application;
         }
@@ -71,6 +72,16 @@ namespace UncommonSense.CBreeze.Read
         public ApplicationBuilder(Application application)
         {
             this.application = application;
+        }
+
+        public override void OnBeginFile(string fileName)
+        {
+            currentFileName = fileName;
+        }
+
+        public override void OnEndFile()
+        {
+            currentFileName = null;
         }
 
         public override void OnBeginObject(ObjectType objectType, int objectID, string objectName)
