@@ -17,7 +17,8 @@ namespace UncommonSense.CBreeze.Parse
 
             foreach (var fileName in fileNames ?? new string[] { })
             {
-                reportProgress.Invoke(fileName);
+                if (reportProgress != null)
+                    reportProgress.Invoke(fileName);
                 Listener.OnBeginFile(fileName);
                 ParseApplication(new Lines(File.ReadLines(fileName, Encoding.GetEncoding("ibm850"))));
                 Listener.OnEndFile();
