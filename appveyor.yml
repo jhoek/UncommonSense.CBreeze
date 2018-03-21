@@ -21,7 +21,7 @@ assembly_info:
 build_script:
   - ps: Invoke-Psake build.ps1
   
-test:
+test_script:
   - ps: Invoke-Pester test.ps1
 
 artifacts:
