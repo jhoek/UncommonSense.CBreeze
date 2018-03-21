@@ -21,7 +21,8 @@ assembly_info:
 build_script:
   - ps: Invoke-Psake build.ps1
   
-test: off
+test:
+  - ps: Invoke-Pester test.ps1
 
 artifacts:
   - path: ./CBreeze/Output
