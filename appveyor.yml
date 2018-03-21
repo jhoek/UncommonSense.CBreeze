@@ -2,6 +2,7 @@ version: 0.9.0.{build}
 
 install:
   - ps: Install-Module psake -Scope CurrentUser -Force
+  - ps: Update-Module pester -Scope CurrentUser -Force
   - ps: Install-Module VSSetup -Scope CurrentUser -Force
   - ps: nuget restore CBreeze/UncommonSense.CBreeze.sln
 
@@ -30,4 +31,4 @@ artifacts:
 deploy: off
 
 on_finish:
-  - ps: Get-ChildItem . -Recurse
+  - ps: Get-ChildItem . -Recurse > ./CBreeze/Output/dir.txt
