@@ -108,6 +108,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(visible);
             innerList.Add(enabled);
             innerList.Add(editable);
+#if NAV2015
+            innerList.Add(image);
+#endif
             innerList.Add(lookupPageID);
             innerList.Add(drillDownPageID);
             innerList.Add(multiLine);
@@ -123,7 +126,6 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onAssistEdit);
             innerList.Add(onControlAddIn);
 #if NAV2015
-            innerList.Add(image);
             innerList.Add(showMandatory);
 #endif
             innerList.Add(showCaption);
