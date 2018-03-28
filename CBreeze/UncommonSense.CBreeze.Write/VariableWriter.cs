@@ -25,6 +25,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<BooleanVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<ByteVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<CharVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+#if NAV2017
+                TypeSwitch.Case<ClientTypeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+#endif 
                 TypeSwitch.Case<CodeunitVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<CodeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
                 TypeSwitch.Case<DateFormulaVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
@@ -143,7 +146,9 @@ namespace UncommonSense.CBreeze.Write
         {
             var sortedValues = textConstant.Values.OrderBy(v => v.LanguageID.GetLCIDFromLanguageCode());
 
+#if !NAV2017
             writer.InnerWriter.WriteLine();
+#endif
             writer.WriteLine("{0}@{1} : TextConst", textConstant.Name, textConstant.ID);
             writer.Indent();
 
