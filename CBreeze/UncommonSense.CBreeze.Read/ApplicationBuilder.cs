@@ -624,6 +624,7 @@ namespace UncommonSense.CBreeze.Read
                 case "ModalPageHandler":
                 case "ReportHandler":
                 case "RequestPageHandler":
+                case "HyperlinkHandler":
 #if NAV2017
                 case "SendNotificationHandler":
                 case "RecallNotificationHandler":
