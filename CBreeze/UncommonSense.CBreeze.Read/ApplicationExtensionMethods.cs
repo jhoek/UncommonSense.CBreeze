@@ -254,7 +254,7 @@ namespace UncommonSense.CBreeze.Read
                 var fieldName = Parsing.MustMatch(ref propertyValue, @"^([^=]+)=").Groups[1].Value;
                 var type = Parsing.MustMatch(ref propertyValue, @"(CONST|FILTER)").Groups[1].Value;
                 Parsing.MustMatch(ref propertyValue, @"^\(");
-                var value = Parsing.MatchUntil(ref propertyValue, ')', '"');
+                var value = Parsing.MatchUntil(ref propertyValue, ')', '"', '\'');
 
                 result.Add(new TableRelationFilterLine(fieldName, type, value, false, false));
             }
