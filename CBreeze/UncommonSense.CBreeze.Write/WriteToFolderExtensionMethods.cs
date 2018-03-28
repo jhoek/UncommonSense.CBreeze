@@ -110,6 +110,22 @@ namespace UncommonSense.CBreeze.Write
             return result;
         }
 
+        public static IEnumerable<FileInfo> WriteToFolder(this IEnumerable<Core.Object> objects, string folderName)
+        {
+            Directory.CreateDirectory(folderName);
+
+            var result = new List<FileInfo>();
+            result.AddRange(objects.OfType<Table>().Select(t => t.WriteToFolder(folderName)));
+            result.AddRange(objects.OfType<Page>().Select(p => p.WriteToFolder(folderName)));
+            result.AddRange(objects.OfType<Report>().Select(r => r.WriteToFolder(folderName)));
+            result.AddRange(objects.OfType<Codeunit>().Select(c => c.WriteToFolder(folderName)));
+            result.AddRange(objects.OfType<Query>().Select(q => q.WriteToFolder(folderName)));
+            result.AddRange(objects.OfType<XmlPort>().Select(x => x.WriteToFolder(folderName)));
+            result.AddRange(objects.OfType<MenuSuite>().Select(m => m.Write(folderName)));
+
+            return result;
+        }
+
         public static FileInfo WriteToFolder(this Table table, string folderName)
         {
             return table.Write(Path.Combine(folderName, $"tab{table.ID}.txt"));
