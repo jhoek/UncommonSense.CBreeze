@@ -61,7 +61,11 @@ namespace UncommonSense.CBreeze.Read
         }
 
         [DebuggerStepThrough()]
-        internal static string MatchUntil(ref string value, char until, char ignoreBetween)
+        internal static string MatchUntil(ref string value, char until, char ignoreBetween) => 
+            MatchUntil(ref value, until, new char[] { ignoreBetween });
+
+        [DebuggerStepThrough()]
+        internal static string MatchUntil(ref string value, char until, params char[] ignoreBetween)
         {
             var length = value.Length;
             var index = 0;
@@ -74,7 +78,7 @@ namespace UncommonSense.CBreeze.Read
                 if (currentChar == until && !ignoring)
                     break;
 
-                if (currentChar == ignoreBetween)
+                if (ignoreBetween.Contains(currentChar))
                     ignoring = !ignoring;
 
                 index++;
