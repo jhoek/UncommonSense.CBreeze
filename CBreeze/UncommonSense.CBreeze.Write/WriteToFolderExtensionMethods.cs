@@ -105,7 +105,7 @@ namespace UncommonSense.CBreeze.Write
             result.AddRange(application.Codeunits.Select(c => c.WriteToFolder(folderName)));
             result.AddRange(application.Queries.Select(q => q.WriteToFolder(folderName)));
             result.AddRange(application.XmlPorts.Select(x => x.WriteToFolder(folderName)));
-            result.AddRange(application.MenuSuites.Select(m => m.Write(folderName)));
+            result.AddRange(application.MenuSuites.Select(m => m.WriteToFolder(folderName)));
 
             return result;
         }
