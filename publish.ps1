@@ -31,7 +31,7 @@ Task UpdateAssemblyInfo -depends BumpBuildNo {
             $AssemblyInfoContents = Get-Content -Path $AssemblyInfoFileName -Encoding UTF8
 
             $AssemblyInfoContents | 
-                ForEach-Object { $_ -replace '\[assembly: AssemblyVersion\(".*"\)\]', "[assembly: AssemblyVersion(`"$($script:BuildVersion)`")]" } | 
+                ForEach-Object { $_ -replace '^\[assembly: AssemblyVersion\(".*"\)\]$', "[assembly: AssemblyVersion(`"$($script:BuildVersion)`")]" } | 
                 Set-Content -Path $AssemblyInfoFileName -Encoding UTF8
         }
 }
