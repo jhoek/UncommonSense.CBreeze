@@ -24,7 +24,17 @@ Task ReloadModule -depends BuildSolution {
 
 Task BuildSolution -depends UpdateAssemblyInfo
 
-Task UpdateAssemblyInfo -depends BumpBuildNo
+Task UpdateAssemblyInfo -depends BumpBuildNo {
+    Get-ChildItem -Path $psake.build_script_dir -Name AssemblyInfo.cs -Recurse |
+        ForEach-Object {
+            $AssemblyInfoFileName = $_
+            $AssemblyInfoContents = Get-Content -Path $AssemblyInfoFileName -Encoding UTF8
+
+            $AssemblyInfoContents | 
+                ForEach-Object { $_ -replace '\[assembly: AssemblyVersion\(".*"\)\]', "\[assembly: AssemblyVersion\(`"$($script:BuildVersion)`"\)\]" } | 
+                Set-Content -Path $AssemblyInfoFileName -Encoding UTF8
+        }
+}
 
 Task BumpBuildNo -depends GetBuildNo {
     $script:BuildVersion = `
@@ -42,3 +52,4 @@ Task GetBuildNo {
     $BuildNo = (Import-PowerShellDataFile -Path $CBreezeAutomationManifestFileName)['ModuleVersion']
     $script:BuildVersion = New-Object -TypeName Version -ArgumentList $BuildNo
     Write-Verbose $script:BuildVersion
+}
