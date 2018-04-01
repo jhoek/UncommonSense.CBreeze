@@ -11,15 +11,19 @@ Task Publish -depends UpdateManifest {
     # FIXME: Publish to PowerShell Gallery
 }
 
-Task UpdateManifest -depends ReloadModule {
+Task UpdateManifest -depends BuildSolution {
+    Import-Module UncommonSense.CBreeze.Automation -Force
+
     Update-ModuleManifest `
     -Path $CBreezeAutomationManifestFileName `
     -ModuleVersion $script:BuildVersion.ToString() `
     -CmdletsToExport 'FIXME'
 }
 
-Task ReloadModule -depends BuildSolution {
+Task UpdateReadMe -depends BuildSolution {
     Import-Module UncommonSense.CBreeze.Automation -Force
+
+    # FIXME
 }
 
 Task BuildSolution -depends UpdateAssemblyInfo
@@ -31,7 +35,10 @@ Task UpdateAssemblyInfo -depends BumpBuildNo {
             $AssemblyInfoContents = Get-Content -Path $AssemblyInfoFileName -Encoding UTF8
 
             $AssemblyInfoContents | 
-                ForEach-Object { $_ -replace '^\[assembly: AssemblyVersion\(".*"\)\]$', "[assembly: AssemblyVersion(`"$($script:BuildVersion)`")]" } | 
+                ForEach-Object {
+                    $_ -replace '^\[assembly: AssemblyVersion\(".*"\)\]$', "[assembly: AssemblyVersion(`"$($script:BuildVersion)`")]" 
+                    $_ -replace '^\[assembly: AssemblyFileVersion\(".*"\)\]$', "[assembly: AssemblyFileVersion(`"$($script:BuildVersion)`")]"
+                } | 
                 Set-Content -Path $AssemblyInfoFileName -Encoding UTF8
         }
 }
@@ -45,11 +52,11 @@ Task BumpBuildNo -depends GetBuildNo {
                 $script:BuildVersion.Minor, 
                 $script:BuildVersion.Build, 
                 ($script:BuildVersion.Revision + 1)
-    Write-Verbose $script:BuildVersion
+    Write-Verbose "New build version is $($script:BuildVersion)"
 }
 
 Task GetBuildNo {
     $BuildNo = (Import-PowerShellDataFile -Path $CBreezeAutomationManifestFileName)['ModuleVersion']
     $script:BuildVersion = New-Object -TypeName Version -ArgumentList $BuildNo
-    Write-Verbose $script:BuildVersion
+    Write-Verbose "Existing build version is $($script:BuildVersion)"
 }
