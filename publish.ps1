@@ -12,12 +12,8 @@ Task Publish -depends UpdateManifest {
 }
 
 Task UpdateManifest -depends BuildSolution {
-    Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
-
-    Update-ModuleManifest `
-    -Path $CBreezeAutomationManifestFileName `
-    -ModuleVersion $script:BuildVersion.ToString() `
-    -CmdletsToExport 'FIXME'
+    Update-ModuleManifest -Path $CBreezeAutomationManifestFileName -ModuleVersion ($script:BuildVersion.ToString())
+    Set-ExportedModuleMembers -Path $CBreezeAutomationManifestFileName
 }
 
 Task UpdateReadMe -depends BuildSolution {
@@ -30,7 +26,9 @@ Task UpdateReadMe -depends BuildSolution {
     }
 }
 
-Task BuildSolution -depends UpdateAssemblyInfo
+Task BuildSolution -depends UpdateAssemblyInfo{
+    Invoke-Psake -BuildFile (Join-Path -Path $psake.build_script_dir -ChildPath build.ps1)
+}
 
 Task UpdateAssemblyInfo -depends BumpBuildNo {
     Set-AssemblyInfoVersion -Path $psake.build_script_dir -Version $script:BuildVersion -Recurse     
