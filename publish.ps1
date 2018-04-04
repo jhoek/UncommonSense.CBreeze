@@ -12,7 +12,7 @@ Task Publish -depends UpdateManifest {
 }
 
 Task UpdateManifest -depends BuildSolution {
-    Import-Module UncommonSense.CBreeze.Automation -Force
+    Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
 
     Update-ModuleManifest `
     -Path $CBreezeAutomationManifestFileName `
@@ -21,42 +21,25 @@ Task UpdateManifest -depends BuildSolution {
 }
 
 Task UpdateReadMe -depends BuildSolution {
-    Import-Module UncommonSense.CBreeze.Automation -Force
+    $UpdateReadMe = Join-Path -Path $psake.build_script_dir -ChildPath Update-README.ps1
 
-    # FIXME
+    if (Test-Path -Path $UpdateReadMe)
+    {
+        Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
+        & $UpdateReadMe
+    }
 }
 
 Task BuildSolution -depends UpdateAssemblyInfo
 
 Task UpdateAssemblyInfo -depends BumpBuildNo {
-    Get-ChildItem -Path $psake.build_script_dir -Name AssemblyInfo.cs -Recurse |
-        ForEach-Object {
-            $AssemblyInfoFileName = $_
-            $AssemblyInfoContents = Get-Content -Path $AssemblyInfoFileName -Encoding UTF8
-
-            $AssemblyInfoContents | 
-                ForEach-Object {
-                    $_ -replace '^\[assembly: AssemblyVersion\(".*"\)\]$', "[assembly: AssemblyVersion(`"$($script:BuildVersion)`")]" 
-                    $_ -replace '^\[assembly: AssemblyFileVersion\(".*"\)\]$', "[assembly: AssemblyFileVersion(`"$($script:BuildVersion)`")]"
-                } | 
-                Set-Content -Path $AssemblyInfoFileName -Encoding UTF8
-        }
+    Set-AssemblyInfoVersion -Path $psake.build_script_dir -Version $script:BuildVersion -Recurse     
 }
 
 Task BumpBuildNo -depends GetBuildNo {
-    $script:BuildVersion = `
-        New-Object `
-            -TypeName Version `
-            -ArgumentList `
-                $script:BuildVersion.Major, 
-                $script:BuildVersion.Minor, 
-                $script:BuildVersion.Build, 
-                ($script:BuildVersion.Revision + 1)
-    Write-Verbose "New build version is $($script:BuildVersion)"
+    $script:BuildVersion = Step-ModuleVersion -Version $script:BuildVersion -By Minor
 }
 
 Task GetBuildNo {
-    $BuildNo = (Import-PowerShellDataFile -Path $CBreezeAutomationManifestFileName)['ModuleVersion']
-    $script:BuildVersion = New-Object -TypeName Version -ArgumentList $BuildNo
-    Write-Verbose "Existing build version is $($script:BuildVersion)"
+    $script:BuildVersion = Get-ModuleVersion -Path $CBreezeAutomationManifestFileName
 }
