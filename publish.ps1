@@ -3,6 +3,8 @@ Properties {
     [string]$CBreezeFolderName = Join-Path $RootFolderName 'CBreeze'
     [string]$CBreezeAutomationFolderName = Join-Path $CBreezeFolderName 'UncommonSense.CBreeze.Automation'
     [string]$CBreezeAutomationManifestFileName = Join-Path $CBreezeAutomationFolderName 'manifest.psd1'
+    [string]$OutputFolderName = Join-Path $CBreezeAutomationFolderName 'bin/Release/UncommonSense.CBreeze.Automation'
+    [string]$OutputManifestFileName = Join-Path $OutputFolderName 'UncommonSense.CBreeze.Automation.psd1'
 }
 
 Task default -depends Publish
@@ -11,9 +13,8 @@ Task Publish -depends UpdateManifest {
     # FIXME: Publish to PowerShell Gallery
 }
 
-Task UpdateManifest -depends BuildSolution {
-    Update-ModuleManifest -Path $CBreezeAutomationManifestFileName -ModuleVersion ($script:BuildVersion.ToString())
-    Set-ExportedModuleMembers -Path $CBreezeAutomationManifestFileName
+Task UpdateManifest -depends BuildSolution {    
+    Set-ExportedModuleMembers -Path $OutputManifestFileName
 }
 
 Task UpdateReadMe -depends BuildSolution {
@@ -26,8 +27,12 @@ Task UpdateReadMe -depends BuildSolution {
     }
 }
 
-Task BuildSolution -depends UpdateAssemblyInfo{
-    Invoke-Psake -BuildFile (Join-Path -Path $psake.build_script_dir -ChildPath build.ps1)
+Task BuildSolution -depends UpdateAssemblyInfo, UpdateModuleVersion {
+    Invoke-Psake -BuildFile (Join-Path -Path $psake.build_script_dir -ChildPath build.ps1) -taskList Build2017
+}
+
+Task UpdateModuleVersion -depends BumpBuildNo {
+    Update-ModuleManifest -Path $CBreezeAutomationManifestFileName -ModuleVersion ($script:BuildVersion.ToString())
 }
 
 Task UpdateAssemblyInfo -depends BumpBuildNo {
