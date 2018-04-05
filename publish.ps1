@@ -40,7 +40,7 @@ Task UpdateAssemblyInfo -depends BumpBuildNo {
 }
 
 Task BumpBuildNo -depends GetBuildNo {
-    $script:BuildVersion = Step-ModuleVersion -Version $script:BuildVersion -By Minor
+    $script:BuildVersion = Step-ModuleVersion -Version $script:BuildVersion -By Revision
 }
 
 Task GetBuildNo {
