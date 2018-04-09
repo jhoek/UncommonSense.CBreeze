@@ -13,7 +13,30 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void AddItemToInputObject(PageControlBase item, PSObject inputObject)
         {
-            base.AddItemToInputObject(item, inputObject);
+            var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
+
+            switch (InputObject.BaseObject)
+            {
+                case PageControlContainer c:
+                    c.AddChildPageControl(item, position);
+                    break;
+
+                case PageControlGroup g:
+                    g.AddChildPageControl(item, position);
+                    break;
+
+                case PageControls c:
+                    c.AddPageControlAtPosition(item, position);
+                    break;
+
+                case IPage p:
+                    p.AddPageControlAtPosition(item, position);
+                    break;
+
+                default:
+                    base.AddItemToInputObject(item, inputObject);
+                    break;
+            }
         }
 
 #if NAV2015
@@ -62,6 +85,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public ScriptBlock OnLookup { get; set; }
         [Parameter()] public ScriptBlock OnValidate { get; set; }
         [Parameter()] public Hashtable OptionCaptionML { get; set; }
+        [Parameter()] public Position? Position { get; set; }
         [Parameter()] public string QuickEntry { get; set; }
         [Parameter()] public int? RowSpan { get; set; }
         [Parameter()] public SwitchParameter ShowCaption { get; set; }

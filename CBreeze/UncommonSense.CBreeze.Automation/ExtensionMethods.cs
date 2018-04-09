@@ -73,18 +73,28 @@ namespace UncommonSense.CBreeze.Automation
 
         public static T AddPageActionAtPosition<T>(this IPage page, T pageAction, Position position) where T : PageActionBase
         {
+            return page.Actions.AddPageActionAtPosition(pageAction, position);
+        }
+
+        public static T AddPageControlAtPosition<T>(this PageControls pageControls, T pageControl, Position position) where T : PageControlBase
+        {
             switch (position)
             {
                 case Position.FirstWithinContainer:
-                    page.Actions.Insert(0, pageAction);
+                    pageControls.Insert(0, pageControl);
                     break;
 
                 case Position.LastWithinContainer:
-                    page.Actions.Add(pageAction);
+                    pageControls.Add(pageControl);
                     break;
             }
 
-            return pageAction;
+            return pageControl;
+        }
+
+        public static T AddPageControlAtPosition<T>(this IPage page, T pageControl, Position position) where T : PageControlBase
+        {
+            return page.Controls.AddPageControlAtPosition(pageControl, position);
         }
 
         public static IEnumerable<T> AsEnumerable<T>(this T item) => new[] { item };
