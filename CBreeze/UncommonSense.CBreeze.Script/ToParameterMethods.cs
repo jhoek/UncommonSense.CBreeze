@@ -349,18 +349,22 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("SubType", q.SubType);
                     break;
 
-                case ReportParameter r:
-                    yield return new SimpleParameter("SubType", r.SubType);
-                    break;
-
-                case TextParameter t:
-                    yield return new SimpleParameter("DataLength", t.DataLength);
-                    break;
-
                 case RecordParameter r:
                     yield return new SimpleParameter("SubType", r.SubType);
                     yield return new SwitchParameter("Temporary", r.Temporary.GetValueOrDefault(false));
                     yield return new SimpleParameter("SecurityFiltering", r.SecurityFiltering);
+                    break;
+
+                case ReportParameter r:
+                    yield return new SimpleParameter("SubType", r.SubType);
+                    break;
+
+                case TestPageParameter t:
+                    yield return new SimpleParameter("SubType", t.SubType);
+                    break;
+
+                case TextParameter t:
+                    yield return new SimpleParameter("DataLength", t.DataLength);
                     break;
             }
         }
