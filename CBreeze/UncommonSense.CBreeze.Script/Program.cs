@@ -15,26 +15,23 @@ namespace UncommonSense.CBreeze.Script
     {
         private static void Main(string[] args)
         {
-            foreach (var arg in args)
+            var inputFolderName = args.First();
+            var scriptFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "script.ps1");
+            var runnerFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "runner.ps1");
+            var outputFolderName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "output");
+            var application = ApplicationBuilder.ReadFromFolder(inputFolderName);
+
+            File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
+            File.WriteAllText(runnerFileName, $"& {scriptFileName} | Export-CBreezeApplication -Path {outputFolderName} -Directory");
+
+            var processStartInfo = new ProcessStartInfo()
             {
-                var scriptFileName = Path.ChangeExtension(arg, ".ps1");
-                var outputFileName = Path.ChangeExtension(arg, ".output.txt");
-                var application = ApplicationBuilder.ReadFromFiles(arg);
+                FileName = @"C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe",
+                Arguments = $"-NoExit -File runner.ps1",
+                WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
 
-                File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
-                File.WriteAllText(
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.ps1"),
-                    $"& {scriptFileName} | Export-CBreezeApplication -Path {outputFileName}");
-
-                var processStartInfo = new ProcessStartInfo()
-                {
-                    FileName = @"C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe",
-                    Arguments = $"-NoExit -File test.ps1",
-                    WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
-                };
-
-                Process.Start(processStartInfo);
-            }
+            Process.Start(processStartInfo).WaitForExit();        
         }
     }
 }
