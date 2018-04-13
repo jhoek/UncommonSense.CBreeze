@@ -19,12 +19,12 @@ namespace UncommonSense.CBreeze.Script
             yield return new ScriptBlockParameter(
                 "SubObjects",
                 dataItemReportElement.Properties.DataItemTableView.TableFilter.ToInvocations()
-                    .Concat(dataItemReportElement.ChildElements.Select(e=>e.ToInvocation()))
+                    .Concat(dataItemReportElement.ChildElements.Select(e => e.ToInvocation()))
             );
 
             // FIXME: More properties, child elements
 
-            foreach (var parameter in dataItemReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters("DataItemTable")))
+            foreach (var parameter in dataItemReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
             {
                 yield return parameter;
             }
@@ -153,7 +153,7 @@ namespace UncommonSense.CBreeze.Script
                 case RecordRefVariable r:
                     yield return new SimpleParameter("SecurityFiltering", r.SecurityFiltering);
                     break;
-                
+
                 case ReportVariable r:
                     yield return new SimpleParameter("SubType", r.SubType);
                     break;
@@ -219,7 +219,7 @@ namespace UncommonSense.CBreeze.Script
                 pageAction.Properties.RunPageLink.ToInvocations().Concat(
                     pageAction.Properties.RunPageView.TableFilter.ToInvocations()));
 
-            foreach (var parameter in pageAction.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters("RunPage")))
+            foreach (var parameter in pageAction.Properties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
             {
                 yield return parameter;
             }
@@ -267,7 +267,7 @@ namespace UncommonSense.CBreeze.Script
                 pageControlPart.Properties.SubPageLink.ToInvocations()
                 .Concat(pageControlPart.Properties.SubPageView.TableFilter.ToInvocations()));
 
-            foreach (var parameter in pageControlPart.AllProperties.WithAValue.SelectMany(p => p.ToParameters("SubPage")))
+            foreach (var parameter in pageControlPart.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
             {
                 yield return parameter;
             }
@@ -403,7 +403,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
         }
 
-        public static IEnumerable<ParameterBase> ToParameters(this Property property, string prefix = null)
+        public static IEnumerable<ParameterBase> ToParameters(this Property property)
         {
             // Note: SubObject parameters should not be rendered here, since they may contain
             // values from more than one property. 
@@ -419,10 +419,8 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case TriggerProperty t:
-                    var myPrefix = prefix == "RequestPage" ? prefix : "";
-
                     yield return new ScriptBlockParameter(
-                        $"{myPrefix}{t.Name}",
+                        t.Name,
                         t.Value.Variables.ToInvocation().Concat(
                             t.Value.CodeLines.Select(c => new Invocation($"'{c.Replace("'", "''")}'"))));
                     break;
@@ -451,15 +449,20 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case NullableBooleanProperty b:
-                    yield return new SwitchParameter($"{prefix}{b.Name}", b.Value);
+                    yield return new SwitchParameter(b.Name, b.Value);
                     break;
 
                 case PageActionContainerTypeProperty t:
                     yield return new SimpleParameter("ContainerType", t.Value);
                     break;
 
-                case PageControlPartTypeProperty p:
-                    // No parameter should be yielded for the part type
+                case PageControlPartTypeProperty t:
+                    // Should not be rendered
+                    break;
+
+                case PageReferenceProperty p when p.Name == "PagePartID":
+                    yield return new SimpleParameter("PagePartID", p.Value);
+                    //yield return new SimpleParameter("PartType", "Page");
                     break;
 
                 case RunObjectProperty r:
@@ -471,9 +474,31 @@ namespace UncommonSense.CBreeze.Script
                     // Rendered elsewhere as part of SubObjects
                     break;
 
-                case TableViewProperty t:
-                    yield return new SimpleParameter($"{prefix}ViewKey", t.Value.Key);
-                    yield return new SimpleParameter($"{prefix}ViewOrder", t.Value.Order);
+                case StringProperty s when s.Name == "ChartPartID":
+                    yield return new SimpleParameter("CharPartID", s.Value);
+                    //yield return new SimpleParameter("PartType", "Chart");
+                    break;
+
+                case SystemPartIDProperty s:
+                    yield return new SimpleParameter("SystemPartID", s.Value);
+                    //yield return new SimpleParameter("PartType", "System");
+                    break;
+
+                case TableViewProperty t when t.Name == "SourceTableView":
+                    yield return new SimpleParameter($"SourceTableViewKey", t.Value.Key);
+                    yield return new SimpleParameter($"SourceTableViewOrder", t.Value.Order);
+                    // TableFilter rendered elsewhere as part of SubObjects
+                    break;
+
+                case TableViewProperty t when t.Name == "SubPageView":
+                    yield return new SimpleParameter($"SubPageViewKey", t.Value.Key);
+                    yield return new SimpleParameter($"SubPageViewOrder", t.Value.Order);
+                    // TableFilter rendered elsewhere as part of SubObjects
+                    break;
+
+                case TableViewProperty t when t.Name == "RunPageView":
+                    yield return new SimpleParameter($"RunPageViewKey", t.Value.Key);
+                    yield return new SimpleParameter($"RunPageViewOrder", t.Value.Order);
                     // TableFilter rendered elsewhere as part of SubObjects
                     break;
 

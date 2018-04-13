@@ -27,7 +27,7 @@ namespace UncommonSense.CBreeze.Script
                 .Properties
                 .Where(p => p.HasValue)
                 .Where(p => p.GetType() != typeof(ActionListProperty))
-                .SelectMany(p => p.ToParameters("SourceTable"));
+                .SelectMany(p => p.ToParameters());
 
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(

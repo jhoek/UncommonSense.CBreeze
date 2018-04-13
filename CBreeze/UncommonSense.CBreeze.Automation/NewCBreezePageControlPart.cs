@@ -53,6 +53,16 @@ namespace UncommonSense.CBreeze.Automation
             partPageControl.Properties.Enabled = Enabled;
             partPageControl.Properties.Name = Name;
 
+            // FIXME: 2018.04.13 We're setting PartType implicitly, based on 
+            // the values of ChartPartID, PagePartID and SystemPartID.
+            // There's not separate paramater to explicitly set PartType.
+            // Problem: When converting an existing application to script,
+            // sometimes we will want to leave PartType blank in case of 
+            // a page part, but sometimes the sources explicitly sets the 
+            // PartType, and the script should have a way to do the same.
+            // However, adding a PartType parameter would allow inconsistencies
+            // if the wrong *PartID is set. 
+
             if (ChartPartID != null)
             {
                 partPageControl.Properties.PartType = PageControlPartType.Chart;
@@ -60,7 +70,7 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (PagePartID != null)
             {
-                partPageControl.Properties.PartType = PageControlPartType.Page;
+                //partPageControl.Properties.PartType = PageControlPartType.Page;
                 partPageControl.Properties.PagePartID = PagePartID;
             }
             else if (SystemPartID != null)

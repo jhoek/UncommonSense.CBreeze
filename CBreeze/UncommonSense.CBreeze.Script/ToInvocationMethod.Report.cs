@@ -30,7 +30,7 @@ namespace UncommonSense.CBreeze.Script
                 .RequestPage
                 .Properties
                 .Where(p => p.HasValue)
-                .SelectMany(p => p.ToParameters("RequestPage"));
+                .SelectMany(p => p.ToParameters());
 
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
