@@ -52,16 +52,7 @@ namespace UncommonSense.CBreeze.Automation
             partPageControl.Properties.Editable = Editable;
             partPageControl.Properties.Enabled = Enabled;
             partPageControl.Properties.Name = Name;
-
-            // FIXME: 2018.04.13 We're setting PartType implicitly, based on 
-            // the values of ChartPartID, PagePartID and SystemPartID.
-            // There's not separate paramater to explicitly set PartType.
-            // Problem: When converting an existing application to script,
-            // sometimes we will want to leave PartType blank in case of 
-            // a page part, but sometimes the sources explicitly sets the 
-            // PartType, and the script should have a way to do the same.
-            // However, adding a PartType parameter would allow inconsistencies
-            // if the wrong *PartID is set. 
+            partPageControl.Properties.PartType = PartType;
 
             if (ChartPartID != null)
             {
@@ -70,7 +61,11 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (PagePartID != null)
             {
-                //partPageControl.Properties.PartType = PageControlPartType.Page;
+                // If PartType has been assigned a value explicitly, overwrite
+                // that value with "Page". If previously, PartType was null,
+                // leave the value as is.
+                if (partPageControl.Properties.PartType.HasValue)
+                    partPageControl.Properties.PartType = PageControlPartType.Page;
                 partPageControl.Properties.PagePartID = PagePartID;
             }
             else if (SystemPartID != null)
@@ -124,6 +119,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Editable { get; set; }
         [Parameter()] public string Enabled { get; set; }
         [Parameter()] public string Name { get; set; }
+        [Parameter()] public PageControlPartType? PartType { get; set; }
         [Parameter()] public Position? Position { get; set; }
         [Parameter()] public int? PagePartID { get; set; }
         [Parameter()] public int? ProviderID { get; set; }

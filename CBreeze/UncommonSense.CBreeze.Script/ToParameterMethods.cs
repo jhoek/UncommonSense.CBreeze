@@ -456,15 +456,6 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("ContainerType", t.Value);
                     break;
 
-                case PageControlPartTypeProperty t:
-                    // Should not be rendered
-                    break;
-
-                case PageReferenceProperty p when p.Name == "PagePartID":
-                    yield return new SimpleParameter("PagePartID", p.Value);
-                    //yield return new SimpleParameter("PartType", "Page");
-                    break;
-
                 case RunObjectProperty r:
                     yield return new SimpleParameter("RunObjectType", r.Value.Type);
                     yield return new SimpleParameter("RunObjectID", r.Value.ID);
@@ -474,14 +465,10 @@ namespace UncommonSense.CBreeze.Script
                     // Rendered elsewhere as part of SubObjects
                     break;
 
-                case StringProperty s when s.Name == "ChartPartID":
-                    yield return new SimpleParameter("CharPartID", s.Value);
-                    //yield return new SimpleParameter("PartType", "Chart");
-                    break;
-
-                case SystemPartIDProperty s:
-                    yield return new SimpleParameter("SystemPartID", s.Value);
-                    //yield return new SimpleParameter("PartType", "System");
+                case TableViewProperty t when t.Name == "DataItemTableView":
+                    yield return new SimpleParameter("DataItemTableViewKey", t.Value.Key);
+                    yield return new SimpleParameter("DataItemTableViewOrder", t.Value.Order);
+                    // TableFilter rendered elsewhere as part of SubObjects
                     break;
 
                 case TableViewProperty t when t.Name == "SourceTableView":
