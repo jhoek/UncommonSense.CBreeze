@@ -6,9 +6,9 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
 {
-    [Cmdlet(VerbsCommon.New, "ColumnQueryElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeColumnQueryElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(QueryElement))]
-    [Alias("QueryColumn", "Add-ColumnQueryElement")]
+    [Alias("QueryColumn", "Add-CBreezeColumnQueryElement")]
     public class NewCBreezeColumnQueryElement : NewCBreezeQueryElement<DataItemQueryElement>
     {
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -106,9 +106,9 @@ namespace UncommonSense.CBreeze.Automation
         }
     }
 
-    [Cmdlet(VerbsCommon.New, "DataItemQueryElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeDataItemQueryElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(QueryElement))]
-    [Alias("QueryDataItem", "Add-DataItemQueryElement")]
+    [Alias("QueryDataItem", "Add-CBreezeDataItemQueryElement")]
     public class NewCBreezeDataItemQueryElement : NewCBreezeQueryElement<PSObject>
     {
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -199,9 +199,9 @@ namespace UncommonSense.CBreeze.Automation
         }
     }
 
-    [Cmdlet(VerbsCommon.New, "FilterQueryElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+    [Cmdlet(VerbsCommon.New, "CBreezeFilterQueryElement", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
     [OutputType(typeof(QueryElement))]
-    [Alias("QueryFilter", "Add-FilterQueryElement")]
+    [Alias("QueryFilter", "Add-CBreezeFilterQueryElement")]
     public class NewCBreezeFilterQueryElement : NewCBreezeQueryElement<DataItemQueryElement>
     {
         [Parameter()]
