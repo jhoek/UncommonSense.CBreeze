@@ -16,13 +16,28 @@ namespace UncommonSense.CBreeze.Script
         private static void Main(string[] args)
         {
             var inputFolderName = args.First();
-            var scriptFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "script.ps1");
-            var runnerFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "runner.ps1");
             var outputFolderName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "output");
-            var application = ApplicationBuilder.ReadFromFolder(inputFolderName);
+            var scriptFolderName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "scripts");
+            var runnerFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "runner.ps1");
 
-            File.WriteAllText(scriptFileName, application.ToInvocation().ToString(), Encoding.UTF8);
-            File.WriteAllText(runnerFileName, $"& {scriptFileName} | Export-CBreezeApplication -Path {outputFolderName} -Directory");
+            if (Directory.Exists(outputFolderName))
+                Directory.Delete(outputFolderName, true);
+
+            if (Directory.Exists(scriptFolderName))
+                Directory.Delete(scriptFolderName, true);
+
+            Directory.CreateDirectory(outputFolderName);
+            Directory.CreateDirectory(scriptFolderName);
+
+            foreach (var inputFileName in Directory.GetFiles(inputFolderName))
+            {
+                var application = ApplicationBuilder.ReadFromFile(inputFileName);
+                var invocation = application.ToInvocation().ToString();
+                var scriptFileName = Path.Combine(scriptFolderName, Path.ChangeExtension(Path.GetFileName(inputFileName), "ps1"));
+                File.WriteAllText(scriptFileName, invocation, Encoding.UTF8);
+            }
+
+            File.WriteAllLines(runnerFileName, Directory.GetFiles(scriptFolderName).Select(s => $"& {s} | Export-CBreezeApplication -Path {outputFolderName} -Directory"));
 
             var processStartInfo = new ProcessStartInfo()
             {
@@ -31,7 +46,7 @@ namespace UncommonSense.CBreeze.Script
                 WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             };
 
-            Process.Start(processStartInfo).WaitForExit();        
+            Process.Start(processStartInfo).WaitForExit();
         }
     }
 }
