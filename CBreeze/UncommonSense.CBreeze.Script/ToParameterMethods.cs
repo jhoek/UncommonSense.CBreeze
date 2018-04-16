@@ -59,6 +59,17 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Value", tableFilterLine.Value);
         }
 
+        public static IEnumerable<ParameterBase> ToParameters(this QueryOrderByLine queryOrderByLine)
+        {
+            yield return new SimpleParameter("Column", queryOrderByLine.Column);
+            yield return new SimpleParameter("Direction", queryOrderByLine.Direction);
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this QueryElement queryElement)
+        {
+            yield break; // FIXME
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this TableField field)
         {
             yield return new SimpleParameter("ID", field.ID);
@@ -454,6 +465,10 @@ namespace UncommonSense.CBreeze.Script
 
                 case PageActionContainerTypeProperty t:
                     yield return new SimpleParameter("ContainerType", t.Value);
+                    break;
+
+                case QueryOrderByLinesProperty q:
+                    // Rendered elsewhere as part of SubObjects
                     break;
 
                 case RunObjectProperty r:

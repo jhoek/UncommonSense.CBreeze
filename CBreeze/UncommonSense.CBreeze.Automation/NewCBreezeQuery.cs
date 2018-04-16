@@ -1,9 +1,7 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
-using System.Text;
-using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Automation
@@ -13,27 +11,11 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("Query", "Add-CBreezeQuery")]
     public class NewCBreezeQuery : NewCBreezeObject<Query>
     {
-        [Parameter()]
-        public string Description
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        public Permission[] Permissions { get; set; }
-
-        [Parameter()]
-        public ReadState? ReadState
-        {
-            get; set;
-        }
-
-        [Parameter()]
-        [ValidateRange(0, int.MaxValue)]
-        public int? TopNoOfRows
-        {
-            get; set;
-        }
+        [Parameter()] public Hashtable CaptionML { get; set; }
+        [Parameter()] public string Description { get; set; }
+        [Parameter()] public Permission[] Permissions { get; set; }
+        [Parameter()] public ReadState? ReadState { get; set; }
+        [Parameter()] [ValidateRange(0, int.MaxValue)] public int? TopNoOfRows { get; set; }
 
         protected override void AddItemToInputObject(Query item, Application inputObject)
         {
@@ -49,6 +31,7 @@ namespace UncommonSense.CBreeze.Automation
             query.Properties.Permissions.Set(Permissions);
             query.Properties.ReadState = ReadState;
             query.Properties.TopNumberOfRows = TopNoOfRows;
+            query.Properties.CaptionML.Set(CaptionML);
 
             if (AutoCaption)
                 query.AutoCaption();

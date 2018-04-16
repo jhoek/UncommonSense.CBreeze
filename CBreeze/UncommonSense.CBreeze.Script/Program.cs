@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Script
                 File.WriteAllText(scriptFileName, invocation, Encoding.UTF8);
             }
 
-            File.WriteAllLines(runnerFileName, Directory.GetFiles(scriptFolderName).Select(s => $"& {s} | Export-CBreezeApplication -Path {outputFolderName} -Directory"));
+            File.WriteAllLines(runnerFileName, @"Import-Module c:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Debug\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.psd1 -Force -DisableNameCheck".Concatenate(Directory.GetFiles(scriptFolderName).Select(s => $"& {s} | Export-CBreezeApplication -Path {outputFolderName} -Directory")));
 
             var processStartInfo = new ProcessStartInfo()
             {

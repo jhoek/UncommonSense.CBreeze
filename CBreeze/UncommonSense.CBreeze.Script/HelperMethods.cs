@@ -35,5 +35,7 @@ namespace UncommonSense.CBreeze.Script
         {
             return text.Replace("'", "''"); 
         }
+
+        public static IEnumerable<T> Concatenate<T>(this T item, IEnumerable<T> items) => new T[] { item }.Concat(items);
     }
 }

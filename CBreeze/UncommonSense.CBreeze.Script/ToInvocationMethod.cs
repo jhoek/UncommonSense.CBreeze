@@ -25,15 +25,22 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> properties = query
                 .Properties
                 .Where(p => p.HasValue)
-                .Where(p => p.GetType() != typeof(ActionListProperty))
                 .SelectMany(p => p.ToParameters());
+
+            IEnumerable<ParameterBase> subObjects = new[] {
+                new ScriptBlockParameter(
+                    "SubObjects",
+                    query.Properties.OrderBy.ToInvocations()
+                        .Concat(query.Elements.ToInvocations())
+                )
+            };
 
             return new Invocation(
                 "New-CBreezeQuery",
                 signature
                     .Concat(objectProperties)
                     .Concat(properties)
-            //.Concat(subObjects)
+                    .Concat(subObjects)
             );
         }
 
@@ -220,6 +227,10 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this TableFilterLine tableFilterLine) => new Invocation("New-CBreezeFilter", tableFilterLine.ToParameters());
 
+        public static Invocation ToInvocation(this QueryOrderByLine queryOrderByLine) => new Invocation("New-CBreezeOrderBy", queryOrderByLine.ToParameters());
+
+        public static Invocation ToInvocation(this QueryElement queryElement) => new Invocation($"New-CBreeze{queryElement.Type}QueryElement", queryElement.ToParameters());
+
         public static IEnumerable<Literal> ToInvocation(this CodeLines codeLines) => codeLines.Select(c => new Literal(c));
 
         public static IEnumerable<Invocation> ToInvocations(this Permissions permissions) => permissions.Select(p => p.ToInvocation());
@@ -235,5 +246,9 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocations(this RunObjectLink runObjectLink) => runObjectLink.Select(l => l.ToInvocation());
 
         public static IEnumerable<Invocation> ToInvocations(this TableFilter tableFilter) => tableFilter.Select(f => f.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocations(this QueryOrderByLines orderByLines) => orderByLines.Select(o => o.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocations(this QueryElements queryElements) => queryElements.Select(e => e.ToInvocation());
     }
 }
