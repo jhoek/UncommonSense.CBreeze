@@ -10,6 +10,32 @@ namespace UncommonSense.CBreeze.Script
     {
         public static IEnumerable<Invocation> ToInvocation(this TableFields fields) => fields.Select(f => f.ToInvocation());
 
+        public static Invocation ToInvocation(this Query query)
+        {
+            IEnumerable<ParameterBase> signature = new[] {
+                new SimpleParameter("ID", query.ID),
+                new SimpleParameter("Name", query.Name)
+            };
+
+            IEnumerable<ParameterBase> objectProperties = query
+                .ObjectProperties
+                .Where(p => p.HasValue)
+                .SelectMany(p => p.ToParameters());
+
+            IEnumerable<ParameterBase> properties = query
+                .Properties
+                .Where(p => p.HasValue)
+                .Where(p => p.GetType() != typeof(ActionListProperty))
+                .SelectMany(p => p.ToParameters());
+
+            return new Invocation(
+                "New-CBreezeQuery",
+                signature
+                    .Concat(objectProperties)
+                    .Concat(properties)
+            //.Concat(subObjects)
+            );
+        }
 
         public static Invocation ToInvocation(this Page page)
         {
