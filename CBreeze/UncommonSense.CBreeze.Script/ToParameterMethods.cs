@@ -67,7 +67,48 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<ParameterBase> ToParameters(this QueryElement queryElement)
         {
-            yield break; // FIXME
+            switch (queryElement)
+            {
+                case DataItemQueryElement d: return d.ToParameters();
+                case ColumnQueryElement c: return c.ToParameters();
+                case FilterQueryElement f: return f.ToParameters();
+                default: return Enumerable.Empty<ParameterBase>();
+            }
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this DataItemQueryElement dataitemQueryElement)
+        {
+            yield return new SimpleParameter("ID", dataitemQueryElement.ID);
+            yield return new SimpleParameter("Name", dataitemQueryElement.Name);
+
+            foreach (var parameter in dataitemQueryElement.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+
+            yield return new ScriptBlockParameter("ChildElements", dataitemQueryElement.ChildElements.Select(c => c.ToInvocation()));
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this ColumnQueryElement columnQueryElement)
+        {
+            yield return new SimpleParameter("ID", columnQueryElement.ID);
+            yield return new SimpleParameter("Name", columnQueryElement.Name);
+
+            foreach (var parameter in columnQueryElement.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this FilterQueryElement filterQueryElement)
+        {
+            yield return new SimpleParameter("ID", filterQueryElement.ID);
+            yield return new SimpleParameter("Name", filterQueryElement.Name);
+
+            foreach (var parameter in filterQueryElement.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this TableField field)
