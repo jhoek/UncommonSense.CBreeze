@@ -249,6 +249,6 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocations(this QueryOrderByLines orderByLines) => orderByLines.Select(o => o.ToInvocation());
 
-        public static IEnumerable<Invocation> ToInvocations(this QueryElements queryElements) => queryElements.Select(e => e.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocations(this QueryElements queryElements) => queryElements.Where(e=>e.IndentationLevel.GetValueOrDefault(0) == 0).Select(e => e.ToInvocation());
     }
 }
