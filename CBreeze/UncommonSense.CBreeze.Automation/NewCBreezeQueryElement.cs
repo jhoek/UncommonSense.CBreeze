@@ -115,7 +115,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithoutID)]
-        public ScriptBlock ChildElements { get; set; }
+        public ScriptBlock SubObjects { get; set; }
 
         [Parameter()]
         public DataItemLinkType? DataItemLinkType { get; set; }
@@ -173,11 +173,14 @@ namespace UncommonSense.CBreeze.Automation
             yield return dataItemQueryElement;
 
             var variables = new List<PSVariable>() { new PSVariable("ElementIndentation", indentation + 1) };
-            var childElements = ChildElements?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<QueryElement>();
 
-            dataItemQueryElement.Properties.DataItemTableFilter.AddRange(childElements.OfType<TableFilterLine>());
+            // FIXME: SubObjects should also contain dataitem link lines
 
-            foreach (var childElement in childElements.OfType<QueryElement>())
+            var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<QueryElement>();
+
+            dataItemQueryElement.Properties.DataItemTableFilter.AddRange(subObjects.OfType<TableFilterLine>());
+
+            foreach (var childElement in subObjects.OfType<QueryElement>())
             {
                 yield return childElement;
             }
