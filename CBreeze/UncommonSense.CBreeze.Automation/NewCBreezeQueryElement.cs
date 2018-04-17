@@ -173,7 +173,7 @@ namespace UncommonSense.CBreeze.Automation
             yield return dataItemQueryElement;
 
             var variables = new List<PSVariable>() { new PSVariable("ElementIndentation", indentation + 1) };
-            var childElements = ChildElements?.InvokeWithContext(null, variables).Select(o => o.BaseObject);
+            var childElements = ChildElements?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<QueryElement>();
 
             dataItemQueryElement.Properties.DataItemTableFilter.AddRange(childElements.OfType<TableFilterLine>());
 

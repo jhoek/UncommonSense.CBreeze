@@ -470,6 +470,10 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SwitchParameter(b.Name, b.Value);
                     break;
 
+                case QueryDataItemLinkProperty l:
+                    // Yielded elsewhere as part of SubObjects
+                    yield break;
+
                 case TriggerProperty t:
                     yield return new ScriptBlockParameter(
                         t.Name,

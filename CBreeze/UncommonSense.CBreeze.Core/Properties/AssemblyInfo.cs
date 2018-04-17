@@ -7,6 +7,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCompany("uncommonsense.nl")]
 [assembly: AssemblyProduct("UncommonSense.CBreeze.Automation")]
 [assembly: AssemblyCopyright("Copyright © 2018 Jan Hoek")]
-[assembly: AssemblyVersion("1.0.0.4")]
-[assembly: AssemblyFileVersion("1.0.0.4")]
+[assembly: AssemblyVersion("1.0.0.6")]
+[assembly: AssemblyFileVersion("1.0.0.6")]
 
