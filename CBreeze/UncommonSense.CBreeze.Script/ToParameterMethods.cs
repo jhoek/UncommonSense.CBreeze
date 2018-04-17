@@ -69,10 +69,14 @@ namespace UncommonSense.CBreeze.Script
         {
             switch (queryElement)
             {
-                case DataItemQueryElement d: return d.ToParameters();
-                case ColumnQueryElement c: return c.ToParameters();
-                case FilterQueryElement f: return f.ToParameters();
-                default: return Enumerable.Empty<ParameterBase>();
+                case DataItemQueryElement d:
+                    return d.ToParameters();
+                case ColumnQueryElement c:
+                    return c.ToParameters();
+                case FilterQueryElement f:
+                    return f.ToParameters();
+                default:
+                    return Enumerable.Empty<ParameterBase>();
             }
         }
 
@@ -86,7 +90,18 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("ChildElements", dataitemQueryElement.ChildElements.Select(c => c.ToInvocation()));
+            yield return new ScriptBlockParameter(
+                "SubObjects",
+                dataitemQueryElement.ChildElements.Select(c => c.ToInvocation())
+                .Concat(dataitemQueryElement.Properties.DataItemLink.Select(l => l.ToInvocation()))
+            );
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this QueryDataItemLinkLine queryDataItemLinkLine)
+        {
+            yield return new SimpleParameter("Field", queryDataItemLinkLine.Field);
+            yield return new SimpleParameter("ReferenceTable", queryDataItemLinkLine.ReferenceTable);
+            yield return new SimpleParameter("ReferenceField", queryDataItemLinkLine.ReferenceField);
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this ColumnQueryElement columnQueryElement)

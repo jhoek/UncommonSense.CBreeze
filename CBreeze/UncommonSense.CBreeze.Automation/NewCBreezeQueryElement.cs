@@ -174,11 +174,10 @@ namespace UncommonSense.CBreeze.Automation
 
             var variables = new List<PSVariable>() { new PSVariable("ElementIndentation", indentation + 1) };
 
-            // FIXME: SubObjects should also contain dataitem link lines
-
-            var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<QueryElement>();
+            var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
 
             dataItemQueryElement.Properties.DataItemTableFilter.AddRange(subObjects.OfType<TableFilterLine>());
+            dataItemQueryElement.Properties.DataItemLink.AddRange(subObjects.OfType<QueryDataItemLinkLine>());
 
             foreach (var childElement in subObjects.OfType<QueryElement>())
             {
