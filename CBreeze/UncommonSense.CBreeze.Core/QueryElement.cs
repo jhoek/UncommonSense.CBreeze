@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Core
 
         public IEnumerable<QueryElement> DescendantElements => Container.Skip(Index + 1).TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
 
-        public IEnumerable<QueryElement> ChildElements => DescendantElements.Where(e => e.IndentationLevel == IndentationLevel + 1);
+        public IEnumerable<QueryElement> ChildElements => DescendantElements.Where(e => e.IndentationLevel.GetValueOrDefault(0) == IndentationLevel.GetValueOrDefault(0) + 1);
 
         public INode ParentNode => Container;
 
