@@ -63,6 +63,7 @@ namespace UncommonSense.CBreeze.Automation
 <# if (functionType == "TestFunction") { #>
 		[Parameter()] public string HandlerFunctions { get; set; }
 		[Parameter()] public TestFunctionType? TestFunctionType { get; set; } 
+		[Parameter()] public TestPermissions? TestPermissions { get;set; }
 		[Parameter()] public TransactionModel? TransactionModel { get; set; }
 <# } #>
 <# if (functionType == "UpgradeFunction") { #>
@@ -130,6 +131,7 @@ namespace UncommonSense.CBreeze.Automation
 			function.HandlerFunctions = HandlerFunctions;
 			function.TestFunctionType = TestFunctionType;
 			function.TransactionModel = TransactionModel;
+			function.TestPermissions = TestPermissions;
 <# } #>
 <# if (functionType == "EventSubscriberFunction") { #>
 			function.Event = EventPublisherSubscriber.Subscriber;
