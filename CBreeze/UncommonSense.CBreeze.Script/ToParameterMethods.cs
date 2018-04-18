@@ -93,6 +93,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new ScriptBlockParameter(
                 "SubObjects",
                 dataitemQueryElement.ChildElements.Select(c => c.ToInvocation())
+                .Concat(dataitemQueryElement.Properties.DataItemTableFilter.Select(f=> f.ToInvocation()))
                 .Concat(dataitemQueryElement.Properties.DataItemLink.Select(l => l.ToInvocation()))
             );
         }
@@ -113,6 +114,10 @@ namespace UncommonSense.CBreeze.Script
             {
                 yield return parameter;
             }
+
+            yield return new ScriptBlockParameter(
+                "SubObjects",
+                columnQueryElement.Properties.ColumnFilter.Select(f=> f.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this FilterQueryElement filterQueryElement)
@@ -477,17 +482,25 @@ namespace UncommonSense.CBreeze.Script
 
             switch (property)
             {
+                // Yielded as part of SubObjects
                 case ActionListProperty a:
-                    // Yielded elsewhere as part of SubObjects
+                case ColumnFilterProperty c:
+                case DataItemQueryElementTableFilterProperty f:
+                case MethodTypeProperty m:
+                case QueryDataItemLinkProperty l:
                     yield break;
 
                 case BooleanProperty b:
                     yield return new SwitchParameter(b.Name, b.Value);
                     break;
 
-                case QueryDataItemLinkProperty l:
-                    // Yielded elsewhere as part of SubObjects
-                    yield break;
+                case TotalsMethodProperty p:
+                    yield return new SimpleParameter("Method", p.Value);
+                    break;
+
+                case DateMethodProperty p:
+                    yield return new SimpleParameter("Method", p.Value);
+                    break;
 
                 case TriggerProperty t:
                     yield return new ScriptBlockParameter(
