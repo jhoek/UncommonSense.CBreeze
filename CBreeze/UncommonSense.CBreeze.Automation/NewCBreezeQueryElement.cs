@@ -11,10 +11,10 @@ namespace UncommonSense.CBreeze.Automation
     [Alias("QueryColumn", "Add-CBreezeColumnQueryElement")]
     public class NewCBreezeColumnQueryElement : NewCBreezeQueryElement<DataItemQueryElement>
     {
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithID)]
+        [Parameter(Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.NewWithoutID)]
+        [Parameter(Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public String DataSource { get; set; }
 
         [Parameter()]
@@ -34,6 +34,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()]
         public SwitchParameter ReverseSign { get; set; }
 
+        [Parameter()]
+        public ScriptBlock SubObjects { get; set; }
+
         protected override void AddItemToInputObject(QueryElement item, DataItemQueryElement InputObject)
         {
             InputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
@@ -48,6 +51,9 @@ namespace UncommonSense.CBreeze.Automation
             columnQueryElement.Properties.DateMethod = GetDateMethod();
             columnQueryElement.Properties.TotalsMethod = GetTotalsMethod();
             columnQueryElement.Properties.MethodType = GetMethodType(columnQueryElement.Properties.DateMethod, columnQueryElement.Properties.TotalsMethod);
+
+            var subObjects = SubObjects?.Invoke().Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
+            columnQueryElement.Properties.ColumnFilter.AddRange(subObjects.OfType<TableFilterLine>());
 
             yield return columnQueryElement;
         }
