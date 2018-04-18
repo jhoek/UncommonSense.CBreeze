@@ -13,9 +13,10 @@ namespace UncommonSense.CBreeze.Automation
     {
         [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public string Description { get; set; }
+        [Parameter()] public ScriptBlock OnBeforeOpen { get; set;}
         [Parameter()] public Permission[] Permissions { get; set; }
         [Parameter()] public ReadState? ReadState { get; set; }
-        [Parameter()] [ValidateRange(0, int.MaxValue)] public int? TopNoOfRows { get; set; }
+        [Parameter()] [ValidateRange(0, int.MaxValue)] public int? TopNumberOfRows { get; set; }
 
         protected override void AddItemToInputObject(Query item, Application inputObject)
         {
@@ -30,8 +31,9 @@ namespace UncommonSense.CBreeze.Automation
             query.Properties.Description = Description;
             query.Properties.Permissions.Set(Permissions);
             query.Properties.ReadState = ReadState;
-            query.Properties.TopNumberOfRows = TopNoOfRows;
+            query.Properties.TopNumberOfRows = TopNumberOfRows;
             query.Properties.CaptionML.Set(CaptionML);
+            query.Properties.OnBeforeOpen.Set(OnBeforeOpen);
 
             if (AutoCaption)
                 query.AutoCaption();
