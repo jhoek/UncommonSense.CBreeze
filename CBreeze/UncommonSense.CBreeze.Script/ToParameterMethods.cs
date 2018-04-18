@@ -380,8 +380,25 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
             yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
 #if NAV2016
+            //yield return new SimpleParameter("Event", function.Event);
+            //yield return new SimpleParameter("EventType", function.EventType);
+            yield return new SimpleParameter("EventPublisherObjectType", function.EventPublisherObject.Type);
+            yield return new SimpleParameter("EventPublisherObjectID", function.EventPublisherObject.ID);
+            yield return new SimpleParameter("EventPublisherElement", function.EventPublisherElement);
+            yield return new SimpleParameter("EventFunction", function.EventFunction);
+            yield return new SimpleParameter("OnMissingLicense", function.OnMissingLicense);
+            yield return new SimpleParameter("OnMissingPermission", function.OnMissingPermission);
             yield return new SwitchParameter("IncludeSender", function.IncludeSender);
             yield return new SwitchParameter("GlobalVarAccess", function.GlobalVarAccess);
+#endif
+            yield return new SimpleParameter("TransactionModel", function.TransactionModel);
+            yield return new SimpleParameter("TestFunctionType", function.TestFunctionType);
+            yield return new SimpleParameter("HandlerFunctions", function.HandlerFunctions);
+#if NAV2015
+            yield return new SimpleParameter("UpgradeFunctionType", function.UpgradeFunctionType);
+#endif
+#if NAV2017
+            yield return new SimpleParameter("TestPermissions", function.TestPermissions);
 #endif
             yield return new ScriptBlockParameter("SubObjects",
                 function.Parameters.ToInvocation().Cast<Statement>()
@@ -416,6 +433,10 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter("OptionString", o.OptionString);
                     break;
 
+                case PageParameter p:
+                    yield return new SimpleParameter("SubType", p.SubType);
+                    break;
+
                 case QueryParameter q:
                     yield return new SimpleParameter("SecurityFiltering", q.SecurityFiltering);
                     yield return new SimpleParameter("SubType", q.SubType);
@@ -432,6 +453,10 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case TestPageParameter t:
+                    yield return new SimpleParameter("SubType", t.SubType);
+                    break;
+
+                case TestRequestPageParameter t:
                     yield return new SimpleParameter("SubType", t.SubType);
                     break;
 

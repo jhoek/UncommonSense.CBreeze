@@ -41,34 +41,18 @@ namespace UncommonSense.CBreeze.Core
         public TestPermissions? TestPermissions { get; set; }
 #endif
         public TransactionModel? TransactionModel { get; set; }
-        public string HandlerFunctions { get; set; } 
-        public TestFunctionType? TestFunctionType { get; set; } 
+        public string HandlerFunctions { get; set; }
+        public TestFunctionType? TestFunctionType { get; set; }
 
 #if NAV2015
-
-        public UpgradeFunctionType? UpgradeFunctionType
-        {
-            get;
-            set;
-        }
-
+        public UpgradeFunctionType? UpgradeFunctionType { get; set; }
 #endif
 
 #if NAV2016
+        public bool? TryFunction { get; set; }
+        public EventPublisherSubscriber? Event { get; set; }
 
-        public bool? TryFunction
-        {
-            get;
-            set;
-        }
-
-        public EventPublisherSubscriber? Event
-        {
-            get;
-            set;
-        }
-
-        public EventType EventType
+        public EventType? EventType
         {
             get;
             set;

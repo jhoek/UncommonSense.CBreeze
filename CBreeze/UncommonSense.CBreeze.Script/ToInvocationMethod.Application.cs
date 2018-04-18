@@ -17,6 +17,7 @@ namespace UncommonSense.CBreeze.Script
                     "Objects",
                     application.Tables.ToInvocation()
                         .Concat(application.Pages.ToInvocation())
+                        .Concat(application.Codeunits.ToInvocation())
                         .Concat(application.Reports.ToInvocation())
                         .Concat(application.Queries.ToInvocation())
                 )
@@ -30,5 +31,7 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocation(this Reports reports) => reports.Select(r => r.ToInvocation());
 
         public static IEnumerable<Invocation> ToInvocation(this Queries queries) => queries.Select(q => q.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocation(this Codeunits codeunits) => codeunits.Select(c => c.ToInvocation());
     }
 }
