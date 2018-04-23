@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TableRelationTableFilterLine
+    public class TableRelationTableFilterLine
     {
         public TableRelationTableFilterLine(string fieldName, TableFilterType type, string value)
         {
@@ -13,6 +13,8 @@ namespace UncommonSense.CBreeze.Core
             Type = type;
             Value = value;
         }
+
+        public override string ToString() => $"{FieldName}={Type}({Value})";
 
         public string FieldName
         {
