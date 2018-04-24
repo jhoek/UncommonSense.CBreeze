@@ -18,7 +18,7 @@ namespace UncommonSense.CBreeze.Automation
         /// <summary>
         /// <para type="synopsis">The name to be converted</para>
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 1)]
         public string[] Name { get; set; }
 
         /// <exclude/>
