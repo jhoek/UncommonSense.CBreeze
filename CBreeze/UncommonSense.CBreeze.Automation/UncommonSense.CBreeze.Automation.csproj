@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CBreezeCmdlet.cs" />
     <Compile Include="DevClientCmdlet.cs" />
+    <Compile Include="GetCBreezeVariableName.cs" />
     <Compile Include="NewCBreezeFunction.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
