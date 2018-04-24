@@ -1,6 +1,6 @@
 ﻿$ErrorActionPreference = 'Stop'
 
-Import-Module (Join-Path -Path $PSScriptRoot -ChildPath 'bin/debug/UncommonSense.CBreeze.Automation/UncommonSense.CBreeze.Automation.dll') -Force
+Import-Module (Join-Path -Path $PSScriptRoot -ChildPath 'bin/release/UncommonSense.CBreeze.Automation/UncommonSense.CBreeze.Automation.dll') -Force
 
 Update-ModuleManifest `
     -Path (Join-Path -Path $PSScriptRoot -ChildPath manifest.psd1) `
