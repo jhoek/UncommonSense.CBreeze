@@ -15,54 +15,14 @@ namespace UncommonSense.CBreeze.Core
             ObjectProperties = new ObjectProperties();
         }
 
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        public string VariableName
-        {
-            get
-            {
-                return Name.MakeVariableName();
-            }
-        }
-
-        public abstract ObjectType Type
-        {
-            get;
-        }
-
-        public ObjectProperties ObjectProperties
-        {
-            get;
-            protected set;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{0} {1} {2}", Type, ID, Name);
-        }
-
-        public string GetName()
-        {
-            return Name;
-        }
-
-        public abstract Properties AllProperties
-        {
-            get;
-        }
-
-        public abstract INode ParentNode
-        {
-            get;
-        }
-
-        public abstract IEnumerable<INode> ChildNodes
-        {
-            get;
-        }
+        public string Name { get; set; }
+        public string VariableName => Name.MakeVariableName();
+        public abstract ObjectType Type { get; }
+        public ObjectProperties ObjectProperties { get; protected set; }
+        public override string ToString() => string.Format("{0} {1} {2}", Type, ID, Name);
+        public string GetName() => Name;
+        public abstract Properties AllProperties { get; }
+        public abstract INode ParentNode { get; }
+        public abstract IEnumerable<INode> ChildNodes { get; }
     }
 }
