@@ -463,6 +463,10 @@ namespace UncommonSense.CBreeze.Script
                 case TextParameter t:
                     yield return new SimpleParameter("DataLength", t.DataLength);
                     break;
+
+                case XmlPortParameter x:
+                    yield return new SimpleParameter("SubType", x.SubType);
+                    break;
             }
         }
 
