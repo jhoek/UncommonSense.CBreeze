@@ -56,6 +56,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>NAV2013R2;NAV2015;NAV2016;NAV2017</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
