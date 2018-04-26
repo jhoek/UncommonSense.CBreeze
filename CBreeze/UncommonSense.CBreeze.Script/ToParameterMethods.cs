@@ -19,8 +19,9 @@ namespace UncommonSense.CBreeze.Script
             yield return new ScriptBlockParameter(
                 "SubObjects",
                 dataItemReportElement.Properties.DataItemTableView.TableFilter.ToInvocations()
+                    .Concat(dataItemReportElement.Properties.DataItemLink.Select(l=>l.ToInvocation()))
                     .Concat(dataItemReportElement.ChildElements.Select(e => e.ToInvocation()))
-            );
+                    );
 
             // FIXME: More properties, child elements
 
@@ -103,6 +104,12 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Field", queryDataItemLinkLine.Field);
             yield return new SimpleParameter("ReferenceTable", queryDataItemLinkLine.ReferenceTable);
             yield return new SimpleParameter("ReferenceField", queryDataItemLinkLine.ReferenceField);
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this ReportDataItemLinkLine reportDataItemLinkLine)
+        {
+            yield return new SimpleParameter("Field", reportDataItemLinkLine.FieldName);
+            yield return new SimpleParameter("ReferenceField", reportDataItemLinkLine.ReferenceFieldName);
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this ColumnQueryElement columnQueryElement)
@@ -415,6 +422,14 @@ namespace UncommonSense.CBreeze.Script
 
             switch (parameter)
             {
+                case AutomationParameter a:
+                    yield return new SimpleParameter("SubType", a.SubType);
+                    break;
+
+                case BinaryParameter b:
+                    yield return new SimpleParameter("DataLength", b.DataLength);
+                    break;
+
                 case CodeParameter c:
                     yield return new SimpleParameter("DataLength", c.DataLength);
                     break;
@@ -427,6 +442,10 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SwitchParameter("RunOnClient", d.RunOnClient);
                     yield return new SimpleParameter("SubType", d.SubType);
                     yield return new SwitchParameter("SuppressDispose", d.SuppressDispose);
+                    break;
+
+                case OcxParameter o:
+                    yield return new SimpleParameter("SubType", o.SubType);
                     break;
 
                 case OptionParameter o:
@@ -504,7 +523,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
         }
 
-        public static IEnumerable<ParameterBase> ToParameters(this Property property)
+        public static IEnumerable<ParameterBase> ToParameters(this Property property, string prefix = null)
         {
             // Note: SubObject parameters should not be rendered here, since they may contain
             // values from more than one property. 
@@ -517,6 +536,7 @@ namespace UncommonSense.CBreeze.Script
                 case DataItemQueryElementTableFilterProperty f:
                 case MethodTypeProperty m:
                 case QueryDataItemLinkProperty l:
+                case ReportDataItemLinkProperty r:
                     yield break;
 
                 case BooleanProperty b:
@@ -533,7 +553,7 @@ namespace UncommonSense.CBreeze.Script
 
                 case TriggerProperty t:
                     yield return new ScriptBlockParameter(
-                        t.Name,
+                        $"{prefix}{t.Name}",
                         t.Value.Variables.ToInvocation().Concat(
                             t.Value.CodeLines.Select(c => new Invocation($"'{c.Replace("'", "''")}'"))));
                     break;
@@ -562,7 +582,7 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case NullableBooleanProperty b:
-                    yield return new SwitchParameter(b.Name, b.Value);
+                    yield return new SwitchParameter($"{prefix}{b.Name}", b.Value);
                     break;
 
                 case PageActionContainerTypeProperty t:

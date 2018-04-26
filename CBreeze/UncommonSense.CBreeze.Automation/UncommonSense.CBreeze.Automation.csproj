@@ -70,6 +70,7 @@
     <Compile Include="NewCBreezePageControl.cs" />
     <Compile Include="NewCBreezePageControlGroup.cs" />
     <Compile Include="NewCBreezePageControlPart.cs" />
+    <Compile Include="NewCBreezeReportLink.cs" />
     <Compile Include="NewCBreezeTableFilter.cs" />
     <Compile Include="NewCBreezeCalcFormulaFilter.cs" />
     <Compile Include="NewCBreezeParameter.cs">

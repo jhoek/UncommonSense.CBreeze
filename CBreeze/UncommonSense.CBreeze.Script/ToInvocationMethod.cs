@@ -227,6 +227,8 @@ namespace UncommonSense.CBreeze.Script
 
         public static Invocation ToInvocation(this TableFilterLine tableFilterLine) => new Invocation("New-CBreezeFilter", tableFilterLine.ToParameters());
 
+        public static Invocation ToInvocation(this ReportDataItemLinkLine reportDataItemLinkLine) => new Invocation("New-CBreezeReportLink", reportDataItemLinkLine.ToParameters());
+
         public static Invocation ToInvocation(this QueryOrderByLine queryOrderByLine) => new Invocation("New-CBreezeOrderBy", queryOrderByLine.ToParameters());
 
         public static Invocation ToInvocation(this QueryElement queryElement) => new Invocation($"New-CBreeze{queryElement.Type}QueryElement", queryElement.ToParameters());
