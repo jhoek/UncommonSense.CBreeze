@@ -36,6 +36,7 @@ namespace UncommonSense.CBreeze.Script
                 new ScriptBlockParameter(
                     "SubObjects",
                         report.Elements.ToInvocation().Cast<Statement>()
+                            .Concat(report.Labels.ToInvocation().Cast<Statement>())
                             .Concat(report.Code.Variables.ToInvocation().Cast<Statement>())
                             .Concat(report.Code.Functions.ToInvocation().Cast<Statement>())
                             .Concat(report.Code.Events.ToInvocation().Cast<Statement>())
@@ -72,6 +73,10 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<Invocation> ToInvocation(this ReportElements reportElements) => 
             reportElements.Where(e => e.IndentationLevel.GetValueOrDefault(0) == 0).Select(e => e.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocation(this ReportLabels reportLabels) => reportLabels.Select(l => l.ToInvocation());
+
+        public static Invocation ToInvocation(this ReportLabel reportLabel) => new Invocation("New-CBreezeReportLabel", reportLabel.ToParameters());
 
         public static Invocation ToInvocation(this ReportElement reportElement)
         {

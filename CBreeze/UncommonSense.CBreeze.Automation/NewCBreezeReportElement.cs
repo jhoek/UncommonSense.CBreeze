@@ -129,7 +129,7 @@ namespace UncommonSense.CBreeze.Automation
             element.Properties.OnPostDataItem.Set(OnPostDataItem);
             element.Properties.PrintOnlyIfDetail = NullableBooleanFromSwitch(nameof(PrintOnlyIfDetail));
             element.Properties.ReqFilterFields.AddRange(ReqFilterFields);
-            element.Properties.ReqFilterHeadingML.Set("ENU", ReqFilterHeading);
+            element.Properties.ReqFilterHeadingML.Set(ReqFilterHeadingML);
 #if NAV2015
             element.Properties.Temporary = NullableBooleanFromSwitch(nameof(Temporary));
 #endif
@@ -139,6 +139,7 @@ namespace UncommonSense.CBreeze.Automation
             var variables = new List<PSVariable>() { new PSVariable("ElementIndentation", element.IndentationLevel + 1) };
             var subObjects = SubObjects?.InvokeWithContext(null, variables).Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
 
+            element.Properties.DataItemLink.AddRange(subObjects.OfType<ReportDataItemLinkLine>());
             element.Properties.DataItemTableView.TableFilter.AddRange(subObjects.OfType<TableFilterLine>());
 
             foreach (var subObject in subObjects.OfType<ReportElement>())
@@ -159,7 +160,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string DataItemLinkReference { get; set; }
         [Parameter()] public string DataItemTableViewKey { get; set; }
         [Parameter()] public Order? DataItemTableViewOrder { get; set; }
-        [Parameter()] [ValidateRange(1, int.MaxValue)] public int? MaxIteration { get; set; }
+        [Parameter()] [ValidateRange(0, int.MaxValue)] public int? MaxIteration { get; set; }
         [Parameter()] public string Name { get; set; }
         [Parameter()] public ScriptBlock OnPreDataItem { get; set; }
         [Parameter()] public ScriptBlock OnAfterGetRecord { get; set; }
@@ -171,7 +172,7 @@ namespace UncommonSense.CBreeze.Automation
 
         [Parameter()] public SwitchParameter PrintOnlyIfDetail { get; set; }
         [Parameter()] public string[] ReqFilterFields { get; set; }
-        [Parameter()] public string ReqFilterHeading { get; set; }
+        [Parameter()] public Hashtable ReqFilterHeadingML { get; set; }
 #if NAV2015
         [Parameter()] public SwitchParameter Temporary { get; set; }
 #endif

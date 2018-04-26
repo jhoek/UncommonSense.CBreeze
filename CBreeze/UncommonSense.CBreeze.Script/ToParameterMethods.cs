@@ -43,6 +43,17 @@ namespace UncommonSense.CBreeze.Script
             }
         }
 
+        public static IEnumerable<ParameterBase> ToParameters(this ReportLabel reportLabel)
+        {
+            yield return new SimpleParameter("ID", reportLabel.ID);
+            yield return new SimpleParameter("Name", reportLabel.Name);
+
+            foreach (var parameter in reportLabel.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this RunObjectLinkLine runObjectLinkLine)
         {
             yield return new SimpleParameter("FieldName", runObjectLinkLine.FieldName);
@@ -627,7 +638,7 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 default:
-                    yield return new SimpleParameter(property.Name, property.GetValue());
+                    yield return new SimpleParameter($"{prefix}{property.Name}", property.GetValue());
                     break;
             }
         }

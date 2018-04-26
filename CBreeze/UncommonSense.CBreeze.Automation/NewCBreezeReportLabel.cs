@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -20,13 +21,13 @@ namespace UncommonSense.CBreeze.Automation
         protected override IEnumerable<ReportLabel> CreateItems()
         {
             var reportLabel = new ReportLabel(ID, Name);
-            reportLabel.Properties.CaptionML.Set("ENU", Caption);
+            reportLabel.Properties.CaptionML.Set(CaptionML);
             reportLabel.Properties.Description = Description;
             yield return reportLabel;
         }
 
         [Parameter()]
-        public string Caption
+        public Hashtable CaptionML
         {
             get;
             set;
