@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using System.Xml;
+using System.Xml.Linq;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
 
@@ -33,6 +35,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public PreviewMode? PreviewMode { get; set; }
 #endif
         [Parameter()] public SwitchParameter ProcessingOnly { get; set; }
+        [Parameter()] public object RdlData { get; set; }
         [Parameter()] public SwitchParameter ShowPrintStatus { get; set; }
         [Parameter()] public TransactionType? TransactionType { get; set; }
         [Parameter()] public SwitchParameter UseRequestPage { get; set; }
@@ -77,6 +80,27 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2015
             report.Properties.WordMergeDataItem = WordMergeDataItem;
 #endif
+
+            switch (RdlData)
+            {
+                case null:
+                    report.RdlData.CodeLines.Clear();
+                    break;
+                case string s:
+                    report.RdlData.CodeLines.Set(s);
+                    break;
+                case IEnumerable<string> e:
+                    report.RdlData.CodeLines.Set(e);
+                    break;
+                case XmlDocument x:
+                    report.RdlData.CodeLines.Set(x.OuterXml);
+                    break;
+                case XDocument d:
+                    report.RdlData.CodeLines.Set(d.ToString());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("RdlData");
+            }
 
             ProcessRequestPage(report);
 

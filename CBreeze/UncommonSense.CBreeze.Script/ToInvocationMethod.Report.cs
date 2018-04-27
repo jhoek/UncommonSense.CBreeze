@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,19 @@ namespace UncommonSense.CBreeze.Script
 {
     public static partial class ToInvocationMethod
     {
+        internal static string GetExternalDataFileParameterValue(IEnumerable<string> data, string fileName)
+        {
+            if (data.Any())
+            {
+                fileName = Path.Combine(Paths.Script, fileName);
+
+                File.WriteAllLines(fileName, data);
+                return $"(Get-Content -Path {fileName})";
+            }
+
+            return null;
+        }
+
         public static Invocation ToInvocation(this Report report)
         {
             IEnumerable<ParameterBase> signature = new[] {
@@ -31,6 +45,11 @@ namespace UncommonSense.CBreeze.Script
                 .Properties
                 .Where(p => p.HasValue)
                 .SelectMany(p => p.ToParameters("RequestPage"));
+
+            var rdlData = 
+                new LiteralParameter(
+                    "RdlData", 
+                    GetExternalDataFileParameterValue(report.RdlData.CodeLines, $"rep{report.ID}.rdl.txt"));
 
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
@@ -68,7 +87,9 @@ namespace UncommonSense.CBreeze.Script
                     .Concat(properties)
                     .Concat(requestPageProperties)
                     .Concat(requestPageSubObjects)
-                    .Concat(subObjects));
+                    .Concat(subObjects)
+                    .Concat(rdlData.ToEnumerable())
+            );
         }
 
         public static IEnumerable<Invocation> ToInvocation(this ReportElements reportElements) => 

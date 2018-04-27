@@ -15,34 +15,30 @@ namespace UncommonSense.CBreeze.Script
     {
         private static void Main(string[] args)
         {
-            var inputFolderName = args.First();
-            var outputFolderName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "output");
-            var scriptFolderName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "scripts");
-            var runnerFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "runner.ps1");
+            Paths.Output.Recreate();
+            Paths.Script.Recreate();
 
-            if (Directory.Exists(outputFolderName))
-                Directory.Delete(outputFolderName, true);
-
-            if (Directory.Exists(scriptFolderName))
-                Directory.Delete(scriptFolderName, true);
-
-            Directory.CreateDirectory(outputFolderName);
-            Directory.CreateDirectory(scriptFolderName);
-
-            foreach (var inputFileName in Directory.GetFiles(inputFolderName))
+            foreach (var inputFileName in Directory.GetFiles(Paths.Input))
             {
                 var application = ApplicationBuilder.ReadFromFile(inputFileName);
                 var invocation = application.ToInvocation().ToString();
-                var scriptFileName = Path.Combine(scriptFolderName, Path.ChangeExtension(Path.GetFileName(inputFileName), "ps1"));
+                var scriptFileName = Path.Combine(Paths.Script, Path.ChangeExtension(Path.GetFileName(inputFileName), "ps1"));
                 File.WriteAllText(scriptFileName, invocation, Encoding.UTF8);
             }
 
-            File.WriteAllLines(runnerFileName, @"$ErrorActionPreference = 'Stop'; Import-Module c:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Release\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.psd1 -Force -DisableNameCheck".Concatenate(Directory.GetFiles(scriptFolderName).Select(s => $"& {s} | Export-CBreezeApplication -Path {outputFolderName} -Directory")));
+            File.WriteAllLines(
+                Paths.Runner, 
+                    @"$ErrorActionPreference = 'Stop'; Import-Module c:\users\jhoek\GitHub\UncommonSense.CBreeze\CBreeze\UncommonSense.CBreeze.Automation\bin\Release\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.psd1 -Force -DisableNameCheck"
+                    .ToEnumerable()
+                    .Concat(
+                        Directory
+                            .GetFiles(Paths.Script, "*.ps1")
+                            .Select(s => $"& {s} | Export-CBreezeApplication -Path {Paths.Output} -Directory")));
 
             var processStartInfo = new ProcessStartInfo()
             {
                 FileName = @"C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe",
-                Arguments = $"-NoExit -File runner.ps1",
+                Arguments = $"-NoExit -File {Paths.Runner}",
                 WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             };
 

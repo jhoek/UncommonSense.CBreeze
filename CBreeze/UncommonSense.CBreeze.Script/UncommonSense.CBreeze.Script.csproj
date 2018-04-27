@@ -44,6 +44,8 @@
     <Compile Include="ArrayParameter.cs" />
     <Compile Include="HelperMethods.cs" />
     <Compile Include="Invocation.cs" />
+    <Compile Include="LiteralParameter.cs" />
+    <Compile Include="Paths.cs" />
     <Compile Include="ToInvocationMethod.Codeunit.cs" />
     <Compile Include="ToInvocationMethod.Report.cs" />
     <Compile Include="Literal.cs" />

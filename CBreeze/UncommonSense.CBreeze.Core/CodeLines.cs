@@ -30,6 +30,14 @@ namespace UncommonSense.CBreeze.Core
             base.Add(text);
         }
 
+        public void Set(IEnumerable<string> items)
+        {
+            Clear();
+            AddRange(items);
+        }
+
+        public void Set(string item) => Set(item.Split(new string[] { Environment.NewLine }, StringSplitOptions.None));
+
         public void Add(string format, params object[] args)
         {
             base.Add(string.Format(format, args));
