@@ -1,4 +1,5 @@
 Properties {
+    [ValidateSet('Major', 'Minor', 'Revision', 'Build')][string]$StepVersionBy = 'Revision'
     [string]$RootFolderName = $Psake.build_script_dir
     [string]$CBreezeFolderName = Join-Path $RootFolderName 'CBreeze'
     [string]$CBreezeAutomationFolderName = Join-Path $CBreezeFolderName 'UncommonSense.CBreeze.Automation'
@@ -40,7 +41,7 @@ Task UpdateAssemblyInfo -depends BumpBuildNo {
 }
 
 Task BumpBuildNo -depends GetBuildNo {
-    $script:BuildVersion = Step-ModuleVersion -Version $script:BuildVersion -By Revision
+    $script:BuildVersion = Step-ModuleVersion -Version $script:BuildVersion -By $StepVersionBy
 }
 
 Task GetBuildNo {
