@@ -578,7 +578,7 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case PermissionsProperty p:
-                    yield return new ArrayParameter(p.Name, p.Value.ToInvocations());
+                    yield return new ArrayParameter($"{prefix}{p.Name}", p.Value.ToInvocations());
                     break;
 
 #if NAV2015
