@@ -35,12 +35,13 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public PreviewMode? PreviewMode { get; set; }
 #endif
         [Parameter()] public SwitchParameter ProcessingOnly { get; set; }
-        [Parameter()] public object RdlData { get; set; }
+        [Parameter()] public PSObject RdlData { get; set; }
         [Parameter()] public SwitchParameter ShowPrintStatus { get; set; }
         [Parameter()] public TransactionType? TransactionType { get; set; }
         [Parameter()] public SwitchParameter UseRequestPage { get; set; }
         [Parameter()] public SwitchParameter UseSystemPrinter { get; set; }
 #if NAV2015
+        [Parameter()] public PSObject WordLayout { get; set; }
         [Parameter()] public string WordMergeDataItem { get; set; }
 #endif
 
@@ -81,26 +82,10 @@ namespace UncommonSense.CBreeze.Automation
             report.Properties.WordMergeDataItem = WordMergeDataItem;
 #endif
 
-            switch (RdlData)
-            {
-                case null:
-                    report.RdlData.CodeLines.Clear();
-                    break;
-                case string s:
-                    report.RdlData.CodeLines.Set(s);
-                    break;
-                case IEnumerable<string> e:
-                    report.RdlData.CodeLines.Set(e);
-                    break;
-                case XmlDocument x:
-                    report.RdlData.CodeLines.Set(x.OuterXml);
-                    break;
-                case XDocument d:
-                    report.RdlData.CodeLines.Set(d.ToString());
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("RdlData");
-            }
+            report.RdlData.CodeLines.Set(RdlData?.BaseObject);
+#if NAV2015
+            report.WordLayout.CodeLines.Set(WordLayout?.BaseObject);
+#endif
 
             ProcessRequestPage(report);
 

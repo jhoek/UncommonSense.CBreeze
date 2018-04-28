@@ -16,8 +16,9 @@ namespace UncommonSense.CBreeze.Script
             {
                 fileName = Path.Combine(Paths.Script, fileName);
 
-                File.WriteAllLines(fileName, data);
-                return $"(Get-Content -Path {fileName})";
+                // WriteAllLines will append a trailing line break that we don't want in our RDL!
+                File.WriteAllText(fileName, string.Join(Environment.NewLine, data));
+                return $"(Get-Content -Path {fileName} -Raw)";
             }
 
             return null;
@@ -50,6 +51,11 @@ namespace UncommonSense.CBreeze.Script
                 new LiteralParameter(
                     "RdlData", 
                     GetExternalDataFileParameterValue(report.RdlData.CodeLines, $"rep{report.ID}.rdl.txt"));
+
+            var wordLayout =
+                new LiteralParameter(
+                    "WordLayout",
+                    GetExternalDataFileParameterValue(report.WordLayout.CodeLines, $"rep{report.ID}.word.txt"));
 
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
@@ -89,6 +95,7 @@ namespace UncommonSense.CBreeze.Script
                     .Concat(requestPageSubObjects)
                     .Concat(subObjects)
                     .Concat(rdlData.ToEnumerable())
+                    .Concat(wordLayout.ToEnumerable())
             );
         }
 

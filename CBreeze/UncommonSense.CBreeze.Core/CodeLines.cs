@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -30,13 +32,30 @@ namespace UncommonSense.CBreeze.Core
             base.Add(text);
         }
 
-        public void Set(IEnumerable<string> items)
+        public void Set(object value)
         {
             Clear();
-            AddRange(items);
-        }
 
-        public void Set(string item) => Set(item.Split(new string[] { Environment.NewLine }, StringSplitOptions.None));
+            switch (value)
+            {
+                case null:
+                    break;
+                case string s:
+                    Set(s.Split(new string[] { Environment.NewLine }, StringSplitOptions.None));
+                    break;
+                case IEnumerable<string> e:
+                    AddRange(e);
+                    break;
+                case XmlDocument x:
+                    Set(x.OuterXml);
+                    break;
+                case XDocument d:
+                    Set(d.ToString());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException($"Don't know how to populate code lines with a {value.GetType().FullName}.");
+            }
+        }
 
         public void Add(string format, params object[] args)
         {
