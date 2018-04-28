@@ -22,6 +22,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Parse.Demo", "UncommonSense.CBreeze.Parse.Demo\UncommonSense.CBreeze.Parse.Demo.csproj", "{E2862360-AED4-4403-AF43-B3A5E8EECC3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Script", "UncommonSense.CBreeze.Script\UncommonSense.CBreeze.Script.csproj", "{EFCDE9E3-09C8-42F6-B82F-CE078E702396}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8F590103-F4B1-456B-BD22-A159846B0687} = {8F590103-F4B1-456B-BD22-A159846B0687}
+		{AD418664-85BF-445B-8792-6CD3CFD4AD33} = {AD418664-85BF-445B-8792-6CD3CFD4AD33}
+		{1233B6B5-8D24-4483-A974-FF921DBA85C1} = {1233B6B5-8D24-4483-A974-FF921DBA85C1}
+		{DDBC1BDE-9BA4-4E10-A2A9-F4C216A6865E} = {DDBC1BDE-9BA4-4E10-A2A9-F4C216A6865E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Test", "UncommonSense.CBreeze.Test\UncommonSense.CBreeze.Test.csproj", "{DDBC1BDE-9BA4-4E10-A2A9-F4C216A6865E}"
 EndProject
