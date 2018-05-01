@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -14,7 +15,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public Application Application { get; set; }
-
+        [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public SwitchParameter DefaultFieldsValidation { get; set; }
         [Parameter()] public string DefaultNamespace { get; set; }
         [Parameter()] public Direction? Direction { get; set; }
@@ -25,6 +26,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public XmlPortFormat? Format { get; set; }
         [Parameter()] public FormatEvaluate? FormatEvaluate { get; set; }
         [Parameter()] public SwitchParameter InlineSchema { get; set; }
+        [Parameter()] public ScriptBlock OnInitXmlPort { get; set; }
+        [Parameter()] public ScriptBlock OnPreXmlPort { get; set; }
+        [Parameter()] public ScriptBlock OnPostXmlPort { get; set; }
         [Parameter()] public Permission[] Permissions { get; set; }
         [Parameter()] public SwitchParameter PreserveWhitespace { get; set; }
         [Parameter()] public string RecordSeparator { get; set; }
@@ -46,6 +50,7 @@ namespace UncommonSense.CBreeze.Automation
             var xmlPort = new XmlPort(ID, Name);
             SetObjectProperties(xmlPort);
 
+            xmlPort.Properties.CaptionML.Set(CaptionML);
             xmlPort.Properties.DefaultFieldsValidation = NullableBooleanFromSwitch(nameof(DefaultFieldsValidation));
             xmlPort.Properties.DefaultNamespace = DefaultNamespace;
             xmlPort.Properties.Direction = Direction;
@@ -56,6 +61,9 @@ namespace UncommonSense.CBreeze.Automation
             xmlPort.Properties.Format = Format;
             xmlPort.Properties.FormatEvaluate = FormatEvaluate;
             xmlPort.Properties.InlineSchema = NullableBooleanFromSwitch(nameof(InlineSchema));
+            xmlPort.Properties.OnInitXMLport.Set(OnInitXmlPort);
+            xmlPort.Properties.OnPreXMLport.Set(OnPreXmlPort);
+            xmlPort.Properties.OnPostXMLport.Set(OnPostXmlPort);
             xmlPort.Properties.Permissions.Set(Permissions);
             xmlPort.Properties.PreserveWhiteSpace = NullableBooleanFromSwitch(nameof(PreserveWhitespace));
             xmlPort.Properties.RecordSeparator = RecordSeparator;
