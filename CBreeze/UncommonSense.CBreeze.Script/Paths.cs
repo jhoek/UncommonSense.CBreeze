@@ -13,7 +13,7 @@ namespace UncommonSense.CBreeze.Script
         public static string Desktop => Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         public static string Script => Path.Combine(Desktop, "scripts");
         public static string Output => Path.Combine(Desktop, "output");
-        public static string Runner => Path.Combine(Desktop, "runner.ps1");
+        public static string Runner(string prefix) => Path.Combine(Desktop, $"{prefix}.runner.ps1");
 
         public static string Create(this string folder)
         {
