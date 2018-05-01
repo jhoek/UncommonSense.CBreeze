@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -12,6 +13,9 @@ namespace UncommonSense.CBreeze.Core
         {
             Properties = new XmlPortFieldElementProperties(this);
         }
+
+        public override XmlPortNodeType NodeType => XmlPortNodeType.Element;
+        public override XmlPortSourceType SourceType => XmlPortSourceType.Field;
 
         public override IEnumerable<INode> ChildNodes
         {

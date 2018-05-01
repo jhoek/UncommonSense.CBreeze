@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -14,10 +15,9 @@ namespace UncommonSense.CBreeze.Core
             NodeName = nodeName;
         }
 
-        public abstract XmlPortNodeAndSourceType Type
-        {
-            get;
-        }
+        public abstract XmlPortNodeType NodeType { get; }
+        public abstract XmlPortSourceType SourceType { get; }
+        public abstract XmlPortNodeAndSourceType Type { get; }
 
         public string NodeName
         {

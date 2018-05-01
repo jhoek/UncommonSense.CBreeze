@@ -73,7 +73,7 @@ foreach (var @type in types) {
 	var propertiesClass = @type.GetProperty("Properties").PropertyType;
 	var relevantProperties = propertiesClass
 		.GetProperties()
-		.Where(p => p.PropertyType != typeof(Trigger))
+		//.Where(p => p.PropertyType != typeof(Trigger))
 		.Where(p => !skipProperties.Contains(p.Name))
 		.Select(p => new {
 			Name = p.Name,
@@ -258,6 +258,9 @@ foreach (var @type in types) {
 <#+
 	static string GetFullTypeName(Type t)
 	{
+		if (t == typeof(Trigger))
+			return "ScriptBlock";
+
 		if (!t.IsGenericType)
 			return t.Name;
 
@@ -281,6 +284,7 @@ foreach (var @type in types) {
 	{
 		switch(propertyInfo)
         {
+			case PropertyInfo p when p.PropertyType == typeof(Trigger): return $".Set({p.Name})";
 			case PropertyInfo p when p.PropertyType == typeof(FieldList): return $".AddRange({p.Name})";
 			case PropertyInfo p when p.PropertyType == typeof(bool?): return $" = NullableBooleanFromSwitch(nameof({p.Name}))";
 			default: return $" = {propertyInfo.Name}";

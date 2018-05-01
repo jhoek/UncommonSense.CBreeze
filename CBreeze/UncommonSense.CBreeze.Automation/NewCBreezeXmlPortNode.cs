@@ -30,6 +30,8 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortFieldAttribute.Properties.DataType = DataType;
 			xmlPortFieldAttribute.Properties.FieldValidate = NullableBooleanFromSwitch(nameof(FieldValidate));
 			xmlPortFieldAttribute.Properties.Occurrence = Occurrence;
+			xmlPortFieldAttribute.Properties.OnAfterAssignField.Set(OnAfterAssignField);
+			xmlPortFieldAttribute.Properties.OnBeforePassField.Set(OnBeforePassField);
 			xmlPortFieldAttribute.Properties.SourceField.FieldName = SourceFieldName;
 			xmlPortFieldAttribute.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
 			xmlPortFieldAttribute.Properties.Width = Width;
@@ -114,6 +116,12 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public Nullable<Occurrence> Occurrence { get; set; }
 
+		[Parameter()]
+		public ScriptBlock OnAfterAssignField { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforePassField { get; set; }
+
 		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithoutID)]
 		[Parameter(Mandatory = true, Position = 4, ParameterSetName=ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithoutID)]
@@ -151,6 +159,8 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortFieldElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortFieldElement.Properties.MinOccurs = MinOccurs;
 			xmlPortFieldElement.Properties.NamespacePrefix = NamespacePrefix;
+			xmlPortFieldElement.Properties.OnAfterAssignField.Set(OnAfterAssignField);
+			xmlPortFieldElement.Properties.OnBeforePassField.Set(OnBeforePassField);
 			xmlPortFieldElement.Properties.SourceField.FieldName = SourceFieldName;
 			xmlPortFieldElement.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
 			xmlPortFieldElement.Properties.Unbound = NullableBooleanFromSwitch(nameof(Unbound));
@@ -242,6 +252,12 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()]
 		public String NamespacePrefix { get; set; }
 
+		[Parameter()]
+		public ScriptBlock OnAfterAssignField { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforePassField { get; set; }
+
 		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.NewWithoutID)]
 		[Parameter(Mandatory = true, Position = 4, ParameterSetName=ParameterSetNames.NewWithID)]
 		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithoutID)]
@@ -283,6 +299,13 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTableAttribute.Properties.LinkTable = LinkTable;
 			xmlPortTableAttribute.Properties.LinkTableForceInsert = NullableBooleanFromSwitch(nameof(LinkTableForceInsert));
 			xmlPortTableAttribute.Properties.Occurrence = Occurrence;
+			xmlPortTableAttribute.Properties.OnAfterGetRecord.Set(OnAfterGetRecord);
+			xmlPortTableAttribute.Properties.OnAfterInitRecord.Set(OnAfterInitRecord);
+			xmlPortTableAttribute.Properties.OnAfterInsertRecord.Set(OnAfterInsertRecord);
+			xmlPortTableAttribute.Properties.OnAfterModifyRecord.Set(OnAfterModifyRecord);
+			xmlPortTableAttribute.Properties.OnBeforeInsertRecord.Set(OnBeforeInsertRecord);
+			xmlPortTableAttribute.Properties.OnBeforeModifyRecord.Set(OnBeforeModifyRecord);
+			xmlPortTableAttribute.Properties.OnPreXmlItem.Set(OnPreXmlItem);
 			xmlPortTableAttribute.Properties.ReqFilterFields.AddRange(ReqFilterFields);
 			xmlPortTableAttribute.Properties.SourceTable = SourceTable;
 			xmlPortTableAttribute.Properties.SourceTableView.Key = SourceTableViewKey;
@@ -384,6 +407,27 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<Occurrence> Occurrence { get; set; }
 
 		[Parameter()]
+		public ScriptBlock OnAfterGetRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnAfterInitRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnAfterInsertRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnAfterModifyRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforeInsertRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforeModifyRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnPreXmlItem { get; set; }
+
+		[Parameter()]
 		public string[] ReqFilterFields { get; set; }
 
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.NewWithoutID)]
@@ -433,6 +477,13 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTableElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortTableElement.Properties.MinOccurs = MinOccurs;
 			xmlPortTableElement.Properties.NamespacePrefix = NamespacePrefix;
+			xmlPortTableElement.Properties.OnAfterGetRecord.Set(OnAfterGetRecord);
+			xmlPortTableElement.Properties.OnAfterInitRecord.Set(OnAfterInitRecord);
+			xmlPortTableElement.Properties.OnAfterInsertRecord.Set(OnAfterInsertRecord);
+			xmlPortTableElement.Properties.OnAfterModifyRecord.Set(OnAfterModifyRecord);
+			xmlPortTableElement.Properties.OnBeforeInsertRecord.Set(OnBeforeInsertRecord);
+			xmlPortTableElement.Properties.OnBeforeModifyRecord.Set(OnBeforeModifyRecord);
+			xmlPortTableElement.Properties.OnPreXMLItem.Set(OnPreXMLItem);
 			xmlPortTableElement.Properties.ReqFilterFields.AddRange(ReqFilterFields);
 			xmlPortTableElement.Properties.SourceTable = SourceTable;
 			xmlPortTableElement.Properties.SourceTableView.Key = SourceTableViewKey;
@@ -540,6 +591,27 @@ namespace UncommonSense.CBreeze.Automation
 		public String NamespacePrefix { get; set; }
 
 		[Parameter()]
+		public ScriptBlock OnAfterGetRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnAfterInitRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnAfterInsertRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnAfterModifyRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforeInsertRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforeModifyRecord { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnPreXMLItem { get; set; }
+
+		[Parameter()]
 		public string[] ReqFilterFields { get; set; }
 
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.NewWithoutID)]
@@ -582,6 +654,8 @@ namespace UncommonSense.CBreeze.Automation
 
 			xmlPortTextAttribute.Properties.DataType = DataType;
 			xmlPortTextAttribute.Properties.Occurrence = Occurrence;
+			xmlPortTextAttribute.Properties.OnAfterAssignVariable.Set(OnAfterAssignVariable);
+			xmlPortTextAttribute.Properties.OnBeforePassVariable.Set(OnBeforePassVariable);
 			xmlPortTextAttribute.Properties.TextType = TextType;
 			xmlPortTextAttribute.Properties.VariableName = VariableName;
 			xmlPortTextAttribute.Properties.Width = Width;
@@ -661,6 +735,12 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<Occurrence> Occurrence { get; set; }
 
 		[Parameter()]
+		public ScriptBlock OnAfterAssignVariable { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforePassVariable { get; set; }
+
+		[Parameter()]
 		public Nullable<TextType> TextType { get; set; }
 
 		[Parameter()]
@@ -689,6 +769,8 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTextElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortTextElement.Properties.MinOccurs = MinOccurs;
 			xmlPortTextElement.Properties.NamespacePrefix = NamespacePrefix;
+			xmlPortTextElement.Properties.OnAfterAssignVariable.Set(OnAfterAssignVariable);
+			xmlPortTextElement.Properties.OnBeforePassVariable.Set(OnBeforePassVariable);
 			xmlPortTextElement.Properties.TextType = TextType;
 			xmlPortTextElement.Properties.Unbound = NullableBooleanFromSwitch(nameof(Unbound));
 			xmlPortTextElement.Properties.VariableName = VariableName;
@@ -773,6 +855,12 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public String NamespacePrefix { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnAfterAssignVariable { get; set; }
+
+		[Parameter()]
+		public ScriptBlock OnBeforePassVariable { get; set; }
 
 		[Parameter()]
 		public Nullable<TextType> TextType { get; set; }

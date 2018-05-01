@@ -540,6 +540,17 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Namespace", xmlPortNamespace.Namespace);
         }
 
+        public static IEnumerable<ParameterBase> ToParameters(this XmlPortNode xmlPortNode)
+        {
+            yield return new SimpleParameter("ID", xmlPortNode.ID);
+            yield return new SimpleParameter("Name", xmlPortNode.NodeName);
+
+            foreach (var parameter in xmlPortNode.AllProperties.WithAValue.SelectMany(p=>p.ToParameters()))
+            {
+                yield return parameter;
+            }
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this Property property, string prefix = null)
         {
             // Note: SubObject parameters should not be rendered here, since they may contain
@@ -618,6 +629,11 @@ namespace UncommonSense.CBreeze.Script
 
                 case RunObjectLinkProperty r:
                     // Rendered elsewhere as part of SubObjects
+                    break;
+
+                case SourceFieldProperty s:
+                    yield return new SimpleParameter("SourceFieldTableVariableName", s.Value.TableVariableName);
+                    yield return new SimpleParameter("SourceFieldName", s.Value.FieldName);
                     break;
 
                 case TableViewProperty t when t.Name == "DataItemTableView":
