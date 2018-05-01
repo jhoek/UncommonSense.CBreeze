@@ -54,21 +54,11 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public IEnumerable<PageActionBase> DescendantPageActions
-        {
-            get
-            {
-                return Container.Skip(Index + 1).TakeWhile(a => a.IndentationLevel > (IndentationLevel ?? 0));
-            }
-        }
+        public IEnumerable<PageActionBase> Descendants => 
+            Container.Skip(Index + 1).TakeWhile(a => a.IndentationLevel > (IndentationLevel ?? 0));
 
-        public IEnumerable<PageActionBase> ChildPageActions
-        {
-            get
-            {
-                return DescendantPageActions.Where(a => a.IndentationLevel == (IndentationLevel ?? 0) + 1);
-            }
-        }
+        public IEnumerable<PageActionBase> Children => 
+            Descendants.Where(a => a.IndentationLevel == (IndentationLevel ?? 0) + 1);
 
         public INode ParentNode => Container;
 
@@ -85,7 +75,7 @@ namespace UncommonSense.CBreeze.Core
                     Container.Insert(Index + 1, child);
                     break;
                 case Position.LastWithinContainer:
-                    var descendantPageActions = DescendantPageActions;
+                    var descendantPageActions = Descendants;
                     var lastIndex = descendantPageActions.Any() ? descendantPageActions.Last().Index : Index;
                     Container.Insert(lastIndex + 1, child);
                     break;

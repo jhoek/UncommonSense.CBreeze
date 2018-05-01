@@ -24,13 +24,8 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public IEnumerable<PageControlBase> ChildPageControls
-        {
-            get
-            {
-                return DescendantPageControls.Where(c => c.IndentationLevel == (IndentationLevel ?? 0) + 1);
-            }
-        }
+        public IEnumerable<PageControlBase> Children =>
+            Descendants.Where(c => c.IndentationLevel == (IndentationLevel ?? 0) + 1);
 
         public virtual PageControls Container
         {
@@ -38,13 +33,8 @@ namespace UncommonSense.CBreeze.Core
             internal set;
         }
 
-        public IEnumerable<PageControlBase> DescendantPageControls
-        {
-            get
-            {
-                return Container.Skip(Index + 1).TakeWhile(c => c.IndentationLevel > (IndentationLevel ?? 0));
-            }
-        }
+        public IEnumerable<PageControlBase> Descendants => 
+            Container.Skip(Index + 1).TakeWhile(c => c.IndentationLevel > (IndentationLevel ?? 0));
 
         public int? IndentationLevel
         {
@@ -86,7 +76,7 @@ namespace UncommonSense.CBreeze.Core
                     break;
 
                 case Position.LastWithinContainer:
-                    var descendantPageControls = DescendantPageControls;
+                    var descendantPageControls = Descendants;
                     var lastIndex = descendantPageControls.Any() ? descendantPageControls.Last().Index : Index;
                     Container.Insert(lastIndex + 1, child);
                     break;

@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Core
 
         public PageControlGroup GetGroupByCaption(string caption, Position position)
         {
-            var groupPageControl = ChildPageControls.OfType<PageControlGroup>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
+            var groupPageControl = Children.OfType<PageControlGroup>().FirstOrDefault(c => c.Properties.CaptionML["ENU"] == caption);
 
             if (groupPageControl == null)
             {
@@ -60,7 +60,7 @@ namespace UncommonSense.CBreeze.Core
 
         public PageControlGroup GetGroupByType(PageControlGroupType type, Position position)
         {
-            var groupPageControl = ChildPageControls.OfType<PageControlGroup>().FirstOrDefault(g => g.Properties.GroupType == type);
+            var groupPageControl = Children.OfType<PageControlGroup>().FirstOrDefault(g => g.Properties.GroupType == type);
 
             if (groupPageControl == null)
             {

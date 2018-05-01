@@ -47,7 +47,7 @@ namespace UncommonSense.CBreeze.Core
 
         public PageActionGroup GetGroupByCaption(IPage page, string caption, Position position)
         {
-            var pageActionGroup = ChildPageActions.OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
+            var pageActionGroup = Children.OfType<PageActionGroup>().FirstOrDefault(a => a.Properties.CaptionML["ENU"] == caption);
 
             if (pageActionGroup == null)
             {

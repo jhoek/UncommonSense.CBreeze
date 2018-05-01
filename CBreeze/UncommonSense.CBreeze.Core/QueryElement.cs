@@ -21,9 +21,9 @@ namespace UncommonSense.CBreeze.Core
         public abstract Properties AllProperties { get; }
         public int Index => Container.IndexOf(this);
 
-        public IEnumerable<QueryElement> DescendantElements => Container.Skip(Index + 1).TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
+        public IEnumerable<QueryElement> Descendants => Container.Skip(Index + 1).TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
 
-        public IEnumerable<QueryElement> ChildElements => DescendantElements.Where(e => e.IndentationLevel.GetValueOrDefault(0) == IndentationLevel.GetValueOrDefault(0) + 1);
+        public IEnumerable<QueryElement> Children => Descendants.Where(e => e.IndentationLevel.GetValueOrDefault(0) == IndentationLevel.GetValueOrDefault(0) + 1);
 
         public INode ParentNode => Container;
 
@@ -37,7 +37,7 @@ namespace UncommonSense.CBreeze.Core
                     Container.Insert(Index + 1, child);
                     break;
                 case Position.LastWithinContainer:
-                    var descendantElements = DescendantElements;
+                    var descendantElements = Descendants;
                     var lastIndex = descendantElements.Any() ? descendantElements.Last().Index : Index;
                     Container.Insert(lastIndex + 1, child);
                     break;

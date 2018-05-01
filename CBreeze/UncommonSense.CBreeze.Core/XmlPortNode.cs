@@ -50,13 +50,11 @@ namespace UncommonSense.CBreeze.Core
             get;
         }
 
-        public IEnumerable<XmlPortNode> DescendantNodes
-        {
-            get
-            {
-                return Container.Skip(Index + 1).TakeWhile(n => n.IndentationLevel > IndentationLevel);
-            }
-        }
+        public IEnumerable<XmlPortNode> Descendants => 
+            Container.Skip(Index + 1).TakeWhile(n => n.IndentationLevel > IndentationLevel);
+
+        public IEnumerable<XmlPortNode> Children => 
+            Descendants.Where(c => c.IndentationLevel.GetValueOrDefault(0) == IndentationLevel.GetValueOrDefault(0) + 1);
 
         public INode ParentNode => Container;
 
@@ -74,9 +72,8 @@ namespace UncommonSense.CBreeze.Core
                     break;
 
                 case Position.LastWithinContainer:
-                    var childNodes = DescendantNodes;
-                    var lastINdex = childNodes.Any() ? childNodes.Last().Index : Index;
-                    Container.Insert(lastINdex + 1, child);
+                    var lastIndex = Descendants.Any() ? Descendants.Last().Index : Index;
+                    Container.Insert(lastIndex + 1, child);
                     break;
             }
 

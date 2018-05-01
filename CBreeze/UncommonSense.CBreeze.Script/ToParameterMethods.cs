@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Script
                 "SubObjects",
                 dataItemReportElement.Properties.DataItemTableView.TableFilter.ToInvocations()
                     .Concat(dataItemReportElement.Properties.DataItemLink.Select(l => l.ToInvocation()))
-                    .Concat(dataItemReportElement.ChildElements.Select(e => e.ToInvocation()))
+                    .Concat(dataItemReportElement.Children.Select(e => e.ToInvocation()))
                     );
 
             // FIXME: More properties, child elements
@@ -104,7 +104,7 @@ namespace UncommonSense.CBreeze.Script
 
             yield return new ScriptBlockParameter(
                 "SubObjects",
-                dataitemQueryElement.ChildElements.Select(c => c.ToInvocation())
+                dataitemQueryElement.Children.Select(c => c.ToInvocation())
                 .Concat(dataitemQueryElement.Properties.DataItemTableFilter.Select(f => f.ToInvocation()))
                 .Concat(dataitemQueryElement.Properties.DataItemLink.Select(l => l.ToInvocation()))
             );
@@ -285,7 +285,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("ChildActions", pageActionContainer.ChildPageActions.Select(a => a.ToInvocation()));
+            yield return new ScriptBlockParameter("ChildActions", pageActionContainer.Children.Select(a => a.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageActionGroup pageActionGroup)
@@ -297,7 +297,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("ChildActions", pageActionGroup.ChildPageActions.Select(a => a.ToInvocation()));
+            yield return new ScriptBlockParameter("ChildActions", pageActionGroup.Children.Select(a => a.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageAction pageAction)
@@ -334,7 +334,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("SubObjects", pageControlContainer.ChildPageControls.Select(c => c.ToInvocation()));
+            yield return new ScriptBlockParameter("SubObjects", pageControlContainer.Children.Select(c => c.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageControlGroup pageControlGroup)
@@ -346,7 +346,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("SubObjects", pageControlGroup.ChildPageControls.Select(c => c.ToInvocation()).Concat(pageControlGroup.Properties.ActionList.ToInvocation()));
+            yield return new ScriptBlockParameter("SubObjects", pageControlGroup.Children.Select(c => c.ToInvocation()).Concat(pageControlGroup.Properties.ActionList.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageControlPart pageControlPart)

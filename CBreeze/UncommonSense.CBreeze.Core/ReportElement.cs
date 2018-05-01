@@ -27,8 +27,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public IEnumerable<ReportElement> DescendantElements => Container.Skip(Index + 1).TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
-        public IEnumerable<ReportElement> ChildElements => DescendantElements.Where(e => e.IndentationLevel == this.IndentationLevel.GetValueOrDefault(0) + 1);
+        public IEnumerable<ReportElement> Descendants => Container.Skip(Index + 1).TakeWhile(e => e.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
+        public IEnumerable<ReportElement> Children => Descendants.Where(e => e.IndentationLevel == this.IndentationLevel.GetValueOrDefault(0) + 1);
 
         public T AddChildNode<T>(T child, Position position) where T : ReportElement
         {
@@ -38,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
                     Container.Insert(Index + 1, child);
                     break;
                 case Position.LastWithinContainer:
-                    var descendantElements = DescendantElements;
+                    var descendantElements = Descendants;
                     var lastIndex = descendantElements.Any() ? descendantElements.Last().Index : Index;
                     Container.Insert(lastIndex + 1, child);
                     break;
