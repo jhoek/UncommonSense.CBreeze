@@ -534,6 +534,12 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
         }
 
+        public static IEnumerable<ParameterBase> ToParameters(this XmlPortNamespace xmlPortNamespace)
+        {
+            yield return new SimpleParameter("Prefix", xmlPortNamespace.Prefix);
+            yield return new SimpleParameter("Namespace", xmlPortNamespace.Namespace);
+        }
+
         public static IEnumerable<ParameterBase> ToParameters(this Property property, string prefix = null)
         {
             // Note: SubObject parameters should not be rendered here, since they may contain
@@ -546,6 +552,7 @@ namespace UncommonSense.CBreeze.Script
                 case ColumnFilterProperty c:
                 case DataItemQueryElementTableFilterProperty f:
                 case MethodTypeProperty m:
+                case XmlPortNamespacesProperty n:
                 case QueryDataItemLinkProperty l:
                 case ReportDataItemLinkProperty r:
                     yield break;

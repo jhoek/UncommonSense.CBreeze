@@ -59,6 +59,7 @@
     <Compile Include="ToInvocationMethod.Application.cs" />
     <Compile Include="ToInvocationMethod.cs" />
     <Compile Include="ToInvocationMethod.Table.cs" />
+    <Compile Include="ToInvocationMethod.XmlPort.cs" />
     <Compile Include="ToParameterMethods.cs" />
   </ItemGroup>
   <ItemGroup>
