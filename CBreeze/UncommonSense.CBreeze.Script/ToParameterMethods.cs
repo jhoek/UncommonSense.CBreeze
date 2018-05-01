@@ -19,7 +19,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new ScriptBlockParameter(
                 "SubObjects",
                 dataItemReportElement.Properties.DataItemTableView.TableFilter.ToInvocations()
-                    .Concat(dataItemReportElement.Properties.DataItemLink.Select(l=>l.ToInvocation()))
+                    .Concat(dataItemReportElement.Properties.DataItemLink.Select(l => l.ToInvocation()))
                     .Concat(dataItemReportElement.ChildElements.Select(e => e.ToInvocation()))
                     );
 
@@ -105,7 +105,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new ScriptBlockParameter(
                 "SubObjects",
                 dataitemQueryElement.ChildElements.Select(c => c.ToInvocation())
-                .Concat(dataitemQueryElement.Properties.DataItemTableFilter.Select(f=> f.ToInvocation()))
+                .Concat(dataitemQueryElement.Properties.DataItemTableFilter.Select(f => f.ToInvocation()))
                 .Concat(dataitemQueryElement.Properties.DataItemLink.Select(l => l.ToInvocation()))
             );
         }
@@ -135,7 +135,7 @@ namespace UncommonSense.CBreeze.Script
 
             yield return new ScriptBlockParameter(
                 "SubObjects",
-                columnQueryElement.Properties.ColumnFilter.Select(f=> f.ToInvocation()));
+                columnQueryElement.Properties.ColumnFilter.Select(f => f.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this FilterQueryElement filterQueryElement)
@@ -545,10 +545,35 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ID", xmlPortNode.ID);
             yield return new SimpleParameter("Name", xmlPortNode.NodeName);
 
-            foreach (var parameter in xmlPortNode.AllProperties.WithAValue.SelectMany(p=>p.ToParameters()))
+            foreach (var parameter in xmlPortNode.AllProperties.WithAValue.SelectMany(p => p.ToParameters()))
             {
                 yield return parameter;
             }
+
+            yield return new ScriptBlockParameter(
+                "ChildNodes",
+                // FIXME: xmlPortNode.Children...
+                LinkFields(xmlPortNode).Select(l=> l.ToInvocation()).Cast<Statement>()
+            );
+        }
+
+        public static IEnumerable<LinkField> LinkFields(XmlPortNode xmlPortNode)
+        {
+            switch (xmlPortNode)
+            {
+                case XmlPortTableElement e:
+                    return e.Properties.LinkFields;
+                case XmlPortTableAttribute a:
+                    return a.Properties.LinkFields;
+                default:
+                    return Enumerable.Empty<LinkField>();
+            }
+        }
+
+        public static IEnumerable<ParameterBase> ToParameters(this LinkField linkField)
+        {
+            yield return new SimpleParameter("Field", linkField.Field);
+            yield return new SimpleParameter("ReferenceField", linkField.ReferenceField);
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this Property property, string prefix = null)
@@ -562,8 +587,8 @@ namespace UncommonSense.CBreeze.Script
                 case ActionListProperty a:
                 case ColumnFilterProperty c:
                 case DataItemQueryElementTableFilterProperty f:
+                case LinkFieldsProperty lf:
                 case MethodTypeProperty m:
-                case XmlPortNamespacesProperty n:
                 case QueryDataItemLinkProperty l:
                 case ReportDataItemLinkProperty r:
                     yield break;
@@ -594,6 +619,7 @@ namespace UncommonSense.CBreeze.Script
                 case CalcFormulaProperty c:
                     yield return new SimpleParameter(c.Name, c.Value.ToInvocation());
                     break;
+
 
                 case PermissionsProperty p:
                     yield return new ArrayParameter($"{prefix}{p.Name}", p.Value.ToInvocations());

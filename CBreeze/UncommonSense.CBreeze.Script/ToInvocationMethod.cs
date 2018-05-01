@@ -254,5 +254,9 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocations(this QueryElements queryElements) => queryElements.Where(e=>e.IndentationLevel.GetValueOrDefault(0) == 0).Select(e => e.ToInvocation());
 
         public static Invocation ToInvocation(this QueryDataItemLinkLine queryDataItemLinkLine) => new Invocation("New-CBreezeQueryLink", queryDataItemLinkLine.ToParameters());
+
+        public static IEnumerable<Invocation> ToInvocations(this LinkFields linkFields) => linkFields.Select(l=> l.ToInvocation());
+
+        public static Invocation ToInvocation(this LinkField linkField) => new Invocation("New-CBreezeXmlPortLink", linkField.ToParameters());
     }
 }

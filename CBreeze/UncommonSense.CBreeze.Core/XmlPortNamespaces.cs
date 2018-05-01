@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 
@@ -47,6 +49,17 @@ namespace UncommonSense.CBreeze.Core
             }
 
             innerList[prefix] = new XmlPortNamespace(prefix, @namespace);
+        }
+
+        public void Set(OrderedDictionary items)
+        {
+            if (items == null)
+                return;
+
+            foreach (var key in items.Keys)
+            {
+                Set(key.ToString(), items[key].ToString());
+            }
         }
 
         public void Reset()

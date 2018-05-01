@@ -45,6 +45,9 @@ namespace UncommonSense.CBreeze.Script
                     case MultiLanguageValue m:
                         return $"@{{ {string.Join("; ", m.Select(e => $"'{e.LanguageID}' = '{e.Value.Replace("'", "''") }'")) } }}";
 
+                    case XmlPortNamespaces n:
+                        return $"([Ordered]@{{ {string.Join("; ", n.Select(e => $"'{e.Prefix}' = '{e.Namespace.Replace("'", "''") }'")) } }})";
+
                     case DecimalPlaces d:
                         return $"{d.AtLeast}:{d.AtMost}";
 

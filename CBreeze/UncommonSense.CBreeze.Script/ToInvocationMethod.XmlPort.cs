@@ -30,7 +30,6 @@ namespace UncommonSense.CBreeze.Script
                 new ScriptBlockParameter(
                     "SubObjects",
                     xmlPort.Nodes.ToInvocation().Cast<Statement>()
-                        .Concat(xmlPort.Properties.Namespaces.ToInvocation().Cast<Statement>())
                         .Concat(xmlPort.Code.Variables.ToInvocation().Cast<Statement>())
                         .Concat(xmlPort.Code.Functions.ToInvocation().Cast<Statement>())
                         .Concat(xmlPort.Code.Events.ToInvocation().Cast<Statement>())
@@ -47,11 +46,7 @@ namespace UncommonSense.CBreeze.Script
             );
         }
 
-        public static IEnumerable<Invocation> ToInvocation(this XmlPortNamespaces xmlPortNamespaces) => xmlPortNamespaces.Select(n => n.ToInvocation());
-
-        public static Invocation ToInvocation(this XmlPortNamespace xmlPortNamespace) => new Invocation("Set-CBreezeXmlPortNamespace", xmlPortNamespace.ToParameters());
-
-        public static IEnumerable<Invocation> ToInvocation(this XmlPortNodes xmlPortNodes) => xmlPortNodes.Select(n => n.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocation(this XmlPortNodes xmlPortNodes) => xmlPortNodes.Where(n => n.IndentationLevel.GetValueOrDefault(0) == 0).Select(n => n.ToInvocation());
 
         public static Invocation ToInvocation(this XmlPortNode xmlPortNode) => new Invocation($"New-CBreezeXmlPort{xmlPortNode.SourceType}{xmlPortNode.NodeType}", xmlPortNode.ToParameters());
     }
