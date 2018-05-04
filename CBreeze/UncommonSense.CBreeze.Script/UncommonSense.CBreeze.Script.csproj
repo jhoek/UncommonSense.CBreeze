@@ -74,9 +74,6 @@
     <None Include="App.config" />
     <None Include="manifest.psd1" />
     <None Include="packages.config" />
-    <None Include="Script.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">

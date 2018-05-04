@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
 using UncommonSense.CBreeze.Read;
@@ -17,9 +18,10 @@ namespace UncommonSense.CBreeze.Script
         {
             Paths.Output.Recreate();
             Paths.Script.Recreate();
+            Thread.Sleep(500);
 
-            foreach (var inputFileName in Directory.GetFiles(Paths.Input, "xml*.txt"))
-            //foreach (var inputFileName in Directory.GetFiles(Paths.Input))
+            //foreach (var inputFileName in Directory.GetFiles(Paths.Input, "xml*.txt"))
+            foreach (var inputFileName in Directory.GetFiles(Paths.Input))
             {
                 var application = ApplicationBuilder.ReadFromFile(inputFileName);
                 var invocation = application.ToInvocation().ToString();
@@ -27,8 +29,8 @@ namespace UncommonSense.CBreeze.Script
                 File.WriteAllText(scriptFileName, invocation, Encoding.UTF8);
             }
 
-            //foreach (var prefix in new[] { "tab", "pag", "rep", "cod", "xml", "que", "men" })
-            foreach (var prefix in new[] { "xml" })
+            foreach (var prefix in new[] { "tab", "pag", "rep", "cod", "xml", "que", "men" })
+            //foreach (var prefix in new[] { "xml" })
             {
                 File.WriteAllLines(
                     Paths.Runner(prefix),
