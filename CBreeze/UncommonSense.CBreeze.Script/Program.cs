@@ -27,8 +27,8 @@ namespace UncommonSense.CBreeze.Script
                 File.WriteAllText(scriptFileName, invocation, Encoding.UTF8);
             }
 
-            foreach (var prefix in new[] { "tab", "pag", "rep", "cod", "xml", "que", "men" })
-            //foreach (var prefix in new[] { "xml" })
+            //foreach (var prefix in new[] { "tab", "pag", "rep", "cod", "xml", "que", "men" })
+            foreach (var prefix in new[] { "xml" })
             {
                 File.WriteAllLines(
                     Paths.Runner(prefix),

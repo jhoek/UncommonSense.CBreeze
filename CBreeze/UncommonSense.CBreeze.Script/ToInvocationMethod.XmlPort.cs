@@ -26,6 +26,12 @@ namespace UncommonSense.CBreeze.Script
                 .Where(p => p.HasValue)
                 .SelectMany(p => p.ToParameters());
 
+            IEnumerable<ParameterBase> requestPageProperties = xmlPort
+                .RequestPage
+                .Properties
+                .Where(p => p.HasValue)
+                .SelectMany(p => p.ToParameters("RequestPage"));
+
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
@@ -37,11 +43,20 @@ namespace UncommonSense.CBreeze.Script
                 )
             };
 
+            IEnumerable<ParameterBase> requestPageSubObjects = new[] {
+                new ScriptBlockParameter(
+                    "RequestPageSubObjects",
+                        xmlPort.RequestPage.Controls.ToInvocation().Cast<Statement>()
+                )
+            };
+
             return new Invocation(
                 "New-CBreezeXmlPort",
                 signature
                     .Concat(objectProperties)
                     .Concat(properties)
+                    .Concat(requestPageProperties)
+                    .Concat(requestPageSubObjects)
                     .Concat(subObjects)
             );
         }

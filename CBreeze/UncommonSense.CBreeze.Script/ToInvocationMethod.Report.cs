@@ -66,16 +66,6 @@ namespace UncommonSense.CBreeze.Script
                             .Concat(report.Code.Functions.ToInvocation().Cast<Statement>())
                             .Concat(report.Code.Events.ToInvocation().Cast<Statement>())
                             .Concat(report.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
-
-
-                    //report.Labels
-                    //report.ObjectProperties
-                    //report.Properties
-                    //report.RdlData
-                    //report.RequestPage
-                    //report.WordLayout
-                    
-                    
                 )
             };
 

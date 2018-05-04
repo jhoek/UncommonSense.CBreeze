@@ -553,11 +553,25 @@ namespace UncommonSense.CBreeze.Script
             yield return new ScriptBlockParameter(
                 "ChildNodes",
                 xmlPortNode.Children.Select(n=>n.ToInvocation()).Cast<Statement>()
+                    .Concat(SourceTableViewFilter(xmlPortNode).Select(f=>f.ToInvocation()).Cast<Statement>())
                     .Concat(LinkFields(xmlPortNode).Select(l=> l.ToInvocation()).Cast<Statement>())
             );
         }
 
-        public static IEnumerable<LinkField> LinkFields(XmlPortNode xmlPortNode)
+        private static IEnumerable<TableFilterLine> SourceTableViewFilter(XmlPortNode xmlPortNode)
+        {
+            switch (xmlPortNode)
+            {
+                case XmlPortTableElement e:
+                    return e.Properties.SourceTableView.TableFilter;
+                case XmlPortTableAttribute a:
+                    return a.Properties.SourceTableView.TableFilter;
+                default:
+                    return Enumerable.Empty<TableFilterLine>();
+            }
+        }
+
+        private static IEnumerable<LinkField> LinkFields(XmlPortNode xmlPortNode)
         {
             switch (xmlPortNode)
             {
