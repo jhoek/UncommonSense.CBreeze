@@ -51,7 +51,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
         public IEnumerable<XmlPortNode> Descendants => 
-            Container.Skip(Index + 1).TakeWhile(n => n.IndentationLevel > IndentationLevel);
+            Container.Skip(Index + 1).TakeWhile(n => n.IndentationLevel.GetValueOrDefault(0) > IndentationLevel.GetValueOrDefault(0));
 
         public IEnumerable<XmlPortNode> Children => 
             Descendants.Where(c => c.IndentationLevel.GetValueOrDefault(0) == IndentationLevel.GetValueOrDefault(0) + 1);
