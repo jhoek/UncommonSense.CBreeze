@@ -18,8 +18,8 @@ namespace UncommonSense.CBreeze.Script
             Paths.Output.Recreate();
             Paths.Script.Recreate();
 
-            //foreach (var inputFileName in Directory.GetFiles(Paths.Input, "xml*.txt"))
-            foreach (var inputFileName in Directory.GetFiles(Paths.Input))
+            foreach (var inputFileName in Directory.GetFiles(Paths.Input, "xml*.txt"))
+            //foreach (var inputFileName in Directory.GetFiles(Paths.Input))
             {
                 var application = ApplicationBuilder.ReadFromFile(inputFileName);
                 var invocation = application.ToInvocation().ToString();

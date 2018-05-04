@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EFCDE9E3-09C8-42F6-B82F-CE078E702396}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>UncommonSense.CBreeze.Script</RootNamespace>
     <AssemblyName>UncommonSense.CBreeze.Script</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>UncommonSense.CBreeze.Script.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

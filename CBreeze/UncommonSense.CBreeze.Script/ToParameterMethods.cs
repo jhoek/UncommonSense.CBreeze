@@ -23,7 +23,7 @@ namespace UncommonSense.CBreeze.Script
                     .Concat(dataItemReportElement.Children.Select(e => e.ToInvocation()))
                     );
 
-            // FIXME: More properties, child elements
+            // FIXME: More properties
 
             foreach (var parameter in dataItemReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
             {
@@ -552,8 +552,8 @@ namespace UncommonSense.CBreeze.Script
 
             yield return new ScriptBlockParameter(
                 "ChildNodes",
-                // FIXME: xmlPortNode.Children...
-                LinkFields(xmlPortNode).Select(l=> l.ToInvocation()).Cast<Statement>()
+                xmlPortNode.Children.Select(n=>n.ToInvocation()).Cast<Statement>()
+                    .Concat(LinkFields(xmlPortNode).Select(l=> l.ToInvocation()).Cast<Statement>())
             );
         }
 
