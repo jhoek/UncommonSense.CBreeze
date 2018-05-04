@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EFCDE9E3-09C8-42F6-B82F-CE078E702396}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>UncommonSense.CBreeze.Script</RootNamespace>
     <AssemblyName>UncommonSense.CBreeze.Script</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -26,14 +26,21 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\UncommonSense.CBreeze.Script\</OutputPath>
     <DefineConstants>TRACE;NAV2013;NAV2013R2;NAV2015;NAV2016;NAV2017</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.PowerShell.5.ReferenceAssemblies.1.1.0\lib\net4\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayParameter.cs" />
+    <Compile Include="ConvertToCBreezeScript.cs" />
     <Compile Include="HelperMethods.cs" />
     <Compile Include="Invocation.cs" />
     <Compile Include="LiteralParameter.cs" />
@@ -64,6 +72,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="manifest.psd1" />
+    <None Include="packages.config" />
+    <None Include="Script.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Common\UncommonSense.CBreeze.Common.csproj">
@@ -84,4 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)manifest.psd1 $(TargetDir)UncommonSense.CBreeze.Script.psd1</PostBuildEvent>
+  </PropertyGroup>
 </Project>
