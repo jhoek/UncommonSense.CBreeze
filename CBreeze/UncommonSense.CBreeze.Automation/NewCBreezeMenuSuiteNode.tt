@@ -23,8 +23,8 @@
 		"ChildNodes",
 		"ParentNode",
 		"Item",
-		"AccessByPermission",
 		"CaptionML",
+		"AccessByPermission",
 		"ApplicationArea",
 		"RunObjectType",
 		"RunObjectID"
@@ -95,6 +95,19 @@ namespace UncommonSense.CBreeze.Automation
 		});
 	};
 
+	if (allProperties.Any(p => p.Name == "AccessByPermission"))
+    {
+		relevantProperties.Add(new {
+			Name = "AccessByPermission",
+			Type = typeof(AccessByPermission), 
+			Assignment = $"{variableName}.Properties.AccessByPermission.Set(AccessByPermission);",
+			RangeMin = "",
+			RangeMax = "",
+			Mandatory = false,
+			RelativePosition = 0
+		});
+	};
+
 	if (allProperties.Any(p => p.Name == "ApplicationArea"))
     {
 		relevantProperties.Add(new {
@@ -103,8 +116,8 @@ namespace UncommonSense.CBreeze.Automation
 			Assignment = $"{variableName}.Properties.ApplicationArea.Set(ApplicationArea);",
 			RangeMin = "",
 			RangeMax = "",
-			Mandatory = true,
-			RelativePosition = 1
+			Mandatory = false,
+			RelativePosition = 0
 		});
 	}
 
