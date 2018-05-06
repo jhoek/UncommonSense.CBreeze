@@ -55,6 +55,7 @@
     <Compile Include="LiteralParameter.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="ToInvocationMethod.Codeunit.cs" />
+    <Compile Include="ToInvocationMethod.MenuSuite.cs" />
     <Compile Include="ToInvocationMethod.Report.cs" />
     <Compile Include="Literal.cs" />
     <Compile Include="ParameterBase.cs" />
@@ -68,7 +69,8 @@
     <Compile Include="ToInvocationMethod.cs" />
     <Compile Include="ToInvocationMethod.Table.cs" />
     <Compile Include="ToInvocationMethod.XmlPort.cs" />
-    <Compile Include="ToParameterMethods.cs" />
+    <Compile Include="ToParametersMethod.cs" />
+    <Compile Include="ToParametersMethod.MenuSuite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

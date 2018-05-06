@@ -21,6 +21,7 @@ namespace UncommonSense.CBreeze.Script
                         .Concat(application.Reports.ToInvocation())
                         .Concat(application.Queries.ToInvocation())
                         .Concat(application.XmlPorts.ToInvocation())
+                        .Concat(application.MenuSuites.ToInvocation())
                 )
             );
         }
@@ -36,5 +37,7 @@ namespace UncommonSense.CBreeze.Script
         public static IEnumerable<Invocation> ToInvocation(this Codeunits codeunits) => codeunits.Select(c => c.ToInvocation());
 
         public static IEnumerable<Invocation> ToInvocation(this XmlPorts xmlPorts) => xmlPorts.Select(x => x.ToInvocation());
+
+        public static IEnumerable<Invocation> ToInvocation(this MenuSuites menuSuites) => menuSuites.Select(m => m.ToInvocation());
     }
 }

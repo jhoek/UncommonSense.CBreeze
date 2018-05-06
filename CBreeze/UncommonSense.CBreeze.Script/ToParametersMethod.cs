@@ -7,7 +7,7 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Script
 {
-    public static class ToParameterMethods
+    public static partial class ToParametersMethod
     {
         public static IEnumerable<ParameterBase> ToParameters(this DataItemReportElement dataItemReportElement)
         {
