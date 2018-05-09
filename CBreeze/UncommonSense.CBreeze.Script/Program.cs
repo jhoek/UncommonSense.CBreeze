@@ -20,8 +20,8 @@ namespace UncommonSense.CBreeze.Script
             Paths.Script.Recreate();
             Thread.Sleep(500);
 
-            foreach (var inputFileName in Directory.GetFiles(Paths.Input, "men*.txt"))
-            //foreach (var inputFileName in Directory.GetFiles(Paths.Input))
+            //foreach (var inputFileName in Directory.GetFiles(Paths.Input, "men*.txt"))
+            foreach (var inputFileName in Directory.GetFiles(Paths.Input))
             {
                 var application = ApplicationBuilder.ReadFromFile(inputFileName);
                 var invocation = application.ToInvocation().ToString();
@@ -29,8 +29,8 @@ namespace UncommonSense.CBreeze.Script
                 File.WriteAllText(scriptFileName, invocation, Encoding.UTF8);
             }
 
-            //foreach (var prefix in new[] { "tab", "pag", "rep", "cod", "xml", "que", "men" })
-            foreach (var prefix in new[] { "men" })
+            foreach (var prefix in new[] { "tab", "pag", "rep", "cod", "xml", "que", "men" })
+            //foreach (var prefix in new[] { "men" })
             {
                 File.WriteAllLines(
                     Paths.Runner(prefix),
@@ -48,7 +48,7 @@ namespace UncommonSense.CBreeze.Script
                     WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
                 };
 
-                Process.Start(processStartInfo);
+                //Process.Start(processStartInfo);
             }
         }
     }

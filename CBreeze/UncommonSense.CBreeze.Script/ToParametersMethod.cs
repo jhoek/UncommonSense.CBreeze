@@ -23,8 +23,6 @@ namespace UncommonSense.CBreeze.Script
                     .Concat(dataItemReportElement.Children.Select(e => e.ToInvocation()))
                     );
 
-            // FIXME: More properties
-
             foreach (var parameter in dataItemReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
             {
                 yield return parameter;
@@ -35,7 +33,6 @@ namespace UncommonSense.CBreeze.Script
         {
             yield return new SimpleParameter("ID", columnReportElement.ID);
             yield return new SimpleParameter("Name", columnReportElement.Name);
-            //yield break;
 
             foreach (var parameter in columnReportElement.AllProperties.Where(p => p.HasValue).SelectMany(p => p.ToParameters()))
             {
