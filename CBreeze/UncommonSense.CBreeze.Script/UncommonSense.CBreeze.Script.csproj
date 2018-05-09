@@ -56,6 +56,8 @@
     <Compile Include="Paths.cs" />
     <Compile Include="ToInvocationMethod.Codeunit.cs" />
     <Compile Include="ToInvocationMethod.MenuSuite.cs" />
+    <Compile Include="ToInvocationMethod.Page.cs" />
+    <Compile Include="ToInvocationMethod.Query.cs" />
     <Compile Include="ToInvocationMethod.Report.cs" />
     <Compile Include="Literal.cs" />
     <Compile Include="ParameterBase.cs" />
@@ -66,7 +68,7 @@
     <Compile Include="Statement.cs" />
     <Compile Include="SwitchParameter.cs" />
     <Compile Include="ToInvocationMethod.Application.cs" />
-    <Compile Include="ToInvocationMethod.cs" />
+    <Compile Include="ToInvocationMethod.Common.cs" />
     <Compile Include="ToInvocationMethod.Table.cs" />
     <Compile Include="ToInvocationMethod.XmlPort.cs" />
     <Compile Include="ToParametersMethod.cs" />

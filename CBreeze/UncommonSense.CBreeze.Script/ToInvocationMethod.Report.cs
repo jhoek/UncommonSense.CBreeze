@@ -60,11 +60,11 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
-                        report.Elements.ToInvocation().Cast<Statement>()
-                            .Concat(report.Labels.ToInvocation().Cast<Statement>())
-                            .Concat(report.Code.Variables.ToInvocation().Cast<Statement>())
-                            .Concat(report.Code.Functions.ToInvocation().Cast<Statement>())
-                            .Concat(report.Code.Events.ToInvocation().Cast<Statement>())
+                        report.Elements.ToInvocations().Cast<Statement>()
+                            .Concat(report.Labels.ToInvocations().Cast<Statement>())
+                            .Concat(report.Code.Variables.ToInvocations().Cast<Statement>())
+                            .Concat(report.Code.Functions.ToInvocations().Cast<Statement>())
+                            .Concat(report.Code.Events.ToInvocations().Cast<Statement>())
                             .Concat(report.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
                 )
             };
@@ -72,7 +72,7 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> requestPageSubObjects = new[] {
                 new ScriptBlockParameter(
                     "RequestPageSubObjects",
-                        report.RequestPage.Controls.ToInvocation().Cast<Statement>()
+                        report.RequestPage.Controls.ToInvocations().Cast<Statement>()
                 )
             };
 
@@ -89,10 +89,10 @@ namespace UncommonSense.CBreeze.Script
             );
         }
 
-        public static IEnumerable<Invocation> ToInvocation(this ReportElements reportElements) => 
+        public static IEnumerable<Invocation> ToInvocations(this ReportElements reportElements) => 
             reportElements.Where(e => e.IndentationLevel.GetValueOrDefault(0) == 0).Select(e => e.ToInvocation());
 
-        public static IEnumerable<Invocation> ToInvocation(this ReportLabels reportLabels) => reportLabels.Select(l => l.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocations(this ReportLabels reportLabels) => reportLabels.Select(l => l.ToInvocation());
 
         public static Invocation ToInvocation(this ReportLabel reportLabel) => new Invocation("New-CBreezeReportLabel", reportLabel.ToParameters());
 
@@ -115,5 +115,7 @@ namespace UncommonSense.CBreeze.Script
         {
             return new Invocation("New-CBreezeColumnReportElement", columnReportElement.ToParameters());
         }
+
+        public static Invocation ToInvocation(this ReportDataItemLinkLine reportDataItemLinkLine) => new Invocation("New-CBreezeReportLink", reportDataItemLinkLine.ToParameters());
     }
 }

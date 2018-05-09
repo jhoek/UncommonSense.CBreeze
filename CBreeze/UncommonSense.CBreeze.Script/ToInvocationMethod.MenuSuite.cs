@@ -29,7 +29,7 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
-                    menuSuite.Nodes.ToInvocation().Cast<Statement>()
+                    menuSuite.Nodes.ToInvocations().Cast<Statement>()
                 )
             };
 
@@ -42,7 +42,7 @@ namespace UncommonSense.CBreeze.Script
             );
         }
 
-        public static IEnumerable<Invocation> ToInvocation(this MenuSuiteNodes menuSuiteNodes) => menuSuiteNodes.Select(n => n.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocations(this MenuSuiteNodes menuSuiteNodes) => menuSuiteNodes.Select(n => n.ToInvocation());
 
         public static Invocation ToInvocation(this MenuSuiteNode menuSuiteNode)
         {

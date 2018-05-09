@@ -346,7 +346,7 @@ namespace UncommonSense.CBreeze.Script
                 yield return parameter;
             }
 
-            yield return new ScriptBlockParameter("SubObjects", pageControlGroup.Children.Select(c => c.ToInvocation()).Concat(pageControlGroup.Properties.ActionList.ToInvocation()));
+            yield return new ScriptBlockParameter("SubObjects", pageControlGroup.Children.Select(c => c.ToInvocation()).Concat(pageControlGroup.Properties.ActionList.ToInvocations()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this PageControlPart pageControlPart)
@@ -380,8 +380,8 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Name", @event.Name);
             yield return new SimpleParameter("SourceName", @event.SourceName);
             yield return new ScriptBlockParameter("SubObjects",
-                @event.Parameters.ToInvocation().Cast<Statement>()
-                .Concat(@event.Variables.ToInvocation())
+                @event.Parameters.ToInvocations().Cast<Statement>()
+                .Concat(@event.Variables.ToInvocations())
                 .Concat(@event.CodeLines.ToInvocation()));
         }
 
@@ -419,9 +419,9 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("TestPermissions", function.TestPermissions);
 #endif
             yield return new ScriptBlockParameter("SubObjects",
-                function.Parameters.ToInvocation().Cast<Statement>()
+                function.Parameters.ToInvocations().Cast<Statement>()
                         .Concat(function.CodeLines.ToInvocation()) // Select(l => new Invocation($"'{l.Replace("'", "''")}'")))
-                        .Concat(function.Variables.ToInvocation()));
+                        .Concat(function.Variables.ToInvocations()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this Parameter parameter)
@@ -622,7 +622,7 @@ namespace UncommonSense.CBreeze.Script
                 case TriggerProperty t:
                     yield return new ScriptBlockParameter(
                         $"{prefix}{t.Name}",
-                        t.Value.Variables.ToInvocation().Concat(
+                        t.Value.Variables.ToInvocations().Concat(
                             t.Value.CodeLines.Select(c => new Invocation($"'{c.Replace("'", "''")}'"))));
                     break;
 

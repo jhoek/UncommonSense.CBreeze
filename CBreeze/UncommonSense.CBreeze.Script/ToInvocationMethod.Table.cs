@@ -29,12 +29,12 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
-                    table.Fields.ToInvocation().Cast<Statement>()
-                        .Concat(table.FieldGroups.ToInvocation().Cast<Statement>())
-                        .Concat(table.Keys.ToInvocation().Cast<Statement>())
-                        .Concat(table.Code.Variables.ToInvocation().Cast<Statement>())
-                        .Concat(table.Code.Functions.ToInvocation().Cast<Statement>())
-                        .Concat(table.Code.Events.ToInvocation().Cast<Statement>())
+                    table.Fields.ToInvocations().Cast<Statement>()
+                        .Concat(table.FieldGroups.ToInvocations().Cast<Statement>())
+                        .Concat(table.Keys.ToInvocations().Cast<Statement>())
+                        .Concat(table.Code.Variables.ToInvocations().Cast<Statement>())
+                        .Concat(table.Code.Functions.ToInvocations().Cast<Statement>())
+                        .Concat(table.Code.Events.ToInvocations().Cast<Statement>())
                         .Concat(table.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
                 )
             };
@@ -46,5 +46,30 @@ namespace UncommonSense.CBreeze.Script
                     .Concat(properties)
                     .Concat(subObjects));
         }
+
+        public static IEnumerable<Invocation> ToInvocations(this TableFields fields) => fields.Select(f => f.ToInvocation());
+
+        public static Invocation ToInvocation(this TableField field) => new Invocation($"New-CBreeze{field.Type}TableField", field.ToParameters());
+
+        public static IEnumerable<Invocation> ToInvocations(this TableKeys keys) => keys.Select(k => k.ToInvocation());
+
+        public static Invocation ToInvocation(this TableKey key)
+        {
+            var fields = new ParameterBase[] {
+                new SwitchParameter("Enabled", key.Enabled),
+                new SimpleParameter("Fields", key.Fields)
+            };
+
+            var properties = key
+                .Properties
+                .Where(p => p.HasValue)
+                .SelectMany(p => p.ToParameters());
+
+            return new Invocation("New-CBreezeTableKey", fields.Concat(properties));
+        }
+
+        public static IEnumerable<Invocation> ToInvocations(this TableFieldGroups fieldGroups) => fieldGroups.Select(g => g.ToInvocation());
+
+        public static Invocation ToInvocation(this TableFieldGroup fieldGroup) => new Invocation("New-CBreezeTableFieldGroup", fieldGroup.ToParameters());
     }
 }

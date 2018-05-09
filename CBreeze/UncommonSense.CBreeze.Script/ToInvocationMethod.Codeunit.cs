@@ -29,9 +29,9 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                         "SubObjects",
-                        codeunit.Code.Variables.ToInvocation().Cast<Statement>()
-                            .Concat(codeunit.Code.Functions.ToInvocation().Cast<Statement>())
-                            .Concat(codeunit.Code.Events.ToInvocation().Cast<Statement>())
+                        codeunit.Code.Variables.ToInvocations().Cast<Statement>()
+                            .Concat(codeunit.Code.Functions.ToInvocations().Cast<Statement>())
+                            .Concat(codeunit.Code.Events.ToInvocations().Cast<Statement>())
                             .Concat(codeunit.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>()))
             };
 

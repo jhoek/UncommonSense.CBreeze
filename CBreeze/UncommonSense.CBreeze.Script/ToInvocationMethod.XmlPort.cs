@@ -35,10 +35,10 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> subObjects = new[] {
                 new ScriptBlockParameter(
                     "SubObjects",
-                    xmlPort.Nodes.ToInvocation().Cast<Statement>()
-                        .Concat(xmlPort.Code.Variables.ToInvocation().Cast<Statement>())
-                        .Concat(xmlPort.Code.Functions.ToInvocation().Cast<Statement>())
-                        .Concat(xmlPort.Code.Events.ToInvocation().Cast<Statement>())
+                    xmlPort.Nodes.ToInvocations().Cast<Statement>()
+                        .Concat(xmlPort.Code.Variables.ToInvocations().Cast<Statement>())
+                        .Concat(xmlPort.Code.Functions.ToInvocations().Cast<Statement>())
+                        .Concat(xmlPort.Code.Events.ToInvocations().Cast<Statement>())
                         .Concat(xmlPort.Code.Documentation.CodeLines.ToInvocation().Cast<Statement>())
                 )
             };
@@ -46,7 +46,7 @@ namespace UncommonSense.CBreeze.Script
             IEnumerable<ParameterBase> requestPageSubObjects = new[] {
                 new ScriptBlockParameter(
                     "RequestPageSubObjects",
-                        xmlPort.RequestPage.Controls.ToInvocation().Cast<Statement>()
+                        xmlPort.RequestPage.Controls.ToInvocations().Cast<Statement>()
                 )
             };
 
@@ -61,7 +61,7 @@ namespace UncommonSense.CBreeze.Script
             );
         }
 
-        public static IEnumerable<Invocation> ToInvocation(this XmlPortNodes xmlPortNodes) => xmlPortNodes.Where(n => n.IndentationLevel.GetValueOrDefault(0) == 0).Select(n => n.ToInvocation());
+        public static IEnumerable<Invocation> ToInvocations(this XmlPortNodes xmlPortNodes) => xmlPortNodes.Where(n => n.IndentationLevel.GetValueOrDefault(0) == 0).Select(n => n.ToInvocation());
 
         public static Invocation ToInvocation(this XmlPortNode xmlPortNode) => new Invocation($"New-CBreezeXmlPort{xmlPortNode.SourceType}{xmlPortNode.NodeType}", xmlPortNode.ToParameters());
     }
