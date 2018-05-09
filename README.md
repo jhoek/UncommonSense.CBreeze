@@ -1,6 +1,8 @@
 # UncommonSense.CBreeze
 *C# and PowerShell API for the Microsoft Dynamics NAV C/AL object text format*
 
+Information about installing C/Breeze can be found in the FAQ section below.
+
 ## Introduction
 How would you go about changing all present instances of a certain table property in an object text file? Maybe using regular expressions?
 
@@ -28,7 +30,7 @@ And of course, AL could be just another future import/export format for C/Breeze
 
 <dt>What do I need to be able to use C/Breeze?</dt>
 <dd>What you need is a development or scripting environment that can work with .NET objects. Popular examples include: Microsoft
-Visual Studio (any edition), Microsoft Windows PowerShell and ScriptCS. In a compiled language, simply reference the appropriate DLLs and you're good to go. In PowerShell, import the UncommonSense.CBreeze.Automation module.
+Visual Studio (any edition), Microsoft Windows PowerShell and ScriptCS. In a compiled language, simply reference the appropriate DLLs and you're good to go. In PowerShell, import the UncommonSense.CBreeze.Automation module. The UncommonSense.CBreeze.Automation module can also be installed from the PowerShell Gallery - you'll find the latest information and installation instructions [here](https://www.powershellgallery.com/packages/UncommonSense.CBreeze.Automation).
 If you have some experience in C/SIDE development, the concepts and hierarchy of C/Breeze should be familiar from the very start - they map directly to what you see in Microsoft Dynamics NAV's IDE.</dd>
 
 <dt>What is the current status of the project?</dt>
