@@ -6,7 +6,7 @@ namespace UncommonSense.CBreeze.Parse
     public static class Patterns
     {
         // Object
-        public static readonly Regex ObjectSignature = new Regex(@"^OBJECT\s(\w+)\s(\d+)\s(.*)$", RegexOptions.Compiled);
+        public static readonly Regex ObjectSignature = new Regex(@"^OBJECT\s(?<bracket>\[)(\w+)\s(\d+)\s(.*)(?(bracket)\]|)$", RegexOptions.Compiled);
         public static readonly Regex BeginObject = new Regex(@"^{$", RegexOptions.Compiled);
         public static readonly Regex EndObject = new Regex(@"^}$", RegexOptions.Compiled);
         // Section
