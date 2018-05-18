@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.MenuSuite;
 
 namespace UncommonSense.CBreeze.Script
 {

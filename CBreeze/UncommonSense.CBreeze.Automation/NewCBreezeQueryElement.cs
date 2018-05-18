@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
-using UncommonSense.CBreeze.Core.Property.Type;
-using UncommonSense.CBreeze.Core.Query;
-using UncommonSense.CBreeze.Core.Table.Field;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -43,7 +39,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void AddItemToInputObject(QueryElement item, DataItemQueryElement InputObject)
         {
-            InputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+            InputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
         }
 
         protected override IEnumerable<QueryElement> CreateItems()
@@ -154,16 +150,16 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (InputObject.BaseObject)
             {
-                case Query q when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+                case Query q when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
                     q.Elements.Add(item);
                     break;
 
-                case Query q when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+                case Query q when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
                     q.Elements.Insert(0, item);
                     break;
 
                 case DataItemQueryElement d:
-                    d.AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+                    d.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
                 default:
@@ -231,7 +227,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void AddItemToInputObject(QueryElement item, DataItemQueryElement InputObject)
         {
-            InputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+            InputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
         }
 
         protected override IEnumerable<QueryElement> CreateItems()

@@ -4,17 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Code.Parameter;
-using UncommonSense.CBreeze.Core.Code.Variable;
-using UncommonSense.CBreeze.Core.Contracts;
-using UncommonSense.CBreeze.Core.Page.Action;
-using UncommonSense.CBreeze.Core.Page.Control;
-using UncommonSense.CBreeze.Core.Property.Implementation;
-using UncommonSense.CBreeze.Core.Query;
-using UncommonSense.CBreeze.Core.Report;
-using UncommonSense.CBreeze.Core.Table.Field;
-using UncommonSense.CBreeze.Core.Table.Relation;
-using UncommonSense.CBreeze.Core.XmlPort;
 
 namespace UncommonSense.CBreeze.Script
 {

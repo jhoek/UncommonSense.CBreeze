@@ -6,8 +6,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Base;
-using UncommonSense.CBreeze.Core.Extension;
 
 namespace UncommonSense.CBreeze.Automation
 {

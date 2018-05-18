@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Code.Function;
 
 namespace UncommonSense.CBreeze.Write
 {

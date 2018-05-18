@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Codeunit;
-using UncommonSense.CBreeze.Core.Page;
-using UncommonSense.CBreeze.Core.Query;
-using UncommonSense.CBreeze.Core.Report;
-using UncommonSense.CBreeze.Core.Table;
-using UncommonSense.CBreeze.Core.XmlPort;
 
 namespace UncommonSense.CBreeze.IO
 {

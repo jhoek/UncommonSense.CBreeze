@@ -4,14 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Base;
-using UncommonSense.CBreeze.Core.Codeunit;
-using UncommonSense.CBreeze.Core.MenuSuite;
-using UncommonSense.CBreeze.Core.Page;
-using UncommonSense.CBreeze.Core.Query;
-using UncommonSense.CBreeze.Core.Report;
-using UncommonSense.CBreeze.Core.Table;
-using UncommonSense.CBreeze.Core.XmlPort;
 
 namespace UncommonSense.CBreeze.Script
 {

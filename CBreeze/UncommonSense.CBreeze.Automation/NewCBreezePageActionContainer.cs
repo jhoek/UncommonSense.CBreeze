@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Contracts;
-using UncommonSense.CBreeze.Core.Page.Action;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -16,7 +13,7 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void AddItemToInputObject(PageActionBase item, PSObject inputObject)
         {
-            var position = Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer);
+            var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
 
             switch (InputObject.BaseObject)
             {
@@ -36,7 +33,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageActionBase> CreateItems()
         {
-            var pageActionContainer = new PageActionContainer(0, ID, ContainerType.GetValueOrDefault(PageActionContainerType.ActionItems));
+            var pageActionContainer = new PageActionContainer(0, ID, ContainerType.GetValueOrDefault(Core.PageActionContainerType.ActionItems));
             pageActionContainer.Properties.CaptionML.Set(CaptionML);
             pageActionContainer.Properties.Description = Description;
             pageActionContainer.Properties.Name = Name;

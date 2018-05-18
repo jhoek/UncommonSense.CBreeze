@@ -13,8 +13,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
-using UncommonSense.CBreeze.Core.MenuSuite;
-using UncommonSense.CBreeze.Core.Property.Type;
 
 // FIXME: For item nodes, allow AccessByPermission to be set directly, e.g. using New-CBreezeAccessByPermission
 

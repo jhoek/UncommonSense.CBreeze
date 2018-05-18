@@ -5,26 +5,6 @@ using System;
 using UncommonSense.CBreeze.Parse;
 using UncommonSense.CBreeze.Common;
 using System.IO;
-using UncommonSense.CBreeze.Core.Base;
-using UncommonSense.CBreeze.Core.Code;
-using UncommonSense.CBreeze.Core.Code.Function;
-using UncommonSense.CBreeze.Core.Code.Parameter;
-using UncommonSense.CBreeze.Core.Code.Variable;
-using UncommonSense.CBreeze.Core.Codeunit;
-using UncommonSense.CBreeze.Core.MenuSuite;
-using UncommonSense.CBreeze.Core.Page;
-using UncommonSense.CBreeze.Core.Page.Action;
-using UncommonSense.CBreeze.Core.Page.Control;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
-using UncommonSense.CBreeze.Core.Property.Implementation;
-using UncommonSense.CBreeze.Core.Property.Type;
-using UncommonSense.CBreeze.Core.Query;
-using UncommonSense.CBreeze.Core.Report;
-using UncommonSense.CBreeze.Core.Table;
-using UncommonSense.CBreeze.Core.Table.Field;
-using UncommonSense.CBreeze.Core.Table.Key;
-using UncommonSense.CBreeze.Core.XmlPort;
-using Object = UncommonSense.CBreeze.Core.Code.Variable.Object;
 
 namespace UncommonSense.CBreeze.Read
 {
@@ -32,7 +12,7 @@ namespace UncommonSense.CBreeze.Read
     {
         private Application application;
         private string currentFileName;
-        private Object currentObject;
+        private UncommonSense.CBreeze.Core.Object currentObject;
         private SectionType? currentSectionType;
         private TableFields currentTableFields;
         private TableKeys currentTableKeys;

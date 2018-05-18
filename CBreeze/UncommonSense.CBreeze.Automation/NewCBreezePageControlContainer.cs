@@ -6,10 +6,6 @@ using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Contracts;
-using UncommonSense.CBreeze.Core.Extension;
-using UncommonSense.CBreeze.Core.Page.Control;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -42,7 +38,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override IEnumerable<PageControlBase> CreateItems()
         {
-            var containerPageControl = new PageControlContainer(ID, 0, ContainerType.GetValueOrDefault(PageControlContainerType.ContentArea));
+            var containerPageControl = new PageControlContainer(ID, 0, ContainerType.GetValueOrDefault(Core.PageControlContainerType.ContentArea));
             containerPageControl.Properties.CaptionML.Set(CaptionML);
             containerPageControl.Properties.Description = Description;
             containerPageControl.Properties.Name = Name;
