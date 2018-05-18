@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.MenuSuite;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Property.Type;
+using UncommonSense.CBreeze.Core.Table.Field;
+using UncommonSense.CBreeze.Core.Table.Field.Properties;
+using UncommonSense.CBreeze.Core.XmlPort;
 
 namespace UncommonSense.CBreeze.Write
 {

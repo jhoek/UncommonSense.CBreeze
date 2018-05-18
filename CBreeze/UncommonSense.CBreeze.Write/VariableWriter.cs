@@ -5,6 +5,7 @@ using System.Text;
 using UncommonSense.CBreeze.Core;
 using System.Globalization;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Code.Variable;
 
 namespace UncommonSense.CBreeze.Write
 {

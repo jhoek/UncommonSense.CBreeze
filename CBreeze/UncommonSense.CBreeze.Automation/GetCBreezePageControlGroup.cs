@@ -4,6 +4,10 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Page;
+using UncommonSense.CBreeze.Core.Page.Control;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -46,11 +50,11 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "ByGroupType":
-                    WriteObject(contentArea.GetGroupByType(GroupType, Position ?? UncommonSense.CBreeze.Core.Position.FirstWithinContainer));
+                    WriteObject(contentArea.GetGroupByType(GroupType, Position ?? Core.Property.Enumeration.Position.FirstWithinContainer));
                     break;
 
                 case "ByGroupCaption":
-                    WriteObject(contentArea.GetGroupByCaption(GroupCaption, Position ?? UncommonSense.CBreeze.Core.Position.LastWithinContainer));
+                    WriteObject(contentArea.GetGroupByCaption(GroupCaption, Position ?? Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
             }
         }
