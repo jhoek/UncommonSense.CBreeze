@@ -1,4 +1,4 @@
-﻿namespace UncommonSense.CBreeze.Core.Base.Application
+﻿namespace UncommonSense.CBreeze.Core.Base.NavApplication
 {
 	public static partial class RunTime
 	{

@@ -49,15 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Application.cs" />
-    <Compile Include="Base\Application\BaseApp.2015.cs" />
-    <Compile Include="Base\Application\BaseApp.2016.cs" />
-    <Compile Include="Base\Application\BaseApp.2017.cs" />
-    <Compile Include="Base\Application\RunTime.2015.cs" />
-    <Compile Include="Base\Application\RunTime.2016.cs" />
-    <Compile Include="Base\Application\RunTime.2017.cs" />
     <Compile Include="Base\DefaultRanges.cs" />
     <Compile Include="Base\GuidKeyedContainer.cs" />
     <Compile Include="Base\IntegerKeyedAndNamedContainer.cs" />
+    <Compile Include="Base\NavApplication\BaseApp.2015.cs" />
+    <Compile Include="Base\NavApplication\BaseApp.2016.cs" />
+    <Compile Include="Base\NavApplication\BaseApp.2017.cs" />
+    <Compile Include="Base\NavApplication\RunTime.2015.cs" />
+    <Compile Include="Base\NavApplication\RunTime.2016.cs" />
+    <Compile Include="Base\NavApplication\RunTime.2017.cs" />
     <Compile Include="Base\Object.cs" />
     <Compile Include="Codeunit\Codeunit.cs" />
     <Compile Include="Codeunit\CodeunitProperties.cs" />
