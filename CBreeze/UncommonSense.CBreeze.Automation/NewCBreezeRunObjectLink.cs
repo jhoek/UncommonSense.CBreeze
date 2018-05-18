@@ -5,6 +5,10 @@ using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Page.Control;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Table.Field;
 using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation

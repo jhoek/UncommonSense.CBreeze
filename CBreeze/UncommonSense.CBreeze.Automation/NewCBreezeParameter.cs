@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Code.Parameter;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Query;
 
 namespace UncommonSense.CBreeze.Automation 
 {

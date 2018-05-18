@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
 using System.Text.RegularExpressions;
+using UncommonSense.CBreeze.Core.Report;
 
 namespace UncommonSense.CBreeze.Write
 {

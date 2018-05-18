@@ -5,13 +5,28 @@ using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Code.Parameter;
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Codeunit;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.MenuSuite;
+using UncommonSense.CBreeze.Core.Page;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Page.Control;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Query;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table;
+using UncommonSense.CBreeze.Core.XmlPort;
 using UncommonSense.CBreeze.Write;
+using Object = UncommonSense.CBreeze.Core.Code.Variable.Object;
 
 namespace UncommonSense.CBreeze.Automation
 {
     public static class ExtensionMethods
     {
-        public static void Add<T>(this Application application, IEnumerable<T> objs) where T : Core.Object
+        public static void Add<T>(this Application application, IEnumerable<T> objs) where T : Object
         {
             foreach (var obj in objs)
             {
@@ -19,7 +34,7 @@ namespace UncommonSense.CBreeze.Automation
             }
         }
 
-        public static T Add<T>(this Application application, T obj) where T : Core.Object
+        public static T Add<T>(this Application application, T obj) where T : Object
         {
             switch (obj)
             {

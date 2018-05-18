@@ -6,6 +6,11 @@ using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Extension;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Page.Control;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -19,11 +24,11 @@ namespace UncommonSense.CBreeze.Automation
             switch (inputObject.BaseObject)
             {
                 case PageControlContainer c:
-                    c.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    c.AddChildPageControl(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
 
                 case PageControlGroup g:
-                    g.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    g.AddChildPageControl(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
 
                 case PageControls c:

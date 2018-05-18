@@ -4,6 +4,14 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Codeunit;
+using UncommonSense.CBreeze.Core.MenuSuite;
+using UncommonSense.CBreeze.Core.Page;
+using UncommonSense.CBreeze.Core.Query;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table;
+using UncommonSense.CBreeze.Core.XmlPort;
+using Object = UncommonSense.CBreeze.Core.Code.Variable.Object;
 
 namespace UncommonSense.CBreeze.Write
 {
@@ -67,7 +75,7 @@ namespace UncommonSense.CBreeze.Write
 
         public static bool RequiresSquareBrackets(string name) => name.Any(c => "{}".Contains(c));
 
-        public static string GetObjectSignature(this Core.Object @object) =>
+        public static string GetObjectSignature(this Object @object) =>
             RequiresSquareBrackets(@object.Name) ?
                 $"OBJECT [{@object.Type.AsString()} {@object.ID} {@object.Name}]" :
                 $"OBJECT {@object.Type.AsString()} {@object.ID} {@object.Name}";

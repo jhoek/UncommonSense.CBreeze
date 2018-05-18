@@ -5,12 +5,14 @@ using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Base;
+using Object = UncommonSense.CBreeze.Core.Code.Variable.Object;
 
 namespace UncommonSense.CBreeze.Automation
 {
     public abstract class NewCBreezeObject<T> : NewItemWithIDAndNameCmdlet<T, int, Application>
     {
-        protected void SetObjectProperties(Core.Object @object)
+        protected void SetObjectProperties(Object @object)
         {
             @object.ObjectProperties.DateTime = DateTime;
             @object.ObjectProperties.Modified = Modified;
