@@ -9,4 +9,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("Copyright © 2018 Jan Hoek")]
 [assembly: AssemblyVersion("1.0.1.1")]
 [assembly: AssemblyFileVersion("1.0.1.1")]
-
+[assembly: InternalsVisibleTo("UncommonSense.Tests")]
