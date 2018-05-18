@@ -4,6 +4,15 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Code;
+using UncommonSense.CBreeze.Core.Code.Parameter;
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Codeunit;
+using UncommonSense.CBreeze.Core.Page;
+using UncommonSense.CBreeze.Core.Query;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table;
+using UncommonSense.CBreeze.Core.XmlPort;
 
 namespace UncommonSense.CBreeze.Automation
 {

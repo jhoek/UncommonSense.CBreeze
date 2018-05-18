@@ -5,6 +5,11 @@ using System.Text;
 using UncommonSense.CBreeze.Core;
 using System.Globalization;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.MenuSuite;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Property.Type;
 
 namespace UncommonSense.CBreeze.Write
 {

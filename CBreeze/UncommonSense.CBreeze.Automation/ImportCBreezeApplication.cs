@@ -7,6 +7,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Base;
 using UncommonSense.CBreeze.IO;
 using UncommonSense.CBreeze.Read;
 
