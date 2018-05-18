@@ -13,12 +13,6 @@ using System.Linq;
 using UncommonSense.CBreeze.Core;
 using System.Management.Automation;
 using System.Collections.Generic;
-using UncommonSense.CBreeze.Core.Extension;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
-using UncommonSense.CBreeze.Core.Property.Type;
-using UncommonSense.CBreeze.Core.Table;
-using UncommonSense.CBreeze.Core.Table.Field;
-using UncommonSense.CBreeze.Core.Table.Relation;
 
 namespace UncommonSense.CBreeze.Automation
 {

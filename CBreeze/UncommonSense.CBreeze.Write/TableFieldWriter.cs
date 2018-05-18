@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Property.Implementation;
-using UncommonSense.CBreeze.Core.Table.Field;
 
 namespace UncommonSense.CBreeze.Write
 {

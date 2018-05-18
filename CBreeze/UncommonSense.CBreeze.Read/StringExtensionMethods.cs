@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
-using UncommonSense.CBreeze.Core.Property.Type;
 
 namespace UncommonSense.CBreeze.Read
 {

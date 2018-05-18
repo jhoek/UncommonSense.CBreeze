@@ -4,10 +4,6 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Contracts;
-using UncommonSense.CBreeze.Core.Page;
-using UncommonSense.CBreeze.Core.Page.Action;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -46,7 +42,7 @@ namespace UncommonSense.CBreeze.Automation
         protected override void ProcessRecord()
         {
             var container = Page.GetPageActionContainer(ContainerType);
-            WriteObject(container.GetGroupByCaption(Page, Caption, Position ?? Core.Property.Enumeration.Position.LastWithinContainer));
+            WriteObject(container.GetGroupByCaption(Page, Caption, Position ?? Core.Position.LastWithinContainer));
         }
     }
 }

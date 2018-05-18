@@ -4,13 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Contracts;
-using UncommonSense.CBreeze.Core.Extension;
-using UncommonSense.CBreeze.Core.Page.Control;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
-using UncommonSense.CBreeze.Core.Property.Implementation;
-using UncommonSense.CBreeze.Core.Property.Type;
-using UncommonSense.CBreeze.Core.Table.Field;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -28,11 +21,11 @@ namespace UncommonSense.CBreeze.Automation
                     break;
 
                 case PageControlContainer c:
-                    c.AddChildPageControl(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+                    c.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
                 case PageControlGroup g:
-                    g.AddChildPageControl(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+                    g.AddChildPageControl(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
                     break;
 
                 case PageControls c:

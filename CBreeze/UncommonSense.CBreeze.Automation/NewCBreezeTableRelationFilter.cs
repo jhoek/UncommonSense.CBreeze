@@ -5,8 +5,6 @@ using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Table.Field;
-using UncommonSense.CBreeze.Core.Table.Relation;
 
 namespace UncommonSense.CBreeze.Automation
 {

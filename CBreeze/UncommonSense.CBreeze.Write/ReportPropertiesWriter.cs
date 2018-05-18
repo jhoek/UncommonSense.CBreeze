@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Property.Implementation;
-using UncommonSense.CBreeze.Core.Report;
 
 namespace UncommonSense.CBreeze.Write
 {

@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Code.Function;
-using UncommonSense.CBreeze.Core.Code.Variable;
-using UncommonSense.CBreeze.Core.Property.Type;
 
 namespace UncommonSense.CBreeze.Script
 {

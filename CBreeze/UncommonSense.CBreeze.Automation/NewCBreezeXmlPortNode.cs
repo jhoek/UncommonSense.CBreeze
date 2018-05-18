@@ -14,11 +14,6 @@ using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Property.Enumeration;
-using UncommonSense.CBreeze.Core.Property.Implementation;
-using UncommonSense.CBreeze.Core.Property.Type;
-using UncommonSense.CBreeze.Core.Table.Field;
-using UncommonSense.CBreeze.Core.XmlPort;
 
 namespace UncommonSense.CBreeze.Automation 
 {
@@ -60,24 +55,24 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			switch(inputObject.BaseObject)
 			{
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
 					break;
 
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Add(item); 
 					break;
 
 				case XmlPortNode n:
-					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
 					break;
 
 				default:
@@ -190,24 +185,24 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			switch(inputObject.BaseObject)
 			{
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
 					break;
 
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Add(item); 
 					break;
 
 				case XmlPortNode n:
-					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
 					break;
 
 				default:
@@ -341,24 +336,24 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			switch(inputObject.BaseObject)
 			{
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
 					break;
 
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Add(item); 
 					break;
 
 				case XmlPortNode n:
-					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
 					break;
 
 				default:
@@ -519,24 +514,24 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			switch(inputObject.BaseObject)
 			{
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
 					break;
 
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Add(item); 
 					break;
 
 				case XmlPortNode n:
-					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
 					break;
 
 				default:
@@ -684,24 +679,24 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			switch(inputObject.BaseObject)
 			{
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
 					break;
 
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Add(item); 
 					break;
 
 				case XmlPortNode n:
-					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
 					break;
 
 				default:
@@ -800,24 +795,24 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			switch(inputObject.BaseObject)
 			{
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Insert(0, item); 
 					break;
 
-				case XmlPort x when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPort x when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPort).Nodes.Add(item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Insert(0, item); 
 					break;
 
-				case XmlPortNodes n when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
+				case XmlPortNodes n when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
 					(InputObject.BaseObject as XmlPortNodes).Add(item); 
 					break;
 
 				case XmlPortNode n:
-					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
+					(InputObject.BaseObject as XmlPortNode).AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
 					break;
 
 				default:

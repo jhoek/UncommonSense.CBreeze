@@ -5,8 +5,6 @@ using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
-using UncommonSense.CBreeze.Core.Property.Implementation;
-using UncommonSense.CBreeze.Core.XmlPort;
 using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.Automation
