@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Code;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Report
 {
 #if NAV2015
     public class WordLayout : IHasCodeLines, INode

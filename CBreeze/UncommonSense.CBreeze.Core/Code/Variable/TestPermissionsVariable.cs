@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UncommonSense.CBreeze.Common;
+﻿using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Variable
 {
 #if NAV2017
     public class TestPermissionsVariable : Variable,IHasDimensions

@@ -1,10 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Code.Function;
+using UncommonSense.CBreeze.Core.Contracts;
+using Object = UncommonSense.CBreeze.Core.Base.Object;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Variable
 {
     public class Code : INode
     {

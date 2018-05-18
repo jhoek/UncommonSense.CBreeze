@@ -1,10 +1,12 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
+using UncommonSense.CBreeze.Core.Property;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Page.Action
 {
     // Normally, names for derived types are formed by prefixing the base type
     // name with it's specialisation description, e.g. Parameter -> IntegerParameter.

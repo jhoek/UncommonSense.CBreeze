@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Page.Control;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Contracts
 {
     public interface IPage : INode
     {

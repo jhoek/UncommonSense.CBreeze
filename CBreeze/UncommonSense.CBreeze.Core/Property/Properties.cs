@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property
 {
     public abstract class Properties : IProperties, INode
     {
-        protected List<Property> innerList = new List<Property>();
+        protected List<Implementation.Property> innerList = new List<Implementation.Property>();
 
-        public T ByName<T>(string name) where T : Property
+        public T ByName<T>(string name) where T : Implementation.Property
         {
             return (this[name] as T);
         }
 
-        public Property this[string name]
+        public Implementation.Property this[string name]
         {
             get
             {
@@ -22,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public IEnumerable<Property> WithAValue
+        public IEnumerable<Implementation.Property> WithAValue
         {
             get
             {
@@ -43,7 +42,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public IEnumerator<Property> GetEnumerator()
+        public IEnumerator<Implementation.Property> GetEnumerator()
         {
             return innerList.GetEnumerator();
         }

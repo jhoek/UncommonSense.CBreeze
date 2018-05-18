@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Page.Control;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Report
 {
     public class RequestPage : IPage, INode
     {

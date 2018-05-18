@@ -1,22 +1,23 @@
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code
 {
     // Note: Events are not an IntegerKeyedAndNamedContainer for the following reasons:
     // - The ID consists of a combination of the Source ID and the (event) ID;
     // - IDs are not assigned from a range (ID is a well-known event ID; Source ID is an existing variable ID);
     public class Events : KeyedCollection<Tuple<int, int>, Event>, INode
     {
-        internal Events(Code code)
+        internal Events(Variable.Code code)
         {
             Code = code;
         }
 
-        public Code Code
+        public Variable.Code Code
         {
             get;
             protected set;

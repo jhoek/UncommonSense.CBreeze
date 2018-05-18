@@ -1,10 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Parameter
 {
     public class ByteParameter : Parameter
     {

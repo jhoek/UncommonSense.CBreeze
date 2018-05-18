@@ -4,6 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Property.Type;
+using UncommonSense.CBreeze.Core.Query;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table.Field;
+using UncommonSense.CBreeze.Core.Table.Field.Properties;
+using UncommonSense.CBreeze.Core.Table.Key;
+using UncommonSense.CBreeze.Core.Table.Relation;
+using UncommonSense.CBreeze.Core.XmlPort;
 using UncommonSense.CBreeze.Parse;
 
 namespace UncommonSense.CBreeze.Read

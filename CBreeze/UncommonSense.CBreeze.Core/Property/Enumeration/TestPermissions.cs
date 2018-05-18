@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-#if NAV2017
-namespace UncommonSense.CBreeze.Core
+﻿#if NAV2017
+namespace UncommonSense.CBreeze.Core.Property.Enumeration
 {
     public enum TestPermissions
     {

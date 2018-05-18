@@ -6,6 +6,10 @@ using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Property.Type;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table.Field;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -16,7 +20,7 @@ namespace UncommonSense.CBreeze.Automation
     {
         protected override void AddItemToInputObject(ColumnReportElement item, DataItemReportElement inputObject)
         {
-            inputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+            inputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
         }
 
         protected override IEnumerable<ColumnReportElement> CreateItems()
@@ -75,16 +79,16 @@ namespace UncommonSense.CBreeze.Automation
         {
             switch (inputObject.BaseObject)
             {
-                case Report r when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.LastWithinContainer:
+                case Report r when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.LastWithinContainer:
                     r.Elements.Add(item);
                     break;
 
-                case Report r when Position.GetValueOrDefault(Core.Position.LastWithinContainer) == Core.Position.FirstWithinContainer:
+                case Report r when Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer) == Core.Property.Enumeration.Position.FirstWithinContainer:
                     r.Elements.Insert(0, item);
                     break;
 
                 case DataItemReportElement e:
-                    e.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    e.AddChildNode(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
 
                 default:

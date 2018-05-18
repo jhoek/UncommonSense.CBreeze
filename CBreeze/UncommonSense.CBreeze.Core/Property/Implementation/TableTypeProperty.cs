@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using UncommonSense.CBreeze.Core.Table;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
 #if NAV2016
         public class TableTypeProperty : NullableValueProperty<TableType>

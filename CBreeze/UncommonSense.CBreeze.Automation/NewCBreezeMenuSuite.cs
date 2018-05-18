@@ -5,6 +5,8 @@ using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.MenuSuite;
 
 namespace UncommonSense.CBreeze.Automation
 {

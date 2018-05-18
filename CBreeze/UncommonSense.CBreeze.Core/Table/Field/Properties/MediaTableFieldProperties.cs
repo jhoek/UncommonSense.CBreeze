@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Property.Type;
+using UncommonSense.CBreeze.Core.Table.Relation;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field.Properties
 {
 #if NAV2017
-    public class MediaTableFieldProperties : Properties
+    public class MediaTableFieldProperties : Property.Properties
     {
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
         private AutoFormatTypeProperty autoFormatType = new AutoFormatTypeProperty("AutoFormatType");

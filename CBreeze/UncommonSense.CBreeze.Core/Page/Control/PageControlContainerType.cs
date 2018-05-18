@@ -1,4 +1,4 @@
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Page.Control
 {
     public enum PageControlContainerType
     {

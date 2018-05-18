@@ -8,8 +8,10 @@ using System.Management.Automation;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Base;
 using UncommonSense.CBreeze.IO;
 using UncommonSense.CBreeze.Write;
+using Object = UncommonSense.CBreeze.Core.Base.Object;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -73,7 +75,7 @@ namespace UncommonSense.CBreeze.Automation
                         CachedObjects.Add(a.Objects);
                         break;
 
-                    case Core.Object o:
+                    case Object o:
                         CachedObjects.Add(o);
                         break;
                 }

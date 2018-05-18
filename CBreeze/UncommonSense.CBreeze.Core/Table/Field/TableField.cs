@@ -1,10 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field
 {
     public abstract class TableField : KeyedItem<int>, IHasName, IHasProperties, INode
     {
@@ -51,7 +50,7 @@ namespace UncommonSense.CBreeze.Core
             return Name;
         }
 
-        public abstract Properties AllProperties
+        public abstract Property.Properties AllProperties
         {
             get;
         }

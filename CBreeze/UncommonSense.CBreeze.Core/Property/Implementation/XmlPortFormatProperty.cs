@@ -1,9 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.XmlPort;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
         public class XmlPortFormatProperty : NullableValueProperty<XmlPortFormat>
     {

@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Report;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
         public class ReportDataItemLinkProperty : ReferenceProperty<ReportDataItemLink>
     {

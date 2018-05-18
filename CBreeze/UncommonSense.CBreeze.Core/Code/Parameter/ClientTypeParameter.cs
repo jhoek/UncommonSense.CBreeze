@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UncommonSense.CBreeze.Common;
+﻿using UncommonSense.CBreeze.Common;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Parameter
 {
 #if NAV2017
     public class ClientTypeParameter : Parameter

@@ -1,10 +1,13 @@
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
+using UncommonSense.CBreeze.Core.Property;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.XmlPort
 {
     public abstract class XmlPortNode : KeyedItem<Guid>, IHasProperties, INode
     {

@@ -1,10 +1,7 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Query;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Parameter
 {
     public class QueryParameter : Parameter
     {

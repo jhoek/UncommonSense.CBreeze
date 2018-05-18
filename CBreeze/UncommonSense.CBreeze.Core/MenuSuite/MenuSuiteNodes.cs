@@ -1,9 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.MenuSuite
 {
         public class MenuSuiteNodes : GuidKeyedContainer<MenuSuiteNode>, INode
     {

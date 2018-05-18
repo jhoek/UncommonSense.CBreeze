@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Table.Field.Properties;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field
 {
 #if NAV2017
     public class MediaTableField : TableField
@@ -17,7 +16,7 @@ namespace UncommonSense.CBreeze.Core
 
         public override TableFieldType Type => TableFieldType.Media;
 
-        public override Properties AllProperties => Properties;
+        public override Property.Properties AllProperties => Properties;
 
         public override IEnumerable<INode> ChildNodes => new[] { Properties };
 

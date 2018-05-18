@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Query;
 
 namespace UncommonSense.CBreeze.Write
 {

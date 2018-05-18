@@ -1,13 +1,13 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property.Implementation;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property
 {
         public class ObjectProperties : IProperties
     {
-        private List<Property> innerList = new List<Property>();
+        private List<Implementation.Property> innerList = new List<Implementation.Property>();
 
         private NullableDateTimeProperty dateTime = new NullableDateTimeProperty("DateTime");
         private BooleanProperty modified = new BooleanProperty("Modified");
@@ -20,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(versionList);
         }
 
-        public Property this[string name]
+        public Implementation.Property this[string name]
         {
             get
             {
@@ -64,7 +64,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public IEnumerator<Property> GetEnumerator()
+        public IEnumerator<Implementation.Property> GetEnumerator()
         {
             return innerList.GetEnumerator();
         }

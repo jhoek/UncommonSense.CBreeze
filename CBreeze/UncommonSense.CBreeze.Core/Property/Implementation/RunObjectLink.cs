@@ -1,12 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
-    public class RunObjectLink : Collection<RunObjectLinkLine>
+    public class RunObjectLink : Generic.Collection<RunObjectLinkLine>
     {
     }
 }

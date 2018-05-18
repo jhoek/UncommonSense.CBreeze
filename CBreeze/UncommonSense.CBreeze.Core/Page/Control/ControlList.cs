@@ -1,12 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Page.Control
 {
-    public class ControlList : Collection<string>
+    public class ControlList : Generic.Collection<string>
     {
         // Ctor made public to allow ControlListProperty to new up an instance
         public ControlList()

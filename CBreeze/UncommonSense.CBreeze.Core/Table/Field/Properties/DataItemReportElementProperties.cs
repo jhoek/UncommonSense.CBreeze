@@ -1,11 +1,11 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Report;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field.Properties
 {
-    public class DataItemReportElementProperties : Properties
+    public class DataItemReportElementProperties : Property.Properties
     {
         private FieldListProperty calcFields = new FieldListProperty("CalcFields");
         private ReportDataItemLinkProperty dataItemLink = new ReportDataItemLinkProperty("DataItemLink");

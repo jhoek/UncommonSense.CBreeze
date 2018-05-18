@@ -1,10 +1,10 @@
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.XmlPort
 {
     public class XmlPortTextElement : XmlPortNode
     {

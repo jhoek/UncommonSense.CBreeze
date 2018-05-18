@@ -1,14 +1,12 @@
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Xml;
 using System.Xml.Linq;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code
 {
-    public class CodeLines : Collection<string>, INode
+    public class CodeLines : Generic.Collection<string>, INode
     {
         internal CodeLines(IHasCodeLines container)
         {

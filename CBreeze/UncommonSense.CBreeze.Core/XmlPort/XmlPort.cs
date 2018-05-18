@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
+using UncommonSense.CBreeze.Core.Report;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.XmlPort
 {
     public class XmlPort : Object, IHasCode, IHasRequestPage
     {
@@ -15,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
             Properties = new XmlPortProperties(this);
             Nodes = new XmlPortNodes(this);
             RequestPage = new RequestPage(this);
-            Code = new Code(this);
+            Code = new Code.Variable.Code(this);
         }
 
         public override Properties AllProperties
@@ -39,7 +43,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
+        public Code.Variable.Code Code
         {
             get;
             protected set;

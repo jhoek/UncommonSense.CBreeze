@@ -1,4 +1,10 @@
-namespace UncommonSense.CBreeze.Core
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Property;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+
+namespace UncommonSense.CBreeze.Core.Report
 {
     public class RequestPageProperties : Properties
     {

@@ -1,9 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Generic;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Key
 {
         public class SIFTLevelComponents : Collection<SIFTLevelComponent>
     {

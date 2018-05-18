@@ -1,9 +1,7 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.MenuSuite
 {
     public class MenuSuiteProperties : Properties
     {

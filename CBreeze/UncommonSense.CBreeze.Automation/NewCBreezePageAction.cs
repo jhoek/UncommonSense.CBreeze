@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Property.Type;
+using UncommonSense.CBreeze.Core.Table.Field;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -114,7 +120,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void AddItemToInputObject(PageAction item, PSObject inputObject)
         {
-            var position = Position.GetValueOrDefault(Core.Position.LastWithinContainer);
+            var position = Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer);
 
             switch (InputObject.BaseObject)
             {

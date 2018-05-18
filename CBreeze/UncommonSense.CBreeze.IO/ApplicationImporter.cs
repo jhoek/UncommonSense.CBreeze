@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Base;
 using UncommonSense.CBreeze.Write;
 
 namespace UncommonSense.CBreeze.IO

@@ -1,21 +1,27 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UncommonSense.CBreeze.Core.Codeunit;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.MenuSuite;
+using UncommonSense.CBreeze.Core.Page;
+using UncommonSense.CBreeze.Core.Query;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table;
+using UncommonSense.CBreeze.Core.XmlPort;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Base
 {
     public class Application : INode
     {
         public Application(params Object[] objects)
         {
-            Tables = new Tables(this, objects.OfType<Table>());
-            Pages = new Pages(this, objects.OfType<Page>());
-            Reports = new Reports(this, objects.OfType<Report>());
-            XmlPorts = new XmlPorts(this, objects.OfType<XmlPort>());
-            Codeunits = new Codeunits(this, objects.OfType<Codeunit>());
-            Queries = new Queries(this, objects.OfType<Query>());
-            MenuSuites = new MenuSuites(this, objects.OfType<MenuSuite>());
+            Tables = new Tables(this, objects.OfType<Table.Table>());
+            Pages = new Pages(this, objects.OfType<Page.Page>());
+            Reports = new Reports(this, objects.OfType<Report.Report>());
+            XmlPorts = new XmlPorts(this, objects.OfType<XmlPort.XmlPort>());
+            Codeunits = new Codeunits(this, objects.OfType<Codeunit.Codeunit>());
+            Queries = new Queries(this, objects.OfType<Query.Query>());
+            MenuSuites = new MenuSuites(this, objects.OfType<MenuSuite.MenuSuite>());
         }
 
         IEnumerable<INode> INode.ChildNodes

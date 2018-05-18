@@ -1,7 +1,12 @@
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Page.Control;
+using UncommonSense.CBreeze.Core.Property;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Page
 {
     public class Page : Object, IHasCode, IPage
     {
@@ -15,7 +20,7 @@ namespace UncommonSense.CBreeze.Core
             Properties = new PageProperties(this);
             Properties.ActionList.Page = this;
             Controls = new PageControls(this);
-            Code = new Code(this);
+            Code = new Code.Variable.Code(this);
         }
 
         public ActionList Actions => Properties.ActionList;
@@ -32,7 +37,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code { get; }
+        public Code.Variable.Code Code { get; }
         public Pages Container { get; internal set; }
         public PageControls Controls { get; }
         public int ObjectID => ID;

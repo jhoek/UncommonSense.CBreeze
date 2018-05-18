@@ -1,4 +1,4 @@
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Type
 {
     public enum AutoFormatType
     {

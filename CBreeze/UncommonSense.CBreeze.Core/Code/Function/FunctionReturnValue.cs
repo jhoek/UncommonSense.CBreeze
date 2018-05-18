@@ -1,14 +1,12 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Function
 {
     public class FunctionReturnValue : INode
     {
-        internal FunctionReturnValue(Function function)
+        internal FunctionReturnValue(Variable.Function function)
         {
             Function = function;
         }
@@ -54,7 +52,7 @@ namespace UncommonSense.CBreeze.Core
             set;
         }
 
-        public Function Function { get; protected set; }
+        public Variable.Function Function { get; protected set; }
 
         public string Name
         {

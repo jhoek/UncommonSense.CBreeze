@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UncommonSense.CBreeze.Core
+﻿namespace UncommonSense.CBreeze.Core.Generic
 {
     /// <summary>
     /// Abstract base class for keyed items.

@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Query
 {
     public class Query : Object, IHasCode
     {
@@ -14,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
         {
             Properties = new QueryProperties(this);
             Elements = new QueryElements(this);
-            Code = new Code(this);
+            Code = new Code.Variable.Code(this);
         }
 
         public override Properties AllProperties => Properties;
@@ -30,7 +33,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code { get; protected set; }
+        public Code.Variable.Code Code { get; protected set; }
         public Queries Container { get; internal set; }
         public QueryElements Elements { get; protected set; }
         public override INode ParentNode => Container;

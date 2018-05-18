@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using UncommonSense.CBreeze.Core.Code.Function;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
 #if NAV2016
     public class EventSubscriberInstanceProperty : NullableValueProperty<EventSubscriberInstance>

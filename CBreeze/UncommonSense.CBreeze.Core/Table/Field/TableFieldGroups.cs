@@ -1,8 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field
 {
     public class TableFieldGroups : IntegerKeyedAndNamedContainer<TableFieldGroup>, INode
     {

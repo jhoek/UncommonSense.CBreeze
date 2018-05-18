@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Codeunit
 {
     public class Codeunit : Object, IHasCode
     {
@@ -13,7 +16,7 @@ namespace UncommonSense.CBreeze.Core
             : base(id, name)
         {
             Properties = new CodeunitProperties(this);
-            Code = new Code(this);
+            Code = new Code.Variable.Code(this);
         }
 
         public override Properties AllProperties
@@ -35,7 +38,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
+        public Code.Variable.Code Code
         {
             get;
             protected set;

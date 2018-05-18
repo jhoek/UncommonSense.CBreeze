@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.XmlPort
 {
 #if NAV2016
     public class XmlPortNamespaces : IEnumerable<XmlPortNamespace>

@@ -1,9 +1,8 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
+using UncommonSense.CBreeze.Core.Property.Implementation;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Key
 {
         public class TableKeyProperties : Properties
     {

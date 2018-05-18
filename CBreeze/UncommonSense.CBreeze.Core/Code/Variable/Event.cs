@@ -1,9 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Code.Parameter;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Variable
 {
     public class Event : KeyedItem<int>, IHasName, IHasCodeLines, INode
     {

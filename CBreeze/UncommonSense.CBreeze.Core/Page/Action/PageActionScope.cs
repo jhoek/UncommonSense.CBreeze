@@ -1,4 +1,4 @@
-﻿namespace UncommonSense.CBreeze.Core
+﻿namespace UncommonSense.CBreeze.Core.Page.Action
 {
 #if NAV2015
     public enum PageActionScope

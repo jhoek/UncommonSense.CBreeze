@@ -1,13 +1,11 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code
 {
     public class Documentation : IHasCodeLines, INode
     {
-        internal Documentation(Code code)
+        internal Documentation(Variable.Code code)
         {
             Code = code;
             CodeLines = new CodeLines(this);
@@ -21,7 +19,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
+        public Variable.Code Code
         {
             get;
             protected set;

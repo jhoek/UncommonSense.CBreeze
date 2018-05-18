@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Key
 {
     public class TableKeys : Collection<TableKey>, INode
     {

@@ -1,9 +1,13 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Code.Function;
+using UncommonSense.CBreeze.Core.Code.Parameter;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Property.Type;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Variable
 {
     public class Function : KeyedItem<int>, IHasName, IHasCodeLines, INode
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace UncommonSense.CBreeze.Core
+﻿namespace UncommonSense.CBreeze.Core.Table
 {
 #if NAV2016
     public enum TableType

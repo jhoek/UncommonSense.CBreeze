@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Code;
+using UncommonSense.CBreeze.Core.Code.Function;
+using UncommonSense.CBreeze.Core.Code.Parameter;
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Property.Type;
+using UncommonSense.CBreeze.Core.Table.Field;
+using UncommonSense.CBreeze.Core.Table.Field.Properties;
+using UncommonSense.CBreeze.Core.Table.Relation;
 
 namespace UncommonSense.CBreeze.Script
 {

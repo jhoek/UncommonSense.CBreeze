@@ -1,10 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using UncommonSense.CBreeze.Common;
+using System.Linq;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Variable
 {
     public abstract class Variables : IntegerKeyedAndNamedContainer<Variable>, INode
     {

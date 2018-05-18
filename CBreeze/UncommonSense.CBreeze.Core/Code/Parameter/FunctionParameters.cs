@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Parameter
 {
     public class FunctionParameters : Parameters
     {
-        internal FunctionParameters(Function function)
+        internal FunctionParameters(Variable.Function function)
         {
             Function = function;
         }
 
         public override IEnumerable<int> ExistingIDs => this.Select(p => p.ID).Concat(Function.Variables.Select(v => v.ID));
 
-        public Function Function { get; protected set; }
+        public Variable.Function Function { get; protected set; }
 
         public override INode ParentNode => Function;
     }

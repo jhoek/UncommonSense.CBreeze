@@ -1,11 +1,11 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Code.Variable;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Property.Type;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field.Properties
 {
-        public class BinaryTableFieldProperties : Properties
+        public class BinaryTableFieldProperties : Property.Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");

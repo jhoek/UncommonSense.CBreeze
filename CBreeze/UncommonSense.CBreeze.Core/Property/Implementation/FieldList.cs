@@ -1,12 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
-    public class FieldList : Collection<string>
+    public class FieldList : Generic.Collection<string>
     {
         // Made ctor public so that FieldListProperty can new up an instance
         public FieldList() { }

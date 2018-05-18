@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Generic
 {
     public abstract class KeyedAndNamedContainer<TKey, TItem> : KeyedContainer<TKey, TItem>
         where TItem : KeyedItem<TKey>, IHasName

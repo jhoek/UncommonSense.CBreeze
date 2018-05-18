@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Code;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Report
 {
     public class RdlData : IHasCodeLines, INode
     {

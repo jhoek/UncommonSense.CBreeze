@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Report
 {
     public class Report : Object, IHasCode, IHasRequestPage
     {
@@ -18,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
             Elements = new ReportElements(this);
             RequestPage = new RequestPage(this);
             Labels = new ReportLabels(this);
-            Code = new Code(this);
+            Code = new Code.Variable.Code(this);
             RdlData = new RdlData(this);
 #if NAV2015
             WordLayout = new WordLayout(this);
@@ -59,7 +62,7 @@ namespace UncommonSense.CBreeze.Core
             protected set;
         }
 
-        public Code Code
+        public Code.Variable.Code Code
         {
             get;
             protected set;

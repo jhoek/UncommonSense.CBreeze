@@ -1,11 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property.Implementation;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field.Properties
 {
-        public class TableFieldGroupProperties : Properties
+        public class TableFieldGroupProperties : Property.Properties
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 

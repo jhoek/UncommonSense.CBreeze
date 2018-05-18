@@ -1,10 +1,8 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field
 {
     public class TextTableField : TableField
     {
@@ -19,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
             Properties = new TextTableFieldProperties(this);
         }
 
-        public override Properties AllProperties
+        public override Property.Properties AllProperties
         {
             get
             {

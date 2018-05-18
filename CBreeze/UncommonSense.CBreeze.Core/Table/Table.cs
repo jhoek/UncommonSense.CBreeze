@@ -1,7 +1,12 @@
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Property;
+using UncommonSense.CBreeze.Core.Table.Field;
+using UncommonSense.CBreeze.Core.Table.Key;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table
 {
     public class Table : Object, IHasCode
     {
@@ -16,7 +21,7 @@ namespace UncommonSense.CBreeze.Core
             Fields = new TableFields(this);
             Keys = new TableKeys(this);
             FieldGroups = new TableFieldGroups(this);
-            Code = new Code(this);
+            Code = new Code.Variable.Code(this);
         }
 
         public override Properties AllProperties
@@ -41,7 +46,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-        public Code Code
+        public Code.Variable.Code Code
         {
             get;
             protected set;

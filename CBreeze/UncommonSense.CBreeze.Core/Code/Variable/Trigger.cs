@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Variable
 {
     public class Trigger : IHasCodeLines
     {

@@ -1,9 +1,10 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Table.Field.Properties;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field
 {
     public class TableFieldGroup : KeyedItem<int>, IHasName, INode
     {

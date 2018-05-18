@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+using UncommonSense.CBreeze.Core.XmlPort;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
 #if NAV2016
         public class XmlPortNamespacesProperty : ReferenceProperty<XmlPortNamespaces>

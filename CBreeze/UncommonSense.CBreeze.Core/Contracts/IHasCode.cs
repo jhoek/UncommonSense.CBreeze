@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace UncommonSense.CBreeze.Core
+﻿namespace UncommonSense.CBreeze.Core.Contracts
 {
     public interface IHasCode
     {
-        Code Code
+        Code.Variable.Code Code
         {
             get;
         }

@@ -1,8 +1,12 @@
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Generic;
+using UncommonSense.CBreeze.Core.Property;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Query
 {
     public abstract class QueryElement : KeyedItem<int>, IHasName, IHasProperties, INode
     {

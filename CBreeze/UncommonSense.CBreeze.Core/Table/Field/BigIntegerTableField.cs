@@ -1,10 +1,9 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UncommonSense.CBreeze.Common;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Table.Field.Properties;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field
 {
     public class BigIntegerTableField : TableField
     {
@@ -18,7 +17,7 @@ namespace UncommonSense.CBreeze.Core
             Properties = new BigIntegerTableFieldProperties(this);
         }
 
-        public override Properties AllProperties => Properties;
+        public override Property.Properties AllProperties => Properties;
 
         public override IEnumerable<INode> ChildNodes 
         {

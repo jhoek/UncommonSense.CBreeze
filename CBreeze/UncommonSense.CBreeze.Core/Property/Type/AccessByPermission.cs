@@ -1,8 +1,9 @@
 ﻿using System.Text;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
 
 #if NAV2015
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Property.Type
 {
     public class AccessByPermission
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace UncommonSense.CBreeze.Core
+﻿namespace UncommonSense.CBreeze.Core.Property.Implementation
 {
     public abstract class ReferenceProperty<T> : Property where T : new()
     {

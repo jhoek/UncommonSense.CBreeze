@@ -1,21 +1,20 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using UncommonSense.CBreeze.Common;
+using System.Linq;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Contracts;
 
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Code.Function
 {
-    public class Functions : IntegerKeyedAndNamedContainer<Function>, INode
+    public class Functions : IntegerKeyedAndNamedContainer<Variable.Function>, INode
     {
-        internal Functions(Code code)
+        internal Functions(Variable.Code code)
         {
             Code = code;
         }
 
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
-        public Code Code
+        public Variable.Code Code
         {
             get;
             protected set;
@@ -24,13 +23,13 @@ namespace UncommonSense.CBreeze.Core
         public INode ParentNode => Code;
         protected override IEnumerable<int> DefaultRange => DefaultRanges.UID;
 
-        public override void ValidateName(Function item)
+        public override void ValidateName(Variable.Function item)
         {
             TestNameNotNullOrEmpty(item);
             TestNameUnique(item);
         }
 
-        protected override void InsertItem(int index, Function item)
+        protected override void InsertItem(int index, Variable.Function item)
         {
             base.InsertItem(index, item);
             item.Container = this;

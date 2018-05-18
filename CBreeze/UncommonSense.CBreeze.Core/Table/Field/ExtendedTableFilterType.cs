@@ -1,9 +1,4 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace UncommonSense.CBreeze.Core
+namespace UncommonSense.CBreeze.Core.Table.Field
 {
     public enum TableFilterType
     {
