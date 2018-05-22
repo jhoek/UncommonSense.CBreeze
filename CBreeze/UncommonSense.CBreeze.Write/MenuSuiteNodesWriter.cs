@@ -1,5 +1,6 @@
 using System;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.MenuSuite;
 
 namespace UncommonSense.CBreeze.Write
 {

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Contracts;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Property.Enumeration;
 
 namespace UncommonSense.CBreeze.Automation
 {
@@ -15,19 +18,19 @@ namespace UncommonSense.CBreeze.Automation
             switch (InputObject.BaseObject)
             {
                 case PageActionContainer c:
-                    c.AddChildPageAction(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    c.AddChildPageAction(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
 
                 case PageActionGroup g:
-                    g.AddChildPageAction(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    g.AddChildPageAction(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
 
                 case ActionList a:
-                    a.AddPageActionAtPosition(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    a.AddPageActionAtPosition(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
 
                 case IPage p:
-                    p.AddPageActionAtPosition(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
+                    p.AddPageActionAtPosition(item, Position.GetValueOrDefault(Core.Property.Enumeration.Position.LastWithinContainer));
                     break;
 
                 default:

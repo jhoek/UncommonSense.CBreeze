@@ -5,6 +5,15 @@ using System.Linq;
 using System.Text;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Base;
+using UncommonSense.CBreeze.Core.Codeunit;
+using UncommonSense.CBreeze.Core.MenuSuite;
+using UncommonSense.CBreeze.Core.Page;
+using UncommonSense.CBreeze.Core.Query;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table;
+using UncommonSense.CBreeze.Core.XmlPort;
+using Object = UncommonSense.CBreeze.Core.Base.Object;
 
 namespace UncommonSense.CBreeze.Write
 {
@@ -110,7 +119,7 @@ namespace UncommonSense.CBreeze.Write
             return result;
         }
 
-        public static IEnumerable<FileInfo> WriteToFolder(this IEnumerable<Core.Object> objects, string folderName)
+        public static IEnumerable<FileInfo> WriteToFolder(this IEnumerable<Object> objects, string folderName)
         {
             Directory.CreateDirectory(folderName);
 

@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using System.Management.Automation;
 using UncommonSense.CBreeze.Common;
 using UncommonSense.CBreeze.Core;
+using UncommonSense.CBreeze.Core.Page.Action;
+using UncommonSense.CBreeze.Core.Page.Control;
+using UncommonSense.CBreeze.Core.Property.Implementation;
+using UncommonSense.CBreeze.Core.Query;
+using UncommonSense.CBreeze.Core.Report;
+using UncommonSense.CBreeze.Core.Table.Field;
+using UncommonSense.CBreeze.Core.Table.Field.Properties;
+using UncommonSense.CBreeze.Core.XmlPort;
 
 namespace UncommonSense.CBreeze.Automation
 {
