@@ -65,12 +65,8 @@ namespace UncommonSense.CBreeze.Write
 			}
 		}
 
-        public static bool RequiresSquareBrackets(string name) => name.Any(c => "{}".Contains(c));
-
         public static string GetObjectSignature(this Core.Object @object) =>
-            RequiresSquareBrackets(@object.Name) ?
-                $"OBJECT [{@object.Type.AsString()} {@object.ID} {@object.Name}]" :
-                $"OBJECT {@object.Type.AsString()} {@object.ID} {@object.Name}";
+            string.Format("OBJECT {0} {1} {2}", @object.Type.AsString(), @object.ID, @object.Name);
 
         public static string AsString(this ObjectType objectType)
         {
