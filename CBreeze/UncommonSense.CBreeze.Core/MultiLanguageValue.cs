@@ -97,5 +97,7 @@ namespace UncommonSense.CBreeze.Core
                 Set(languageID, value);
             }
         }
+
+        public override string ToString() => string.Join(";", this.OrderBy(e => e.LanguageID).Select(e => e.ToString()));
     }
 }
