@@ -18,6 +18,8 @@ namespace UncommonSense.CBreeze.Core
             // own action lists. Properties.ActionList.Page = Container.Page;
         }
 
+        public override string ToString() => $"{Type} {ID} ({Properties.GroupType})";
+
         public override Properties AllProperties
         {
             get

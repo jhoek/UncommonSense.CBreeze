@@ -14,6 +14,8 @@ namespace UncommonSense.CBreeze.Core
             Properties.SourceExpr = sourceExpr;
         }
 
+        public override string ToString() => $"{Type} {ID} ({Properties.SourceExpr})";
+
         public override Properties AllProperties
         {
             get
