@@ -62,7 +62,7 @@ namespace UncommonSense.CBreeze.Automation
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObjects(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths(), p => { WriteProgress(progress.WithActivity(p)); }));
+                    WriteObjects(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths(), p => { WriteProgress(progress.WithStatusDescription(p)); }));
                     WriteProgress(progress.WithRecordType(ProgressRecordType.Completed));
                     break;
 

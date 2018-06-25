@@ -23,6 +23,12 @@ namespace UncommonSense.CBreeze.Automation
             return progressRecord;
         }
 
+        public static ProgressRecord WithStatusDescription(this ProgressRecord progressRecord, string statusDescription)
+        {
+            progressRecord.StatusDescription = statusDescription;
+            return progressRecord;
+        }
+
         public static void Add<T>(this Application application, IEnumerable<T> objs) where T : Core.Object
         {
             foreach (var obj in objs)
