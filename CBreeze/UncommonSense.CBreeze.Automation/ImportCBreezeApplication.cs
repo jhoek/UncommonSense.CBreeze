@@ -57,7 +57,7 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void EndProcessing()
         {
-            var progress = new ProgressRecord(0, "Importing application objects", "").WithRecordType(ProgressRecordType.Processing);
+            var progress = new ProgressRecord(0, "Importing application objects", "Initializing").WithRecordType(ProgressRecordType.Processing);
 
             switch (ParameterSetName)
             {
