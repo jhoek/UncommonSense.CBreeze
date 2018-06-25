@@ -57,10 +57,13 @@ namespace UncommonSense.CBreeze.Automation
 
         protected override void EndProcessing()
         {
+            var progress = new ProgressRecord(0, "Importing application objects", "").WithRecordType(ProgressRecordType.Processing);
+
             switch (ParameterSetName)
             {
                 case "FromPath":
-                    WriteObjects(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths(), p=> WriteProgress(new ProgressRecord(0, "Importing application objects", p))));
+                    WriteObjects(ApplicationBuilder.ReadFromFiles(FilesFromCachedPaths(), p => { WriteProgress(progress.WithActivity(p)); }));
+                    WriteProgress(progress.WithRecordType(ProgressRecordType.Completed));
                     break;
 
                 case "FromDatabase":
