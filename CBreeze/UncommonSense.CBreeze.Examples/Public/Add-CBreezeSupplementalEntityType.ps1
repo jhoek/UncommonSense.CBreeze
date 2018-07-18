@@ -32,50 +32,49 @@ function Add-CBreezeSupplementalEntityType
         [string]$DescriptionControlVariable
     )
 
-    Process
-    {
-        New-CBreezeTable `
-            -ID $TableID `
-            -Name $Name `
-            -AutoCaption `
-            -LookupPageID $PageID `
-            -DrillDownPageID $PageID `
-            -DateTime $DateTime `
-            -Modified:$Modified `
-            -VersionList $VersionList `
-            -OutVariable Table 
+    New-CBreezeTable `
+        -ID $TableID `
+        -Name $Name `
+        -AutoCaption `
+        -LookupPageID $PageID `
+        -DrillDownPageID $PageID `
+        -DateTime $DateTime `
+        -Modified:$Modified `
+        -VersionList $VersionList `
+        -OutVariable Table 
 
-        New-CBreezePage `
-            -ID $PageID `
-            -Name $PluralName `
-            -AutoCaption `
-            -SourceTable $TableID `
-            -PageType List `
-            -DateTime $DateTime `
-            -Modified:$Modified `
-            -VersionList $VersionList `
-            -OutVariable Page
+    New-CBreezePage `
+        -ID $PageID `
+        -Name $PluralName `
+        -AutoCaption `
+        -SourceTable $TableID `
+        -PageType List `
+        -DateTime $DateTime `
+        -Modified:$Modified `
+        -VersionList $VersionList `
+        -OutVariable Page
 
-        $Table | 
-            Add-CBreezeCodePrimaryKey `
-            -Pages $Page `
-            -FieldNo 1 `
-            -KeyVariable Key `
-            -FieldVariable CodeField `
-            -ControlVariable CodeControl
+    $Table | 
+        Add-CBreezeCodePrimaryKey `
+        -Pages $Page `
+        -FieldNo 1 `
+        -KeyVariable Key `
+        -FieldVariable CodeField `
+        -ControlVariable CodeControl
 
-        $Table | 
-            Add-CBreezeDescription `
-            -Pages $Page `
-            -FieldVariable DescriptionField `
-            -ControlVariable DescriptionControl            
+    $Table | 
+        Add-CBreezeDescription `
+        -Pages $Page `
+        -DescriptionFieldVariable DescriptionField `
+        -DescriptionControlVariable DescriptionControl
 
-        Set-OutVariable $TableVariable $Table
-        Set-OutVariable $PageVariable $Page
-        Set-OutVariable $PrimaryKeyVariable $Key
-        Set-OutVariable $CodeFieldVariable $CodeField
-        Set-OutVariable $CodeControlVariable $CodeControl
-        Set-OutVariable $DescriptionFieldVariable $DescriptionField
-        Set-OutVariable $DescriptionControlVariable $DescriptionControl
-    }
+    Set-OutVariable $TableVariable $Table
+    Set-OutVariable $PageVariable $Page
+    Set-OutVariable $PrimaryKeyVariable $Key
+    Set-OutVariable $CodeFieldVariable $CodeField
+    Set-OutVariable $CodeControlVariable $CodeControl
+    Set-OutVariable $DescriptionFieldVariable $DescriptionField
+    Set-OutVariable $DescriptionControlVariable $DescriptionControl
 }
+
+Add-CBreezeSupplementalEntityType -TableID 50000 -PageID 50000 -Name Foo

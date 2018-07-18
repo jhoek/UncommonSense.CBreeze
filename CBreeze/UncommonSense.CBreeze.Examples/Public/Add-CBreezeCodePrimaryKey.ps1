@@ -28,19 +28,18 @@ function Add-CBreezeCodePrimaryKey
             -Test ShouldNotHave `
             -ThrowError
 
-        $Table | 
+        $CodeField = $Table | 
             Add-CBreezeCodeTableField `
             -ID $FieldNo `
             -Name Code `
             -NotBlank `
             -AutoCaption `
-            -OutVariable CodeField
+            -PassThru
 
-        $Table | 
+        $PrimaryKey = $Table | 
             Add-CBreezeTableKey `
             -Fields Code `
-            -Clustered `
-            -OutVariable PrimaryKey
+            -Clustered
 
         $PageControl = [Ordered]@{}
 
