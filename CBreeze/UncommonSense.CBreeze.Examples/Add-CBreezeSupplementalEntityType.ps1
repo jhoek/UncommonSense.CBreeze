@@ -1,48 +1,63 @@
-﻿<#
-.Synopsis
-   Adds a supplemental entity type to a C/Breeze application
-#>
+﻿#.SYNOPSIS
+#Adds a supplemental entity type to a C/Breeze application
 function Add-CBreezeSupplementalEntityType
 {
     [CmdletBinding()]
+    [Alias('SupplementalEntityType')]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
-        [UncommonSense.CBreeze.Core.Application]$Application,
+        [Parameter(Mandatory)]
+        [ValidateRange(1, [int]::MaxValue)]
+        [int]$TableID,
 
         [Parameter(Mandatory)]
-        [System.Collections.Generic.IEnumerable[int]]$Range,
+        [ValidateRange(1, [int]::MaxValue)]
+        [int]$PageID,
 
         [Parameter(Mandatory)]
         [string]$Name,
 
-        [string]$PluralName,
+        [ValidateNotNullOrEmpty()]
+        [string]$PluralName = [UncommonSense.CBreeze.Core.StringExtensionMethods]::MakePlural($Name),
 
         [DateTime]$DateTime,
-
         [bool]$Modified,
-
         [string]$VersionList,
 
-        [Switch]$PassThru        
+        [string]$TableVariable,
+        [string]$PageVariable,
+        [string]$CodeFieldVariable,
+        [string]$DescriptionFieldVariable
     )
 
     Process
     {
-        if (-not $PluralName)
-        {
-            $PluralName = [UncommonSense.CBreeze.Core.StringExtensionMethods]::MakePlural($Name)
-        }
+        New-CBreezeTable `
+            -ID $TableID `
+            -Name $Name `
+            -AutoCaption `
+            -LookupPageID $PageID `
+            -DrillDownPageID $PageID `
+            -DateTime $DateTime `
+            -Modified:$Modified `
+            -VersionList $VersionList `
+            -OutVariable Table
 
-        $Result = @{}
-        $Result.Table = $Application | Add-CBreezeObject -Type Table -Range $Range -Name $Name -AutoCaption -PassThru -DateTime $DateTime -Modified $Modified -VersionList $VersionList
-        $Result.Page = $Application | Add-CBreezeObject -Type Page -Range $Range -Name $PluralName -AutoCaption -PassThru -SourceTable $Result.Table.ID -PageType List -DateTime $DateTime -Modified $Modified -VersionList $VersionList
-        $Result.Fields = @{}
-        $Result.Controls = @{}
+        New-CBreezePage `
+            -ID $PageID `
+            -Name $PluralName `
+            -AutoCaption `
+            -SourceTable $TableID `
+            -PageType List `
+            -DateTime $DateTime `
+            -Modified:$Modified `
+            -VersionList $VersionList `
+            -OutVariable Page
 
-        $Result.Table.Properties.LookupPageID = $Result.Page.ID
-        $Result.Table.Properties.DrillDownPageID = $Result.Page.ID
+        Set-OutVariable $TableVariable $Table
+        Set-OutVariable $PageVariable $Page
 
+        <#
         $CodeResult = $Result.Table | Add-CBreezeCode -Pages $Result.Page -Range $Range -PassThru
         $Result.Fields += $CodeResult.Fields
         $Result.Controls += $CodeResult.Controls
@@ -50,10 +65,6 @@ function Add-CBreezeSupplementalEntityType
         $DescriptionResult = $Result.Table | Add-CBreezeDescription -Pages $Result.Page -Range $Range -HasDescription2:$false -HasSearchDescription:$false -PassThru
         $Result.Fields += $DescriptionResult.Fields
         $Result.Controls += $DescriptionResult.Controls
-
-        if ($PassThru)
-        {
-            $Result
-        }
+        #>
     }
 }
