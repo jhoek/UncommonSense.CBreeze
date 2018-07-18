@@ -2,7 +2,6 @@
 #Adds a supplemental entity type to a C/Breeze application
 function Add-CBreezeSupplementalEntityType
 {
-    [CmdletBinding()]
     [Alias('SupplementalEntityType')]
     Param
     (

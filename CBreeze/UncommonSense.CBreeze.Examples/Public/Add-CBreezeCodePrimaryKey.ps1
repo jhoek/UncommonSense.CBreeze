@@ -4,7 +4,6 @@
 #>
 function Add-CBreezeCodePrimaryKey
 {
-    [CmdletBinding()]
     Param
     (
         [Parameter(Mandatory, ValueFromPipeline)]

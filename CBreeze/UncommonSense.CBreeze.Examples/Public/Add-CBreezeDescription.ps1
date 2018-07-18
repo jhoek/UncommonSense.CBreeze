@@ -4,7 +4,6 @@
 #>
 function Add-CBreezeDescription
 {
-    [CmdletBinding()]
     [Alias('Add-CBreezeName')]
     Param
     (
