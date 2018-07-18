@@ -26,8 +26,11 @@ function Add-CBreezeSupplementalEntityType
 
         [string]$TableVariable,
         [string]$PageVariable,
+        [string]$PrimaryKeyVariable,
         [string]$CodeFieldVariable,
-        [string]$DescriptionFieldVariable
+        [string]$CodeControlVariable,
+        [string]$DescriptionFieldVariable,
+        [string]$DescriptionControlVariable
     )
 
     Process
@@ -41,7 +44,7 @@ function Add-CBreezeSupplementalEntityType
             -DateTime $DateTime `
             -Modified:$Modified `
             -VersionList $VersionList `
-            -OutVariable Table
+            -OutVariable Table 
 
         New-CBreezePage `
             -ID $PageID `
@@ -54,17 +57,26 @@ function Add-CBreezeSupplementalEntityType
             -VersionList $VersionList `
             -OutVariable Page
 
+        $Table | 
+            Add-CBreezeCodePrimaryKey `
+            -Pages $Page `
+            -FieldNo 1 `
+            -KeyVariable Key `
+            -FieldVariable CodeField `
+            -ControlVariable CodeControl
+
+        $Table | 
+            Add-CBreezeDescription `
+            -Pages $Page `
+            -FieldVariable DescriptionField `
+            -ControlVariable DescriptionControl            
+
         Set-OutVariable $TableVariable $Table
         Set-OutVariable $PageVariable $Page
-
-        <#
-        $CodeResult = $Result.Table | Add-CBreezeCode -Pages $Result.Page -Range $Range -PassThru
-        $Result.Fields += $CodeResult.Fields
-        $Result.Controls += $CodeResult.Controls
-
-        $DescriptionResult = $Result.Table | Add-CBreezeDescription -Pages $Result.Page -Range $Range -HasDescription2:$false -HasSearchDescription:$false -PassThru
-        $Result.Fields += $DescriptionResult.Fields
-        $Result.Controls += $DescriptionResult.Controls
-        #>
+        Set-OutVariable $PrimaryKeyVariable $Key
+        Set-OutVariable $CodeFieldVariable $CodeField
+        Set-OutVariable $CodeControlVariable $CodeControl
+        Set-OutVariable $DescriptionFieldVariable $DescriptionField
+        Set-OutVariable $DescriptionControlVariable $DescriptionControl
     }
 }
