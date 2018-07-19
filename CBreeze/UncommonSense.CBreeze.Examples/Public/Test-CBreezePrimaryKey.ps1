@@ -4,7 +4,6 @@
 #>
 function Test-CBreezePrimaryKey
 {
-    [CmdletBinding()]
     Param
     (
         [Parameter(Mandatory,ValueFromPipeline)]
