@@ -56,7 +56,7 @@ function Add-CBreezeSupplementalEntityType
 
     $Table | 
         Add-CBreezeCodePrimaryKey `
-        -Pages $Page `
+        -Page $Page `
         -FieldNo 1 `
         -KeyVariable Key `
         -FieldVariable CodeField `
@@ -64,7 +64,7 @@ function Add-CBreezeSupplementalEntityType
 
     $Table | 
         Add-CBreezeDescription `
-        -Pages $Page `
+        -Page $Page `
         -DescriptionFieldVariable DescriptionField `
         -DescriptionControlVariable DescriptionControl
 
