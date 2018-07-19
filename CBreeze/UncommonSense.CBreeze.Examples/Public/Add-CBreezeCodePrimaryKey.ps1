@@ -2,15 +2,14 @@
 .Synopsis
    Adds a Code primary key field to a C/Breeze application
 #>
-function Add-CBreezeCodePrimaryKey
-{
+function Add-CBreezeCodePrimaryKey {
     Param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table] $Table,
 
         [Parameter()]
-        [UncommonSense.CBreeze.Core.Page[]] $Pages,
+        [UncommonSense.CBreeze.Core.Page[]] $Page,
 
         [Parameter(Mandatory)]
         [ValidateRange(1, [int]::MaxValue)]
@@ -21,8 +20,7 @@ function Add-CBreezeCodePrimaryKey
         [string]$ControlVariable
     )
 
-    Process
-    {
+    Process {
         $Table | 
             Test-CBreezePrimaryKey `
             -Test ShouldNotHave `
@@ -41,17 +39,20 @@ function Add-CBreezeCodePrimaryKey
             -Fields Code `
             -Clustered
 
-        $PageControl = [Ordered]@{}
-
-        $Page | 
-            Where-Object { $_.Properties.PageType -eq 'List' } | 
-            ForEach-Object {
-            $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater 
-            $PageControl.Add($Page, ($Repeater | Add-CBreezePageControl -SourceExpr CodeField.QuotedName))
-        }
-
         Set-OutVariable $KeyVariable $PrimaryKey
         Set-OutVariable $FieldVariable $CodeField
-        Set-OutVariable $ControlVariable $PageControl
+
+        if ($Page) {
+            $PageControl = [Ordered]@{}
+
+            $Page | 
+                Where-Object { $_.Properties.PageType -eq 'List' } | 
+                ForEach-Object {
+                $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater 
+                $PageControl.Add($Page, ($Repeater | Add-CBreezePageControl -SourceExpr CodeField.QuotedName))
+            }
+
+            Set-OutVariable $ControlVariable $PageControl
+        }
     }
 }
