@@ -1,7 +1,5 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
@@ -14,56 +12,17 @@ namespace UncommonSense.CBreeze.Core
             IndentationLevel = indentationLevel;
         }
 
-        public abstract Properties AllProperties
-        {
-            get;
-        }
-
-        public abstract IEnumerable<INode> ChildNodes
-        {
-            get;
-        }
-
-        public IEnumerable<PageControlBase> Children =>
-            Descendants.Where(c => c.IndentationLevel == (IndentationLevel ?? 0) + 1);
-
-        public virtual PageControls Container
-        {
-            get;
-            internal set;
-        }
-
-        public IEnumerable<PageControlBase> Descendants => 
-            Container.Skip(Index + 1).TakeWhile(c => c.IndentationLevel > (IndentationLevel ?? 0));
-
-        public int? IndentationLevel
-        {
-            get;
-            protected set;
-        }
-
-        public int Index
-        {
-            get
-            {
-                return Container.IndexOf(this);
-            }
-        }
-
+        public abstract Properties AllProperties { get; }
+        public abstract IEnumerable<INode> ChildNodes { get; }
+        public IEnumerable<PageControlBase> Children => Descendants.Where(c => c.IndentationLevel == (IndentationLevel ?? 0) + 1);
+        public virtual PageControls Container { get; internal set; }
+        public IEnumerable<PageControlBase> Descendants => Container.Skip(Index + 1).TakeWhile(c => c.IndentationLevel > (IndentationLevel ?? 0));
+        public int? IndentationLevel { get; protected set; }
+        public int Index => Container.IndexOf(this);
+        public IPage Page => Container?.Page;
         public INode ParentNode => Container;
-
-        public PageControlBase ParentPageControl
-        {
-            get
-            {
-                return Container.Where(c => c.IndentationLevel == (IndentationLevel ?? 0) - 1).Where(c => c.Index < Index).Last();
-            }
-        }
-
-        public abstract PageControlType Type
-        {
-            get;
-        }
+        public PageControlBase ParentPageControl => Container.Where(c => c.IndentationLevel == (IndentationLevel ?? 0) - 1).Where(c => c.Index < Index).Last();
+        public abstract PageControlType Type { get; }
 
         public T AddChildPageControl<T>(T child, Position position) where T : PageControlBase
         {
