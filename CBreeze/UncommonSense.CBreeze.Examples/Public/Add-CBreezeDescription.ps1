@@ -1,9 +1,10 @@
-﻿<#
+﻿using namespace 'UncommonSense.CBreeze.Core'
+
+<#
 .Synopsis
    Add description (or name) table field(s) to a C/Breeze table
 #>
-function Add-CBreezeDescription
-{
+function Add-CBreezeDescription {
     [Alias('Add-CBreezeName')]
     Param
     (
@@ -11,7 +12,7 @@ function Add-CBreezeDescription
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [Parameter()]
-        [UncommonSense.CBreeze.Core.Page[]]$Pages,
+        [UncommonSense.CBreeze.Core.Page[]]$Page,
 
         [ValidateNotNullOrEmpty()]
         [string]$GroupCaption = 'General',
@@ -41,56 +42,53 @@ function Add-CBreezeDescription
         [string]$SearchDescriptionControlVariable
     )
 
-    Process
-    {
-        if (-not $HasSearchDescription)
-        {
-            $CreateKey = $false
-        }
+    Process {
+        $CreateSecondaryKey = $CreateSecondaryKey -and $HasSearchDescription
 
-        if ($CreateKey)
-        {
+        if ($CreateSecondaryKey) {
             $Table | Test-CBreezePrimaryKey -Test ShouldHave -ThrowError
         }
 
-        $DescriptionField = $Table | 
+        $DescriptionFieldName = "{0}$DescriptionStyle" -f $Prefix
+        $Description2FieldName = "{0}$DescriptionStyle 2" -f $Prefix
+        $SearchDescriptionFieldName = "{0}Search $DescriptionStyle" -f $Prefix
+
+        $DescriptionField = $Table |
             Add-CBreezeTextTableField `
-            -Name ("{0}$DescriptionStyle" -f $Prefix) `
+            -Name $DescriptionFieldName `
             -DataLength $DescriptionLength `
             -AutoCaption `
             -PassThru
 
         Set-OutVariable $DescriptionFieldVariable $DescriptionField
 
-        if ($HasDescription2) 
-        { 
-            $Description2Field = $Table | 
+        $Description2Field =
+        if ($HasDescription2) {
+            $Table |
                 Add-CBreezeTextTableField `
-                -Name ("{0}$DescriptionStyle 2" -f $Prefix) `
+                -Name $Description2FieldName `
                 -DataLength $DescriptionLength `
                 -AutoCaption `
                 -PassThru
+        }
 
-            Set-OutVariable $Description2FieldVariable $Description2Field
-        }     
+        Set-OutVariable $Description2FieldVariable $Description2Field
 
-        if ($HasSearchDescription) 
-        { 
-            $SearchDescriptionField = $Table | 
+        $SearchDescriptionField = if ($HasSearchDescription) {
+            $Table |
                 Add-CBreezeCodeTableField `
-                -Name ("{0}Search $DescriptionStyle" -f $Prefix) `
+                -Name $SearchDescriptionFieldName `
                 -DataLength $DescriptionLength `
                 -AutoCaption `
                 -PassThru `
                 -OnValidate {
-                'IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '''') THEN' -f $Result.Fields.SearchDescription.QuotedName, $Result.Fields.Description.QuotedName
-                '  {0} := {1};' -f $Result.Fields.SearchDescription.QuotedName, $Result.Fields.Description.QuotedName
+                'IF ({0} = UPPERCASE(xRec.{1})) OR ({0} = '''') THEN' -f [StringExtensionMethods]::Quoted($SearchDescriptionFieldName), [StringExtensionMethods]::Quoted($DescriptionFieldName)
+                '  {0} := {1};' -f [StringExtensionMethods]::Quoted($SearchDescriptionFieldName), [StringExtensionMethods]::Quoted($DescriptionFieldName)
+
+                Set-OutVariable $SearchDescriptionFieldVariable $SearchDescriptionField
             }
 
-            Set-OutVariable $SearchDescriptionFieldVariable $SearchDescriptionField
-                 
-            if ($CreateSecondaryKey)
-            {
+            if ($CreateSecondaryKey) {
                 $Key = $Table | 
                     Add-CBreezeTableKey `
                     -Fields $SearchDescriptionField.Name `
@@ -103,27 +101,27 @@ function Add-CBreezeDescription
         $DescriptionControl = [Ordered]@{}
         $SearchDescriptionControl = [Ordered]@{}
 
-        foreach ($Page in $Pages)
-        {
-            $Group = switch ($Page.Properties.PageType)
-            {
-                ([UncommonSense.CBreeze.Core.PageType]::Card) { $Page | Get-CBreezePageControlGroup -GroupCaption $GroupCaption -Position $GroupPosition }
-                ([UncommonSense.CBreeze.Core.PageType]::List) { $Page | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer }
+        foreach ($Item in $Page) {
+            $Group = switch ($Item.Properties.PageType) {
+                ([UncommonSense.CBreeze.Core.PageType]::Card) { $Item | Get-CBreezePageControlGroup -GroupCaption $GroupCaption -Position $GroupPosition }
+                ([UncommonSense.CBreeze.Core.PageType]::List) { $Item | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer }
             }
 
-            $DescriptionControl.Add($Page, ($Group | Add-CBreezePageControl -SourceExpr ($DescriptionField.QuotedName)))
+            $DescriptionControl.Add($Item, ($Group | Add-CBreezePageControl -SourceExpr ($DescriptionField.QuotedName)))
 
-            if ($HasSearchDescription)
-            {
-                $SearchDescriptionControl.Add($Page, ($Group | Add-CBreezePageControl -SourceExpr ($SearchDescriptionField.QuotedName)))
+            if ($HasSearchDescription) {
+                $SearchDescriptionControl.Add($Item, ($Group | Add-CBreezePageControl -SourceExpr ($SearchDescriptionField.QuotedName)))
             }
         }
 
         Set-OutVariable $DescriptionControlVariable $DescriptionControl
 
-        if ($HasSearchDescription)
-        {
+        if ($HasSearchDescription) {
             Set-OutVariable $SearchDescriptionControlVariable $SearchDescriptionControl
         }
     }
 }
+
+$Table = Table Foo
+$Table | Add-CBreezeCodePrimaryKey -FieldNo 1
+$Table | Add-CBreezeDescription -Prefix MyPrefix -DescriptionStyle Name -DescriptionLength 33 -HasDescription2 -HasSearchDescription -CreateSecondaryKey
