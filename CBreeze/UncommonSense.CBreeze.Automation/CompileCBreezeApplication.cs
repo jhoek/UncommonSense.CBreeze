@@ -11,8 +11,8 @@ namespace UncommonSense.CBreeze.Automation
     /// <summary>
     /// <para type="description">Compiles one or more objects in a Microsoft Dynamics NAV database</para>
     /// </summary>
-    [Cmdlet("Compile", "CBreezeApplication")]
-    [Alias("Compile")]
+    [Cmdlet(VerbsLifecycle.Invoke, "CBreezeApplicationCompilation")]
+    [Alias("Compile", "Compile-CBreezeApplication")]
     public class CompileCBreezeApplication : DevClientCmdlet
     {
         /// <summary>
