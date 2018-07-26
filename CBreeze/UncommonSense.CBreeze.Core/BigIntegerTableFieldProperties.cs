@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -32,6 +33,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBigIntegerProperty maxValue = new NullableBigIntegerProperty("MaxValue");
         private NullableBigIntegerProperty minValue = new NullableBigIntegerProperty("MinValue");
         private NullableBooleanProperty notBlank = new NullableBooleanProperty("NotBlank");
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+#endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private NullableIntegerProperty signDisplacement = new NullableIntegerProperty("SignDisplacement");
@@ -68,6 +72,9 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2015
             innerList.Add(accessByPermission);
 #endif
+#if NAV2018
+            innerList.Add(obsoleteState);
+#endif
 #if NAV2016
             innerList.Add(externalName);
             innerList.Add(externalType);
@@ -93,6 +100,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => Field;
 
 #if NAV2015
+
         public AccessByPermission AccessByPermission
         {
             get
@@ -100,6 +108,17 @@ namespace UncommonSense.CBreeze.Core
                 return accessByPermission.Value;
             }
         }
+
+#endif
+
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
+        }
+
 #endif
 
         public string AltSearchField
@@ -239,6 +258,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
+
         public ExternalAccess? ExternalAccess
         {
             get
@@ -274,6 +294,7 @@ namespace UncommonSense.CBreeze.Core
                 this.externalType.Value = value;
             }
         }
+
 #endif
 
         public FieldClass? FieldClass
@@ -365,6 +386,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
+
         public bool? SqlTimestamp
         {
             get
@@ -376,6 +398,7 @@ namespace UncommonSense.CBreeze.Core
                 this.sqlTimeStamp.Value = value;
             }
         }
+
 #endif
 
         public TableRelation TableRelation

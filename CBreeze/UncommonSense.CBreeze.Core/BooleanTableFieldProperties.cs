@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -31,6 +32,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty maxValue = new NullableBooleanProperty("MaxValue");
         private NullableBooleanProperty minValue = new NullableBooleanProperty("MinValue");
         private NullableBooleanProperty notBlank = new NullableBooleanProperty("NotBlank");
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+#endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private NullableIntegerProperty signDisplacement = new NullableIntegerProperty("SignDisplacement");
@@ -59,6 +63,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(externalType);
             innerList.Add(externalAccess);
 #endif
+#if NAV2018
+            innerList.Add(obsoleteState);
+#endif
             innerList.Add(captionML);
             innerList.Add(minValue);
             innerList.Add(maxValue);
@@ -79,6 +86,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => Field;
 
 #if NAV2015
+
         public AccessByPermission AccessByPermission
         {
             get
@@ -86,6 +94,17 @@ namespace UncommonSense.CBreeze.Core
                 return accessByPermission.Value;
             }
         }
+
+#endif
+
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
+        }
+
 #endif
 
         public string AltSearchField
@@ -213,6 +232,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
+
         public ExternalAccess? ExternalAccess
         {
             get
@@ -248,6 +268,7 @@ namespace UncommonSense.CBreeze.Core
                 this.externalType.Value = value;
             }
         }
+
 #endif
 
         public FieldClass? FieldClass
