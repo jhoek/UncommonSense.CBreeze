@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -31,6 +32,9 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty maxValue = new StringProperty("MaxValue");
         private StringProperty minValue = new StringProperty("MinValue");
         private NullableBooleanProperty notBlank = new NullableBooleanProperty("NotBlank");
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+#endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private MultiLanguageProperty optionCaptionML = new MultiLanguageProperty("OptionCaptionML");
@@ -67,6 +71,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(externalAccess);
             innerList.Add(optionOrdinalValues);
 #endif
+#if NAV2018
+            innerList.Add(obsoleteState);
+#endif
             innerList.Add(captionML);
             innerList.Add(optionCaptionML);
             innerList.Add(optionString);
@@ -96,6 +103,16 @@ namespace UncommonSense.CBreeze.Core
             {
                 return accessByPermission.Value;
             }
+        }
+
+#endif
+
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
         }
 
 #endif

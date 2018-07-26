@@ -2,10 +2,11 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class RecordIDTableFieldProperties : Properties
+    public class RecordIDTableFieldProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
@@ -27,6 +28,9 @@ namespace UncommonSense.CBreeze.Core
         private FieldClassProperty fieldClass = new FieldClassProperty("FieldClass");
         private StringProperty initValue = new StringProperty("InitValue");
         private NullableBooleanProperty notBlank = new NullableBooleanProperty("NotBlank");
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+#endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private TableRelationProperty tableRelation = new TableRelationProperty("TableRelation");
@@ -56,6 +60,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(externalType);
             innerList.Add(externalAccess);
 #endif
+#if NAV2018
+            innerList.Add(obsoleteState);
+#endif
             innerList.Add(captionML);
             innerList.Add(notBlank);
             innerList.Add(valuesAllowed);
@@ -71,6 +78,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => Field;
 
 #if NAV2015
+
         public AccessByPermission AccessByPermission
         {
             get
@@ -78,9 +86,20 @@ namespace UncommonSense.CBreeze.Core
                 return accessByPermission.Value;
             }
         }
+
 #endif
 
-      public string AltSearchField
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
+        }
+
+#endif
+
+        public string AltSearchField
         {
             get
             {
@@ -92,7 +111,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string AutoFormatExpr
+        public string AutoFormatExpr
         {
             get
             {
@@ -124,7 +143,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string CaptionClass
+        public string CaptionClass
         {
             get
             {
@@ -144,7 +163,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -156,7 +175,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Editable
+        public bool? Editable
         {
             get
             {
@@ -181,6 +200,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
+
         public ExternalAccess? ExternalAccess
         {
             get
@@ -216,6 +236,7 @@ namespace UncommonSense.CBreeze.Core
                 this.externalType.Value = value;
             }
         }
+
 #endif
 
         public FieldClass? FieldClass
@@ -230,7 +251,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string InitValue
+        public string InitValue
         {
             get
             {
@@ -242,7 +263,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? NotBlank
+        public bool? NotBlank
         {
             get
             {
@@ -278,7 +299,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? TestTableRelation
+        public bool? TestTableRelation
         {
             get
             {
@@ -290,7 +311,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? ValidateTableRelation
+        public bool? ValidateTableRelation
         {
             get
             {
@@ -302,7 +323,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string ValuesAllowed
+        public string ValuesAllowed
         {
             get
             {

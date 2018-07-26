@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ObsoleteState.cs" />
+    <Compile Include="QueryType.cs" />
     <Compile Include="XmlPortNodeDataType.cs" />
     <Compile Include="FunctionReturnValueType.cs" />
     <Compile Include="MenuSuiteNodeType.cs" />

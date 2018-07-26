@@ -2,16 +2,20 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TableFilterTableFieldProperties : Properties
+    public class TableFilterTableFieldProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
 #endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty description = new StringProperty("Description");
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+#endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
         private StringProperty tableIDExpr = new StringProperty("TableIDExpr");
@@ -26,6 +30,9 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2015
             innerList.Add(accessByPermission);
 #endif
+#if NAV2018
+            innerList.Add(obsoleteState);
+#endif
             innerList.Add(captionML);
             innerList.Add(description);
         }
@@ -35,6 +42,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => Field;
 
 #if NAV2015
+
         public AccessByPermission AccessByPermission
         {
             get
@@ -42,6 +50,17 @@ namespace UncommonSense.CBreeze.Core
                 return accessByPermission.Value;
             }
         }
+
+#endif
+
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
+        }
+
 #endif
 
         public MultiLanguageValue CaptionML
@@ -52,7 +71,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -80,7 +99,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string TableIDExpr
+        public string TableIDExpr
         {
             get
             {

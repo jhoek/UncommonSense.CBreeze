@@ -136,6 +136,7 @@
     <Compile Include="NotificationVariable.cs" />
     <Compile Include="ObjectTypeParameter.cs" />
     <Compile Include="ObjectTypeVariable.cs" />
+    <Compile Include="QueryTypeProperty.cs" />
     <Compile Include="RunTime.2017.cs" />
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="TagList.cs" />

@@ -2,21 +2,24 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class TableKeyProperties : Properties
+    public class TableKeyProperties : Properties
     {
-
         private NullableBooleanProperty clustered = new NullableBooleanProperty("Clustered");
         private StringProperty keyGroups = new StringProperty("KeyGroups");
         private NullableBooleanProperty maintainSIFTIndex = new NullableBooleanProperty("MaintainSIFTIndex");
         private NullableBooleanProperty maintainSQLIndex = new NullableBooleanProperty("MaintainSQLIndex");
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+#endif
         private SIFTLevelsProperty siftLevelsToMaintain = new SIFTLevelsProperty("SIFTLevelsToMaintain");
         private FieldListProperty sqlIndex = new FieldListProperty("SQLIndex");
         private FieldListProperty sumIndexFields = new FieldListProperty("SumIndexFields");
 
-        internal TableKeyProperties(TableKey tableKey )
+        internal TableKeyProperties(TableKey tableKey)
         {
             TableKey = tableKey;
 
@@ -25,6 +28,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(maintainSQLIndex);
             innerList.Add(maintainSIFTIndex);
             innerList.Add(sqlIndex);
+#if NAV2018
+            innerList.Add(obsoleteState);
+#endif
             innerList.Add(siftLevelsToMaintain);
             innerList.Add(clustered);
         }
@@ -32,6 +38,16 @@ namespace UncommonSense.CBreeze.Core
         public TableKey TableKey { get; protected set; }
 
         public override INode ParentNode => TableKey;
+
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
+        }
+
+#endif
 
         public bool? Clustered
         {
