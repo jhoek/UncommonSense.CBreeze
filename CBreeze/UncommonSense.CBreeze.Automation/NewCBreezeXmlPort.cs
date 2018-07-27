@@ -16,6 +16,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithID)]
         [Parameter(Mandatory = true, ValueFromPipeline = true, ParameterSetName = ParameterSetNames.AddWithoutID)]
         public Application Application { get; set; }
+
         [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public SwitchParameter DefaultFieldsValidation { get; set; }
         [Parameter()] public string DefaultNamespace { get; set; }
@@ -27,7 +28,7 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public XmlPortFormat? Format { get; set; }
         [Parameter()] public FormatEvaluate? FormatEvaluate { get; set; }
         [Parameter()] public SwitchParameter InlineSchema { get; set; }
-        [Parameter()] public OrderedDictionary Namespaces { get; set; } 
+        [Parameter()] public OrderedDictionary Namespaces { get; set; }
         [Parameter()] public ScriptBlock OnInitXmlPort { get; set; }
         [Parameter()] public ScriptBlock OnPreXmlPort { get; set; }
         [Parameter()] public ScriptBlock OnPostXmlPort { get; set; }
@@ -63,7 +64,9 @@ namespace UncommonSense.CBreeze.Automation
             xmlPort.Properties.Format = Format;
             xmlPort.Properties.FormatEvaluate = FormatEvaluate;
             xmlPort.Properties.InlineSchema = NullableBooleanFromSwitch(nameof(InlineSchema));
+#if NAV2016
             xmlPort.Properties.Namespaces.Set(Namespaces);
+#endif
             xmlPort.Properties.OnInitXMLport.Set(OnInitXmlPort);
             xmlPort.Properties.OnPreXMLport.Set(OnPreXmlPort);
             xmlPort.Properties.OnPostXMLport.Set(OnPostXmlPort);

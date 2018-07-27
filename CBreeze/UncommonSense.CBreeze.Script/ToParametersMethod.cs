@@ -80,10 +80,13 @@ namespace UncommonSense.CBreeze.Script
             {
                 case DataItemQueryElement d:
                     return d.ToParameters();
+
                 case ColumnQueryElement c:
                     return c.ToParameters();
+
                 case FilterQueryElement f:
                     return f.ToParameters();
+
                 default:
                     return Enumerable.Empty<ParameterBase>();
             }
@@ -395,6 +398,7 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("ReturnValueDataLength", function.ReturnValue.DataLength);
             yield return new SimpleParameter("ReturnValueDimensions", function.ReturnValue.Dimensions);
 #if NAV2016
+
             //yield return new SimpleParameter("Event", function.Event);
             //yield return new SimpleParameter("EventType", function.EventType);
             yield return new SimpleParameter("EventPublisherObjectType", function.EventPublisherObject.Type);
@@ -531,11 +535,15 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
         }
 
+#if NAV2016
+
         public static IEnumerable<ParameterBase> ToParameters(this XmlPortNamespace xmlPortNamespace)
         {
             yield return new SimpleParameter("Prefix", xmlPortNamespace.Prefix);
             yield return new SimpleParameter("Namespace", xmlPortNamespace.Namespace);
         }
+
+#endif
 
         public static IEnumerable<ParameterBase> ToParameters(this XmlPortNode xmlPortNode)
         {
@@ -549,9 +557,9 @@ namespace UncommonSense.CBreeze.Script
 
             yield return new ScriptBlockParameter(
                 "ChildNodes",
-                xmlPortNode.Children.Select(n=>n.ToInvocation()).Cast<Statement>()
-                    .Concat(SourceTableViewFilter(xmlPortNode).Select(f=>f.ToInvocation()).Cast<Statement>())
-                    .Concat(LinkFields(xmlPortNode).Select(l=> l.ToInvocation()).Cast<Statement>())
+                xmlPortNode.Children.Select(n => n.ToInvocation()).Cast<Statement>()
+                    .Concat(SourceTableViewFilter(xmlPortNode).Select(f => f.ToInvocation()).Cast<Statement>())
+                    .Concat(LinkFields(xmlPortNode).Select(l => l.ToInvocation()).Cast<Statement>())
             );
         }
 
@@ -561,8 +569,10 @@ namespace UncommonSense.CBreeze.Script
             {
                 case XmlPortTableElement e:
                     return e.Properties.SourceTableView.TableFilter;
+
                 case XmlPortTableAttribute a:
                     return a.Properties.SourceTableView.TableFilter;
+
                 default:
                     return Enumerable.Empty<TableFilterLine>();
             }
@@ -574,8 +584,10 @@ namespace UncommonSense.CBreeze.Script
             {
                 case XmlPortTableElement e:
                     return e.Properties.LinkFields;
+
                 case XmlPortTableAttribute a:
                     return a.Properties.LinkFields;
+
                 default:
                     return Enumerable.Empty<LinkField>();
             }
@@ -589,8 +601,8 @@ namespace UncommonSense.CBreeze.Script
 
         public static IEnumerable<ParameterBase> ToParameters(this Property property, string prefix = null)
         {
-            // Note: SubObject parameters should not be rendered here, since they may contain
-            // values from more than one property. 
+            // Note: SubObject parameters should not be rendered here, since they may contain values
+            // from more than one property.
 
             switch (property)
             {
@@ -631,7 +643,6 @@ namespace UncommonSense.CBreeze.Script
                     yield return new SimpleParameter(c.Name, c.Value.ToInvocation());
                     break;
 
-
                 case PermissionsProperty p:
                     yield return new ArrayParameter($"{prefix}{p.Name}", p.Value.ToInvocations());
                     break;
@@ -656,6 +667,7 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case QueryOrderByLinesProperty q:
+
                     // Rendered elsewhere as part of SubObjects
                     break;
 
@@ -665,6 +677,7 @@ namespace UncommonSense.CBreeze.Script
                     break;
 
                 case RunObjectLinkProperty r:
+
                     // Rendered elsewhere as part of SubObjects
                     break;
 
@@ -676,24 +689,28 @@ namespace UncommonSense.CBreeze.Script
                 case TableViewProperty t when t.Name == "DataItemTableView":
                     yield return new SimpleParameter("DataItemTableViewKey", t.Value.Key);
                     yield return new SimpleParameter("DataItemTableViewOrder", t.Value.Order);
+
                     // TableFilter rendered elsewhere as part of SubObjects
                     break;
 
                 case TableViewProperty t when t.Name == "SourceTableView":
                     yield return new SimpleParameter($"SourceTableViewKey", t.Value.Key);
                     yield return new SimpleParameter($"SourceTableViewOrder", t.Value.Order);
+
                     // TableFilter rendered elsewhere as part of SubObjects
                     break;
 
                 case TableViewProperty t when t.Name == "SubPageView":
                     yield return new SimpleParameter($"SubPageViewKey", t.Value.Key);
                     yield return new SimpleParameter($"SubPageViewOrder", t.Value.Order);
+
                     // TableFilter rendered elsewhere as part of SubObjects
                     break;
 
                 case TableViewProperty t when t.Name == "RunPageView":
                     yield return new SimpleParameter($"RunPageViewKey", t.Value.Key);
                     yield return new SimpleParameter($"RunPageViewOrder", t.Value.Order);
+
                     // TableFilter rendered elsewhere as part of SubObjects
                     break;
 
