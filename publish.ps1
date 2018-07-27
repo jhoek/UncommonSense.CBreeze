@@ -8,10 +8,10 @@ Properties {
     [string]$OutputManifestFileName = Join-Path $OutputFolderName 'UncommonSense.CBreeze.Automation.psd1'
 }
 
-Task default -depends Publish
+Task default -depends UpdateManifest, UpdateReadMe
 
 Task Publish -depends UpdateManifest {
-    # FIXME: Publish to PowerShell Gallery
+    Publish-Module -Path $OutputFolderName -NuGetApiKey $env:NuGetApiKey
 }
 
 Task UpdateManifest -depends BuildSolution {    
