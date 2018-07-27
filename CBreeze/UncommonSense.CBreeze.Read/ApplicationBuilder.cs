@@ -274,6 +274,9 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<PageControlContainerTypeProperty>(p => p.Value = propertyValue.ToEnum<PageControlContainerType>()),
                 TypeSwitch.Case<ControlListProperty>(p => p.Value.AddRange(propertyValue.Split(",".ToCharArray()))),
                 TypeSwitch.Case<QueryDataItemLinkProperty>(p => p.SetDataItemLinkProperty(propertyValue)),
+#if NAV2018
+                TypeSwitch.Case<DataClassificationProperty>(p => p.Value = propertyValue.ToEnum<DataClassification>()),
+#endif
                 TypeSwitch.Case<DataItemLinkTypeProperty>(p => p.Value = propertyValue.ToEnum<DataItemLinkType>()),
                 TypeSwitch.Case<DataItemQueryElementTableFilterProperty>(p => p.SetDataItemQueryElementTableFilter(propertyValue)),
                 TypeSwitch.Case<DateMethodProperty>(p => p.Value = propertyValue.ToEnum<DateMethod>()),
@@ -303,6 +306,9 @@ namespace UncommonSense.CBreeze.Read
 #endif
  TypeSwitch.Case<ObjectProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<RunObjectProperty>(p => p.SetObjectReferenceProperty(propertyValue)),
+#if NAV2018
+                TypeSwitch.Case<ObsoleteStateProperty>(p => p.Value = propertyValue.ToEnum<ObsoleteState>()),
+#endif
                 TypeSwitch.Case<OccurrenceProperty>(p => p.Value = propertyValue.ToEnum<Occurrence>()),
                 TypeSwitch.Case<OptionStringProperty>(p => p.Value = propertyValue),
                 TypeSwitch.Case<PageReferenceProperty>(p => p.Value = propertyValue.ToPageReference()),
@@ -1102,7 +1108,7 @@ namespace UncommonSense.CBreeze.Read
                     var defaultLayoutParameter = parameters.Add(new DefaultLayoutParameter(parameterName, parameterVar, parameterID));
                     defaultLayoutParameter.Dimensions = parameterDimensions;
                     break;
-#endif 
+#endif
 
                 case ParameterType.Dialog:
                     var dialogParameter = parameters.Add(new DialogParameter(parameterName, parameterVar, parameterID));
@@ -1464,8 +1470,7 @@ namespace UncommonSense.CBreeze.Read
             switch (elementType)
             {
                 case ReportElementType.DataItem:
-                    var newDataItemElement = new DataItemReportElement(null, elementID, elementIndentation)
-                    {
+                    var newDataItemElement = new DataItemReportElement(null, elementID, elementIndentation) {
                         Name = elementName
                     };
                     currentReportElements.Add(newDataItemElement);

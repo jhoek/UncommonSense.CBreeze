@@ -542,11 +542,13 @@ namespace UncommonSense.CBreeze.Automation
 			mediaSetTableField.Properties.AutoFormatType = AutoFormatType;
 			mediaSetTableField.Properties.CalcFormula.Set(CalcFormula);
 			mediaSetTableField.Properties.CaptionClass = CaptionClass;
+			mediaSetTableField.Properties.DataClassification = DataClassification;
 			mediaSetTableField.Properties.Description = Description;
 			mediaSetTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			mediaSetTableField.Properties.ExtendedDataType = ExtendedDataType;
 			mediaSetTableField.Properties.FieldClass = FieldClass;
 			mediaSetTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			mediaSetTableField.Properties.ObsoleteReason = ObsoleteReason;
 			mediaSetTableField.Properties.ObsoleteState = ObsoleteState;
 			mediaSetTableField.Properties.ValidateTableRelation = NullableBooleanFromSwitch(nameof(ValidateTableRelation));
 			mediaSetTableField.Properties.AccessByPermission.Set(AccessByPermission);
@@ -593,6 +595,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -606,6 +611,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -648,11 +656,13 @@ namespace UncommonSense.CBreeze.Automation
 			mediaTableField.Properties.AutoFormatType = AutoFormatType;
 			mediaTableField.Properties.CalcFormula.Set(CalcFormula);
 			mediaTableField.Properties.CaptionClass = CaptionClass;
+			mediaTableField.Properties.DataClassification = DataClassification;
 			mediaTableField.Properties.Description = Description;
 			mediaTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			mediaTableField.Properties.ExtendedDataType = ExtendedDataType;
 			mediaTableField.Properties.FieldClass = FieldClass;
 			mediaTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			mediaTableField.Properties.ObsoleteReason = ObsoleteReason;
 			mediaTableField.Properties.ObsoleteState = ObsoleteState;
 			mediaTableField.Properties.ValidateTableRelation = NullableBooleanFromSwitch(nameof(ValidateTableRelation));
 			mediaTableField.Properties.AccessByPermission.Set(AccessByPermission);
@@ -699,6 +709,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -712,6 +725,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -1064,6 +1080,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTableField.Properties.CalcFormula.Set(CalcFormula);
 			dateTableField.Properties.CaptionClass = CaptionClass;
 			dateTableField.Properties.ClosingDates = NullableBooleanFromSwitch(nameof(ClosingDates));
+			dateTableField.Properties.DataClassification = DataClassification;
 			dateTableField.Properties.Description = Description;
 			dateTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			dateTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -1075,6 +1092,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTableField.Properties.MaxValue = MaxValue;
 			dateTableField.Properties.MinValue = MinValue;
 			dateTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			dateTableField.Properties.ObsoleteReason = ObsoleteReason;
 			dateTableField.Properties.ObsoleteState = ObsoleteState;
 			dateTableField.Properties.SignDisplacement = SignDisplacement;
 			dateTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
@@ -1133,6 +1151,9 @@ namespace UncommonSense.CBreeze.Automation
 	public SwitchParameter ClosingDates { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -1164,6 +1185,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -1217,6 +1241,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTimeTableField.Properties.BlankNumbers = BlankNumbers;
 			dateTimeTableField.Properties.CalcFormula.Set(CalcFormula);
 			dateTimeTableField.Properties.CaptionClass = CaptionClass;
+			dateTimeTableField.Properties.DataClassification = DataClassification;
 			dateTimeTableField.Properties.Description = Description;
 			dateTimeTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			dateTimeTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -1228,6 +1253,7 @@ namespace UncommonSense.CBreeze.Automation
 			dateTimeTableField.Properties.MaxValue = MaxValue;
 			dateTimeTableField.Properties.MinValue = MinValue;
 			dateTimeTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			dateTimeTableField.Properties.ObsoleteReason = ObsoleteReason;
 			dateTimeTableField.Properties.ObsoleteState = ObsoleteState;
 			dateTimeTableField.Properties.SignDisplacement = SignDisplacement;
 			dateTimeTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
@@ -1284,6 +1310,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -1315,6 +1344,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -1372,6 +1404,7 @@ namespace UncommonSense.CBreeze.Automation
 			decimalTableField.Properties.BlankZero = NullableBooleanFromSwitch(nameof(BlankZero));
 			decimalTableField.Properties.CalcFormula.Set(CalcFormula);
 			decimalTableField.Properties.CaptionClass = CaptionClass;
+			decimalTableField.Properties.DataClassification = DataClassification;
 			decimalTableField.Properties.DecimalPlaces.AtLeast = DecimalPlacesAtLeast;
 			decimalTableField.Properties.DecimalPlaces.AtMost = DecimalPlacesAtMost;
 			decimalTableField.Properties.Description = Description;
@@ -1385,6 +1418,7 @@ namespace UncommonSense.CBreeze.Automation
 			decimalTableField.Properties.MaxValue = MaxValue;
 			decimalTableField.Properties.MinValue = MinValue;
 			decimalTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			decimalTableField.Properties.ObsoleteReason = ObsoleteReason;
 			decimalTableField.Properties.ObsoleteState = ObsoleteState;
 			decimalTableField.Properties.SignDisplacement = SignDisplacement;
 			decimalTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
@@ -1444,6 +1478,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public Nullable<Int32> DecimalPlacesAtLeast { get;set; }
 
 	[Parameter()]
@@ -1481,6 +1518,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -1538,6 +1578,7 @@ namespace UncommonSense.CBreeze.Automation
 			durationTableField.Properties.BlankZero = NullableBooleanFromSwitch(nameof(BlankZero));
 			durationTableField.Properties.CalcFormula.Set(CalcFormula);
 			durationTableField.Properties.CaptionClass = CaptionClass;
+			durationTableField.Properties.DataClassification = DataClassification;
 			durationTableField.Properties.Description = Description;
 			durationTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			durationTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -1549,6 +1590,7 @@ namespace UncommonSense.CBreeze.Automation
 			durationTableField.Properties.MaxValue = MaxValue;
 			durationTableField.Properties.MinValue = MinValue;
 			durationTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			durationTableField.Properties.ObsoleteReason = ObsoleteReason;
 			durationTableField.Properties.ObsoleteState = ObsoleteState;
 			durationTableField.Properties.SignDisplacement = SignDisplacement;
 			durationTableField.Properties.StandardDayTimeUnit = StandardDayTimeUnit;
@@ -1608,6 +1650,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -1639,6 +1684,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -1694,6 +1742,7 @@ namespace UncommonSense.CBreeze.Automation
 			guidTableField.Properties.AutoFormatType = AutoFormatType;
 			guidTableField.Properties.CalcFormula.Set(CalcFormula);
 			guidTableField.Properties.CaptionClass = CaptionClass;
+			guidTableField.Properties.DataClassification = DataClassification;
 			guidTableField.Properties.Description = Description;
 			guidTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			guidTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -1703,6 +1752,7 @@ namespace UncommonSense.CBreeze.Automation
 			guidTableField.Properties.FieldClass = FieldClass;
 			guidTableField.Properties.InitValue = InitValue;
 			guidTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			guidTableField.Properties.ObsoleteReason = ObsoleteReason;
 			guidTableField.Properties.ObsoleteState = ObsoleteState;
 			guidTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
 			guidTableField.Properties.ValidateTableRelation = NullableBooleanFromSwitch(nameof(ValidateTableRelation));
@@ -1754,6 +1804,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -1779,6 +1832,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -1831,6 +1887,7 @@ namespace UncommonSense.CBreeze.Automation
 			integerTableField.Properties.BlankZero = NullableBooleanFromSwitch(nameof(BlankZero));
 			integerTableField.Properties.CalcFormula.Set(CalcFormula);
 			integerTableField.Properties.CaptionClass = CaptionClass;
+			integerTableField.Properties.DataClassification = DataClassification;
 			integerTableField.Properties.Description = Description;
 			integerTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			integerTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -1842,6 +1899,7 @@ namespace UncommonSense.CBreeze.Automation
 			integerTableField.Properties.MaxValue = MaxValue;
 			integerTableField.Properties.MinValue = MinValue;
 			integerTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			integerTableField.Properties.ObsoleteReason = ObsoleteReason;
 			integerTableField.Properties.ObsoleteState = ObsoleteState;
 			integerTableField.Properties.SignDisplacement = SignDisplacement;
 			integerTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
@@ -1905,6 +1963,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -1936,6 +1997,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -1996,6 +2060,7 @@ namespace UncommonSense.CBreeze.Automation
 			optionTableField.Properties.BlankZero = NullableBooleanFromSwitch(nameof(BlankZero));
 			optionTableField.Properties.CalcFormula.Set(CalcFormula);
 			optionTableField.Properties.CaptionClass = CaptionClass;
+			optionTableField.Properties.DataClassification = DataClassification;
 			optionTableField.Properties.Description = Description;
 			optionTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			optionTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -2007,6 +2072,7 @@ namespace UncommonSense.CBreeze.Automation
 			optionTableField.Properties.MaxValue = MaxValue;
 			optionTableField.Properties.MinValue = MinValue;
 			optionTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			optionTableField.Properties.ObsoleteReason = ObsoleteReason;
 			optionTableField.Properties.ObsoleteState = ObsoleteState;
 			optionTableField.Properties.OptionOrdinalValues = OptionOrdinalValues;
 			optionTableField.Properties.OptionString = OptionString;
@@ -2071,6 +2137,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -2102,6 +2171,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -2166,6 +2238,7 @@ namespace UncommonSense.CBreeze.Automation
 			recordIDTableField.Properties.AutoFormatType = AutoFormatType;
 			recordIDTableField.Properties.CalcFormula.Set(CalcFormula);
 			recordIDTableField.Properties.CaptionClass = CaptionClass;
+			recordIDTableField.Properties.DataClassification = DataClassification;
 			recordIDTableField.Properties.Description = Description;
 			recordIDTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			recordIDTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -2175,6 +2248,7 @@ namespace UncommonSense.CBreeze.Automation
 			recordIDTableField.Properties.FieldClass = FieldClass;
 			recordIDTableField.Properties.InitValue = InitValue;
 			recordIDTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			recordIDTableField.Properties.ObsoleteReason = ObsoleteReason;
 			recordIDTableField.Properties.ObsoleteState = ObsoleteState;
 			recordIDTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
 			recordIDTableField.Properties.ValidateTableRelation = NullableBooleanFromSwitch(nameof(ValidateTableRelation));
@@ -2226,6 +2300,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -2251,6 +2328,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -2295,7 +2375,9 @@ namespace UncommonSense.CBreeze.Automation
 			tableFilterTableField.Properties.CaptionML.Set(CaptionML);
             tableFilterTableField.Properties.Description = Description;
 
+			tableFilterTableField.Properties.DataClassification = DataClassification;
 			tableFilterTableField.Properties.Description = Description;
+			tableFilterTableField.Properties.ObsoleteReason = ObsoleteReason;
 			tableFilterTableField.Properties.ObsoleteState = ObsoleteState;
 			tableFilterTableField.Properties.TableIDExpr = TableIDExpr;
 			tableFilterTableField.Properties.AccessByPermission.Set(AccessByPermission);
@@ -2325,7 +2407,13 @@ namespace UncommonSense.CBreeze.Automation
         public SwitchParameter Enabled { get; set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -2368,6 +2456,7 @@ namespace UncommonSense.CBreeze.Automation
 			textTableField.Properties.CalcFormula.Set(CalcFormula);
 			textTableField.Properties.CaptionClass = CaptionClass;
 			textTableField.Properties.CharAllowed = CharAllowed;
+			textTableField.Properties.DataClassification = DataClassification;
 			textTableField.Properties.DateFormula = NullableBooleanFromSwitch(nameof(DateFormula));
 			textTableField.Properties.Description = Description;
 			textTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
@@ -2379,6 +2468,7 @@ namespace UncommonSense.CBreeze.Automation
 			textTableField.Properties.InitValue = InitValue;
 			textTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
 			textTableField.Properties.Numeric = NullableBooleanFromSwitch(nameof(Numeric));
+			textTableField.Properties.ObsoleteReason = ObsoleteReason;
 			textTableField.Properties.ObsoleteState = ObsoleteState;
 			textTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
 			textTableField.Properties.Title = NullableBooleanFromSwitch(nameof(Title));
@@ -2435,6 +2525,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CharAllowed { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public SwitchParameter DateFormula { get;set; }
 
 	[Parameter()]
@@ -2466,6 +2559,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter Numeric { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
@@ -2522,6 +2618,7 @@ namespace UncommonSense.CBreeze.Automation
 			timeTableField.Properties.BlankNumbers = BlankNumbers;
 			timeTableField.Properties.CalcFormula.Set(CalcFormula);
 			timeTableField.Properties.CaptionClass = CaptionClass;
+			timeTableField.Properties.DataClassification = DataClassification;
 			timeTableField.Properties.Description = Description;
 			timeTableField.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
 			timeTableField.Properties.ExtendedDatatype = ExtendedDatatype;
@@ -2533,6 +2630,7 @@ namespace UncommonSense.CBreeze.Automation
 			timeTableField.Properties.MaxValue = MaxValue;
 			timeTableField.Properties.MinValue = MinValue;
 			timeTableField.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
+			timeTableField.Properties.ObsoleteReason = ObsoleteReason;
 			timeTableField.Properties.ObsoleteState = ObsoleteState;
 			timeTableField.Properties.SignDisplacement = SignDisplacement;
 			timeTableField.Properties.TestTableRelation = NullableBooleanFromSwitch(nameof(TestTableRelation));
@@ -2588,6 +2686,9 @@ namespace UncommonSense.CBreeze.Automation
 	public String CaptionClass { get;set; }
 
 	[Parameter()]
+	public Nullable<DataClassification> DataClassification { get;set; }
+
+	[Parameter()]
 	public String Description { get;set; }
 
 	[Parameter()]
@@ -2619,6 +2720,9 @@ namespace UncommonSense.CBreeze.Automation
 
 	[Parameter()]
 	public SwitchParameter NotBlank { get;set; }
+
+	[Parameter()]
+	public String ObsoleteReason { get;set; }
 
 	[Parameter()]
 	public Nullable<ObsoleteState> ObsoleteState { get;set; }
