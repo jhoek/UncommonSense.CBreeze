@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class PageControlProperties : Properties
+    public class PageControlProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
@@ -45,6 +45,9 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty name = new StringProperty("Name");
         private NullableBooleanProperty notBlank = new NullableBooleanProperty("NotBlank");
         private NullableBooleanProperty numeric = new NullableBooleanProperty("Numeric");
+#if NAV2018
+        private StringProperty odataEDMType = new StringProperty("ODataEDMType");
+#endif
         private TriggerProperty onAssistEdit = new TriggerProperty("OnAssistEdit");
         private TriggerProperty onControlAddIn = new TriggerProperty("OnControlAddIn");
         private TriggerProperty onDrillDown = new TriggerProperty("OnDrillDown");
@@ -108,7 +111,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(visible);
             innerList.Add(enabled);
             innerList.Add(editable);
-#if NAV2015
+#if NAV2015 && !NAV2018
             innerList.Add(image);
 #endif
             innerList.Add(lookupPageID);
@@ -125,6 +128,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onDrillDown);
             innerList.Add(onAssistEdit);
             innerList.Add(onControlAddIn);
+#if NAV2018
+            innerList.Add(odataEDMType);
+            innerList.Add(image);
+#endif
 #if NAV2015
             innerList.Add(showMandatory);
 #endif
@@ -137,6 +144,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => Control;
 
 #if NAV2015
+
         public AccessByPermission AccessByPermission
         {
             get
@@ -144,6 +152,7 @@ namespace UncommonSense.CBreeze.Core
                 return this.accessByPermission.Value;
             }
         }
+
 #endif
 
 #if NAV2017
@@ -383,6 +392,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2015
+
         public string Image
         {
             get
@@ -394,6 +404,7 @@ namespace UncommonSense.CBreeze.Core
                 this.image.Value = value;
             }
         }
+
 #endif
 
         public Importance? Importance
@@ -504,6 +515,12 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+        public string ODataEDMType
+        {
+            get => odataEDMType.Value;
+            set => odataEDMType.Value = value;
+        }
+
         public Trigger OnAssistEdit
         {
             get
@@ -589,6 +606,7 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2015
+
         public string ShowMandatory
         {
             get
@@ -600,6 +618,7 @@ namespace UncommonSense.CBreeze.Core
                 this.showMandatory.Value = value;
             }
         }
+
 #endif
 
         public string SourceExpr

@@ -15,7 +15,7 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .ReadFromFile(@"C:\Users\jhoek\Desktop\tab50000.txt")
+                .ReadFromFile(@"C:\Users\jhoek\Desktop\page.txt")
                 .WriteToFile(@"c:\users\jhoek\Desktop\output.txt");
         }
     }

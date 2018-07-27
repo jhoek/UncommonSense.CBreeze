@@ -116,6 +116,7 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<GestureProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
 #if NAV2018
+                TypeSwitch.Case<QueryTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<ObsoleteStateProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<DataClassificationProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
 #endif

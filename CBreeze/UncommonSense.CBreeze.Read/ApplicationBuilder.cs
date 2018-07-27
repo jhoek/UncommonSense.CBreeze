@@ -318,6 +318,8 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<PermissionsProperty>(p => p.SetPermissionProperty(propertyValue)),
                 TypeSwitch.Case<PromotedCategoryProperty>(p => p.Value = propertyValue.ToEnum<PromotedCategory>()),
                 TypeSwitch.Case<QueryOrderByLinesProperty>(p => p.SetQueryOrderByLinesProperty(propertyValue)),
+                TypeSwitch.Case<QueryTypeProperty>(p => p.Value = propertyValue.ToEnum<QueryType>()),
+                TypeSwitch.Case<ReadStateProperty>(p => p.Value = propertyValue.ToEnum<ReadState>()),
                 TypeSwitch.Case<ReportDataItemLinkProperty>(p => p.SetReportDataItemLinkProperty(propertyValue)),
                 TypeSwitch.Case<RunObjectLinkProperty>(p => p.SetObjectLinkProperty(propertyValue)),
                 TypeSwitch.Case<RunPageModeProperty>(p => p.Value = propertyValue.ToEnum<RunPageMode>()),
@@ -350,12 +352,12 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<NullableGuidProperty>(p => p.Value = propertyValue.ToNullableGuid()),
                 TypeSwitch.Case<NullableBigIntegerProperty>(p => p.Value = propertyValue.ToNullableBigInteger()),
                 TypeSwitch.Case<NullableIntegerProperty>(p => p.Value = propertyValue.ToNullableInteger()),
-            TypeSwitch.Default(() => UnknownPropertyType()));
+            TypeSwitch.Default(() => UnknownPropertyType(property.GetType().FullName)));
         }
 
-        private void UnknownPropertyType()
+        private void UnknownPropertyType(string propertyType)
         {
-            throw new ArgumentOutOfRangeException("Unknown property type.");
+            throw new ArgumentOutOfRangeException($"Unknown property type: {propertyType}");
         }
 
         public override void OnBeginTrigger(string triggerName)

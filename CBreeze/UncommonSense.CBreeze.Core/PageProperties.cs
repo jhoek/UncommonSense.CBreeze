@@ -29,6 +29,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty linksAllowed = new NullableBooleanProperty("LinksAllowed");
         private NullableBooleanProperty modifyAllowed = new NullableBooleanProperty("ModifyAllowed");
         private NullableBooleanProperty multipleNewLines = new NullableBooleanProperty("MultipleNewLines");
+#if NAV2018
+        private FieldListProperty odataKeyFields = new FieldListProperty("ODataKeyFields");
+#endif
         private TriggerProperty onAfterGetCurrRecord = new TriggerProperty("OnAfterGetCurrRecord");
         private TriggerProperty onAfterGetRecord = new TriggerProperty("OnAfterGetRecord");
         private TriggerProperty onClosePage = new TriggerProperty("OnClosePage");
@@ -97,6 +100,10 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onQueryClosePage);
             innerList.Add(onAfterGetCurrRecord);
             innerList.Add(actionList);
+#if NAV2018
+            innerList.Add(odataKeyFields);
+            innerList.Add(apiVersion);
+#endif
         }
 
         public Page Page { get; protected set; }
@@ -292,6 +299,8 @@ namespace UncommonSense.CBreeze.Core
                 this.multipleNewLines.Value = value;
             }
         }
+
+        public FieldList ODataKeyFields => odataKeyFields.Value;
 
         public Trigger OnAfterGetCurrRecord
         {
