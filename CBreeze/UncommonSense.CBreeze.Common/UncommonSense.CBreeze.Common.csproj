@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataClassification.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ObsoleteState.cs" />
     <Compile Include="QueryType.cs" />

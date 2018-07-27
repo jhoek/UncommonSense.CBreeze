@@ -18,6 +18,9 @@ namespace UncommonSense.CBreeze.Core
         private StringProperty captionClass = new StringProperty("CaptionClass");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty charAllowed = new StringProperty("CharAllowed");
+#if NAV2018
+        private DataClassificationProperty dataClassification = new DataClassificationProperty("DataClassification");
+#endif
         private NullableBooleanProperty dateFormula = new NullableBooleanProperty("DateFormula");
         private StringProperty description = new StringProperty("Description");
         private NullableBooleanProperty editable = new NullableBooleanProperty("Editable");
@@ -33,6 +36,7 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty numeric = new NullableBooleanProperty("Numeric");
 #if NAV2018
         private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+        private StringProperty obsoleteReason = new StringProperty("ObsoleteReason");
 #endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
@@ -68,6 +72,8 @@ namespace UncommonSense.CBreeze.Core
 #endif
 #if NAV2018
             innerList.Add(obsoleteState);
+            innerList.Add(obsoleteReason);
+            innerList.Add(dataClassification);
 #endif
             innerList.Add(captionML);
             innerList.Add(sQLDataType);
@@ -117,6 +123,18 @@ namespace UncommonSense.CBreeze.Core
         {
             get => obsoleteState.Value;
             set => obsoleteState.Value = value;
+        }
+
+        public string ObsoleteReason
+        {
+            get => obsoleteReason.Value;
+            set => obsoleteReason.Value = value;
+        }
+
+        public DataClassification? DataClassification
+        {
+            get => dataClassification.Value;
+            set => dataClassification.Value = value;
         }
 
 #endif
