@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="DataClassification.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FunctionVisibility.cs" />
     <Compile Include="ObsoleteState.cs" />
     <Compile Include="QueryType.cs" />
     <Compile Include="XmlPortNodeDataType.cs" />

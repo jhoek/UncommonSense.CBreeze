@@ -600,6 +600,12 @@ namespace UncommonSense.CBreeze.Read
                     currentFunction.TransactionModel = values[0].ToNullableEnum<TransactionModel>();
                     break;
 
+#if NAV2018
+                case "FunctionVisibility":
+                    currentFunction.FunctionVisibility = values[0].ToNullableEnum<FunctionVisibility>();
+                    break;
+#endif
+
 #if NAV2017
                 case "TestPermissions":
                     currentFunction.TestPermissions = values[0].ToNullableEnum<TestPermissions>();
