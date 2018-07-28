@@ -300,7 +300,9 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2018
         public FieldList ODataKeyFields => odataKeyFields.Value;
+#endif
 
         public Trigger OnAfterGetCurrRecord
         {

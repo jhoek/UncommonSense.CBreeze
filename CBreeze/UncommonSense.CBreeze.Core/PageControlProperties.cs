@@ -515,11 +515,15 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2018
+
         public string ODataEDMType
         {
             get => odataEDMType.Value;
             set => odataEDMType.Value = value;
         }
+
+#endif
 
         public Trigger OnAssistEdit
         {

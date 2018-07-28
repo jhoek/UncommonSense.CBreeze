@@ -51,11 +51,15 @@ namespace UncommonSense.CBreeze.Core
 
         public override INode ParentNode => Query;
 
+#if NAV2018
+
         public string APIVersion
         {
             get => apiVersion.Value;
             set => apiVersion.Value = value;
         }
+
+#endif
 
         public MultiLanguageValue CaptionML
         {
@@ -77,6 +81,8 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2018
+
         public string EntitySetName
         {
             get => entitySetName.Value;
@@ -88,6 +94,8 @@ namespace UncommonSense.CBreeze.Core
             get => entityName.Value;
             set => entityName.Value = value;
         }
+
+#endif
 
         public Trigger OnBeforeOpen
         {
@@ -113,11 +121,15 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
+#if NAV2018
+
         public QueryType? QueryType
         {
             get => queryType.Value;
             set => queryType.Value = value;
         }
+
+#endif
 
         public ReadState? ReadState
         {
