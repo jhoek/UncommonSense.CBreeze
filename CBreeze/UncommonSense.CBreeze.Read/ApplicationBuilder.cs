@@ -1298,6 +1298,23 @@ namespace UncommonSense.CBreeze.Read
                     xmlPortParameter.Dimensions = parameterDimensions;
                     break;
 
+#if NAV2018
+                case ParameterType.DataClassification:
+                    var dataClassificationParameter = parameters.Add(new DataClassificationParameter(parameterName, parameterVar, parameterID));
+                    dataClassificationParameter.Dimensions = parameterDimensions;
+                    break;
+
+                case ParameterType.SessionSettings:
+                    var sessionSettingsParameter = parameters.Add(new SessionSettingsParameter(parameterName, parameterVar, parameterID));
+                    sessionSettingsParameter.Dimensions = parameterDimensions;
+                    break;
+
+                case ParameterType.Verbosity:
+                    var verbosityParameter = parameters.Add(new VerbosityParameter(parameterName, parameterVar, parameterID));
+                    verbosityParameter.Dimensions = parameterDimensions;
+                    break;
+#endif
+
                 default:
                     throw new ArgumentOutOfRangeException("parameterType");
             }

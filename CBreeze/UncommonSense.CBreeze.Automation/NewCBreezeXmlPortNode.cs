@@ -158,10 +158,12 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortFieldElement.Properties.FieldValidate = NullableBooleanFromSwitch(nameof(FieldValidate));
 			xmlPortFieldElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortFieldElement.Properties.MinOccurs = MinOccurs;
+			xmlPortFieldElement.Properties.NamespacePrefix = NamespacePrefix;
 			xmlPortFieldElement.Properties.OnAfterAssignField.Set(OnAfterAssignField);
 			xmlPortFieldElement.Properties.OnBeforePassField.Set(OnBeforePassField);
 			xmlPortFieldElement.Properties.SourceField.FieldName = SourceFieldName;
 			xmlPortFieldElement.Properties.SourceField.TableVariableName = SourceFieldTableVariableName;
+			xmlPortFieldElement.Properties.Unbound = NullableBooleanFromSwitch(nameof(Unbound));
 			xmlPortFieldElement.Properties.Width = Width;
 
 			yield return xmlPortFieldElement;
@@ -248,6 +250,9 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<MinOccurs> MinOccurs { get; set; }
 
 		[Parameter()]
+		public String NamespacePrefix { get; set; }
+
+		[Parameter()]
 		public ScriptBlock OnAfterAssignField { get; set; }
 
 		[Parameter()]
@@ -264,6 +269,9 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName=ParameterSetNames.AddWithoutID)]
 		[Parameter(Mandatory = true, Position = 3, ParameterSetName=ParameterSetNames.AddWithID)]		
 		public string SourceFieldTableVariableName { get; set; }
+
+		[Parameter()]
+		public SwitchParameter Unbound { get; set; }
 
 		[Parameter()]
 		public Nullable<Int32> Width { get; set; }
@@ -468,6 +476,7 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTableElement.Properties.LinkTableForceInsert = NullableBooleanFromSwitch(nameof(LinkTableForceInsert));
 			xmlPortTableElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortTableElement.Properties.MinOccurs = MinOccurs;
+			xmlPortTableElement.Properties.NamespacePrefix = NamespacePrefix;
 			xmlPortTableElement.Properties.OnAfterGetRecord.Set(OnAfterGetRecord);
 			xmlPortTableElement.Properties.OnAfterInitRecord.Set(OnAfterInitRecord);
 			xmlPortTableElement.Properties.OnAfterInsertRecord.Set(OnAfterInsertRecord);
@@ -579,6 +588,9 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<MinOccurs> MinOccurs { get; set; }
 
 		[Parameter()]
+		public String NamespacePrefix { get; set; }
+
+		[Parameter()]
 		public ScriptBlock OnAfterGetRecord { get; set; }
 
 		[Parameter()]
@@ -640,6 +652,7 @@ namespace UncommonSense.CBreeze.Automation
 		{
 			var xmlPortTextAttribute = new XmlPortTextAttribute(Name, GetIndentation(), ID);
 
+			xmlPortTextAttribute.Properties.DataType = DataType;
 			xmlPortTextAttribute.Properties.Occurrence = Occurrence;
 			xmlPortTextAttribute.Properties.OnAfterAssignVariable.Set(OnAfterAssignVariable);
 			xmlPortTextAttribute.Properties.OnBeforePassVariable.Set(OnBeforePassVariable);
@@ -716,6 +729,9 @@ namespace UncommonSense.CBreeze.Automation
 		public Position? Position { get; set; }
 		
 		[Parameter()]
+		public Nullable<XmlPortNodeDataType> DataType { get; set; }
+
+		[Parameter()]
 		public Nullable<Occurrence> Occurrence { get; set; }
 
 		[Parameter()]
@@ -752,9 +768,11 @@ namespace UncommonSense.CBreeze.Automation
 			xmlPortTextElement.Properties.DataType = DataType;
 			xmlPortTextElement.Properties.MaxOccurs = MaxOccurs;
 			xmlPortTextElement.Properties.MinOccurs = MinOccurs;
+			xmlPortTextElement.Properties.NamespacePrefix = NamespacePrefix;
 			xmlPortTextElement.Properties.OnAfterAssignVariable.Set(OnAfterAssignVariable);
 			xmlPortTextElement.Properties.OnBeforePassVariable.Set(OnBeforePassVariable);
 			xmlPortTextElement.Properties.TextType = TextType;
+			xmlPortTextElement.Properties.Unbound = NullableBooleanFromSwitch(nameof(Unbound));
 			xmlPortTextElement.Properties.VariableName = VariableName;
 			xmlPortTextElement.Properties.Width = Width;
 
@@ -836,6 +854,9 @@ namespace UncommonSense.CBreeze.Automation
 		public Nullable<MinOccurs> MinOccurs { get; set; }
 
 		[Parameter()]
+		public String NamespacePrefix { get; set; }
+
+		[Parameter()]
 		public ScriptBlock OnAfterAssignVariable { get; set; }
 
 		[Parameter()]
@@ -843,6 +864,9 @@ namespace UncommonSense.CBreeze.Automation
 
 		[Parameter()]
 		public Nullable<TextType> TextType { get; set; }
+
+		[Parameter()]
+		public SwitchParameter Unbound { get; set; }
 
 		[Parameter()]
 		public String VariableName { get; set; }

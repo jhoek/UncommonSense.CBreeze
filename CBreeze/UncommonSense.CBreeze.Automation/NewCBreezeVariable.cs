@@ -211,6 +211,160 @@ namespace UncommonSense.CBreeze.Automation
 
 	}
 
+	[Cmdlet(VerbsCommon.New, "CBreezeClientTypeVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(ClientTypeVariable))]
+	[Alias("ClientTypeVariable", "Add-CBreezeClientTypeVariable")]
+	public class NewBreezeClientTypeVariable : NewItemWithIDAndNameCmdlet<ClientTypeVariable, int, PSObject>
+	{
+		protected override IEnumerable<ClientTypeVariable> CreateItems()
+		{
+			var clientTypeVariable = new ClientTypeVariable(ID, Name);
+			clientTypeVariable.Dimensions = Dimensions;
+			yield return clientTypeVariable;
+		}
+
+		protected override void AddItemToInputObject(ClientTypeVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeDefaultLayoutVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(DefaultLayoutVariable))]
+	[Alias("DefaultLayoutVariable", "Add-CBreezeDefaultLayoutVariable")]
+	public class NewBreezeDefaultLayoutVariable : NewItemWithIDAndNameCmdlet<DefaultLayoutVariable, int, PSObject>
+	{
+		protected override IEnumerable<DefaultLayoutVariable> CreateItems()
+		{
+			var defaultLayoutVariable = new DefaultLayoutVariable(ID, Name);
+			defaultLayoutVariable.Dimensions = Dimensions;
+			yield return defaultLayoutVariable;
+		}
+
+		protected override void AddItemToInputObject(DefaultLayoutVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeFilterPageBuilderVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(FilterPageBuilderVariable))]
+	[Alias("FilterPageBuilderVariable", "Add-CBreezeFilterPageBuilderVariable")]
+	public class NewBreezeFilterPageBuilderVariable : NewItemWithIDAndNameCmdlet<FilterPageBuilderVariable, int, PSObject>
+	{
+		protected override IEnumerable<FilterPageBuilderVariable> CreateItems()
+		{
+			var filterPageBuilderVariable = new FilterPageBuilderVariable(ID, Name);
+			filterPageBuilderVariable.Dimensions = Dimensions;
+			yield return filterPageBuilderVariable;
+		}
+
+		protected override void AddItemToInputObject(FilterPageBuilderVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeNotificationScopeVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(NotificationScopeVariable))]
+	[Alias("NotificationScopeVariable", "Add-CBreezeNotificationScopeVariable")]
+	public class NewBreezeNotificationScopeVariable : NewItemWithIDAndNameCmdlet<NotificationScopeVariable, int, PSObject>
+	{
+		protected override IEnumerable<NotificationScopeVariable> CreateItems()
+		{
+			var notificationScopeVariable = new NotificationScopeVariable(ID, Name);
+			notificationScopeVariable.Dimensions = Dimensions;
+			yield return notificationScopeVariable;
+		}
+
+		protected override void AddItemToInputObject(NotificationScopeVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeNotificationVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(NotificationVariable))]
+	[Alias("NotificationVariable", "Add-CBreezeNotificationVariable")]
+	public class NewBreezeNotificationVariable : NewItemWithIDAndNameCmdlet<NotificationVariable, int, PSObject>
+	{
+		protected override IEnumerable<NotificationVariable> CreateItems()
+		{
+			var notificationVariable = new NotificationVariable(ID, Name);
+			notificationVariable.Dimensions = Dimensions;
+			yield return notificationVariable;
+		}
+
+		protected override void AddItemToInputObject(NotificationVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeObjectTypeVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(ObjectTypeVariable))]
+	[Alias("ObjectTypeVariable", "Add-CBreezeObjectTypeVariable")]
+	public class NewBreezeObjectTypeVariable : NewItemWithIDAndNameCmdlet<ObjectTypeVariable, int, PSObject>
+	{
+		protected override IEnumerable<ObjectTypeVariable> CreateItems()
+		{
+			var objectTypeVariable = new ObjectTypeVariable(ID, Name);
+			objectTypeVariable.Dimensions = Dimensions;
+			yield return objectTypeVariable;
+		}
+
+		protected override void AddItemToInputObject(ObjectTypeVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeTestPermissionsVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(TestPermissionsVariable))]
+	[Alias("TestPermissionsVariable", "Add-CBreezeTestPermissionsVariable")]
+	public class NewBreezeTestPermissionsVariable : NewItemWithIDAndNameCmdlet<TestPermissionsVariable, int, PSObject>
+	{
+		protected override IEnumerable<TestPermissionsVariable> CreateItems()
+		{
+			var testPermissionsVariable = new TestPermissionsVariable(ID, Name);
+			testPermissionsVariable.Dimensions = Dimensions;
+			yield return testPermissionsVariable;
+		}
+
+		protected override void AddItemToInputObject(TestPermissionsVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
 	[Cmdlet(VerbsCommon.New, "CBreezeCodeunitVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(CodeunitVariable))]
 	[Alias("CodeunitVariable", "Add-CBreezeCodeunitVariable")]
@@ -496,6 +650,50 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		protected override void AddItemToInputObject(FileVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeReportFormatVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(ReportFormatVariable))]
+	[Alias("ReportFormatVariable", "Add-CBreezeReportFormatVariable")]
+	public class NewBreezeReportFormatVariable : NewItemWithIDAndNameCmdlet<ReportFormatVariable, int, PSObject>
+	{
+		protected override IEnumerable<ReportFormatVariable> CreateItems()
+		{
+			var reportFormatVariable = new ReportFormatVariable(ID, Name);
+			reportFormatVariable.Dimensions = Dimensions;
+			yield return reportFormatVariable;
+		}
+
+		protected override void AddItemToInputObject(ReportFormatVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeTableConnectionTypeVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(TableConnectionTypeVariable))]
+	[Alias("TableConnectionTypeVariable", "Add-CBreezeTableConnectionTypeVariable")]
+	public class NewBreezeTableConnectionTypeVariable : NewItemWithIDAndNameCmdlet<TableConnectionTypeVariable, int, PSObject>
+	{
+		protected override IEnumerable<TableConnectionTypeVariable> CreateItems()
+		{
+			var tableConnectionTypeVariable = new TableConnectionTypeVariable(ID, Name);
+			tableConnectionTypeVariable.Dimensions = Dimensions;
+			yield return tableConnectionTypeVariable;
+		}
+
+		protected override void AddItemToInputObject(TableConnectionTypeVariable item, PSObject inputObject)
 		{
 			inputObject.GetVariables().Add(item);
 		}
@@ -901,6 +1099,28 @@ namespace UncommonSense.CBreeze.Automation
 
 	}
 
+	[Cmdlet(VerbsCommon.New, "CBreezeTextEncodingVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(TextEncodingVariable))]
+	[Alias("TextEncodingVariable", "Add-CBreezeTextEncodingVariable")]
+	public class NewBreezeTextEncodingVariable : NewItemWithIDAndNameCmdlet<TextEncodingVariable, int, PSObject>
+	{
+		protected override IEnumerable<TextEncodingVariable> CreateItems()
+		{
+			var textEncodingVariable = new TextEncodingVariable(ID, Name);
+			textEncodingVariable.Dimensions = Dimensions;
+			yield return textEncodingVariable;
+		}
+
+		protected override void AddItemToInputObject(TextEncodingVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
 	[Cmdlet(VerbsCommon.New, "CBreezeTextVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TextVariable))]
 	[Alias("TextVariable", "Add-CBreezeTextVariable")]
@@ -1028,3 +1248,4 @@ namespace UncommonSense.CBreeze.Automation
 	}
 
 }
+
