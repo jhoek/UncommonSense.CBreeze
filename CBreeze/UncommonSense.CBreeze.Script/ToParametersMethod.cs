@@ -538,11 +538,15 @@ namespace UncommonSense.CBreeze.Script
             yield return new SimpleParameter("Value", tableRelationTableFilterLine.Value);
         }
 
+#if NAV2016
+
         public static IEnumerable<ParameterBase> ToParameters(this XmlPortNamespace xmlPortNamespace)
         {
             yield return new SimpleParameter("Prefix", xmlPortNamespace.Prefix);
             yield return new SimpleParameter("Namespace", xmlPortNamespace.Namespace);
         }
+
+#endif
 
         public static IEnumerable<ParameterBase> ToParameters(this XmlPortNode xmlPortNode)
         {

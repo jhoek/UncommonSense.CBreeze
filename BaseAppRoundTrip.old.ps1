@@ -1,5 +1,6 @@
 ﻿# FIXME: Instead of 1 large file, use a file per object (makes comparison faster; makes interpreting results easier)
 # FIXME: Test all NAV versions; perhaps from outside? ~InvokePester BaseAppRoundTrip.Tests.ps1 -Parameters @{Version=2017}
+# FIXME: Compare output files byte-for-byte with input files; report any changes
 # FIXME: Path to dlls (AppVeyor vs. local)
 
 Describe "Base App Roundtrip" {

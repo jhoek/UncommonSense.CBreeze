@@ -125,7 +125,9 @@ namespace UncommonSense.CBreeze.Automation
 #endif 
 		[Parameter()] public string HandlerFunctions { get; set; }
 		[Parameter()] public TestFunctionType? TestFunctionType { get; set; } 
+#if NAV2017
 		[Parameter()] public TestPermissions? TestPermissions { get;set; }
+#endif
 		[Parameter()] public TransactionModel? TransactionModel { get; set; }
 
 		protected override void AddItemToInputObject(Function item, PSObject inputObject)
@@ -175,7 +177,9 @@ namespace UncommonSense.CBreeze.Automation
 			function.HandlerFunctions = HandlerFunctions;
 			function.TestFunctionType = TestFunctionType;
 			function.TransactionModel = TransactionModel;
+#if NAV2017
 			function.TestPermissions = TestPermissions;
+#endif
 			
 			if (SubObjects != null)
 			{
