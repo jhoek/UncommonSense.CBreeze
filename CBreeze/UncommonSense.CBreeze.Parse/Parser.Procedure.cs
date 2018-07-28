@@ -38,6 +38,9 @@ namespace UncommonSense.CBreeze.Parse
 #if NAV2017
             lines.FirstLineTryMatch(Patterns.TestPermissionsAttribute, out testPermissionsMatch);
 #endif
+#if NAV2018
+            lines.FirstLineTryMatch(Patterns.FunctionVisibilityAttribute, out Match functionVisibilityMatch);
+#endif
 
             if (!lines.FirstLineTryMatch(Patterns.ProcedureSignature, out procedureSignatureMatch))
             {
@@ -73,9 +76,9 @@ namespace UncommonSense.CBreeze.Parse
             else
 #endif
                 if (functionTypeMatch.Success)
-                {
-                    Listener.OnFunctionAttribute(functionTypeMatch.Groups[1].Value);
-                }
+            {
+                Listener.OnFunctionAttribute(functionTypeMatch.Groups[1].Value);
+            }
 
 #if NAV2016
             if (tryFunctionMatch.Success)
@@ -101,7 +104,14 @@ namespace UncommonSense.CBreeze.Parse
             }
 #endif
 
-                ParseParameters(lines);
+#if NAV2018
+            if (functionVisibilityMatch.Success)
+            {
+                Listener.OnFunctionAttribute("FunctionVisibility", functionVisibilityMatch.Groups[1].Value);
+            }
+#endif
+
+            ParseParameters(lines);
             ParseReturnValue(lines);
 
             if (lines.FirstLineTryMatch(Patterns.Variables))

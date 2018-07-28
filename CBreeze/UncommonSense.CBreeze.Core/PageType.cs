@@ -18,6 +18,8 @@ namespace UncommonSense.CBreeze.Core
         ConfirmationDialog,
         NavigatePage,
         StandardDialog,
+#if NAV2018
+        API
+#endif
     }
-
 }

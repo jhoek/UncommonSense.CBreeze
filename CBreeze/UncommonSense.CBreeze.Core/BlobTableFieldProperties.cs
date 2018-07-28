@@ -2,21 +2,29 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class BlobTableFieldProperties : Properties
+    public class BlobTableFieldProperties : Properties
     {
 #if NAV2015
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
 #endif
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private NullableBooleanProperty compressed = new NullableBooleanProperty("Compressed");
+#if NAV2018
+        private DataClassificationProperty dataClassification = new DataClassificationProperty("DataClassification");
+#endif
         private StringProperty description = new StringProperty("Description");
 #if NAV2016
         private ExternalAccessProperty externalAccess = new ExternalAccessProperty("ExternalAccess");
         private StringProperty externalName = new StringProperty("ExternalName");
         private StringProperty externalType = new StringProperty("ExternalType");
+#endif
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+        private StringProperty obsoleteReason = new StringProperty("ObsoleteReason");
 #endif
         private TriggerProperty onLookup = new TriggerProperty("OnLookup");
         private TriggerProperty onValidate = new TriggerProperty("OnValidate");
@@ -38,6 +46,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(externalType);
             innerList.Add(externalAccess);
 #endif
+#if NAV2018
+            innerList.Add(obsoleteState);
+            innerList.Add(obsoleteReason);
+            innerList.Add(dataClassification);
+#endif
             innerList.Add(captionML);
             innerList.Add(description);
             innerList.Add(owner);
@@ -49,6 +62,7 @@ namespace UncommonSense.CBreeze.Core
         public override INode ParentNode => Field;
 
 #if NAV2015
+
         public AccessByPermission AccessByPermission
         {
             get
@@ -56,6 +70,29 @@ namespace UncommonSense.CBreeze.Core
                 return accessByPermission.Value;
             }
         }
+
+#endif
+
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
+        }
+
+        public string ObsoleteReason
+        {
+            get => obsoleteReason.Value;
+            set => obsoleteReason.Value = value;
+        }
+
+        public DataClassification? DataClassification
+        {
+            get => dataClassification.Value;
+            set => dataClassification.Value = value;
+        }
+
 #endif
 
         public MultiLanguageValue CaptionML
@@ -66,7 +103,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Compressed
+        public bool? Compressed
         {
             get
             {
@@ -78,7 +115,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Description
+        public string Description
         {
             get
             {
@@ -91,41 +128,43 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #if NAV2016
-      public ExternalAccess? ExternalAccess
-      {
-          get
-          {
-              return this.externalAccess.Value;
-          }
-          set
-          {
-              this.externalAccess.Value = value;
-          }
-      }
 
-      public string ExternalName
-      {
-          get
-          {
-              return this.externalName.Value;
-          }
-          set
-          {
-              this.externalName.Value = value;
-          }
-      }
+        public ExternalAccess? ExternalAccess
+        {
+            get
+            {
+                return this.externalAccess.Value;
+            }
+            set
+            {
+                this.externalAccess.Value = value;
+            }
+        }
 
-      public string ExternalType
-      {
-          get
-          {
-              return this.externalType.Value;
-          }
-          set
-          {
-              this.externalType.Value = value;
-          }
-      }
+        public string ExternalName
+        {
+            get
+            {
+                return this.externalName.Value;
+            }
+            set
+            {
+                this.externalName.Value = value;
+            }
+        }
+
+        public string ExternalType
+        {
+            get
+            {
+                return this.externalType.Value;
+            }
+            set
+            {
+                this.externalType.Value = value;
+            }
+        }
+
 #endif
 
         public Trigger OnLookup
@@ -144,7 +183,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public string Owner
+        public string Owner
         {
             get
             {
@@ -168,7 +207,7 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-      public bool? Volatile
+        public bool? Volatile
         {
             get
             {

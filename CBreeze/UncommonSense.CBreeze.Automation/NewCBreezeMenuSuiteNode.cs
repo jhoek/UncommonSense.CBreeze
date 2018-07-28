@@ -380,4 +380,3 @@ namespace UncommonSense.CBreeze.Automation
 	}
 
 }
-

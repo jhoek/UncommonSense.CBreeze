@@ -5,19 +5,11 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Core
 {
-        public class PageTypeProperty : NullableValueProperty<PageType>
+    public class PageTypeProperty : NullableValueProperty<PageType>
     {
         internal PageTypeProperty(string name)
             : base(name)
         {
-        }
-
-        public override bool HasValue
-        {
-            get
-            {
-                return Value.HasValue;
-            }
         }
     }
 }

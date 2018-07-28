@@ -419,6 +419,9 @@ namespace UncommonSense.CBreeze.Script
 #if NAV2017
             yield return new SimpleParameter("TestPermissions", function.TestPermissions);
 #endif
+#if NAV2018
+            yield return new SimpleParameter("FunctionVisibility", function.FunctionVisibility);
+#endif
             yield return new ScriptBlockParameter("SubObjects",
                 function.Parameters.ToInvocations().Cast<Statement>()
                         .Concat(function.CodeLines.ToInvocation()) // Select(l => new Invocation($"'{l.Replace("'", "''")}'")))

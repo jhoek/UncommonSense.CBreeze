@@ -25,7 +25,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NAV2013;NAV2013R2;NAV2015;NAV2016;NAV2017</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NAV2013;NAV2013R2;NAV2015;NAV2016;NAV2017;NAV2018</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -34,7 +34,7 @@
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NAV2013;NAV2013R2;NAV2015;NAV2016;NAV2017</DefineConstants>
+    <DefineConstants>TRACE;NAV2013;NAV2013R2;NAV2015;NAV2016;NAV2017;NAV2018</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -51,8 +51,10 @@
     <Compile Include="AccessByPermission.cs" />
     <Compile Include="AccessByPermissionObjectType.cs" />
     <Compile Include="AccessByPermissionProperty.cs" />
+    <Compile Include="DataClassificationProperty.cs" />
     <Compile Include="IHasDimensions.cs" />
     <Compile Include="IHasRequestPage.cs" />
+    <Compile Include="ObsoleteStateProperty.cs" />
     <Compile Include="PageActionContainerType.cs" />
     <Compile Include="PageActionContainerTypeProperty.cs" />
     <Compile Include="ActionList.cs" />
@@ -135,6 +137,7 @@
     <Compile Include="NotificationVariable.cs" />
     <Compile Include="ObjectTypeParameter.cs" />
     <Compile Include="ObjectTypeVariable.cs" />
+    <Compile Include="QueryTypeProperty.cs" />
     <Compile Include="RunTime.2017.cs" />
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="TagList.cs" />

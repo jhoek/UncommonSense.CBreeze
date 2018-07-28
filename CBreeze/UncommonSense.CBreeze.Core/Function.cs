@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -98,6 +99,15 @@ namespace UncommonSense.CBreeze.Core
         {
             get;
             set;
+        }
+
+#endif
+
+#if NAV2018
+
+        public FunctionVisibility? FunctionVisibility
+        {
+            get; set;
         }
 
 #endif

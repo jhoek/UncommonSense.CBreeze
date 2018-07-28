@@ -26,6 +26,9 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
 		[Parameter()] public string ReturnValueDimensions { get; set; }
+#if NAV2018
+		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+#endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -69,6 +72,10 @@ namespace UncommonSense.CBreeze.Automation
 			var function = new Function(ID, Name);
 
 			function.Local = Local;
+#if NAV2018
+			function.FunctionVisibility = FunctionVisibility;
+#endif
+
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -103,6 +110,9 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
 		[Parameter()] public string ReturnValueDimensions { get; set; }
+#if NAV2018
+		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+#endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -152,6 +162,10 @@ namespace UncommonSense.CBreeze.Automation
 			var function = new Function(ID, Name);
 
 			function.Local = Local;
+#if NAV2018
+			function.FunctionVisibility = FunctionVisibility;
+#endif
+
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -192,6 +206,9 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
 		[Parameter()] public string ReturnValueDimensions { get; set; }
+#if NAV2018
+		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+#endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -238,6 +255,10 @@ namespace UncommonSense.CBreeze.Automation
 			var function = new Function(ID, Name);
 
 			function.Local = Local;
+#if NAV2018
+			function.FunctionVisibility = FunctionVisibility;
+#endif
+
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -276,6 +297,9 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
 		[Parameter()] public string ReturnValueDimensions { get; set; }
+#if NAV2018
+		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+#endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -325,6 +349,10 @@ namespace UncommonSense.CBreeze.Automation
 			var function = new Function(ID, Name);
 
 			function.Local = Local;
+#if NAV2018
+			function.FunctionVisibility = FunctionVisibility;
+#endif
+
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -368,6 +396,9 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
 		[Parameter()] public string ReturnValueDimensions { get; set; }
+#if NAV2018
+		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+#endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -412,6 +443,10 @@ namespace UncommonSense.CBreeze.Automation
 			var function = new Function(ID, Name);
 
 			function.Local = Local;
+#if NAV2018
+			function.FunctionVisibility = FunctionVisibility;
+#endif
+
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif
@@ -451,6 +486,9 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public FunctionReturnValueType? ReturnValueType { get; set; }
 		[Parameter()] [ValidateRange(1, int.MaxValue)] public int? ReturnValueDataLength { get; set; }
 		[Parameter()] public string ReturnValueDimensions { get; set; }
+#if NAV2018
+		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+#endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
         [Parameter(Position = 3, ParameterSetName = ParameterSetNames.NewWithID)]
@@ -496,6 +534,10 @@ namespace UncommonSense.CBreeze.Automation
 			var function = new Function(ID, Name);
 
 			function.Local = Local;
+#if NAV2018
+			function.FunctionVisibility = FunctionVisibility;
+#endif
+
 #if NAV2016
 			function.TryFunction = NullableBooleanFromSwitch(nameof(TryFunction));
 #endif

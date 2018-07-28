@@ -15,8 +15,8 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .ReadFromFolder(@"C:\Users\jhoek\GitHub\Dynamics.NAV.ReferenceObjects.2017\NL\RTM")
-                .WriteToFolder(@"c:\users\jhoek\Desktop\NL2017RTM");
+                .ReadFromFile(@"C:\Users\jhoek\Desktop\codeunit.txt")
+                .WriteToFile(@"c:\users\jhoek\Desktop\output.txt");
         }
     }
 }

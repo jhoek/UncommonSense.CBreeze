@@ -14,19 +14,26 @@ namespace UncommonSense.CBreeze.Write
             {
                 case ExtendedDataType.Url:
                     return "URL";
+
                 case ExtendedDataType.EMail:
                     return "E-Mail";
+
                 case ExtendedDataType.Masked:
                     return "Masked";
+
                 case ExtendedDataType.None:
                     return "None";
+
                 case ExtendedDataType.PhoneNo:
                     return "Phone No.";
-                case ExtendedDataType.Ratio :
+
+                case ExtendedDataType.Ratio:
                     return "Ratio";
 #if NAV2017
                 case ExtendedDataType.Person:
                     return "Person";
+#endif
+#if (NAV2017 && !NAV2018)
                 case ExtendedDataType.Resource:
                     return "Resource";
 #endif

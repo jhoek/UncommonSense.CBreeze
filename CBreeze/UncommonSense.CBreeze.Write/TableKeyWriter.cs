@@ -12,12 +12,13 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.Write("{");
 
-            var enabled = "    ";
-            if (key.Enabled.HasValue)
-                if (key.Enabled.Value == false)
-                    enabled = " No ";
+            switch (key.Enabled)
+            {
+                case null: writer.Write("    "); break;
+                case true: writer.Write(" Yes"); break;
+                case false: writer.Write(" No "); break;
+            }
 
-            writer.Write(enabled);
             writer.Write(";");
 
             key.Fields.Write(writer);
@@ -43,7 +44,7 @@ namespace UncommonSense.CBreeze.Write
             {
                 writer.Write(" ");
             }
-            
+
             writer.WriteLine("}");
         }
     }

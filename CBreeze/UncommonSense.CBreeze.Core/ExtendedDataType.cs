@@ -15,8 +15,9 @@ namespace UncommonSense.CBreeze.Core
         Masked,
 #if NAV2017
         Person,
+#endif
+#if (NAV2017 && !NAV2018)
         Resource
 #endif
     }
-
 }

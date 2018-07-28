@@ -24,6 +24,9 @@ namespace UncommonSense.CBreeze.Automation
             var page = new Page(ID, Name);
             SetObjectProperties(page);
 
+#if NAV2018
+            page.Properties.APIVersion = ApiVersion;
+#endif
             page.Properties.AutoSplitKey = NullableBooleanFromSwitch(nameof(AutoSplitKey));
             page.Properties.CaptionML.Set(CaptionML);
             page.Properties.CardPageID = CardPageID;
@@ -33,11 +36,18 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.DeleteAllowed = NullableBooleanFromSwitch(nameof(DeleteAllowed));
             page.Properties.Description = Description;
             page.Properties.Editable = NullableBooleanFromSwitch(nameof(Editable));
+#if NAV2018
+            page.Properties.EntityName = EntityName;
+            page.Properties.EntitySetName = EntitySetName;
+#endif
             page.Properties.InsertAllowed = NullableBooleanFromSwitch(nameof(InsertAllowed));
             page.Properties.InstructionalTextML.Set(InstructionalTextML);
             page.Properties.LinksAllowed = NullableBooleanFromSwitch(nameof(LinksAllowed));
             page.Properties.ModifyAllowed = NullableBooleanFromSwitch(nameof(ModifyAllowed));
             page.Properties.MultipleNewLines = NullableBooleanFromSwitch(nameof(MultipleNewLines));
+#if NAV2018
+            page.Properties.ODataKeyFields.AddRange(ODataKeyFields ?? new string[] { });
+#endif
             page.Properties.OnAfterGetCurrRecord.Set(OnAfterGetCurrRecord);
             page.Properties.OnAfterGetRecord.Set(OnAfterGetRecord);
             page.Properties.OnClosePage.Set(OnClosePage);
@@ -80,6 +90,9 @@ namespace UncommonSense.CBreeze.Automation
             yield return page;
         }
 
+#if NAV2018
+        [Parameter()] public string ApiVersion { get; set; }
+#endif
         [Parameter()] public SwitchParameter AutoSplitKey { get; set; }
         [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public string CardPageID { get; set; }
@@ -89,11 +102,16 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public SwitchParameter DeleteAllowed { get; set; }
         [Parameter()] public string Description { get; set; }
         [Parameter()] public SwitchParameter Editable { get; set; }
+#if NAV2018
+        [Parameter()] public string EntityName { get; set; }
+        [Parameter()] public string EntitySetName { get; set; }
+#endif
         [Parameter()] public SwitchParameter InsertAllowed { get; set; }
         [Parameter()] public Hashtable InstructionalTextML { get; set; }
         [Parameter()] public SwitchParameter LinksAllowed { get; set; }
         [Parameter()] public SwitchParameter ModifyAllowed { get; set; }
         [Parameter()] public SwitchParameter MultipleNewLines { get; set; }
+        [Parameter()] public string[] ODataKeyFields { get; set; }
         [Parameter()] public ScriptBlock OnAfterGetCurrRecord { get; set; }
         [Parameter()] public ScriptBlock OnAfterGetRecord { get; set; }
         [Parameter()] public ScriptBlock OnClosePage { get; set; }
@@ -116,6 +134,6 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] [ValidateRange(1, int.MaxValue)] public int? SourceTable { get; set; }
         [Parameter()] public SwitchParameter SourceTableTemporary { get; set; }
         [Parameter()] public string SourceTableViewKey { get; set; }
-        [Parameter()] public Order? SourceTableViewOrder { get; set;}
+        [Parameter()] public Order? SourceTableViewOrder { get; set; }
     }
 }

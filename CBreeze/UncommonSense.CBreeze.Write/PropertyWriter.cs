@@ -115,7 +115,12 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<TagListProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<GestureProperty>(p => WriteSimpleProperty(p.Name, p.Value.GetValueOrDefault().ToString(), isLastProperty, writer)),
 #endif
-                TypeSwitch.Default(() => throw new ArgumentOutOfRangeException($"Don't know how to write property type {property.GetType().FullName}."))
+#if NAV2018
+                TypeSwitch.Case<QueryTypeProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<ObsoleteStateProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
+                TypeSwitch.Case<DataClassificationProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
+#endif
+            TypeSwitch.Default(() => throw new ArgumentOutOfRangeException($"Don't know how to write property type {property.GetType().FullName}."))
             );
         }
 
@@ -472,8 +477,7 @@ namespace UncommonSense.CBreeze.Write
                 {
                     writer.Write("IF (");
 
-                    // Only indent if multiple conditions exist.
-                    // Note that C/SIDE doesn't properly unindent.
+                    // Only indent if multiple conditions exist. Note that C/SIDE doesn't properly unindent.
                     if (tableRelationLine.Conditions.Count() > 1)
                     {
                         writer.Indent(writer.Column); // conditions
