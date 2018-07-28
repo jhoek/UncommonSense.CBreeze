@@ -53,6 +53,7 @@
     <Compile Include="AccessByPermissionProperty.cs" />
     <Compile Include="DataClassificationParameter.cs" />
     <Compile Include="DataClassificationProperty.cs" />
+    <Compile Include="DataClassificationVariable.cs" />
     <Compile Include="IHasDimensions.cs" />
     <Compile Include="IHasRequestPage.cs" />
     <Compile Include="ObsoleteStateProperty.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="RunTime.2017.cs" />
     <Compile Include="RunTime.2016.cs" />
     <Compile Include="SessionSettingsParameter.cs" />
+    <Compile Include="SessionSettingsVariable.cs" />
     <Compile Include="TagList.cs" />
     <Compile Include="TagListProperty.cs" />
     <Compile Include="TestPermissions.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="TestPermissionsVariable.cs" />
     <Compile Include="TriggerVariables.cs" />
     <Compile Include="VerbosityParameter.cs" />
+    <Compile Include="VerbosityVariable.cs" />
     <Compile Include="XmlPortNamespace.cs" />
     <Compile Include="ObjectReference.cs" />
     <Compile Include="OptionOrdinalValuesProperty.cs" />

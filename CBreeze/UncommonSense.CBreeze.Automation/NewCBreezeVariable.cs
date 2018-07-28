@@ -15,6 +15,28 @@ using System.Collections.Generic;
 
 namespace UncommonSense.CBreeze.Automation 
 {
+	[Cmdlet(VerbsCommon.New, "CBreezeDataClassificationVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(DataClassificationVariable))]
+	[Alias("DataClassificationVariable", "Add-CBreezeDataClassificationVariable")]
+	public class NewBreezeDataClassificationVariable : NewItemWithIDAndNameCmdlet<DataClassificationVariable, int, PSObject>
+	{
+		protected override IEnumerable<DataClassificationVariable> CreateItems()
+		{
+			var dataClassificationVariable = new DataClassificationVariable(ID, Name);
+			dataClassificationVariable.Dimensions = Dimensions;
+			yield return dataClassificationVariable;
+		}
+
+		protected override void AddItemToInputObject(DataClassificationVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
 	[Cmdlet(VerbsCommon.New, "CBreezeActionVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ActionVariable))]
 	[Alias("ActionVariable", "Add-CBreezeActionVariable")]
@@ -343,6 +365,28 @@ namespace UncommonSense.CBreeze.Automation
 
 	}
 
+	[Cmdlet(VerbsCommon.New, "CBreezeSessionSettingsVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(SessionSettingsVariable))]
+	[Alias("SessionSettingsVariable", "Add-CBreezeSessionSettingsVariable")]
+	public class NewBreezeSessionSettingsVariable : NewItemWithIDAndNameCmdlet<SessionSettingsVariable, int, PSObject>
+	{
+		protected override IEnumerable<SessionSettingsVariable> CreateItems()
+		{
+			var sessionSettingsVariable = new SessionSettingsVariable(ID, Name);
+			sessionSettingsVariable.Dimensions = Dimensions;
+			yield return sessionSettingsVariable;
+		}
+
+		protected override void AddItemToInputObject(SessionSettingsVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
 	[Cmdlet(VerbsCommon.New, "CBreezeTestPermissionsVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(TestPermissionsVariable))]
 	[Alias("TestPermissionsVariable", "Add-CBreezeTestPermissionsVariable")]
@@ -356,6 +400,28 @@ namespace UncommonSense.CBreeze.Automation
 		}
 
 		protected override void AddItemToInputObject(TestPermissionsVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
+	[Cmdlet(VerbsCommon.New, "CBreezeVerbosityVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(VerbosityVariable))]
+	[Alias("VerbosityVariable", "Add-CBreezeVerbosityVariable")]
+	public class NewBreezeVerbosityVariable : NewItemWithIDAndNameCmdlet<VerbosityVariable, int, PSObject>
+	{
+		protected override IEnumerable<VerbosityVariable> CreateItems()
+		{
+			var verbosityVariable = new VerbosityVariable(ID, Name);
+			verbosityVariable.Dimensions = Dimensions;
+			yield return verbosityVariable;
+		}
+
+		protected override void AddItemToInputObject(VerbosityVariable item, PSObject inputObject)
 		{
 			inputObject.GetVariables().Add(item);
 		}

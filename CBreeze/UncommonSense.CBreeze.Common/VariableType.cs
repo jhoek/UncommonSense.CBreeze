@@ -20,6 +20,9 @@ namespace UncommonSense.CBreeze.Common
 #endif
         Codeunit,
         Code,
+#if NAV2018
+        DataClassification,
+#endif
         DateFormula,
         DateTime,
         Date,
@@ -58,6 +61,9 @@ namespace UncommonSense.CBreeze.Common
         ReportFormat,
         TableConnectionType,
 #endif
+#if NAV2018
+        SessionSettings,
+#endif
         TestPage,
 #if NAV2017
         TestPermissions,
@@ -70,7 +76,9 @@ namespace UncommonSense.CBreeze.Common
         Time,
         TransactionType,
         Variant,
+#if NAV2018
+        Verbosity,
+#endif
         XmlPort,
     }
-
 }

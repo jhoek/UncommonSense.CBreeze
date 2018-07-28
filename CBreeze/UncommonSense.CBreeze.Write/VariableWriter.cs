@@ -27,9 +27,12 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<CharVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
 #if NAV2017
                 TypeSwitch.Case<ClientTypeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
-#endif 
+#endif
                 TypeSwitch.Case<CodeunitVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<CodeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, false, p.IncludeInDataset.GetValueOrDefault(false), false, false, null, writer)),
+#if NAV2018
+                TypeSwitch.Case<DataClassificationVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<DateFormulaVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<DateTimeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<DateVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
@@ -63,6 +66,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<ReportFormatVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<TableConnectionTypeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
 #endif
+#if NAV2018
+                TypeSwitch.Case<SessionSettingsVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<TestPageVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<TextConstant>(p => WriteTextConstant(p, writer)),
 #if NAV2016
@@ -72,6 +78,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<TimeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<TransactionTypeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<VariantVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+#if NAV2018
+                TypeSwitch.Case<VerbosityVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<XmlPortVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer))
                 );
         }

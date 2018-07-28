@@ -759,6 +759,13 @@ namespace UncommonSense.CBreeze.Read
                     codeunitVariable.Dimensions = variableDimensions;
                     break;
 
+#if NAV2018
+                case VariableType.DataClassification:
+                    var dataClassificationVariable = variables.Add(new DataClassificationVariable(variableID, variableName));
+                    dataClassificationVariable.Dimensions = variableDimensions;
+                    break;
+#endif
+
                 case VariableType.Date:
                     var dateVariable = variables.Add(new DateVariable(variableID, variableName));
                     dateVariable.Dimensions = variableDimensions;
@@ -916,6 +923,13 @@ namespace UncommonSense.CBreeze.Read
                     reportFormatVariable.Dimensions = variableDimensions;
                     break;
 
+#if NAV2018
+                case VariableType.SessionSettings:
+                    var sessionSettingsVariable = variables.Add(new SessionSettingsVariable(variableID, variableName));
+                    sessionSettingsVariable.Dimensions = variableDimensions;
+                    break;
+#endif
+
                 case VariableType.TableConnectionType:
                     var tableConnectionTypeVariable = variables.Add(new TableConnectionTypeVariable(variableID, variableName));
                     tableConnectionTypeVariable.Dimensions = variableDimensions;
@@ -963,6 +977,13 @@ namespace UncommonSense.CBreeze.Read
                     var variantVariable = variables.Add(new VariantVariable(variableID, variableName));
                     variantVariable.Dimensions = variableDimensions;
                     break;
+
+#if NAV2018
+                case VariableType.Verbosity:
+                    var verbosityVariable = variables.Add(new VerbosityVariable(variableID, variableName));
+                    verbosityVariable.Dimensions = variableDimensions;
+                    break;
+#endif
 
                 case VariableType.XmlPort:
                     var xmlportVariable = variables.Add(new XmlPortVariable(variableID, variableName, variableSubType.ToInteger()));

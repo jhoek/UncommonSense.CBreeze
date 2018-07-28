@@ -72,7 +72,9 @@ FunctionsToExport = 'TableNameCompleter', 'PageNameCompleter', 'ImageNameComplet
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = 'New-CBreezeDataClassificationParameter', 'New-CBreezeSessionSettingsParameter',
-			'New-CBreezeVerbosityParameter', 'Export-CBreezeApplication', 'Get-CBreezePageActionContainer',
+			'New-CBreezeVerbosityParameter', 'New-CBreezeDataClassificationVariable',
+			'New-CBreezeSessionSettingsVariable', 'New-CBreezeVerbosityVariable',
+			'Export-CBreezeApplication', 'Get-CBreezePageActionContainer',
                'Get-CBreezePageActionGroup', 'Get-CBreezePageControlContainer',
                'Get-CBreezePageControlGroup', 'Get-CBreezeVariableName',
                'Import-CBreezeApplication', 'Invoke-CBreezeApplicationCompilation',
