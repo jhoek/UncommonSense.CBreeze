@@ -7,7 +7,8 @@ namespace UncommonSense.CBreeze.Core
 {
     public static partial class RunTime
     {
-#if NAV2017 && !NAV2018
+#if NAV2018
+
         public static class Images
         {
             public const string _1099Form = "1099Form";
@@ -1000,6 +1001,7 @@ namespace UncommonSense.CBreeze.Core
             public const string Workflow = "Workflow";
             public const string WorkflowSetup = "WorkflowSetup";
             public const string BookingsLogo = "BookingsLogo";
+            public const string Flow = "Flow";
         }
 
         public static class CueIcons
@@ -1027,6 +1029,7 @@ namespace UncommonSense.CBreeze.Core
             public const string Time = "Time";
             public const string None = "None";
         }
+
 #endif
     }
 }
