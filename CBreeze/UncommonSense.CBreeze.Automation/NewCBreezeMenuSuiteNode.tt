@@ -99,7 +99,8 @@ namespace UncommonSense.CBreeze.Automation
     {
 		relevantProperties.Add(new {
 			Name = "AccessByPermission",
-			Type = typeof(AccessByPermission), 
+			// Cannot use Type= typeof(AccessByPermission) in pre-2015 code...
+			Type = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a=>a.GetTypes()).Single(t => t.FullName == "UncommonSense.CBreeze.Core.AccessByPermission"),
 			Assignment = $"{variableName}.Properties.AccessByPermission.Set(AccessByPermission);",
 			RangeMin = "",
 			RangeMax = "",
