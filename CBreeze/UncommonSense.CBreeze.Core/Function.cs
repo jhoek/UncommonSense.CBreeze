@@ -104,7 +104,7 @@ namespace UncommonSense.CBreeze.Core
 #endif
 
 #if NAV2018
-        public bool? ServiceEnabled { get; set; }
+        public bool? ServiceEnabled { get; set; } // FIXME: Might only apply to page functions, not to e.g. codeunit functions
         public FunctionVisibility? FunctionVisibility { get; set; }
 
 #endif

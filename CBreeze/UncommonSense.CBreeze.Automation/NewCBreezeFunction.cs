@@ -28,6 +28,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public string ReturnValueDimensions { get; set; }
 #if NAV2018
 		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+		[Parameter()] public switch ServiceEnabled {get;set;}
 #endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -74,6 +75,7 @@ namespace UncommonSense.CBreeze.Automation
 			function.Local = Local;
 #if NAV2018
 			function.FunctionVisibility = FunctionVisibility;
+			function.ServiceEnabled = NullableBooleanFromSwitch(nameof(ServiceEnabled));
 #endif
 
 #if NAV2016
@@ -112,6 +114,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public string ReturnValueDimensions { get; set; }
 #if NAV2018
 		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+		[Parameter()] public switch ServiceEnabled {get;set;}
 #endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -164,6 +167,7 @@ namespace UncommonSense.CBreeze.Automation
 			function.Local = Local;
 #if NAV2018
 			function.FunctionVisibility = FunctionVisibility;
+			function.ServiceEnabled = NullableBooleanFromSwitch(nameof(ServiceEnabled));
 #endif
 
 #if NAV2016
@@ -208,6 +212,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public string ReturnValueDimensions { get; set; }
 #if NAV2018
 		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+		[Parameter()] public switch ServiceEnabled {get;set;}
 #endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -257,6 +262,7 @@ namespace UncommonSense.CBreeze.Automation
 			function.Local = Local;
 #if NAV2018
 			function.FunctionVisibility = FunctionVisibility;
+			function.ServiceEnabled = NullableBooleanFromSwitch(nameof(ServiceEnabled));
 #endif
 
 #if NAV2016
@@ -299,6 +305,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public string ReturnValueDimensions { get; set; }
 #if NAV2018
 		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+		[Parameter()] public switch ServiceEnabled {get;set;}
 #endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -351,6 +358,7 @@ namespace UncommonSense.CBreeze.Automation
 			function.Local = Local;
 #if NAV2018
 			function.FunctionVisibility = FunctionVisibility;
+			function.ServiceEnabled = NullableBooleanFromSwitch(nameof(ServiceEnabled));
 #endif
 
 #if NAV2016
@@ -398,6 +406,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public string ReturnValueDimensions { get; set; }
 #if NAV2018
 		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+		[Parameter()] public switch ServiceEnabled {get;set;}
 #endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -445,6 +454,7 @@ namespace UncommonSense.CBreeze.Automation
 			function.Local = Local;
 #if NAV2018
 			function.FunctionVisibility = FunctionVisibility;
+			function.ServiceEnabled = NullableBooleanFromSwitch(nameof(ServiceEnabled));
 #endif
 
 #if NAV2016
@@ -488,6 +498,7 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter()] public string ReturnValueDimensions { get; set; }
 #if NAV2018
 		[Parameter()] public FunctionVisibility? FunctionVisibility {get; set; }
+		[Parameter()] public switch ServiceEnabled {get;set;}
 #endif
 
 		[Parameter(Position = 2, ParameterSetName = ParameterSetNames.NewWithoutID)]
@@ -536,6 +547,7 @@ namespace UncommonSense.CBreeze.Automation
 			function.Local = Local;
 #if NAV2018
 			function.FunctionVisibility = FunctionVisibility;
+			function.ServiceEnabled = NullableBooleanFromSwitch(nameof(ServiceEnabled));
 #endif
 
 #if NAV2016
