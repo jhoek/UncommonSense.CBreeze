@@ -69,6 +69,7 @@ namespace UncommonSense.CBreeze.Parse
         public static readonly Regex TestPermissionsAttribute = new Regex(@"^\[TestPermissions\(([^)]*)\)\]$", RegexOptions.Compiled);
 #if NAV2018
         public static readonly Regex FunctionVisibilityAttribute = new Regex(@"^\[(External|Internal)\]$", RegexOptions.Compiled);
+        public static readonly Regex ServiceEnabledAttribute = new Regex(@"^\[ServiceEnabled\]$", RegexOptions.Compiled);
 #endif
         public static readonly Regex ProcedureSignature = new Regex(@"^\s*(LOCAL\s)?PROCEDURE\s([^@]+)@(\d+)", RegexOptions.Compiled);
         public static readonly Regex ProcedureParameters = new Regex(@"^\((.*)\)", RegexOptions.Compiled);

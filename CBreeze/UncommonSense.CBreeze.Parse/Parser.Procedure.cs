@@ -13,6 +13,11 @@ namespace UncommonSense.CBreeze.Parse
 #if NAV2016
             lines.FirstLineTryMatch(Patterns.EventSubscriberAttribute, out Match eventSubscriberMatch);
             lines.FirstLineTryMatch(Patterns.TryFunctionAttribute, out Match tryFunctionMatch);
+#endif
+#if NAV2018
+            lines.FirstLineTryMatch(Patterns.ServiceEnabledAttribute, out Match serviceEnabledMatch);
+#endif
+#if NAV2016
             lines.FirstLineTryMatch(Patterns.BusinessEventPublisherAttribute, out Match businessEventPublisherMatch);
             lines.FirstLineTryMatch(Patterns.IntegrationEventPublisherAttribute, out Match integrationEventPublisherMatch);
 #endif
@@ -92,6 +97,11 @@ namespace UncommonSense.CBreeze.Parse
             if (functionVisibilityMatch.Success)
             {
                 Listener.OnFunctionAttribute("FunctionVisibility", functionVisibilityMatch.Groups[1].Value);
+            }
+
+            if (serviceEnabledMatch.Success)
+            {
+                Listener.OnFunctionAttribute("ServiceEnabled");
             }
 #endif
 

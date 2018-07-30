@@ -104,11 +104,8 @@ namespace UncommonSense.CBreeze.Core
 #endif
 
 #if NAV2018
-
-        public FunctionVisibility? FunctionVisibility
-        {
-            get; set;
-        }
+        public bool? ServiceEnabled { get; set; }
+        public FunctionVisibility? FunctionVisibility { get; set; }
 
 #endif
 

@@ -13,6 +13,11 @@ namespace UncommonSense.CBreeze.Write
             writer.InnerWriter.WriteLine();
 #if NAV2016
             writer.WriteLineIf(function.TryFunction.GetValueOrDefault(false), "[TryFunction]");
+#endif
+#if NAV2018
+            writer.WriteLineIf(function.ServiceEnabled.GetValueOrDefault(false), "[ServiceEnabled]");
+#endif
+#if NAV2016
             WriteEventingAttributes(function, writer);
 #endif
 #if NAV2015

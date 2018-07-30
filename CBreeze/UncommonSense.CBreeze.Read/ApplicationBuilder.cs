@@ -604,6 +604,10 @@ namespace UncommonSense.CBreeze.Read
                 case "FunctionVisibility":
                     currentFunction.FunctionVisibility = values[0].ToNullableEnum<FunctionVisibility>();
                     break;
+
+                case "ServiceEnabled":
+                    currentFunction.ServiceEnabled = true;
+                    break;
 #endif
 
 #if NAV2017
