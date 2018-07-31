@@ -51,6 +51,10 @@ namespace UncommonSense.CBreeze.Automation
             partPageControl.Properties.Description = Description;
             partPageControl.Properties.Editable = Editable;
             partPageControl.Properties.Enabled = Enabled;
+#if NAV2018
+            partPageControl.Properties.EntityName = EntityName;
+            partPageControl.Properties.EntitySetName = EntitySetName;
+#endif
             partPageControl.Properties.Name = Name;
             partPageControl.Properties.PartType = PartType;
 
@@ -61,9 +65,8 @@ namespace UncommonSense.CBreeze.Automation
             }
             else if (PagePartID != null)
             {
-                // If PartType has been assigned a value explicitly, overwrite
-                // that value with "Page". If previously, PartType was null,
-                // leave the value as is.
+                // If PartType has been assigned a value explicitly, overwrite that value with
+                // "Page". If previously, PartType was null, leave the value as is.
                 if (partPageControl.Properties.PartType.HasValue)
                     partPageControl.Properties.PartType = PageControlPartType.Page;
                 partPageControl.Properties.PagePartID = PagePartID;
@@ -118,6 +121,10 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public string Description { get; set; }
         [Parameter()] public string Editable { get; set; }
         [Parameter()] public string Enabled { get; set; }
+#if NAV2018
+        [Parameter()] public string EntityName { get; set; }
+        [Parameter()] public string EntitySetName { get; set; }
+#endif
         [Parameter()] public string Name { get; set; }
         [Parameter()] public PageControlPartType? PartType { get; set; }
         [Parameter()] public Position? Position { get; set; }
