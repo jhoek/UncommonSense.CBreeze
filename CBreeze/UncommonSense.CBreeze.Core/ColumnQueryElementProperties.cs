@@ -21,8 +21,8 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(captionML);
             innerList.Add(description);
             innerList.Add(columnFilter);
-            innerList.Add(dataSource);
             innerList.Add(reverseSign);
+            innerList.Add(dataSource);
             innerList.Add(methodType);
             innerList.Add(dateMethod);
             innerList.Add(totalsMethod);
