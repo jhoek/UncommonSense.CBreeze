@@ -28,10 +28,10 @@ namespace UncommonSense.CBreeze.Core
             Codeunit = codeunit;
 
             innerList.Add(tableNo);
-            innerList.Add(permissions);
 #if NAV2016
             innerList.Add(eventSubscriberInstance);
 #endif
+            innerList.Add(permissions);
             innerList.Add(singleInstance);
 #if !NAV2016
             innerList.Add(cFRONTMayUsePermissions);

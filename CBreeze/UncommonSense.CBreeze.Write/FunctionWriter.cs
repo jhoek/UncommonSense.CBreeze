@@ -12,6 +12,9 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.InnerWriter.WriteLine();
 #if NAV2016
+            WriteEventingAttributes(function, writer);
+#endif
+#if NAV2016
             writer.WriteLineIf(function.TryFunction.GetValueOrDefault(false), "[TryFunction]");
 #endif
 #if NAV2018
@@ -19,9 +22,6 @@ namespace UncommonSense.CBreeze.Write
                 function.FunctionVisibility.GetValueOrDefault(Common.FunctionVisibility.Internal) == Common.FunctionVisibility.External &&
                 function.ServiceEnabled.GetValueOrDefault(false),
                 "[ServiceEnabled]");
-#endif
-#if NAV2016
-            WriteEventingAttributes(function, writer);
 #endif
 #if NAV2015
             writer.WriteLineIf(function.UpgradeFunctionType.HasValue, "[{0}]", function.UpgradeFunctionType);
