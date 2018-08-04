@@ -3,6 +3,7 @@
 function Add-CBreezeSupplementalEntityType
 {
     [Alias('SupplementalEntityType')]
+    [OutputType([Table])]
     Param
     (
         [Parameter(Mandatory)]
@@ -75,4 +76,6 @@ function Add-CBreezeSupplementalEntityType
     Set-OutVariable $CodeControlVariable $CodeControl
     Set-OutVariable $DescriptionFieldVariable $DescriptionField
     Set-OutVariable $DescriptionControlVariable $DescriptionControl
+
+    $Table
 }

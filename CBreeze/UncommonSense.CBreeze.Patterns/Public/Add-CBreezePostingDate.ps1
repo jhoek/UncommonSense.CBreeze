@@ -6,9 +6,10 @@
 #>
 function Add-CBreezePostingDate
 {
+    [OutputType([Table])]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [Table]$Table,
 
         [Parameter()]
@@ -22,14 +23,14 @@ function Add-CBreezePostingDate
     {
         $PostingDateField = $Table | 
             Add-CBreezeDateTableField `
-                -Name "Posting Date" `
-                -AutoCaption `
-                -ClosingDates $true `
-                -PassThru
+            -Name "Posting Date" `
+            -AutoCaption `
+            -ClosingDates $true `
+            -PassThru
 
         $PostingDateControl = [Ordered]@{}
 
-        foreach($Item in $Page)
+        foreach ($Item in $Page)
         {
             if ($Item.Properties.PageType -eq 'List')
             {

@@ -5,6 +5,7 @@
 #>
 function Add-CBreezeDateFilter
 {
+    [OutputType([Table])]
     Param
     (
         [Parameter(Mandatory, ValueFromPipeLine)]

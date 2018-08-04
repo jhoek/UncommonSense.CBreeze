@@ -4,7 +4,9 @@
 .Synopsis
    Add description (or name) table field(s) to a C/Breeze table
 #>
-function Add-CBreezeDescription {
+function Add-CBreezeDescription
+{
+    [OutputType([Table])]
     [Alias('Add-CBreezeName')]
     Param
     (
@@ -42,10 +44,12 @@ function Add-CBreezeDescription {
         [string]$SearchDescriptionControlVariable
     )
 
-    Process {
+    Process
+    {
         $CreateSecondaryKey = $CreateSecondaryKey -and $HasSearchDescription
 
-        if ($CreateSecondaryKey) {
+        if ($CreateSecondaryKey)
+        {
             $Table | Test-CBreezePrimaryKey -Test ShouldHave -ThrowError
         }
 
@@ -63,7 +67,8 @@ function Add-CBreezeDescription {
         Set-OutVariable $DescriptionFieldVariable $DescriptionField
 
         $Description2Field =
-        if ($HasDescription2) {
+        if ($HasDescription2)
+        {
             $Table |
                 Add-CBreezeTextTableField `
                 -Name $Description2FieldName `
@@ -74,7 +79,8 @@ function Add-CBreezeDescription {
 
         Set-OutVariable $Description2FieldVariable $Description2Field
 
-        $SearchDescriptionField = if ($HasSearchDescription) {
+        $SearchDescriptionField = if ($HasSearchDescription)
+        {
             $Table |
                 Add-CBreezeCodeTableField `
                 -Name $SearchDescriptionFieldName `
@@ -88,7 +94,8 @@ function Add-CBreezeDescription {
                 Set-OutVariable $SearchDescriptionFieldVariable $SearchDescriptionField
             }
 
-            if ($CreateSecondaryKey) {
+            if ($CreateSecondaryKey)
+            {
                 $Key = $Table | 
                     Add-CBreezeTableKey `
                     -Fields $SearchDescriptionField.Name `
@@ -101,22 +108,26 @@ function Add-CBreezeDescription {
         $DescriptionControl = [Ordered]@{}
         $SearchDescriptionControl = [Ordered]@{}
 
-        foreach ($Item in $Page) {
-            $Group = switch ($Item.Properties.PageType) {
+        foreach ($Item in $Page)
+        {
+            $Group = switch ($Item.Properties.PageType)
+            {
                 ([UncommonSense.CBreeze.Core.PageType]::Card) { $Item | Get-CBreezePageControlGroup -GroupCaption $GroupCaption -Position $GroupPosition }
                 ([UncommonSense.CBreeze.Core.PageType]::List) { $Item | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer }
             }
 
             $DescriptionControl.Add($Item, ($Group | Add-CBreezePageControl -SourceExpr ($DescriptionField.QuotedName)))
 
-            if ($HasSearchDescription) {
+            if ($HasSearchDescription)
+            {
                 $SearchDescriptionControl.Add($Item, ($Group | Add-CBreezePageControl -SourceExpr ($SearchDescriptionField.QuotedName)))
             }
         }
 
         Set-OutVariable $DescriptionControlVariable $DescriptionControl
 
-        if ($HasSearchDescription) {
+        if ($HasSearchDescription)
+        {
             Set-OutVariable $SearchDescriptionControlVariable $SearchDescriptionControl
         }
 

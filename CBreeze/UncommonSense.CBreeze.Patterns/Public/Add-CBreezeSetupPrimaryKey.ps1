@@ -4,6 +4,7 @@ Adds a setup table style Primary Key field to a C/Breeze application
 #>
 function Add-CBreezeSetupPrimaryKey
 {
+    [OutputType([Table])]
     Param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
@@ -38,5 +39,7 @@ function Add-CBreezeSetupPrimaryKey
 
         Set-OutVariable $FieldVariable $Field
         Set-OutVariable $KeyVariable $Key
+
+        $Table
     }
 }

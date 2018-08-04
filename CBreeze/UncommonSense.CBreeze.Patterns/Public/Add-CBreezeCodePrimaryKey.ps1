@@ -4,7 +4,9 @@
 .Synopsis
    Adds a Code primary key field to a C/Breeze application
 #>
-function Add-CBreezeCodePrimaryKey {
+function Add-CBreezeCodePrimaryKey
+{
+    [OutputType([Table])]
     Param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
@@ -21,7 +23,8 @@ function Add-CBreezeCodePrimaryKey {
         [string]$ControlVariable
     )
 
-    Process {
+    Process
+    {
         $Table | 
             Test-CBreezePrimaryKey `
             -Test ShouldNotHave `
@@ -43,7 +46,8 @@ function Add-CBreezeCodePrimaryKey {
         Set-OutVariable $KeyVariable $PrimaryKey
         Set-OutVariable $FieldVariable $CodeField
 
-        if ($Page) {
+        if ($Page)
+        {
             $PageControl = [Ordered]@{}
 
             $Page | 
