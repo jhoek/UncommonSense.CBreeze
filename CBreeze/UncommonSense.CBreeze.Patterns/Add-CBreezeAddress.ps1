@@ -1,4 +1,6 @@
-﻿<#
+﻿using namespace UncommonSense.CBreeze.Core
+
+<#
 .Synopsis
     Add address table fields to a C/Breeze table
 .Description
@@ -11,17 +13,17 @@ function Add-CBreezeAddress
     (
         # The table to which the fields will be added
         [Parameter(Mandatory, ValueFromPipeline)]
-        [UncommonSense.CBreeze.Core.Table]$Table,
+        [Table]$Table,
 
         # The page(s) to which the controls will be added
         [Parameter()]
-        [UncommonSense.CBreeze.Core.Page[]]$Pages,
+        [Page[]]$Pages,
 
         # The Format Address codeunit to which a function will be 
         # added. This function combines the address fields into 
         # an array of text lines in the country's address format
         [Parameter()]
-        [UncommonSense.CBreeze.Core.Codeunit]$FormatAddressCodeunit,
+        [Codeunit]$FormatAddressCodeunit,
 
         # The range from which field and control IDs are assigned
         [int[]]$Range,
