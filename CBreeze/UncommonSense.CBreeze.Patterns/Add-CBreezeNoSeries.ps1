@@ -6,10 +6,9 @@
 #>
 function Add-CBreezeNoSeries
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [Parameter(Mandatory)]

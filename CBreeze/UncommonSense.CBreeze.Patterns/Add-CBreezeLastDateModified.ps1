@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeLastDateModified
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [UncommonSense.CBreeze.Core.Page[]]$Pages,
@@ -18,7 +17,7 @@ function Add-CBreezeLastDateModified
         [ValidateNotNullOrEmpty()]
         [string]$GroupCaption = 'General',
 
-        [ValidateSet('FirstWithinContainer','LastWithinContainer')]
+        [ValidateSet('FirstWithinContainer', 'LastWithinContainer')]
         [string]$GroupPosition = 'FirstWithinContainer',
 
         [ValidateNotNullOrEmpty()]
@@ -39,9 +38,9 @@ function Add-CBreezeLastDateModified
         $Table.Properties.OnModify | Add-CBreezeCodeLine -Line '{0} := TODAY;' -ArgumentList $Result.Fields.LastDateModified.QuotedName
         $Table.Properties.OnRename | Add-CBreezeCodeLine -Line '{0} := TODAY;' -ArgumentList $Result.Fields.LastDateModified.QuotedName
 
-        foreach($Page in $Pages)
+        foreach ($Page in $Pages)
         {
-            switch($Page.Properties.PageType)
+            switch ($Page.Properties.PageType)
             {
                 ([UncommonSense.CBreeze.Core.PageType]::Card) 
                 {

@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeEntryNo
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table] $Table,
 
         [Parameter()]
@@ -31,7 +30,7 @@ function Add-CBreezeEntryNo
         $Result.Fields.EntryNo = $Table | Add-CBreezeTableField -Type Integer -Name 'Entry No.' -PrimaryKeyFieldNoRange -AutoCaption -Range $Range -PassThru
         $Result.PrimaryKey = $TableKey = $Table | Add-CBreezeTableKey -Fields $Result.Fields.EntryNo.Name -Clustered $true -PassThru
 
-        foreach($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
+        foreach ($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
         {
             $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range
             $Result.Controls.EntryNo.Add($Page, ($Repeater | Add-CBreezePageControl -Type Field -SourceExpr $Result.Fields.EntryNo.QuotedName -PassThru -Range $Range))

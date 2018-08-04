@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeRegisterEntityType
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Application]$Application,
 
         [Parameter(Mandatory)]
@@ -60,9 +59,9 @@ function Add-CBreezeRegisterEntityType
 
         $Repeater = $Result.Page | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range -Position FirstWithinContainer
 
-        foreach($LedgerEntryTable in $LedgerEntryTables)
+        foreach ($LedgerEntryTable in $LedgerEntryTables)
         {
-            $Result.Fields.FromEntryNo.Add($LedgerEntryTable,  ($Result.Table | Add-CBreezeTableField -Type Integer -Range $Range -Name "From $($LedgerEntryTable.Name) No." -AutoCaption -PassThru -TestTableRelation $false))
+            $Result.Fields.FromEntryNo.Add($LedgerEntryTable, ($Result.Table | Add-CBreezeTableField -Type Integer -Range $Range -Name "From $($LedgerEntryTable.Name) No." -AutoCaption -PassThru -TestTableRelation $false))
             $Result.Fields.FromEntryNo[$LedgerEntryTable] | Add-CBreezeTableRelation -TableName $LedgerEntryTable.Name
 
             $Result.Fields.ToEntryNo.Add($LedgerEntryTable, ($Result.Table | Add-CBreezeTableField -Type Integer -Range $Range -Name "To $($LedgerEntryTable.Name) No." -AutoCaption -PassThru -TestTableRelation $false))
@@ -102,7 +101,7 @@ function Add-CBreezeRegisterEntityType
 
         $Group = $Result.Page | Get-CBreezePageActionGroup -ContainerType RelatedInformation -Caption '&Register' -Position FirstWithinContainer -Range $Range 
 
-        foreach($LedgerEntryTable in $LedgerEntryTables)
+        foreach ($LedgerEntryTable in $LedgerEntryTables)
         {
             $Action = $Group | Add-CBreezePageAction -Type Action -Caption (ActionCaptionFromLedgerTableName($LedgerEntryTable.Name)) -Image ([UncommonSense.CBreeze.Core.RunTime+Images]::GLRegisters) -Promoted $true -PromotedCategory Process -PromotedIsBig $true -Range $Range -PassThru 
             $Action.Properties.OnAction | Add-CBreezeCodeLine '// TODO: Add action code here'

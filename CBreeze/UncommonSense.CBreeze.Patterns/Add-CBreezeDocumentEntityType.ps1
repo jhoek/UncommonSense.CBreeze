@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeDocumentEntityType
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Application]$Application,
 
         [Parameter(Mandatory)]
@@ -70,7 +69,7 @@ function Add-CBreezeDocumentEntityType
 
         if ($DocumentTypes)
         {
-            foreach($DocumentType in $DocumentTypes)
+            foreach ($DocumentType in $DocumentTypes)
             {
                 $Result.Header.DocumentPages.Add($DocumentType, ($Application | Add-CBreezeObject -Type Page -Name "$BaseName $DocumentType" -AutoCaption -PageType Document -SourceTable $Result.Header.Table.ID -Range $Range -PassThru))
                 $Result.Header.ListPages.Add($DocumentType, ($Application | Add-CBreezeObject -Type Page -Name "$BaseName $DocumentType List" -AutoCaption -PageType List -SourceTable $Result.Header.Table.ID -Range $Range -PassThru))

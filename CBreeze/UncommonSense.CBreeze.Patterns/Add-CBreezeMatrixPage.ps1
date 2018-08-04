@@ -4,11 +4,10 @@
 #>
 function Add-CBreezeMatrixPage
 {
-    [CmdletBinding()]
     Param
     (
         # Application to which the pages should be added
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Application]$Application,
         
         # Range from which IDs should be assigned
@@ -88,7 +87,7 @@ function Add-CBreezeMatrixPage
     # Define sub page controls
     $SubPageRepeater = $Result.SubPage | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range
 
-    switch($RowSourceFieldsEditable)
+    switch ($RowSourceFieldsEditable)
     {
         ($true) { $RowSourceFields | ForEach-Object { $SubPageRepeater | Add-CBreezePageControl -Type Field -ID $Range -SourceExpr $_ } }
         ($false) { $RowSourceFields | ForEach-Object { $SubPageRepeater | Add-CBreezePageControl -Type Field -ID $Range -SourceExpr $_ -Editable $false } }

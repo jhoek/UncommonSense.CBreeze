@@ -7,11 +7,10 @@
 #>
 function Add-CBreezeAddress
 {
-    [CmdletBinding()]
     Param
     (
         # The table to which the fields will be added
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         # The page(s) to which the controls will be added
@@ -33,7 +32,7 @@ function Add-CBreezeAddress
 
         # The position of the new fields within their container (FastTab for 
         # card pages, repeater for list pages)
-        [ValidateSet('FirstWithinContainer','LastWithinContainer')]
+        [ValidateSet('FirstWithinContainer', 'LastWithinContainer')]
         [string]$CardGroupPosition = 'FirstWithinContainer',
 
         # If specified, used as a prefix on the field names
@@ -65,18 +64,18 @@ function Add-CBreezeAddress
 
         $Result.Fields.PostCode | `
             Add-CBreezeTableRelation -TableName ([UncommonSense.CBreeze.Core.BaseApp+TableNames]::Post_Code) -FieldName Code -PassThru | `
-                Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Const -Value ''''''
+            Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Const -Value ''''''
         $Result.Fields.PostCode | `
             Add-CBreezeTableRelation -TableName ([UncommonSense.CBreeze.Core.BaseApp+TableNames]::Post_Code) -FieldName Code -PassThru | `
-                Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Filter -Value '<>''''' -PassThru | `
-                Add-CBreezeFilter -FieldName 'Country/Region Code' -Field -Value $Result.Fields.CountryRegionCode.Name
+            Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Filter -Value '<>''''' -PassThru | `
+            Add-CBreezeFilter -FieldName 'Country/Region Code' -Field -Value $Result.Fields.CountryRegionCode.Name
         $Result.Fields.City | `
             Add-CBreezeTableRelation -TableName ([UncommonSense.CBreeze.Core.BaseApp+TableNames]::Post_Code) -FieldName City -PassThru | `
-                Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Const -Value ''''''
+            Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Const -Value ''''''
         $Result.Fields.City | `
             Add-CBreezeTableRelation -TableName ([UncommonSense.CBreeze.Core.BaseApp+TableNames]::Post_Code) -FieldName City -PassThru | `
-                Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Filter -Value '<>''''' -PassThru | `
-                Add-CBreezeFilter -FieldName 'Country/Region Code' -Field -Value $Result.Fields.CountryRegionCode.Name                                
+            Add-CBreezeCondition -FieldName ($Result.Fields.CountryRegionCode.Name) -Filter -Value '<>''''' -PassThru | `
+            Add-CBreezeFilter -FieldName 'Country/Region Code' -Field -Value $Result.Fields.CountryRegionCode.Name                                
         $Result.Fields.CountryRegionCode | `
             Add-CBreezeTableRelation -TableName ([UncommonSense.CBreeze.Core.BaseApp+TableNames]::CountryRegion)           
 
@@ -87,13 +86,13 @@ function Add-CBreezeAddress
 
         $Result.Fields.PostCode.Properties.OnValidate | `
             Add-CBreezeCodeLine `
-                -Line '{0}.ValidatePostCode({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);' `
-                -ArgumentList $VariableName, $Result.Fields.City.QuotedName, $Result.Fields.PostCode.QuotedName, $Result.Fields.County.QuotedName, $Result.Fields.CountryRegionCode.QuotedName
+            -Line '{0}.ValidatePostCode({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);' `
+            -ArgumentList $VariableName, $Result.Fields.City.QuotedName, $Result.Fields.PostCode.QuotedName, $Result.Fields.County.QuotedName, $Result.Fields.CountryRegionCode.QuotedName
 
         $Result.Fields.City.Properties.OnValidate | `
             Add-CBreezeCodeLine `
-                -Line '{0}.ValidateCity({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);' `
-                -ArgumentList $VariableName, $Result.Fields.City.QuotedName, $Result.Fields.PostCode.QuotedName, $Result.Fields.County.QuotedName, $Result.Fields.CountryRegionCode.QuotedName
+            -Line '{0}.ValidateCity({1},{2},{3},{4}, (CurrFieldNo <> 0) AND GUIALLOWED);' `
+            -ArgumentList $VariableName, $Result.Fields.City.QuotedName, $Result.Fields.PostCode.QuotedName, $Result.Fields.County.QuotedName, $Result.Fields.CountryRegionCode.QuotedName
 
         if ($FormatAddressCodeunit)
         {
@@ -111,25 +110,25 @@ function Add-CBreezeAddress
             $Result.FormatFunction | Add-CBreezeCodeLine `
                 -Line '    {0},{1},{2},{3},{4},{5},' `
                 -ArgumentList `
-                    $ArrayVariableName, `
-                    ([UncommonSense.CBreeze.Core.StringExtensionMethods]::Quoted("$($Prefix)Name")), `
-                    ([UncommonSense.CBreeze.Core.StringExtensionMethods]::Quoted("$($Prefix)Name 2")), `
-                    ([UncommonSense.CBreeze.Core.StringExtensionMethods]::Quoted("$($Prefix)Contact")), `
-                    $Result.Fields.Address.QuotedName, `
-                    $Result.Fields.Address2.QuotedName
+                $ArrayVariableName, `
+            ([UncommonSense.CBreeze.Core.StringExtensionMethods]::Quoted("$($Prefix)Name")), `
+            ([UncommonSense.CBreeze.Core.StringExtensionMethods]::Quoted("$($Prefix)Name 2")), `
+            ([UncommonSense.CBreeze.Core.StringExtensionMethods]::Quoted("$($Prefix)Contact")), `
+                $Result.Fields.Address.QuotedName, `
+                $Result.Fields.Address2.QuotedName
 
             $Result.FormatFunction | Add-CBreezeCodeLine `
                 -Line '    {0},{1},{2},{3});' `
                 -ArgumentList `
-                    $Result.Fields.City.QuotedName, `
-                    $Result.Fields.PostCode.QuotedName, `
-                    $Result.Fields.County.QuotedName, `
-                    $Result.Fields.CountryRegionCode.QuotedName
+                $Result.Fields.City.QuotedName, `
+                $Result.Fields.PostCode.QuotedName, `
+                $Result.Fields.County.QuotedName, `
+                $Result.Fields.CountryRegionCode.QuotedName
         }
 
         if ($Pages)
         {
-            foreach($CardPage in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' })
+            foreach ($CardPage in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' })
             {
                 $Group = $CardPage | Get-CBreezePageControlGroup -GroupCaption $GroupCaption -Range $Range -Position $CardGroupPosition
                 $Result.Controls.Address.Add($CardPage, ($Group | Add-CBreezePageControl -Type Field -Range $Range -PassThru -SourceExpr $Result.Fields.Address.QuotedName))
@@ -139,7 +138,7 @@ function Add-CBreezeAddress
                 $Result.Controls.CountryRegionCode.Add($CardPage, ($Group | Add-CBreezePageControl -Type Field -Range $Range -PassThru -SourceExpr $Result.Fields.CountryRegionCode.QuotedName))
             }
 
-            foreach($ListPage in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
+            foreach ($ListPage in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
             {
                 $Repeater = $ListPage | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range -Position FirstWithinContainer
                 $Result.Controls.PostCode.Add($ListPage, ($Repeater | Add-CBreezePageControl -Type Field -Range $Range -PassThru -SourceExpr $Result.Fields.PostCode.QuotedName))

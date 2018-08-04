@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeCommunication
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [Parameter()]
@@ -96,7 +95,7 @@ function Add-CBreezeCommunication
             $Result.Fields.HomePage = $Table | Add-CBreezeTableField -Range $Range -Type Text -DataLength 80 -Name ('{0}Home Page' -f $Prefix) -AutoCaption -ExtendedDataType Url -PassThru
         }
 
-        foreach($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' })
+        foreach ($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' })
         {
             if ($HasContact -or $AlsoOnGeneralTab)
             {
@@ -136,7 +135,7 @@ function Add-CBreezeCommunication
             }
         }
 
-        foreach($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
+        foreach ($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
         {
             $Group = $Page | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range -Position FirstWithinContainer
 

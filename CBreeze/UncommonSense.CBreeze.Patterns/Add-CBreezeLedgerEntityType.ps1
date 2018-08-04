@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeLedgerEntityType
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Application]$Application,
 
         [Parameter(Mandatory)]

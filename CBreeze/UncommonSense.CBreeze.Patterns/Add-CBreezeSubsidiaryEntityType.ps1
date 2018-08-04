@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeSubsidiaryEntityType
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Application]$Application,
 
         [Parameter(Mandatory)]
@@ -21,7 +20,7 @@ function Add-CBreezeSubsidiaryEntityType
         [Parameter(Mandatory)]
         [UncommonSense.CBreeze.Core.Table[]]$SubsidiaryTo,
 
-        [ValidateSet('None','Code','LineNo')]
+        [ValidateSet('None', 'Code', 'LineNo')]
         [string]$DifferentiatorType = 'None',
 
         [DateTime]$DateTime,
@@ -41,7 +40,7 @@ function Add-CBreezeSubsidiaryEntityType
         }
 
         # Verify that all subsidiary-to tables have a valid primary key
-        foreach($Item in $SubsidiaryTo)
+        foreach ($Item in $SubsidiaryTo)
         {
             GetSubsidiaryToPrimaryKeyField($Item) | Out-Null
         }
@@ -59,7 +58,7 @@ function Add-CBreezeSubsidiaryEntityType
         $PrimaryKeyFieldNames = @()
         $Repeater = $Result.Page | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer -Range $Range
 
-        foreach($Item in $SubsidiaryTo)
+        foreach ($Item in $SubsidiaryTo)
         {
             $TheirPrimaryKeyField = GetSubsidiaryToPrimaryKeyField($Item)
 
@@ -70,7 +69,7 @@ function Add-CBreezeSubsidiaryEntityType
             $PrimaryKeyFieldNames += $Result.Fields.SubsidiaryTo[$Item].Name
         }
 
-        switch($DifferentiatorType)
+        switch ($DifferentiatorType)
         {
             'Code' 
             {
@@ -93,13 +92,13 @@ function Add-CBreezeSubsidiaryEntityType
         $Result.PrimaryKey = $Result.Table | Add-CBreezeTableKey -Clustered $true -Fields $PrimaryKeyFieldNames -PassThru
         $Result.SecondaryKeys = @{}
 
-        foreach($Item in ($Result.Fields.SubsidiaryTo.Values | Select-Object -Skip 1))
+        foreach ($Item in ($Result.Fields.SubsidiaryTo.Values | Select-Object -Skip 1))
         {
             $SecondaryKey = $Result.Table | Add-CBreezeTableKey -Fields $Item.Name -PassThru
             $Result.SecondaryKeys.Add($Item.Name, $SecondaryKey)    
         }
 
-        foreach($Item in $SubsidiaryTo)
+        foreach ($Item in $SubsidiaryTo)
         {
             $TheirPrimaryKeyField = GetSubsidiaryToPrimaryKeyField($Item)
             $Variable = $Item.Properties.OnDelete | Add-CBreezeVariable -Type Record -SubType $Result.Table.ID -Name $Result.Table.VariableName -PassThru -Range $Range 

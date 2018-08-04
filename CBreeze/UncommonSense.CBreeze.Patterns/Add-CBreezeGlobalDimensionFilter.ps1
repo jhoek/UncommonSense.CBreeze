@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeGlobalDimensionFilter
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeLine)]
+        [Parameter(Mandatory, ValueFromPipeLine)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [Parameter(Mandatory)]

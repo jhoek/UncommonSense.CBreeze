@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeSourceCode
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeLine)]
+        [Parameter(Mandatory, ValueFromPipeLine)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [Parameter()]
@@ -29,7 +28,7 @@ function Add-CBreezeSourceCode
         $Result.Fields.SourceCode = $Table | Add-CBreezeTableField -Type Code -Name 'Source Code' -DataLength 10 -PassThru -Range $Range -AutoCaption
         $Result.Fields.SourceCode | Add-CBreezeTableRelation -TableName ([UncommonSense.CBreeze.Core.Baseapp+TableNames]::Source_Code) 
 
-        foreach($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'List'} )
+        foreach ($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'List'} )
         {
             $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer -Range $Range
             $Result.Controls.SourceCode.Add($Page, ($Repeater | Add-CBreezePageControl -Type Field -SourceExpr $Result.Fields.SourceCode.QuotedName -PassThru -Range $Range -Position LastWithinContainer))

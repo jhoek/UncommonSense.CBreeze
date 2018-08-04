@@ -4,10 +4,9 @@
 #>
 function Add-CBreezeMasterEntityType
 {
-    [CmdletBinding()]
     Param
     (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Application]$Application,
 
         [Parameter(Mandatory)]
@@ -34,7 +33,7 @@ function Add-CBreezeMasterEntityType
 
         [UncommonSense.CBreeze.Core.Page]$SetupPage,
 
-        [ValidateSet('Name','Description')]
+        [ValidateSet('Name', 'Description')]
         [string]$DescriptionStyle = 'Name',
 
         [Switch]$PassThru
@@ -60,7 +59,7 @@ function Add-CBreezeMasterEntityType
         $Result.MasterEntityType.Table.Properties.DrillDownPageID = $Result.MasterEntityType.ListPage.ID
 
         # Apply No. Series micro-pattern
-        $NoSeriesResult = $Result.MasterEntityType.Table | Add-CBreezeNoSeries -SetupTable $SetupTable -SetupPage $SetupPage -Pages $Result.MasterEntityType.CardPage,$Result.MasterEntityType.ListPage -Range $Range -PassThru
+        $NoSeriesResult = $Result.MasterEntityType.Table | Add-CBreezeNoSeries -SetupTable $SetupTable -SetupPage $SetupPage -Pages $Result.MasterEntityType.CardPage, $Result.MasterEntityType.ListPage -Range $Range -PassThru
         $Result.MasterEntityType.Fields += $NoSeriesResult.Fields
         $Result.MasterEntityType.Controls += $NoSeriesResult.Controls
 
@@ -104,7 +103,7 @@ function Add-CBreezeMasterEntityType
         $FactBoxArea | Add-CBreezePageControl -Type Part -SystemPartID RecordLinks -Position LastWithinContainer -Visible $false -Range $Range 
         $FactBoxArea | Add-CBreezePageControl -Type Part -SystemPartID Notes -Position LastWithinContainer -Visible $false -Range $Range
 
-        foreach($Page in $Result.MasterEntityType.CardPage, $Result.MasterEntityType.ListPage)
+        foreach ($Page in $Result.MasterEntityType.CardPage, $Result.MasterEntityType.ListPage)
         {
             $RoutingChoices = $Page | Get-CBreezePageActionGroup -ContainerType RelatedInformation -Caption History -Position FirstWithinContainer -Range $Range
             
@@ -112,18 +111,18 @@ function Add-CBreezeMasterEntityType
             {
                 $Action = `
                     $RoutingChoices | `
-                        Add-CBreezePageAction `
-                            -Type Action `
-                            -Caption Statistics `
-                            -Image ([UncommonSense.CBreeze.Core.RunTime+Images]::Statistics) `
-                            -ShortcutKey F7 `
-                            -Promoted $true `
-                            -PromotedIsBig $false `
-                            -PromotedCategory Process `
-                            -RunObjectType Page `
-                            -RunObjectID $Result.MasterEntityType.StatisticsPage.ID `
-                            -PassThru `
-                            -Range $Range 
+                    Add-CBreezePageAction `
+                    -Type Action `
+                    -Caption Statistics `
+                    -Image ([UncommonSense.CBreeze.Core.RunTime+Images]::Statistics) `
+                    -ShortcutKey F7 `
+                    -Promoted $true `
+                    -PromotedIsBig $false `
+                    -PromotedCategory Process `
+                    -RunObjectType Page `
+                    -RunObjectID $Result.MasterEntityType.StatisticsPage.ID `
+                    -PassThru `
+                    -Range $Range 
                 Add-CBreezeLink -InputObject $Action.Properties.RunPageLink -FieldName $Result.MasterEntityType.Fields.No.Name -Field -Value $Result.MasterEntityType.Fields.No.Name
 
                 if ($HasDateFilter)

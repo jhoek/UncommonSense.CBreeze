@@ -1,11 +1,10 @@
 ﻿function Add-CBreezeNoSeriesWithDocumentTypes
 {
-    [CmdletBinding()]
     Param
     (
         # Note: parameters added here should also be added to Add-CBreezeNoSeries
 
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [Parameter(Mandatory)]
@@ -70,7 +69,7 @@
         $Result.TestNoSeriesFunction | Add-CBreezeCodeLine -Line '{0}.GET;' -ArgumentList $SetupRecordVariable.Name
         $Result.TestNoSeriesFunction | Add-CBreezeCodeLine 
         $Result.TestNoSeriesFunction | Add-CBreezeCodeLine -Line 'CASE "Document Type" OF'
-        foreach($DocumentType in $DocumentTypes)
+        foreach ($DocumentType in $DocumentTypes)
         {
             $Result.TestNoSeriesFunction | Add-CBreezeCodeLine -Line '  "Document Type"::{0}:' -ArgumentList $DocumentType
             $Result.TestNoSeriesFunction | Add-CBreezeCodeLine -Line '    {0}.TESTFIELD("{1} Nos.");' -ArgumentList $SetupRecordVariable.Name, $DocumentType
@@ -83,14 +82,14 @@
         $Result.GetNoSeriesCodeFunction | Add-CBreezeCodeLine -Line '{0}.GET;' -ArgumentList $SetupRecordVariable.Name
         $Result.GetNoSeriesCodeFunction | Add-CBreezeCodeLine 
         $Result.GetNoSeriesCodeFunction | Add-CBreezeCodeLine -Line 'CASE "Document Type" OF'
-        foreach($DocumentType in $DocumentTypes)
+        foreach ($DocumentType in $DocumentTypes)
         {
             $Result.GetNoSeriesCodeFunction | Add-CBreezeCodeLine -Line '  "Document Type"::{0}:' -ArgumentList $DocumentType
             $Result.GetNoSeriesCodeFunction | Add-CBreezeCodeLine -Line '    EXIT({0}."{1} Nos.");' -ArgumentList $SetupRecordVariable.Name, $DocumentType
         }
         $Result.GetNoSeriesCodeFunction | Add-CBreezeCodeLine -Line 'END;'
 
-        foreach($DocumentType in $DocumentTypes)
+        foreach ($DocumentType in $DocumentTypes)
         {
             $Result.Fields.Setup[$DocumentType] = $SetupTable | Add-CBreezeTableField -Type Code -DataLength 10 -Name "$DocumentType Nos." -AutoCaption -Range $Range -PassThru
             $Result.Fields.Setup[$DocumentType] | Add-CBreezeTableRelation -TableName ([UncommonSense.CBreeze.Core.BaseApp+TableNames]::No_Series)
@@ -120,7 +119,7 @@
 
         if ($Pages)
         {
-            foreach($CardPage in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' } )
+            foreach ($CardPage in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' } )
             {
                 $Group = $CardPage | Get-CBreezePageControlGroup -GroupCaption General -Range $Range -Position FirstWithinContainer 
                 $Result.Controls.No.Add($CardPage, ($Group | Add-CBreezePageControl -Type Field -Range $Range -SourceExpr $Result.Fields.No.QuotedName -Importance Promoted -PassThru -Position FirstWithinContainer))
@@ -128,7 +127,7 @@
                 $Result.Controls.No[$CardPage].Properties.OnAssistEdit | Add-CBreezeCodeLine -Line '  CurrPage.UPDATE;'
             }
 
-            foreach($ListPage in $Pages | Where-Object { $_.Properties.PageType -eq 'List' } )
+            foreach ($ListPage in $Pages | Where-Object { $_.Properties.PageType -eq 'List' } )
             {
                 $Repeater = $ListPage | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range -Position FirstWithinContainer
                 $Result.Controls.No.Add($ListPage, ($Repeater | Add-CBreezePageControl -Type Field -Range $Range -SourceExpr $Result.Fields.No.QuotedName -PassThru))

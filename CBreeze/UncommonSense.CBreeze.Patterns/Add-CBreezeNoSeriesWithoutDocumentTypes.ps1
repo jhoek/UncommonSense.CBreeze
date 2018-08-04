@@ -1,11 +1,10 @@
 ﻿function Add-CBreezeNoSeriesWithoutDocumentTypes
 {
-    [CmdletBinding()]
     Param
     (
         # Note: parameters added here should also be added to Add-CBreezeNoSeries
 
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [UncommonSense.CBreeze.Core.Table]$Table,
 
         [Parameter(Mandatory)]
@@ -90,7 +89,7 @@
 
         if ($Pages)
         {
-            foreach($CardPage in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' } )
+            foreach ($CardPage in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' } )
             {
                 $Group = $CardPage | Get-CBreezePageControlGroup -GroupCaption General -Range $Range -Position FirstWithinContainer 
                 $Result.Controls.No.Add($CardPage, ($Group | Add-CBreezePageControl -Type Field -Range $Range -SourceExpr $Result.Fields.No.QuotedName -Importance Promoted -PassThru -Position FirstWithinContainer))
@@ -98,7 +97,7 @@
                 $Result.Controls.No[$CardPage].Properties.OnAssistEdit | Add-CBreezeCodeLine -Line '  CurrPage.UPDATE;'
             }
 
-            foreach($ListPage in $Pages | Where-Object { $_.Properties.PageType -eq 'List' } )
+            foreach ($ListPage in $Pages | Where-Object { $_.Properties.PageType -eq 'List' } )
             {
                 $Repeater = $ListPage | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range -Position FirstWithinContainer
                 $Result.Controls.No.Add($ListPage, ($Repeater | Add-CBreezePageControl -Type Field -Range $Range -SourceExpr $Result.Fields.No.QuotedName -PassThru))
