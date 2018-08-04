@@ -11,9 +11,8 @@ function Add-CBreezeCodePrimaryKey {
         [Parameter()]
         [UncommonSense.CBreeze.Core.Page[]] $Page,
 
-        [Parameter(Mandatory)]
         [ValidateRange(1, [int]::MaxValue)]
-        [int]$FieldNo,
+        [int]$FieldNo = 1,
 
         [string]$KeyVariable,
         [string]$FieldVariable,
@@ -49,10 +48,12 @@ function Add-CBreezeCodePrimaryKey {
                 Where-Object { $_.Properties.PageType -eq 'List' } | 
                 ForEach-Object {
                 $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater 
-                $PageControl.Add($Page, ($Repeater | Add-CBreezePageControl -SourceExpr CodeField.QuotedName))
+                $PageControl.Add($Page, ($Repeater | Add-CBreezePageControl -SourceExpr $CodeField.QuotedName))
             }
 
             Set-OutVariable $ControlVariable $PageControl
         }
+
+        $Table
     }
 }
