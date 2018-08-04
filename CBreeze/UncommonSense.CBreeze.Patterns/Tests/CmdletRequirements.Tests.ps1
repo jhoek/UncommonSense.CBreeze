@@ -14,4 +14,9 @@ Describe 'UncommonSense.CBreeze.Patterns cmdlets' {
             Select-Object -ExpandProperty BaseName |
             Should -Not -Match 'Field$'
     }
+
+    It 'Cmdlets should not a $Range parameter' {
+        Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 | 
+            Should -Not -FileContentMatch '\$Range'
+    }
 }
