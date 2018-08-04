@@ -2,7 +2,9 @@
 
 # .SYNOPSIS
 # Adds a user ID field to a C/Breeze application
-function Add-CBreezeUserIDField {
+function Add-CBreezeUserID
+{
+    [OutputType([Table])]
     param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
@@ -19,48 +21,52 @@ function Add-CBreezeUserIDField {
         [string]$UserIDControlVariable
     )
 
-    Process {
+    Process
+    {
         $Editable = if ($ReadOnly) { $false} else { $null }
 
         $UserIDField = $Table | 
             Add-CBreezeCodeTableField `
-                -Name $Name `
-                -DataLength 50 `
-                -AutoCaption `
-                -Editable:$Editable `
-                -ValidateTableRelation:$false `
-                -OnValidate {
-                    if (-not $ReadOnly) {
-                    CodeunitVariable UserMgt -SubType 418
-                    "UserMgt.ValidateUserID(`"$Name`");"
-                    }
-                } `
-                -OnLookup {
-                    CodeunitVariable UserMgt -SubType 418
+            -Name $Name `
+            -DataLength 50 `
+            -AutoCaption `
+            -Editable:$Editable `
+            -ValidateTableRelation:$false `
+            -OnValidate {
+            if (-not $ReadOnly)
+            {
+                CodeunitVariable UserMgt -SubType 418
+                "UserMgt.ValidateUserID(`"$Name`");"
+            }
+        } `
+            -OnLookup {
+            CodeunitVariable UserMgt -SubType 418
             
-                    if ($ReadOnly) {
-                        CodeVariable Dummy -DataLength 50
-                        "Dummy := `"$Name`";"
-                        "UserMgt.LookupUserID(Dummy);"
-                    }
-                    else {
-                        "UserMgt.LookupUserID(`"$Name`");"
-                    }
-                } `
-                -SubObjects {
-                    TableRelation User "User Name"
-                } `
-                -PassThru
+            if ($ReadOnly)
+            {
+                CodeVariable Dummy -DataLength 50
+                "Dummy := `"$Name`";"
+                "UserMgt.LookupUserID(Dummy);"
+            }
+            else
+            {
+                "UserMgt.LookupUserID(`"$Name`");"
+            }
+        } `
+            -SubObjects {
+            TableRelation User "User Name"
+        } `
+            -PassThru
 
         $UserIDControl = [Ordered]@{}
 
-        foreach($Item in $Page)
+        foreach ($Item in $Page)
         {
             if ($Item.Properties.PageType -eq 'List')
             {
                 $Repeater = $Item | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer
 
-                switch($Item.Properties.Editable)
+                switch ($Item.Properties.Editable)
                 {
                     $false { $UserIDControl.Add($Item, ($Repeater | Add-CBreezePageControl -SourceExpr $UserIDField.QuotedName -PassThru)) }
                     default { $UserIDControl.Add($Item, ($Repeater | Add-CBreezePageControl -SourceExpr $UserIDField.QuotedName -Editable:(-not $ReadOnly) -PassThru)) } 
