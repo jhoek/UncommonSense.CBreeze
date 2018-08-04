@@ -16,13 +16,11 @@ function Add-CBreezeAddress
         [Table]$Table,
 
         # The page(s) to which the controls will be added
-        [Parameter()]
-        [Page[]]$Pages,
+        [Page[]]$Page,
 
         # The Format Address codeunit to which a function will be 
         # added. This function combines the address fields into 
         # an array of text lines in the country's address format
-        [Parameter()]
         [Codeunit]$FormatAddressCodeunit,
 
         # The range from which field and control IDs are assigned
@@ -128,9 +126,9 @@ function Add-CBreezeAddress
                 $Result.Fields.CountryRegionCode.QuotedName
         }
 
-        if ($Pages)
+        if ($Page)
         {
-            foreach ($CardPage in $Pages | Where-Object { $_.Properties.PageType -eq 'Card' })
+            foreach ($CardPage in $Page | Where-Object { $_.Properties.PageType -eq 'Card' })
             {
                 $Group = $CardPage | Get-CBreezePageControlGroup -GroupCaption $GroupCaption -Range $Range -Position $CardGroupPosition
                 $Result.Controls.Address.Add($CardPage, ($Group | Add-CBreezePageControl -Type Field -Range $Range -PassThru -SourceExpr $Result.Fields.Address.QuotedName))
@@ -140,7 +138,7 @@ function Add-CBreezeAddress
                 $Result.Controls.CountryRegionCode.Add($CardPage, ($Group | Add-CBreezePageControl -Type Field -Range $Range -PassThru -SourceExpr $Result.Fields.CountryRegionCode.QuotedName))
             }
 
-            foreach ($ListPage in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
+            foreach ($ListPage in $Page | Where-Object { $_.Properties.PageType -eq 'List' })
             {
                 $Repeater = $ListPage | Get-CBreezePageControlGroup -GroupType Repeater -Range $Range -Position FirstWithinContainer
                 $Result.Controls.PostCode.Add($ListPage, ($Repeater | Add-CBreezePageControl -Type Field -Range $Range -PassThru -SourceExpr $Result.Fields.PostCode.QuotedName))
