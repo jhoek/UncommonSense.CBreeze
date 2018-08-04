@@ -9,10 +9,10 @@ function Add-CBreezeDescription {
     Param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
-        [UncommonSense.CBreeze.Core.Table]$Table,
+        [Table]$Table,
 
         [Parameter()]
-        [UncommonSense.CBreeze.Core.Page[]]$Page,
+        [Page[]]$Page,
 
         [ValidateNotNullOrEmpty()]
         [string]$GroupCaption = 'General',
@@ -119,9 +119,7 @@ function Add-CBreezeDescription {
         if ($HasSearchDescription) {
             Set-OutVariable $SearchDescriptionControlVariable $SearchDescriptionControl
         }
+
+        $Table
     }
 }
-
-$Table = Table Foo
-$Table | Add-CBreezeCodePrimaryKey -FieldNo 1
-$Table | Add-CBreezeDescription -Prefix MyPrefix -DescriptionStyle Name -DescriptionLength 33 -HasDescription2 -HasSearchDescription -CreateSecondaryKey
