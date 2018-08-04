@@ -76,5 +76,3 @@ function Add-CBreezeSupplementalEntityType
     Set-OutVariable $DescriptionFieldVariable $DescriptionField
     Set-OutVariable $DescriptionControlVariable $DescriptionControl
 }
-
-Add-CBreezeSupplementalEntityType -TableID 50000 -PageID 50000 -Name Foo
