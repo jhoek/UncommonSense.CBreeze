@@ -15,6 +15,10 @@ function Add-CBreezePostingDate
         [Parameter()]
         [Page[]] $Page,
 
+        [ValidateNotNullOrEmpty()]
+        [ValidateLength(1, 30)]
+        [string]$Name = 'Posting Date',
+
         [string]$PostingDateFieldVariable,
         [string]$PostingDateControlVariable
     )
@@ -23,7 +27,7 @@ function Add-CBreezePostingDate
     {
         $PostingDateField = $Table | 
             Add-CBreezeDateTableField `
-            -Name "Posting Date" `
+            -Name $Name `
             -AutoCaption `
             -ClosingDates $true `
             -PassThru
