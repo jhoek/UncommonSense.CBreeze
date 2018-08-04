@@ -1,4 +1,6 @@
-﻿<#
+﻿using namespace UncommonSense.CBreeze.Core
+
+<#
 .Synopsis
    Adds a Code primary key field to a C/Breeze application
 #>

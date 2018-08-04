@@ -1,4 +1,4 @@
-﻿using namespace 'UncommonSense.CBreeze.Core'
+﻿using namespace UncommonSense.CBreeze.Core
 
 <#
 .Synopsis
