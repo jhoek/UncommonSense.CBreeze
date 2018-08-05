@@ -71,8 +71,9 @@ RequiredModules = @('UncommonSense.CBreeze.Automation')
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = 'Add-CBreezeCodePrimaryKey', 'Add-CBreezeDateFilter', 
                'Add-CBreezeDescription', 'Add-CBreezeEntryNoPrimaryKey', 
-               'Add-CBreezePostingDate', 'Add-CBreezeSetupPrimaryKey', 
-               'Add-CBreezeSupplementalEntityType', 'Add-CBreezeUserID'
+               'Add-CBreezePostingDate', 'Add-CBreezeReasonCode', 
+               'Add-CBreezeSetupPrimaryKey', 'Add-CBreezeSupplementalEntityType', 
+               'Add-CBreezeUserID'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
