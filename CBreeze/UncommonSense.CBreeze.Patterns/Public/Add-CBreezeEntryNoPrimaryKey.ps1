@@ -2,19 +2,19 @@
 
 # .SYNOPSIS
 # Adds an Entry No. primary key field to a C/Breeze application
-function Add-CBreezeEntryNo
+function Add-CBreezeEntryNoPrimaryKey
 {
     [OutputType([Table])]
     Param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
-        [Table] $Table,
+        [Table]$Table,
 
-        [Page[]] $Pages,
+        [Page[]]$Pages,
 
         [ValidateNotNullOrEmpty()]
         [ValidateLength(1, 30)]
-        [string]$Name = 'Entry No',
+        [string]$Name = 'Entry No.',
 
         [string]$KeyVariable,
         [string]$FieldVariable,
@@ -31,7 +31,6 @@ function Add-CBreezeEntryNo
         $EntryNoField = $Table | 
             Add-CBreezeIntegerTableField `
             -Name $Name `
-            -PrimaryKeyFieldNoRange `
             -AutoCaption `
             -PassThru
 
