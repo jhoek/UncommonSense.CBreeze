@@ -1,16 +1,14 @@
-﻿using namespace UncommonSense.CBreeze.Core
-
-# .SYNOPSIS
+﻿# .SYNOPSIS
 # Adds an Entry No. primary key field to a C/Breeze application
 function Add-CBreezeEntryNoPrimaryKey
 {
-    [OutputType([Table])]
+    [OutputType([UncommonSense.CBreeze.Core.Table])]
     Param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
-        [Table]$Table,
+        [UncommonSense.CBreeze.Core.Table]$Table,
 
-        [Page[]]$Pages,
+        [UncommonSense.CBreeze.Core.Page[]]$Pages,
 
         [ValidateNotNullOrEmpty()]
         [ValidateLength(1, 30)]
@@ -41,10 +39,13 @@ function Add-CBreezeEntryNoPrimaryKey
 
         $EntryNoPageControls = @{}
 
-        foreach ($Page in $Pages | Where-Object { $_.Properties.PageType -eq 'List' })
+        foreach ($Page in $Pages)
         {
-            $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater
-            $EntryNoPageControls.Add($Page, ($Repeater | Add-CBreezePageControl -SourceExpr $EntryNoField.QuotedName -PassThru -Position LastWithinContainer))
+            if ($Page.Properties.PageType -eq 'List')
+            {
+                $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater
+                $EntryNoPageControls.Add($Page, ($Repeater | Add-CBreezePageControl -SourceExpr $EntryNoField.QuotedName -PassThru -Position LastWithinContainer))
+            }
         }
 
         Set-OutVariable -Name $KeyVariable -Value $PrimaryKey
