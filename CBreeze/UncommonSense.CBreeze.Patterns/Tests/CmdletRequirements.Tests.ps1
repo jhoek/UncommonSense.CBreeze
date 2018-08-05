@@ -1,7 +1,7 @@
 Describe 'UncommonSense.CBreeze.Patterns cmdlets' {
     It 'Cmdlets should have Table as OutputType' {
         Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 |
-            Should -FileContentMatch '\[OutputType\(\[Table\]\)\]'
+            Should -FileContentMatch '\[OutputType\(\[(UncommonSense\.CBreeze\.Core\.)?Table\]\)\]'
     }
 
     It 'Cmdlets should return a Table' {
