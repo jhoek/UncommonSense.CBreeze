@@ -10,12 +10,12 @@ function Add-CBreezeSubsidiaryEntityType
         [UncommonSense.CBreeze.Core.Application]$Application,
 
         [Parameter(Mandatory)]
-        [System.Collections.Generic.IEnumerable[int]]$Range,
-
-        [Parameter(Mandatory)]
+        [ValidateLength(1, 30)]
         [string]$Name,
 
-        [string]$PluralName,
+        [ValidateNotNullOrEmpty()]
+        [ValidateLength(1, 30)]
+        [string]$PluralName = [UncommonSense.CBreeze.Core.StringExtensionMethods]::MakePlural($Name),
         
         [Parameter(Mandatory)]
         [UncommonSense.CBreeze.Core.Table[]]$SubsidiaryTo,
@@ -34,11 +34,6 @@ function Add-CBreezeSubsidiaryEntityType
 
     Process
     {
-        if (-not $PluralName)
-        {
-            $PluralName = [UncommonSense.CBreeze.Core.StringExtensionMethods]::MakePlural($Name)
-        }
-
         # Verify that all subsidiary-to tables have a valid primary key
         foreach ($Item in $SubsidiaryTo)
         {
