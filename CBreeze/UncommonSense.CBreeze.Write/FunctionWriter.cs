@@ -12,10 +12,9 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.InnerWriter.WriteLine();
 #if NAV2016
-            WriteEventingAttributes(function, writer);
-#endif
-#if NAV2016
+            WriteSubscriberAttributes(function, writer);
             writer.WriteLineIf(function.TryFunction.GetValueOrDefault(false), "[TryFunction]");
+            WritePublisherAttributes(function, writer);
 #endif
 #if NAV2018
             writer.WriteLineIf(
@@ -50,22 +49,11 @@ namespace UncommonSense.CBreeze.Write
 
 #if NAV2016
 
-        public static void WriteEventingAttributes(Function function, CSideWriter writer)
-        {
-            switch (function.Event.GetValueOrDefault(EventPublisherSubscriber.No))
-            {
-                case EventPublisherSubscriber.Publisher:
-                    WritePublisherAttributes(function, writer);
-                    break;
-
-                case EventPublisherSubscriber.Subscriber:
-                    WriteSubscriberAttributes(function, writer);
-                    break;
-            }
-        }
-
         public static void WritePublisherAttributes(Function function, CSideWriter writer)
         {
+            if (function.Event.GetValueOrDefault(EventPublisherSubscriber.No) != EventPublisherSubscriber.Publisher)
+                return;
+
             switch (function.EventType)
             {
                 case EventType.Business:
@@ -80,6 +68,9 @@ namespace UncommonSense.CBreeze.Write
 
         public static void WriteSubscriberAttributes(Function function, CSideWriter writer)
         {
+            if (function.Event.GetValueOrDefault(EventPublisherSubscriber.No) != EventPublisherSubscriber.Subscriber)
+                return;
+
             if (function.EventPublisherObject.Type == null)
                 return;
             if (function.EventPublisherObject.ID == null)
