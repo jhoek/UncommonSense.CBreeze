@@ -4,24 +4,28 @@ using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Write
 {
-	public static class ReportLabelsWriter
-	{
-		public static void Write(this ReportLabels reportLabels, CSideWriter writer)
-		{
-			writer.BeginSection("LABELS");
+    public static class ReportLabelsWriter
+    {
+        public static void Write(this ReportLabels reportLabels, CSideWriter writer)
+        {
+            writer.BeginSection("LABELS");
 
-			foreach (var reportLabel in reportLabels) 
-			{
-				reportLabel.Write(writer);
-			}
+            foreach (var reportLabel in reportLabels)
+            {
+                reportLabel.Write(writer);
+            }
 
-			writer.EndSection();
-		}
+            writer.EndSection();
+        }
 
-		public static void Write(this ReportLabel reportLabel, CSideWriter writer)
-		{
+        public static void Write(this ReportLabel reportLabel, CSideWriter writer)
+        {
             var id = reportLabel.ID.ToString().PadRight(4);
+#if NAV2018
+            var name = reportLabel.Name.PadRight(16);
+#else
             var name = reportLabel.Name.PadRight(20);
+#endif
 
             writer.Write("{ ");
             writer.Write(id);
@@ -35,6 +39,7 @@ namespace UncommonSense.CBreeze.Write
                 case true:
                     writer.Write(";");
                     break;
+
                 default:
                     writer.Write(" ");
                     break;
@@ -44,7 +49,7 @@ namespace UncommonSense.CBreeze.Write
             {
                 writer.Indent(32);
                 writer.WriteLine("");
-        }
+            }
             else
             {
                 writer.Indent(writer.Column);
@@ -54,7 +59,6 @@ namespace UncommonSense.CBreeze.Write
 
             writer.WriteLine("}");
             writer.Unindent();
-		} 
-	}
+        }
+    }
 }
-
