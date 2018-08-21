@@ -143,12 +143,9 @@ namespace UncommonSense.CBreeze.Write
             DoWrite(
                 textConstant.Name,
                 textConstant.ID,
-                string.Format(
-                    "TextConst '{0}'",
-                    string.Join(
-                        ";",
-                        textConstant.Values.OrderBy(t => t.LanguageID.GetLCIDFromLanguageCode()).Select(v => string.Format("{0}={1}", v.LanguageID, v.Value.TextConstantValue(v.LanguageID == "@@@", textConstant.Values.Count()))))),
-                "", writer);
+                textConstant.TypeName,
+                "",
+                writer);
         }
 
         private static void WriteMultiLineTextConstant(TextConstant textConstant, CSideWriter writer)
