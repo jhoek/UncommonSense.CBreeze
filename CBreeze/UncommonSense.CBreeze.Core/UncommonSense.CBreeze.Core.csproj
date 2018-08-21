@@ -57,6 +57,7 @@
     <Compile Include="DataClassificationVariable.cs" />
     <Compile Include="IHasDimensions.cs" />
     <Compile Include="IHasRequestPage.cs" />
+    <Compile Include="LanguageExtensionMethods.cs" />
     <Compile Include="ObsoleteStateProperty.cs" />
     <Compile Include="PageActionContainerType.cs" />
     <Compile Include="PageActionContainerTypeProperty.cs" />
