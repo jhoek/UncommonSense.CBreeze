@@ -21,11 +21,8 @@ namespace UncommonSense.CBreeze.Write
         public static void Write(this ReportLabel reportLabel, CSideWriter writer)
         {
             var id = reportLabel.ID.ToString().PadRight(4);
-#if NAV2018
-            var name = reportLabel.Name.PadRight(16);
-#else
-            var name = reportLabel.Name.PadRight(20);
-#endif
+            var debt = id.Length > 4 ? id.Length - 4 : 0;
+            var name = reportLabel.Name.PadRight(20 - debt);
 
             writer.Write("{ ");
             writer.Write(id);
