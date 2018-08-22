@@ -3,7 +3,7 @@ Properties {
     [ValidateSet('2013', '2013R2', '2015', '2016', '2017', '2018')][string]$Version = '2017'
     [string]$BaseFolder = Join-Path -Path $WorkingFolder -ChildPath $Version
     [string]$InputFolder = Join-Path -Path $BaseFolder -ChildPath Input
-    [string]$ScriptFolder = Join-Path -Path $BaseFolder -ChildPath Scripts
+    [string]$ScriptsFolder = Join-Path -Path $BaseFolder -ChildPath Scripts
     [string]$OutputFolder = Join-Path -Path $BaseFolder -ChildPath Output
 }
 
@@ -14,12 +14,13 @@ Task Compile {
 }
 
 Task Run -Depends RemovePrevious, PrepareInput, LoadScriptModule {
-    New-Item -Path ScriptsFolder -ItemType Container
+    New-Item -Path $ScriptsFolder -ItemType Container | Out-Null
 
-    Get-ChildItem -Path $InputFolder |
+    Get-ChildItem -Path (Join-Path -Path $InputFolder -ChildPath 'NL/CU16') |
         ForEach-Object {
             $InputFile = $_.FullName 
-            $ScriptFileName = Join-Path -Path ScriptsFolder -ChildPath "$($_.BaseName).ps1"
+            Write-Host "FIXME: $($InputFile)"
+            $ScriptFileName = Join-Path -Path $ScriptsFolder -ChildPath "$($_.BaseName).ps1"
 
             Import-CBreezeApplication -Path $InputFile |
                 ConvertTo-CBreezeScript |
@@ -34,7 +35,7 @@ Task RemovePrevious {
 }
 
 Task PrepareInput {
-    New-Item -Path $InputFolder -ItemType Container
+    New-Item -Path $InputFolder -ItemType Container | Out-Null
     Exec -Cmd { git clone --single-branch --branch=corrections --depth=1 "https://github.com/jhoek/Dynamics.NAV.ReferenceObjects.$Version" $InputFolder }
 }
 
