@@ -1,19 +1,15 @@
 Properties {
-    [ValidateScript({Test-Path -Path $_})][string]$WorkingFolder = (Get-Item -Path "~\Desktop").FullName
     [ValidateSet('2013', '2013R2', '2015', '2016', '2017', '2018')][string]$Version = '2017'
-    [string]$BaseFolder = Join-Path -Path $WorkingFolder -ChildPath $Version
-    [string]$InputFolder = Join-Path -Path $BaseFolder -ChildPath Input
-    [string]$ScriptsFolder = Join-Path -Path $BaseFolder -ChildPath Scripts
-    [string]$OutputFolder = Join-Path -Path $BaseFolder -ChildPath Output
+    [string]$WorkingFolder = (Get-Item -Path "~\Desktop").FullName
 }
 
-Task default -Depends Compile,Run
+Task default -Depends Compile, Run
 
 Task Compile {
     Invoke-Psake -BuildFile ./build.ps1 -Task "Build$Version"
 }
 
-Task Run -Depends RemovePrevious, PrepareInput, LoadScriptModule {
+Task Run -Depends SetFolders, RemovePrevious, PrepareInput, LoadScriptModule {
     New-Item -Path $ScriptsFolder -ItemType Container | Out-Null
     New-Item -Path $OutputFolder -Itemtype Container | Out-Null
 
@@ -29,9 +25,21 @@ Task Run -Depends RemovePrevious, PrepareInput, LoadScriptModule {
         }
 }
 
+Task SetFolders {
+    $script:BaseFolder = Join-Path -Path $WorkingFolder -ChildPath $Version
+    $script:InputFolder = Join-Path -Path $script:BaseFolder -ChildPath Input
+    $script:ScriptsFolder = Join-Path -Path $script:BaseFolder -ChildPath Scripts
+    $script:OutputFolder = Join-Path -Path $script:BaseFolder -ChildPath Output
+}
+
 Task RemovePrevious {
     if (Test-Path -Path $BaseFolder) {
+        Write-host "Removing $BaseFolder"
         Remove-Item -Path $BaseFolder -Recurse -Force
+    }
+    else
+    {
+        Write-Host "$BaseFolder did not exist"
     }
 }
 
@@ -41,5 +49,6 @@ Task PrepareInput {
 }
 
 Task LoadScriptModule {
+    Import-Module .\CBreeze\UncommonSense.CBreeze.Automation\bin\Release\UncommonSense.CBreeze.Automation\UncommonSense.CBreeze.Automation.psd1
     Import-Module ./CBreeze/UncommonSense.CBreeze.Script/bin/Release/UncommonSense.CBreeze.Script/UncommonSense.CBreeze.Script.psd1
 }
