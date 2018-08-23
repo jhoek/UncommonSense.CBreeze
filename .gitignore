@@ -180,30 +180,17 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
-CBreeze/UncommonSense.CBreeze.Demo/navw12015.txt
-CBreeze/UncommonSense.CBreeze.Demo/navnl2013.txt
 
 *.userprefs
 
-CBreeze.NextGen/CBreeze.NextGen.userprefs
-
-UncommonSense.CBreeze.DomBuilder/UncommonSense.CBreeze.DomBuilder.userprefs
-
-CBreeze.NextGen/CBreeze.NextGen.userprefs
-
-*.userprefs
-
-UncommonSense.CBreeze.DomBuilder/UncommonSense.CBreeze.DomBuilder.userprefs
-.DS_Store
 /.vs/VSWorkspaceState.json
-/.vs/VSWorkspaceState.json
-/CBreeze/.vs/UncommonSense.CBreeze/v15/sqlite3/storage.ide
-/CBreeze/.vs/UncommonSense.CBreeze/v15
+storage.ide
 *.sqlite
-/CBreeze/Output
-CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeVariable.cs
-CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeMenuSuiteNode.cs
-CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeParameter.cs
-CBreeze/UncommonSense.CBreeze.Automation/NewCBreezeTableField.cs
+NewCBreezeVariable.cs
+NewCBreezeMenuSuiteNode.cs
+NewCBreezeParameter.cs
+NewCBreezeTableField.cs
+NewCBreezeFunction.cs
+NewCBreezeXmlPortNode.cs
 /.vs/UncommonSense.CBreeze/v15/Server/sqlite3/storage.ide
 /.vs/UncommonSense.CBreeze/v15/Server/sqlite3/db.lock
