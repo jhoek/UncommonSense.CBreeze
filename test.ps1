@@ -16,15 +16,14 @@ Task Compile {
 Task Run -Depends RemovePrevious, PrepareInput, LoadScriptModule {
     New-Item -Path $ScriptsFolder -ItemType Container | Out-Null
 
-    Get-ChildItem -Path (Join-Path -Path $InputFolder -ChildPath 'NL/CU16') |
+    Get-ChildItem -Path (Join-Path -Path $InputFolder -ChildPath 'NL/RTM') |
         ForEach-Object {
             $InputFile = $_.FullName 
             Write-Host "FIXME: $($InputFile)"
             $ScriptFileName = Join-Path -Path $ScriptsFolder -ChildPath "$($_.BaseName).ps1"
 
             Import-CBreezeApplication -Path $InputFile |
-                ConvertTo-CBreezeScript |
-                Set-Content -Path $ScriptFileName -Encoding UTF8
+                ConvertTo-CBreezeScript -Path $ScriptFileName 
         }
 }
 
