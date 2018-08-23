@@ -10,26 +10,28 @@ Properties {
 Task default -Depends Compile,Run
 
 Task Compile {
-    Invoke-Psake -BuildFile ./build.ps1 -Task "Build$Version"    
+    Invoke-Psake -BuildFile ./build.ps1 -Task "Build$Version"
 }
 
 Task Run -Depends RemovePrevious, PrepareInput, LoadScriptModule {
     New-Item -Path $ScriptsFolder -ItemType Container | Out-Null
+    New-Item -Path $OutputFolder -Itemtype Container | Out-Null
 
     Get-ChildItem -Path (Join-Path -Path $InputFolder -ChildPath 'NL/RTM') |
         ForEach-Object {
-            $InputFile = $_.FullName 
-            Write-Host "FIXME: $($InputFile)"
+            $InputFile = $_.FullName
             $ScriptFileName = Join-Path -Path $ScriptsFolder -ChildPath "$($_.BaseName).ps1"
+            $OutputFileName = Join-Path -Path $OutputFolder -ChildPath "$($_.BaseName).txt"
 
-            Import-CBreezeApplication -Path $InputFile |
-                ConvertTo-CBreezeScript -Path $ScriptFileName 
+            Import-CBreezeApplication -Path $InputFile | ConvertTo-CBreezeScript -Path $ScriptFileName
+
+            & $ScriptFilename | Export-CBreezeApplication -Path $OutputFileName
         }
 }
 
 Task RemovePrevious {
     if (Test-Path -Path $BaseFolder) {
-        Remove-Item -Path $BaseFolder -Recurse -Force 
+        Remove-Item -Path $BaseFolder -Recurse -Force
     }
 }
 
