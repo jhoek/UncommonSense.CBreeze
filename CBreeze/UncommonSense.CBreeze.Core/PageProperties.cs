@@ -99,11 +99,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onDeleteRecord);
             innerList.Add(onQueryClosePage);
             innerList.Add(onAfterGetCurrRecord);
-            innerList.Add(actionList);
 #if NAV2018
             innerList.Add(odataKeyFields);
             innerList.Add(apiVersion);
 #endif
+            innerList.Add(actionList);
         }
 
         public Page Page { get; protected set; }

@@ -21,15 +21,14 @@ Task UpdateManifest -depends BuildSolution {
 Task UpdateReadMe -depends BuildSolution {
     $UpdateReadMe = Join-Path -Path $psake.build_script_dir -ChildPath Update-README.ps1
 
-    if (Test-Path -Path $UpdateReadMe)
-    {
+    if (Test-Path -Path $UpdateReadMe) {
         Import-Module UncommonSense.CBreeze.Automation -Force -DisableNameChecking
         & $UpdateReadMe
     }
 }
 
 Task BuildSolution -depends UpdateAssemblyInfo, UpdateModuleVersion {
-    Invoke-Psake -BuildFile (Join-Path -Path $psake.build_script_dir -ChildPath build.ps1) -taskList Build2017
+    Invoke-Psake -BuildFile (Join-Path -Path $psake.build_script_dir -ChildPath build.ps1) -taskList Build2018
 }
 
 Task UpdateModuleVersion -depends BumpBuildNo {

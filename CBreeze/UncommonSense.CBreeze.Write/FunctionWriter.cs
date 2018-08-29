@@ -12,8 +12,15 @@ namespace UncommonSense.CBreeze.Write
         {
             writer.InnerWriter.WriteLine();
 #if NAV2016
+            WriteSubscriberAttributes(function, writer);
             writer.WriteLineIf(function.TryFunction.GetValueOrDefault(false), "[TryFunction]");
-            WriteEventingAttributes(function, writer);
+            WritePublisherAttributes(function, writer);
+#endif
+#if NAV2018
+            writer.WriteLineIf(
+                function.FunctionVisibility.GetValueOrDefault(Common.FunctionVisibility.Internal) == Common.FunctionVisibility.External &&
+                function.ServiceEnabled.GetValueOrDefault(false),
+                "[ServiceEnabled]");
 #endif
 #if NAV2015
             writer.WriteLineIf(function.UpgradeFunctionType.HasValue, "[{0}]", function.UpgradeFunctionType);
@@ -25,7 +32,7 @@ namespace UncommonSense.CBreeze.Write
             writer.WriteLineIf(function.TestPermissions.HasValue, "[TestPermissions({0})]", function.TestPermissions);
 #endif
 #if NAV2018
-            writer.WriteLineIf(function.FunctionVisibility.HasValue && !function.Local, "[{0}]", function.FunctionVisibility);
+            writer.WriteLineIf(function.FunctionVisibility.HasValue, "[{0}]", function.FunctionVisibility);
 #endif
             writer.Write("{2}PROCEDURE {0}@{1}(", function.Name, function.ID, function.Local ? "LOCAL " : "");
             function.Parameters.Write(writer);
@@ -42,22 +49,11 @@ namespace UncommonSense.CBreeze.Write
 
 #if NAV2016
 
-        public static void WriteEventingAttributes(Function function, CSideWriter writer)
-        {
-            switch (function.Event.GetValueOrDefault(EventPublisherSubscriber.No))
-            {
-                case EventPublisherSubscriber.Publisher:
-                    WritePublisherAttributes(function, writer);
-                    break;
-
-                case EventPublisherSubscriber.Subscriber:
-                    WriteSubscriberAttributes(function, writer);
-                    break;
-            }
-        }
-
         public static void WritePublisherAttributes(Function function, CSideWriter writer)
         {
+            if (function.Event.GetValueOrDefault(EventPublisherSubscriber.No) != EventPublisherSubscriber.Publisher)
+                return;
+
             switch (function.EventType)
             {
                 case EventType.Business:
@@ -72,6 +68,9 @@ namespace UncommonSense.CBreeze.Write
 
         public static void WriteSubscriberAttributes(Function function, CSideWriter writer)
         {
+            if (function.Event.GetValueOrDefault(EventPublisherSubscriber.No) != EventPublisherSubscriber.Subscriber)
+                return;
+
             if (function.EventPublisherObject.Type == null)
                 return;
             if (function.EventPublisherObject.ID == null)

@@ -78,7 +78,6 @@
     <Compile Include="RdlDataWriter.cs" />
     <Compile Include="ReportElementExtensionMethods.cs" />
     <Compile Include="ReportWriter.cs" />
-    <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="TableFieldGroupWriter.cs" />
     <Compile Include="ParametersWriter.cs" />
     <Compile Include="ParameterWriter.cs" />

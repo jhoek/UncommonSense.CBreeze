@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EFCDE9E3-09C8-42F6-B82F-CE078E702396}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>UncommonSense.CBreeze.Script</RootNamespace>
     <AssemblyName>UncommonSense.CBreeze.Script</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -32,7 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>UncommonSense.CBreeze.Script.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,11 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayParameter.cs" />
-    <Compile Include="ConvertToCBreezeScript.cs" />
+    <Compile Include="ConvertToCBreezeScriptCmdlet.cs" />
     <Compile Include="HelperMethods.cs" />
     <Compile Include="Invocation.cs" />
     <Compile Include="LiteralParameter.cs" />
-    <Compile Include="Paths.cs" />
     <Compile Include="ToInvocationMethod.Codeunit.cs" />
     <Compile Include="ToInvocationMethod.MenuSuite.cs" />
     <Compile Include="ToInvocationMethod.Page.cs" />
@@ -61,7 +61,6 @@
     <Compile Include="ToInvocationMethod.Report.cs" />
     <Compile Include="Literal.cs" />
     <Compile Include="ParameterBase.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptBlockParameter.cs" />
     <Compile Include="SimpleParameter.cs" />

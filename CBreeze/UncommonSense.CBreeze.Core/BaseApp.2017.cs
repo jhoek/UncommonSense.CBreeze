@@ -1,8 +1,8 @@
 namespace UncommonSense.CBreeze.Core
 {
-  public static partial class BaseApp
-  {
-    #if NAV2017
+    public static partial class BaseApp
+    {
+#if NAV2017 && !NAV2018
     public static class TableIDs
     {
       public const int Payment_Terms = 3;
@@ -7685,6 +7685,6 @@ namespace UncommonSense.CBreeze.Core
       public const int Capable_to_Promise = 99000886;
       public const int AvailabilityManagement = 99000889;
     }
-    #endif
-  }
+#endif
+    }
 }

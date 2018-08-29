@@ -22,8 +22,12 @@ namespace UncommonSense.CBreeze.Core
 #endif
 #if NAV2017
         SendNotificationHandler,
-        RecallNotificationHandler
+        RecallNotificationHandler,
+#endif
+#if NAV2018
+        SessionSettingsHandler
 #endif
     }
-    // 
+
+    //
 }

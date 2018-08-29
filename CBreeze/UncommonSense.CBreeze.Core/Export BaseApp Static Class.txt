@@ -2,8 +2,8 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
 {
   OBJECT-PROPERTIES
   {
-    Date=11-02-18;
-    Time=11:48:48;
+    Date=28-07-18;
+    Time=18:39:11;
     Modified=Yes;
     Version List=;
   }
@@ -14,13 +14,13 @@ OBJECT Codeunit 50000 Export BaseApp Static Class
           BEGIN
             OutputFile.TEXTMODE := TRUE;
             OutputFile.WRITEMODE := TRUE;
-            OutputFile.CREATE('c:\users\jhoek\Desktop\BaseApp.2017.cs');
+            OutputFile.CREATE('c:\users\jhoek\Desktop\BaseApp.2018.cs');
 
             OutputFile.WRITE('namespace UncommonSense.CBreeze.Core');
             OutputFile.WRITE('{');
             OutputFile.WRITE('  public static partial class BaseApp');
             OutputFile.WRITE('  {');
-            OutputFile.WRITE('    #if NAV2017');
+            OutputFile.WRITE('    #if NAV2018');
 
             WriteTableIDs(OutputFile);
             WriteTableNames(OutputFile);

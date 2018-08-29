@@ -51,9 +51,13 @@
     <Compile Include="AccessByPermission.cs" />
     <Compile Include="AccessByPermissionObjectType.cs" />
     <Compile Include="AccessByPermissionProperty.cs" />
+    <Compile Include="BaseApp.2018.cs" />
+    <Compile Include="DataClassificationParameter.cs" />
     <Compile Include="DataClassificationProperty.cs" />
+    <Compile Include="DataClassificationVariable.cs" />
     <Compile Include="IHasDimensions.cs" />
     <Compile Include="IHasRequestPage.cs" />
+    <Compile Include="LanguageExtensionMethods.cs" />
     <Compile Include="ObsoleteStateProperty.cs" />
     <Compile Include="PageActionContainerType.cs" />
     <Compile Include="PageActionContainerTypeProperty.cs" />
@@ -138,8 +142,11 @@
     <Compile Include="ObjectTypeParameter.cs" />
     <Compile Include="ObjectTypeVariable.cs" />
     <Compile Include="QueryTypeProperty.cs" />
+    <Compile Include="RunTime.2018.cs" />
     <Compile Include="RunTime.2017.cs" />
     <Compile Include="RunTime.2016.cs" />
+    <Compile Include="SessionSettingsParameter.cs" />
+    <Compile Include="SessionSettingsVariable.cs" />
     <Compile Include="TagList.cs" />
     <Compile Include="TagListProperty.cs" />
     <Compile Include="TestPermissions.cs" />
@@ -147,6 +154,8 @@
     <Compile Include="TestPermissionsProperty.cs" />
     <Compile Include="TestPermissionsVariable.cs" />
     <Compile Include="TriggerVariables.cs" />
+    <Compile Include="VerbosityParameter.cs" />
+    <Compile Include="VerbosityVariable.cs" />
     <Compile Include="XmlPortNamespace.cs" />
     <Compile Include="ObjectReference.cs" />
     <Compile Include="OptionOrdinalValuesProperty.cs" />

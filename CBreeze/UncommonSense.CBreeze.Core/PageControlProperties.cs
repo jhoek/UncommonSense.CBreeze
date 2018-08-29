@@ -36,6 +36,9 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2015
         private StringProperty image = new StringProperty("Image");
 #endif
+#if NAV2018
+        private StringProperty implicitType = new StringProperty("ImplicitType");
+#endif
         private ImportanceProperty importance = new ImportanceProperty("Importance");
         private NullableBooleanProperty lookup = new NullableBooleanProperty("Lookup");
         private StringProperty lookupPageID = new StringProperty("LookupPageID");
@@ -111,7 +114,7 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(visible);
             innerList.Add(enabled);
             innerList.Add(editable);
-#if NAV2015 && !NAV2018
+#if NAV2015
             innerList.Add(image);
 #endif
             innerList.Add(lookupPageID);
@@ -130,13 +133,15 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(onControlAddIn);
 #if NAV2018
             innerList.Add(odataEDMType);
-            innerList.Add(image);
 #endif
 #if NAV2015
             innerList.Add(showMandatory);
 #endif
             innerList.Add(showCaption);
             innerList.Add(quickEntry);
+#if NAV2018
+            innerList.Add(implicitType);
+#endif
         }
 
         public PageControl Control { get; protected set; }
@@ -402,6 +407,22 @@ namespace UncommonSense.CBreeze.Core
             set
             {
                 this.image.Value = value;
+            }
+        }
+
+#endif
+
+#if NAV2018
+
+        public string ImplicitType
+        {
+            get
+            {
+                return this.implicitType.Value;
+            }
+            set
+            {
+                this.implicitType.Value = value;
             }
         }
 

@@ -16,6 +16,9 @@ namespace UncommonSense.CBreeze.Automation
     {
         [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public string[] DataCaptionFields { get; set; }
+#if NAV2018
+        [Parameter()] public DataClassification? DataClassification { get; set; }
+#endif
         [Parameter()] public SwitchParameter DataPerCompany { get; set; }
         [Parameter()] public string Description { get; set; }
         [Parameter()] [ValidateRange(1, int.MaxValue)] public int? DrillDownPageID { get; set; }
@@ -26,6 +29,10 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public SwitchParameter LinkedInTransaction { get; set; }
         [Parameter()] public SwitchParameter LinkedObject { get; set; }
         [Parameter()] [ValidateRange(1, int.MaxValue)] public int? LookupPageID { get; set; }
+#if NAV2018
+        [Parameter()] public String ObsoleteReason { get; set; }
+        [Parameter()] public ObsoleteState? ObsoleteState { get; set; }
+#endif
         [Parameter()] public ScriptBlock OnDelete { get; set; }
         [Parameter()] public ScriptBlock OnInsert { get; set; }
         [Parameter()] public ScriptBlock OnModify { get; set; }
@@ -48,6 +55,9 @@ namespace UncommonSense.CBreeze.Automation
 
             table.Properties.CaptionML.Set(CaptionML);
             table.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
+#if NAV2018
+            table.Properties.DataClassification = DataClassification;
+#endif
             table.Properties.DataPerCompany = NullableBooleanFromSwitch(nameof(DataPerCompany));
             table.Properties.Description = Description;
             table.Properties.DrillDownPageID = DrillDownPageID;
@@ -58,6 +68,10 @@ namespace UncommonSense.CBreeze.Automation
             table.Properties.LinkedInTransaction = NullableBooleanFromSwitch(nameof(LinkedInTransaction));
             table.Properties.LinkedObject = NullableBooleanFromSwitch(nameof(LinkedObject));
             table.Properties.LookupPageID = LookupPageID;
+#if NAV2018
+            table.Properties.ObsoleteState = ObsoleteState;
+            table.Properties.ObsoleteReason = ObsoleteReason;
+#endif
             table.Properties.OnInsert.Set(OnInsert);
             table.Properties.OnModify.Set(OnModify);
             table.Properties.OnDelete.Set(OnDelete);

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UncommonSense.CBreeze.Common;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -9,12 +10,19 @@ namespace UncommonSense.CBreeze.Core
     {
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private FieldListProperty dataCaptionFields = new FieldListProperty("DataCaptionFields");
+#if NAV2018
+        private DataClassificationProperty dataClassification = new DataClassificationProperty("DataClassification");
+#endif
         private NullableBooleanProperty dataPerCompany = new NullableBooleanProperty("DataPerCompany");
         private StringProperty description = new StringProperty("Description");
         private PageReferenceProperty drillDownPageID = new PageReferenceProperty("DrillDownPageID");
         private NullableBooleanProperty linkedInTransaction = new NullableBooleanProperty("LinkedInTransaction");
         private NullableBooleanProperty linkedObject = new NullableBooleanProperty("LinkedObject");
         private PageReferenceProperty lookupPageID = new PageReferenceProperty("LookupPageID");
+#if NAV2018
+        private ObsoleteStateProperty obsoleteState = new ObsoleteStateProperty("ObsoleteState");
+        private StringProperty obsoleteReason = new StringProperty("ObsoleteReason");
+#endif
         private TriggerProperty onDelete = new TriggerProperty("OnDelete");
         private TriggerProperty onInsert = new TriggerProperty("OnInsert");
         private TriggerProperty onModify = new TriggerProperty("OnModify");
@@ -48,6 +56,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(tableType); // 5044
             innerList.Add(externalName); // 5045
             innerList.Add(externalSchema);
+#endif
+#if NAV2018
+            innerList.Add(obsoleteState);
+            innerList.Add(obsoleteReason);
+            innerList.Add(dataClassification);
 #endif
             innerList.Add(captionML); // 8629
             innerList.Add(description); // 15386
@@ -147,6 +160,28 @@ namespace UncommonSense.CBreeze.Core
                 this.lookupPageID.Value = value;
             }
         }
+
+#if NAV2018
+
+        public ObsoleteState? ObsoleteState
+        {
+            get => obsoleteState.Value;
+            set => obsoleteState.Value = value;
+        }
+
+        public string ObsoleteReason
+        {
+            get => obsoleteReason.Value;
+            set => obsoleteReason.Value = value;
+        }
+
+
+        public DataClassification? DataClassification
+        {
+            get => dataClassification.Value;
+            set => dataClassification.Value = value;
+        }
+#endif
 
         public Trigger OnDelete
         {

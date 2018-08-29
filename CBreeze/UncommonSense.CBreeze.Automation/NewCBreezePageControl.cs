@@ -157,7 +157,9 @@ namespace UncommonSense.CBreeze.Automation
             pageControl.Properties.Name = Name;
             pageControl.Properties.NotBlank = NullableBooleanFromSwitch(nameof(NotBlank));
             pageControl.Properties.Numeric = NullableBooleanFromSwitch(nameof(Numeric));
+#if NAV2018
             pageControl.Properties.ODataEDMType = ODataEdmType;
+#endif
             pageControl.Properties.OnAssistEdit.Set(OnAssistEdit);
             pageControl.Properties.OnControlAddIn.Set(OnControlAddIn);
             pageControl.Properties.OnDrillDown.Set(OnDrillDown);

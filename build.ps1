@@ -21,6 +21,8 @@ function Invoke-MSBuild
         [string]$Verbosity = 'quiet'
     )
 
+    nuget restore "$SolutionFolder"
+
     $SolutionFileName = Join-Path -Path $SolutionFolder -ChildPath 'UncommonSense.CBreeze.sln'
 
     $DefineConstants = switch ($NAVVersion)

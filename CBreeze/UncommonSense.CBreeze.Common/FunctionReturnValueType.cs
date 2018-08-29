@@ -13,9 +13,12 @@ namespace UncommonSense.CBreeze.Common
         Byte,
         Char,
 #if NAV2017
-        ClientType, 
+        ClientType,
 #endif
         Code,
+#if NAV2018
+        DataClassification,
+#endif
         Date,
         DateTime,
         Decimal,
@@ -34,10 +37,16 @@ namespace UncommonSense.CBreeze.Common
         TableConnectionType,
         TestPermissions,
 #endif
+#if NAV2018
+        SessionSettings,
+#endif
         Text,
 #if NAV2017
         TextEncoding,
 #endif
-        Time
+        Time,
+#if NAV2018
+        Verbosity
+#endif
     }
 }

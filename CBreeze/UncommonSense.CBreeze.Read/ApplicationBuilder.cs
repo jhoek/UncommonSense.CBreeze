@@ -604,6 +604,10 @@ namespace UncommonSense.CBreeze.Read
                 case "FunctionVisibility":
                     currentFunction.FunctionVisibility = values[0].ToNullableEnum<FunctionVisibility>();
                     break;
+
+                case "ServiceEnabled":
+                    currentFunction.ServiceEnabled = true;
+                    break;
 #endif
 
 #if NAV2017
@@ -758,6 +762,13 @@ namespace UncommonSense.CBreeze.Read
                     var codeunitVariable = variables.Add(new CodeunitVariable(variableID, variableName, variableSubType.ToInteger()));
                     codeunitVariable.Dimensions = variableDimensions;
                     break;
+
+#if NAV2018
+                case VariableType.DataClassification:
+                    var dataClassificationVariable = variables.Add(new DataClassificationVariable(variableID, variableName));
+                    dataClassificationVariable.Dimensions = variableDimensions;
+                    break;
+#endif
 
                 case VariableType.Date:
                     var dateVariable = variables.Add(new DateVariable(variableID, variableName));
@@ -916,6 +927,13 @@ namespace UncommonSense.CBreeze.Read
                     reportFormatVariable.Dimensions = variableDimensions;
                     break;
 
+#if NAV2018
+                case VariableType.SessionSettings:
+                    var sessionSettingsVariable = variables.Add(new SessionSettingsVariable(variableID, variableName));
+                    sessionSettingsVariable.Dimensions = variableDimensions;
+                    break;
+#endif
+
                 case VariableType.TableConnectionType:
                     var tableConnectionTypeVariable = variables.Add(new TableConnectionTypeVariable(variableID, variableName));
                     tableConnectionTypeVariable.Dimensions = variableDimensions;
@@ -963,6 +981,13 @@ namespace UncommonSense.CBreeze.Read
                     var variantVariable = variables.Add(new VariantVariable(variableID, variableName));
                     variantVariable.Dimensions = variableDimensions;
                     break;
+
+#if NAV2018
+                case VariableType.Verbosity:
+                    var verbosityVariable = variables.Add(new VerbosityVariable(variableID, variableName));
+                    verbosityVariable.Dimensions = variableDimensions;
+                    break;
+#endif
 
                 case VariableType.XmlPort:
                     var xmlportVariable = variables.Add(new XmlPortVariable(variableID, variableName, variableSubType.ToInteger()));
@@ -1297,6 +1322,23 @@ namespace UncommonSense.CBreeze.Read
                     var xmlPortParameter = parameters.Add(new XmlPortParameter(parameterName, parameterSubType.ToInteger(), parameterVar, parameterID));
                     xmlPortParameter.Dimensions = parameterDimensions;
                     break;
+
+#if NAV2018
+                case ParameterType.DataClassification:
+                    var dataClassificationParameter = parameters.Add(new DataClassificationParameter(parameterName, parameterVar, parameterID));
+                    dataClassificationParameter.Dimensions = parameterDimensions;
+                    break;
+
+                case ParameterType.SessionSettings:
+                    var sessionSettingsParameter = parameters.Add(new SessionSettingsParameter(parameterName, parameterVar, parameterID));
+                    sessionSettingsParameter.Dimensions = parameterDimensions;
+                    break;
+
+                case ParameterType.Verbosity:
+                    var verbosityParameter = parameters.Add(new VerbosityParameter(parameterName, parameterVar, parameterID));
+                    verbosityParameter.Dimensions = parameterDimensions;
+                    break;
+#endif
 
                 default:
                     throw new ArgumentOutOfRangeException("parameterType");
