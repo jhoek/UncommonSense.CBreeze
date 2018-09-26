@@ -192,5 +192,4 @@ NewCBreezeParameter.cs
 NewCBreezeTableField.cs
 NewCBreezeFunction.cs
 NewCBreezeXmlPortNode.cs
-/.vs/UncommonSense.CBreeze/v15/Server/sqlite3/storage.ide
-/.vs/UncommonSense.CBreeze/v15/Server/sqlite3/db.lock
+.vs
