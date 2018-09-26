@@ -1,7 +1,7 @@
 ﻿using namespace UncommonSense.CBreeze.Core
 
 <#
-.Synopsis
+.SYNOPSIS
    Adds a posting date field to a C/Breeze application
 #>
 function Add-CBreezePostingDate

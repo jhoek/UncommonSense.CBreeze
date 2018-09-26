@@ -1,5 +1,5 @@
 ﻿<#
-.Synopsis
+.SYNOPSIS
 Adds a setup table style Primary Key field to a C/Breeze application
 #>
 function Add-CBreezeSetupPrimaryKey

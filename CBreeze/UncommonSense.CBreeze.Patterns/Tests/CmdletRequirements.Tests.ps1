@@ -24,4 +24,9 @@ Describe 'UncommonSense.CBreeze.Patterns cmdlets' {
         Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 | 
             Should -Not -FileContentMatch 'FIXME'
     }
+
+    It 'Cmdlet documentation contains at least a synopsis' {
+        Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 |
+            Should -FileContentMatchExactly '.SYNOPSIS'
+    }
 }

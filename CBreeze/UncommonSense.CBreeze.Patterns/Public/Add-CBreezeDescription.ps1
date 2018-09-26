@@ -1,7 +1,7 @@
 ﻿using namespace UncommonSense.CBreeze.Core
 
 <#
-.Synopsis
+.SYNOPSIS
    Add description (or name) table field(s) to a C/Breeze table
 #>
 function Add-CBreezeDescription

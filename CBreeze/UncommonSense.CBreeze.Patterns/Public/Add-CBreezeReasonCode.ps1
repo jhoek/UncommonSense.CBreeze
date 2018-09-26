@@ -1,5 +1,5 @@
 ﻿<#
-.Synopsis
+.SYNOPSIS
    Adds a reason code to a C/Breeze application
 #>
 function Add-CBreezeReasonCode

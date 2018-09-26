@@ -1,6 +1,6 @@
 ﻿using namespace UncommonSense.CBreeze.Core
 <#
-.Synopsis
+.SYNOPSIS
    Add a date filter to a C/Breeze application
 #>
 function Add-CBreezeDateFilter

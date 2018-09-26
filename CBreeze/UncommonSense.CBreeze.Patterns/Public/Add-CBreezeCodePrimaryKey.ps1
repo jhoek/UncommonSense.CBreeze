@@ -1,7 +1,7 @@
 ﻿using namespace UncommonSense.CBreeze.Core
 
 <#
-.Synopsis
+.SYNOPSIS
    Adds a Code primary key field to a C/Breeze application
 #>
 function Add-CBreezeCodePrimaryKey
