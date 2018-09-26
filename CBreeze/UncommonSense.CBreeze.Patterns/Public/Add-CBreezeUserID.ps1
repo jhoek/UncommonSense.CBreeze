@@ -13,7 +13,7 @@ function Add-CBreezeUserID
         [Page[]]$Page,
 
         [ValidateNotNullOrEmpty()]
-        [string]$Name = 'User ID',
+        [string]$FieldName = 'User ID',
 
         [Switch]$ReadOnly,
 
@@ -27,7 +27,7 @@ function Add-CBreezeUserID
 
         $UserIDField = $Table | 
             Add-CBreezeCodeTableField `
-            -Name $Name `
+            -Name $FieldName `
             -DataLength 50 `
             -AutoCaption `
             -Editable:$Editable `
@@ -36,7 +36,7 @@ function Add-CBreezeUserID
             if (-not $ReadOnly)
             {
                 CodeunitVariable UserMgt -SubType 418
-                "UserMgt.ValidateUserID(`"$Name`");"
+                "UserMgt.ValidateUserID(`"$FieldName`");"
             }
         } `
             -OnLookup {
@@ -45,12 +45,12 @@ function Add-CBreezeUserID
             if ($ReadOnly)
             {
                 CodeVariable Dummy -DataLength 50
-                "Dummy := `"$Name`";"
+                "Dummy := `"$FieldName`";"
                 "UserMgt.LookupUserID(Dummy);"
             }
             else
             {
-                "UserMgt.LookupUserID(`"$Name`");"
+                "UserMgt.LookupUserID(`"$FieldName`");"
             }
         } `
             -SubObjects {

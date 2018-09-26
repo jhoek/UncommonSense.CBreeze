@@ -13,7 +13,7 @@ function Add-CBreezeDateFilter
 
         [ValidateNotNullOrEmpty()]
         [ValidateLength(1, 30)]
-        [string]$Name = 'Date Filter',
+        [string]$FieldName = 'Date Filter',
 
         [string]$DateFilterFieldVariable
     )
@@ -22,7 +22,7 @@ function Add-CBreezeDateFilter
     {
         $DateFilterField = $Table | 
             Add-CBreezeDateTableField `
-            -Name $Name `
+            -Name $FieldName `
             -AutoCaption `
             -FieldClass FlowFilter `
             -PassThru

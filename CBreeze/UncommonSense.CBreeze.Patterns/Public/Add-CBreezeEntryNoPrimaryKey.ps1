@@ -12,7 +12,7 @@ function Add-CBreezeEntryNoPrimaryKey
 
         [ValidateNotNullOrEmpty()]
         [ValidateLength(1, 30)]
-        [string]$Name = 'Entry No.',
+        [string]$FieldName = 'Entry No.',
 
         [string]$KeyVariable,
         [string]$FieldVariable,
@@ -28,7 +28,7 @@ function Add-CBreezeEntryNoPrimaryKey
 
         $EntryNoField = $Table | 
             Add-CBreezeIntegerTableField `
-            -Name $Name `
+            -Name $FieldName `
             -AutoCaption `
             -PassThru
 

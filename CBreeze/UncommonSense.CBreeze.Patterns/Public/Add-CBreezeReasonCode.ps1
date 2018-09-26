@@ -15,7 +15,7 @@ function Add-CBreezeReasonCode
 
         [ValidateNotNullOrEmpty()]
         [ValidateLength(1, 30)]
-        [string]$Name = 'Reason Code',
+        [string]$FieldName = 'Reason Code',
 
         [string]$ReasonCodeFieldVariable,
         [string]$ReasonCodeControlVariable
@@ -25,7 +25,7 @@ function Add-CBreezeReasonCode
     {
         $ReasonCodeField = $Table | 
             Add-CBreezeCodeTableField `
-            -Name $Name `
+            -Name $FieldName `
             -AutoCaption `
             -DataLength 10 `
             -PassThru `
