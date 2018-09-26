@@ -29,4 +29,9 @@ Describe 'UncommonSense.CBreeze.Patterns cmdlets' {
         Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 |
             Should -FileContentMatchExactly '.SYNOPSIS'
     }
+
+    It 'Cmdlets no longer have a $Result variable' {
+        Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 |
+            Should -Not -FileContentMatch '$Result'
+    }
 }
