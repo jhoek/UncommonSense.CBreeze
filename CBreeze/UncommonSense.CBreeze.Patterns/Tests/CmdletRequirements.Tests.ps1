@@ -19,4 +19,9 @@ Describe 'UncommonSense.CBreeze.Patterns cmdlets' {
         Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 | 
             Should -Not -FileContentMatch '\$Range'
     }
+
+    It 'Cmdlets should not contain FIXMEs' {
+        Get-ChildItem -Path $PSScriptRoot/../Public/*.ps1 | 
+            Should -Not -FileContentMatch 'FIXME'
+    }
 }
