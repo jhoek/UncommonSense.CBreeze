@@ -1,13 +1,20 @@
 ﻿<#
-.Synopsis
+.SYNOPSIS
    Adds a subsidiary entity type to a C/Breeze application
 #>
 function Add-CBreezeSubsidiaryEntityType
 {
+    [Alias('SubsidiaryEntityType')]
+    [OutputType([Table])]
     Param
     (
-        [Parameter(Mandatory, ValueFromPipeline)]
-        [UncommonSense.CBreeze.Core.Application]$Application,
+        [Parameter(Mandatory)]
+        [ValidateRange(1, [int]::MaxValue)]
+        [int]$TableID,
+
+        [Parameter(Mandatory)]
+        [ValidateRange(1, [int]::MaxValue)]
+        [int]$PageID,
 
         [Parameter(Mandatory)]
         [ValidateLength(1, 30)]
@@ -24,41 +31,69 @@ function Add-CBreezeSubsidiaryEntityType
         [string]$DifferentiatorType = 'None',
 
         [DateTime]$DateTime,
-
         [bool]$Modified,
-
         [string]$VersionList,
 
-        [Switch]$PassThru        
+        [string]$TableVariable,
+        [string]$PageVariable,
+        [string]$PrimaryKeyVariable,
+        [string]$ForeignKeyFieldVariable,
+        [string]$DifferentiatorFieldVariable,
+        [string]$DifferentiatorControlVariable,
+        [string]$DescriptionFieldVariable,
+        [string]$DescriptionControlVariable
     )
 
-    Process
-    {
         # Verify that all subsidiary-to tables have a valid primary key
         foreach ($Item in $SubsidiaryTo)
         {
             GetSubsidiaryToPrimaryKeyField($Item) | Out-Null
         }
 
-        $Result = @{}
-        $Result.Table = $Application | Add-CBreezeObject -Type Table -Name $Name -DateTime $DateTime -Modified $Modified -VersionList $VersionList -AutoCaption -PassThru -Range $Range
-        $Result.Page = $Application | Add-CBreezeObject -Type Page -Name $PluralName -DateTime $DateTime -Modified $Modified -VersionList $VersionList -PageType List -SourceTable $Result.Table.ID -AutoCaption -PassThru -Range $Range
-        $Result.Fields = @{}
-        $Result.Fields.SubsidiaryTo = [Ordered]@{}
-        $Result.Controls = @{}
+        New-CBreezeTable `
+            -ID $TableID `
+            -Name $Name `
+            -DateTime $DateTime `
+            -Modified:$Modified `
+            -VersionList $VersionList `
+            -LookupPageID $PageID `
+            -DrillDownPageID $PageID `
+            -AutoCaption `
+            -OutVariable Table
 
-        $Result.Table.Properties.LookupPageID = $Result.Page.ID
-        $Result.Table.Properties.DrillDownPageID = $Result.Page.ID
+        New-CBreezePage `
+            -ID $PageID `
+            -Name $PluralName `
+            -DateTime $DateTime `
+            -Modified:$Modified `
+            -VersionList $VersionList `
+            -PageType List `
+            -SourceTable $TablID `
+            -AutoCaption `
+            -OutVariable Page
 
         $PrimaryKeyFieldNames = @()
-        $Repeater = $Result.Page | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer -Range $Range
+        $ForeignKeyFields = @{}
+        $Repeater = $Page | Get-CBreezePageControlGroup -GroupType Repeater -Position FirstWithinContainer
 
         foreach ($Item in $SubsidiaryTo)
         {
             $TheirPrimaryKeyField = GetSubsidiaryToPrimaryKeyField($Item)
 
-            $Result.Fields.SubsidiaryTo.Add($Item, ($Result.Table | Add-CBreezeTableField -Type Code -PrimaryKeyFieldNoRange -Name "$($Item.Name) $($TheirPrimaryKeyField.Name)" -DataLength $TheirPrimaryKeyField.DataLength -AutoCaption -Range $Range -PassThru -NotBlank $true))
-            $Result.Fields.SubsidiaryTo[$Item] | Add-CBreezeTableRelation -TableName $Item.Name
+            $ForeignKeyFields.Add(
+                $Item, 
+                ($Table | 
+                    Add-CBreezeCodeTableField `
+                        -Name "$($Item.Name) $($TheirPrimaryKeyField.Name)" `
+                        -DataLength $TheirPrimaryKeyField.DataLength `
+                        -AutoCaption `
+                        -NotBlank `
+                        {
+                            New-CBreezeTableRelation -TableName $Item.Name
+                        }
+                )
+            )
+
             $Result.Controls.Add($Item.Name, ($Repeater | Add-CBreezePageControl -Type Field -SourceExpr $Result.Fields.SubsidiaryTo[$Item].QuotedName -Range $Range -PassThru))
             
             $PrimaryKeyFieldNames += $Result.Fields.SubsidiaryTo[$Item].Name
