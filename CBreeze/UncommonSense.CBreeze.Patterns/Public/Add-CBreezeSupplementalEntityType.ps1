@@ -15,9 +15,11 @@ function Add-CBreezeSupplementalEntityType
         [int]$PageID,
 
         [Parameter(Mandatory)]
+        [ValidateLength(1, 30)]
         [string]$Name,
 
         [ValidateNotNullOrEmpty()]
+        [ValidateLength(1, 30)]
         [string]$PluralName = [UncommonSense.CBreeze.Core.StringExtensionMethods]::MakePlural($Name),
 
         [DateTime]$DateTime,
