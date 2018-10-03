@@ -1,8 +1,5 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using UncommonSense.CBreeze.Common;
+using System.Linq;
 
 namespace UncommonSense.CBreeze.Core
 {
@@ -18,6 +15,18 @@ namespace UncommonSense.CBreeze.Core
         {
             TestNameNotNullOrEmpty(item);
             TestNameUnique(item);
+        }
+
+        protected override void InsertItem(int index, Variable item)
+        {
+            base.InsertItem(index, item);
+            item.Container = this;
+        }
+
+        protected override void RemoveItem(int index)
+        {
+            this[index].Container = null;
+            base.RemoveItem(index);
         }
     }
 }

@@ -18,6 +18,7 @@
 	var skipProperties = new List<string>() {
 		"ID",
 		"Name",
+		"Container"
 		//"Values",
 	};
 
