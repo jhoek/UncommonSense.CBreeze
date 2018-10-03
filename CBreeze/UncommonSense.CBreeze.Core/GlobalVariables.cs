@@ -14,5 +14,6 @@ namespace UncommonSense.CBreeze.Core
 
         public Code Code { get; protected set; }
         public override INode ParentNode => Code;
+        public override string ToString() => "GlobalVariables";
     }
 }

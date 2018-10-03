@@ -15,6 +15,8 @@ namespace UncommonSense.CBreeze.Core
             Container = container;
         }
 
+        public override string ToString() => "Code Lines";
+
         public IEnumerable<INode> ChildNodes
         {
             get

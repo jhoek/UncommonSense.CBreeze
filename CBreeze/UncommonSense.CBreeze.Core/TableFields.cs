@@ -7,6 +7,8 @@ namespace UncommonSense.CBreeze.Core
 {
     public class TableFields : IntegerKeyedAndNamedContainer<TableField>, INode
     {
+        public override string ToString() => "Fields";
+
         internal TableFields(Table table)
         {
             Table = table;

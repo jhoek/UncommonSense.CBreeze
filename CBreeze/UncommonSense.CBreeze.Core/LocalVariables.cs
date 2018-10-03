@@ -7,5 +7,6 @@ namespace UncommonSense.CBreeze.Core
 {
     public abstract class LocalVariables : Variables
     {
+        public override string ToString() => "LocalVariables";
     }
 }

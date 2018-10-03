@@ -13,6 +13,8 @@ namespace UncommonSense.CBreeze.Core
             Code = code;
         }
 
+        public override string ToString() => "Functions";
+
         public IEnumerable<INode> ChildNodes => this.Cast<INode>();
 
         public Code Code

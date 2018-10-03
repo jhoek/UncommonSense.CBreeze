@@ -5,6 +5,8 @@ namespace UncommonSense.CBreeze.Core
 {
     public class TableKeys : Collection<TableKey>, INode
     {
+        public override string ToString() => "Keys";
+
         internal TableKeys(Table table)
         {
             Table = table;

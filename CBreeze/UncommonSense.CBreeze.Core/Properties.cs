@@ -7,6 +7,8 @@ namespace UncommonSense.CBreeze.Core
 {
     public abstract class Properties : IProperties, INode
     {
+        public override string ToString() => "Properties";
+
         protected List<Property> innerList = new List<Property>();
 
         public T ByName<T>(string name) where T : Property
