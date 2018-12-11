@@ -44,24 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cmdlets\NewCardPageDefinitionCmdlet.cs" />
-    <Compile Include="Cmdlets\NewEntityTypeCmdlet.cs" />
-    <Compile Include="Cmdlets\NewMasterEntityTypeCmdlet.cs" />
-    <Compile Include="Cmdlets\NewPageDefinitionCmdlet.cs" />
-    <Compile Include="Cmdlets\NewSingleTableEntityTypeCmdlet.cs" />
-    <Compile Include="EntityTypes\EntityType.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="EntityTypes\MasterEntityType.cs" />
-    <Compile Include="PageDefinitions\CardPageDefinition.cs" />
-    <Compile Include="PageDefinitions\ListPageDefinition.cs" />
-    <Compile Include="PageDefinitions\PageDefinition.cs" />
+    <Compile Include="CustomEntityTypeAttribute.cs" />
+    <Compile Include="ConvertToCBreezeApplicationCmdlet.cs" />
+    <Compile Include="CustomEntityType.cs" />
+    <Compile Include="EntityType.cs" />
+    <Compile Include="EntityTypePage.cs" />
+    <Compile Include="EntityTypeTable.cs" />
+    <Compile Include="EntityTypeTableField.cs" />
+    <Compile Include="JournalEntityType.cs" />
+    <Compile Include="MasterEntityType.cs" />
+    <Compile Include="WhenParentIsDeleted.cs" />
+    <Compile Include="ParentEntityTypeRelationship.cs" />
+    <Compile Include="NewEntityTypeRelationshipCmdlet.cs" />
+    <Compile Include="PrimaryKeyType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="test.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UncommonSense.CBreeze.Core\UncommonSense.CBreeze.Core.csproj">
