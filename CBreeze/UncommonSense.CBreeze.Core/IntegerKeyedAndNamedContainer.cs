@@ -16,7 +16,20 @@ namespace UncommonSense.CBreeze.Core
         protected abstract IEnumerable<int> DefaultRange { get; }
         protected virtual bool UseAlternativeRange => false;
 
-        protected override int GetNextAvailableKey() => (Range ?? (UseAlternativeRange ? AlternativeRange : DefaultRange)).Except(ExistingIDs).First();
+        protected IEnumerable<int> EffectiveRange => 
+            Range ?? (UseAlternativeRange ? AlternativeRange : DefaultRange);
+
+        protected override int GetNextAvailableKey()
+        {
+            try
+            {
+                return EffectiveRange.Except(ExistingIDs).First();
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new InvalidOperationException($"No available IDs remain in the given range ({EffectiveRange.Min()}..{EffectiveRange.Max()}).", e);
+            }
+        }
 
         protected override bool IsUninitializedKey(int key) => key == 0;
     }
