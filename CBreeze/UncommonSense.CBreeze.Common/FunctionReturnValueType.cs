@@ -19,6 +19,9 @@ namespace UncommonSense.CBreeze.Common
 #if NAV2018
         DataClassification,
 #endif
+#if NAVBC
+        DataScope,
+#endif
         Date,
         DateTime,
         Decimal,

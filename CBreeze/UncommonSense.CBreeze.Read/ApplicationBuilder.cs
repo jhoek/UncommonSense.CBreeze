@@ -770,6 +770,13 @@ namespace UncommonSense.CBreeze.Read
                     break;
 #endif
 
+#if NAVBC
+                case VariableType.DataScope:
+                    var dataScopeVariable = variables.Add(new DataScopeVariable(variableID, variableName));
+                    dataScopeVariable.Dimensions = variableDimensions;
+                    break;
+#endif
+
                 case VariableType.Date:
                     var dateVariable = variables.Add(new DateVariable(variableID, variableName));
                     dateVariable.Dimensions = variableDimensions;
