@@ -73,6 +73,7 @@ namespace UncommonSense.CBreeze.Automation
 			groupNode.Properties.ParentNodeID = ParentNodeID;
 			groupNode.Properties.Visible = NullableBooleanFromSwitch(nameof(Visible));
 			groupNode.Properties.CaptionML.Set(CaptionML);
+			groupNode.Properties.ApplicationArea.Set(ApplicationArea);
 			yield return groupNode;
 		}
 
@@ -140,6 +141,12 @@ namespace UncommonSense.CBreeze.Automation
 		[Parameter(Mandatory = true, Position = 1, ParameterSetName = ParameterSetNames.AddWithoutID)]
 		[Parameter(Mandatory = true, Position = 2, ParameterSetName = ParameterSetNames.AddWithID)]
 		public Hashtable CaptionML 
+		{
+			get; set;
+		}
+
+		[Parameter()]
+		public String[] ApplicationArea 
 		{
 			get; set;
 		}
