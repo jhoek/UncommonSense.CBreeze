@@ -12,7 +12,7 @@ namespace UncommonSense.CBreeze.Parse.Demo
         {
             var myListener = new MyListener();
             var desktopFolderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var sourceFolderName = Path.Combine(desktopFolderName, "be");
+            var sourceFolderName = Path.Combine(desktopFolderName, "objects");
 
             var parser = new Parser();
             parser.Listener = myListener;
