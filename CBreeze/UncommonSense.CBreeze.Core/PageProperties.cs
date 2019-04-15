@@ -11,6 +11,9 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2018
         private StringProperty apiVersion = new StringProperty("APIVersion");
 #endif
+#if NAVBC
+        private TagListProperty applicationArea = new TagListProperty("ApplicationArea");
+#endif
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty cardPageID = new StringProperty("CardPageID");
@@ -62,6 +65,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(permissions);
             innerList.Add(editable);
             innerList.Add(captionML);
+#if NAVBC
+            innerList.Add(applicationArea);
+#endif
             innerList.Add(description);
             innerList.Add(saveValues);
             innerList.Add(multipleNewLines);
@@ -127,7 +133,9 @@ namespace UncommonSense.CBreeze.Core
         }
 
 #endif
-
+#if NAVBC
+        public TagList ApplicationArea => applicationArea.Value;
+#endif
         public bool? AutoSplitKey
         {
             get
