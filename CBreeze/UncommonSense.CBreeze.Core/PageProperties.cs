@@ -7,6 +7,9 @@ namespace UncommonSense.CBreeze.Core
 {
     public class PageProperties : Properties
     {
+#if NAVBC
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+#endif
         private ActionListProperty actionList = new ActionListProperty("ActionList");
 #if NAV2018
         private StringProperty apiVersion = new StringProperty("APIVersion");
@@ -66,6 +69,9 @@ namespace UncommonSense.CBreeze.Core
             Page = page;
 
             innerList.Add(permissions);
+#if NAVBC
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(editable);
             innerList.Add(captionML);
 #if NAVBC
@@ -121,6 +127,10 @@ namespace UncommonSense.CBreeze.Core
         public Page Page { get; protected set; }
 
         public override INode ParentNode => Page;
+
+#if NAVBC
+        public AccessByPermission AccessByPermission => accessByPermission.Value;
+#endif
 
         public ActionList ActionList
         {
