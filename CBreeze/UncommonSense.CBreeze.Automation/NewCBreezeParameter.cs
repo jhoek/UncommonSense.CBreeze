@@ -39,6 +39,31 @@ protected override IEnumerable<DataClassificationParameter> CreateItems()
 	public string Dimensions { get; set; }
 }
 
+[Cmdlet(VerbsCommon.New, "CBreezeDataScopeParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
+[OutputType(typeof(DataScopeParameter))]
+[Alias("DataScopeParameter", "Add-CBreezeDataScopeParameter")]
+public class NewCBreezeDataScopeParameter : NewItemWithIDAndNameCmdlet<DataScopeParameter, int, PSObject>
+{
+protected override IEnumerable<DataScopeParameter> CreateItems()
+	{
+		var dataScopeParameter = new DataScopeParameter(Name, Var, ID);
+		dataScopeParameter.Dimensions = Dimensions;
+		yield return dataScopeParameter;
+	}
+
+	protected override void AddItemToInputObject(DataScopeParameter item, PSObject inputObject)
+	{
+		inputObject.GetParameters().Add(item);	
+	}
+
+
+	[Parameter()]
+	public SwitchParameter Var { get; set; }
+
+	[Parameter()]
+	public string Dimensions { get; set; }
+}
+
 [Cmdlet(VerbsCommon.New, "CBreezeActionParameter", DefaultParameterSetName = ParameterSetNames.NewWithoutID)]
 [OutputType(typeof(ActionParameter))]
 [Alias("ActionParameter", "Add-CBreezeActionParameter")]
