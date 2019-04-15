@@ -1,8 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace UncommonSense.CBreeze.Core
 {
     public class PageProperties : Properties
@@ -11,6 +6,10 @@ namespace UncommonSense.CBreeze.Core
         private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
 #endif
         private ActionListProperty actionList = new ActionListProperty("ActionList");
+#if NAVBC
+        private StringProperty apiPublisher = new StringProperty("APIPublisher");
+        private StringProperty apiGroup = new StringProperty("APIGroup");
+#endif
 #if NAV2018
         private StringProperty apiVersion = new StringProperty("APIVersion");
 #endif
@@ -20,6 +19,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty autoSplitKey = new NullableBooleanProperty("AutoSplitKey");
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
         private StringProperty cardPageID = new StringProperty("CardPageID");
+#if NAVBC
+        private NullableBooleanProperty changeTrackingAllowed = new NullableBooleanProperty("ChangeTrackingAllowed");
+#endif
         private StringProperty dataCaptionExpr = new StringProperty("DataCaptionExpr");
         private FieldListProperty dataCaptionFields = new FieldListProperty("DataCaptionFields");
         private NullableBooleanProperty delayedInsert = new NullableBooleanProperty("DelayedInsert");
@@ -95,6 +97,11 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(usageCategory);
 #endif
             innerList.Add(sourceTableTemporary);
+#if NAVBC
+            innerList.Add(changeTrackingAllowed);
+            innerList.Add(apiPublisher);
+            innerList.Add(apiGroup);
+#endif
 #if NAV2018
             innerList.Add(entitySetName);
             innerList.Add(entityName);
@@ -136,9 +143,23 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.actionList.Value;
+                return actionList.Value;
             }
         }
+
+#if NAVBC
+        public string APIPublisher
+        {
+            get => apiPublisher.Value;
+            set => apiPublisher.Value = value;
+        }
+
+        public string APIGroup
+        {
+            get => apiGroup.Value;
+            set => apiGroup.Value = value;
+        }
+#endif
 
 #if NAV2018
 
@@ -156,11 +177,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.autoSplitKey.Value;
+                return autoSplitKey.Value;
             }
             set
             {
-                this.autoSplitKey.Value = value;
+                autoSplitKey.Value = value;
             }
         }
 
@@ -168,7 +189,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.captionML.Value;
+                return captionML.Value;
             }
         }
 
@@ -176,23 +197,31 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.cardPageID.Value;
+                return cardPageID.Value;
             }
             set
             {
-                this.cardPageID.Value = value;
+                cardPageID.Value = value;
             }
         }
+
+#if NAVBC
+        public bool? ChangeTrackingAllowed
+        {
+            get => changeTrackingAllowed.Value;
+            set => changeTrackingAllowed.Value = value;
+        }
+#endif
 
         public string DataCaptionExpr
         {
             get
             {
-                return this.dataCaptionExpr.Value;
+                return dataCaptionExpr.Value;
             }
             set
             {
-                this.dataCaptionExpr.Value = value;
+                dataCaptionExpr.Value = value;
             }
         }
 
@@ -200,7 +229,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.dataCaptionFields.Value;
+                return dataCaptionFields.Value;
             }
         }
 
@@ -208,11 +237,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.delayedInsert.Value;
+                return delayedInsert.Value;
             }
             set
             {
-                this.delayedInsert.Value = value;
+                delayedInsert.Value = value;
             }
         }
 
@@ -220,11 +249,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.deleteAllowed.Value;
+                return deleteAllowed.Value;
             }
             set
             {
-                this.deleteAllowed.Value = value;
+                deleteAllowed.Value = value;
             }
         }
 
@@ -232,11 +261,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.description.Value;
+                return description.Value;
             }
             set
             {
-                this.description.Value = value;
+                description.Value = value;
             }
         }
 
@@ -244,11 +273,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.editable.Value;
+                return editable.Value;
             }
             set
             {
-                this.editable.Value = value;
+                editable.Value = value;
             }
         }
 
@@ -272,11 +301,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.insertAllowed.Value;
+                return insertAllowed.Value;
             }
             set
             {
-                this.insertAllowed.Value = value;
+                insertAllowed.Value = value;
             }
         }
 
@@ -284,7 +313,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.instructionalTextML.Value;
+                return instructionalTextML.Value;
             }
         }
 
@@ -292,11 +321,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.linksAllowed.Value;
+                return linksAllowed.Value;
             }
             set
             {
-                this.linksAllowed.Value = value;
+                linksAllowed.Value = value;
             }
         }
 
@@ -304,11 +333,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.modifyAllowed.Value;
+                return modifyAllowed.Value;
             }
             set
             {
-                this.modifyAllowed.Value = value;
+                modifyAllowed.Value = value;
             }
         }
 
@@ -316,11 +345,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.multipleNewLines.Value;
+                return multipleNewLines.Value;
             }
             set
             {
-                this.multipleNewLines.Value = value;
+                multipleNewLines.Value = value;
             }
         }
 
@@ -332,7 +361,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onAfterGetCurrRecord.Value;
+                return onAfterGetCurrRecord.Value;
             }
         }
 
@@ -340,7 +369,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onAfterGetRecord.Value;
+                return onAfterGetRecord.Value;
             }
         }
 
@@ -348,7 +377,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onClosePage.Value;
+                return onClosePage.Value;
             }
         }
 
@@ -356,7 +385,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onDeleteRecord.Value;
+                return onDeleteRecord.Value;
             }
         }
 
@@ -364,7 +393,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onFindRecord.Value;
+                return onFindRecord.Value;
             }
         }
 
@@ -372,7 +401,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onInit.Value;
+                return onInit.Value;
             }
         }
 
@@ -380,7 +409,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onInsertRecord.Value;
+                return onInsertRecord.Value;
             }
         }
 
@@ -388,7 +417,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onModifyRecord.Value;
+                return onModifyRecord.Value;
             }
         }
 
@@ -396,7 +425,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onNewRecord.Value;
+                return onNewRecord.Value;
             }
         }
 
@@ -404,7 +433,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onNextRecord.Value;
+                return onNextRecord.Value;
             }
         }
 
@@ -412,7 +441,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onOpenPage.Value;
+                return onOpenPage.Value;
             }
         }
 
@@ -420,7 +449,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onQueryClosePage.Value;
+                return onQueryClosePage.Value;
             }
         }
 
@@ -428,11 +457,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.pageType.Value;
+                return pageType.Value;
             }
             set
             {
-                this.pageType.Value = value;
+                pageType.Value = value;
             }
         }
 
@@ -440,7 +469,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.permissions.Value;
+                return permissions.Value;
             }
         }
 
@@ -448,11 +477,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.populateAllFields.Value;
+                return populateAllFields.Value;
             }
             set
             {
-                this.populateAllFields.Value = value;
+                populateAllFields.Value = value;
             }
         }
 
@@ -460,7 +489,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.promotedActionCategoriesML.Value;
+                return promotedActionCategoriesML.Value;
             }
         }
 
@@ -468,11 +497,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.refreshOnActivate.Value;
+                return refreshOnActivate.Value;
             }
             set
             {
-                this.refreshOnActivate.Value = value;
+                refreshOnActivate.Value = value;
             }
         }
 
@@ -480,11 +509,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.saveValues.Value;
+                return saveValues.Value;
             }
             set
             {
-                this.saveValues.Value = value;
+                saveValues.Value = value;
             }
         }
 
@@ -492,11 +521,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.showFilter.Value;
+                return showFilter.Value;
             }
             set
             {
-                this.showFilter.Value = value;
+                showFilter.Value = value;
             }
         }
 
@@ -504,11 +533,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.sourceTable.Value;
+                return sourceTable.Value;
             }
             set
             {
-                this.sourceTable.Value = value;
+                sourceTable.Value = value;
             }
         }
 
@@ -516,11 +545,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.sourceTableTemporary.Value;
+                return sourceTableTemporary.Value;
             }
             set
             {
-                this.sourceTableTemporary.Value = value;
+                sourceTableTemporary.Value = value;
             }
         }
 
@@ -528,7 +557,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.sourceTableView.Value;
+                return sourceTableView.Value;
             }
         }
 
