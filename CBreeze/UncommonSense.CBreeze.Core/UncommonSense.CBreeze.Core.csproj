@@ -156,6 +156,8 @@
     <Compile Include="TestPermissionsProperty.cs" />
     <Compile Include="TestPermissionsVariable.cs" />
     <Compile Include="TriggerVariables.cs" />
+    <Compile Include="UsageCategory.cs" />
+    <Compile Include="UsageCategoryProperty.cs" />
     <Compile Include="VerbosityParameter.cs" />
     <Compile Include="VerbosityVariable.cs" />
     <Compile Include="XmlPortNamespace.cs" />

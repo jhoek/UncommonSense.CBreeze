@@ -120,6 +120,9 @@ namespace UncommonSense.CBreeze.Write
                 TypeSwitch.Case<ObsoleteStateProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
                 TypeSwitch.Case<DataClassificationProperty>(p => WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
 #endif
+#if NAVBC
+                TypeSwitch.Case<UsageCategoryProperty>(p=>WriteSimpleProperty(p.Name, p.Value.ToString(), isLastProperty, writer)),
+#endif
             TypeSwitch.Default(() => throw new ArgumentOutOfRangeException($"Don't know how to write property type {property.GetType().FullName}."))
             );
         }

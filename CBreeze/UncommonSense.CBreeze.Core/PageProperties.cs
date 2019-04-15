@@ -57,6 +57,9 @@ namespace UncommonSense.CBreeze.Core
         private TableReferenceProperty sourceTable = new TableReferenceProperty("SourceTable");
         private NullableBooleanProperty sourceTableTemporary = new NullableBooleanProperty("SourceTableTemporary");
         private TableViewProperty sourceTableView = new TableViewProperty("SourceTableView");
+#if NAVBC
+        private UsageCategoryProperty usageCategory = new UsageCategoryProperty("UsageCategory");
+#endif
 
         internal PageProperties(Page page)
         {
@@ -82,6 +85,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(sourceTableView);
             innerList.Add(dataCaptionFields);
             innerList.Add(pageType);
+#if NAVBC
+            innerList.Add(usageCategory);
+#endif
             innerList.Add(sourceTableTemporary);
 #if NAV2018
             innerList.Add(entitySetName);
@@ -515,5 +521,13 @@ namespace UncommonSense.CBreeze.Core
                 return this.sourceTableView.Value;
             }
         }
+
+#if NAVBC
+        public UsageCategory? UsageCategory
+        {
+            get => usageCategory.Value;
+            set => usageCategory.Value = value;
+        }
+#endif
     }
 }

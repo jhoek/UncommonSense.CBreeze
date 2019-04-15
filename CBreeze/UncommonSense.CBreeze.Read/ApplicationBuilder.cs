@@ -352,6 +352,9 @@ namespace UncommonSense.CBreeze.Read
                 TypeSwitch.Case<TextTypeProperty>(p => p.Value = propertyValue.ToEnum<TextType>()),
                 TypeSwitch.Case<TotalsMethodProperty>(p => p.Value = propertyValue.ToEnum<TotalsMethod>()),
                 TypeSwitch.Case<TransactionTypeProperty>(p => p.Value = propertyValue.ToEnum<TransactionType>()),
+#if NAVBC
+                TypeSwitch.Case<UsageCategoryProperty>(p=>p.Value = propertyValue.ToEnum<UsageCategory>()),
+#endif
                 TypeSwitch.Case<XmlPortEncodingProperty>(p => p.Value = propertyValue.ToEnum<XmlPortEncoding>()),
                 TypeSwitch.Case<XmlPortNodeDataTypeProperty>(p => p.Value = propertyValue.ToEnum<XmlPortNodeDataType>()),
                 TypeSwitch.Case<XmlPortFormatProperty>(p => p.Value = propertyValue.ToEnum<XmlPortFormat>()),
