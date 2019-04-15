@@ -27,6 +27,9 @@ namespace UncommonSense.CBreeze.Automation
 #if NAV2018
             page.Properties.APIVersion = ApiVersion;
 #endif
+#if NAVBC
+            page.Properties.ApplicationArea.Set(ApplicationArea);
+#endif
             page.Properties.AutoSplitKey = NullableBooleanFromSwitch(nameof(AutoSplitKey));
             page.Properties.CaptionML.Set(CaptionML);
             page.Properties.CardPageID = CardPageID;
@@ -71,6 +74,9 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.SourceTableTemporary = NullableBooleanFromSwitch(nameof(SourceTableTemporary));
             page.Properties.SourceTableView.Key = SourceTableViewKey;
             page.Properties.SourceTableView.Order = SourceTableViewOrder;
+#if NAVBC
+            page.Properties.UsageCategory = UsageCategory;
+#endif
 
             if (AutoCaption)
                 page.AutoCaption();
@@ -92,6 +98,9 @@ namespace UncommonSense.CBreeze.Automation
 
 #if NAV2018
         [Parameter()] public string ApiVersion { get; set; }
+#endif
+#if NAVBC
+        [Parameter()]public string[] ApplicationArea {get;set;}
 #endif
         [Parameter()] public SwitchParameter AutoSplitKey { get; set; }
         [Parameter()] public Hashtable CaptionML { get; set; }
@@ -135,5 +144,8 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public SwitchParameter SourceTableTemporary { get; set; }
         [Parameter()] public string SourceTableViewKey { get; set; }
         [Parameter()] public Order? SourceTableViewOrder { get; set; }
+#if NAVBC
+        [Parameter()] public UsageCategory? UsageCategory { get; set; }
+#endif
     }
 }
