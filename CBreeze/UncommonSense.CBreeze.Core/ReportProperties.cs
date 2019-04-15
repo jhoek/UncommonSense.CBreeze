@@ -28,9 +28,7 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty processingOnly = new NullableBooleanProperty("ProcessingOnly");
         private NullableBooleanProperty showPrintStatus = new NullableBooleanProperty("ShowPrintStatus");
         private TransactionTypeProperty transactionType = new TransactionTypeProperty("TransactionType");
-#if NAVBC
         private UsageCategoryProperty usageCategory = new UsageCategoryProperty("UsageCategory");
-#endif
         private NullableBooleanProperty useRequestPage = new NullableBooleanProperty("UseRequestPage");
         private NullableBooleanProperty useSystemPrinter = new NullableBooleanProperty("UseSystemPrinter");
 #if NAV2015
@@ -106,7 +104,7 @@ namespace UncommonSense.CBreeze.Core
                 defaultLayout.Value = value;
             }
         }
-#endif
+#endif 
 
         public string Description
         {
@@ -280,13 +278,11 @@ namespace UncommonSense.CBreeze.Core
             }
         }
 
-#if NAVBC
         public UsageCategory? UsageCategory
         {
             get => usageCategory.Value;
             set => usageCategory.Value = value;
         }
-#endif
 
         public bool? UseRequestPage
         {
