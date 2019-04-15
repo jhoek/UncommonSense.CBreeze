@@ -44,7 +44,7 @@ namespace UncommonSense.CBreeze.Parse
         public static readonly Regex VariableWithEvents = new Regex(@"^(.*)\sWITHEVENTS$", RegexOptions.Compiled);
         public static readonly Regex VariableInDataSet = new Regex(@"^(.*)\sINDATASET$", RegexOptions.Compiled);
         public static readonly Regex VariableSecurityFiltering = new Regex(@"^(.*)\sSECURITYFILTERING\((.*)\)$", RegexOptions.Compiled);
-        public static readonly Regex VariableDimensions = new Regex(@"^ARRAY\s\[(\d+)(,\d+)*\] OF ", RegexOptions.Compiled);
+        public static readonly Regex VariableDimensions = new Regex(@"^ARRAY\s\[(\d+)((?:,\d+)*)\] OF ", RegexOptions.Compiled);
         public static readonly Regex VariableWithSubType = new Regex(@"^(\w+)\s+""?([^""]+)""?$", RegexOptions.Compiled);
         public static readonly Regex VariableWithLength = new Regex(@"^(\w+)\[(\d+)\]$", RegexOptions.Compiled);
         public static readonly Regex ParameterSuppressDispose = new Regex(@"^(.*)\sSUPPRESSDISPOSE$", RegexOptions.Compiled);
