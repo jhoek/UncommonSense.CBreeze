@@ -13,5 +13,5 @@ namespace UncommonSense.CBreeze.Core
 
         public override ParameterType Type => ParameterType.DataScope;
     }
-}
 #endif
+}
