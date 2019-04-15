@@ -9,6 +9,9 @@ namespace UncommonSense.CBreeze.Core
     {
         Rows,
         Columns,
+#if NAVBC
+        Wide
+#endif
     }
 
 }
