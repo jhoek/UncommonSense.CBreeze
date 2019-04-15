@@ -8,7 +8,7 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .ReadFromFolder(@"C:\Users\jhoek\Desktop\objects")
+                .ReadFromFolder(@"C:\Users\jhoek\Desktop\objects\codeunits")
                 .WriteToFolder(@"c:\users\jhoek\Desktop\output");
 
             //ApplicationBuilder            
