@@ -29,6 +29,9 @@ namespace UncommonSense.CBreeze.Core
         private TriggerProperty onRename = new TriggerProperty("OnRename");
         private NullableBooleanProperty pasteIsValid = new NullableBooleanProperty("PasteIsValid");
         private PermissionsProperty permissions = new PermissionsProperty("Permissions");
+#if NAVBC
+        private NullableBooleanProperty replicateData = new NullableBooleanProperty("ReplicateData");
+#endif
 #if NAV2016
         private TableTypeProperty tableType = new TableTypeProperty("TableType");
         private StringProperty externalName = new StringProperty("ExternalName");
@@ -61,6 +64,9 @@ namespace UncommonSense.CBreeze.Core
             innerList.Add(obsoleteState);
             innerList.Add(obsoleteReason);
             innerList.Add(dataClassification);
+#endif
+#if NAVBC
+            innerList.Add(replicateData);
 #endif
             innerList.Add(captionML); // 8629
             innerList.Add(description); // 15386
@@ -234,6 +240,14 @@ namespace UncommonSense.CBreeze.Core
                 return this.permissions.Value;
             }
         }
+
+#if NAVBC
+        public bool? ReplicateData
+        {
+            get => replicateData.Value;
+            set => replicateData.Value = value;
+        }
+#endif
 
 #if NAV2016
         public TableType? TableType
