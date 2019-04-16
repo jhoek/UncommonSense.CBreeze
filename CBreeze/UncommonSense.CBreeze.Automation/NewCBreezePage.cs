@@ -39,7 +39,7 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.CaptionML.Set(CaptionML);
             page.Properties.CardPageID = CardPageID;
 #if NAVBC
-            page.Properties.ChangeTrackingAllowed = ChangeTrackingAllowed;
+            page.Properties.ChangeTrackingAllowed = NullableBooleanFromSwitch(nameof(ChangeTrackingAllowed));
 #endif
             page.Properties.DataCaptionExpr = DataCaptionExpr;
             page.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
