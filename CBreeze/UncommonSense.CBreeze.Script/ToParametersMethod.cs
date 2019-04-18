@@ -421,6 +421,7 @@ namespace UncommonSense.CBreeze.Script
 #endif
 #if NAV2018
             yield return new SimpleParameter("FunctionVisibility", function.FunctionVisibility);
+            yield return new SwitchParameter("ServiceEnabled", function.ServiceEnabled);
 #endif
             yield return new ScriptBlockParameter("SubObjects",
                 function.Parameters.ToInvocations().Cast<Statement>()
