@@ -72,6 +72,7 @@ namespace UncommonSense.CBreeze.Script
                 new ScriptBlockParameter(
                     "RequestPageSubObjects",
                         report.RequestPage.Controls.ToInvocations().Cast<Statement>()
+                            .Concat(report.RequestPage.Actions.ToInvocations().Cast<Statement>())
                 )
             };
 
