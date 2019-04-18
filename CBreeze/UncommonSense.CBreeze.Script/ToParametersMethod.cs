@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Script
@@ -147,6 +144,10 @@ namespace UncommonSense.CBreeze.Script
             {
                 yield return parameter;
             }
+
+            yield return new ScriptBlockParameter(
+                "SubObjects",
+                filterQueryElement.Properties.ColumnFilter.Select(f => f.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this TableField field)
