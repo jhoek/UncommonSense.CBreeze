@@ -153,6 +153,7 @@ namespace UncommonSense.CBreeze.Script
         {
             yield return new SimpleParameter("ID", field.ID);
             yield return new SimpleParameter("Name", field.Name);
+            yield return new SwitchParameter("Enabled", field.Enabled);
 
             switch (field)
             {
