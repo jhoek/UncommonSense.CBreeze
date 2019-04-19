@@ -39,6 +39,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public ScriptBlock OnRename { get; set; }
         [Parameter()] public SwitchParameter PasteIsValid { get; set; }
         [Parameter()] public Permission[] Permissions { get; set; }
+#if NAVBC
+        [Parameter()] public SwitchParameter ReplicateData { get; set; }
+#endif
 #if NAV2016
         [Parameter()] public TableType? TableType { get; set; }
 #endif
@@ -78,6 +81,9 @@ namespace UncommonSense.CBreeze.Automation
             table.Properties.OnRename.Set(OnRename);
             table.Properties.PasteIsValid = NullableBooleanFromSwitch(nameof(PasteIsValid));
             table.Properties.Permissions.Set(Permissions);
+#if NAVBC
+            table.Properties.ReplicateData = NullableBooleanFromSwitch(nameof(ReplicateData));
+#endif
 #if NAV2016
             table.Properties.TableType = TableType;
 #endif

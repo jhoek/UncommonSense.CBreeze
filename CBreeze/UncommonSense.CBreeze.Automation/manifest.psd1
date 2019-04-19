@@ -12,7 +12,7 @@
 RootModule = 'UncommonSense.CBreeze.Automation.dll'
 
 # Version number of this module.
-ModuleVersion = '1.1.0.0'
+ModuleVersion = '1.1.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -102,6 +102,7 @@ CmdletsToExport = 'New-CBreezeDataClassificationParameter',
                'New-CBreezeCodeVariable', 'New-CBreezeColumnQueryElement', 
                'New-CBreezeColumnReportElement', 'New-CBreezeDataItemQueryElement', 
                'New-CBreezeDataItemReportElement', 
+			   'New-CBreezeDataScopeVariable', 'New-CBreezeDataScopeParameter',
                'New-CBreezeDateFormulaParameter', 
                'New-CBreezeDateFormulaTableField', 
                'New-CBreezeDateFormulaVariable', 'New-CBreezeDateParameter', 

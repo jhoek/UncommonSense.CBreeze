@@ -37,6 +37,28 @@ namespace UncommonSense.CBreeze.Automation
 
 	}
 
+	[Cmdlet(VerbsCommon.New, "CBreezeDataScopeVariable", DefaultParameterSetName="NewWithoutID")]
+	[OutputType(typeof(DataScopeVariable))]
+	[Alias("DataScopeVariable", "Add-CBreezeDataScopeVariable")]
+	public class NewBreezeDataScopeVariable : NewItemWithIDAndNameCmdlet<DataScopeVariable, int, PSObject>
+	{
+		protected override IEnumerable<DataScopeVariable> CreateItems()
+		{
+			var dataScopeVariable = new DataScopeVariable(ID, Name);
+			dataScopeVariable.Dimensions = Dimensions;
+			yield return dataScopeVariable;
+		}
+
+		protected override void AddItemToInputObject(DataScopeVariable item, PSObject inputObject)
+		{
+			inputObject.GetVariables().Add(item);
+		}
+
+		[Parameter()]
+		public String Dimensions { get; set; } 
+
+	}
+
 	[Cmdlet(VerbsCommon.New, "CBreezeActionVariable", DefaultParameterSetName="NewWithoutID")]
 	[OutputType(typeof(ActionVariable))]
 	[Alias("ActionVariable", "Add-CBreezeActionVariable")]

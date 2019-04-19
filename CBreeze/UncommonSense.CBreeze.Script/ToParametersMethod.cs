@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UncommonSense.CBreeze.Core;
 
 namespace UncommonSense.CBreeze.Script
@@ -147,12 +144,17 @@ namespace UncommonSense.CBreeze.Script
             {
                 yield return parameter;
             }
+
+            yield return new ScriptBlockParameter(
+                "SubObjects",
+                filterQueryElement.Properties.ColumnFilter.Select(f => f.ToInvocation()));
         }
 
         public static IEnumerable<ParameterBase> ToParameters(this TableField field)
         {
             yield return new SimpleParameter("ID", field.ID);
             yield return new SimpleParameter("Name", field.Name);
+            yield return new SwitchParameter("Enabled", field.Enabled);
 
             switch (field)
             {
@@ -421,6 +423,7 @@ namespace UncommonSense.CBreeze.Script
 #endif
 #if NAV2018
             yield return new SimpleParameter("FunctionVisibility", function.FunctionVisibility);
+            yield return new SwitchParameter("ServiceEnabled", function.ServiceEnabled);
 #endif
             yield return new ScriptBlockParameter("SubObjects",
                 function.Parameters.ToInvocations().Cast<Statement>()

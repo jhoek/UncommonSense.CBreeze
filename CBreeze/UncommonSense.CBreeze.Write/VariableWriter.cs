@@ -33,6 +33,9 @@ namespace UncommonSense.CBreeze.Write
 #if NAV2018
                 TypeSwitch.Case<DataClassificationVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
 #endif
+#if NAVBC
+                TypeSwitch.Case<DataScopeVariable>(p=>DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+#endif
                 TypeSwitch.Case<DateFormulaVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<DateTimeVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
                 TypeSwitch.Case<DateVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
@@ -81,7 +84,8 @@ namespace UncommonSense.CBreeze.Write
 #if NAV2018
                 TypeSwitch.Case<VerbosityVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
 #endif
-                TypeSwitch.Case<XmlPortVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer))
+                TypeSwitch.Case<XmlPortVariable>(p => DoWrite(p.Name, p.ID, p.TypeName, p.Dimensions, writer)),
+                TypeSwitch.Default(() => throw new ArgumentOutOfRangeException($"Don't know how to write a variable of type {variable.Type}."))
                 );
         }
 

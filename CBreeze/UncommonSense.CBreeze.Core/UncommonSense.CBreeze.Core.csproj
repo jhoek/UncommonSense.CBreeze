@@ -25,7 +25,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NAV2013;NAV2013R2;NAV2015;NAV2016;NAV2017;NAV2018</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NAV2013;NAV2013R2;NAV2015;NAV2016;NAV2017;NAV2018;NAVBC</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -55,6 +55,8 @@
     <Compile Include="DataClassificationParameter.cs" />
     <Compile Include="DataClassificationProperty.cs" />
     <Compile Include="DataClassificationVariable.cs" />
+    <Compile Include="DataScopeParameter.cs" />
+    <Compile Include="DataScopeVariable.cs" />
     <Compile Include="IHasDimensions.cs" />
     <Compile Include="IHasRequestPage.cs" />
     <Compile Include="LanguageExtensionMethods.cs" />
@@ -154,6 +156,8 @@
     <Compile Include="TestPermissionsProperty.cs" />
     <Compile Include="TestPermissionsVariable.cs" />
     <Compile Include="TriggerVariables.cs" />
+    <Compile Include="UsageCategory.cs" />
+    <Compile Include="UsageCategoryProperty.cs" />
     <Compile Include="VerbosityParameter.cs" />
     <Compile Include="VerbosityVariable.cs" />
     <Compile Include="XmlPortNamespace.cs" />

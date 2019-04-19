@@ -1,12 +1,11 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace UncommonSense.CBreeze.Core
 {
     public class ReportProperties : Properties
     {
+#if NAVBC
+        private AccessByPermissionProperty accessByPermission = new AccessByPermissionProperty("AccessByPermission");
+        private TagListProperty applicationArea = new TagListProperty("ApplicationArea");
+#endif    
         private MultiLanguageProperty captionML = new MultiLanguageProperty("CaptionML");
 #if NAV2015
         private DefaultLayoutProperty defaultLayout = new DefaultLayoutProperty("DefaultLayout");
@@ -21,6 +20,7 @@ namespace UncommonSense.CBreeze.Core
         private PaperSourceProperty paperSourceDefaultPage = new PaperSourceProperty("PaperSourceDefaultPage");
         private PaperSourceProperty paperSourceFirstPage = new PaperSourceProperty("PaperSourceFirstPage");
         private PaperSourceProperty paperSourceLastPage = new PaperSourceProperty("PaperSourceLastPage");
+        private NullableBooleanProperty pdfFontEmbedding = new NullableBooleanProperty("PDFFontEmbedding");
         private PermissionsProperty permissions = new PermissionsProperty("Permissions");
 #if NAV2015
         private PreviewModeProperty previewMode = new PreviewModeProperty("PreviewMode");
@@ -28,6 +28,9 @@ namespace UncommonSense.CBreeze.Core
         private NullableBooleanProperty processingOnly = new NullableBooleanProperty("ProcessingOnly");
         private NullableBooleanProperty showPrintStatus = new NullableBooleanProperty("ShowPrintStatus");
         private TransactionTypeProperty transactionType = new TransactionTypeProperty("TransactionType");
+#if NAVBC
+        private UsageCategoryProperty usageCategory = new UsageCategoryProperty("UsageCategory");
+#endif
         private NullableBooleanProperty useRequestPage = new NullableBooleanProperty("UseRequestPage");
         private NullableBooleanProperty useSystemPrinter = new NullableBooleanProperty("UseSystemPrinter");
 #if NAV2015
@@ -40,7 +43,13 @@ namespace UncommonSense.CBreeze.Core
 
             innerList.Add(permissions);
             innerList.Add(transactionType);
+#if NAVBC
+            innerList.Add(accessByPermission);
+#endif
             innerList.Add(captionML);
+#if NAVBC
+            innerList.Add(applicationArea);
+#endif
             innerList.Add(description);
             innerList.Add(showPrintStatus);
             innerList.Add(useSystemPrinter);
@@ -57,20 +66,31 @@ namespace UncommonSense.CBreeze.Core
 #if NAV2015
             innerList.Add(previewMode);
             innerList.Add(defaultLayout);
-            innerList.Add(wordMergeDataItem);
 #endif
             innerList.Add(useRequestPage);
+#if NAV2015
+            innerList.Add(wordMergeDataItem);
+#endif
+#if NAVBC
+            innerList.Add(pdfFontEmbedding);
+            innerList.Add(usageCategory);
+#endif
         }
 
         public Report Report { get; protected set; }
 
         public override INode ParentNode => Report;
 
+#if NAVBC
+        public AccessByPermission AccessByPermission => accessByPermission.Value;
+        public TagList ApplicationArea => applicationArea.Value;    
+#endif
+
         public MultiLanguageValue CaptionML
         {
             get
             {
-                return this.captionML.Value;
+                return captionML.Value;
             }
         }
 
@@ -79,24 +99,24 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.defaultLayout.Value;
+                return defaultLayout.Value;
             }
             set
             {
-                this.defaultLayout.Value = value;
+                defaultLayout.Value = value;
             }
         }
-#endif 
+#endif
 
         public string Description
         {
             get
             {
-                return this.description.Value;
+                return description.Value;
             }
             set
             {
-                this.description.Value = value;
+                description.Value = value;
             }
         }
 
@@ -104,11 +124,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.enableExternalAssemblies.Value;
+                return enableExternalAssemblies.Value;
             }
             set
             {
-                this.enableExternalAssemblies.Value = value;
+                enableExternalAssemblies.Value = value;
             }
         }
 
@@ -116,11 +136,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.enableExternalImages.Value;
+                return enableExternalImages.Value;
             }
             set
             {
-                this.enableExternalImages.Value = value;
+                enableExternalImages.Value = value;
             }
         }
 
@@ -128,11 +148,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.enableHyperlinks.Value;
+                return enableHyperlinks.Value;
             }
             set
             {
-                this.enableHyperlinks.Value = value;
+                enableHyperlinks.Value = value;
             }
         }
 
@@ -140,7 +160,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onInitReport.Value;
+                return onInitReport.Value;
             }
         }
 
@@ -148,7 +168,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onPostReport.Value;
+                return onPostReport.Value;
             }
         }
 
@@ -156,7 +176,7 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.onPreReport.Value;
+                return onPreReport.Value;
             }
         }
 
@@ -164,11 +184,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.paperSourceDefaultPage.Value;
+                return paperSourceDefaultPage.Value;
             }
             set
             {
-                this.paperSourceDefaultPage.Value = value;
+                paperSourceDefaultPage.Value = value;
             }
         }
 
@@ -176,11 +196,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.paperSourceFirstPage.Value;
+                return paperSourceFirstPage.Value;
             }
             set
             {
-                this.paperSourceFirstPage.Value = value;
+                paperSourceFirstPage.Value = value;
             }
         }
 
@@ -188,19 +208,25 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.paperSourceLastPage.Value;
+                return paperSourceLastPage.Value;
             }
             set
             {
-                this.paperSourceLastPage.Value = value;
+                paperSourceLastPage.Value = value;
             }
+        }
+
+        public bool? PDFFontEmbedding
+        {
+            get => pdfFontEmbedding.Value;
+            set => pdfFontEmbedding.Value = value;
         }
 
         public Permissions Permissions
         {
             get
             {
-                return this.permissions.Value;
+                return permissions.Value;
             }
         }
 
@@ -209,11 +235,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.previewMode.Value;
+                return previewMode.Value;
             }
             set
             {
-                this.previewMode.Value = value;
+                previewMode.Value = value;
             }
         }
 #endif
@@ -222,11 +248,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.processingOnly.Value;
+                return processingOnly.Value;
             }
             set
             {
-                this.processingOnly.Value = value;
+                processingOnly.Value = value;
             }
         }
 
@@ -234,11 +260,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.showPrintStatus.Value;
+                return showPrintStatus.Value;
             }
             set
             {
-                this.showPrintStatus.Value = value;
+                showPrintStatus.Value = value;
             }
         }
 
@@ -246,23 +272,31 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.transactionType.Value;
+                return transactionType.Value;
             }
             set
             {
-                this.transactionType.Value = value;
+                transactionType.Value = value;
             }
         }
+
+#if NAVBC
+        public UsageCategory? UsageCategory
+        {
+            get => usageCategory.Value;
+            set => usageCategory.Value = value;
+        }
+#endif
 
         public bool? UseRequestPage
         {
             get
             {
-                return this.useRequestPage.Value;
+                return useRequestPage.Value;
             }
             set
             {
-                this.useRequestPage.Value = value;
+                useRequestPage.Value = value;
             }
         }
 
@@ -270,11 +304,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.useSystemPrinter.Value;
+                return useSystemPrinter.Value;
             }
             set
             {
-                this.useSystemPrinter.Value = value;
+                useSystemPrinter.Value = value;
             }
         }
 
@@ -283,11 +317,11 @@ namespace UncommonSense.CBreeze.Core
         {
             get
             {
-                return this.wordMergeDataItem.Value;
+                return wordMergeDataItem.Value;
             }
             set
             {
-                this.wordMergeDataItem.Value = value;
+                wordMergeDataItem.Value = value;
             }
         }
 #endif

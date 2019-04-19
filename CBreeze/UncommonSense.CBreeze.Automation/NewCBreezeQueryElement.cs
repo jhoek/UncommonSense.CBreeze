@@ -233,6 +233,9 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter(ParameterSetName = ParameterSetNames.AddWithoutID)]
         public Position? Position { get; set; }
 
+        [Parameter()]
+        public ScriptBlock SubObjects { get; set; }
+
         protected override void AddItemToInputObject(QueryElement item, DataItemQueryElement InputObject)
         {
             InputObject.AddChildNode(item, Position.GetValueOrDefault(Core.Position.LastWithinContainer));
@@ -243,6 +246,10 @@ namespace UncommonSense.CBreeze.Automation
             var filterQueryElement = new FilterQueryElement(DataSource, ID, Name, GetIndentation());
             filterQueryElement.Properties.CaptionML.Set(CaptionML);
             filterQueryElement.Properties.Description = Description;
+
+            var subObjects = SubObjects?.Invoke().Select(o => o.BaseObject) ?? Enumerable.Empty<object>();
+            filterQueryElement.Properties.ColumnFilter.AddRange(subObjects.OfType<TableFilterLine>());
+
             yield return filterQueryElement;
         }
 

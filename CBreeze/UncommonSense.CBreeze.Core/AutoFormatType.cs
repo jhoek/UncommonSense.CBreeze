@@ -5,6 +5,7 @@ namespace UncommonSense.CBreeze.Core
         Other = 0,
         Amount = 1,
         UnitAmount = 2,
-        Custom = 10
+        Custom = 10,
+        AutoFormatExpr = 11
     }
 }

@@ -24,12 +24,23 @@ namespace UncommonSense.CBreeze.Automation
             var page = new Page(ID, Name);
             SetObjectProperties(page);
 
+#if NAVBC
+            page.Properties.AccessByPermission.Set(AccessByPermission);
+            page.Properties.APIPublisher = APIPublisher;
+            page.Properties.APIGroup = APIGroup;
+#endif
 #if NAV2018
             page.Properties.APIVersion = ApiVersion;
+#endif
+#if NAVBC
+            page.Properties.ApplicationArea.Set(ApplicationArea);
 #endif
             page.Properties.AutoSplitKey = NullableBooleanFromSwitch(nameof(AutoSplitKey));
             page.Properties.CaptionML.Set(CaptionML);
             page.Properties.CardPageID = CardPageID;
+#if NAVBC
+            page.Properties.ChangeTrackingAllowed = NullableBooleanFromSwitch(nameof(ChangeTrackingAllowed));
+#endif
             page.Properties.DataCaptionExpr = DataCaptionExpr;
             page.Properties.DataCaptionFields.AddRange(DataCaptionFields ?? new string[] { });
             page.Properties.DelayedInsert = NullableBooleanFromSwitch(nameof(DelayedInsert));
@@ -71,6 +82,9 @@ namespace UncommonSense.CBreeze.Automation
             page.Properties.SourceTableTemporary = NullableBooleanFromSwitch(nameof(SourceTableTemporary));
             page.Properties.SourceTableView.Key = SourceTableViewKey;
             page.Properties.SourceTableView.Order = SourceTableViewOrder;
+#if NAVBC
+            page.Properties.UsageCategory = UsageCategory;
+#endif
 
             if (AutoCaption)
                 page.AutoCaption();
@@ -90,12 +104,23 @@ namespace UncommonSense.CBreeze.Automation
             yield return page;
         }
 
+#if NAVBC
+        [Parameter()] public AccessByPermission AccessByPermission { get; set; }
+#endif
 #if NAV2018
         [Parameter()] public string ApiVersion { get; set; }
+#endif
+#if NAVBC
+        [Parameter()] public string APIPublisher { get; set; }
+        [Parameter()] public string APIGroup { get; set; }
+        [Parameter()]public string[] ApplicationArea {get;set;}
 #endif
         [Parameter()] public SwitchParameter AutoSplitKey { get; set; }
         [Parameter()] public Hashtable CaptionML { get; set; }
         [Parameter()] public string CardPageID { get; set; }
+#if NAVBC
+        [Parameter()] public SwitchParameter ChangeTrackingAllowed { get; set; }
+#endif
         [Parameter()] public string DataCaptionExpr { get; set; }
         [Parameter()] public string[] DataCaptionFields { get; set; }
         [Parameter()] public SwitchParameter DelayedInsert { get; set; }
@@ -135,5 +160,8 @@ namespace UncommonSense.CBreeze.Automation
         [Parameter()] public SwitchParameter SourceTableTemporary { get; set; }
         [Parameter()] public string SourceTableViewKey { get; set; }
         [Parameter()] public Order? SourceTableViewOrder { get; set; }
+#if NAVBC
+        [Parameter()] public UsageCategory? UsageCategory { get; set; }
+#endif
     }
 }

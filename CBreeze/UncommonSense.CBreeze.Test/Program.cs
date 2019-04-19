@@ -8,12 +8,12 @@ namespace UncommonSense.CBreeze.Test
         private static void Main(string[] args)
         {
             ApplicationBuilder
-                .ReadFromFolder(@"C:\Users\jhoek\Desktop\2018\input\nl\rtm")
-                .WriteToFolder(@"c:\users\jhoek\Desktop\2018\Output");
+                .ReadFromFolder(@"C:\Users\jhoek\Desktop\objects")
+                .WriteToFolder(@"c:\users\jhoek\Desktop\output");
 
             //ApplicationBuilder
-            //    .ReadFromFile(@"C:\Users\jhoek\Desktop\2018\Input\NL\rtm\PAG1170.TXT")
-            //    .WriteToFile(@"C:\Users\jhoek\Desktop\out.txt");
+            //    .ReadFromFile(@"C:\Users\jhoek\Desktop\objects\codeunits\cod1008.TXT")
+            //    .WriteToFile(@"C:\Users\jhoek\Desktop\output.txt");
         }
     }
 }
