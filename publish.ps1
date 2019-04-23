@@ -14,7 +14,7 @@ Task Publish -depends UpdateManifest {
     Publish-Module -Path $OutputFolderName -NuGetApiKey $env:NuGetApiKey
 }
 
-Task UpdateManifest -depends BuildSolution {    
+Task UpdateManifest -depends BuildSolution {
     Set-ExportedModuleMembers -Path $OutputManifestFileName
 }
 
@@ -28,7 +28,7 @@ Task UpdateReadMe -depends BuildSolution {
 }
 
 Task BuildSolution -depends UpdateAssemblyInfo, UpdateModuleVersion {
-    Invoke-Psake -BuildFile (Join-Path -Path $psake.build_script_dir -ChildPath build.ps1) -taskList Build2018
+    Invoke-Psake -BuildFile (Join-Path -Path $psake.build_script_dir -ChildPath build.ps1) -taskList BuildBC
 }
 
 Task UpdateModuleVersion -depends BumpBuildNo {
@@ -36,7 +36,7 @@ Task UpdateModuleVersion -depends BumpBuildNo {
 }
 
 Task UpdateAssemblyInfo -depends BumpBuildNo {
-    Set-AssemblyInfoVersion -Path $psake.build_script_dir -Version $script:BuildVersion -Recurse     
+    Set-AssemblyInfoVersion -Path $psake.build_script_dir -Version $script:BuildVersion -Recurse
 }
 
 Task BumpBuildNo -depends GetBuildNo {
