@@ -14,7 +14,7 @@ function Invoke-MSBuild
         [string]$Target = 'Rebuild',
 
         [Parameter(Mandatory, Position = 1)]
-        [ValidateSet('NAV2018', 'NAV2017', 'NAV2016', 'NAV2015', 'NAV2013R2', 'NAV2013')]
+        [ValidateSet('NAVBC', 'NAV2018', 'NAV2017', 'NAV2016', 'NAV2015', 'NAV2013R2', 'NAV2013')]
         [string]$NAVVersion,
 
         [ValidateSet('quiet', 'minimal', 'normal', 'detailed', 'diagnostic')]
@@ -27,6 +27,10 @@ function Invoke-MSBuild
 
     $DefineConstants = switch ($NAVVersion)
     {
+        'NAVBC'
+        {
+            'NAVBC NAV2018 NAV2017 NAV2016 NAV2015 NAV2013R2 NAV2013'
+        }
         'NAV2018'
         {
             'NAV2018 NAV2017 NAV2016 NAV2015 NAV2013R2 NAV2013'
@@ -56,7 +60,11 @@ function Invoke-MSBuild
     Exec { msbuild /target:$Target /property:Configuration=$Configuration /property:DefineConstants="$DefineConstants" /p:NoWarn=1591 /verbosity:$Verbosity $SolutionFileName }
 }
 
-Task -Name Default -Depends Build2017
+Task -Name Default -Depends BuildBC
+
+Task -Name BuildBC {
+    Invoke-MSBuild NAVBC
+}
 
 Task -Name Build2018 {
     Invoke-MSBuild NAV2018
