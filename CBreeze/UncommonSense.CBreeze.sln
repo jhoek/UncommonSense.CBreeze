@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Scrip
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Test", "UncommonSense.CBreeze.Test\UncommonSense.CBreeze.Test.csproj", "{DDBC1BDE-9BA4-4E10-A2A9-F4C216A6865E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncommonSense.CBreeze.Meta", "UncommonSense.CBreeze.Meta\UncommonSense.CBreeze.Meta.csproj", "{56E5DF45-423C-4108-83A7-C7945FFDCD4C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,18 +163,6 @@ Global
 		{DDBC1BDE-9BA4-4E10-A2A9-F4C216A6865E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DDBC1BDE-9BA4-4E10-A2A9-F4C216A6865E}.Release|x86.ActiveCfg = Release|Any CPU
 		{DDBC1BDE-9BA4-4E10-A2A9-F4C216A6865E}.Release|x86.Build.0 = Release|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Debug|x86.Build.0 = Debug|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Release|x86.ActiveCfg = Release|Any CPU
-		{56E5DF45-423C-4108-83A7-C7945FFDCD4C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
